@@ -5,11 +5,11 @@ Specifications
 [![](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](http://ipfs.io/)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 
-> This repository contains the specs about IPLD. Some day we will hopefully transform these specs into RFCs. For now, they assume a high level of familiarity with the concepts.
+> This repository contains the specs about IPLD.
 
 ## Work In Progress
 
-Warning: this is a work in progress. IPLD is a young body of work and we want to get it right. We will continue to evaluate and re-think pieces. At this point, the IPLD specs are solid enough to produce interoperable implementations in different languages.
+**Warning**: this is a work in progress. IPLD is a young body of work and we want to get it right. We will continue to evaluate and re-think pieces.
 
 **Specs are not finished yet. We use the following tag system to identify their state:**
 
@@ -28,7 +28,9 @@ Note that, as in many IPFS repositories, most of the work is happening in [the i
 The specs contained in this repository are:
 
 **IPLD:**
-- [IPLD](/ipld) - the top-level spec and the stack
+- [IPLD](/ipld) - spec about the data model, pointers and link formats
+- IPLD Selectors (not started) - spec about simple language to select multiple unknown nodes in a graph
+- IPLD Transformations (not started) - spec about the language to trasform an IPLD graph into another
 
 
 ## Collaborating

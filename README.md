@@ -28,7 +28,7 @@ Note that, as in many IPFS repositories, most of the work is happening in [the i
 The specs contained in this repository are:
 
 **IPLD:**
-- [IPLD](/ipld-current) - the top-level spec and the stack
+- [IPLD](/ipld) - the top-level spec and the stack
 
 
 ## Collaborating

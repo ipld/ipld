@@ -28,9 +28,9 @@ Note that, as in many IPFS repositories, most of the work is happening in [the i
 The specs contained in this repository are:
 
 **IPLD:**
-- [IPLD](/ipld) - spec about the data model, pointers and link formats
-- IPLD Selectors (not started) - spec about simple language to select multiple unknown nodes in a graph
-- IPLD Transformations (not started) - spec about the language to trasform an IPLD graph into another
+- [IPLD](/ipld) ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square) - spec about the data model, pointers and link formats
+- IPLD Selectors ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about simple language to select multiple unknown nodes in a graph
+- IPLD Transformations ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about the language to trasform an IPLD graph into another
 
 
 ## Collaborating

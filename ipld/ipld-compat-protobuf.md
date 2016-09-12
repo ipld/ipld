@@ -70,7 +70,7 @@ The main object contains:
 
 Each link consists of:
 
-- A `@link` key containing the path to the destination document (Using the `/ipfs/` prefix)
+- A `link` key containing the path to the destination document (Using the `/ipfs/` prefix)
 - A `name` key containing the link name (a text string)
 - A `size` unsigned integer containing the link size as stored in the Protocol Buffer object
 

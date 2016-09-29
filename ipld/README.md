@@ -57,6 +57,7 @@ A _merkle-link_ is represented in the IPLD object model by a map containing a si
       "link": {"/": "/ipfs/QmUmg7BZC1YP1ca66rRtWKxpXp77WgVHrnv263JtDuvs2k"}, // the link
       "mode": 0755,
       "owner": "jbenet"
+    }
   }
 }
 ```

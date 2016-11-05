@@ -361,7 +361,7 @@ TODO:
 
 IPLD is _directly compatible_ with JSON, to take advantage of JSON's successes, but it need not be _held back_ by JSON's mistakes. This is where we can afford to follow format idiomatic choices, though care MUST be given to ensure there is always a well-defined 1:1 mapping.
 
-On the subject of integers, there exist a variety of formats which represent integers as strings in JSON, for example, [EJSON](https://www.meteor.com/ejson). These can be used and conversion to and from other formats should happen naturally-- that is, when converting JSON to CBOR, an EJSON integer should be transformed naturally to a proper CBOR integer, instead of representing it as a map with string values.
+On the subject of integers, there exist a variety of formats which represent integers as strings in JSON, for example, [EJSON](https://docs.meteor.com/api/ejson.html). These can be used and conversion to and from other formats should happen naturally-- that is, when converting JSON to CBOR, an EJSON integer should be transformed naturally to a proper CBOR integer, instead of representing it as a map with string values.
 
 
 ## Serialized Data Formats

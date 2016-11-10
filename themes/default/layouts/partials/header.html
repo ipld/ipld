@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+<head>
+<meta charset="utf-8">
+{{ .Hugo.Generator }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+<link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+-->
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/skeleton.css">
+<link rel="stylesheet" href="../css/custom.css">
+<link rel="alternate" href="index.xml" type="application/rss+xml" title="{{ .Site.Title }}">
+<link rel="icon" type="image/png" href="../favicon.png">
+<title>{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}</title>
+</head>
+<body>
+
+<div class="container">
+	<div class="header-container">
+		<div class="header">
+			<h1 class="header-title"><a href="../home">{{ .Site.Title }}</a></h1>
+			<h3 class="header-tagline"><a href="../home">{{ .Site.Params.tagline }}</a></h3>
+		</div>
+
+		<div class="links">
+			{{ range .Site.Params.links }}
+				<div>
+					<a href="{{ .link }}">{{ .name }}</a>
+				</div>
+			{{ end }}
+		</div>
+	</div>
+	<div class="navigation">
+		{{ $currentPageTitle := .Title }}
+		<div class="navigation-links">
+			{{ range .Site.Params.navigation }}
+				{{ if eq .name $currentPageTitle }}
+					<a href="{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
+				{{ else }}
+					<a href="{{ .link }}" class="navigation-link">{{ .name }}</a>
+				{{ end }}
+			{{ end }}
+		</div>
+	</div>

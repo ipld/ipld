@@ -1,0 +1,115 @@
+baseurl: "http://example.org/"
+
+title: "IPLD"
+author: "Protocol Labs"
+languageCode: "en-us"
+theme: "default"
+
+copyright: "IPLD - All rights reserved."
+
+params:
+  tagline: "InterPlanetary Linked Data"
+  main_color: "#ff4088"
+  links:
+    - name: "Github"
+      link: "https://github.com/ipld/ipld"
+    - name: "Specification"
+      link: "https://github.com/ipld/specs"
+  navigation:
+    - name: "Home"
+      link: "../home"
+    - name: "Install & Examples"
+      link: "../install-and-examples"
+  features:
+    - name: "Cryptographic Integrity"
+      icon: "social.svg"
+      description: |
+        Resolving a link's value can be tested by hashing.
+        In turn, this allows wide, secure and trustless
+        exchange of data, as others cannot give you any
+        data that does not hash to the link's value
+
+    - name: "Immutable Datastructures"
+      icon: "cloud-data-distribution-symbol.svg"
+      description: |
+        Data structures with merkle links cannot mutate,
+        which is a nice property for distributed systems.
+        This is useful for versioning, for representing
+        distributed mutable state, and for long term archival
+  languages:
+    - name: JavaScript
+      icon: "javascript.svg"
+      repo: "ipld/js-ipld-dag-cbor"
+    - name: Go
+      icon: "go.svg"
+      repo: "ipfs/go-ipld"
+    - name: C
+      icon: "c.svg"
+      status: "missing"
+    - name: Python
+      status: "missing"
+      icon: "python.svg"
+
+  #[params]
+  #	links = [{
+  #		name = "Github",
+  #		link = "ARtrib"
+  #	}]
+  #
+  #	navigation = [{
+  #		name = "Home",
+  #		link = "../"
+  #	}, {
+  #		name = "Implementations",
+  #		link = "../implementations"
+  #	}]
+  #		
+  #	[navigation]
+  #		[navigation.home]
+  #
+  #		[navigation.implementations]
+  #
+  #		[navigation.examples]
+  #		name = "Examples"
+  #		link = "../examples"
+  #
+  #	[features]
+  #		[features.integrity]
+  #		name = "Cryptographic Integrity Checking"
+  #		icon = "random_icon.png"
+  #		summary = "Somewhat cool feature yeah"
+  #
+  #		[features.immutable]
+  #		name = "Immutable Datastructures"
+  #		icon = "another_random_icon.png"
+  #		summary = "Even cooler feature!"
+  #
+  #	[supported_langs]
+  #		[supported_langs.js]
+  #		name = "JavaScript"
+  #		icon = "icons/javascript.png"
+  #		link = "github.com/ipld/js-ipld"
+  #
+  #		[supported_langs.go]
+  #		name = "Go"
+  #		icon = "icons/go.png"
+  #		link = "github.com/ipld/go-ipld"
+  #
+  #		[supported_langs.c]
+  #		name = "C"
+  #		icon = "icons/c.png"
+  #		link = "github.com/ipld/c-ipld"
+  #
+  #		[supported_langs.python]
+  #		name = "Python"
+  #		icon = "icons/python.png"
+  #		link = "github.com/ipld/python-ipld"
+  #
+  #	[talks]
+  #		[talks.first]
+  #		name = "Someone talking somewhere"
+  #		video = "youtube.com/RandomVideo"
+  #
+  #		[talks.second]
+  #		name = "Someone talking somewhere else"
+  #		video = "youtube.com/AnotherRandomVideo"

@@ -1,0 +1,231 @@
+@font-face {
+	font-family: BrandonLight;
+	src: url("Brandon_light.otf") format("opentype");
+}
+
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+/*
+  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+*/
+  font-family: BrandonLight, sans-serif;
+  background-color: #FCFCFC;
+}
+
+.header-container {
+	padding: 50px;
+	line-height: 50px;
+	height: 100px;
+	position: relative;
+}
+
+.header {
+	float: left;
+	height: 100%;
+}
+
+.header-title, .header-tagline {
+	margin: 0px; padding: 0px;
+}
+
+.header a {
+	color: black;
+	text-decoration: none;
+}
+
+.header-title {
+	font-size: 46px;
+	font-weight: bolder;
+}
+
+.header-tagline {
+	font-size: 26px;
+	font-weight: lighter;
+}
+
+.links {
+	float: right;
+	height: 100%;
+	margin-top: 25px;
+	line-height: 25px;
+}
+
+.navigation {
+	width: 100%;
+	background-color: rgba(0, 200, 0, 0.2);
+	text-align: center;
+	background-color: #B464E4;
+	height: 50px;
+}
+
+.navigation-link {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 17px;
+	color: white;
+	text-decoration: none;
+	opacity: 0.8;
+
+	line-height: 50px;
+	padding: 5px;
+}
+
+.navigation-link-active {
+	opacity: 1;
+	border-bottom: 2px solid white;
+}
+
+.navigation-links {
+	margin: 0 auto;
+	width: 500px;
+}
+
+.navigation-link:hover {
+	color: white;
+	border-bottom: 2px solid white;
+	opacity: 1;
+}
+
+header,
+footer {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+main {
+  margin: 4rem 0;
+}
+
+.container {
+  width: 100%;
+}
+
+.header-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 4px solid #E1E1E1;
+}
+
+.header-logo img:hover {
+  border-color: #F1F1F1;
+}
+
+.site-title {
+  margin-top: 2rem;
+}
+
+.entry-title {
+  margin-bottom: 0;
+}
+
+.entry-title a {
+  text-decoration: none;
+}
+
+.entry-meta {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
+  color: #888;
+}
+
+.footer-link {
+  margin: 2rem 0;
+}
+
+.hr {
+  height: 1px;
+  margin: 2rem 0;
+  background: #E1E1E1;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(#E1E1E1), to(white));
+  background: -webkit-linear-gradient(left, white, #E1E1E1, white);
+  background: linear-gradient(to right, white, #E1E1E1, white);
+}
+
+.introduction-text {
+	max-width: 479px;
+	text-align: justify;
+	margin: 50px auto;
+}
+
+.features {
+	width: 1000px;
+	margin: 100px auto;
+}
+
+.section-title {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.feature {
+	position: relative;
+	width: 500px;
+	text-align: justify;
+	float: left;
+}
+
+.feature-icon {
+	position: relative;
+	margin: 0px auto;
+	width: 100px;
+}
+
+.feature-icon object {
+	width: 100px;
+}
+
+.feature-name {
+	text-align: center;
+}
+
+.feature-description {
+	position: relative;
+	margin: 0px auto;
+	text-align: center;
+	width: 450px;
+}
+
+.single-page {
+	width: 1000px;
+	margin: 50px auto;
+}
+
+.languages {
+	width: 1000px;
+	margin: 150px auto;
+}
+
+.language {
+	width: 200px;
+	margin: 25px;
+	float: left;
+}
+
+.language-title {
+	text-align: center;
+	font-size: 26px;
+}
+
+.language-title a {
+	color: black;
+	text-decoration: none;
+}
+
+.language-icon {
+	margin-top: 20px;
+}
+
+.language-missing {
+	fill-opacity: 0.5;
+	opacity: 0.5
+}
+
+.clear {
+	clear: both;
+}

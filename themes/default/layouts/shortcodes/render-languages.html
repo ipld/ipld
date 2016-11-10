@@ -1,0 +1,27 @@
+{{ range .Site.Params.languages }}
+	{{ $githubLink := printf "//github.com/%s" .repo }}
+	{{ $iconFile := printf "data/icons/%s" .icon }}
+	{{ if eq .status "missing" }}
+		<div class="language language-missing">
+			<div class="language-title">
+					<a href="#">{{ .name }}</a> (soon)
+			</div>
+			<div class="language-icon">
+					<a href="#">
+						{{ readFile $iconFile | safeHTML }}
+					</a>
+			</div>
+		</div>
+	{{ else }}
+		<div class="language">
+			<div class="language-title">
+					<a href="{{$githubLink}}">{{ .name }}</a>
+			</div>
+			<div class="language-icon">
+					<a href="{{$githubLink}}">
+						{{ readFile $iconFile | safeHTML }}
+					</a>
+			</div>
+		</div>
+	{{ end }}
+{{ end }}

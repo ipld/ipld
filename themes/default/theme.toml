@@ -1,0 +1,11 @@
+name = "Hugo Zen"
+license = "MIT"
+licenselink = "https://github.com/rakuishi/hugo-zen/blob/master/LICENSE.md"
+description = "Hugo Zen is a minimal hugo theme."
+tags = ["blog"]
+features = ["blog", "themes"]
+min_version = 0.13
+
+[author]
+    name = "OCHIISHI Koichiro"
+    homepage = "http://rakuishi.com/"

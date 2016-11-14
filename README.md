@@ -23,7 +23,7 @@ Makes sure you have the right dependencies installed, otherwise prints them out
 
 ### `make build`
 
-Builds a full, static copy of the website and puts it in the `build/` directory
+Builds a full, static copy of the website and puts it in the `public/` directory
 
 ### `make dev`
 

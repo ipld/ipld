@@ -8,15 +8,25 @@
 <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 -->
-<link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/skeleton.css">
-<link rel="stylesheet" href="../css/custom.css">
+{{ $isHomePage := eq .Title .Site.Title }}
+
+{{ $.Scratch.Add "basePath" "../" }}
+
+{{ if $isHomePage }}
+	{{ $.Scratch.Set "basePath" "./" }}
+{{ end  }}
+
+{{ $basePath := $.Scratch.Get "basePath" }}
+
+<link rel="stylesheet" href="{{ $basePath }}css/normalize.css">
+<link rel="stylesheet" href="{{ $basePath }}css/skeleton.css">
+<link rel="stylesheet" href="{{ $basePath }}css/custom.css">
+
 <link rel="alternate" href="index.xml" type="application/rss+xml" title="{{ .Site.Title }}">
 <link rel="icon" type="image/png" href="../favicon.png">
-<title>{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}</title>
+<title>{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}</title>
 </head>
 <body>
-
 <div class="container">
 	<div class="header-container">
 		<div class="header">
@@ -34,12 +44,17 @@
 	</div>
 	<div class="navigation">
 		{{ $currentPageTitle := .Title }}
+		{{ $siteTitle := .Site.Title }}
 		<div class="navigation-links">
 			{{ range .Site.Params.navigation }}
-				{{ if eq .name $currentPageTitle }}
-					<a href="{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
+				{{ if and (eq .name "Home") (eq $currentPageTitle $siteTitle) }}
+					<a href="{{$basePath}}{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
 				{{ else }}
-					<a href="{{ .link }}" class="navigation-link">{{ .name }}</a>
+					{{ if eq .name $currentPageTitle }}
+						<a href="{{$basePath}}{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
+					{{ else }}
+						<a href="{{$basePath}}{{ .link }}" class="navigation-link">{{ .name }}</a>
+					{{ end }}
 				{{ end }}
 			{{ end }}
 		</div>

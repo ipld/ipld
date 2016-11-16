@@ -4,6 +4,7 @@ title: "IPLD"
 author: "Protocol Labs"
 languageCode: "en-us"
 theme: "default"
+pygmentsstyle: "friendly"
 
 copyright: "IPLD - All rights reserved."
 

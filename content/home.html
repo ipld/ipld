@@ -10,6 +10,38 @@ date = "2016-11-10"
 	<p>The IPLD Data Mode defines a simple JSON-based structure for all merkle-dags, and identifies a set of formats to encode the structure into.</p>
 </div>
 
+<div class="example">
+	<div class="example-linenumbers">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+		<div>11</div>
+	</div>
+	<div class="example-code">
+		<div class="example-json">JSON</div>
+{{< highlight json >}}
+{
+  "files": {
+    "cat.jpg": {
+      "link": {
+        "/": "/ipfs/QmUmg7BZC1YP1ca66rRtWKxpXp77WgVHrnv263JtDuvs2k"
+      },
+      "mode": 0755,
+      "owner": "jbenet"
+    }
+  }
+}
+{{< /highlight >}}
+	</div>
+	<div class="clear"></div>
+</div>
 
 <div class="features">
 	<h1 class="section-title">Features</h1>

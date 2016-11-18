@@ -11,6 +11,7 @@ build-dep:
 publish-dep:
 	@which ipfs > /dev/null || (echo "You need to install ipfs to publish this website. See https://ipfs.io/" && exit 1)
 	@which dnslink-deploy > /dev/null || (echo "You need to install dnslink-deploy to publish this website. See https://github.com/ipfs/dnslink-deploy" && exit 1)
+	@ipfs swarm peers > /dev/null || (echo "You need to run the IPFS daemon before publishing." && exit 1)
 build: build-dep
 	@echo "## Doing a one-time build of the website"
 	@hugo

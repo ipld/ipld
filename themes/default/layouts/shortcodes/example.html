@@ -1,0 +1,25 @@
+{{ $code := .Inner | string }}
+{{ $lines := .Get "lines" | int }} <!-- TODO: Read number of lines from code -->
+{{ $text := .Get "text" }}
+{{ $title := .Get "title" }}
+{{ $language := .Get "language" }}
+
+<div class="getting-started-example">
+	<h1>{{ $title }}</h1>
+	<div class="example">
+		<div class="example-linenumbers">
+			{{ range $i, $sequence :=  (seq $lines) }}
+				{{$sequence}}
+			{{ end }}
+		</div>
+		<div class="example-code">
+			<div class="example-json">{{ upper $language }}</div>
+			{{ highlight $code $language ""}}
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="getting-started-example-text">
+		{{ .Get "text" | safeHTML }}
+	</div>
+	<div class="clear"></div>
+</div>

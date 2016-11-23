@@ -19,8 +19,8 @@ params:
   navigation:
     - name: "Home"
       link: "/"
-    - name: "Install & Examples"
-      link: "install-and-examples"
+    - name: "Getting Started"
+      link: "getting-started"
   features:
     - name: "Cryptographic Integrity"
       icon: "social.svg"

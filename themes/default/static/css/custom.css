@@ -1,8 +1,12 @@
 @font-face {
 	font-family: BrandonLight;
-	src: url("Brandon_light.otf") format("opentype");
+	src: url("/fonts/Brandon_light.otf") format("opentype");
 }
 
+@font-face {
+	font-family: BrandonThin;
+	src: url("/fonts/Brandon_thin.otf") format("opentype");
+}
 
 html {
 	overflow-y: scroll;
@@ -194,6 +198,7 @@ main {
 .example-code pre {
 	line-height: 15px !important;
 	margin: 0;
+	overflow-y: hidden;
 }
 
 .features {
@@ -267,6 +272,41 @@ main {
 .language-missing {
 	fill-opacity: 0.5;
 	opacity: 0.5
+}
+
+.getting-started-example {
+	position: relative;
+}
+
+.getting-started-example h1 {
+	text-align: center;
+  font-family: BrandonLight, sans-serif;
+	font-weight: 100;
+	font-size: 48px;
+}
+
+.getting-started-example .example, .getting-started-example-text {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+.getting-started-example .example {
+	right: 0;
+	width: 450px;
+}
+.example {
+	margin: 0;
+}
+
+.getting-started-example .example-code {
+	width: 410px;
+}
+
+.getting-started-example-text {
+	width: 500px;
+	padding: 20px;
+	font-size: 18px;
 }
 
 .clear {

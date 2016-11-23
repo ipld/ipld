@@ -1,11 +1,7 @@
 @font-face {
 	font-family: BrandonLight;
 	src: url("/fonts/Brandon_light.otf") format("opentype");
-}
-
-@font-face {
-	font-family: BrandonThin;
-	src: url("/fonts/Brandon_thin.otf") format("opentype");
+	src: url("../fonts/Brandon_light.otf") format("opentype");
 }
 
 html {

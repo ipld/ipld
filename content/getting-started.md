@@ -1,6 +1,6 @@
 +++
 type = "page"
-title = "Getting STarted"
+title = "Getting Started"
 description = "A description"
 tags = [ "page" ]
 date = "2016-11-10"

@@ -56,27 +56,24 @@ body {
 
 .navigation {
 	width: 100%;
-	background-color: rgba(0, 200, 0, 0.2);
+	font-weight: normal;
 	text-align: center;
-	background-color: #B464E4;
 	height: 50px;
 }
 
 .navigation-link {
 	margin-left: 20px;
 	margin-right: 20px;
-	font-size: 17px;
-	color: white;
+	font-size: 23px;
+	color: black;
 	text-decoration: none;
-	opacity: 0.8;
 
 	line-height: 50px;
-	padding: 5px;
 }
 
 .navigation-link-active {
 	opacity: 1;
-	border-bottom: 2px solid white;
+	border-bottom: 1px solid black;
 }
 
 .navigation-links {
@@ -85,9 +82,7 @@ body {
 }
 
 .navigation-link:hover {
-	color: white;
-	border-bottom: 2px solid white;
-	opacity: 1;
+	color: #54AFDE;
 }
 
 header,
@@ -217,12 +212,23 @@ main {
 
 /* TODO fix colors */
 #landing-links-getting-started {
-	background-color: green;
+	border-radius: 5px;
+	text-align: center;
+	border: 2px solid #54AFDE;
+	color: #54AFDE;
 }
+
+#landing-links-getting-started:hover {
+	color: white;
+	background-color: #54AFDE;
+}
+
+
 
 /* TODO fix colors */
 #landing-links-community {
-	background-color: blue;
+	color: black;
+	text-decoration: underline;
 }
 
 .features {

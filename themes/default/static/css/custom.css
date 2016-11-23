@@ -339,3 +339,21 @@ main {
 .clear {
 	clear: both;
 }
+
+.contribute-community {
+	width: 1000px;
+	margin: 50px auto;
+	text-align: center;
+}
+
+.contribute-community p {
+	width: 500px;
+	margin: 20px auto;
+	text-align: justify;
+	font-size: 18px;
+	text-justify: inter-word;
+}
+
+.center {
+	text-align: center !important;
+}

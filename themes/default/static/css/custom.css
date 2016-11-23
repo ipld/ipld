@@ -197,6 +197,34 @@ main {
 	overflow-y: hidden;
 }
 
+.landing-links {
+	width: 1000px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+.landing-links a {
+	margin: 10px;
+	padding: 10px;
+	color: white;
+	font-size: 26px;
+	text-decoration: none;
+}
+
+.landing-links a:hover {
+	opacity: 0.8;
+}
+
+/* TODO fix colors */
+#landing-links-getting-started {
+	background-color: green;
+}
+
+/* TODO fix colors */
+#landing-links-community {
+	background-color: blue;
+}
+
 .features {
 	width: 1000px;
 	margin: 100px auto;

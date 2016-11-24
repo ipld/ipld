@@ -6,45 +6,28 @@ tags = [ "page" ]
 date = "2016-11-10"
 +++
 
-<div class="introduction-text">
+<div class="introduction-text section">
 	<p>The IPLD Data Mode defines a simple JSON-based structure for all merkle-dags, and identifies a set of formats to encode the structure into.</p>
 </div>
 
 <!-- TODO migrate to use example-shortcode -->
-<div class="example">
-	<div class="example-linenumbers">
-		<div>1</div>
-		<div>2</div>
-		<div>3</div>
-		<div>4</div>
-		<div>5</div>
-		<div>6</div>
-		<div>7</div>
-		<div>8</div>
-		<div>9</div>
-		<div>10</div>
-		<div>11</div>
-	</div>
-	<div class="example-code">
-		<div class="example-json">JSON</div>
-{{< highlight json >}}
+<div class="section">
+	{{< example lines="11" language="json" align="center">}}
 {
   "files": {
     "cat.jpg": {
       "link": {
-        "/": "/ipfs/QmUmg7BZC1YP1ca66rRtWKxpXp77WgVHrnv263JtDuvs2k"
+        "/": "/ipfs/QmUmg7BZC1YP1ca66rWgVHrnv263JtDuvs2k"
       },
       "mode": 0755,
       "owner": "jbenet"
     }
   }
 }
-{{< /highlight >}}
-	</div>
-	<div class="clear"></div>
+	{{< /example >}}
 </div>
 
-<div class="landing-links">
+<div class="landing-links section">
 	<a href="./getting-started" id="landing-links-getting-started">
 		Getting Started
 	</a>
@@ -53,23 +36,23 @@ date = "2016-11-10"
 	</a>
 </div>
 
-<div class="features">
+<div class="features section">
 	<h1 class="section-title">Features</h1>
 	{{% render-features %}}
 	<div class="clear"></div>
 </div>
 
-<div class="languages">
+<div class="languages section">
 	<h1 class="section-title">Languages</h1>
 	{{% render-languages %}}
 	<div class="clear"></div>
 </div>
 
-<div class="talks-conferences">
+<div class="talks-conferences section">
 	<h1 class="section-title">Talks & Conferences</h1>
 </div>
 
-<div class="contribute-community">
+<div class="contribute-community section">
 	<h1 id="community" class="section-title">Shape IPLD With Us</h1>
 	<p>IPLD is a community driven, open source technology. There are many ways you can contribute by getting involved: you can help write the specification, code implementations and tools using IPLD, craft examples and tutorials, and join our regular product calls to discuss IPLD with us.</p>
 	<p class="center">Join us on GitHub at <a href="https://github.com/ipld/ipld" target="_blank">ipld/ipld</a>!</p>

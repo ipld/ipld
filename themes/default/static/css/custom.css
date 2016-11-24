@@ -67,7 +67,6 @@ body {
 	font-size: 23px;
 	color: black;
 	text-decoration: none;
-
 	line-height: 50px;
 }
 
@@ -156,6 +155,7 @@ main {
 	box-shadow: 0px 0px 5px rgb(240, 240, 240);
 }
 
+
 .example-linenumbers {
 	width: 15px;
 	text-align: right;
@@ -164,16 +164,15 @@ main {
 	line-height: 15px;
 	color: #999;
 	padding: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	background-color: #F5F7FA;
 	border-right: 1px solid rgb(230, 230, 230);
 }
 
 .example-code {
-	padding: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 15px;
+	padding-left: 10px;
 	width: 470px;
 	float: left;
 	font-family: monospace;
@@ -187,14 +186,12 @@ main {
 	color: #999;
 }
 .example-code pre {
-	line-height: 15px !important;
 	margin: 0;
 	overflow-y: hidden;
+	line-height: 15px !important;
 }
 
 .landing-links {
-	width: 1000px;
-	margin: 70px auto;
 	text-align: center;
 }
 
@@ -231,11 +228,6 @@ main {
 	text-decoration: underline;
 }
 
-.features {
-	width: 1000px;
-	margin: 100px auto;
-}
-
 .section-title {
 	text-align: center;
 	margin-bottom: 50px;
@@ -243,9 +235,17 @@ main {
 
 .feature {
 	position: relative;
-	width: 500px;
+	width: 40%;
 	text-align: justify;
 	float: left;
+	margin: 5%;
+	margin-top: 0;
+}
+
+@media (max-width: 600px) {
+	.feature {
+    width: 100%;
+  }
 }
 
 .feature-icon {
@@ -266,22 +266,12 @@ main {
 	position: relative;
 	margin: 0px auto;
 	text-align: center;
-	width: 450px;
-}
-
-.single-page {
-	width: 1000px;
-	margin: 50px auto;
-}
-
-.languages {
-	width: 1000px;
-	margin: 150px auto;
+	width: 70%;
 }
 
 .language {
-	width: 200px;
-	margin: 25px;
+	width: 23%;
+	margin: 1%;
 	float: left;
 }
 
@@ -308,6 +298,10 @@ main {
 	position: relative;
 }
 
+.getting-started-example-center {
+	position: relative;
+}
+
 .getting-started-example h1 {
 	text-align: center;
   font-family: BrandonLight, sans-serif;
@@ -321,18 +315,24 @@ main {
 	float: none;
 }
 
+.example-center {
+	margin: 0 auto;
+	display: block !important;
+}
+
 .getting-started-example .example {
 	right: 0;
-	width: 450px;
+	width: 46%;
 }
 
 .getting-started-example .example-code {
 	width: 410px;
+	text-align: left;
 }
 
 .getting-started-example-text {
-	width: 500px;
-	padding: 20px;
+	width: 43%;
+	padding: 3%;
 	font-size: 18px;
 }
 
@@ -341,8 +341,6 @@ main {
 }
 
 .contribute-community {
-	width: 1000px;
-	margin: 50px auto;
 	text-align: center;
 }
 
@@ -356,4 +354,14 @@ main {
 
 .center {
 	text-align: center !important;
+}
+
+.single-page {
+	width: 80%;
+	margin: 50px auto;
+}
+
+.section {
+	width: 80%;
+	margin: 50px auto;
 }

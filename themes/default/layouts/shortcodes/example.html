@@ -3,10 +3,11 @@
 {{ $text := .Get "text" }}
 {{ $title := .Get "title" }}
 {{ $language := .Get "language" }}
+{{ $align := .Get "align" }}
 
 <div class="getting-started-example">
 	<h1>{{ $title }}</h1>
-	<div class="example">
+	<div class="example example-{{$align}}">
 		<div class="example-linenumbers">
 			{{ range $i, $sequence :=  (seq $lines) }}
 				{{$sequence}}

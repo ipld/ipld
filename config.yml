@@ -21,21 +21,28 @@ params:
     - name: "Getting Started"
       link: "getting-started"
   features:
-    - name: "Cryptographic Integrity"
+    - name: "Integrity"
       icon: "social.svg"
       description: |
-        Resolving a link's value can be tested by hashing.
-        In turn, this allows wide, secure and trustless
-        exchange of data, as others cannot give you any
-        data that does not hash to the link's value
+        URLs give no guarantees that the data we receive
+        hasn't been compromised. The IPLD naming system
+        ensures that no one can lie about the data they
+        are serving.
 
-    - name: "Immutable Datastructures"
+    - name: "Distributed"
       icon: "cloud-data-distribution-symbol.svg"
       description: |
-        Data structures with merkle links cannot mutate,
-        which is a nice property for distributed systems.
-        This is useful for versioning, for representing
-        distributed mutable state, and for long term archival
+        Only the owner of a domain name can serve you
+        the data behind a URL. In IPLD any computer
+        that has the data can help and participate
+        in distributing it
+
+    - name: "Immutability"
+      icon: "social.svg"
+      description: |
+        The content behind URLs can change or disappear,
+        making our links broken or not pointing anymore
+        to what we were expecting. IPLD links cannot mutate
   languages:
     - name: JavaScript
       icon: "javascript.svg"

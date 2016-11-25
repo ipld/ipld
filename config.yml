@@ -52,7 +52,8 @@ params:
       repo: "ipfs/go-ipld"
     - name: C
       icon: "c.svg"
-      status: "missing"
-    - name: Python
+      status: "in-progress"
+      repo: "kenCode-de/c-ipld"
+    - name: Future languages
       status: "missing"
       icon: "python.svg"

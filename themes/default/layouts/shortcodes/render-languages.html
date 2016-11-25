@@ -4,10 +4,21 @@
 	{{ if eq .status "missing" }}
 		<div class="language language-missing">
 			<div class="language-title">
-					<a href="#">{{ .name }}</a> (soon)
+				<a>{{ .name }}</a> (coming soon)
 			</div>
 			<div class="language-icon">
-					<a href="#">
+				<a>
+					{{ readFile $iconFile | safeHTML }}
+				</a>
+			</div>
+		</div>
+	{{ else if eq .status "in-progress" }}
+		<div class="language language-in-progress">
+			<div class="language-title">
+				<a href="{{$githubLink}}">{{ .name }} (in progress)</a> 
+			</div>
+			<div class="language-icon">
+					<a href="{{$githubLink}}">
 						{{ readFile $iconFile | safeHTML }}
 					</a>
 			</div>

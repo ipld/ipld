@@ -324,6 +324,11 @@ main {
 	opacity: 0.5
 }
 
+.language-in-progress {
+	fill-opacity: 0.7;
+	opacity: 0.7
+}
+
 .getting-started-example {
 	position: relative;
 }

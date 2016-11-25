@@ -28,7 +28,7 @@ body {
 	height: 100%;
 }
 
-.header-title, .header-tagline {
+.header-title, {
 	margin: 0px; padding: 0px;
 }
 
@@ -40,11 +40,6 @@ body {
 .header-title {
 	font-size: 46px;
 	font-weight: bolder;
-}
-
-.header-tagline {
-	font-size: 26px;
-	font-weight: lighter;
 }
 
 .links {

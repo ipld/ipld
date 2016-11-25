@@ -9,7 +9,6 @@ pygmentsstyle: "autumn"
 copyright: "IPLD - All rights reserved."
 
 params:
-  tagline: "InterPlanetary Linked Data"
   main_color: "#ff4088"
   links:
     - name: "Github"

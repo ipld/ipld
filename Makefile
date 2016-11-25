@@ -15,7 +15,7 @@ publish-dep:
 build: build-dep
 	@echo "## Doing a one-time build of the website"
 	@hugo
-dev:
+dev: build-dep
 	@echo "## Starts development server on port :1313"
 	@hugo server
 publish: build-dep publish-dep build

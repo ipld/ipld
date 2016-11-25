@@ -10,7 +10,9 @@
 	<div class="example example-{{$align}}">
 		<div class="example-linenumbers">
 			{{ range $i, $sequence :=  (seq $lines) }}
-				{{$sequence}}
+				<div>
+					{{$sequence}}
+				</div>
 			{{ end }}
 		</div>
 		<div class="example-code">

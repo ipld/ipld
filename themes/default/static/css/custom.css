@@ -54,11 +54,23 @@ body {
 	line-height: 25px;
 }
 
+@media (max-width: 500px) {
+	.links {
+    width: 100%;
+		float: left;
+		text-align: center;
+		margin-top: 35px;
+		height: auto;
+		font-size: 18px;
+		line-height: 30px;
+  }
+}
+
 .navigation {
+	padding-top: 60px;
 	width: 100%;
 	font-weight: normal;
 	text-align: center;
-	height: 50px;
 }
 
 .navigation-link {
@@ -68,6 +80,7 @@ body {
 	color: black;
 	text-decoration: none;
 	line-height: 50px;
+	white-space: nowrap;
 }
 
 .navigation-link-active {
@@ -77,7 +90,13 @@ body {
 
 .navigation-links {
 	margin: 0 auto;
-	width: 500px;
+	width: 50%;
+}
+
+@media (max-width: 600px) {
+	.navigation-links {
+    width: 100%;
+  }
 }
 
 .navigation-link:hover {
@@ -148,7 +167,8 @@ main {
 }
 
 .example {
-	width: 510px;
+	position: relative;
+	width: 50%;
 	margin: 50px auto;
 	background-color: white;
 	border: 1px solid rgb(230, 230, 230);
@@ -157,13 +177,13 @@ main {
 
 
 .example-linenumbers {
-	width: 15px;
+	width: 5%;
 	text-align: right;
 	float: left;
 	font-family: monospace;
 	line-height: 15px;
 	color: #999;
-	padding: 5px;
+	padding: 1%;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	background-color: #F5F7FA;
@@ -172,13 +192,27 @@ main {
 
 .example-code {
 	padding-top: 15px;
-	padding-left: 10px;
-	width: 470px;
+	padding-left: 2%;
+	width: 80%;
 	float: left;
 	font-family: monospace;
 	line-height: 15px;
 	position: relative;
 }
+
+@media (max-width: 600px) {
+	.example-linenumbers {
+		display: none;
+  }
+	.example-code {
+		width: 100%;
+		padding: 5px;
+	}
+	.example {
+		width: 90% !important;
+	}
+}
+
 .example-json {
 	position: absolute;
 	top: 10px;
@@ -322,11 +356,11 @@ main {
 
 .getting-started-example .example {
 	right: 0;
-	width: 46%;
+	width: 50%;
 }
 
 .getting-started-example .example-code {
-	width: 410px;
+	width: 90%;
 	text-align: left;
 }
 

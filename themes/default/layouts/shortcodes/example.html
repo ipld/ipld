@@ -6,7 +6,9 @@
 {{ $align := .Get "align" }}
 
 <div class="getting-started-example">
-	<h1>{{ $title }}</h1>
+	{{ if not (eq $title "") }}
+		<h1>{{ $title }}</h1>
+	{{ end }}
 	<div class="example example-{{$align}}">
 		<div class="example-linenumbers">
 			{{ range $i, $sequence :=  (seq $lines) }}
@@ -21,8 +23,10 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="getting-started-example-text">
-		{{ .Get "text" | safeHTML }}
-	</div>
+	{{ if not (eq $text "") }}
+		<div class="getting-started-example-text">
+			{{ .Get "text" | safeHTML }}
+		</div>
+	{{ end }}
 	<div class="clear"></div>
 </div>

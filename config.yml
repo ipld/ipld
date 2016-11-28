@@ -10,16 +10,19 @@ copyright: "IPLD - All rights reserved."
 
 params:
   main_color: "#ff4088"
-  links:
-    - name: "Github"
-      link: "https://github.com/ipld/ipld"
-    - name: "Specification"
-      link: "https://github.com/ipld/specs"
   navigation:
     - name: "Home"
       link: "/"
-    - name: "Getting Started"
-      link: "getting-started"
+      target: "internal"
+    - name: "Tutorial"
+      link: "tutorial"
+      target: "internal"
+    - name: "Github"
+      link: "https://github.com/ipld/ipld"
+      target: "external"
+    - name: "Specification"
+      link: "https://github.com/ipld/specs"
+      target: "external"
   features:
     - name: "Integrity"
       icon: "social.svg"

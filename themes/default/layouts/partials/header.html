@@ -27,35 +27,25 @@
 <title>{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}</title>
 </head>
 <body>
-<div class="container">
+{{ $currentPageTitle := .Title }}
+{{ $siteTitle := .Site.Title }}
+<div class="container container-{{$currentPageTitle | lower}}">
 	<div class="header-container">
 		<div class="header">
-			<h1 class="header-title"><a href="../home">{{ .Site.Title }}</a></h1>
+			<h1 class="header-title"><a href="{{$basePath}}">{{ .Site.Title }}</a></h1>
 			<div class="clear"></div>
-		</div>
-
-		<div class="links">
-			{{ range .Site.Params.links }}
-				<div>
-					<a href="{{ .link }}">{{ .name }}</a>
-				</div>
-			{{ end }}
 		</div>
 	</div>
 	<div class="navigation">
-		{{ $currentPageTitle := .Title }}
-		{{ $siteTitle := .Site.Title }}
-		<div class="navigation-links">
-			{{ range .Site.Params.navigation }}
-				{{ if and (eq .name "Home") (eq $currentPageTitle $siteTitle) }}
+		{{ range .Site.Params.navigation }}
+			{{ if and (eq .name "Home") (eq $currentPageTitle $siteTitle) }}
+				<a href="{{$basePath}}{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
+			{{ else }}
+				{{ if eq .name $currentPageTitle }}
 					<a href="{{$basePath}}{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
 				{{ else }}
-					{{ if eq .name $currentPageTitle }}
-						<a href="{{$basePath}}{{ .link }}" class="navigation-link navigation-link-active">{{ .name }}</a>
-					{{ else }}
-						<a href="{{$basePath}}{{ .link }}" class="navigation-link">{{ .name }}</a>
-					{{ end }}
+					<a href="{{$basePath}}{{ .link }}" class="navigation-link">{{ .name }}</a>
 				{{ end }}
 			{{ end }}
-		</div>
+		{{ end }}
 	</div>

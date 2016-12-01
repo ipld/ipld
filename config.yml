@@ -24,7 +24,7 @@ params:
       link: "https://github.com/ipld/specs"
       target: "external"
   features:
-    - name: "Integrity"
+    - name: "Secure Linking"
       icon: "social.svg"
       description: |
         URLs give no guarantees that the data we receive
@@ -32,7 +32,7 @@ params:
         ensures that no one can lie about the data they
         are serving.
 
-    - name: "Distributed"
+    - name: "Distributed Naming"
       icon: "cloud-data-distribution-symbol.svg"
       description: |
         Only the owner of a domain name can serve you
@@ -40,7 +40,7 @@ params:
         that has the data can help and participate
         in distributing it
 
-    - name: "Immutability"
+    - name: "Immutable Content"
       icon: "social.svg"
       description: |
         The content behind URLs can change or disappear,

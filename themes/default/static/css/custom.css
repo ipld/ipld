@@ -52,8 +52,7 @@ body {
 .fullscreen {
 	position: relative;
 	background-color: #041E30;
-	top: -200px;
-	padding-bottom: 100px;
+	top: 0px;
 	left: 0px;
 	right: 0px;
 	height: 100vh;
@@ -63,9 +62,13 @@ body {
 
 .fullscreen-content {
 	position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.fullscreen-section {
+	margin: 50px auto;
 }
 
 .navigation {
@@ -276,6 +279,10 @@ main {
 	margin-bottom: 50px;
 }
 
+.features {
+	margin: 0px auto;
+}
+
 .feature {
 	position: relative;
 	width: 33%;
@@ -410,5 +417,5 @@ main {
 }
 
 .section {
-	margin: 50px auto;
+	margin: 150px auto;
 }

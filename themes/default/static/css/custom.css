@@ -174,13 +174,12 @@ main {
 
 .example {
 	position: relative;
-	margin: 50px auto;
+	margin: 0px auto;
 	background-color: white;
 	border: 1px solid rgb(230, 230, 230);
-	box-shadow: 0px 0px 5px rgb(50, 50, 50);
+	box-shadow: 0px 0px 2px rgb(235, 235, 235);
 	border-radius: 3px;
 }
-
 
 .example-linenumbers {
 	width: 5%;
@@ -281,6 +280,7 @@ main {
 
 .features {
 	margin: 0px auto;
+	width: 70%;
 }
 
 .feature {
@@ -372,8 +372,11 @@ main {
 }
 
 .example-center {
-	margin: 0 auto;
 	display: block !important;
+}
+
+.example-left {
+	width: 50%;
 }
 
 .getting-started-example .example {

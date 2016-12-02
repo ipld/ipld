@@ -278,7 +278,7 @@ main {
 	margin-bottom: 50px;
 }
 
-.features {
+.features, .languages {
 	margin: 0px auto;
 	width: 70%;
 }

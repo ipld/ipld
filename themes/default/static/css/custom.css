@@ -253,14 +253,15 @@ main {
 #landing-links-getting-started {
 	border-radius: 5px;
 	text-align: center;
+	background-color: #54AFDE;
 	border: 2px solid #54AFDE;
-	color: #54AFDE;
+	color: white;
 }
 
 #landing-links-getting-started:hover {
-	background-color: #54AFDE;
-	color: white;
-	border: 2px solid #54AFDE;
+	color: #54AFDE;
+	background-color: white;
+	border: 2px solid white;
 }
 
 #landing-links-community {

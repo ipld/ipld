@@ -49,14 +49,15 @@ params:
   languages:
     - name: JavaScript
       icon: "javascript.svg"
-      repo: "ipld/js-ipld-dag-cbor"
+      link: "ipld/js-ipld-dag-cbor"
     - name: Go
       icon: "go.svg"
-      repo: "ipfs/go-ipld"
+      link: "ipfs/go-ipld"
     - name: C
       icon: "c.svg"
       status: "in-progress"
-      repo: "kenCode-de/c-ipld"
+      link: "kenCode-de/c-ipld"
     - name: Future languages
       status: "missing"
-      icon: "python.svg"
+      icon: "question-mark.svg"
+      link: "ipld/ipld/issues/9"

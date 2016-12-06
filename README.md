@@ -23,17 +23,34 @@ In short: JSON documents with named merkle-links that can be traversed.
 
 ## Repositories
 
-IPLD is a multifaceted, distributed effort. Here are our current repositories:
+IPLD is a multifaceted, distributed effort.
 
+### Specifications
+
+- [specs](https://github.com/ipld/specs) - The specifications for IPLD
 - [cid](https://github.com/ipld/cid) - Self-describing content-addressed identifiers for distributed systems
+
+### Implementations
+
+- [**JavaScript:** js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) - JavaScript implementation of the IPLD spec.
+- [**Go:** ipfs/go-ipld](https://github.com/ipfs/go-ipld) - The Go implementation of IPLD.
+- [**C:** kenCode-de/c-ipld](https://github.com/kenCode-de/c-ipld) - Implementation of the IPLD spec in C.
+
+** New implementations**
+
+Are you working on your own implementation in another language? [Open an issue](https://github.com/ipld/ipld/issues) in this repository to discuss it with others, find help, and coordinate efforts. Eventually, we can move it to the organization if you like, add it above, and mention it on the website.
+
+### Other Tools
+
 - [interface-ipld-format](https://github.com/ipld/interface-ipld-format) - A interface you can follow to implement a valid IPLD format, resolvable through the IPLD Resolver (available in IPFS)
-- [ipld](https://github.com/ipld/ipld) - This repo
 - [js-ipld-cli](https://github.com/ipld/js-ipld-cli) - Interact with IPLD on the command line
-- [js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) - JavaScript implementation of the IPLD spec.
 - [js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) - JavaScript Implementation of the MerkleDAG Nodes with Protobuf.
 - [js-ipld-eth-block](https://github.com/ipld/js-ipld-eth-block) - JavaScript Implementation of the IPLD format - Ethereum Block
 - [js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) - JavaScript implementation of the IPLDService
-- [specs](https://github.com/ipld/specs) - The specifications for IPLD
+
+### Meta repos
+
+- [ipld](https://github.com/ipld/ipld) - This repo, which is now self-describing.
 - [website](https://github.com/ipld/website) - The official website for IPLD, at ipld.io
 
 ## Lead

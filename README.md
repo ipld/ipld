@@ -21,6 +21,18 @@ There are a variety of systems that use merkle-tree and hash-chain inspired data
 
 In short: JSON documents with named merkle-links that can be traversed.
 
+## Table of Contents
+
+- [Repositories](#repositories)
+  - [Specifications](#specifications)
+  - [Implementations](#implementations)
+    - [New implementations](#new-implementations)
+  - [Other Tools](#other-tools)
+  - [Meta repos](#meta-repos)
+- [Lead](#lead)
+- [Contribute](#contribute)
+- [License](#license)
+
 ## Repositories
 
 IPLD is a multifaceted, distributed effort.

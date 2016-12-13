@@ -1,8 +1,8 @@
-Specifications
+Specifications (specs)
 ==============
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
-[![](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](http://ipfs.io/)
+[![](https://img.shields.io/badge/project-IPLD-blue.svg?style=flat-square)](http://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 
 > This repository contains the specs for InterPlanetary Linked Data (IPLD).
@@ -32,9 +32,20 @@ The specs contained in this repository are:
 - IPLD Selectors ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about simple language to select multiple unknown nodes in a graph
 - IPLD Transformations ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about the language to trasform an IPLD graph into another
 
+## Maintainers
 
-## Collaborating
+[@nicola](https://github.com/nicola)
 
-Suggestions, contributions, criticisms are welcome. Though please make sure to familiarize yourself deeply with IPLD and IPFS, the models it adopts, and the principles it follows.
+## Contribute
+
+Suggestions, contributions, criticisms are welcome. Though please make sure to familiarize yourself deeply with IPLD and IPFS, the models it adopts, and the principles it follows. [Join in in the issues](https://github.com/ipld/specs/issues).
 
 Please be aware that specs are really hard to design by committee. Treat this space like you would the workshop of an artist. Please suggest improvements, but please don't be disappointed if we say no to something. What we leave out is often more important than what we add in.
+
+Check out our [contributing document](https://github.com/ipld/ipld/blob/master/contributing.md) for more information on how we work, and about contributing in general. Please be aware that all interactions related to IPLD are subject to the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
+
+Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+
+## License
+
+This repository is only for documents. All of these are licensed under the [CC-BY-SA 3.0](https://ipfs.io/ipfs/QmVreNvKsQmQZ83T86cWSjPu2vR3yZHGPm5jnxFuunEB9u) license, © 2016 Protocol Labs Inc.

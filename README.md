@@ -1,19 +1,21 @@
-# IPLD - Website
-
+# website
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
-[![](https://img.shields.io/badge/project-IPFS-blue.svg?style=flat-square)](http://ipfs.io/)
+[![](https://img.shields.io/badge/project-IPLD-blue.svg?style=flat-square)](http://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-
-> The ipld.io website
+> Official website for IPLD http://ipld.io
 
 This repository contains the source code for the IPLD website available at http://ipld.io
 
 ## Install
 
-## Commands
+```sh
+git clone https://github.com/ipld/website
+```
+
+## Usage
 
 The following commands are available:
 
@@ -39,13 +41,19 @@ Builds the websites, adds it to IPFS and updates DNS of ipld.io to point to the 
 * `ipfs` to deploy changes
 * `dnslink-deploy` to deploy changes
 
+## Maintainers
+
+[@victorbjelkholm](https://github.com/victorbjelkholm)
+
 ## Contribute
 
-Please do! Check out the issues, or open a PR!
+Please do! Check out [the issues](https://github.com/ipld/website/issues), or open a PR!
 
-Note that this README follows the Standard-Readme protocol.
+Check out our [contributing document](https://github.com/ipld/ipld/blob/master/contributing.md) for more information on how we work, and about contributing in general. Please be aware that all interactions related to IPLD are subject to the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
+
+Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
 ## License
 
-MIT © Protocol Labs Inc.
+[MIT](LICENSE) © 2016 Protocol Labs Inc.
 

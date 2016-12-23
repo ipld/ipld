@@ -21,19 +21,65 @@ There are a variety of systems that use merkle-tree and hash-chain inspired data
 
 In short: JSON documents with named merkle-links that can be traversed.
 
+## Table of Contents
+
+- [Repositories](#repositories)
+  - [Specifications](#specifications)
+  - [Implementations](#implementations)
+    - [New implementations](#new-implementations)
+  - [Other Tools](#other-tools)
+  - [Meta repos](#meta-repos)
+- [Lead](#lead)
+- [Contribute](#contribute)
+- [License](#license)
+
 ## Repositories
 
-IPLD is a multifaceted, distributed effort. Here are our current repositories:
+IPLD is a multifaceted, distributed effort.
 
+### Specifications
+
+- [specs](https://github.com/ipld/specs) - The specifications for IPLD
 - [cid](https://github.com/ipld/cid) - Self-describing content-addressed identifiers for distributed systems
-- [interface-ipld-format](https://github.com/ipld/interface-ipld-format) - A interface you can follow to implement a valid IPLD format, resolvable through the IPLD Resolver (available in IPFS)
-- [ipld](https://github.com/ipld/ipld) - This repo
-- [js-ipld-cli](https://github.com/ipld/js-ipld-cli) - Interact with IPLD on the command line
+
+### Implementations
+
+IPLD has multiple types of implementations, some of which have been written in multiple languages.
+
+#### Data format description
+
 - [js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) - JavaScript implementation of the IPLD spec.
 - [js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) - JavaScript Implementation of the MerkleDAG Nodes with Protobuf.
 - [js-ipld-eth-block](https://github.com/ipld/js-ipld-eth-block) - JavaScript Implementation of the IPLD format - Ethereum Block
+- [go-ipld-btc](https://github.com/ipfs/go-ipld-btc)
+- [go-ipld-zcash](https://github.com/ipfs/go-ipld-zcash)
+- [go-ipld-cbor](https://github.com/ipfs/go-ipld-cbor)
+- [go-ipld-git](https://github.com/ipfs/go-ipld-git)
+- [go-ipld-node](https://github.com/ipfs/go-ipld-node)
+
+#### Interface definitin
+- [interface-ipld-format](https://github.com/ipld/interface-ipld-format) - A interface you can follow to implement a valid IPLD format, resolvable through the IPLD Resolver (available in IPFS)
+
+#### Path Resolution
+
 - [js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) - JavaScript implementation of the IPLDService
-- [specs](https://github.com/ipld/specs) - The specifications for IPLD
+
+#### Other repositories
+
+- [**Go:** ipfs/go-ipld](https://github.com/ipfs/go-ipld) - The Go implementation of IPLD (deprecated).
+- [**C:** kenCode-de/c-ipld](https://github.com/kenCode-de/c-ipld) - Implementation of the IPLD spec in C.
+
+#### New implementations
+
+Are you working on your own implementation in another language? [Open an issue](https://github.com/ipld/ipld/issues) in this repository to discuss it with others, find help, and coordinate efforts. Eventually, we can move it to the organization if you like, add it above, and mention it on the website.
+
+### Other Tools
+
+- [js-ipld-cli](https://github.com/ipld/js-ipld-cli) - Interact with IPLD on the command line
+
+### Meta repos
+
+- [ipld](https://github.com/ipld/ipld) - This repo, which is now self-describing.
 - [website](https://github.com/ipld/website) - The official website for IPLD, at ipld.io
 
 ## Lead
@@ -50,4 +96,4 @@ Small note: If editing the README, please conform to the [standard-readme](https
 
 ## License
 
-This repository is mainly documents. All of these are licensed under the [CC-BY-SA 3.0](https://ipfs.io/ipfs/QmVreNvKsQmQZ83T86cWSjPu2vR3yZHGPm5jnxFuunEB9u) license, copyright Protocol Labs Inc.
+This repository is mainly documents. All of these are licensed under a [CC-BY-SA 3.0](https://ipfs.io/ipfs/QmVreNvKsQmQZ83T86cWSjPu2vR3yZHGPm5jnxFuunEB9u) license, © 2016 Protocol Labs Inc.

@@ -44,8 +44,29 @@ IPLD is a multifaceted, distributed effort.
 
 ### Implementations
 
-- [**JavaScript:** js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) - JavaScript implementation of the IPLD spec.
-- [**Go:** ipfs/go-ipld](https://github.com/ipfs/go-ipld) - The Go implementation of IPLD.
+IPLD has multiple types of implementations, some of which have been written in multiple languages.
+
+#### Data format description
+
+- [js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) - JavaScript implementation of the IPLD spec.
+- [js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) - JavaScript Implementation of the MerkleDAG Nodes with Protobuf.
+- [js-ipld-eth-block](https://github.com/ipld/js-ipld-eth-block) - JavaScript Implementation of the IPLD format - Ethereum Block
+- [go-ipld-btc](https://github.com/ipfs/go-ipld-btc)
+- [go-ipld-zcash](https://github.com/ipfs/go-ipld-zcash)
+- [go-ipld-cbor](https://github.com/ipfs/go-ipld-cbor)
+- [go-ipld-git](https://github.com/ipfs/go-ipld-git)
+- [go-ipld-node](https://github.com/ipfs/go-ipld-node)
+
+#### Interface definitin
+- [interface-ipld-format](https://github.com/ipld/interface-ipld-format) - A interface you can follow to implement a valid IPLD format, resolvable through the IPLD Resolver (available in IPFS)
+
+#### Path Resolution
+
+- [js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) - JavaScript implementation of the IPLDService
+
+#### Other repositories
+
+- [**Go:** ipfs/go-ipld](https://github.com/ipfs/go-ipld) - The Go implementation of IPLD (deprecated).
 - [**C:** kenCode-de/c-ipld](https://github.com/kenCode-de/c-ipld) - Implementation of the IPLD spec in C.
 
 #### New implementations
@@ -54,11 +75,7 @@ Are you working on your own implementation in another language? [Open an issue](
 
 ### Other Tools
 
-- [interface-ipld-format](https://github.com/ipld/interface-ipld-format) - A interface you can follow to implement a valid IPLD format, resolvable through the IPLD Resolver (available in IPFS)
 - [js-ipld-cli](https://github.com/ipld/js-ipld-cli) - Interact with IPLD on the command line
-- [js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) - JavaScript Implementation of the MerkleDAG Nodes with Protobuf.
-- [js-ipld-eth-block](https://github.com/ipld/js-ipld-eth-block) - JavaScript Implementation of the IPLD format - Ethereum Block
-- [js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) - JavaScript implementation of the IPLDService
 
 ### Meta repos
 

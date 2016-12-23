@@ -46,7 +46,7 @@ IPLD is a multifaceted, distributed effort.
 
 IPLD has multiple types of implementations, some of which have been written in multiple languages.
 
-#### Data format description
+#### Data format descriptions
 
 - [js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) - JavaScript implementation of the IPLD spec.
 - [js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) - JavaScript Implementation of the MerkleDAG Nodes with Protobuf.
@@ -57,7 +57,8 @@ IPLD has multiple types of implementations, some of which have been written in m
 - [go-ipld-git](https://github.com/ipfs/go-ipld-git)
 - [go-ipld-node](https://github.com/ipfs/go-ipld-node)
 
-#### Interface definitin
+#### Interface definitions
+
 - [interface-ipld-format](https://github.com/ipld/interface-ipld-format) - A interface you can follow to implement a valid IPLD format, resolvable through the IPLD Resolver (available in IPFS)
 
 #### Path Resolution

@@ -68,7 +68,8 @@ IPLD has multiple types of implementations, some of which have been written in m
 #### Other repositories
 
 - [**Go:** ipfs/go-ipld](https://github.com/ipfs/go-ipld) - The Go implementation of IPLD (deprecated).
-- [**C:** kenCode-de/c-ipld](https://github.com/kenCode-de/c-ipld) - Implementation of the IPLD spec in C.
+
+<!-- - [**C:** kenCode-de/c-ipld](https://github.com/kenCode-de/c-ipld) - Implementation of the IPLD spec in C. (Warning: not from core team) -->
 
 #### New implementations
 

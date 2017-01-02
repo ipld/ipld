@@ -56,7 +56,7 @@ params:
       icon: "c.svg"
       status: "in-progress"
       link: "kenCode-de/c-ipld"
-    - name: Future languages
+    - name: Others
       status: "missing"
       icon: "question-mark.svg"
       link: "ipld/ipld/issues/9"

@@ -169,7 +169,8 @@ main {
 	color: white;
   font-family: BrandonRegular, sans-serif;
 	font-size: 19px;
-	text-align: center;
+	text-align: justify;
+	text-align-last: left;
 }
 
 .example {

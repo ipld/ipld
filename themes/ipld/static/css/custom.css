@@ -1,0 +1,425 @@
+@font-face {
+	font-family: BrandonLight;
+	src: url("/fonts/Brandon_light.otf") format("opentype");
+	src: url("../fonts/Brandon_light.otf") format("opentype");
+}
+
+@font-face {
+	font-family: BrandonRegular;
+	src: url("/fonts/Brandon_med.otf") format("opentype");
+	src: url("../fonts/Brandon_med.otf") format("opentype");
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+/*
+  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+*/
+  font-family: BrandonLight, sans-serif;
+  background-color: #FCFCFC;
+}
+
+.header-container {
+	line-height: 50px;
+	height: 100px;
+	position: relative;
+	z-index: 1;
+	background-color: #041E30;
+	padding-bottom: 10px;
+}
+
+.header {
+	float: left;
+	height: 100%;
+}
+
+.header a {
+	color: white;
+	text-decoration: none;
+}
+
+.header-title {
+	font-size: 46px;
+	font-weight: bolder;
+	margin: 0px; padding: 0px;
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+.fullscreen {
+	position: relative;
+	background-color: #041E30;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100vh;
+	z-index: 0;
+	box-shadow: 0px 0px 5px lightgrey;
+}
+
+.fullscreen-content {
+	position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fullscreen-section {
+	margin: 50px auto;
+}
+
+.navigation {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	font-weight: normal;
+	text-align: center;
+	z-index: 1;
+}
+
+.navigation-link {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 16px;
+	color: white;
+	text-decoration: none;
+	line-height: 50px;
+	white-space: nowrap;
+}
+
+.navigation-link-active {
+	opacity: 1;
+	border-bottom: 1px solid white;
+}
+
+@media (max-width: 600px) {
+	.navigation-links {
+    width: 100%;
+  }
+}
+
+.navigation-link:hover {
+	color: #54AFDE;
+}
+
+header,
+footer {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+main {
+  margin: 4rem 0;
+}
+
+.container {
+  width: 100%;
+}
+
+.header-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 4px solid #E1E1E1;
+}
+
+.header-logo img:hover {
+  border-color: #F1F1F1;
+}
+
+.site-title {
+  margin-top: 2rem;
+}
+
+.entry-title {
+  margin-bottom: 0;
+}
+
+.entry-title a {
+  text-decoration: none;
+}
+
+.entry-meta {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
+  color: #888;
+}
+
+.footer-link {
+  margin: 2rem 0;
+}
+
+.hr {
+  height: 1px;
+  margin: 2rem 0;
+  background: #E1E1E1;
+  background: -webkit-gradient(linear, left top, right top, from(white), color-stop(#E1E1E1), to(white));
+  background: -webkit-linear-gradient(left, white, #E1E1E1, white);
+  background: linear-gradient(to right, white, #E1E1E1, white);
+}
+
+.introduction-text {
+	max-width: 540px;
+	margin: 0px auto;
+	margin-top: 150px !important;
+	color: white;
+  font-family: BrandonRegular, sans-serif;
+	font-size: 19px;
+	text-align: center;
+}
+
+.example {
+	position: relative;
+	margin: 0px auto;
+	background-color: white;
+	border: 1px solid rgb(230, 230, 230);
+	box-shadow: 0px 0px 2px rgb(235, 235, 235);
+	border-radius: 3px;
+}
+
+.example-linenumbers {
+	width: 5%;
+	text-align: right;
+	float: left;
+	font-family: monospace;
+	line-height: 15px;
+	color: #999;
+	padding: 1%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #F5F7FA;
+	border-right: 1px solid rgb(230, 230, 230);
+	border-radius: 3px;
+}
+
+.example-code {
+	padding-top: 15px;
+	padding-left: 2%;
+	width: 80%;
+	float: left;
+	font-family: monospace;
+	line-height: 15px;
+	position: relative;
+}
+
+@media (max-width: 600px) {
+	.example-linenumbers {
+		display: none;
+  }
+	.example-code {
+		width: 100%;
+		padding: 5px;
+	}
+	.example {
+		width: 90% !important;
+	}
+}
+
+.example-json {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #999;
+}
+.example-code pre {
+	margin: 0;
+	overflow-y: hidden;
+	line-height: 15px !important;
+}
+
+.landing-links {
+	text-align: center;
+	height: 100px;
+	line-height: 100px;
+}
+
+.landing-links a {
+	margin: 10px;
+	padding: 10px;
+	color: white;
+	font-size: 26px;
+	text-decoration: none;
+}
+
+.landing-links a:hover {
+	color: white;
+}
+
+/* TODO fix colors */
+#landing-links-getting-started {
+	border-radius: 5px;
+	text-align: center;
+	background-color: #54AFDE;
+	border: 2px solid #54AFDE;
+	color: white;
+}
+
+#landing-links-getting-started:hover {
+	color: #54AFDE;
+	background-color: white;
+	border: 2px solid white;
+}
+
+#landing-links-community {
+	color: #54AFDE;
+	text-decoration: underline;
+}
+
+#landing-links-community:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.section-title {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.features, .languages {
+	margin: 0px auto;
+	width: 70%;
+}
+
+.feature {
+	position: relative;
+	width: 33%;
+	text-align: justify;
+	float: left;
+	margin: 0%;
+	margin-top: 0;
+}
+
+@media (max-width: 600px) {
+	.feature {
+    width: 100%;
+  }
+}
+
+.feature-icon {
+	position: relative;
+	margin: 0px auto;
+	width: 100px;
+}
+
+.feature-icon object {
+	width: 100px;
+}
+
+.feature-name {
+	text-align: center;
+}
+
+.feature-description {
+	position: relative;
+	margin: 0px auto;
+	text-align: center;
+	width: 70%;
+}
+
+.language {
+	width: 23%;
+	margin: 1%;
+	float: left;
+}
+
+.language-title {
+	text-align: center;
+	font-size: 26px;
+}
+
+.language-title a {
+	color: black;
+	text-decoration: none;
+}
+
+.language-icon {
+	max-width: 200px;
+	margin: 20px auto;
+}
+
+.language-missing {
+	fill-opacity: 0.5;
+	opacity: 0.5
+}
+
+.language-in-progress {
+	fill-opacity: 0.7;
+	opacity: 0.7
+}
+
+.getting-started-example {
+	position: relative;
+}
+
+.getting-started-example-center {
+	position: relative;
+}
+
+.getting-started-example h1 {
+	text-align: center;
+  font-family: BrandonLight, sans-serif;
+	font-weight: 100;
+	font-size: 48px;
+}
+
+.getting-started-example .example, .getting-started-example-text {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+.example-center {
+	display: block !important;
+}
+
+.example-left {
+	width: 50%;
+}
+
+.getting-started-example .example {
+	right: 0;
+}
+
+.getting-started-example .example-code {
+	width: 90%;
+	text-align: left;
+}
+
+.getting-started-example-text {
+	width: 43%;
+	padding: 3%;
+	font-size: 18px;
+}
+
+.clear {
+	clear: both;
+}
+
+.contribute-community {
+	text-align: center;
+}
+
+.contribute-community p {
+	width: 500px;
+	margin: 20px auto;
+	text-align: justify;
+	font-size: 18px;
+	text-justify: inter-word;
+}
+
+.center {
+	text-align: center !important;
+}
+
+.single-page {
+	width: 80%;
+	margin: 50px auto;
+}
+
+.section {
+	margin: 150px auto;
+}

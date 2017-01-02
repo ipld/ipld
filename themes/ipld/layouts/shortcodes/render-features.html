@@ -1,0 +1,9 @@
+{{ range .Site.Params.features }}
+	<div class="feature">
+		<div class="feature-icon">
+			<object data="./img/{{ .icon }}" type="image/svg+xml"></object>
+		</div>
+		<h3 class="feature-name">{{ .name }}</h3>
+		<p class="feature-description">{{ .description }}</p>
+	</div>
+{{ end }}

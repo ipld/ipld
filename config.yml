@@ -3,7 +3,7 @@ baseurl: "http://example.org/"
 title: "IPLD"
 author: "Protocol Labs"
 languageCode: "en-us"
-theme: "default"
+theme: "ipld"
 pygmentsstyle: "autumn"
 
 copyright: "IPLD - All rights reserved."

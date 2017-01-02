@@ -35,10 +35,9 @@ params:
     - name: "Distributed Naming"
       icon: "cloud-data-distribution-symbol.svg"
       description: |
-        Only the owner of a domain name can serve you
-        the data behind a URL. In IPLD any computer
-        that has the data can help and participate
-        in distributing it
+        A domain’s owner is the only one who can serve you content.
+        With IPLD, anyone who has the data helps with distributing
+        it, too.
 
     - name: "Immutable Content"
       icon: "social.svg"

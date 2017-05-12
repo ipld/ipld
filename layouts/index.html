@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Site.Title }}</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <style>
+    body {
+      color: #5A626E;
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body lang="en" style="background:#031F60;">
+{{ partial "header.html" . }}
+
+<section id="hero" style="height:821px;" class="tc bg-black">
+  <p style="padding-top:600px; max-width:920px;" class="ma0 center f3 lh-copy fw6 white">
+    IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD.
+  </p>
+</section>
+
+<section id="why" class="pv5 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ipld-gray ma0 pb5" style="font-size:30px">
+      Why IPLD?
+    </h2>
+    <div class="dt w-100">
+      <div class="dtc" style="width:44%">
+
+      </div>
+      <div class="dtc" style="width:56%">
+        <p class="f4 b">
+          A data model for interoperable protocols.
+        </p>
+        <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
+          Content addressing through hashes has become a widely-used means of connecting data in distributed systems, from the blockchains that run your favorite cryptocurrencies, to the commits that back your code, to the web’s content at large. Yet, whilst all of these tools rely on some common primitives, their specific underlying data structures are not interoperable.
+          <br/>
+          Enter IPLD: IPLD is a single namespace for all hash-inspired protocols. Through IPLD, links can be traversed across protocols, allowing you explore data regardless of the underlying protocol.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="pv5" style="background:#F7FCFF;">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ipld-gray ma0 pb4" style="font-size:30px">
+      Use cases
+    </h2>
+    <p class="ma0 mw7 center tc fw6 lh-copy" style="font-size: 18px; color:#97A1AF;">
+      The sky’s the limit as IPLD allows you to work across protocol boundaries. The point is that IPLD provides libraries that make the underlying data interoperable across tools and across protocols by default.
+    </p>
+    <div class="dt mw7 center w-100 pv5">
+      <div class="dtc w-60 v-mid pa2">
+        <h3 class="f4 b ipld-gray ma0 pb3">
+          Bitcoin to Git
+        </h3>
+        <p class="lh-copy" style="font-size: 18px; color:#97A1AF;">
+          Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.
+        </p>
+      </div>
+      <div class="dtc w-40 v-mid pa2 tr">
+        <div class="dib" style="width:228px; height:260px; background:gold;">
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ partial "use.html" . }}
+  {{ partial "use.html" . }}
+</section>
+
+<section id="features" class="pv5 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ipld-gray ma0 pb4" style="font-size:30px">
+      Features
+    </h2>
+  </div>
+</section>
+
+<section id="media" class="pv5" style="background:#F7FCFF;">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ipld-gray ma0 pb4" style="font-size:30px">Media</h2>
+  </div>
+  <p class="center lh-copy tc fw6 ma0" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
+    IPLD is an open source project from the IPFS community. There are many ways you can contribute by getting involved. Learn more about IPLD from the community
+  </p>
+</section>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

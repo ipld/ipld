@@ -21,22 +21,23 @@
   </p>
 </section>
 
-<section id="why" class="pv5 bg-white">
+<section id="why" class="pv5 ph3 bg-white">
   <div class="mw8 center">
     <h2 class="tc b ttu ipld-gray ma0 pb5" style="font-size:30px">
       Why IPLD?
     </h2>
     <div class="dt w-100">
-      <div class="dtc" style="width:44%">
+      <div class="dtc-ns w-40-ns">
 
       </div>
-      <div class="dtc" style="width:56%">
+      <div class="dtc-ns w-60-ns">
         <p class="f4 b">
           A data model for interoperable protocols.
         </p>
         <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
           Content addressing through hashes has become a widely-used means of connecting data in distributed systems, from the blockchains that run your favorite cryptocurrencies, to the commits that back your code, to the web’s content at large. Yet, whilst all of these tools rely on some common primitives, their specific underlying data structures are not interoperable.
-          <br/>
+        </p>
+        <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
           Enter IPLD: IPLD is a single namespace for all hash-inspired protocols. Through IPLD, links can be traversed across protocols, allowing you explore data regardless of the underlying protocol.
         </p>
       </div>
@@ -44,29 +45,8 @@
   </div>
 </section>
 
-<section id="use-cases" class="pv5" style="background:#F7FCFF;">
-  <div class="mw8 center">
-    <h2 class="tc b ttu ipld-gray ma0 pb4" style="font-size:30px">
-      Use cases
-    </h2>
-    <p class="ma0 mw7 center tc fw6 lh-copy" style="font-size: 18px; color:#97A1AF;">
-      The sky’s the limit as IPLD allows you to work across protocol boundaries. The point is that IPLD provides libraries that make the underlying data interoperable across tools and across protocols by default.
-    </p>
-    <div class="dt mw7 center w-100 pv5">
-      <div class="dtc w-60 v-mid pa2">
-        <h3 class="f4 b ipld-gray ma0 pb3">
-          Bitcoin to Git
-        </h3>
-        <p class="lh-copy" style="font-size: 18px; color:#97A1AF;">
-          Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.
-        </p>
-      </div>
-      <div class="dtc w-40 v-mid pa2 tr">
-        <div class="dib" style="width:228px; height:260px; background:gold;">
-        </div>
-      </div>
-    </div>
-  </div>
+<section id="use-cases" class="pv5 ph3" style="background:#F7FCFF;">
+  {{ partial "use.html" . }}
   {{ partial "use.html" . }}
   {{ partial "use.html" . }}
 </section>

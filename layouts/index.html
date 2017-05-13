@@ -7,31 +7,33 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
   <style>
     body {
-      color: #5A626E;
       font-family: 'Open Sans', sans-serif;
+    }
+    .ipld-gray {
+      color: #5A626E;
     }
   </style>
 </head>
-<body lang="en" style="background:#031F60;">
+<body lang="en" class="ipld-gray bg-white">
 {{ partial "header.html" . }}
 
-<section id="hero" style="height:821px;" class="tc bg-black">
+<section id="hero" style="height:821px; background:#031851 url(/img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
   <p style="padding-top:600px; max-width:920px;" class="ma0 center f3 lh-copy fw6 white">
     IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD.
   </p>
 </section>
 
-<section id="why" class="pv5 ph3 bg-white">
+<section id="why" class="pt5 pb6 ph3 bg-white">
   <div class="mw8 center">
-    <h2 class="tc b ttu ipld-gray ma0 pb5" style="font-size:30px">
+    <h2 class="tc b ttu ma0 pb5" style="font-size:30px">
       Why IPLD?
     </h2>
     <div class="dt w-100">
-      <div class="dtc-ns w-40-ns">
-
+      <div class="dtc-ns w-40-ns v-mid">
+        <img src="/img/ipld-illustration.svg" style="width:407px; height:353px;" />
       </div>
-      <div class="dtc-ns w-60-ns">
-        <p class="f4 b">
+      <div class="dtc-ns w-60-ns pl4-ns">
+        <p class="f4 b m0 pb3">
           A data model for interoperable protocols.
         </p>
         <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
@@ -46,6 +48,9 @@
 </section>
 
 <section id="use-cases" class="pv5 ph3" style="background:#F7FCFF;">
+  <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
+    Use cases
+  </h2>
   {{ partial "use.html" . }}
   {{ partial "use.html" . }}
   {{ partial "use.html" . }}
@@ -53,7 +58,7 @@
 
 <section id="features" class="pv5 bg-white">
   <div class="mw8 center">
-    <h2 class="tc b ttu ipld-gray ma0 pb4" style="font-size:30px">
+    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">
       Features
     </h2>
   </div>
@@ -61,7 +66,7 @@
 
 <section id="media" class="pv5" style="background:#F7FCFF;">
   <div class="mw8 center">
-    <h2 class="tc b ttu ipld-gray ma0 pb4" style="font-size:30px">Media</h2>
+    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">Media</h2>
   </div>
   <p class="center lh-copy tc fw6 ma0" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
     IPLD is an open source project from the IPFS community. There are many ways you can contribute by getting involved. Learn more about IPLD from the community

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Site.Title }}</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+    .ipld-gray {
+      color: #5A626E;
+    }
+  </style>
+</head>
+<body lang="en" class="ipld-gray bg-white">
+{{ partial "topbar.html" . }}
+
+<section id="hero" style="height:821px; background:#031851 url(/img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
+  <p style="padding-top:600px; max-width:920px;" class="ma0 center f3 lh-copy fw6 white">
+    IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD.
+  </p>
+</section>
+
+<section id="why" class="pt5 pb6 ph3 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb5" style="font-size:30px">
+      Why IPLD?
+    </h2>
+    <div class="dt w-100">
+      <div class="dtc-ns w-40-ns v-mid">
+        <img src="/img/ipld-illustration.svg" style="width:407px; height:353px;" />
+      </div>
+      <div class="dtc-ns w-60-ns pl4-ns">
+        <p class="f4 b m0 pb3">
+          A data model for interoperable protocols.
+        </p>
+        <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
+          Content addressing through hashes has become a widely-used means of connecting data in distributed systems, from the blockchains that run your favorite cryptocurrencies, to the commits that back your code, to the web’s content at large. Yet, whilst all of these tools rely on some common primitives, their specific underlying data structures are not interoperable.
+        </p>
+        <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
+          Enter IPLD: IPLD is a single namespace for all hash-inspired protocols. Through IPLD, links can be traversed across protocols, allowing you explore data regardless of the underlying protocol.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="pv5 ph3" style="background:#F7FCFF;">
+  <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
+    Use cases
+  </h2>
+  {{ partial "use.html" . }}
+  {{ partial "use.html" . }}
+  {{ partial "use.html" . }}
+</section>
+
+<section id="features" class="pv5 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">
+      Features
+    </h2>
+    <div class="dt w100">
+      <div class="dtc w-third-ns tc ph4 pv4">
+        <div class="" style="width:130px; height:148px;">
+        </div>
+        <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
+          A canonical data model
+        </h3>
+        <p class="lh-copy">
+          A self-contatined descriptive model that uniquely identifies any hash-based data structure and ensures the same logical object always maps to the exact same sequence of bits.
+        </p>
+      </div>
+      <div class="dtc w-third-ns tc ph4 pv4">
+        <div class="" style="width:130px; height:148px;">
+        </div>
+        <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
+          Protocol independent resolution
+        </h3>
+        <p class="lh-copy">
+          IPLD brings isolated systems together, making integration with existing protocols simple.
+        </p>
+      </div>
+      <div class="dtc w-third-ns tc ph4 pv4">
+        <div class="" style="width:130px; height:148px;">
+        </div>
+        <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
+          Operates across formats
+        </h3>
+        <p class="lh-copy">
+          Express your IPLD objects in various serializable formats like JSON, CBOR, YAML, XML and many more, making IPLD a synch to integrate within your existing work.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="media" class="pt5 pb6" style="background:#F7FCFF;">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">Media</h2>
+    <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
+      IPLD is an open source project from the IPFS community. There are many ways you can contribute by getting involved. Learn more about IPLD from the community
+    </p>
+    <div class="dt w-100">
+      <figure class="dtc w-50-ns">
+        <div class="bg-black" style="width:470px;height:331px">
+        </div>
+        <figcaption class="f5 pv2 ma0">Caption</figcaption>
+      </figure>
+      <div class="dtc w-100 v-top">
+        <div class="dt w-100">
+          <figure class="dtc w-50-ns">
+            <div class="bg-black" style="width:178px;height:125px;">
+            </div>
+            <figcaption class="f5 pv2 ma0">Caption</figcaption>
+          </figure>
+          <figure class="dtc w-50-ns">
+            <div class="bg-black" style="width:178px;height:125px;">
+            </div>
+            <figcaption class="f5 pv2 ma0">Caption</figcaption>
+          </figure>
+        </div>
+        <div class="dt w-100">
+          <figure class="dtc w-50-ns">
+            <div class="bg-black" style="width:178px;height:125px;">
+            </div>
+            <figcaption class="f5 pv2 ma0">Caption</figcaption>
+          </figure>
+          <figure class="dtc w-50-ns">
+            <div class="bg-black" style="width:178px;height:125px;">
+            </div>
+            <figcaption class="f5 pv2 ma0">Caption</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

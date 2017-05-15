@@ -1,0 +1,33 @@
+<!-- browser rendering hints -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- styles -->
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css" />
+<link rel="stylesheet" href="/css/ipld.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet"/>
+<!-- search and socila meta data -->
+<title>{{ $.Param "title" }}</title>
+<meta name="description" content="{{ $.Param "description" }}" />
+<meta name="author" content="{{ $.Param "author" }}" />
+ <!-- open graph -->
+<meta property="og:type" content="website" />
+<meta property="og:description" content="{{ $.Param "description" }}" />
+<meta property="og:title" content="{{ $.Param "title" }}" />
+<meta property="og:site_name" content="{{ $.Param "name" }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="" />
+<meta property="og:image:height" content="" />
+<!--Twitter Cards-->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="{{ $.Param "name" }}" />
+<meta name="twitter:title" content="{{ $.Param "title" }}" />
+<meta name="twitter:creator" content="{{ $.Param "author" }}" />
+<meta name="twitter:description" content="{{ $.Param "description" }}" />
+<meta name="twitter:domain" content="{{ $.Param "domain" }}" />
+<meta name="twitter:image:src" content="" />

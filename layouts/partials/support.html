@@ -1,20 +1,24 @@
 {{ if eq .level 2}}
-<div title="Full support" class="dib">
-  {{ partial "hex.html" (dict "fill" "#0CC06D") }}
-  <span style="color:#97A0AE" class="pl2 {{if not .label}}hide{{end}}">Full support</span>
+<div title="Done" class="dib">
+  <a href="https://github.com/ipld" target="_blank" class="grow no-underline">
+    {{ partial "hex.html" (dict "fill" "#0CC06D") }}
+  </a>
+  <span style="color:#97A0AE" class="pl2 {{if not .label}}hide{{end}}">Done</span>
 </div>
 {{end}}
 
 {{ if eq .level 1}}
-<div title="Partial support" class="dib">
-  {{ partial "hex.html" (dict "fill" "#F2B602") }}
-  <span style="color:#97A0AE" class="pl2 {{if not .label}}hide{{end}}">Partial support</span>
+<div title="In Progress / Usable" class="dib">
+  <a href="https://github.com/ipld" target="_blank" class="grow no-underline">
+    {{ partial "hex.html" (dict "fill" "#F2B602") }}
+  </a>
+  <span style="color:#97A0AE" class="pl2 {{if not .label}}hide{{end}}">In Progress / Usable</span>
 </div>
 {{end}}
 
 {{ if eq .level 0}}
-<div title="Coming soon" class="dib">
+<div title="Missing" class="dib">
   {{ partial "hex.html" (dict "fill" "#97A0AE") }}
-  <span style="color:#97A0AE" class=" pl2 {{if not .label}}hide{{end}}">Coming soon</span>
+  <span style="color:#97A0AE" class=" pl2 {{if not .label}}hide{{end}}">Missing</span>
 </div>
 {{end}}

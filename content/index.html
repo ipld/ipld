@@ -40,9 +40,8 @@
   <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
     Use cases
   </h2>
-  {{ partial "use.html" . }}
-  {{ partial "use.html" . }}
-  {{ partial "use.html" . }}
+  {{ partial "use.html" (dict "title" "Bitcoin to Git" "desc" "Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.") }}
+  {{ partial "use.html" (dict "title" "Ethereum to IPFS" "desc" "Have your next contract refer to media on IPFS, perhaps modifying it and tracking its changes on each function execution. Seamlessly jump from function to object through IPLD addressing.") }}
 </section>
 
 <section id="features" class="pv5 bg-white">

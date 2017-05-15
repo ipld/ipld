@@ -4,3 +4,23 @@
 .ipld-gray {
   color: #5A626E;
 }
+.bundle-table {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+.bundle-table th,
+.bundle-table td {
+  height: 90px;
+  vertical-align: middle;
+  background: #FFF;
+  border: solid 1px #97A0AE;
+}
+.hide {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}

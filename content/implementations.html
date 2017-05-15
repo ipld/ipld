@@ -5,9 +5,118 @@
 </head>
 <body lang="en" class="open-sans ipld-gray bg-white">
 {{ partial "topbar.html" . }}
-<section id="hero" style="height:821px; background:#031851 url(/img/implementations-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
-  
+
+<section id="hero" class="pv6 white tc" style="height:821px; background:#031851 url(/img/implementations-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
+  <h2 class="b ttu ma0 pb5" style="font-size:30px">
+    IPLD Components
+  </h2>
+  <div class="mw9 center ph3-ns">
+    <div class="cf ph2-ns">
+      <div class="fl w-100 w-third-ns pa2">
+        <h3 class="f3 b ma0 pb3">CID</h3>
+        <p class="lh-copy">Self-describing content-addressed identifiers for distributed systems. This is the standard format all hash-chain based data structures can be expressed as per the IPLD standard.</p>
+      </div>
+      <div class="fl w-100 w-third-ns pa2">
+        <h3 class="f3 b ma0 pb3">IPLD Tree</h3>
+        <p class="lh-copy">A cross-protocol data model based on JSON and Protobuf, and path navigation, meant to be easy to interoperate with and to have pluggable format-dependent resolvers.</p>
+      </div>
+      <div class="fl w-100 w-third-ns pa2">
+        <h3 class="f3 b ma0 pb3">IPLD Resolvers</h3>
+        <p class="lh-copy">IPLD Resolvers bring new systems into the IPLD family of protocols. They can express paths that reach into tool/protocol-specific data structures, allowing you to cross-link and traverse them in their native formats.</p>
+      </div>
+    </div>
+  </div>
 </section>
+
+<section id="formats" class="pv6 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">
+      IPLD Formats
+    </h2>
+    <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
+      IPLD uniquely translates this data structure across the different formats protocols will use to point to it.
+    </p>
+    <div style="height:461px;">
+
+    </div>
+  </div>
+</section>
+
+<section id="bundles" class="pv6" style="background:#F7FCFF;">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">
+      IPLD Bundles
+    </h2>
+    <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 800px; font-size: 18px; color: #97A1AF;">
+      IPLD provides ready-to-use bundles for different formats and different languages. You can use these to get all the functionality in one package. See it as a quickstart.
+    </p>
+    <table class="bundle-table mw8 center">
+      <tr>
+        <th style="visibility:hidden"></th>
+        <th class="f4-ns fw5">
+          {{ partial "bundle-th" (dict "name" "Browser JS" "class" "f4-ns fw5") }}
+        </th>
+        <th class="f4-ns fw5">
+          {{ partial "bundle-th" (dict "name" "Node JS" "class" "f4-ns fw5") }}
+        </th>
+        <th class="f4-ns fw5">
+          {{ partial "bundle-th" (dict "name" "Go" "class" "f4-ns fw5") }}
+        </th>
+        <th class="f4-ns fw5">
+          {{ partial "bundle-th" (dict "name" "Python" "class" "f4-ns fw5") }}
+        </th>
+      </tr>
+      <tr>
+        <th class="tc tl-l pl3-l">
+          {{ partial "bundle-th" (dict "name" "Git" "class" "pl2-l fw6") }}
+        </th>
+        <td>{{ partial "support" (dict "level" 1)}}</td>
+        <td>{{ partial "support" (dict "level" 1)}}</td>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+      </tr>
+      <tr>
+        <th class="tc tl-l pl3-l">
+          {{ partial "bundle-th" (dict "name" "BitCoin" "class" "pl2-l fw6") }}
+        </th>
+        <td>{{ partial "support" (dict "level" 1)}}</td>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+        <td>{{ partial "support" (dict "level" 0)}}</td>
+      </tr>
+      <tr>
+        <th class="tc tl-l pl3-l">
+          {{ partial "bundle-th" (dict "name" "Ethereum" "class" "pl2-l fw6") }}
+        </th>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+        <td>{{ partial "support" (dict "level" 2)}}</td>
+        <td>{{ partial "support" (dict "level" 0)}}</td>
+      </tr>
+      <tr>
+        <th class="tc tl-l pl3-l">
+          {{ partial "bundle-th" (dict "name" "IPFS" "class" "pl2-l fw6") }}
+        </th>
+        <td>{{ partial "support" (dict "level" 0)}}</td>
+        <td>{{ partial "support" (dict "level" 0)}}</td>
+        <td>{{ partial "support" (dict "level" 0)}}</td>
+        <td>{{ partial "support" (dict "level" 0)}}</td>
+      </tr>
+    </table>
+    <div class="dt-ns w-100 mw7 center pt4 pl5">
+      <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">
+        {{ partial "support" (dict "level" 2 "label" true )}}
+      </div>
+      <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">
+        {{ partial "support" (dict "level" 1 "label" true )}}
+      </div>
+      <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">
+        {{ partial "support" (dict "level" 0 "label" true )}}
+      </div>
+    </div>
+  </div>
+</section>
+
 {{ partial "footer.html" . }}
 </body>
 </html>

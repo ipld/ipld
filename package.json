@@ -1,0 +1,24 @@
+{
+  "name": "ipld.io",
+  "version": "1.0.0",
+  "description": "A static site to show you that IPLD is a thing, and a good one at that.",
+  "main": "index.js",
+  "scripts": {
+    "test": "say sorry",
+    "watch": "hugo server -ws .",
+    "deploy:surge": "hugo && surge --project public --domain ipld.surge.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/ipld.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tableflip/ipld.io/issues"
+  },
+  "homepage": "https://github.com/tableflip/ipld.io#readme",
+  "devDependencies": {
+    "surge": "^0.19.0"
+  }
+}

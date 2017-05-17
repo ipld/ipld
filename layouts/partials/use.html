@@ -1,14 +1,10 @@
-<div class="dt mw7 center w-100 pv5">
-  <div class="db dtc-ns w-60-ns v-mid pa2">
-    <h3 class="f4 b ipld-gray ma0 pb3">
-      {{ .title }}
-    </h3>
-    <p class="lh-copy" style="font-size: 18px; color:#97A1AF;">
-      {{ .desc}}
-    </p>
+{{ $filename :=  (replace .title " " "-" | lower) }}
+{{ $src :=  (printf "/img/%s.svg" $filename) }}
+<div class="cf mw7 center w-100 pv4">
+  <div class="{{ if .swap }}fr-ns{{ else }}fl-ns{{ end }} w-50-m w-60-l ph2 pt5-l">
+    {{ partial "use-text" . }}
   </div>
-  <div class="db dtc-ns w-40-ns v-mid pa2 tc tr-ns">
-    <div class="dib" style="width:228px; height:260px; background:gold;">
-    </div>
+  <div class="{{ if .swap }}fr-ns{{ else }}fr-ns{{ end }} w-50-m w-40-l pa2 tc tl-ns">
+    <img src="{{ $src }}" class="w-100 mw5" />
   </div>
 </div>

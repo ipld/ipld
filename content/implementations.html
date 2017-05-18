@@ -44,7 +44,7 @@
         <h3 class="tc b ttu ma0 pb4 f3">
           Code Example
         </h3>
-        <div class="dt w-100 pt4 pb3">
+        <div class="dt w-100 pb3">
           <a href="#" class="dtc w-25 tc link ipld-gray br tc" style="border-color:#D8D8D8;">
             <img src="/img/icon-git.png" style="width:38px; height:38px;">
             <div class="f5 pt2">Git</div>
@@ -62,8 +62,7 @@
             <div class="f5 pt2">IPFS</div>
           </a>
         </div>
-        <div class="ba" style="border-color:#D8D8D8; border-raidus:3px; height:278px;">
-        </div>
+        <pre class="ba db pa4 tl code" style="border-color:#D8D8D8; border-radius:3px; height:278px;"><code>{{ .Site.Data.example.git.code }}</code></pre>
       </div>
       <div class="dn dtc-l w-10 relative">
         <img class="db absolute left-0 right-0 center" style="bottom:120px;" src="/img/hex-arrow.svg">
@@ -72,10 +71,11 @@
         <h3 class="b ttu ma0 pb4 f3">
           CID Format
         </h3>
-        <div style="margin-top:18px;">
-          {{ partial "tree" (dict "width" "73px" "height" "83px" "class" "pb3")}}
+        <div style="margin-top:4px;" class="pb3 dn db-l">
+          {{ partial "tree" (dict "width" "73px" "height" "83px")}}
         </div>
-        <div class="bg-dark-gray outline" style="height:278px;">
+        <div class="db pa4 outline tl code" style="height:278px; background:#272822;">
+          {{< highlight html >}}{{ .Site.Data.example.git.cid}}{{< /highlight>}}
         </div>
       </div>
     </div>

@@ -1,0 +1,23 @@
+[git]
+code = '''
+anyone for a nice game of chess
+'''
+cid = '''
+<cidv1> ::= <mbp><version><mcp><mh>
+
+<mb>    ::= <multibase-prefix>
+<mcp>   ::= <multicodec-packed-code>
+<mh>    ::= <multihash>
+'''
+
+[bitcoin]
+code = '''
+the only winning move is not to play
+'''
+cid = '''
+<cidv1> ::= <mbp><version><mcp><mh>
+
+<mb>    ::= <multibase-prefix>
+<mcp>   ::= <multicodec-packed-code>
+<mh>    ::= <multihash>
+'''

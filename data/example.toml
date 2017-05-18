@@ -1,6 +1,6 @@
 [git]
 code = '''
-anyone for a nice game of chess
+Greetings, Professor Falken.
 '''
 cid = '''
 <cidv1> ::= <mbp><version><mcp><mh>
@@ -8,11 +8,13 @@ cid = '''
 <mb>    ::= <multibase-prefix>
 <mcp>   ::= <multicodec-packed-code>
 <mh>    ::= <multihash>
+
+Can't see the trees for the porcelain
 '''
 
 [bitcoin]
 code = '''
-the only winning move is not to play
+A strange game.
 '''
 cid = '''
 <cidv1> ::= <mbp><version><mcp><mh>
@@ -20,4 +22,35 @@ cid = '''
 <mb>    ::= <multibase-prefix>
 <mcp>   ::= <multicodec-packed-code>
 <mh>    ::= <multihash>
+
+A trade union of GPU miners
+'''
+
+[ethereum]
+code = '''
+The only winning move is not to play.
+'''
+cid = '''
+<cidv1> ::= <mbp><version><mcp><mh>
+
+<mb>    ::= <multibase-prefix>
+<mcp>   ::= <multicodec-packed-code>
+<mh>    ::= <multihash>
+
+what if you could program money
+'''
+
+[ipfs]
+code = '''
+How about a nice game of chess?
+'''
+cid = '''
+<cidv1> ::= <mbp><version><mcp><mh>
+
+<mb>    ::= <multibase-prefix>
+<mcp>   ::= <multicodec-packed-code>
+<mh>    ::= <multihash>
+
+counterantidisintermediationism
+for the win.
 '''

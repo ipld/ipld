@@ -39,43 +39,51 @@
     <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
       IPLD uniquely translates this data structure across the different formats protocols will use to point to it.
     </p>
-    <div class="dt-l w-100 mw6 mw8-l center">
+    <div class="dt-l dt--fixed w-100 mw6 mw8-l center">
       <div class="dtc-l w-100 w-40-l">
         <h3 class="tc b ttu ma0 pb4 f3">
           Code Example
         </h3>
-        <div class="dt w-100 pb3">
-          <a href="#" class="dtc w-25 tc link ipld-gray br tc" style="border-color:#D8D8D8;">
-            <img src="/img/icon-git.png" style="width:38px; height:38px;">
+        <div class="dt w-100 pb3" style="height:83px;">
+          <a data-example-show="git" class="dtc w-25 tc ipld-gray no-underline br tc hover-saturate pointer active" style="border-color:#D8D8D8;">
+            <img src="/img/icon-git.svg" style="width:38px; height:38px;">
             <div class="f5 pt2">Git</div>
           </a>
-          <a href="#" class="dtc w-25 tc link ipld-gray br" style="border-color:#D8D8D8;">
-            <img src="/img/icon-bitcoin.png" style="width:38px; height:38px;">
+          <a data-example-show="bitcoin" class="dtc w-25 tc ipld-gray no-underline br hover-saturate pointer" style="border-color:#D8D8D8;">
+            <img src="/img/icon-bitcoin.svg" style="width:38px; height:38px;">
             <div class="f5 pt2">Bitcoin</div>
           </a>
-          <a href="#" class="dtc w-25 tc link ipld-gray br" style="border-color:#D8D8D8;">
-            <img src="/img/icon-ethereum.png" style="width:27px; height:44px;">
+          <a data-example-show="ethereum" class="dtc w-25 tc ipld-gray no-underline br hover-saturate pointer" style="border-color:#D8D8D8;">
+            <img src="/img/icon-ethereum.svg" style="width:27px; height:44px;">
             <div class="f5 pt2">Ethereum</div>
           </a>
-          <a href="#" class="dtc w-25 tc link ipld-gray">
-            <img src="/img/icon-ipfs.png" style="width:31px; height:35px;">
+          <a data-example-show="ipfs" class="dtc w-25 tc ipld-gray no-underline hover-saturate pointer">
+            <img src="/img/icon-ipfs.svg" style="width:31px; height:35px;">
             <div class="f5 pt2">IPFS</div>
           </a>
         </div>
-        <pre class="ba db pa4 tl code" style="border-color:#D8D8D8; border-radius:3px; height:278px;"><code>{{ .Site.Data.example.git.code }}</code></pre>
+        <div class="ba pa4 tl code w-100" style="border-color:#D8D8D8; border-radius:3px; height:278px; overflow:auto;">
+          <pre data-example="git" class=""><code>{{ .Site.Data.example.git.code }}</code></pre>
+          <pre data-example="bitcoin" class="dn"><code>{{ .Site.Data.example.bitcoin.code }}</code></pre>
+          <pre data-example="ethereum" class="dn"><code>{{ .Site.Data.example.ethereum.code }}</code></pre>
+          <pre data-example="ipfs" class="dn"><code>{{ .Site.Data.example.ipfs.code }}</code></pre>
+        </div>
       </div>
       <div class="dn dtc-l w-10 relative">
         <img class="db absolute left-0 right-0 center" style="bottom:120px;" src="/img/hex-arrow.svg">
       </div>
       <div class="dtc-l w-100 w-40-l pt4 pt0-l tc">
-        <h3 class="b ttu ma0 pb4 f3">
+        <h3 class="b ttu ma0 pb3 f3">
           CID Format
         </h3>
-        <div style="margin-top:4px;" class="pb3 dn db-l">
+        <div class="pb3 dn db-l">
           {{ partial "tree" (dict "width" "73px" "height" "83px")}}
         </div>
         <div class="db pa4 outline tl code" style="height:278px; background:#272822;">
-          {{< highlight html >}}{{ .Site.Data.example.git.cid}}{{< /highlight>}}
+          <div data-example="git" class="">{{< highlight html >}}{{ .Site.Data.example.git.cid }}{{< /highlight>}}</div>
+          <div data-example="bitcoin" class="dn">{{< highlight html >}}{{ .Site.Data.example.bitcoin.cid }}{{< /highlight>}}</div>
+          <div data-example="ethereum" class="dn">{{< highlight html >}}{{ .Site.Data.example.ethereum.cid }}{{< /highlight>}}</div>
+          <div data-example="ipfs" class="dn">{{< highlight html >}}{{ .Site.Data.example.ipfs.cid }}{{< /highlight>}}</div>
         </div>
       </div>
     </div>
@@ -159,5 +167,6 @@
 </section>
 
 {{ partial "footer.html" . }}
+<script src="/js/example-switcher.js"></script>
 </body>
 </html>

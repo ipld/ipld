@@ -40,3 +40,17 @@
   height: 1px; width: 1px;
   margin: -1px; padding: 0; border: 0;
 }
+.hover-saturate {
+  transition: filter 0.2s linear, opacity 0.2s linear;
+  filter: saturate(0%);
+  opacity: 0.5;
+}
+.hover-saturate:hover {
+  filter: saturate(50%);
+  opacity: 0.6;
+}
+.hover-saturate.active,
+.hover-saturate:active {
+  filter: saturate(100%);
+  opacity: 1;
+}

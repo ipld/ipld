@@ -6,8 +6,9 @@
 <body lang="en" class="open-sans ipld-gray bg-white">
 {{ partial "topbar.html" . }}
 
-<section id="hero" style="background:#031851 url(/img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
-  <p style="padding-top:600px; max-width:920px;" class="ma0 ph4 pb6 center f3 lh-copy fw6 white">
+<section id="hero" style="background:#031851 url(/img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc pt6 pb5">
+  <img src="/img/ipld-hero.svg" />
+  <p style="max-width:920px;" class="ma0 pt5 center f3 lh-copy fw6 white">
     IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD.
   </p>
 </section>
@@ -54,7 +55,7 @@
     </h2>
     <div class="cf w-100">
       <div class="fl w-100 w-third-ns tc ph2 ph4-l pv4">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#1D74F2" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
           A canonical data model
         </h3>
@@ -63,7 +64,7 @@
         </p>
       </div>
       <div class="fl w-100 w-third-ns tc ph2 ph4-l pv4">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#5FCACE" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
           Protocol independent resolution
         </h3>
@@ -72,7 +73,7 @@
         </p>
       </div>
       <div class="fl w-100 w-third-ns tc ph2 ph4-l pv4">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#F7931A" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
           Operates across formats
         </h3>
@@ -81,7 +82,7 @@
         </p>
       </div>
       <div class="fl w-100 w-third-ns tc ph2 ph4-l pv4">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#EF5133" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
           Upgradeable
         </h3>
@@ -90,7 +91,7 @@
         </p>
       </div>
       <div class="fl w-100 w-third-ns tc ph2 ph4-l pv4">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#B8B8B8" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
           Backwards compatible
         </h3>
@@ -99,7 +100,7 @@
         </p>
       </div>
       <div class="fl w-100 w-third-ns tc ph2 ph4-l pv4">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#1D74F2" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="lh-copy f3 b ipld-gray ma0 pb3">
           A namespace for all protocols
         </h3>

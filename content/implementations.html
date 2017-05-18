@@ -13,17 +13,17 @@
   <div class="mw8 center ph3-ns">
     <div class="cf ph2-ns">
       <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#5FCACE" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="f3 b ma0 pb3">CID</h3>
         <p class="lh-copy">Self-describing content-addressed identifiers for distributed systems. This is the standard format all hash-chain based data structures can be expressed as per the IPLD standard.</p>
       </div>
       <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#F7931A" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="f3 b ma0 pb3">IPLD Tree</h3>
         <p class="lh-copy">A cross-protocol data model based on JSON and Protobuf, and path navigation, meant to be easy to interoperate with and to have pluggable format-dependent resolvers.</p>
       </div>
       <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
-        <div class="hex" style="width:130px; height:148px;"></div>
+        {{ partial "tree" (dict "fill" "#EF5133" "width" "130px" "height" "148px" "class" "pb3")}}
         <h3 class="f3 b ma0 pb3">IPLD Resolvers</h3>
         <p class="lh-copy">IPLD Resolvers bring new systems into the IPLD family of protocols. They can express paths that reach into tool/protocol-specific data structures, allowing you to cross-link and traverse them in their native formats.</p>
       </div>
@@ -72,7 +72,9 @@
         <h3 class="b ttu ma0 pb4 f3">
           CID Format
         </h3>
-        <img src="/img/ipld-hero.svg" class="dn dib-l mb3" style="width:73px; height:83px; margin-top:18px;">
+        <div style="margin-top:18px;">
+          {{ partial "tree" (dict "width" "73px" "height" "83px" "class" "pb3")}}
+        </div>
         <div class="bg-dark-gray outline" style="height:278px;">
         </div>
       </div>

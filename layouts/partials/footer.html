@@ -1,19 +1,19 @@
 <footer class="white pv4 ph3" style="background:#031851 url(/img/ipld-hero-bg.jpg) no-repeat center; background-size: cover">
-  <div class="db dt-ns mw8 w-100 center">
-    <div class="db dtc-ns v-mid tl w-100 w-40-ns pv3 ph2">
+  <div class="db dt-l mw8 w-100 center">
+    <div class="db dtc-l v-mid tl w-100 w-40-l pv3 ph2">
       <p class="f6">IPLD was started and is sponsored by</p>
       <a class="dib pt2 no-underline" href="https://protocol.ai/">
         <img src="/img/protocollabs.svg" style="height:48px; vertical-align:middle">
         <span class="ml2 f4 b white ">Protocol Labs</span>
       </a>
     </div>
-    <div class="db dtc-ns v-mid w-100 tl tr-ns mt2 mt0-ns">
+    <div class="db dtc-l v-mid w-100 tl tr-l mt2 mt0-l ph2">
       <nav>
-        <a href="/implementations" class="db dib-ns pa2 mh2-ns f5 fw6 ttu link white hover-blue">Implementations</a>
-        <a href="{{ .Site.Params.github }}" class="db dib-ns pa2 mh2-ns f5 fw6 ttu link white hover-blue">Github</a>
-        <a href="{{ .Site.Params.specifications }}" class="db dib-ns pa2 mh2-ns f5 fw6 ttu link white hover-blue">Specification</a>
+        <a href="/implementations" class="{{ if eq .URL "/implementations/" }}b--white white{{else}}b--transparent white hover-blue{{end}} bb-ns db dib-ns pv2 mr3-ns f5 fw6 ttu link">Implementations</a>
+        <a href="{{ .Site.Params.github }}" class="db dib-ns pv2 mr3-ns f5 fw6 ttu link white hover-blue">Github</a>
+        <a href="{{ .Site.Params.specifications }}" class="db dib-ns pv2 mr3-ns mr0-l f5 fw6 ttu link white hover-blue">Specification</a>
       </nav>
-      <small class="db f6 ph2 pt4">© Protocol Labs | Except as noted, content licensed CC-BY 3.0</small>
+      <small class="db f6 pt4">© <a class="link white hover-blue" href="https://protocol.ai/" target="_blank">Protocol Labs</a> | Except as <a class="link white hover-blue" href="https://protocol.ai/legal/">noted</a>, content licensed <a class="link white hover-blue" href="" target="_blank">CC-BY 3.0</a></small>
     </div>
   </div>
 </footer>

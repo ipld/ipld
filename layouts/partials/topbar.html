@@ -1,14 +1,14 @@
 <header class="bg-white">
   <div class="db dt-ns mw8 w-100 center">
-    <div class="db dtc-ns v-mid tc tl-ns w-100 w-30-ns pv3">
-      <a class="dib ph4" href="/">
+    <div class="db dtc-ns v-mid tc tl-ns pv3">
+      <a class="dib pl3 pl5-l" href="/">
         <img style="height:81px; width:135px;" src="/img/ipld.svg" />
       </a>
     </div>
-    <nav class="dn dtc-ns v-mid w-100 tc tr-ns mt2 mt0-ns">
-      <a href="/implementations" class="pa2 mh2 f6 f5-ns fw6 ttu link ipld-gray hover-blue">Implementations</a>
-      <a href="{{ .Site.Params.github }}" class="pa2 mh2 f6 f5-ns fw6 ttu link ipld-gray hover-blue">Github</a>
-      <a href="{{ .Site.Params.specifications }}" class="pa2 mh2 f6 f5-ns fw6 ttu link ipld-gray hover-blue">Specification</a>
+    <nav class="db dtc-ns v-mid tc tr-ns mt2 mt0-ns pb3 pb0-ns nowrap">
+      <a href="/implementations" class="{{ if eq .URL "/implementations/" }}b--blue blue{{else}}b--transparent ipld-gray hover-blue{{end}} db dib-ns bb-ns pv3 pv2-ns mh3 f5 fw6 ttu link">Implementations</a>
+      <a href="{{ .Site.Params.github }}" class="db dib-ns bb b--transparent pv2 mh3 f5 fw6 ttu link ipld-gray hover-blue">Github</a>
+      <a href="{{ .Site.Params.specifications }}" class="db dib-ns bb b--transparent pv3 pv2-ns mh3 f5 fw6 ttu link ipld-gray hover-blue">Spec</a>
     </nav>
   </div>
 </header>

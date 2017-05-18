@@ -118,36 +118,19 @@
     </p>
     <div class="cf ph2-ns">
       <div class="fl w-100 w-60-l ph2 pr4-l pv3">
-        <figure class="w-100 pa0 ma0">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="dib embed-responsive-item bg-dark-gray" src="https://www.youtube.com/embed/Bqs_LzBjQyk" frameborder="0" allowfullscreen></iframe>
-          </div>
-          <figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">Juan Benet: Enter the Merkle Forest</figcaption>
-        </figure>
+        {{ partial "youtube-iframe" (dict "id" "Bqs_LzBjQyk" "caption" "Juan Benet: Enter the Merkle Forest")}}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        <figure class="w-100 pa0 ma0">
-          <img class="w-100" src="https://img.youtube.com/vi/bi-4YGZXxwA/mqdefault.jpg" alt="">
-          <figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">Jeromy Johnson Shares IPFS Blockchain Fun</figcaption>
-        </figure>
+        {{ partial "youtube-preview" (dict "id" "bi-4YGZXxwA" "caption" "Jeromy Johnson Shares IPFS Blockchain Fun")}}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        <figure class="w-100 pa0 ma0">
-          <img class="w-100" src="https://img.youtube.com/vi/skMTdSEaCtA/mqdefault.jpg" alt="">
-          <figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">Why We Must Distribute The Web</figcaption>
-        </figure>
+        {{ partial "youtube-preview" (dict "id" "skMTdSEaCtA" "caption" "Why We Must Distribute The Web")}}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        <figure class="w-100 pa0 ma0">
-          <img class="w-100" src="https://img.youtube.com/vi/1Ck029slvCU/mqdefault.jpg" alt="">
-          <figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">This was the IPLD call on Friday, December 23.</figcaption>
-        </figure>
+        {{ partial "youtube-preview" (dict "id" "1Ck029slvCU" "caption" "IPLD Sprint Call")}}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        <figure class="w-100 pa0 ma0">
-          <img class="w-100" src="https://img.youtube.com/vi/Pjyo2uILcOs/mqdefault.jpg" alt="">
-          <figcaption class="f5 pt3 ma0 lh-copy" style="font-size:12px">Martin Becze: Interplanetary OS</figcaption>
-        </figure>
+        {{ partial "youtube-preview" (dict "id" "Pjyo2uILcOs" "caption" "Martin Becze: Interplanetary OS")}}
       </div>
     </div>
   </div>
@@ -155,5 +138,6 @@
 
 {{ partial "footer.html" . }}
 
+<script src="/js/youtube-switcher.js"></script>
 </body>
 </html>

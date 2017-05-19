@@ -33,6 +33,10 @@
   background: #FFF;
   border: solid 1px #97A0AE;
 }
+.bundle-table tr:hover th,
+.bundle-table tr:hover td {
+  background-color: #eee;
+}
 .hide {
   position: absolute;
   overflow: hidden;

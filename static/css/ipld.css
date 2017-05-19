@@ -28,14 +28,18 @@
 }
 .bundle-table th,
 .bundle-table td {
-  height: 90px;
+  height: 60px;
   vertical-align: middle;
   background: #FFF;
   border: solid 1px #97A0AE;
 }
+.bundle-table tbody:hover tr:first-child th:first-child,
 .bundle-table tr:hover th,
 .bundle-table tr:hover td {
-  background-color: #eee;
+  background-color: #FFF7F0;
+}
+.bundle-table thead tr:hover th {
+  background-color: #FFF;
 }
 .hide {
   position: absolute;
@@ -57,4 +61,13 @@
 .hover-saturate:active {
   filter: saturate(100%);
   opacity: 1;
+}
+.hover-show {
+  display: none;
+}
+.hover-trigger:hover .hover-show {
+  display: inline-block;
+}
+.hover-trigger:hover .hover-hide {
+  display: none;
 }

@@ -1,6 +1,4 @@
 {{ $filename :=  (replace .name " " "-" | lower) }}
 {{ $src :=  (printf "/img/icon-%s.png" $filename) }}
-{{ $config := imageConfig (printf "/static/%s" $src) }}
-<img src="{{ $src }}" class="v-mid mb1" style="width:{{div $config.Width 2}}px; height:{{div $config.Height 2}}px;" title="{{ .name }}" />
-<span class="db di-l truncate {{ .class }}">{{ .name }}</span>
-
+<img src="{{ $src }}" class="v-mid mb1" style="height:30px;" title="{{ .name }}" />
+<span class="db di-l truncate ml1 {{ .class }}">{{ .name }}</span>

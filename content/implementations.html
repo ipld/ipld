@@ -94,63 +94,125 @@
 <section id="bundles" class="pt5 ph2 pb6" style="background:#F7FCFF;">
   <div class="mw8 center">
     <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
-      IPLD Bundles
+      IPLD Implementations
     </h2>
     <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 800px; font-size: 18px; color: #97A1AF;">
       IPLD provides ready-to-use bundles for different formats and different languages. You can use these to get all the functionality in one package. See it as a quickstart.
     </p>
-    <table class="bundle-table mw8 center">
-      <tr>
-        <th style="visibility:hidden; background:transparent; border-top:transparent; border-left:transparent;"></th>
-        <th class="f4-ns fw5">
-          {{ partial "bundle-th" (dict "name" "Browser JS" "class" "f4-ns fw5") }}
-        </th>
-        <th class="f4-ns fw5">
-          {{ partial "bundle-th" (dict "name" "Node JS" "class" "f4-ns fw5") }}
-        </th>
-        <th class="f4-ns fw5">
-          {{ partial "bundle-th" (dict "name" "Go" "class" "f4-ns fw5") }}
-        </th>
-        <th class="f4-ns fw5">
-          {{ partial "bundle-th" (dict "name" "Python" "class" "f4-ns fw5") }}
-        </th>
-      </tr>
-      <tr>
-        <th class="tc tl-l pl3-l">
-          {{ partial "bundle-th" (dict "name" "Git" "class" "pl2-l fw6") }}
-        </th>
-        <td>{{ partial "support" (dict "level" 1)}}</td>
-        <td>{{ partial "support" (dict "level" 1)}}</td>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-      </tr>
-      <tr>
-        <th class="tc tl-l pl3-l">
-          {{ partial "bundle-th" (dict "name" "BitCoin" "class" "pl2-l fw6") }}
-        </th>
-        <td>{{ partial "support" (dict "level" 1)}}</td>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-        <td>{{ partial "support" (dict "level" 0)}}</td>
-      </tr>
-      <tr>
-        <th class="tc tl-l pl3-l">
-          {{ partial "bundle-th" (dict "name" "Ethereum" "class" "pl2-l fw6") }}
-        </th>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-        <td>{{ partial "support" (dict "level" 2)}}</td>
-        <td>{{ partial "support" (dict "level" 0)}}</td>
-      </tr>
-      <tr>
-        <th class="tc tl-l pl3-l">
-          {{ partial "bundle-th" (dict "name" "IPFS" "class" "pl2-l fw6") }}
-        </th>
-        <td>{{ partial "support" (dict "level" 0)}}</td>
-        <td>{{ partial "support" (dict "level" 0)}}</td>
-        <td>{{ partial "support" (dict "level" 0)}}</td>
-        <td>{{ partial "support" (dict "level" 0)}}</td>
-      </tr>
+    <table class="bundle-table mw7 center">
+      <thead>
+          <tr>
+            <th style="visibility:hidden; background:transparent; border-top:transparent; border-left:transparent;"></th>
+            <th style="visibility:hidden; background:transparent; border-top:transparent; border-left:transparent;"></th>
+            <th class="f4-ns fw5">
+              {{ partial "bundle-th" (dict "name" "JavaScript" "class" "f4-ns fw5") }}
+            </th>
+            <th class="f4-ns fw5">
+              {{ partial "bundle-th" (dict "name" "Go" "class" "f4-ns fw5") }}
+            </th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "Git" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-git</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-git")}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "BitCoin" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-btc</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-btc")}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc" rowspan="5">
+            {{ partial "bundle-th" (dict "name" "Ethereum" "class" "pl2-l fw6")}}
+          </th>
+          <th class="tc">eth-block</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-eth-block")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-block-list</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-eth-block-list")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth" )}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-tx-trie</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-eth-tx-trie")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-state-trie</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-eth-state-trie")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-storage-trie</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-eth-storage-trie")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc" rowspan="2">
+            {{ partial "bundle-th" (dict "name" "IPFS" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">dag-pb</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-dag-pb")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">dag-cbor</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-dag-cbor" )}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-cbor")}}</td>
+        </tr>
+      </tbody>
+
+      <!-- <tbody>
+        <tr>
+          <th class="tc" rowspan="2">
+            {{ partial "bundle-th" (dict "name" "Torrent" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">torrent-file</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+        </tr>
+        <tr>
+          <th class="tc">torrent-info</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "Bencode" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-bendcode</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-bendcode")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "zcash" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-zcash</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-git")}}</td>
+        </tr>
+      </tbody> -->
     </table>
     <div class="dt-ns w-100 mw7 center pt4 pl5">
       <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">

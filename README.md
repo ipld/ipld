@@ -11,5 +11,5 @@ A static site to show you that IPLD is a thing, and a good one at that.
 hugo server -ws .
 ```
 
-Open http://localhost:1313 in your browser & `layouts/index.html` in your editor.
+Open http://localhost:1313 in your browser & `content/index.html` in your editor.
 

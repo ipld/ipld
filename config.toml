@@ -1,4 +1,5 @@
 baseURL = "https://ipld.surge.sh"
+relativeURLs = true
 
 [params]
   domain = "ipld.io"

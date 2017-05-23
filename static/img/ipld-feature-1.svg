@@ -7,7 +7,7 @@
   </defs>
   <g fill="none" fill-rule="evenodd">
     <g transform="translate(0 .253)">
-      <path d="M146.067 52.014c3.216 8.202 4.982 17.134 4.982 26.477 0 9.34-1.764 18.267-4.978 26.467M38.958 17.66C50.333 10.25 63.916 5.944 78.503 5.944c12.355 0 23.988 3.088 34.17 8.535M9.489 100.915a72.49 72.49 0 0 1-3.532-22.424c0-9.341 1.766-18.272 4.98-26.472M118.055 139.317c-11.376 7.413-24.96 11.72-39.552 11.72-14.584 0-28.164-4.304-39.538-11.711" stroke="#CBDFFC" stroke-width="2.301" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M146.067 52.014c3.216 8.202 4.982 17.134 4.982 26.477 0 9.34-1.764 18.267-4.978 26.467M38.958 17.66C50.333 10.25 63.916 5.944 78.503 5.944c12.355 0 23.988 3.088 34.17 8.535M9.489 100.915a72.49 72.49 0 0 1-3.532-22.424 72.394 72.394 0 0 1 4.98-26.472m107.118 87.298c-11.376 7.413-24.96 11.72-39.552 11.72-14.584 0-28.164-4.304-39.538-11.711" stroke="#CBDFFC" stroke-width="2.301" stroke-linecap="round" stroke-linejoin="round"/>
       <path fill="#F6AC47" d="M21.797 52.025L5.519 30.802 21.797 9.578l16.278 21.224z"/>
       <path stroke="#CBDFFC" stroke-width="2.1" d="M21.797 52.025L5.519 30.802 21.797 9.578l16.278 21.224z"/>
       <mask id="b" fill="#fff">
@@ -22,22 +22,22 @@
       <path fill="#0698FC" mask="url(#b)" d="M50.748 62.482l27.964-16.146 27.966 16.146v32.291L78.712 110.92 50.748 94.773z"/>
       <path stroke="#CBDFFC" stroke-width="2.169" stroke-linecap="round" stroke-linejoin="round" mask="url(#b)" d="M50.748 62.482l27.964-16.146 27.966 16.146v32.291L78.712 110.92 50.748 94.773z"/>
       <g mask="url(#b)" stroke-linecap="round" stroke="#0693FC" stroke-width="2.562" stroke-linejoin="round">
-        <path d="M78.713 38.264v-19.09M78.713 136.562v-19.089"/>
+        <path d="M78.713 38.264v-19.09m0 117.388v-19.089"/>
       </g>
       <g mask="url(#b)" stroke-linecap="round" stroke="#0693FC" stroke-width="2.562" stroke-linejoin="round">
-        <path d="M58.008 43.323l-4.558-7.897M102.456 120.31l-4.558-7.897"/>
+        <path d="M58.008 43.323l-4.558-7.897m49.006 84.884l-4.558-7.897"/>
       </g>
       <g mask="url(#b)" stroke-linecap="round" stroke="#0693FC" stroke-width="2.562" stroke-linejoin="round">
-        <path d="M43.408 57.923l-7.897-4.558M120.394 102.371l-7.897-4.558"/>
+        <path d="M43.408 57.923l-7.897-4.558m84.883 49.006l-7.897-4.558"/>
       </g>
       <g mask="url(#b)" stroke-linecap="round" stroke="#0693FC" stroke-width="2" stroke-linejoin="round">
-        <path d="M37.13 78.106H19.757M135.565 78.106h-18.819"/>
+        <path d="M37.13 78.106H19.757m115.808 0h-18.819"/>
       </g>
       <g mask="url(#b)" stroke-linecap="round" stroke="#0693FC" stroke-width="2.562" stroke-linejoin="round">
-        <path d="M43.408 97.813l-7.897 4.558M120.394 53.365l-7.897 4.558"/>
+        <path d="M43.408 97.813l-7.897 4.558m84.883-49.006l-7.897 4.558"/>
       </g>
       <g mask="url(#b)" stroke-linecap="round" stroke="#0693FC" stroke-width="2.562" stroke-linejoin="round">
-        <path d="M58.008 112.413l-4.558 7.897M102.456 35.427l-4.558 7.896"/>
+        <path d="M58.008 112.413l-4.558 7.897m49.006-84.883l-4.558 7.896"/>
       </g>
     </g>
     <text font-family="OpenSans-Extrabold, Open Sans" font-size="17.16" font-weight="600" fill="#FFF">

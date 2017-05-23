@@ -1,8 +1,23 @@
 .open-sans {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif;
 }
+.ipld-dark-gray {
+  color: #515561;
+}
 .ipld-gray {
   color: #5A626E;
+}
+.ipld-light-gray {
+  color: #97A1AF;
+}
+.bg-ipld-blue {
+  background-color: #DEEDFF;
+}
+.f-30 {
+  font-size: 30px;
+}
+.f-18 {
+  font-size: 18px;
 }
 .embed-responsive {
   position:relative;

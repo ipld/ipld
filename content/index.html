@@ -15,7 +15,7 @@
 
 <section id="why" class="pt5 pb6 ph3 bg-white">
   <div class="mw8 center">
-    <h2 class="tc b ttu ma0 pb4" style="font-size:30px">
+    <h2 class="tc b ttu ma0 pb4 f-30">
       Why IPLD?
     </h2>
     <div class="dt w-100">
@@ -26,10 +26,10 @@
         <p class="f4 b m0 pb3">
           A data model for interoperable protocols.
         </p>
-        <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
+        <p class="f-18 lh-copy ipld-light-gray" style="max-width: 560px;">
           Content addressing through hashes has become a widely-used means of connecting data in distributed systems, from the blockchains that run your favorite cryptocurrencies, to the commits that back your code, to the web’s content at large. Yet, whilst all of these tools rely on some common primitives, their specific underlying data structures are not interoperable.
         </p>
-        <p class="lh-copy" style="max-width: 560px; font-size: 18px; color: #97A1AF;">
+        <p class="f-18 lh-copy ipld-light-gray" style="max-width: 560px;">
           Enter IPLD: IPLD is a single namespace for all hash-inspired protocols. Through IPLD, links can be traversed across protocols, allowing you explore data regardless of the underlying protocol.
         </p>
       </div>
@@ -37,74 +37,74 @@
   </div>
 </section>
 
-<section id="use-cases" class="pt5 pb4 ph3" style="background:#F7FCFF;">
-  <h2 class="tc b ttu ma0 pb4" style="font-size:30px">
+<section id="use-cases" class="pt5 pb4 ph3 bg-ipld-blue ipld-gray-dark">
+  <h2 class="tc b ttu ma0 pb4 f-30">
     Use cases
   </h2>
-  <p class="mw7 center lh-copy tc fw6 ma0 pb5" style="font-size: 18px; color: #97A1AF;">
+  <p class="mw7 center lh-copy tc f-18 fw6 ma0 pb5">
     The sky’s the limit as IPLD allows you to work across protocol boundaries. The point is that IPLD provides libraries that make the underlying data interoperable across tools and across protocols by default.
   </p>
   {{ partial "use" (dict "title" "Bitcoin to Git" "desc" "Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.") }}
   {{ partial "use" (dict "title" "Ethereum to IPFS" "desc" "Have your next contract refer to media on IPFS, perhaps modifying it and tracking its changes on each function execution. Seamlessly jump from function to object through IPLD addressing." "swap" true) }}
 </section>
 
-<section id="features" class="pt5 bg-white">
+<section id="features" class="pv5 bg-white">
   <div class="mw8 center">
-    <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
+    <h2 class="tc b ttu ma0 pb3 f-30">
       Features
     </h2>
     <div class="cf w-100">
       <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
-        {{ partial "tree" (dict "fill" "#1D74F2" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="lh-title f3 b ipld-gray ma0 pb3">
+        <img src="img/ipld-feature-1.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
           A canonical data model
         </h3>
-        <p class="lh-copy">
+        <p class="lh-copy f-18 ipld-light-gray">
           A self-contatined descriptive model that uniquely identifies any hash-based data structure and ensures the same logical object always maps to the exact same sequence of bits.
         </p>
       </div>
       <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
-        {{ partial "tree" (dict "fill" "#5FCACE" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="lh-title f3 b ipld-gray ma0 pb3">
+        <img src="img/ipld-feature-2.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
           Protocol independent resolution
         </h3>
-        <p class="lh-copy">
+        <p class="lh-copy f-18 ipld-light-gray">
           IPLD brings isolated systems together, making integration with existing protocols simple.
         </p>
       </div>
-      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
-        {{ partial "tree" (dict "fill" "#F7931A" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="lh-title f3 b ipld-gray ma0 pb3">
-          Operates across formats
-        </h3>
-        <p class="lh-copy">
-          Express your IPLD objects in various serializable formats like JSON, CBOR, YAML, XML and many more, making IPLD a cinch to use with any framework.
-        </p>
-      </div>
-      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
-        {{ partial "tree" (dict "fill" "#EF5133" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="lh-title f3 b ipld-gray ma0 pb3">
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-3.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
           Upgradeable
         </h3>
-        <p class="lh-copy">
+        <p class="lh-copy f-18 ipld-light-gray">
           With Multiformats support, IPLD is easily upgradeable and will grow with your favorite protocols.
         </p>
       </div>
-      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
-        {{ partial "tree" (dict "fill" "#B8B8B8" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="lh-title f3 b ipld-gray ma0 pb3">
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-4.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          Operates across formats
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          Express your IPLD objects in various serializable formats like JSON, CBOR, YAML, XML and many more, making IPLD a cinch to use with any framework.
+        </p>
+      </div>
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-5.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
           Backwards compatible
         </h3>
-        <p class="lh-copy">
+        <p class="lh-copy f-18 ipld-light-gray">
           Non-intrusive resolvers make IPLD easy to integrate within your existing work.
         </p>
       </div>
-      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
-        {{ partial "tree" (dict "fill" "#1D74F2" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="lh-title f3 b ipld-gray ma0 pb3">
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-6.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
           A namespace for all protocols
         </h3>
-        <p class="lh-copy">
+        <p class="lh-copy f-18 ipld-light-gray">
           IPLD allows you to explore data across protocols seamlessly, binding hash-based data structures together through a common namespace.
         </p>
       </div>
@@ -112,10 +112,10 @@
   </div>
 </section>
 
-<section id="media" class="pt5 pb6" style="background:#F7FCFF;">
+<section id="media" class="pt5 pb6 bg-ipld-blue ipld-dark-gray">
   <div class="mw8 center">
-    <h2 class="tc b ttu ma0 pb3" style="font-size:30px">Media</h2>
-    <p class="center lh-copy tc fw6 ma0 pb5 ph2" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
+    <h2 class="tc b ttu ma0 pb3 f-30">Media</h2>
+    <p class="center lh-copy tc f-18 ma0 pb5 ph2" style="max-width: 530px;">
       IPLD is an open source project from the IPFS community. There are many ways you can contribute by getting involved. Learn more about IPLD from the community.
     </p>
     <div class="cf ph2-ns">

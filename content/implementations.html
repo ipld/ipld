@@ -7,24 +7,24 @@
 {{ partial "topbar.html" . }}
 
 <section id="hero" class="pv6 white tc" style="background:#031851 url(../img/implementations-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
-  <h2 class="b ttu ma0 pb5" style="font-size:30px">
+  <h2 class="b ttu ma0 pb5 f-30">
     IPLD Components
   </h2>
   <div class="mw8 center ph3-ns">
     <div class="cf ph2-ns">
       <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
-        {{ partial "tree" (dict "fill" "#5FCACE" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="f3 b ma0 pb3">CID</h3>
+        <img src="../img/ipld-component-1.svg" style="height:151px" />
+        <h3 class="f3 b ma0 pt4 pb3">CID</h3>
         <p class="lh-copy">Self-describing content-addressed identifiers for distributed systems. This is the standard format all hash-chain based data structures can be expressed as per the IPLD standard.</p>
       </div>
       <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
-        {{ partial "tree" (dict "fill" "#F7931A" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="f3 b ma0 pb3">IPLD Tree</h3>
+        <img src="../img/ipld-component-2.svg" style="height:151px" />
+        <h3 class="f3 b ma0 pt4 pb3">IPLD Tree</h3>
         <p class="lh-copy">A cross-protocol data model based on JSON and Protobuf, and path navigation, meant to be easy to interoperate with and to have pluggable format-dependent resolvers.</p>
       </div>
       <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
-        {{ partial "tree" (dict "fill" "#EF5133" "width" "130px" "height" "148px" "class" "pb3")}}
-        <h3 class="f3 b ma0 pb3">IPLD Resolvers</h3>
+        <img src="../img/ipld-component-3.svg" style="height:151px" />
+        <h3 class="f3 b ma0 pt4 pb3">IPLD Resolvers</h3>
         <p class="lh-copy">IPLD Resolvers bring new systems into the IPLD family of protocols. They can express paths that reach into tool/protocol-specific data structures, allowing you to cross-link and traverse them in their native formats.</p>
       </div>
     </div>
@@ -91,12 +91,12 @@
   </div>
 </section> -->
 
-<section id="bundles" class="pt5 ph2 pb6" style="background:#F7FCFF;">
+<section id="bundles" class="pt5 ph2 pb6 bg-ipld-blue ipld-dark-gray">
   <div class="mw8 center">
-    <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
+    <h2 class="tc b ttu ma0 pb3 f-30">
       IPLD Implementations
     </h2>
-    <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 800px; font-size: 18px; color: #97A1AF;">
+    <p class="center lh-copy tc fw6 ma0 pb5 f-18" style="max-width: 800px;">
       IPLD provides ready-to-use bundles for different formats and different languages. You can use these to get all the functionality in one package. See it as a quickstart.
     </p>
     <table class="bundle-table mw7 center">

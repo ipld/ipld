@@ -1,10 +1,10 @@
 {{ $filename :=  (replace .title " " "-" | lower) }}
 {{ $src :=  (printf "/img/%s.svg" $filename) }}
 <div class="cf mw7 center w-100 pv4">
-  <div class="{{ if .swap }}fr-ns{{ else }}fl-ns{{ end }} w-50-m w-60-l ph2 pt5-l">
+  <div class="{{ if .swap }}fr-ns{{ else }}fl-ns{{ end }} w-60-m w-70-l pb2">
     {{ partial "use-text" . }}
   </div>
-  <div class="{{ if .swap }}fr-ns{{ else }}fr-ns{{ end }} w-50-m w-40-l pa2 tc tl-ns">
-    <img src="{{ $src }}" class="w-100 mw5" />
+  <div class="{{ if .swap }}fr-ns{{ else }}fr-ns{{ end }} w-40-m w-30-l pa2 tc tl-ns">
+    <img src="{{ $src }}" class="w-100" style="max-width:180px" />
   </div>
 </div>

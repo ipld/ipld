@@ -7,8 +7,24 @@
 {{ partial "topbar.html" . }}
 
 <section id="hero" style="background:#031851 url(img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc pt6 pb5 ph2">
-  <img src="img/ipld-hero.svg" class="w-100" style="width:664px; min-height:200px;" />
-  <p style="max-width:920px;" class="ma0 pt5 center f3 lh-copy fw6 white">
+  <div class="relative dib hover-trigger" data-mouse >
+    <img src="img/ipld-hero.svg" class="w-100" style="width:664px; min-height:200px;" />
+    <div class="dn db-l">
+      <div class="absolute" style="left:-182px; top:-8px;">
+        {{ readFile "static/img/splash/hex-1.svg" | safeHTML }}
+      </div>
+      <div class="absolute" style="right:-121px; top:-8px;">
+        {{ readFile "static/img/splash/hex-2.svg" | safeHTML }}
+      </div>
+      <div class="absolute" style="left:-122px; bottom:-76px;">
+        {{ readFile "static/img/splash/hex-3.svg" | safeHTML }}
+      </div>
+      <div class="absolute" style="right:-180px; bottom:-8px;">
+        {{ readFile "static/img/splash/hex-4.svg" | safeHTML }}
+      </div>
+    </div>
+  </div>
+  <p style="max-width:920px;" class="ma0 pt6 center f3 lh-copy fw6 white">
     IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD.
   </p>
 </section>
@@ -140,6 +156,15 @@
 
 {{ partial "footer.html" . }}
 
+<script type="text/javascript">
+  var el = document.querySelector('[data-mouse]')
+  el.addEventListener('mouseleave', function (evt) {
+    evt.currentTarget.classList.add('out')
+  })
+  el.addEventListener('mouseenter', function (evt) {
+    evt.currentTarget.classList.remove('out')
+  })
+</script>
 <script src="/js/youtube-switcher.js"></script>
 </body>
 </html>

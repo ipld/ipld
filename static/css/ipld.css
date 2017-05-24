@@ -86,3 +86,44 @@
 .hover-trigger:hover .hover-hide {
   display: none;
 }
+
+/* ---- Splash animation tricks --------------------------------------------- */
+.draw-hex {
+  stroke-dasharray:151 153;
+  stroke-dashoffset:153;
+}
+.draw-line {
+  stroke-dasharray:20 22;
+  stroke-dashoffset:21;
+}
+
+.hover-trigger:hover .draw-hex  { animation: draw-hex-in   800ms ease-out both }
+.hover-trigger:hover .draw-line { animation: draw-line-in  800ms ease-out both }
+
+.hover-trigger.out   .draw-hex  { animation: draw-hex-out  800ms ease-out both }
+.hover-trigger.out   .draw-line { animation: draw-line-out 800ms ease-out both }
+
+@keyframes draw-hex-in {
+  0% {stroke-dashoffset:153;}
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes draw-hex-out {
+  0% {stroke-dashoffset:0;}
+  100% {stroke-dashoffset:153;}
+}
+
+@keyframes draw-line-in {
+  0% {stroke-dashoffset:21;}
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes draw-line-out {
+  0% {stroke-dashoffset:0;}
+  100% {stroke-dashoffset:21;}
+}
+
+.animation-delay-150 { animation-delay: 150ms !important; }
+.animation-delay-300 { animation-delay: 300ms !important; }
+.animation-delay-450 { animation-delay: 450ms !important; }
+.animation-delay-600 { animation-delay: 600ms !important; }

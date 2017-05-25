@@ -1,11 +1,11 @@
-baseURL = "https://ipld.surge.sh"
+baseURL = "https://ipld.io"
 relativeURLs = true
 
 [params]
   domain = "ipld.io"
   name = "IPLD"
   title = "IPLD - The data model of the content-addressable web"
-  description = "IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD."
+  description = "The data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD."
   author = "Protocol Labs"
   github = "https://github.com/ipld/ipld"
   specifications = "https://github.com/ipld/specs"

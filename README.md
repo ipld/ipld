@@ -13,7 +13,7 @@ This repository contains the source code for the IPLD website available at http:
 
 This project builds out a static site to explain IPLD, ready for deployment on ipfs. It uses `hugo` to glue the html together. It provides an informative, public-facing website. The most important things are the words, concepts and links it presents.
 
-The implementation aims to progressively enhance the content. The styling uses [tachyons](http://tachyons.io/)  to keep things light. The animations are done in SVG and CSS. There is very little JavaScript and the interactive elements that use JS should degrade gracefully on browsers without it.
+The implementation aims to progressively enhance the content. The styling is done with [tachyons](http://tachyons.io/) to keep things light. The animations are done in SVG and CSS. There is very little JavaScript and the interactive elements that use JS should degrade gracefully on browsers without it.
 
 ## Install
 

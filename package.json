@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "say sorry",
-    "watch": "hugo server -ws .",
+    "start": "hugo server -ws .",
     "deploy": "hugo && ipfs add -r public",
     "deploy:surge": "hugo && surge --project public --domain ipld.surge.sh"
   },

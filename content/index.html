@@ -8,7 +8,9 @@
 
 <section id="hero" style="background:#031851 url(img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc pt6 pb5 ph2">
   <div class="relative dib hover-trigger" data-mouse >
-    <img src="img/ipld-hero.svg" class="w-100" style="width:664px; min-height:200px;" />
+    <div style="max-width:664px;">
+      {{ readFile "static/img/splash/ipld-hero.svg" | safeHTML }}
+    </div>
     <div class="dn db-l">
       <div class="absolute" style="left:-182px; top:-8px;">
         {{ readFile "static/img/splash/hex-1.svg" | safeHTML }}

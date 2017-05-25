@@ -2,9 +2,7 @@
 
 > IPLD is the data model of the content-addressable web.
 
-This project builds out a static site to explain IPLD, ready for deployment on ipfs. It uses `hugo` to glue the html together.
-
-It provides an informative, public-facing website. The most important things are the words, concepts and links it presents.
+This project builds out a static site to explain IPLD, ready for deployment on ipfs. It uses `hugo` to glue the html together. It provides an informative, public-facing website. The most important things are the words, concepts and links it presents.
 
 The implementation is an exercise in progressive-enhancement. The animations are done in SVG and CSS, there is very little JavaScript and the interactive elements that use JS should degrade gracefully on browsers without it.
 

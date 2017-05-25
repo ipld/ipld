@@ -4,7 +4,9 @@
 
 This project builds out a static site to explain IPLD, ready for deployment on ipfs. It uses `hugo` to glue the html together.
 
-This is an exercise in progressive enhancement. The most important thing is the words and links contained in it. The content is available to browsers without JS availble, and the animations are all done in CSS.
+It provides an informative, public-facing website. The most important things are the words, concepts and links it presents.
+
+The implementation is an exercise in progressive-enhancement. The animations are done in SVG and CSS, there is very little JavaScript and the interactive elements that use JS should degrade gracefully on browsers without it.
 
 ## Getting started
 

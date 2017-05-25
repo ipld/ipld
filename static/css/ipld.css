@@ -88,6 +88,44 @@
 }
 
 /* ---- Splash animation tricks --------------------------------------------- */
+svg .ipld-logo {
+  animation: scale 500ms ease-in-out 1s both;
+  transform-origin: center;
+}
+
+svg .ipld-logo-trunk {
+  animation: draw-stroke 400ms ease-in-out 1.4s forwards;
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
+}
+
+svg .ipld-logo-branch {
+  animation: draw-stroke 600ms ease-in-out 1.6s forwards;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+svg .ipld-logo-connector {
+  animation: draw-stroke 600ms ease-in-out 1.8s forwards;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+svg .ipld-logo-leaf {
+  animation: scale 800ms ease-in-out 1.8s both;
+  transform-origin: bottom;
+}
+
+@keyframes draw-stroke {
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes scale {
+    0% { transform: scale(0) }
+  100% { transform: scale(1) }
+}
+
+/* ---- animate outer hexagons on mouse over -------------------------------- */
 .draw-hex {
   stroke-dasharray:151 153;
   stroke-dashoffset:153;
@@ -118,12 +156,12 @@
   100% {stroke-dashoffset:0;}
 }
 
+@keyframes draw-line-2-in {
+  0% {stroke-dashoffset:88;}
+  100% {stroke-dashoffset:0;}
+}
+
 @keyframes draw-line-out {
   0% {stroke-dashoffset:0;}
   100% {stroke-dashoffset:21;}
 }
-
-.animation-delay-150 { animation-delay: 150ms !important; }
-.animation-delay-300 { animation-delay: 300ms !important; }
-.animation-delay-450 { animation-delay: 450ms !important; }
-.animation-delay-600 { animation-delay: 600ms !important; }

@@ -1,13 +1,19 @@
-# website
+# IPLD website
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
 [![](https://img.shields.io/badge/project-IPLD-blue.svg?style=flat-square)](http://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
+![ipld logo animation](https://cloud.githubusercontent.com/assets/58871/26447582/074ed6cc-4141-11e7-9d4d-a28a58597772.gif)
+
 > Official website for IPLD http://ipld.io
 
 This repository contains the source code for the IPLD website available at http://ipld.io
+
+This project builds out a static site to explain IPLD, ready for deployment on ipfs. It uses `hugo` to glue the html together. It provides an informative, public-facing website. The most important things are the words, concepts and links it presents.
+
+The implementation aims to progressively enhance the content. The styling is done with [tachyons](http://tachyons.io/) to keep things light. The animations are done in SVG and CSS. There is very little JavaScript and the interactive elements that use JS should degrade gracefully on browsers without it.
 
 ## Install
 
@@ -19,31 +25,19 @@ git clone https://github.com/ipld/website
 
 The following commands are available:
 
-### `make deps`
+### `npm start`
 
-Makes sure you have the right dependencies installed, otherwise prints them out
+Start up the hugo dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
 
-### `make build`
+### `npm run deploy`
 
-Builds a full, static copy of the website and puts it in the `public/` directory
-
-### `make dev`
-
-Builds the website in memory and starts a development server listening on :1313
-
-### `make publish`
-
-Builds the websites, adds it to IPFS and updates DNS of ipld.io to point to the new hash
+Build the site in the `public` dir and add to `ipfs` _(requires `hugo` & `ipfs` on your `PATH`)_
 
 ## Dependencies
 
 * `hugo` to build website
 * `ipfs` to deploy changes
 * `dnslink-deploy` to deploy changes
-
-## Maintainers
-
-[@victorbjelkholm](https://github.com/victorbjelkholm)
 
 ## Contribute
 
@@ -56,4 +50,3 @@ Small note: If editing the README, please conform to the [standard-readme](https
 ## License
 
 [MIT](LICENSE) © 2016 Protocol Labs Inc.
-

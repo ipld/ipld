@@ -1,0 +1,15 @@
+[git]
+  [ipld-git]
+    go = "https://github.com/ipfs/go-ipld-git"
+
+[bitcoin]
+  [ipld-btc]
+    go = "https://github.com/ipfs/go-ipld-btc"
+
+[IPFS]
+  [dag-pb]
+    js = "https://github.com/ipld/js-ipld-dag-pb"
+    go = "https://github.com/ipfs/go-ipld"
+  [dag-cbor]
+    js = "https://github.com/ipld/js-ipld-dag-cbor"
+    go = "https://github.com/ipfs/go-ipld-cbor"

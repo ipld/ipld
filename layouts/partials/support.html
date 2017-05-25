@@ -1,0 +1,30 @@
+{{ if eq .level 2}}
+<div title="Done" class="dib">
+  <a href="{{ .url }}" target="_blank" class="grow no-underline">
+    <span class="hover-hide">
+      {{ partial "hex.html" (dict "fill" "#0CC06D") }}
+    </span>
+    <img class="hover-show" src="/img/github-mark.svg" style="width:24px" />
+  </a>
+  <span style="color:#97A0AE" class="pl2 {{if not .label}}hide{{end}}">Full support</span>
+</div>
+{{end}}
+
+{{ if eq .level 1}}
+<div title="In Progress / Usable" class="dib">
+  <a href="{{ .url }}" target="_blank" class="grow no-underline">
+    <span class="hover-hide">
+      {{ partial "hex.html" (dict "fill" "#F2B602") }}
+    </span>
+    <img class="hover-show" src="/img/github-mark.svg" style="width:24px" />
+  </a>
+  <span style="color:#97A0AE" class="pl2 {{if not .label}}hide{{end}}">In progress</span>
+</div>
+{{end}}
+
+{{ if eq .level 0}}
+<div title="Missing" class="dib">
+  {{ partial "hex.html" (dict "fill" "#97A0AE") }}
+  <span style="color:#97A0AE" class=" pl2 {{if not .label}}hide{{end}}">Missing</span>
+</div>
+{{end}}

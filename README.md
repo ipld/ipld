@@ -1,12 +1,8 @@
-# The ipld.io website
+![ipld logo animation](https://cloud.githubusercontent.com/assets/58871/26447582/074ed6cc-4141-11e7-9d4d-a28a58597772.gif)
 
-> the data model of the content-addressable web.
+> IPLD is the data model of the content-addressable web.
 
-A static site to show you that IPLD is a thing, and a good one at that.
-
-![https://cloud.githubusercontent.com/assets/58871/26447582/074ed6cc-4141-11e7-9d4d-a28a58597772.gif]
-
-This project builds out a static site ready for deployment on ipfs. It uses `hugo` to glue the html together.
+This project builds out a static site to explain IPLD, ready for deployment on ipfs. It uses `hugo` to glue the html together.
 
 This is an exercise in progressive enhancement. The most important thing is the words and links contained in it. The content is available to browsers without JS availble, and the animations are all done in CSS.
 

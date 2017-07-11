@@ -1,3 +1,7 @@
 public
 node_modules
 npm-debug.log
+package-lock.json
+static/css
+dev.pid
+auth.token

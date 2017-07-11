@@ -23,19 +23,66 @@ git clone https://github.com/ipld/website
 
 ## Usage
 
+To deploy the site ipld.io, run:
+
+```sh
+# Build out the optimised site to ./public, where you can check it locally.
+make
+
+# Add the site to your local ipfs, you can check it via /ipfs/<hash>
+make deploy
+
+# Save your dnsimple api token as auth.token
+cat "<api token here>" > auth.token
+
+# Update the dns record for ipld.io to point to the new ipfs hash.
+make publish-to-domain
+```
+
 The following commands are available:
 
-### `npm start`
+### `make`
 
-Start up the hugo dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
+Build the optimised site to the `./public` dir
 
-### `npm run deploy`
+### `make serve`
+
+Preview the production ready site at http://localhost:1313 _(requires `hugo` on your `PATH`)_
+
+### `make dev`
+
+Start a hot-reloading dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
+
+### `make dev-stop`
+
+Stop that server (and take a break!)
+
+### `make minfy`
+
+Optimise all the things!
+
+### `make deploy`
 
 Build the site in the `public` dir and add to `ipfs` _(requires `hugo` & `ipfs` on your `PATH`)_
+
+### `make publish-to-domain` :rocket:
+
+Update the DNS record for `libp2p.io`.  _(requires an `auto.token` file to be saved in the project root.)_
+
+If you'd like to update the dnslink TXT record for another domain, pass `DOMAIN=<your domain here>` like so:
+
+```sh
+make publish-to-domain DOMAIN=tableflip.io
+```
+
+---
+
+See the `Makefile` for the full list or run `make help` in the project root. You can pass the env var `DEBUG=true` to increase the verbosity of your chosen command.
 
 ## Dependencies
 
 * `hugo` to build website
+* `Node.js` and `npm` for build tools
 * `ipfs` to deploy changes
 * `dnslink-deploy` to deploy changes
 

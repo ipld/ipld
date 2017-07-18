@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://ipld.io"><img src="./logo/ipld-logo.png"  width="150px"/></a>
+</p>
+
 # IPLD
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
@@ -6,7 +10,9 @@
 
 > InterPlanetary Linked Data
 
-Note that, as in many IPFS repositories, most of the work is happening in [the issues](https://github.com/ipld/ipld/issues/) or in [active pull requests](https://github.com/ipld/ipld/pulls/). Go take a look!
+Read more about IPLD at https://ipld.io
+
+_Note that, as in many IPFS repositories, most of the work is happening in [the issues](https://github.com/ipld/ipld/issues/) or in [active pull requests](https://github.com/ipld/ipld/pulls/). Go take a look!_
 
 ### IPLD Definitions
 

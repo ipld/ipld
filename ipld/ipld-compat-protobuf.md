@@ -1,3 +1,7 @@
+> **Disclaimer:** this spec is out of date. Meanwhile, you can learn more about IPLD formats at https://github.com/ipld/interface-ipld-format
+
+------------------------------------------------
+
 # IPLD conversion with Protocol Buffer legacy IPFS node format
 
 IPLD has a known conversion with the legacy Protocol Buffers format in order for new IPLD objects to interact with older protocol buffer objects.

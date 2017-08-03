@@ -53,10 +53,6 @@ Preview the production ready site at http://localhost:1313 _(requires `hugo` on 
 
 Start a hot-reloading dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
 
-### `make dev-stop`
-
-Stop that server (and take a break!)
-
 ### `make minfy`
 
 Optimise all the things!

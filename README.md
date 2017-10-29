@@ -35,7 +35,7 @@ Captain: [@nicola](https://github.com/nicola)
 | Merkledag/Protobuf (legacy) | [ipld/js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) |
 | Raw | [ipld/js-ipld-raw](https://github.com/ipld/js-ipld-raw) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) |
 | Unixfs v2 (planning: [ipld/unixfs#1](https://github.com/ipld/unixfs/issues/1))
-| Git | | [ipfs/go-ipld-git](https://github.com/ipfs/go-ipld-git) |
+| Git | [ipld/js-ipld-git](https://github.com/ipld/js-ipld-git) | [ipfs/go-ipld-git](https://github.com/ipfs/go-ipld-git) |
 | Bitcoin | | [ipfs/go-ipld-btc](https://github.com/ipfs/go-ipld-btc) |
 | Zcash | | [ipfs/go-ipld-zcash](https://github.com/ipfs/go-ipld-zcash) |
 | Ethereum | [ipld/js-ipld-ethereum](https://github.com/ipld/js-ipld-ethereum) | [ipfs/go-ipld-eth](https://github.com/ipfs/go-ipld-eth) |

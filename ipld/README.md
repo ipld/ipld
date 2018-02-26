@@ -9,7 +9,7 @@ UPDATE: we re-drafted this spec to deal with links. We hope to re-finalize it sh
 There are a variety of systems that use merkle-tree and hash-chain inspired datastructures (e.g. git, bittorrent, ipfs, tahoe-lafs, sfsro). IPLD (Inter Planetary Linked Data) defines:
 
 - **_merkle-links_**: the core unit of a merkle-graph
-- **_merkle-dag_**: any graphs whose edges are _merkle-links_.
+- **_merkle-dag_**: any graphs whose edges are _merkle-links_. `dag` stands for "directed acyclic graph"
 - **_merkle-paths_**: unix-style paths for traversing _merkle-dags_ with _named merkle-links_
 - **IPLD Data Model**: a flexible, JSON-based data model for representing merkle-dags.
 - **IPLD Serialized Formats**: a set of formats in which IPLD objects can be represented, for example JSON, CBOR, CSON, YAML, Protobuf, XML, RDF, etc.

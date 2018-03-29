@@ -8,27 +8,29 @@ We try to frame our ongoing work using a process based on quarterly Objectives a
 
 ### Implement updated IPLD Format spec
 
- - Finish updating the IPLD format spec
- - Have proper JSON serialization for JavaScript formats (Bitcoin, CBOR, DAG-PB, Ethereum, Git, Zcash)
- - Have proper JSON serialization for Go formats (Bitcoin, CBOR, DAG-PB, Ethereum, Git, Zcash)
- - Implement the rest of the missing pieces of the spec in JavaScript
- - Implement the rest of the missing pieces of the spec in Go
+This relates to https://github.com/ipld/interface-ipld-format/pull/22
+
+ - `PX` - @vmx - Finish updating the IPLD format spec
+ - `PX` - @vmx - Have proper JSON serialization for JavaScript formats (Bitcoin, CBOR, DAG-PB, Ethereum, Git, Zcash)
+ - `PX` - OWNER - Have proper JSON serialization for Go formats (Bitcoin, CBOR, DAG-PB, Ethereum, Git, Zcash)
+ - `PX` - @vmx - Implement the rest of the missing pieces of the spec in JavaScript
+ - `PX` - OWNER - Implement the rest of the missing pieces of the spec in Go
 
 ### Search on IPLD
 
- - Capturing three use cases and examples in a document
- - Do a prototype with Noise supporting those use cases
+ - `PX` - @vmx - Capturing three use cases and examples in a document
+ - `PX` - @vmx - Do a prototype with Noise supporting those use cases
 
 ### Design and implement GraphSync, to improve performance of Apps
 
- - Have benchmarks that demonstrate GraphSync perf improvement over original Bitswap (in js and go)
- - The GraphSync protocol has a designdoc that captures all constraints
- - The GraphSync protocol has a v0 spec
- - The GraphSync protocol has a v0 implementation in js
- - The GraphSync protocol has a v0 implementation in go
- - GraphSync learns to distribute IPLD paths
- - GraphSync learns to distribute IPLD paths with wildcards (basic wildcard selectors)
- - GraphSync learns to distribute IPLD Selectors (full)
+ - `PX` - @vmx - Have benchmarks that demonstrate GraphSync perf improvement over original Bitswap (in js and go)
+ - `PX` - @vmx - The GraphSync protocol has a designdoc that captures all constraints
+ - `PX` - @vmx - The GraphSync protocol has a v0 spec
+ - `PX` - @vmx - The GraphSync protocol has a v0 implementation in js
+ - `PX` - OWNER - The GraphSync protocol has a v0 implementation in go
+ - `PX` - OWNER - GraphSync learns to distribute IPLD paths
+ - `PX` - OWNER - GraphSync learns to distribute IPLD paths with wildcards (basic wildcard selectors)
+ - `PX` - OWNER - GraphSync learns to distribute IPLD Selectors (full)
 
 
 ## 2018 Q1

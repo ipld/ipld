@@ -10,6 +10,7 @@ We try to frame our ongoing work using a process based on quarterly Objectives a
 
 This relates to https://github.com/ipld/interface-ipld-format/pull/22
 
+ - `P0` - @stebalien (?) finish deciding on the primitives: https://github.com/ipld/specs/issues/56
  - `PX` - @vmx - Finish updating the IPLD format spec
  - `PX` - @vmx - Have proper JSON serialization for JavaScript formats (Bitcoin, CBOR, DAG-PB, Ethereum, Git, Zcash)
  - `PX` - OWNER - Have proper JSON serialization for Go formats (Bitcoin, CBOR, DAG-PB, Ethereum, Git, Zcash)
@@ -31,7 +32,11 @@ This relates to https://github.com/ipld/interface-ipld-format/pull/22
  - `PX` - OWNER - GraphSync learns to distribute IPLD paths
  - `PX` - OWNER - GraphSync learns to distribute IPLD paths with wildcards (basic wildcard selectors)
  - `PX` - OWNER - GraphSync learns to distribute IPLD Selectors (full)
+ 
+### Work towards IPLD-next
 
+ - `P1` - @stebalien - Design/find an IPLD schema language (possibly use rust?).
+ - `P1` - @stebalien - Finish design and implement IPLD schema serialization language.
 
 ## 2018 Q1
 

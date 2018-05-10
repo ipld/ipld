@@ -19,22 +19,14 @@ Specifications (specs)
 - ![](https://img.shields.io/badge/status-stable-brightgreen.svg?style=flat-square) - this spec is likely to improve, but not change fundamentally.
 - ![](https://img.shields.io/badge/status-permanent-blue.svg?style=flat-square) - this spec will not change.
 
-Nothing in this spec repository is `permanent` yet. The most important pieces of IPLD are now `reliable` or `stable`. Many subsystems remain as `draft`.
-
-Note that, as in many IPFS repositories, most of the work is happening in [the issues](https://github.com/ipld/specs/issues/) or in [active pull requests](https://github.com/ipld/specs/pulls/). Go take a look!
+Nothing in this spec repository is `permanent` yet. As in many IPLD repositories, most of the work is happening in [the issues](https://github.com/ipld/specs/issues/) or in [active pull requests](https://github.com/ipld/specs/pulls/). Go take a look!
 
 ## Specs
 
-The specs contained in this repository are:
-
-**IPLD:**
-- [IPLD](/ipld) ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square) - spec about the data model, pointers and link formats
+- [IPLD](/ipld) ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about the data model, pointers and link formats
 - IPLD Selectors ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about simple language to select multiple unknown nodes in a graph
 - IPLD Transformations ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about the language to trasform an IPLD graph into another
-
-## Maintainers
-
-[@nicola](https://github.com/nicola)
+- [CID (Content IDentifier)](https://github.com/ipld/cid) ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square)
 
 ## Contribute
 

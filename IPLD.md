@@ -1,21 +1,14 @@
-# IPLD
+# ![](https://img.shields.io/badge/status-draft-green.svg?style=flat-square) IPLD
 
 > The "thin-waist" merkle dag format
-
-![](https://img.shields.io/badge/status-draft-green.svg?style=flat-square)
-
-UPDATE: we re-drafted this spec to deal with links. We hope to re-finalize it shortly. Sorry for any inconvenience. This was an important change to do before implementations shipped.
 
 There are a variety of systems that use merkle-tree and hash-chain inspired datastructures (e.g. git, bittorrent, ipfs, tahoe-lafs, sfsro). IPLD (Inter Planetary Linked Data) defines:
 
 - **_merkle-links_**: the core unit of a merkle-graph
 - **_merkle-dag_**: any graphs whose edges are _merkle-links_. `dag` stands for "directed acyclic graph"
 - **_merkle-paths_**: unix-style paths for traversing _merkle-dags_ with _named merkle-links_
-- **IPLD Data Model**: a flexible, JSON-based data model for representing merkle-dags.
-- **IPLD Serialized Formats**: a set of formats in which IPLD objects can be represented, for example JSON, CBOR, CSON, YAML, Protobuf, XML, RDF, etc.
+- **IPLD Formats**: a set of formats in which IPLD objects can be represented, for example JSON, CBOR, CSON, YAML, Protobuf, XML, RDF, etc.
 - **IPLD Canonical Format**: a deterministic description on a serialized format that ensures the same _logical_ object is always serialized to _the exact same sequence of bits_. This is critical for merkle-linking, and all cryptographic applications.
-
-In short: JSON documents with named merkle-links that can be traversed.
 
 ## Intro
 
@@ -388,12 +381,6 @@ When decoding CBOR and converting it to IPLD, each occurences of `<tag-link-obje
 - A map is created with a single key value pair. The key is the standard IPLD *link key* `/`, the value is the textual string containing the *link value*.
 
 When an IPLD object contains these tags in the way explained here, the multicodec header used to represent the object codec must be `/cbor/ipld-tagsv1` instead of just `/cbor`. Readers should be able to use an optimized reading process to detect links using these tags.
-
-
-**TODO:**
-
-- [ ] register tag with IANA.
-
 
 ### Canonical Format
 

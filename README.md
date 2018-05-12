@@ -10,14 +10,41 @@
 
 IPLD is the data model for the decentralized web. It allows us to treat all content-addressed data structures as subsets of one big information space, unifying all data models that link data with hashes as instances of IPLD.
 
-- [Overview](#overview)
+- [Enter IPLD](#enter-ipld)
+- [Docs](#docs)
 - [Examples and Tutorials](#examples-and-tutorials)
+- [Tools](#tools)
+- [Implementations](#implementations)
 - [New implementations](#new-implementations)
 - [Glossary](#glossary)
 - [Contribute](#contribute)
 - [License](#license)
 
-## Overview
+## Enter IPLD
+
+**Watch the Merkle Forest Talk**
+
+[![](/img/enter-merkle-forest.jpg)](https://www.youtube.com/watch?v=Bqs_LzBjQyk)
+
+## Docs
+
+- [IPLD Specs](https://github.com/ipld/specs)
+- [CID spec](https://github.com/ipld/cid)
+- [ipld.io](https://github.com/ipld/website)
+
+## Examples and Tutorials
+
+- Traversing IPLD graphs using the `ipfs dag` API: [ipfs/js-ipfs/examples/traverse-ipld-graphs](https://github.com/ipfs/js-ipfs/tree/master/examples/traverse-ipld-graphs)
+- IPLD search index for wikipedia-on-ipfs.org: [magik6k/distributed-wiki-search](https://github.com/magik6k/distributed-wiki-search)
+- Git IPLD/IPFS remote: [magik6k/git-remote-ipld](https://github.com/magik6k/git-remote-ipld)
+- Using the Git IPLD plugin in go-ipfs: [ipfs/go-ipfs/docs/plugins.md](https://github.com/ipfs/go-ipfs/blob/master/docs/plugins.md)
+
+## Tools
+
+- IPLD graph builder: [ipld/js-ipld-graph-builder](https://github.com/ipld/js-ipld-graph-builder)
+- CLI for interacting with IPLD: [ipld/js-ipld-cli](https://github.com/ipld/js-ipld-cli)
+
+## Implementations
 
 | Package | JavaScript | Go |
 | ------- | ---------- | -- |
@@ -36,22 +63,6 @@ IPLD is the data model for the decentralized web. It allows us to treat all cont
 | Torrent info | [ipld/js-ipld-torrent-info](https://github.com/ipld/js-ipld-torrent-info) | |
 | Torrent file | [ipld/js-ipld-torrent-file](https://github.com/ipld/js-ipld-torrent-file) | |
 | IPLD Selectors (experimental) | [ipld/js-ipld-selector](https://github.com/ipld/js-ipld-selector) | |
-
-- Tools
-  - IPLD graph builder: [ipld/js-ipld-graph-builder](https://github.com/ipld/js-ipld-graph-builder)
-  - CLI for interacting with IPLD: [ipld/js-ipld-cli](https://github.com/ipld/js-ipld-cli)
-
-- Specs: [ipld/specs](https://github.com/ipld/specs)
-- CID specs: [ipld/cid](https://github.com/ipld/cid)
-- Website: [ipld/website](https://github.com/ipld/website)
-
-
-## Examples and Tutorials
-
-- Traversing IPLD graphs using the `ipfs dag` API: [ipfs/js-ipfs/examples/traverse-ipld-graphs](https://github.com/ipfs/js-ipfs/tree/master/examples/traverse-ipld-graphs)
-- IPLD search index for wikipedia-on-ipfs.org: [magik6k/distributed-wiki-search](https://github.com/magik6k/distributed-wiki-search)
-- Git IPLD/IPFS remote: [magik6k/git-remote-ipld](https://github.com/magik6k/git-remote-ipld)
-- Using the Git IPLD plugin in go-ipfs: [ipfs/go-ipfs/docs/plugins.md](https://github.com/ipfs/go-ipfs/blob/master/docs/plugins.md)
 
 ## New implementations
 

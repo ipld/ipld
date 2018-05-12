@@ -1,15 +1,11 @@
-Specifications (specs)
-==============
+IPLD Specifications
+===================
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
 [![](https://img.shields.io/badge/project-IPLD-blue.svg?style=flat-square)](http://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 
 > This repository contains the specs for InterPlanetary Linked Data (IPLD).
-
-## Work In Progress
-
-**Warning**: this is a work in progress. IPLD is a young body of work and we want to get it right. We will continue to evaluate and re-think pieces.
 
 **Specs are not finished yet. We use the following tag system to identify their state:**
 
@@ -21,12 +17,29 @@ Specifications (specs)
 
 Nothing in this spec repository is `permanent` yet. As in many IPLD repositories, most of the work is happening in [the issues](https://github.com/ipld/specs/issues/) or in [active pull requests](https://github.com/ipld/specs/pulls/). Go take a look!
 
-## Specs
+## Documents
 
-- [IPLD](/ipld) ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about the data model, pointers and link formats
-- IPLD Selectors ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about simple language to select multiple unknown nodes in a graph
-- IPLD Transformations ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - spec about the language to trasform an IPLD graph into another
-- [CID (Content IDentifier)](https://github.com/ipld/cid) ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square)
+- [**Roadmap**](/ROADMAP.md)
+- **Specifications:**
+  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) [`IPLD`](/IPLD.md) - spec about the data model, pointers and link formats
+  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) `IPLD Selectors` - spec about simple language to select multiple unknown nodes in a graph
+  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) `IPLD Transformations` - spec about the language to trasform an IPLD graph into another
+  - ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square) [`CID (Content IDentifier)`](https://github.com/ipld/cid)
+  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) [`IPLD Formats`](https://github.com/ipld/interface-ipld-format) - interface definition for adding support to different formats
+  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) [`CAR`](/CAR.md) - Content Addressable Archives
+
+## Discussion
+
+Join the discussion for:
+
+- Specs - https://github.com/ipld/specs/issues
+- General IPLD - https://github.com/ipld/ipld/issues
+- JavaScript Implementation - https://github.com/ipld/js-ipld/issues
+- Golang Implementation - https://github.com/ipfs/go-ipld-format
+
+## Weekly Hangout
+
+TBA soon™
 
 ## Contribute
 

@@ -24,7 +24,7 @@ IPLD is the data model for the decentralized web. It allows us to treat all cont
 
 **Watch the Merkle Forest Talk**
 
-[![](enter-merkle-forest.jpg)](https://www.youtube.com/watch?v=Bqs_LzBjQyk)
+[![](/img/enter-merkle-forest.jpg)](https://www.youtube.com/watch?v=Bqs_LzBjQyk)
 
 ## Docs
 

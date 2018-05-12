@@ -21,7 +21,7 @@ Nothing in this spec repository is `permanent` yet. As in many IPLD repositories
 
 - [**Roadmap**](/ROADMAP.md)
 - **Specifications:**
-  - ![](https://img.shields.io/badge/status-draft-yellow.svg?style=flat-square) ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) [`IPLD`](/IPLD.md) - spec about the data model, pointers and link formats
+  - ![](https://img.shields.io/badge/status-draft-yellow.svg?style=flat-square) [`IPLD`](/IPLD.md) - spec about the data model, pointers and link formats
   - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) `IPLD Selectors` - spec about simple language to select multiple unknown nodes in a graph
   - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) `IPLD Transformations` - spec about the language to trasform an IPLD graph into another
   - ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square) [`CID (Content IDentifier)`](https://github.com/ipld/cid)

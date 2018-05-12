@@ -8,12 +8,7 @@
 [![](https://img.shields.io/badge/project-ipld-blue.svg?style=flat-square)](https://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipfs)
 
-> InterPlanetary Linked Data -- https://ipld.io
-
 IPLD is the data model for the decentralized web. It allows us to treat all content-addressed data structures as subsets of one big information space, unifying all data models that link data with hashes as instances of IPLD.
-
-Captain: [@nicola](https://github.com/nicola)
-
 
 - [Overview](#overview)
 - [Examples and Tutorials](#examples-and-tutorials)
@@ -22,9 +17,7 @@ Captain: [@nicola](https://github.com/nicola)
 - [Contribute](#contribute)
 - [License](#license)
 
-
 ## Overview
-
 
 | Package | JavaScript | Go |
 | ------- | ---------- | -- |
@@ -60,11 +53,9 @@ Captain: [@nicola](https://github.com/nicola)
 - Git IPLD/IPFS remote: [magik6k/git-remote-ipld](https://github.com/magik6k/git-remote-ipld)
 - Using the Git IPLD plugin in go-ipfs: [ipfs/go-ipfs/docs/plugins.md](https://github.com/ipfs/go-ipfs/blob/master/docs/plugins.md)
 
-
 ## New implementations
 
 Are you working on your own implementation in another language? [Open an issue](https://github.com/ipld/ipld/issues) in this repository to discuss it with others, find help, and coordinate efforts. Eventually, we can move it to the organization if you like, add it above, and mention it on the website.
-
 
 ## Glossary
 
@@ -86,7 +77,6 @@ Please contribute! [Look at the issues](https://github.com/ipld/ipld/issues)!
 Check out our [contributing document](contributing.md) for more information on how we work, and about contributing in general. Please be aware that all interactions related to IPLD are subject to the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
 
 Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
-
 
 ## License
 

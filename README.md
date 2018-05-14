@@ -43,6 +43,7 @@ IPLD is the data model for the decentralized web. It allows us to treat all cont
 
 - IPLD graph builder: [ipld/js-ipld-graph-builder](https://github.com/ipld/js-ipld-graph-builder)
 - CLI for interacting with IPLD: [tableflip/ipld-explorer-cli](https://github.com/tableflip/ipld-explorer-cli)
+- CID inspector: [cid-utils.ipfs.team](http://cid-utils.ipfs.team/)
 
 ## Implementations
 

@@ -90,4 +90,4 @@ Please contribute! [Look at the issues](https://github.com/ipld/ipld/issues)!
 
 ## 许可证
 
-本篇文档是 IPLD 的核心文档. 这里所有的项目都使用了 [CC-BY 3.0 Unported](LICENSE) 许可证, © 2016 Protocol Labs Inc.
+本篇文档是 IPLD 的核心文档。 这里所有的项目都使用了 [CC-BY 3.0 Unported](LICENSE) 许可证，© 2016 Protocol Labs Inc.

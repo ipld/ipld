@@ -47,23 +47,23 @@ IPLD is the data model for the decentralized web. It allows us to treat all cont
 
 ## Implementations
 
-| Package | JavaScript | Go |
-| ------- | ---------- | -- |
-| CID | [ipld/js-cid](https://github.com/ipld/js-cid) | [ipfs/go-cid](https://github.com/ipfs/go-cid) |
-| IPLD Node interface | [ipld/interface-ipld-format](https://github.com/ipld/interface-ipld-format) | [ipfs/go-ipld-format](https://github.com/ipfs/go-ipld-format) |
-| IPLD Resolver | [ipld/js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) |
-| CBOR (default) | [ipld/js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) | [ipfs/go-ipld-cbor](https://github.com/ipfs/go-ipld-cbor) |
-| Merkledag/Protobuf (legacy) | [ipld/js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) |
-| Raw | [ipld/js-ipld-raw](https://github.com/ipld/js-ipld-raw) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) |
+| Package | JavaScript | Go | Java |
+| ------- | ---------- | -- | ---- |
+| CID | [ipld/js-cid](https://github.com/ipld/js-cid) | [ipfs/go-cid](https://github.com/ipfs/go-cid) | [ipld/java-cid](https://github.com/ipld/java-cid) |
+| IPLD Node interface | [ipld/interface-ipld-format](https://github.com/ipld/interface-ipld-format) | [ipfs/go-ipld-format](https://github.com/ipfs/go-ipld-format) | |
+| IPLD Resolver | [ipld/js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
+| CBOR (default) | [ipld/js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) | [ipfs/go-ipld-cbor](https://github.com/ipfs/go-ipld-cbor) |[ipld/java-ipld-cbor](https://github.com/ipld/java-ipld-cbor) |
+| Merkledag/Protobuf (legacy) | [ipld/js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
+| Raw | [ipld/js-ipld-raw](https://github.com/ipld/js-ipld-raw) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
 | Unixfs v2 (planning: [ipld/unixfs#1](https://github.com/ipld/unixfs/issues/1))
-| Git | [ipld/js-ipld-git](https://github.com/ipld/js-ipld-git) | [ipfs/go-ipld-git](https://github.com/ipfs/go-ipld-git) |
-| Bitcoin | | [ipfs/go-ipld-btc](https://github.com/ipfs/go-ipld-btc) |
-| Zcash | | [ipfs/go-ipld-zcash](https://github.com/ipfs/go-ipld-zcash) |
-| Ethereum | [ipld/js-ipld-ethereum](https://github.com/ipld/js-ipld-ethereum) | [ipfs/go-ipld-eth](https://github.com/ipfs/go-ipld-eth) |
-| Bencode | [ipld/js-ipld-bencode](https://github.com/ipld/js-ipld-bencode) | |
-| Torrent info | [ipld/js-ipld-torrent-info](https://github.com/ipld/js-ipld-torrent-info) | |
-| Torrent file | [ipld/js-ipld-torrent-file](https://github.com/ipld/js-ipld-torrent-file) | |
-| IPLD Selectors (experimental) | [ipld/js-ipld-selector](https://github.com/ipld/js-ipld-selector) | |
+| Git | [ipld/js-ipld-git](https://github.com/ipld/js-ipld-git) | [ipfs/go-ipld-git](https://github.com/ipfs/go-ipld-git) | |
+| Bitcoin | | [ipfs/go-ipld-btc](https://github.com/ipfs/go-ipld-btc) | |
+| Zcash | | [ipfs/go-ipld-zcash](https://github.com/ipfs/go-ipld-zcash) | |
+| Ethereum | [ipld/js-ipld-ethereum](https://github.com/ipld/js-ipld-ethereum) | [ipfs/go-ipld-eth](https://github.com/ipfs/go-ipld-eth) | |
+| Bencode | [ipld/js-ipld-bencode](https://github.com/ipld/js-ipld-bencode) | | |
+| Torrent info | [ipld/js-ipld-torrent-info](https://github.com/ipld/js-ipld-torrent-info) | | |
+| Torrent file | [ipld/js-ipld-torrent-file](https://github.com/ipld/js-ipld-torrent-file) | | |
+| IPLD Selectors (experimental) | [ipld/js-ipld-selector](https://github.com/ipld/js-ipld-selector) | | |
 
 ## New implementations
 

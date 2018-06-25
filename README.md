@@ -55,7 +55,7 @@ IPLD is the data model for the decentralized web. It allows us to treat all cont
 | CBOR (default) | [ipld/js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) | [ipfs/go-ipld-cbor](https://github.com/ipfs/go-ipld-cbor) |[ipld/java-ipld-cbor](https://github.com/ipld/java-ipld-cbor) |
 | Merkledag/Protobuf (legacy) | [ipld/js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
 | Raw | [ipld/js-ipld-raw](https://github.com/ipld/js-ipld-raw) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
-| Unixfs v2 (planning: [ipfs/unixfs-v2](https://github.com/ipld/unixfs/issues/1))
+| Unixfs v2 (planning: [ipfs/unixfs-v2](https://github.com/ipfs/unixfs-v2/issues))
 | Git | [ipld/js-ipld-git](https://github.com/ipld/js-ipld-git) | [ipfs/go-ipld-git](https://github.com/ipfs/go-ipld-git) | |
 | Bitcoin | | [ipfs/go-ipld-btc](https://github.com/ipfs/go-ipld-btc) | |
 | Zcash | | [ipfs/go-ipld-zcash](https://github.com/ipfs/go-ipld-zcash) | |

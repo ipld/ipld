@@ -1,4 +1,4 @@
-# ![](https://img.shields.io/badge/status-draft-green.svg?style=flat-square) IPLD
+# ![](https://img.shields.io/badge/status-draft-green.svg?style=flat-square) IPLD `OUT OF DATE`
 
 > The "thin-waist" merkle dag format
 

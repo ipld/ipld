@@ -1,4 +1,4 @@
-# Certified ARchive
+# ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) Certified ARchive
 
 CARs (Certified ARchives) are archives for IPLD DAGs.
 

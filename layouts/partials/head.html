@@ -2,6 +2,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="shortcut icon" href="{{ "favicon.ico" | absURL  }}">
 <!-- styles -->
 <link rel="stylesheet" href="/css/main.css" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet"/>
@@ -16,7 +17,7 @@
 <meta property="og:site_name" content="{{ $.Param "name" }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="{{ .Site.BaseURL }}img/ipld-logo.png" />
+<meta property="og:image" content="{{ "img/ipld-logo.png" | absURL }}" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="146" />
 <meta property="og:image:height" content="166" />
@@ -27,4 +28,4 @@
 <meta name="twitter:creator" content="{{ $.Param "author" }}" />
 <meta name="twitter:description" content="{{ $.Param "description" }}" />
 <meta name="twitter:domain" content="{{ $.Param "domain" }}" />
-<meta name="twitter:image:src" content="{{ .Site.BaseURL }}img/ipld-logo.png" />
+<meta name="twitter:image:src" content="{{ "img/ipld-logo.png" | absURL }}" />

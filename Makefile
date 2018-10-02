@@ -53,7 +53,7 @@ css: install
 	$(PREPEND)$(NPMBIN)/lessc --clean-css --autoprefix less/main.less static/css/main.css $(APPEND)
 
 js: install
-	$(PREPEND)cp -ar js/ static/js $(APPEND)
+	$(PREPEND)cp -a js/ static/js $(APPEND)
 
 minify: install minify-js minify-img
 

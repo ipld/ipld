@@ -8,7 +8,7 @@
 [![](https://img.shields.io/badge/project-ipld-orange.svg?style=flat-square)](https://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipld-orange.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipld)
 
-IPLD is the data model for the decentralized web. It allows us to treat all content-addressed data structures as subsets of one big information space, unifying all data models that link data with hashes as instances of IPLD.
+IPLD is a set of standards and implementations for creating decentralized data-structures that universally addressable and linkable. These structures will allow us to do for data what URLs and links did for HTML web pages.
 
 - [Enter IPLD](#enter-ipld)
 - [Docs](#docs)

@@ -8,7 +8,9 @@
 [![](https://img.shields.io/badge/project-ipld-orange.svg?style=flat-square)](https://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipld-orange.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipld)
 
-IPLD is a set of standards and implementations for creating decentralized data-structures that universally addressable and linkable. These structures will allow us to do for data what URLs and links did for HTML web pages.
+### Welcome to the Internet of Data-Structures
+
+IPLD is a set of standards and implementations for creating decentralized data-structures that are universally addressable and linkable. These structures will allow us to do for data what URLs and links did for HTML web pages.
 
 - [Enter IPLD](#enter-ipld)
 - [Docs](#docs)

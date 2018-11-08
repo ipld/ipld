@@ -1,45 +1,98 @@
 IPLD Specifications
 ===================
 
-[![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](http://ipn.io)
-[![](https://img.shields.io/badge/project-IPLD-blue.svg?style=flat-square)](http://github.com/ipld/ipld)
-[![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
+IPLD is not a single specification, it is a set of specifications.
 
-> This repository contains the specs for InterPlanetary Linked Data (IPLD).
+```
+                                     The IPLD Stack
 
-**Specs are not finished yet. We use the following tag system to identify their state:**
+                                +-----------------------------+
+                +-------------+ |                             |
+                |             | | End-User Application Stacks |
+                | MFS in IPFS | |                             |
+                |             | +-----------------------------+
+                +-------------+ |                             |
+                |             | | Structured Data w/ indexes  |
+                |  unixfs v2  | |     VR, Geo, SQL, etc.      |                +----------+
+                |             | |                             |                |          |
+                +-------------+ +-----------------------------+                |  MFS in  |
+                |             | |                             |                |   IPFS   |
+                |    HAMT     | |   Sorted Index (sharded)    |                |          |
+                |             | |                             |                +----------+
+                +-------------+-+-----------------------------+                |          |
+                |                                             |                |  unixfs  |
+                |          Complex Data Structures            |                |    v1    |
+                |                                             |                |          |
++-----------------------------------------------------------------------------------------+
+|               |                                             |                |          |
+|               |        dag-json         dag-cbor            |    ipld-git    |          |
+|               |                                             |                |          |
+|    Codecs     +---------------------------------------------+    ipld-btc    |  dag-pb  |
+|               |                                             |                |          |
+|               |               IPLD Data Model               |   ipld-zcash   |          |
+|               |                                             |                |          |
++-------------------------------------------------------------+----------------+----------+
+                |                                                                         |
+                |                CID                      Path                            |
+                |                                                                         |
+                +-------------------------------------------------------------------------+
+```
 
-- ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) - this spec is a work-in-progress, it is likely not even complete.
-- ![](https://img.shields.io/badge/status-draft-yellow.svg?style=flat-square) - this spec is a rough draft and will likely change substantially.
-- ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square) - this spec is believed to be close to final. Minor changes only.
-- ![](https://img.shields.io/badge/status-stable-brightgreen.svg?style=flat-square) - this spec is likely to improve, but not change fundamentally.
-- ![](https://img.shields.io/badge/status-permanent-blue.svg?style=flat-square) - this spec will not change.
+The goal of this stack is to enable decentralized data-structures
+which in turn will enable more decentralized applications.
 
-Nothing in this spec repository is `permanent` yet. As in many IPLD repositories, most of the work is happening in [the issues](https://github.com/ipld/specs/issues/) or in [active pull requests](https://github.com/ipld/specs/pulls/). Go take a look!
+Many of the specifications in this stack are inter-dependent.
 
-## Documents
+```
+       IPLD Dependency Graph
 
-- [**Roadmap**](/ROADMAP.md)
-- **Specifications:**
-  - ![](https://img.shields.io/badge/status-draft-yellow.svg?style=flat-square) [`IPLD`](/IPLD.md) - spec about the data model, pointers and link formats
-  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) `IPLD Selectors` - spec about simple language to select multiple unknown nodes in a graph
-  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) `IPLD Transformations` - spec about the language to trasform an IPLD graph into another
-  - ![](https://img.shields.io/badge/status-reliable-green.svg?style=flat-square) [`CID (Content IDentifier)`](https://github.com/ipld/cid)
-  - ![](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square) [`IPLD Formats`](https://github.com/ipld/interface-ipld-format) - interface definition for adding support to different formats
-  - ![](https://img.shields.io/badge/status-draft-yellow.svg?style=flat-square) [`CAR`](/CAR.md) - Content Addressable Archives
++---+                          +----------+
+|CID+-----------+-------------->Raw Blocks|
++---+           |              +--+-------+
+         +------v-------------+   |
++----+   |Links (Conceptually)|   |
+|Path|   +------+-------------+   |             +-----------+
++-+--+          |                 +------------->Replication|
+  |    Codecs   |                 |             +-----------+
++-v-------------v-----------------+---+
+|                                     |
+| +---+    +-----------------------+  | Complex Data-Structures
+| |Git|    |     Data Model v1     |  | +--------------v-------+
+| +---+    |                       |  | |                      |
+|          | +--------+ +--------+ +----> +----+ +-----------+ |
+| +------+ | |dag|json< |dag|cbor< |  | | |HAMT| |Sorted Tree| |
+| |dag|pb| | +--------+ +--------+ |  | | +--+-+ +----+------+ |
+| +------+ |                       |  | |    |        |        |
+|          +-----------------------+  | +----------------------+
+|                                     |      |        |
++-------------------------------------+      |        |
+                                             |        |
+                +----------------------+     |        |
+                | File System (unixfs) <-----+        |
+                +----------------------+              |
+                +--------------------+                |
+                |                    |                |
+Structured Data | VR, Geo, SQL, etc. <----------------+
+  w/ indexes    |                    |
+                +--------------------+
+```
+
+## Specification Repo Layout
+
+* [/IPLD-Data-Model-v1.md](/IPLD-Data-Model-v1.md)
+* [/IPLD-Path.md](/IPLD-Path.md)
+* [/CID.md](/CID.md)
+* [/Codecs](/Codecs)
+  * [/Codecs/DAG-JSON.md](/Codecs/DAG-JSON.md)
+  * [/Codecs/DAG-CBOR.md](/Codecs/DAG-CBOR.md)
+* [/Data-Structures](/Data-Structures)
+  * [/Data-Structures/HAMT.md](/Data-Structures/HAMT.md)
 
 ## Discussion
 
-Join the discussion for:
+Discussion of specific specifications happens in [this repository's issues](https://github.com/ipld/specs/issues).
 
-- Specs - https://github.com/ipld/specs/issues
-- General IPLD - https://github.com/ipld/ipld/issues
-- JavaScript Implementation - https://github.com/ipld/js-ipld/issues
-- Golang Implementation - https://github.com/ipfs/go-ipld-format
-
-## Weekly Hangout
-
-TBA soon™
+Discussion of IPLD more generally happens in the [IPLD repository](https://github.com/ipld/ipld/issues).
 
 ## Contribute
 
@@ -54,3 +107,155 @@ Small note: If editing the README, please conform to the [standard-readme](https
 ## License
 
 This repository is only for documents. All of these are licensed under the [CC-BY-SA 3.0](https://ipfs.io/ipfs/QmVreNvKsQmQZ83T86cWSjPu2vR3yZHGPm5jnxFuunEB9u) license, © 2016 Protocol Labs Inc.
+
+# Terminology
+
+## Description of IPLD
+
+IPLD is a set of standards and implementations for creating decentralized data-structures that are
+universally addressable and linkable. These structures allow us to do for data what URLs and
+links did for HTML web pages.
+
+## Generic Terms
+
+### Content Addressability
+
+"Content addressability" refers to the ability to refer to content by a trustless identifier.
+
+Rather than referring to content by a string identifier or URL, content addressable systems refer to content
+by a cryptographic hash. This allows complete decentralization of the content as the identifier
+does not specify the retrieval method and provides a secure way to verify the content.
+
+## IPLD Terms
+
+### Multihash
+
+Multihash is hash format that is not specific to a single hashing algorithm.
+
+A multihash describes the algorithm used for the hash as well as the hash value.
+
+```
++-----------+----------------------------+
+| Hash Type | Hash Value                 |
++-----------+----------------------------+
+```
+
+SHA-256 example.
+
+```
++---------+------------------------------------------------------------------+
+| SHA-256 | 2413fb3709b05939f04cf2e92f7d0897fc2596f9ad0b8a9ea855c7bfebaae892 |
++---------+------------------------------------------------------------------+
+```
+
+Note: these examples are simplifications of the concepts. For a complete description visit the [project and its specs](https://github.com/multiformats/multihash).
+
+### CID (Content Identifier)
+
+Hash based content identifier. Includes the `codec` and `multihash`.
+
+CID's
+
+```
++-------+------------------------------+
+| Codec | Multihash                    |
++-------+------------------------------+
+```
+
+The long version
+```
++------------------------------+
+|Codec                         |
++------------------------------+
+|Multihash                     |
+| +----------+---------------+ |
+| |Hash Type | Hash Value    | |
+| +----------+---------------+ |
+|                              |
++------------------------------+
+```
+
+Note: these examples are simplifications of the concepts. For a complete description visit the [spec](./CID.md).
+
+### Block
+
+A CID and the binary data value for that CID.
+
+The short version.
+```
++-----+--------------------------------+
+| CID | Data                           |
++-----+--------------------------------+
+```
+
+The long version.
+```
++-----------------------------------+------------------+
+| CID                               | Binary Data      |
+| +------------------------------+  |                  |
+| |Codec                         |  |                  |
+| +------------------------------+  |                  |
+| |Multihash                     |  |                  |
+| | +----------+---------------+ |  |                  |
+| | |Hash Type | Hash Value    | |  |                  |
+| | +----------+---------------+ |  |                  |
+| |                              |  |                  |
+| +------------------------------+  |                  |
+|                                   |                  |
++-----------------------------------+------------------+
+```
+
+### IPLD Path
+
+A string identifier used for deep references into IPLD
+graphs. Follows similar escape and segmentation rules as URI Paths.
+
+[Read the full specification for more details.](./IPLD-Path.md)
+
+### IPLD Data Model
+
+The IPLD Data Model describes a set of base types. Codecs that support these base types
+can be used by any of the data-structures built on top of the IPLD Data Model.
+
+Codecs that support the IPLD Data Model:
+
+* [DAG-CBOR](/Codecs/DAG-CBOR.md)
+* WIP: [DAG-JSON](/Codecs/DAG-JSON.md)
+
+### Codec
+
+A codec exposes serialization and deserialization for IPLD blocks. If it also supports
+content addressable links then the codec exposes those links as `CID`'s. A codec
+also supports atomic IPLD Path lookups on the block.
+
+#### Serializer, Deserializer and Format
+
+A logical separation exists in any given IPLD codec between the **format** and the **serializer/deserializer**.
+
+```
++--------------------+             +--------------------+
+|                    |             |                    |
+|     Serializer     |             |    Deserializer    |
+|                    |             |                    |
++---------+----------+             +---------+----------+
+          |                                   ^
+          |         Sent to another peer      |
+          v                                   |
++---------+----------+             +----------+---------+
+|                    |             |                    |
+|       Format       +------------->       Format       |
+|                    |             |                    |
++--------------------+             +--------------------+
+```
+
+A **format** may represent object types and tree structures any
+way it wishes. This includes existing representations (JSON, BSON, CBOR,
+Protobuf, msgpack, etc) or even new custom serializations.
+
+Therefor, a **format** is the standardized representation of IPLD Links and Paths. It describes how to translate between structured data and binary.
+
+It is worth noting that **serializers** and **deserializers** differ by programming language while the **format** does not and MUST remain consistent across all codec implementations.
+
+#### Representation
+
+The in-memory representation of a de-serialized IPLD value.

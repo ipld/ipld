@@ -27,11 +27,11 @@ box).
 
 ## Canonical DagCBOR
 
-Canonical DagCBOR should:
+Canonical DagCBOR must:
 
 1. Use no tags other than the CID tag (42). Other tags may be lost in
    conversion.
-2. Should use the canonical CBOR encoding and field ordering. Other orderings
-   will yield different CIDs.
-3. Should only use string map keys. Some implementations may not be able to
+2. Use the [canonical CBOR](https://tools.ietf.org/html/rfc7049#section-3.9)
+   encoding.
+3. Only use string map keys. Some implementations may not be able to
    handle non-string keys.

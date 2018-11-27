@@ -21,6 +21,7 @@
   "homepage": "https://github.com/tableflip/ipld.io#readme",
   "devDependencies": {
     "dnslink-deploy": "^1.0.7",
+    "hugo-bin": "0.18.1",
     "imagemin-cli": "^3.0.0",
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-optipng": "^5.2.1",
@@ -28,7 +29,7 @@
     "less": "^2.7.2",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.18.7",
     "standard": "^10.0.2",
     "surge": "^0.19.0",
     "tachyons": "^4.7.4",

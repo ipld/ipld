@@ -15,7 +15,7 @@ else
 endif
 
 build: clean install lint css js minify
-	$(PREPEND)hugo && \
+	$(PREPEND)$(NPMBIN)/hugo && \
 	echo "" && \
 	echo "Site built out to ./public dir"
 
@@ -37,7 +37,7 @@ help:
 	@echo '   DEBUG=true make [command] for increased verbosity                                                      '
 
 serve: install lint js css minify
-	$(PREPEND)hugo server
+	$(PREPEND)$(NPMBIN)/hugo server
 
 node_modules:
 	$(PREPEND)$(NPM) i $(APPEND)
@@ -66,7 +66,7 @@ minify-img: install
 dev: install css js
 	$(PREPEND)( \
 		$(NPMBIN)/nodemon --watch css --exec "$(NPMBIN)/lessc --clean-css --autoprefix less/main.less static/css/main.css" & \
-		hugo server -w \
+		$(NPMBIN)/hugo server -w \
 	)
 
 deploy:

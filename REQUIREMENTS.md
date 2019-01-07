@@ -41,10 +41,12 @@ definition of `foo` would not be a valid IPLD block:
 
 ```
 var foo = {
+  // points outside of the current block, into the parent's "baz" field.
   "baz": {"/": "../../baz"}
 }
 var bar = {
   "foo": CidOf(foo),
+  // `/foo/baz` points here.
   "baz": "something"
 }
 
@@ -53,6 +55,9 @@ Resolve("/ipld/${CidOf(bar)}/foo/baz/")
 ```
 
 For the same reason, IPLD links can't rely on an authority (e.g., a blockchain).
+
+Note: Links like this can still be encoded at the application level but they
+won't be handled by the IPLD resolver (and won't get the special "link" type).
 
 **Motivation:** IPLD needs to be easy to reason about.
 

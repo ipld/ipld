@@ -31,6 +31,12 @@ IPLD but there needs to be an immutable layer at the bottom.
 **Motivation:** *Having* an immutable layer is important for a lot of analysis,
 memoization, type checking, etc.
 
+## Multicodecs Are Not Types
+
+It's impossible to understand IPLD data at a *structural* level if we don't know
+the format. Therefore, we should avoid introducing new formats unnecessarily as
+*every* IPLD implementation needs to support these new formats.
+
 ## No Non-Local Reasoning
 
 An IPLD block should never be interpreted in the context of *anything* not
@@ -106,12 +112,6 @@ Path resolution must transparently traverse links.
 **Motivation:** Deduplication and composability. If links are *not* transparent,
 programmers will have to either make many small objects (lots of hashing) or
 inline data into large objects (lots of duplication and copying).
-
-## Multicodecs Are Not Types
-
-It's impossible to understand IPLD data at a *structural* level if we don't know
-the format. Therefore, we should avoid introducing new formats unnecessarily as
-*every* IPLD implementation needs to support these new formats.
 
 ## Primitives
 

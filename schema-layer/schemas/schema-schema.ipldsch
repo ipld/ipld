@@ -270,23 +270,40 @@ type UnionRepresentation_Inline struct {
 ## Each field has a name (and typically, the struct will be represented as a
 ## map, which uses these names as the map keys).
 type TypeStruct struct {
-	fields {String:StructField}
+	fields {String:TypeTerm}
 	representation StructRepresentation
 }
 
-type StructField struct {
-	content TypeTerm
-	optional Bool
-}
+type TypeTerm union {
+	| TypeName string
+	| TypePlus map
+} representation kinded
 
-type TypeTerm = TODO
+type TypePlus union {
+	| Nullable "nullable"
+	| InlineDefn "anonymous"
+} representation keyed
+
+type Nullable union {
+	| TypeName string
+	| InlineDefn map
+} representation kinded
+
+type InlineDefn union {
+	| TypeMap "map"
+	| TypeList "list"
+} representation keyed
 
 type StructRepresentation union {
 	| StructRepresentation_Map "map"
 	| StructRepresentation_Tuple "tuple"
 }
 type StructRepresentation_Map struct {
-	fieldAliases optional {String:String}
+	fieldProperties optional {String:StructRepresentation_Map_FieldProps}
+}
+type StructRepresentation_Map_FieldProps struct {
+	optional Bool
+	alias optional String
 }
 type StructRepresentation_Tuple struct {
 	fieldOrder optional [String]

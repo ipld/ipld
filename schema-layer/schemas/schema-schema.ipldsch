@@ -46,7 +46,7 @@ type SchemaMap map {TypeName:Type}
 ## }
 ## ```
 ##
-type Schema union = {
+type Schema union {
 	| SchemaMap "schema"
 } representation keyed
 
@@ -75,7 +75,7 @@ type Schema union = {
 ## }
 ## ```
 ##
-type Type union = {
+type Type union {
 	| TypeBool "bool"
 	| TypeString "string"
 	| TypeBytes "bytes"
@@ -88,3 +88,122 @@ type Type union = {
 	| TypeStruct "struct"
 	| TypeEnum "enum"
 } representation inline "type"
+
+## TypeKind enumerates all the major kinds of type.
+## Notice this enum's members are the same as the set of strings used as
+## discriminants in the Type union.
+##
+## TODO: not actually sure we'll need to declare this.  Only usage is
+## in the Type union representation details?
+type TypeKind enum {
+	| "bool"
+	| "string"
+	| "bytes"
+	| "int"
+	| "float"
+	| "map"
+	| "list"
+	| "link"
+	| "union"
+	| "struct"
+	| "enum"
+}
+
+## RepresentationKind is similar to TypeKind, but includes only those concepts
+## which exist at the IPLD *Data Model* level.
+##
+## In other words, structs, unions, and enumerations are not present:
+## those concepts are introduced in the IPLD Schema system, and when serialized,
+## all of them must be transformable to one of these representation kinds
+## (e.g. a "struct" TypeKind will usually be transformed to a "map"
+## RepresentationKind; "enum" TypeKind are always "string" RepresentationKind;
+## and so on.)
+##
+## RepresentationKind strings are sometimes used to to indicate part of the
+## definition in the details of Type; for example, they're used describing
+## some of the detailed behaviors of a "kinded"-style union type.
+type RepresentationKind enum {
+	| "bool"
+	| "string"
+	| "bytes"
+	| "int"
+	| "float"
+	| "map"
+	| "list"
+	| "link"
+}
+
+## TypeBool describes a simple boolean type.
+## It has no details.
+##
+type TypeBool struct {}
+
+## TypeString describes a simple string type.
+## It has no details.
+##
+type TypeString struct {}
+
+## TypeBytes describes a simple byte array type.
+## It has no details.
+##
+type TypeBytes struct {}
+
+## TypeInt describes a simple integer numeric type.
+## It has no details.
+##
+type TypeInt struct {}
+
+## TypeFloat describes a simple floating point numeric type.
+## It has no details.
+##
+type TypeFloat struct {}
+
+## TypeMap describes a key-value map.
+## The keys and values of the map have some specific type of their own.
+##
+type TypeMap struct {
+	# TODO
+}
+
+## TypeList describes a list.
+## The values of the list have some specific type of their own.
+##
+type TypeList struct {
+	# TODO
+}
+
+## TypeLink describes a hash linking to another object (a CID).
+##
+## REVIEW: this currently has no details... but possibly it should have a
+## type hint for what we expect when resolving the link?
+##
+type TypeLink struct {}
+
+## TypeUnion describes a union (sometimes called a "sum type", or
+## more verbosely, a "discriminated union").
+## A union is a type that can have a value of several different types, but
+## unlike maps or structs, in a union only one of those values may be present
+## at a time.
+##
+## Unions can be defined as representing in several different ways: "keyed",
+## "envelop", or "inline" are all representations that become a map (some
+## literature may describe this as "tagged" style unions), and a fourth style,
+## "kinded" unions, may actually be any of the other representation kinds!
+##
+type TypeUnion struct {
+	members UnionContent
+}
+
+type UnionContent union {
+	# TODO
+} representation keyed
+
+## TypeStruct
+type TypeStruct struct {
+	# TODO
+}
+
+## TypeEnum
+type TypeEnum struct {
+	# TODO
+}

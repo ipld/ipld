@@ -23,7 +23,7 @@ type TypeName string
 ##
 ## ```
 ## {
-##   "TypeFoo": {
+##   "MyFooType": {
 ##     "type": "string"
 ##   }
 ## }
@@ -34,12 +34,12 @@ type SchemaMap map {TypeName:Type}
 ## Schema is a single-member union, which can be used in serialization
 ## to make a form of "nominative type declaration".
 ##
-## A complete Schema might look like this:
+## A complete (if quite short) Schema might look like this:
 ##
 ## ```
 ## {
 ##   "schema": {
-##     "TypeFoo": {
+##     "MyFooType": {
 ##       "type": "string"
 ##     }
 ##   }

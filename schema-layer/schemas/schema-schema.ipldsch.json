@@ -1,37 +1,39 @@
 {
-	"TypeName": {
-		"kind": "string"
-	},
-	"SchemaMap": {
-		"kind": "map",
-		"keyType": "String",
-		"valueType": "Type"
-	},
-	"Schema": {
-		"kind": "union",
-		"representation": {
-			"keyed": {
-				"schema": "SchemaMap"
+	"schema": {
+		"TypeName": {
+			"kind": "string"
+		},
+		"SchemaMap": {
+			"kind": "map",
+			"keyType": "String",
+			"valueType": "Type"
+		},
+		"Schema": {
+			"kind": "union",
+			"representation": {
+				"keyed": {
+					"schema": "SchemaMap"
+				}
 			}
-		}
-	},
-	"Type": {
-		"kind": "union",
-		"representation": {
-			"inline": {
-				"discriminatorKey": "kind",
-				"discriminantTable": {
-					"bool": "TypeBool",
-					"string": "TypeString",
-					"bytes": "TypeBytes",
-					"int": "TypeInt",
-					"float": "TypeFloat",
-					"map": "TypeMap",
-					"list": "TypeList",
-					"link": "TypeLink",
-					"union": "TypeUnion",
-					"struct": "TypeStruct",
-					"enum": "TypeEnum"
+		},
+		"Type": {
+			"kind": "union",
+			"representation": {
+				"inline": {
+					"discriminatorKey": "kind",
+					"discriminantTable": {
+						"bool": "TypeBool",
+						"string": "TypeString",
+						"bytes": "TypeBytes",
+						"int": "TypeInt",
+						"float": "TypeFloat",
+						"map": "TypeMap",
+						"list": "TypeList",
+						"link": "TypeLink",
+						"union": "TypeUnion",
+						"struct": "TypeStruct",
+						"enum": "TypeEnum"
+					}
 				}
 			}
 		}

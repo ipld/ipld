@@ -270,7 +270,8 @@ type TypeStruct struct {
 	# TODO
 }
 
-## TypeEnum
+## TypeEnum describes a type which has a known, pre-defined set of possible
+## values.  Each of the values must be representable a string.
 type TypeEnum struct {
-	# TODO
+	members {String:Null}
 }

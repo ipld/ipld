@@ -36,6 +36,19 @@
 					}
 				}
 			}
+		},
+		"RepresentationKind": {
+			"kind": "enum",
+			"members": {
+				"bool": null,
+				"string": null,
+				"bytes": null,
+				"int": null,
+				"float": null,
+				"map": null,
+				"list": null,
+				"link": null
+			}
 		}
 	}
 }

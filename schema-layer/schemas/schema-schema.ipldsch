@@ -1,0 +1,90 @@
+## -----
+## This is the schema describing the schema declarations for IPLD Schemas.
+## Yes, it's self-describing! :)
+## -----
+
+## Type names are a simple alias of string.
+##
+## There are some additional rules that should be applied:
+##   - Type names should by convention begin with a capital letter;
+##   - Type names must be all printable characters (no whitespace);
+##   - Type names must not contain punctuation (dashes, dots, etc).
+##
+## Type names are strings meant for human consumption at a local scope.
+## When making a Schema, note that the TypeName is the key of the map:
+## a TypeName must be unique within the Schema.
+##
+type TypeName string
+
+## SchemaMap is a complete set of types;
+## it is simply a map of TypeName to detailed declaration of that Type.
+##
+## A simple schema map with one type might look like this:
+##
+## ```
+## {
+##   "TypeFoo": {
+##     "type": "string"
+##   }
+## }
+## ```
+##
+type SchemaMap map {TypeName:Type}
+
+## Schema is a single-member union, which can be used in serialization
+## to make a form of "nominative type declaration".
+##
+## A complete Schema might look like this:
+##
+## ```
+## {
+##   "schema": {
+##     "TypeFoo": {
+##       "type": "string"
+##     }
+##   }
+## }
+## ```
+##
+type Schema union = {
+	| SchemaMap "schema"
+} representation keyed
+
+## The types of Type are a union.
+##
+## The Type union is serialized using "inline" union representation,
+## which means all of its members have map representations, and there will be
+## an entry in that map called "type" which contains the union discriminator.
+##
+## Some of the kinds of type are so simple the union discriminator is the only
+## content at all, e.g. strings:
+##
+## ```
+## {
+##   "type": "string"
+## }
+## ```
+##
+## Other types have more content.  Consider this example of a map type:
+##
+## ```
+## {
+##   "type": "map",
+##   "keyType": "String",
+##   "valueType": "Int"
+## }
+## ```
+##
+type Type union = {
+	| TypeBool "bool"
+	| TypeString "string"
+	| TypeBytes "bytes"
+	| TypeInt "int"
+	| TypeFloat "float"
+	| TypeMap "map"
+	| TypeList "list"
+	| TypeLink "link"
+	| TypeUnion "union"
+	| TypeStruct "struct"
+	| TypeEnum "enum"
+} representation inline "type"

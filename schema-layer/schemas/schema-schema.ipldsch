@@ -265,9 +265,30 @@ type UnionRepresentation_Inline struct {
 	discriminantTable map {String:TypeName}
 }
 
-## TypeStruct
+## TypeStruct describes a type which has a group of fields of varying Type.
+## Each field has a name (and typically, the struct will be represented as a
+## map, which uses these names as the map keys).
 type TypeStruct struct {
-	# TODO
+	fields {String:StructField}
+	representation StructRepresentation
+}
+
+type StructField struct {
+	content TypeTerm
+	optional Bool
+}
+
+type TypeTerm = TODO
+
+type StructRepresentation union {
+	| StructRepresentation_Map "map"
+	| StructRepresentation_Tuple "tuple"
+}
+type StructRepresentation_Map struct {
+	fieldAliases optional {String:String}
+}
+type StructRepresentation_Tuple struct {
+	fieldOrder optional [String]
 }
 
 ## TypeEnum describes a type which has a known, pre-defined set of possible

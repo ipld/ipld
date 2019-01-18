@@ -162,14 +162,15 @@ type TypeFloat struct {}
 ## The keys and values of the map have some specific type of their own.
 ##
 type TypeMap struct {
-	# TODO
+	keyType TypeName # additionally, the referenced type must be reprkind==string.
+	valueType TypeTerm
 }
 
 ## TypeList describes a list.
 ## The values of the list have some specific type of their own.
 ##
 type TypeList struct {
-	# TODO
+	valueType TypeTerm
 }
 
 ## TypeLink describes a hash linking to another object (a CID).
@@ -241,7 +242,7 @@ type UnionRepresentation_Keyed map {String:TypeName}
 type UnionRepresentation_Envelope struct {
 	discriminatorKey String
 	contentKey String
-	discriminantTable map {String:TypeName}
+	discriminantTable {String:TypeName}
 }
 
 ## "Inline" union representations require that all of their members encode
@@ -262,7 +263,7 @@ type UnionRepresentation_Envelope struct {
 ## is difficult to optimize deserialization to support.
 type UnionRepresentation_Inline struct {
 	discriminatorKey String
-	discriminantTable map {String:TypeName}
+	discriminantTable {String:TypeName}
 }
 
 ## TypeStruct describes a type which has a group of fields of varying Type.

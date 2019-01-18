@@ -188,8 +188,11 @@ type TypeLink struct {}
 ## Unions can be defined as representing in several different ways: see
 ## the documentation on the UnionRepresentation type for details.
 ##
+## The set of types which the union can contain are specified in a map
+## inside the representation field.  (The key type of the map varies per
+## representation strategy, so it's not possible to keep on this type directly.)
+##
 type TypeUnion struct {
-	members {TypeName} # FIXME: this is clearly a set; I don't know what to make the map value.
 	representation UnionRepresentation
 }
 

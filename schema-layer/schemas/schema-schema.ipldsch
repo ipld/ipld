@@ -87,7 +87,7 @@ type Type union {
 	| TypeUnion "union"
 	| TypeStruct "struct"
 	| TypeEnum "enum"
-} representation inline "type"
+} representation inline "kind"
 
 ## TypeKind enumerates all the major kinds of type.
 ## Notice this enum's members are the same as the set of strings used as

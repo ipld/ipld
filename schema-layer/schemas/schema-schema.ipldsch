@@ -185,18 +185,82 @@ type TypeLink struct {}
 ## unlike maps or structs, in a union only one of those values may be present
 ## at a time.
 ##
-## Unions can be defined as representing in several different ways: "keyed",
-## "envelop", or "inline" are all representations that become a map (some
-## literature may describe this as "tagged" style unions), and a fourth style,
-## "kinded" unions, may actually be any of the other representation kinds!
+## Unions can be defined as representing in several different ways: see
+## the documentation on the UnionRepresentation type for details.
 ##
 type TypeUnion struct {
-	members UnionContent
+	members {TypeName} # FIXME: this is clearly a set; I don't know what to make the map value.
+	representation UnionRepresentation
 }
 
-type UnionContent union {
-	# TODO
+## UnionRepresentation is a union of all the distinct ways a TypeUnion's values
+## can be mapped onto a serialized format for the IPLD Data Model.
+##
+## There are "keyed", "envelop", and "inline" strategies, which are all ways
+## to produce representations in a map format (some literature may describe
+## this as "tagged" style unions), and a fourth style, "kinded" unions, may
+## actually encode itself as any of the other representation kinds!
+##
+## Note: Unions can be used to produce a "nominative" style of type declarations
+## -- yes, even given that IPLD Schema systems are natively "structural" typing!
+##
+type UnionRepresentation union {
+	| UnionRepresentation_Kinded "kinded"
+	| UnionRepresentation_Keyed "keyed"
+	| UnionRepresentation_Envelope "envelope"
+	| UnionRepresentation_Inline "inline"
 } representation keyed
+
+## "Kinded" union representations describe a bidirectional mapping between
+## a RepresentationKind and a Type (referenced by name) which should be the
+## union member decoded when one sees this RepresentationKind.
+##
+## The referenced type must of course produce the RepresentationKind it's
+## matched with!
+type UnionRepresentation_Kinded map {RepresentationKind:TypeName}
+
+## "Keyed" union representations will encode as a map, where the map has
+## exactly one entry, the key string of which will be used to look up the name
+## of the Type; and the value should be the content, and be of that Type.
+##
+## Note: when writing a new protocol, it may be wise to prefer keyed unions
+## over the other styles wherever possible; keyed unions tend to have good
+## performance characteristics, as they have most "mechanical sympathy" with
+## parsing and deserialization implementation order.
+type UnionRepresentation_Keyed map {String:TypeName}
+
+## "Envelope" union representations will encode as a map, where the map has
+## exactly two entries: the two keys should be of the exact strings specified
+## for this envelope representation.  The value for the discriminator key
+## should be one of the strings in the discriminant table.  The value for
+## the content key should be the content, and be of the Type matching the
+## lookup in the discriminant table.
+type UnionRepresentation_Envelope struct {
+	discriminatorKey String
+	contentKey String
+	discriminantTable map {String:TypeName}
+}
+
+## "Inline" union representations require that all of their members encode
+## as a map, and encode their type info into the same map as the member data.
+## Thus, the map for an inline union may have any number of entries: it is
+## however many fields the member value has, plus one (for the discriminant).
+##
+## All members of an inline union must be struct types and must encode to
+## the map RepresentationKind.  Other types which encode to map (such as map
+## types themselves!) cannot be used: the potential for content values with
+## with keys overlapping with the discriminatorKey would result in undefined
+## behavior!  Similarly, the member struct types may not have fields which
+## have names that collide with the discriminatorKey.
+##
+## When designing a new protocol, use inline unions sparringly; despite
+## appearing simple, they have the most edge cases of any kind of union
+## representation, and their implementation is generally the most complex and
+## is difficult to optimize deserialization to support.
+type UnionRepresentation_Inline struct {
+	discriminatorKey String
+	discriminantTable map {String:TypeName}
+}
 
 ## TypeStruct
 type TypeStruct struct {

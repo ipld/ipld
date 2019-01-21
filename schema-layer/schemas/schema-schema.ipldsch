@@ -269,33 +269,81 @@ type UnionRepresentation_Inline struct {
 }
 
 ## TypeStruct describes a type which has a group of fields of varying Type.
-## Each field has a name (and typically, the struct will be represented as a
-## map, which uses these names as the map keys).
+## Each field has a name, which is used to access its value, similarly to
+## accessing values in a map.
+##
+## The most typical representation of a struct is as a map, in which case field
+## names also serve as the the map keys (though this is a default, and details
+## of this representation may be configured; and other representation strategies
+## also exist).
+##
 type TypeStruct struct {
 	fields {String:StructField}
 	representation StructRepresentation
 }
 
+## StructField describes the properties of each field declared by a TypeStruct.
+##
+## StructField contains properties similar to TypeMap -- namely, it describes
+## a content type (as a TypeTerm -- it supports inline definitions) -- and
+## has a boolean property for whether or not the value is permitted to be null.
+##
+## In addition, StructField also has a property called "optional".
+## An "optional" field is one which is permitted to be absent entirely.
+## This is distinct from "nullable": a field can be optional=false and
+## nullable=true, in which case it's an error if the key is missing entirely,
+## but null is of course valid.  Conversely, if a field is optional=true and
+## nullable=false, it's an error if the field is present and assigned null, but
+## fine for a map to be missing a key of the field's name entirely and still be
+## recognized as this struct.
+## (The specific behavior of optionals may vary per StructRepresentation.)
+##
 type StructField struct {
-	valueType TypeTerm
+	type TypeTerm
 	optional optional Bool
 	nullable optional Bool
 }
 
+## TypeTerm is a union of either TypeName or an InlineDefn.  It's used for the
+## value type in the recursive types (maps, lists, and the fields of structs),
+## which allows the use of InlineDefn in any of those positions.
+##
+## TypeTerm is simply a TypeName if the kind of data is a string; this is the
+## simple case.
+##
+## Note that TypeTerm isn't used to describe *keys* in the recursive types that
+## have them (maps, structs) -- recursive types in keys would not lend itself
+## well to serialization!
+## TypeTerm also isn't used to describe members in Unions -- this is a choice
+## aimed to limit syntactical complexity (both at type definition authoring
+## time, as well as for the sake of error messaging during typechecking).
+##
 type TypeTerm union {
 	| TypeName string
 	| InlineDefn map
 } representation kinded
 
+## InlineDefn represents a declaration of an anonymous type of one of the simple
+## recursive kinds (e.g. map or list) which is found "inline" in another type's
+## definition.  It's the more complex option of the TypeTerm union.
+##
+## Note that the representation of this union -- `representation inline "kind"`
+## -- as well as the keywords for its members -- align exactly with those
+## in the Type union.  Technically, this isn't a necessary property (in that
+## nothing would break if that sameness was violated) but it's awfully nice for
+## sanity; what we're saying here is that the representation of the types in an
+## InlineDefn should look *exactly the same* as the top-level Types... it's just
+## that we're restricted to a subset of the members.
+##
 type InlineDefn union {
 	| TypeMap "map"
 	| TypeList "list"
-} representation keyed
+} representation inline "kind"
 
 type StructRepresentation union {
 	| StructRepresentation_Map "map"
 	| StructRepresentation_Tuple "tuple"
-}
+} representation keyed
 type StructRepresentation_Map struct {
 	fieldAliases optional {String:String}
 }

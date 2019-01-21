@@ -13,20 +13,16 @@
 					"valueType": {
 						"type": "map",
 						"keyType": "String",
-						"valueType": "String",
-						"valueNullable": false
+						"valueType": "String"
 					},
-					"optional": true,
-					"nullable": false
+					"optional": true
 				},
 				"barField": {
 					"valueType": {
 						"type": "map",
 						"keyType": "String",
-						"valueType": "String",
-						"valueNullable": false
+						"valueType": "String"
 					},
-					"optional": false,
 					"nullable": true
 				},
 				"bazField": {
@@ -35,9 +31,7 @@
 						"keyType": "String",
 						"valueType": "String",
 						"valueNullable": true
-					},
-					"optional": false,
-					"nullable": false
+					}
 				},
 				"wozField": {
 					"valueType": {
@@ -47,11 +41,8 @@
 							"type": "list",
 							"valueType": "String",
 							"valueNullable": true
-						},
-						"valueNullable": false
-					},
-					"optional": false,
-					"nullable": false
+						}
+					}
 				}
 			},
 			"representation": {

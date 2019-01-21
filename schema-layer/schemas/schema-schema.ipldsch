@@ -164,7 +164,7 @@ type TypeFloat struct {}
 type TypeMap struct {
 	keyType TypeName # additionally, the referenced type must be reprkind==string.
 	valueType TypeTerm
-	valueNullable Bool
+	valueNullable optional Bool
 }
 
 ## TypeList describes a list.
@@ -172,7 +172,7 @@ type TypeMap struct {
 ##
 type TypeList struct {
 	valueType TypeTerm
-	valueNullable Bool
+	valueNullable optional Bool
 }
 
 ## TypeLink describes a hash linking to another object (a CID).
@@ -278,8 +278,8 @@ type TypeStruct struct {
 
 type StructField struct {
 	valueType TypeTerm
-	optional Bool
-	nullable Bool
+	optional optional Bool
+	nullable optional Bool
 }
 
 type TypeTerm union {

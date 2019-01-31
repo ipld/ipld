@@ -164,7 +164,9 @@ type TypeFloat struct {}
 type TypeMap struct {
 	keyType TypeName # additionally, the referenced type must be reprkind==string.
 	valueType TypeTerm
-	valueNullable optional Bool
+	valueNullable Bool
+} representation map {
+	field valueNullable default "false"
 }
 
 ## TypeList describes a list.
@@ -172,7 +174,9 @@ type TypeMap struct {
 ##
 type TypeList struct {
 	valueType TypeTerm
-	valueNullable optional Bool
+	valueNullable Bool
+} representation map {
+	field valueNullable default "false"
 }
 
 ## TypeLink describes a hash linking to another object (a CID).
@@ -298,13 +302,27 @@ type TypeStruct struct {
 ## recognized as this struct.
 ## (The specific behavior of optionals may vary per StructRepresentation.)
 ##
+## Note that the 'optional' and 'nullable' properties are not themselves
+## optional... however, in the IPLD serial representation of schemas, you'll
+## often see them absent from the map encoding a StructField.  This is because
+## these fields are specified to have a *default* of false.
+## Defaults in a map representation of a struct mean that those entries may
+## be missing from the map encoding... but unlike with "optional" fields, there
+## is no "undefined" value; absense is simply interpreted as the default.
+## (With default fields, an explicitly encoded default value is actually an
+## error instead!)  "Optional" fields give rise to N+1 cardinality logic,
+## just like "nullable" fields; "default" fields *do not*.
+##
 type StructField struct {
 	type TypeTerm
-	optional optional Bool
-	nullable optional Bool
+	optional Bool
+	nullable Bool
+} representation map {
+	field optional default "false"
+	field nullable default "false"
 }
 
-## TypeTerm is a union of either TypeName or an InlineDefn.  It's used for the
+## TypeTerm is a union of either TypeName or an InlineDefn. th It's used for the
 ## value type in the recursive types (maps, lists, and the fields of structs),
 ## which allows the use of InlineDefn in any of those positions.
 ##

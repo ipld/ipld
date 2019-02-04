@@ -45,7 +45,7 @@ Note we can cleanly distinguish the values, which makes it easy to support both.
 
 ### IPLD supports non-CID hash links as implicit CIDv1s
 
-Note that raw hash links _stored in various data structures_ (eg Protbouf, Git, Bitcoin, Ethereum, etc) already exist. These links -- when loaded directly as one of these data structures -- can be seen as "linking within a network" whereas proper CIDv1 IPLD links can be seen as linking "across networks" (internet of data! internet of data structures!). Supporting these existing (or even new) raw hash links as a CIDv1 can be done by noting that when on data structure links with just a raw binary link, the rest of the CIDv1 fields are implicit:
+Note that raw hash links _stored in various data structures_ (e.g. Protobuf, Git, Bitcoin, Ethereum, etc) already exist. These links -- when loaded directly as one of these data structures -- can be seen as "linking within a network" whereas proper CIDv1 IPLD links can be seen as linking "across networks" (internet of data! internet of data structures!). Supporting these existing (or even new) raw hash links as a CIDv1 can be done by noting that when on data structure links with just a raw binary link, the rest of the CIDv1 fields are implicit:
 
 - `<mbase>` is implicitly binary or whatever the format encodes.
 - `<version>` is implicitly 1.
@@ -65,4 +65,4 @@ The utility of this is the ability to directly address any object via hashing ex
 
 ### Support for multiple binary packed formats
 
-Contrary to prior Merkle objects (e.g IPFS protobuf legacy, git, bitcoin, dat and others), new IPLD ojects are authenticated AND self described data blobs, each IPLD object is serialized and prefixed by a multicodec identifying its format.
+Contrary to prior Merkle objects (e.g. IPFS protobuf legacy, git, bitcoin, dat and others), new IPLD ojects are authenticated AND self described data blobs, each IPLD object is serialized and prefixed by a multicodec identifying its format.

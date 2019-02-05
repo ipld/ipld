@@ -95,12 +95,17 @@
 					"type": "TypeTerm"
 				},
 				"valueNullable": {
-					"type": "Bool",
-					"optional": true
+					"type": "Bool"
 				}
 			},
 			"representation": {
-				"map": {}
+				"map": {
+					"fields": {
+						"valueNullable": {
+							"default": false
+						}
+					}
+				}
 			}
 		},
 		"TypeList": {
@@ -110,12 +115,17 @@
 					"type": "TypeTerm"
 				},
 				"valueNullable": {
-					"type": "Bool",
-					"optional": true
+					"type": "Bool"
 				}
 			},
 			"representation": {
-				"map": {}
+				"map": {
+					"fields": {
+						"valueNullable": {
+							"default": false
+						}
+					}
+				}
 			}
 		},
 		"TypeUnion": {
@@ -208,16 +218,23 @@
 					"type": "TypeTerm"
 				},
 				"optional": {
-					"type": "Bool",
-					"optional": true
+					"type": "Bool"
 				},
 				"nullable": {
-					"type": "Bool",
-					"optional": true
+					"type": "Bool"
 				}
 			},
 			"representation": {
-				"map": {}
+				"map": {
+					"fields": {
+						"optional": {
+							"default": false
+						},
+						"nullable": {
+							"default": false
+						}
+					}
+				}
 			}
 		},
 		"TypeTerm": {
@@ -253,12 +270,28 @@
 		"StructRepresentation_Map": {
 			"kind": "struct",
 			"fields": {
-				"fieldAliases": {
+				"fields": {
 					"type": {
 						"kind": "map",
 						"keyType": "String",
-						"valueType": "String"
+						"valueType": "StructRepresentation_Map_FieldDetails"
 					},
+					"optional": true
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"StructRepresentation_Map_FieldDetails": {
+			"kind": "struct",
+			"fields": {
+				"alias": {
+					"type": "String",
+					"optional": true
+				},
+				"default": {
+					"type": "Any",
 					"optional": true
 				}
 			},

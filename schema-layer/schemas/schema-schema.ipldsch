@@ -358,13 +358,52 @@ type InlineDefn union {
 	| TypeList "list"
 } representation inline "kind"
 
+## StructRepresentation describes how a struct type should be mapped onto
+## its IPLD Data Model representation.  Typically, maps are the representation
+## kind, but other kinds and details can be configured.
 type StructRepresentation union {
 	| StructRepresentation_Map "map"
 	| StructRepresentation_Tuple "tuple"
 } representation keyed
+
+## StructRepresentation_Map describes a way to map a struct type onto a map
+## representation.  For example, fields may be aliased,
+## or default values associated.
 type StructRepresentation_Map struct {
-	fieldAliases optional {String:String}
+	fields optional {String:StructRepresentation_Map_FieldDetails}
 }
+## StructRepresentation_Map_FieldDetails describes additional properties of a
+## struct field when represented as a map.  For example, fields may be aliased,
+## or default values associated.
+##
+## If a default value is defined, then during marshalling, if the actual value
+## is the default value, that field will be omitted from the map; and during
+## unmarshalling, correspondingly, the absense of that field will be interpreted
+## as being the default value.
+##
+## Note that fields with defaults are distinct from fields which are optional!
+## The cardinality of membership of an optional field is is incremented:
+## e.g., the cardinality of "fieldname Bool" is 2; "fieldname optional Bool" is
+## membership cardinality *3*, because it may also be undefined.
+## By contrast, the cardinality of membership of a field with a default value
+## remains unchanged; there is serial state which can map to an undefined value.
+##
+## Note that 'alias' supports exactly one string, and not a list: this is
+## intentional.  The alias feature is meant to allow serial representations
+## to use a different key string than the schema type definition field name;
+## it is not intented to be used for migration purposes.
+##
+type StructRepresentation_Map_FieldDetails struct {
+	alias optional String
+	default optional Any # Review: may be better to introduce a small kinded union here which has the essential scalars as members.
+}
+
+## StructRepresentation_Tuple describes a way to map a struct type into a list
+## representation.
+##
+## Tuple representations are less flexible than map representations:
+## field order can be specified in order to override the order defined
+## in the type, but optionals and defaults are not (currently) supported.
 type StructRepresentation_Tuple struct {
 	fieldOrder optional [String]
 }

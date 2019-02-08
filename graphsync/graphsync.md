@@ -68,11 +68,6 @@ message GraphsyncMessage {
     bool  cancel = 5;   // whether this cancels a request
   }
 
-  message RequestList {
-    repeated Request reqs = 1; // a list of requests
-    bool full = 2;			   // whether this is the full RequestList. default to false, for incremental requests.
-  }
-
   message Response {
     int32 id = 1;     // the request id
     int32 status = 2; // a status code.
@@ -85,9 +80,10 @@ message GraphsyncMessage {
   }
 
   // the actual data included in this message
-  RequestList reqlist = 1;
-  repeated Response reslist = 2;
-  repeated Block data = 2;
+  bool completeRequestList    = 1; // This request list includes *all* requests, replacing outstanding requests.
+  repeated Request  requests  = 2; // The list of requests.
+  repeated Response responses = 3; // The list of responses.
+  repeated Block    data      = 4; // Blocks related to the responses
 }
 ```
 

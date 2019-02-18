@@ -108,3 +108,271 @@ These components imply or expand into the following things:
 - Allow language-specific implementations of selectors (parsers, execution, etc).
 - (IMPORTANT) Well-designed set of test vectors representing a variety of use cases for IPLD Selectors.
 - A recommended structure for implementing a selector type, with an easy to use test suite.
+
+
+Selector types
+--------------
+
+### CID Selector
+
+Selects a single CID.
+
+
+### Path Selector
+
+Selects a single path segment.
+
+
+### Array Selector
+
+Selects a slice or single item of an array of items.
+
+
+### Recursive Selector
+
+Uses another Selector to select things recursively. It also takes a limit on how often this recursion should happen (the limit can be set to "infinity" to keep traversing until there are no matching paths left.
+
+The recursion may also be stopped by a given CID.
+
+
+### Selector Query
+
+The Selector Query is a list of Selectors. The first element will be a CID Selector which points to the CID your Selector is rooted at.
+
+
+Use cases
+---------
+
+### Deeply nested path
+
+In some DAG you want to get one specific value you know the path of. Let's say you want to get the birth year of a specific character of a specific show.
+
+Example data (as JSON) with CID `cidabcdef`. To keep it simple it's represented as a single JSON structure, but imagine e.g. the characters are linked by CID.
+
+```json
+{
+  "show": "start-trek-voyager",
+  "characters": {
+    "kathrin-janeway": {
+      "birthday": {
+        "day": 20,
+        "month": 5,
+        "year": 2328
+      },
+      "rank": "vice admiral"
+    }
+  }
+}
+```
+
+The final Selector could look like this:
+
+```json
+{
+  "cidRootedSelector": {
+    "root": "cidabcdef",
+    "selectors": [
+      {"selectPath": "characters"},
+      {"selectPath": "kathryn-janeway"},
+      {"selectPath": "birthday"},
+      {"selectPath": "year"}
+    ]
+  }
+}
+```
+
+
+### Getting a certain number of parent blocks in a blockchain
+
+You want to get a certain number of parents from a certain block.
+
+The shape of a block could look like this (in JSON):
+
+```json
+{
+  "parent": "parentcid",
+  "time": 1549641260,
+  "none": 3423545
+}
+```
+
+If you know you want five parents you could use Path Selectors:
+
+```json
+{
+  "cidRootedSelector": {
+    "root": "cidabcdef",
+    "selectors": [
+      {"selectPath": "parent"},
+      {"selectPath": "parent"},
+      {"selectPath": "parent"},
+      {"selectPath": "parent"},
+      {"selectPath": "parent"}
+    ]
+  }
+}
+```
+
+But there's also a better way with using a Recursive Selector with a limit:
+
+```json
+{
+  "cidRootedSelector": {
+    "root": "cidabcdef",
+    "selectors": [
+      {"selectRecursive": {
+        "follow": [
+          {"selectPath": "parent"}
+        ],
+        "depthLimit": 5
+      }}
+    ]
+  }
+}
+```
+
+
+### Getting changes up to a certain one
+
+This use case is inspired by CRDTs, where you have a chain of changes. You observe a new change and want to get all the previous changes up to the one that you have already observed. It is a recursive query with a CID as stopping condition.
+
+The shape of a change could look like this (in JSON):
+
+```json
+{
+  "prev": "prevcid",
+  "timestamp": 1549641260,
+  "value": "abc"
+}
+```
+
+It will be a Recursive Selector following a long a certain field (`prev` in this case):
+
+```json
+{
+  "cidRootedSelector": {
+    "root": "cidabcdef",
+    "selectors": [
+      {"selectCid": "cidabcdef"},
+      {"selectRecursive": {
+        "follow": [
+          {"selectPath": "prev"}
+        ],
+        "cidLimit": "somecid"
+      }}
+    ]
+  }
+}
+```
+
+
+### Getting a full sub-DAG
+
+For getting a full file from UnixFSv1 you need to retrieve a full sub-DAG.
+
+An example selector to get the full sub-DAG rooted at a certain CID:
+
+
+```json
+{
+  "cidRootedSelector": {
+    "root": "cidabcdef",
+    "selectors": [
+      {"selectRecursive": {
+        "follow": [
+          {"selectPath": "Links"},
+          {"selectArrayAll": null},
+          {"selectPath": "multihash"}
+        ]
+      }}
+    ]
+  }
+}
+```
+
+If it's a file in some directory, you can also start at a deeper level:
+
+```json
+{
+  "cidRootedSelector": {
+    "root": "cidabcdef",
+    "selectors": [
+      {"selectCid": "cidabcdef"},
+      {"selectPath": "with"},
+      {"selectPath": "some"},
+      {"selectPath": "subdirectory"},
+      {"selectRecursive": {
+        "follow": [
+          {"selectPath": "Links"},
+          {"selectArrayAll": null},
+          {"selectPath": "multihash"}
+        ]
+      }}
+    ]
+  }
+}
+```
+
+IPLD Schema
+-----------
+
+```ipldsch
+# This is the main entry point for the current selectors
+type CidRootedSelector struct {
+  root Cid
+  # Each element matches a path segement (or several, in some cases)
+  selectors [Selector]
+}
+
+# A catch all for all types of selectors. They are split between recursive and
+# non-recursive ones as a recursive selector can't have another recursive
+# selector embedded
+type Selector union {
+  | SelectPath "selectPath"
+  | SelectArrayAll "selectArrayAll"
+  | SelectArrayPosition "selectArrayPosition"
+  | SelectArraySlice "selectArraySlice"
+  | SelectMapAll "selectMapAll"
+  | SelectRecursive "selectRecursive"
+} representation keyed
+
+# This is a subset of the selectors that can be used within a recursive selector
+type SelectorNonRecursive union {
+  | SelectPath "selectPath"
+  | SelectArrayAll "selectArrayAll"
+  | SelectArrayPosition "selectArrayPosition"
+  | SelectArraySlice "selectArraySlice"
+  | SelectArrayAll "selectMapAll"
+} representation keyed
+
+# Paths are split into their individual segments
+type PathSegement String
+
+# Selects a specific full path
+type SelectPath PathSegment
+
+# Selects all elements of an array, it's similar to a `/*`
+type SelectArrayAll Null
+
+# Selects a specific item from an array
+type ArrayPosition Int
+
+# Selects a slice of items out of an array
+type ArraySlice struct {
+  start optional Int
+  end optional Int
+}
+
+# Selects all keys one level deep, it's similar to a `/*`
+type SelectMapAll Null
+
+# Follow a selector recursively
+type SelectRecursive struct {
+  # Can be used to follow a more complex path, e.g. for UnixFSv1
+  follow [SelectorNonRecursive]
+  # Stop recursing after a certain amount of iterations
+  depthLimit optional Int
+  # Stop recursing once a specific CID is visited
+  cidLimit optional Cid
+}
+```

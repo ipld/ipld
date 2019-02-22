@@ -14,4 +14,4 @@
 ## Link Type
 
 This type represents a link to another IPLD Block. The link reference
-is a [`CID`]('./CID.md).
+is a [`CID`](CID.md).

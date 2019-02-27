@@ -21,9 +21,19 @@ The implementation aims to progressively enhance the content. The styling is don
 git clone https://github.com/ipld/website
 ```
 
+We use `make` to build the site, and `npm` to fetch our build tool dependencies. Running `make` or `make dev` will fetch the dependencis from `npm` for you the first time you run it. 
+
+If you have any problems with building the site, try removing your local `node_module` director and re-run `make`.
+
 ## Usage
 
-To deploy the site ipld.io, run:
+To work on the site locally with a hot-reloading dev site served at http://localhost:1313/
+
+```sh
+make dev
+```
+
+To deploy the site to https://ipld.io, run:
 
 ```sh
 # Build out the optimised site to ./public, where you can check it locally.
@@ -45,13 +55,13 @@ The following commands are available:
 
 Build the optimised site to the `./public` dir
 
-### `make serve`
-
-Preview the production ready site at http://localhost:1313 _(requires `hugo` on your `PATH`)_
-
 ### `make dev`
 
 Start a hot-reloading dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
+
+### `make serve`
+
+Preview the production ready site at http://localhost:1313 _(requires `hugo` on your `PATH`)_
 
 ### `make minfy`
 
@@ -77,10 +87,9 @@ See the `Makefile` for the full list or run `make help` in the project root. You
 
 ## Dependencies
 
-* `hugo` to build website
 * `Node.js` and `npm` for build tools
-* `ipfs` to deploy changes
-* `dnslink-deploy` to deploy changes
+* `ipfs` to add to IPFS during `make deploy`
+* `dnslink-deploy` to update dns `make publish-to-domain`
 
 ## Contribute
 

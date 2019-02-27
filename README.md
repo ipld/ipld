@@ -21,7 +21,7 @@ The implementation aims to progressively enhance the content. The styling is don
 git clone https://github.com/ipld/website
 ```
 
-We use `make` to build the site, and `npm` to fetch our build tool dependencies. Running `make` or `make dev` will fetch the dependencis from `npm` for you the first time you run it. 
+We use `make` to build the site, and `npm` to fetch our build tool dependencies. Running `make` or `make dev` will fetch the dependencies from `npm` for you the first time you run it.
 
 If you have any problems with building the site, try removing your local `node_module` director and re-run `make`.
 
@@ -32,6 +32,10 @@ To work on the site locally with a hot-reloading dev site served at http://local
 ```sh
 make dev
 ```
+
+When you submit a PR, the site will be built and pinned on IPFS Cluster and a preview link will be added as PR status item.
+
+When the `master` branch changes, site will be built, pinned to cluster, and the [DNSlink](https://docs.ipfs.io/guides/concepts/dnslink/) for https://ipld.io will be updated with the latest hash.
 
 To deploy the site to https://ipld.io, run:
 

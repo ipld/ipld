@@ -346,7 +346,7 @@ type SelectorNonRecursive union {
 } representation keyed
 
 # Paths are split into their individual segments
-type PathSegement String
+type PathSegment String
 
 # Selects a specific full path
 type SelectPath PathSegment

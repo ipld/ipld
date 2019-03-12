@@ -135,9 +135,9 @@ Uses another Selector to select things recursively. It also takes a limit on how
 The recursion may also be stopped by a given CID.
 
 
-### Selector Query
+### CID Rooted Selector
 
-The Selector Query is a list of Selectors. The first element will be a CID Selector which points to the CID your Selector is rooted at.
+The CID Rooted Selector consists of a CID where the selection starts and a list of Selectors specifying the traversal.
 
 
 Use cases
@@ -253,7 +253,6 @@ It will be a Recursive Selector following a long a certain field (`prev` in this
   "cidRootedSelector": {
     "root": "cidabcdef",
     "selectors": [
-      {"selectCid": "cidabcdef"},
       {"selectRecursive": {
         "follow": [
           {"selectPath": "prev"}
@@ -297,7 +296,6 @@ If it's a file in some directory, you can also start at a deeper level:
   "cidRootedSelector": {
     "root": "cidabcdef",
     "selectors": [
-      {"selectCid": "cidabcdef"},
       {"selectPath": "with"},
       {"selectPath": "some"},
       {"selectPath": "subdirectory"},

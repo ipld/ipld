@@ -348,7 +348,7 @@ type SelectorNonRecursive union {
 # Paths are split into their individual segments
 type PathSegment String
 
-# Selects a specific full path
+# Selects a specific path segment
 type SelectPath PathSegment
 
 # Selects all elements of an array, it's similar to a `/*`

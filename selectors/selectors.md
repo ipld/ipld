@@ -340,7 +340,7 @@ type SelectorNonRecursive union {
   | SelectArrayAll "selectArrayAll"
   | SelectArrayPosition "selectArrayPosition"
   | SelectArraySlice "selectArraySlice"
-  | SelectArrayAll "selectMapAll"
+  | SelectMapAll "selectMapAll"
 } representation keyed
 
 # Paths are split into their individual segments

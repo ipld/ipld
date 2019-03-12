@@ -353,10 +353,10 @@ type SelectPath PathSegment
 type SelectArrayAll Null
 
 # Selects a specific item from an array
-type ArrayPosition Int
+type SelectArrayPosition Int
 
 # Selects a slice of items out of an array
-type ArraySlice struct {
+type SelectArraySlice struct {
   start optional Int
   end optional Int
 }

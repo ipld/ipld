@@ -153,7 +153,7 @@ Example data (as JSON) with CID `cidabcdef`. To keep it simple it's represented 
 {
   "show": "start-trek-voyager",
   "characters": {
-    "kathrin-janeway": {
+    "kathryn-janeway": {
       "birthday": {
         "day": 20,
         "month": 5,

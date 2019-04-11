@@ -74,7 +74,8 @@ message GraphsyncMessage {
   message Response {
     int32 id = 1;     // the request id
     int32 status = 2; // a status code.
-    bytes extra = 3;
+    bytes metadata = 3; // metadata about response
+    bytes extra = 4;
   }
 
   message Block {
@@ -90,6 +91,37 @@ message GraphsyncMessage {
 }
 ```
 
+### Response Metadata
+
+Response metadata provides information about the response to help the requestor more efficiently verify the blocks sent back from the responder are valid for the requested IPLD selector. It contains information about the CIDs the responder traversed, in order, during the course of performing the selector query and whether or not the corresponding block was present in its local block store.
+
+It is an IPLD node of the format:
+
+```json
+[
+  {
+    "link": "cidabcdef",
+    "blockPresent": true
+  },
+  {
+    "link": "abcdedf443",
+    "blockPresent": false
+  },
+  ...
+]
+```
+
+or in IPLD Schema:
+
+```ipldsch
+type LinkMetadata struct {
+  link Cid
+  blockPresent Bool
+}
+
+type ResponseMetadata [LinkMetadata]
+```
+
 ### Response Status Codes
 
 ```
@@ -98,7 +130,7 @@ message GraphsyncMessage {
 11   Additional Peers. PeerIDs in extra.
 12   Not enough vespene gas ($)
 13   Other Protocol - info in extra.
-14   Partial Response w/ metadata, may include blocks, metadata in extra
+14   Partial Response w/ metadata, may include blocks
 
 # success - terminal
 20   Request Completed, full content.

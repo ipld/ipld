@@ -69,7 +69,7 @@ Boolean is a scalar kind.  Its cardinality is two -- either the value 'true' or 
 
 String is a scalar kind.  Its cardinality is infinite -- strings do not have a length limit.
 
-Strings are generally understood to be UTF-8 text, in [NFC](https://www.unicode.org/reports/tr15/#Norm_Forms) canonicalization.
+Strings should be UTF-8 text, in [NFC](https://www.unicode.org/reports/tr15/#Norm_Forms) canonicalization.
 
 ### Bytes kind
 

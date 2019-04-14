@@ -1,12 +1,15 @@
 IPLD Data Model
 ===============
 
-The IPLD Data Model is "layer 1" of the IPLD core models.
-("Layer 0" are the [Codecs](Codecs); "layer 2" is called [Schemas](schema).)
+The IPLD Data Model is a core part of the IPLD specification,
+which describes what data is representable in IPLD --
+for example, booleans, integers, textual strings, maps and lists, etc.
 
-The Data Model specifies what categories of data are representable in IPLD --
-for example, booleans, and integers, and textual strings.
+While the Data Model describes these representations in the abstract,
 [Codecs](Codecs) specify exactly how these data are transcribed into serialized bytes.
+(Another component of the IPLD specifications, [Schemas](schema), provide
+additional optional tooling on top of the Data Model which can further refine,
+describe, and constrain the range of acceptable data values.)
 
 
 Kinds

@@ -87,8 +87,8 @@ type Foo struct {
 }
 </pre></td>
 <td width=20%>
-`{"bar": true}`  
-`{"bar": false}`  
+<code>{"bar": true}</code><br>
+<code>{"bar": false}</code><br>
 </td>
 <td>2</td>
 <td>The cardinality of `Bool` is 2; the struct has no other members, so that's it.
@@ -101,9 +101,9 @@ type Foo struct {
 }
 </pre></td>
 <td>
-`{"bar": true}`  
-`{"bar": false}`  
-`{"bar": null}`  
+<code>{"bar": true}</code><br>
+<code>{"bar": false}</code><br>
+<code>{"bar": null}</code><br>
 </td>
 <td>3</td>
 <td>2+1.  The `nullable` modifier adds one to the cardinality, since a null value is now a valid match.</td>
@@ -116,9 +116,9 @@ type Foo struct {
 }
 </pre></td>
 <td>
-`{"bar": true}`  
-`{"bar": false}`  
-`{}`  
+<code>{"bar": true}</code><br>
+<code>{"bar": false}</code><br>
+<code>{}</code><br>
 </td>
 <td>3</td>
 <td>2+1.  The `optional` modifier adds one to the cardinality, since a map missing the key is now a valid match.</td>
@@ -131,12 +131,12 @@ type Foo struct {
 }
 </pre></td>
 <td>
-`{"bar": true}`  
-`{"bar": false}`  
-`{"bar": null}`  
-`{}`  
+<code>{"bar": true}</code><br>
+<code>{"bar": false}</code><br>
+<code>{"bar": null}</code><br>
+<code>{}</code><br>
 </td>
-<td>**4**</td>
+<td><b>4</b></td>
 <td>2+1+1.  *Each* of the modifiers cumulatively adds one valid matching representation, and thus add one to the cardinality.</td>
 </tr>
 
@@ -149,8 +149,8 @@ type Foo struct {
 }
 </pre></td>
 <td>
-`{"bar": true}`  
-`{}`  
+<code>{"bar": true}</code><br>
+<code>{}</code><br>
 </td>
 <td>2</td>
 <td>Default values mean that encoding should never include the value if it's the default.  That means the set of valid representations *changes*, but it doesn't *grow* because one representation becomes invalid at the same time as a new representation is added.</td>

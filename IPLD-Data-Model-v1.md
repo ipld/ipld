@@ -77,7 +77,7 @@ Bytes is a scalar kind.  Its cardinality is infinite -- byte sequences do not ha
 
 Bytes are distinct from strings in that they are not considered to have any character encoding nor
 generally expected to be printable as human-readable text.
-In order to print byte sequences as text, addition effort such as Base64 encoding may be required.
+In order to print byte sequences as text, additional effort such as Base64 encoding may be required.
 
 ### List kind
 

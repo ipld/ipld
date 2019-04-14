@@ -40,8 +40,8 @@ Link is also not described in this section, as it's a rather unique business.)
 	- `stringpairs` representation -- transcribes to `string` in the Data Model.
 	- `listpairs` representation -- transcribes to `list` (of lists) in the Data Model.
 - Union
-	- `kinded` representation -- transcribes to varying (!) kinds in the Data Model.
 	- `keyed` representation -- transcribes to a single-entry `map` in the Data Model.
+	- `kinded` representation -- transcribes to varying (!) kinds in the Data Model.
 	- `envelope` representation -- transcribes to a dual-entry `map` in the Data Model.
 	- `inline` representation -- transcribes to a `map` in the Data Model (and has additional limitations).
 - Struct
@@ -129,3 +129,128 @@ type MountOptions map {String:String} representation stringpairs {
 	entryDelim ","
 }
 ```
+
+### union keyed representation example
+
+```ipldsch
+type MyKeyedUnion union {
+	| Foo "foo"
+	| Bar "bar"
+} representation keyed
+
+type Foo struct { froz Bool }
+type Bar int
+```
+
+Some data matching `MyKeyedUnion` (shown as JSON) is:
+
+```json
+{"foo": {"froz": true}}
+```
+
+This data would also match, as the other type:
+
+```json
+{"bar": 12}
+```
+
+Note how kinded unions don't introduce any kind of wrapping object at all;
+contrast this with each of the other union representation strategies, all
+of which use at least one layer of map in their representation.
+
+### union kinded representation example
+
+```ipldsch
+type MyKindedUnion union {
+	| Foo map
+	| Bar int
+} representation kinded
+
+type Foo struct { froz Bool }
+type Bar int
+```
+
+Some data matching `MyKindedUnion` (shown as JSON) is:
+
+```json
+{"froz": true}
+```
+
+This data would also match, as the other type:
+
+```json
+12
+```
+
+Note that the syntax used in the type declaration is different for kinded
+unions versus other union representations!
+Kinded unions, unlike all other representation strategies, don't have
+any kind of string keywords at all.  Instead, they encode all of their
+discriminant information in the kind of the data itself!
+Correspondingly, the tagging information in the type definition uses kind
+keywords (unquoted) instead of quoted strings.
+
+Note that the kinds valid in a kinded union are all Data Model-layer
+*representation kinds*.  E.g. `string` and `map` are acceptable here;
+`struct` is not.  The kind that a union member type is tagged with must
+match that type's representation kind or the schema is invalid.
+
+### union envelope representation example
+
+```ipldsch
+type MyEnvelopeUnion union {
+	| Foo "foo"
+	| Bar "bar"
+} representation kinded {
+	discriminantKey "tag"
+	contentKey "msg"
+}
+
+type Foo struct { froz Bool }
+type Bar int
+```
+
+Some data matching `MyEnvelopeUnion` (shown as JSON) is:
+
+```json
+{"tag":"foo", "msg":{"froz":true}}
+```
+
+This data would also match, as the other type:
+
+```json
+{"tag":"bar", "msg":12}
+```
+
+### union inline representation example
+
+```ipldsch
+type MyInlineUnion union {
+	| Foo "foo"
+	| Bar "bar"
+} representation kinded {
+	discriminantKey "tag"
+}
+
+type Foo struct { froz Bool }
+type Bar struct { bral String }
+```
+
+Some data matching `MyInlineUnion` (shown as JSON) is:
+
+```json
+{"tag": "foo", "froz": true}
+```
+
+This data would also match, as the other type:
+
+```json
+{"tag": "bar", "bral": "zot"}
+```
+
+Note that our example schema contained different *kinds* of member types than
+the other union examples!
+This is because inline unions are only a defined concept when working with types
+that have a map representation -- so, our `Bar` type in the previously examples,
+which was of `int` kind, doesn't work for this example.  We replaced it with
+another struct type, which -- since it has a `map` representation -- works.

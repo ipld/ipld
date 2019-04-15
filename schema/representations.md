@@ -154,10 +154,6 @@ This data would also match, as the other type:
 {"bar": 12}
 ```
 
-Note how kinded unions don't introduce any kind of wrapping object at all;
-contrast this with each of the other union representation strategies, all
-of which use at least one layer of map in their representation.
-
 ### union kinded representation example
 
 ```ipldsch
@@ -181,6 +177,11 @@ This data would also match, as the other type:
 ```json
 12
 ```
+
+Note how kinded unions don't introduce any kind of wrapping map in the
+serialized form at all;
+contrast this with each of the other union representation strategies, all
+of which use at least one layer of map in their representation.
 
 Note that the syntax used in the type declaration is different for kinded
 unions versus other union representations!

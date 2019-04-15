@@ -116,7 +116,7 @@ type Fizzlebop struct {
 }
 ```
 
-### struct stringpairs representation example schema
+### map stringpairs representation example
 
 Say we're doing something awfully like the mount options in an /etc/fstab file:
 

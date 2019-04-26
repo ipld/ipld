@@ -6,36 +6,31 @@ IPLD is not a single specification, it is a set of specifications.
 ```
                                      The IPLD Stack
 
-                                +-----------------------------+
-                +-------------+ |                             |
-                |             | | End-User Application Stacks |
-                | MFS in IPFS | |                             |
-                |             | +-----------------------------+
-                +-------------+ |                             |
-                |             | | Structured Data w/ indexes  |
-                |  unixfs v2  | |     VR, Geo, SQL, etc.      |                +----------+
-                |             | |                             |                |          |
-                +-------------+ +-----------------------------+                |  MFS in  |
-                |             | |                             |                |   IPFS   |
-                |    HAMT     | |   Sorted Index (sharded)    |                |          |
-                |             | |                             |                +----------+
-                +-------------+-+-----------------------------+                |          |
-                |                                             |                |  unixfs  |
-                |          Complex Data Structures            |                |    v1    |
-                |                                             |                |          |
-+-----------------------------------------------------------------------------------------+
-|               |                                             |                |          |
-|               |        dag-json         dag-cbor            |    ipld-git    |          |
-|               |                                             |                |          |
-|    Codecs     +---------------------------------------------+    ipld-btc    |  dag-pb  |
-|               |                                             |                |          |
-|               |               IPLD Data Model               |   ipld-zcash   |          |
-|               |                                             |                |          |
-+-------------------------------------------------------------+----------------+----------+
-                |                                                                         |
-                |                         Block (CID, Raw Data)                           |
-                |                                                                         |
-                +-------------------------------------------------------------------------+
+           ┌───────────┐ ┌────────────────────────────────────┐
+           │           │ │                                    │
+           │    MFS    │ │       End-User Applications        │
+           │           │ │                                    │
+           ├───────────┤ ├─────────────────────────┬──────────┤            ┌───────────┐
+           │           │ │    Specialized Data     │          │            │           │
+           │ UnixFS v2 │ │ Structures & Utilities: │          │            │    MFS    │
+           │           │ │   VR, Geo, SQL, etc.    │          │            │           │
+           ├───────────┴─┴─────────────────────────┘          │            ├───────────┤
+           │                                                  │            │           │
+           │    Multi-block Collections: Maps, Sets, etc.     │            │ UnixFS v1 │
+           │                                                  │            │           │
+┌──────────┼──────────────────────────────────────────────────┼────────────┼───────────┤
+│          │                                                  │            │           │
+│          │            dag-json         dag-cbor             │  ipld-git  │           │
+│          │                                                  │            │           │
+│  Codecs  ├──────────────────────────────────────────────────┤  ipld-btc  │   dag-pb  │
+│          │                                                  │            │           │
+│          │                 IPLD Data Model                  │ ipld-zcash │           │
+│          │                                                  │            │           │
+└──────────┼──────────────────────────────────────────────────┴────────────┴───────────┤
+           │                                                                           │
+           │                           Block (CID, Raw Data)                           │
+           │                                                                           │
+           └───────────────────────────────────────────────────────────────────────────┘
 ```
 
 The goal of this stack is to enable decentralized data-structures
@@ -44,37 +39,36 @@ which in turn will enable more decentralized applications.
 Many of the specifications in this stack are inter-dependent.
 
 ```
-       IPLD Dependency Graph
+                          IPLD Dependency Graph
 
-+---+                          +----------+
-|CID+-----------+-------------->Raw Blocks|
-+---+           |              +--+-------+
-         +------v-------------+   |
-+----+   |Links (Conceptually)|   |
-|Path|   +------+-------------+   |             +-----------+
-+-+--+          |                 +------------->Replication|
-  |    Codecs   |                 |             +-----------+
-+-v-------------v-----------------+---+
-|                                     |
-| +---+    +-----------------------+  | Complex Data-Structures
-| |Git|    |     Data Model v1     |  | +--------------v-------+
-| +---+    |                       |  | |                      |
-|          | +--------+ +--------+ +----> +----+ +-----------+ |
-| +------+ | |dag|json< |dag|cbor< |  | | |HAMT| |Sorted Tree| |
-| |dag|pb| | +--------+ +--------+ |  | | +--+-+ +----+------+ |
-| +------+ |                       |  | |    |        |        |
-|          +-----------------------+  | +----------------------+
-|                                     |      |        |
-+-------------------------------------+      |        |
-                                             |        |
-                +----------------------+     |        |
-                | File System (unixfs) <-----+        |
-                +----------------------+              |
-                +--------------------+                |
-                |                    |                |
-Structured Data | VR, Geo, SQL, etc. <----------------+
-  w/ indexes    |                    |
-                +--------------------+
+┌─────┐                           ┌────────────┐
+│ CID ├───────────┬───────────────> Raw Blocks │
+└─────┘           │               └─┬──────────┘
+          ┌───────v──────────────┐  │
+┌──────┐  │ Links (Conceptually) │  │
+│ Path │  └───────┬──────────────┘  │           ┌─────────────┐
+└──┬───┘          │                 ├───────────> Replication │
+   │              │                 │           └─────────────┘
+┌──v──────────────v─────────────────┴──────┐
+│                  Codecs                  │
+│  ┌─────┐   ┌───────────────────────────┐ │ ┌────────────────────────────┐
+│  │ Git │   │       Data Model v1       │ │ │  Multi-block Collections   │
+│  └─────┘   │ ┌──────────┐ ┌──────────┐ │ │ │ ┌────────────────────────┐ │
+│ ┌────────┐ │ │ dag-json │ │ dag-cbor │ ├─┼─> │    Specialized Data    │ │
+│ │  BTC   │ │ └──────────┘ └──────────┘ │ │ │ │ Structures & Utilities │ │
+│ └────────┘ └───────────────────────────┘ │ │ └────────────────────────┘ │
+│ ┌────────┐ ┌────────┐                    │ └───┬─────────┬──────────────┘
+│ │ Zcash  │ │ dag-pb │                    │     │         │
+│ └────────┘ └────────┘                    │     │         │
+└──────────────────────────────────────────┘     │         │
+                                                 │         │
+               ┌──────────────────────┐          │         │
+               │ File System (UnixFS) <──────────┘         │
+               └──────────────────────┘                    │
+               ┌───────────────────────┐                   │
+               │ End-User Applications <───────────────────┘
+               └───────────────────────┘
+
 ```
 
 ## Specification Repo Layout
@@ -85,8 +79,9 @@ Structured Data | VR, Geo, SQL, etc. <----------------+
 * [/Codecs](/Codecs)
   * [/Codecs/DAG-JSON.md](/Codecs/DAG-JSON.md)
   * [/Codecs/DAG-CBOR.md](/Codecs/DAG-CBOR.md)
-* [/Data-Structures](/Data-Structures)
-  * [/Data-Structures/HAMT.md](/Data-Structures/HAMT.md)
+* [/data-structures/multiblock-collections.md](/data-structures/multiblock-collections.md)
+* [/graphsync/graphsync.md](/graphsync/graphsync.md)
+* [/selectors/selectors.md](/selectors/selectors.md)
 
 ## Discussion
 

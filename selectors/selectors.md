@@ -66,7 +66,7 @@ These other questions are solved in other systems, above or below IPLD Selectors
 > - How can we make selector combination efficient? (IPLD library implementations)
 > - How can we strip a dag subset from links to objects not in the subset (IPLD Transformations, user code)
 > - How can we convert one dag representation into another? (IPLD Transformations, user code)
-> - How can we agree with multiple other parties who will pin or send subets of a dag? (ipfs-cluster, graphsync)
+> - How can we agree with multiple other parties who will pin or send subsets of a dag? (ipfs-cluster, graphsync)
 
 With our problem narrowed down, we can focus on solving just that, and let all other concerns be solved elsewhere in the stack.
 
@@ -113,19 +113,29 @@ These components imply or expand into the following things:
 Selector types
 --------------
 
-### CID Selector
+### Fields Selector
 
-Selects a single CID.
+Selects each of a set of path segments.
+
+(If only a single path segment is specified, this can be called a "Path Selector", but it's the same thing.)
 
 
 ### Path Selector
 
 Selects a single path segment.
 
+Path selectors are a common pattern of usage, but not a specific feature in the selector spec --
+it's a degenerate case of a Fields Selector which happens to select only a single field.
 
-### Array Selector
 
-Selects a slice or single item of an array of items.
+### All Selector
+
+Selects every field or index in a map or list.
+
+
+### Range Selector
+
+Selects a slice or single item of a list of items.
 
 
 ### Recursive Selector
@@ -135,9 +145,10 @@ Uses another Selector to select things recursively. It also takes a limit on how
 The recursion may also be stopped by a given CID.
 
 
-### CID Rooted Selector
+### CID Selector
 
-The CID Rooted Selector consists of a CID where the selection starts and a list of Selectors specifying the traversal.
+There is no CID selector.  Asking for a specific CID doesn't involve any traversal; it's just asking for a node itself.  No selectors are necessary to ask for data by CID.
+
 
 
 Use cases
@@ -147,7 +158,7 @@ Use cases
 
 In some DAG you want to get one specific value you know the path of. Let's say you want to get the birth year of a specific character of a specific show.
 
-Example data (as JSON) with CID `cidabcdef`. To keep it simple it's represented as a single JSON structure, but imagine e.g. the characters are linked by CID.
+Example data (as JSON):
 
 ```json
 {
@@ -165,20 +176,14 @@ Example data (as JSON) with CID `cidabcdef`. To keep it simple it's represented 
 }
 ```
 
-The final Selector could look like this:
+A Selector to extract the "year" data could look like this:
 
 ```json
-{
-  "cidRootedSelector": {
-    "root": "cidabcdef",
-    "selectors": [
-      {"selectPath": "characters"},
-      {"selectPath": "kathryn-janeway"},
-      {"selectPath": "birthday"},
-      {"selectPath": "year"}
-    ]
-  }
-}
+{"selectFields":{"characters":
+	{"selectFields":{"kathryn-janeway":
+		{"selectFields":{"birthday":
+			{"selectFields":{"year":
+				true}}}}}}}}
 ```
 
 
@@ -199,37 +204,39 @@ The shape of a block could look like this (in JSON):
 If you know you want five parents you could use Path Selectors:
 
 ```json
-{
-  "cidRootedSelector": {
-    "root": "cidabcdef",
-    "selectors": [
-      {"selectPath": "parent"},
-      {"selectPath": "parent"},
-      {"selectPath": "parent"},
-      {"selectPath": "parent"},
-      {"selectPath": "parent"}
-    ]
-  }
-}
+{"selectFields":{"parent":
+	{"selectFields":{"parent":
+		{"selectFields":{"parent":
+			{"selectFields":{"parent":
+				{"selectFields":{"parent":
+					true}}}}}}}}}}
 ```
 
-But there's also a better way with using a Recursive Selector with a limit:
+This selector matches the fivth-deepest "parent" (and in the context of
+graphsync or other merkleproof applications, will yield all five nodes).
+
+But this gets a bit verbose.  We can explore the same tree in a similar
+pattern with another mechanism -- recursive exploration:
 
 ```json
-{
-  "cidRootedSelector": {
-    "root": "cidabcdef",
-    "selectors": [
-      {"selectRecursive": {
-        "follow": [
-          {"selectPath": "parent"}
-        ],
-        "depthLimit": 5
-      }}
-    ]
-  }
-}
+{"selectRecursive": {
+  "depthLimit": 5,
+  "next":
+    {"selectFields":{"parent":
+      true}}
+}}
 ```
+
+This will traverse the same set of nodes as the previous example -- however,
+it has has a *slightly* different effect!
+
+Using a recursive selector in this way matches *each* of the "parent" nodes,
+up to the depth limit -- meaning it matches five nodes, instead of the
+previous example, which matches only the last one.
+
+In terms of graphsync or other merkleproof applications, the selector will yield
+the same set, since the set of nodes *considered* for matches is the same as
+in the previous example.
 
 
 ### Getting changes up to a certain one
@@ -246,22 +253,17 @@ The shape of a change could look like this (in JSON):
 }
 ```
 
-It will be a Recursive Selector following a long a certain field (`prev` in this case):
+It will be a Recursive Selector following along until it reaches a link of a
+certain value (`somecid` in this case):
 
 ```json
-{
-  "cidRootedSelector": {
-    "root": "cidabcdef",
-    "selectors": [
-      {"selectRecursive": {
-        "follow": [
-          {"selectPath": "prev"}
-        ],
-        "cidLimit": "somecid"
-      }}
-    ]
-  }
-}
+{"selectRecursive": {
+  "depthLimit": 5,
+  "next":
+    {"selectFields":{"parent":
+      true}},
+  "cidLimit": "somecid"
+}}
 ```
 
 
@@ -273,104 +275,94 @@ An example selector to get the full sub-DAG rooted at a certain CID:
 
 
 ```json
-{
-  "cidRootedSelector": {
-    "root": "cidabcdef",
-    "selectors": [
-      {"selectRecursive": {
-        "follow": [
-          {"selectPath": "Links"},
-          {"selectArrayAll": null},
-          {"selectPath": "multihash"}
-        ]
-      }}
-    ]
-  }
-}
+{"selectRecursive": {
+  "depthLimit": 5,
+  "next":
+    {"selectFields":{"Links":
+      {"selectAll":
+        {"selectFields":{"multihash":
+          true}}}}}
+}}
 ```
 
 If it's a file in some directory, you can also start at a deeper level:
 
 ```json
-{
-  "cidRootedSelector": {
-    "root": "cidabcdef",
-    "selectors": [
-      {"selectPath": "with"},
-      {"selectPath": "some"},
-      {"selectPath": "subdirectory"},
+{"selectFields":{"with":
+  {"selectFields":{"some":
+    {"selectFields":{"subdirectory":
       {"selectRecursive": {
-        "follow": [
-          {"selectPath": "Links"},
-          {"selectArrayAll": null},
-          {"selectPath": "multihash"}
-        ]
+        "depthLimit": 5,
+        "next":
+          {"selectFields":{"Links":
+            {"selectAll":
+              {"selectFields":{"multihash":
+                true}}}}}
       }}
-    ]
-  }
-}
+}}}}}}
 ```
 
 IPLD Schema
 -----------
 
 ```ipldsch
-# This is the main entry point for the current selectors
-type CidRootedSelector struct {
-  root Cid
-  # Each element matches a path segement (or several, in some cases)
-  selectors [Selector]
-}
+# SelectorComplex is a grouping for most of the selectors, and is really just
+#  a helper for the Selector type, which introduces one more important selector
+#   to the group, but uses a different union representation to do so (for the
+#    sake of overall serial terseness).
+type SelectorComplex union {
+	| SelectAll "a"
+	| SelectFields "f" # n.b. "SelectPath" no longer exists: is a degenerate case of SelectFields.
+	| SelectIndex "i"
+	| SelectRange "r"
+	| SelectRecursive "A"
+	| SelectUnion "u"
+} representation keyed
 
-# A catch all for all types of selectors. They are split between recursive and
-# non-recursive ones as a recursive selector can't have another recursive
-# selector embedded
 type Selector union {
-  | SelectPath "selectPath"
-  | SelectArrayAll "selectArrayAll"
-  | SelectArrayPosition "selectArrayPosition"
-  | SelectArraySlice "selectArraySlice"
-  | SelectMapAll "selectMapAll"
-  | SelectRecursive "selectRecursive"
-} representation keyed
+	| SelectorComplex map
+	| SelectTrue bool
+} representation kinded
 
-# This is a subset of the selectors that can be used within a recursive selector
-type SelectorNonRecursive union {
-  | SelectPath "selectPath"
-  | SelectArrayAll "selectArrayAll"
-  | SelectArrayPosition "selectArrayPosition"
-  | SelectArraySlice "selectArraySlice"
-  | SelectMapAll "selectMapAll"
-} representation keyed
+# SelectTrue is a terminal selector which will not explore any more fields,
+# and marks the node it's applied to as a match.
+type SelectTrue bool
 
-# Paths are split into their individual segments
-type PathSegment String
-
-# Selects a specific path segment
-type SelectPath PathSegment
-
-# Selects all elements of an array, it's similar to a `/*`
-type SelectArrayAll Null
-
-# Selects a specific item from an array
-type SelectArrayPosition Int
-
-# Selects a slice of items out of an array
-type SelectArraySlice struct {
-  start optional Int
-  end optional Int
+# SelectAll considers all members of the data; think of it as similar to `./*`.
+type SelectAll struct {
+	next Selector (alias ":")
 }
 
-# Selects all keys one level deep, it's similar to a `/*`
-type SelectMapAll Null
+# SelectFields will explore each of the fields listed, and yields a distinct
+# selector for continuing to explore and match on each reached node.
+type SelectFields map {String:Selector}
 
-# Follow a selector recursively
+# SelectIndex considers a specific item in a list by its offset.
+type SelectIndex struct {
+	index Int (alias "i")
+	next Selector (alias ":")
+}
+
+# SelectRange considers each of the items in a range of positions in a list.
+type SelectRange struct {
+	start Int (alias "^")
+	end Int (alias "$")
+	next Selector (alias ":")
+}
+
+# SelectRecursive applies a selector to this node, then in addition traverses
+# to any nodes matched and applies itself again to that node.  A depth counter
+# is decremented with each recursion to ensure the process terminates.
 type SelectRecursive struct {
-  # Can be used to follow a more complex path, e.g. for UnixFSv1
-  follow [SelectorNonRecursive]
-  # Stop recursing after a certain amount of iterations
-  depthLimit optional Int
-  # Stop recursing once a specific CID is visited
-  cidLimit optional Cid
+	depthLimit Int (alias "d")
+	next Selector (alias ":")
+	cidLimit Link
 }
+
+# SelectUnion is a union of other selectors: if any of the selectors says
+# a node matches, it matches; and if any of the selectors return a selector
+# for a pathsegment, it'll be used; and if more than one selector returns
+# a selector for a pathsegment, a new union selector will be implicitly
+# generated during evaluation to carry all of them through.
+type SelectUnion list [Selector]
 ```

@@ -37,6 +37,22 @@
 				}
 			}
 		},
+		"TypeKind": {
+			"kind": "enum",
+			"members": {
+				"bool": null,
+				"string": null,
+				"bytes": null,
+				"int": null,
+				"float": null,
+				"map": null,
+				"list": null,
+				"link": null,
+				"union": null,
+				"struct": null,
+				"enum": null
+			}
+		},
 		"RepresentationKind": {
 			"kind": "enum",
 			"members": {
@@ -128,6 +144,13 @@
 				}
 			}
 		},
+		"TypeLink": {
+			"kind": "struct",
+			"fields": {},
+			"representation": {
+				"map": {}
+			}
+		},
 		"TypeUnion": {
 			"kind": "struct",
 			"fields": {
@@ -176,6 +199,9 @@
 						"valueType": "TypeName"
 					}
 				}
+			},
+			"representation": {
+				"map": {}
 			}
 		},
 		"UnionRepresentation_Inline": {
@@ -191,6 +217,9 @@
 						"valueType": "TypeName"
 					}
 				}
+			},
+			"representation": {
+				"map": {}
 			}
 		},
 		"TypeStruct": {

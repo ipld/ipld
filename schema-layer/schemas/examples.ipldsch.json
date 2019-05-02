@@ -10,35 +10,35 @@
 			"kind": "struct",
 			"fields": {
 				"fooField": {
-					"valueType": {
-						"type": "map",
+					"type": {
+						"kind": "map",
 						"keyType": "String",
 						"valueType": "String"
 					},
 					"optional": true
 				},
 				"barField": {
-					"valueType": {
-						"type": "map",
+					"type": {
+						"kind": "map",
 						"keyType": "String",
 						"valueType": "String"
 					},
 					"nullable": true
 				},
 				"bazField": {
-					"valueType": {
-						"type": "map",
+					"type": {
+						"kind": "map",
 						"keyType": "String",
 						"valueType": "String",
 						"valueNullable": true
 					}
 				},
 				"wozField": {
-					"valueType": {
-						"type": "map",
+					"type": {
+						"kind": "map",
 						"keyType": "String",
 						"valueType": {
-							"type": "list",
+							"kind": "list",
 							"valueType": "String",
 							"valueNullable": true
 						}

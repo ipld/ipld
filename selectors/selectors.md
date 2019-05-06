@@ -204,12 +204,12 @@ The shape of a block could look like this (in JSON):
 If you know you want five parents you could use Path Selectors:
 
 ```json
-{"selectFields":{"parent":
-	{"selectFields":{"parent":
-		{"selectFields":{"parent":
-			{"selectFields":{"parent":
-				{"selectFields":{"parent":
-					true}}}}}}}}}}
+{"explore": {"selectFields":{"parent":
+	{"explore": {"selectFields":{"parent":
+		{"explore": {"selectFields":{"parent":
+			{"explore": {"selectFields":{"parent":
+				{"explore": {"selectFields":{"parent":
+					{"match": true}}}}}}}}}}}}}}}}
 ```
 
 This selector matches the fivth-deepest "parent" (and in the context of
@@ -304,63 +304,69 @@ IPLD Schema
 -----------
 
 ```ipldsch
-# SelectorComplex is a grouping for most of the selectors, and is really just
-#  a helper for the Selector type, which introduces one more important selector
-#   to the group, but uses a different union representation to do so (for the
-#    sake of overall serial terseness).
-type SelectorComplex union {
-	| SelectAll "a"
-	| SelectFields "f" # n.b. "SelectPath" no longer exists: is a degenerate case of SelectFields.
-	| SelectIndex "i"
-	| SelectRange "r"
-	| SelectRecursive "A"
-	| SelectUnion "u"
+type Selector struct {
+	explore optional Explorer (alias ":")
+	matcher optional Matcher (alias ".")
+}
+
+type Explorer union {
+	| ExploreAll "a"
+	| ExploreFields "f" # "ExplorePath" no longer exists: is a degenerate case of ExploreFields.
+	| ExploreIndex "i"
+	| ExploreRange "r"
+	| ExploreRecursive "R"
+	| ExploreUnion "u"
 } representation keyed
 
-type Selector union {
-	| SelectorComplex map
-	| SelectTrue bool
-} representation kinded
-
-# SelectTrue is a terminal selector which will not explore any more fields,
-# and marks the node it's applied to as a match.
-type SelectTrue bool
-
-# SelectAll considers all members of the data; think of it as similar to `./*`.
-type SelectAll struct {
-	next Selector (alias ":")
+type ExploreAll struct {
+	next Selector (alias ">")
 }
 
-# SelectFields will explore each of the fields listed, and yields a distinct
-# selector for continuing to explore and match on each reached node.
-type SelectFields map {String:Selector}
+type ExploreFields struct {
+	fields {String:Selector} (alias "f>")
+}
 
-# SelectIndex considers a specific item in a list by its offset.
-type SelectIndex struct {
+type ExploreIndex struct {
 	index Int (alias "i")
-	next Selector (alias ":")
+	next Selector (alias ">")
 }
 
-# SelectRange considers each of the items in a range of positions in a list.
-type SelectRange struct {
+type ExploreRange struct {
 	start Int (alias "^")
 	end Int (alias "$")
-	next Selector (alias ":")
+	next Selector (alias ">")
 }
 
-# SelectRecursive applies a selector to this node, then in addition traverses
-# to any nodes matched and applies itself again to that node.  A depth counter
-# is decremented with each recursion to ensure the process terminates.
-type SelectRecursive struct {
-	depthLimit Int (alias "d")
-	next Selector (alias ":")
-	cidLimit Link
+// What this SHOULD be is: every time you start, or reach the end of an explore sequence,
+// you should apply the 'next' selector, AND reapply the explore sequence with decremented limit
+// (which is actually implemented by yielding a union of the 'next' selector and yourself again with that decrement).
+type ExploreRecursive struct {
+	maxDepth Int (alias "d")
+	explorationSequence [Explorer] (alias ":")
+	next Selector (alias ">")
+	limit Matcher # if a node matches, we won't match it nor explore its children.
 }
 
-# SelectUnion is a union of other selectors: if any of the selectors says
-# a node matches, it matches; and if any of the selectors return a selector
-# for a pathsegment, it'll be used; and if more than one selector returns
-# a selector for a pathsegment, a new union selector will be implicitly
-# generated during evaluation to carry all of them through.
-type SelectUnion list [Selector]
+type ExploreUnion list [Explorer] # OOH this gets weird.
+                                  # Surely each explorer shouldn't get to express its own include-this-node?
+                                  #  but why not?  tad impure, but... definable easily enough.
+                                  #   **it's the internal composable form that should get the trump here**
+                                  #
+                                  # I don't think the union is of Explorers at all :/
+                                  #  The recursive mode yielding two selectors... does that work?
+
+type Matcher union {
+	| MatchTrue bool
+	| MatcherComplex map
+} representation kinded
+
+type MatchTrue bool # schema bug: no syntax for clearly declaring bool-as-unit/true-only.
+                    #  interesting parallel: also can't handle zero-entry "keyed" union, which would be the other tersest option here.
+
+type MatcherComplex union {
+	# ??? not quite sure how far we want to let the cat out of the receptacle here tbh.
+	# having some sort sort of union type here gives us room to expand later.
+	# one simple example is a matcher which is true as long as a field is present;
+	# one deep end example is a string expression which is itself parsed as logic.
+} representation keyed
 ```

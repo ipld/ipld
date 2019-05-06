@@ -276,7 +276,6 @@ An example selector to get the full sub-DAG rooted at a certain CID:
 
 ```json
 {"selectRecursive": {
-  "depthLimit": 5,
   "next":
     {"selectFields":{"Links":
       {"selectAll":
@@ -292,7 +291,6 @@ If it's a file in some directory, you can also start at a deeper level:
   {"selectFields":{"some":
     {"selectFields":{"subdirectory":
       {"selectRecursive": {
-        "depthLimit": 5,
         "next":
           {"selectFields":{"Links":
             {"selectAll":

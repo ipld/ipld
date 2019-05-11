@@ -41,7 +41,20 @@ valid members by one -- see the "Cardinality Examples" table below.
 
 ### Optional Fields
 
-The `optional` modifier means that either the modified type
+The `optional` modifier means that either the modified type may be present,
+**or** it may be missing entirely in the data.  This is distinct from null:
+for example, in a map, optionality regards if the key is *missing*,
+in contrast to the key being present but with a value of null.
+
+The `optional` modifier is only valid on struct fields (and only for some
+representation strategies; structs represented as maps and structs represented
+as lists have slightly different optionality semantics (e.g. list-based
+representations may only allow optionals at the beginning and end of the list)).
+
+The presence of an `optional` modifier increases the cardinality of a field's
+valid members by one -- see the "Cardinality Examples" table below.
+
+The `optional` modifier may be stacked with the `nullable` modifier.
 
 ### Fields with Defaults
 

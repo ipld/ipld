@@ -6,7 +6,7 @@ A type at the Schema level must be mapped onto a representation expressible
 within the Data Model.
 
 For all Schema kinds which have equivalents at the Data Model level, there is
-a default representation.  The default representation this is, broadly speaking,
+a default representation.  The default representation is, broadly speaking,
 a no-op: a string remains a string, and a map is easy to enough to represent as,
 well, a map!
 
@@ -107,7 +107,7 @@ type TypeList struct {
 ### struct stringjoin representation example schema
 
 ```ipldsch
-## Fizzlebop is a pair of fields which serializes as "part1:part2" as a string.
+## Fizzlebop is a pair of fields which serializes as "value-of-a:value-of-b" as a string.
 type Fizzlebop struct {
 	a String
 	b String
@@ -202,7 +202,7 @@ match that type's representation kind or the schema is invalid.
 type MyEnvelopeUnion union {
 	| Foo "foo"
 	| Bar "bar"
-} representation kinded {
+} representation envelope {
 	discriminantKey "tag"
 	contentKey "msg"
 }
@@ -229,7 +229,7 @@ This data would also match, as the other type:
 type MyInlineUnion union {
 	| Foo "foo"
 	| Bar "bar"
-} representation kinded {
+} representation inline {
 	discriminantKey "tag"
 }
 

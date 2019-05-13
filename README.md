@@ -1,77 +1,77 @@
 IPLD Specifications
 ===================
 
-IPLD is not a single specification, it is a set of specifications.
+IPLD is not a single specification it is a set of specifications.
 
-```
-                                     The IPLD Stack
-
-           ┌───────────┐ ┌────────────────────────────────────┐
-           │           │ │                                    │
-           │    MFS    │ │       End-User Applications        │
-           │           │ │                                    │
-           ├───────────┤ ├─────────────────────────┬──────────┤            ┌───────────┐
-           │           │ │    Specialized Data     │          │            │           │
-           │ UnixFS v2 │ │ Structures & Utilities: │          │            │    MFS    │
-           │           │ │   VR, Geo, SQL, etc.    │          │            │           │
-           ├───────────┴─┴─────────────────────────┘          │            ├───────────┤
-           │                                                  │            │           │
-           │    Multi-block Collections: Maps, Sets, etc.     │            │ UnixFS v1 │
-           │                                                  │            │           │
-┌──────────┼──────────────────────────────────────────────────┼────────────┼───────────┤
-│          │                                                  │            │           │
-│          │            dag-json         dag-cbor             │  ipld-git  │           │
-│          │                                                  │            │           │
-│  Codecs  ├──────────────────────────────────────────────────┤  ipld-btc  │   dag-pb  │
-│          │                                                  │            │           │
-│          │                 IPLD Data Model                  │ ipld-zcash │           │
-│          │                                                  │            │           │
-└──────────┼──────────────────────────────────────────────────┴────────────┴───────────┤
-           │                                                                           │
-           │                           Block (CID, Raw Data)                           │
-           │                                                                           │
-           └───────────────────────────────────────────────────────────────────────────┘
-```
-
-The goal of this stack is to enable decentralized data-structures
+The goal of IPLD is to enable decentralized data-structures
 which in turn will enable more decentralized applications.
 
-Many of the specifications in this stack are inter-dependent.
+Many of the specifications in IPLD are inter-dependent.
+
+# IPLD Layer Model
+
+This layer model is a simplified heirarchy of IPLD concepts and requirements.
 
 ```
-                          IPLD Dependency Graph
-
-┌─────┐                           ┌────────────┐
-│ CID ├───────────┬───────────────> Raw Blocks │
-└─────┘           │               └─┬──────────┘
-          ┌───────v──────────────┐  │
-┌──────┐  │ Links (Conceptually) │  │
-│ Path │  └───────┬──────────────┘  │           ┌─────────────┐
-└──┬───┘          │                 ├───────────> Replication │
-   │              │                 │           └─────────────┘
-┌──v──────────────v─────────────────┴──────┐
-│                  Codecs                  │
-│  ┌─────┐   ┌───────────────────────────┐ │ ┌────────────────────────────┐
-│  │ Git │   │       Data Model v1       │ │ │  Multi-block Collections   │
-│  └─────┘   │ ┌──────────┐ ┌──────────┐ │ │ │ ┌────────────────────────┐ │
-│ ┌────────┐ │ │ dag-json │ │ dag-cbor │ ├─┼─> │    Specialized Data    │ │
-│ │  BTC   │ │ └──────────┘ └──────────┘ │ │ │ │ Structures & Utilities │ │
-│ └────────┘ └───────────────────────────┘ │ │ └────────────────────────┘ │
-│ ┌────────┐ ┌────────┐                    │ └───┬─────────┬──────────────┘
-│ │ Zcash  │ │ dag-pb │                    │     │         │
-│ └────────┘ └────────┘                    │     │         │
-└──────────────────────────────────────────┘     │         │
-                                                 │         │
-               ┌──────────────────────┐          │         │
-               │ File System (UnixFS) <──────────┘         │
-               └──────────────────────┘                    │
-               ┌───────────────────────┐                   │
-               │ End-User Applications <───────────────────┘
-               └───────────────────────┘
-
+┌──────────────────────────────────────────────────┐
+│                                                  │ 
+│                   Schema Layer                   │
+│ (advanced types for multi-block data structures) │
+│                                                  │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│                 Data Model Layer                 │
+│  (basic types for single-block data structures)  │
+│                                                  │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│                   Block Layer                    │
+│               (cid, data, codec)                 │           
+│                                                  │
+└──────────────────────────────────────────────────┘
 ```
 
-## Specification Repo Layout
+## Block Layer (Layer 0)
+
+The block layer encompasses all content addressed block formats and specifies how blocks
+are addressed,how they self-describe their codec for encoding/decoding, and how blocks link
+between each other.
+
+This layer alone is enough to accomplish basic graph replication across a variety of formats (eth, bitcoin, git, 
+dag-pb, dag-cbor, etc).
+
+This layer does not define data structures or types, although many codecs may convert these formats into native types,
+there are no type requirements or assurances about types at the block layer.
+
+## Data Model Layer (Layer 1)
+
+The Data Model Layer describes a set of base required types to be implemented by a subset of IPLD codecs.
+
+With these basic types authors can create various single-block data structures which can be read with predictable
+paths and selectors.
+
+With just the data model layer, several data structures can be authored and put into a single block. These data 
+structures can also link to one another, but a *single* collection (Map or List) cannot be spread across many
+blocks with only the Data Model.
+
+Since different systems and transports may impose block size limits (often 2mb or more) in order to control memory usage,
+larger collections need to be sharded over many blocks at the Schema Layer.
+
+## Schema Layer (Layer 2)
+
+IPLD Schemas define a mapping from the Data Model Layer (Layer 1) to
+instantiated data structures comprising complex layouts. The Schema Layer
+adds the ability to extend the IPLD Data Model to the wide variety of types
+required for typical programatic interaction with a data source without the
+need to implement custom translation abstractions.
+
+The Schema Layer will also serve as an enabling layer for complex multi-block
+data structures by providing stability and consistency of data model use within
+individual blocks and defined interaction points for the logic required for
+building and interacting with advanced data layouts, such as multi-block Maps,
+Lists and Sets.
+
+# Specification Repo Layout
 
 * [/IPLD-Data-Model-v1.md](/IPLD-Data-Model-v1.md)
 * [/IPLD-Path.md](/IPLD-Path.md)

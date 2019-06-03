@@ -28,7 +28,7 @@ Features
 Well-understood basics (sum types, product types, some specific recursive types):
 
 - typed maps (e.g. `{Foo:Bar}`)
-- typed arrays (e.g. `[Foo]`)
+- typed lists (e.g. `[Foo]`)
 - typedef'd primitives (e.g. `type Foo int`)
 - structs (e.g. `struct{ f Foo; b Bar }`)
 - discriminated unions (several styles)

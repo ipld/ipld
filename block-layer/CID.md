@@ -1,10 +1,34 @@
-# CIDv1
+# Specification: CIDs
 
-# Content IDs
+**Status: Descriptive - Final**
 
-This document will use the words Content IDs or CIDs.
+This document will use the words "Content IDs" or "CIDs" interchangeably.
 
-Prior base58 multihash links to protobuf data be called CID Version 0.
+Prior Base58 Multihash links to Protobuf data is referred to as CID Version 0.
+
+## Summary
+
+A CID is a hash-based content identifier. Includes the `codec` and `multihash`.
+
+```
++-------+------------------------------+
+| Codec | Multihash                    |
++-------+------------------------------+
+```
+
+The long version:
+
+```
++------------------------------+
+|Codec                         |
++------------------------------+
+|Multihash                     |
+| +----------+---------------+ |
+| |Hash Type | Hash Value    | |
+| +----------+---------------+ |
+|                              |
++------------------------------+
+```
 
 ## CIDs Version 1
 

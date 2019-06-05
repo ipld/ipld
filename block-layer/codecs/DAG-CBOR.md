@@ -1,8 +1,10 @@
-# [WIP] DagCBOR Spec
+# Specification: DAG-CBOR
 
-DAG-CBOR supports the full ["IPLD Data Model v1."](../IPLD-Data-Model-v1.md)
+**Status: Descriptive - Final**
 
-CBOR already natively supports all ["IPLD Data Model v1: Simple Types."](../IPLD-Data-Model-v1.md#simple-types)
+DAG-CBOR supports the full [IPLD Data Model](../data-model-layer/data-model.md).
+
+CBOR already natively supports all [IPLD Data Model Kinds](../data-model-layer/data-model.md#kinds).
 
 ## Format
 

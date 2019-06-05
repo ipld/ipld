@@ -1,6 +1,8 @@
-# [WIP] DAG-JSON v1
+# Specification: DAG-JSON
 
-DAG-JSON supports the full ["IPLD Data Model v1."](../IPLD-Data-Model-v1.md)
+**Status: Descriptive - Final**
+
+DAG-JSON supports the full [IPLD Data Model](../data-model-layer/data-model.md).
 
 ## Format
 

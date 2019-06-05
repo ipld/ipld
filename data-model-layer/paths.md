@@ -1,13 +1,19 @@
-# [WIP] IPLD Path v1
+# Specification: IPLD Paths
 
-An IPLD Path is a string identifier used for deep references into IPLD
-graphs.
+**Status: Descriptive - Draft**
+
+## Summary
+
+An IPLD "Path" is a string identifier used for deep references into IPLD graphs.
+Paths follow similar escape and segmentation rules as URI paths.
+
+An IPLD Path is a string identifier used for deep references into IPLD graphs.
 
 IPLD Path's are constructed following the same constraints as [URI Paths](https://tools.ietf.org/html/rfc3986#section-3.3).
 
 Similarly, the string `?` is reserved for future use as a query separator.
 
-# Path Resolution
+## Path Resolution
 
 Path resolution is broken into two parts: full path resolution and block level resolution.
 

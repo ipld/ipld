@@ -1,4 +1,3 @@
-
 Kinds and their Representations
 -------------------------------
 

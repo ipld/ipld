@@ -1,4 +1,6 @@
-# IPLD Selectors
+# Specification: IPLD Selectors
+
+**Status: Prescriptive - Draft**
 
 This document is a designdoc for IPLD Selectors.
 

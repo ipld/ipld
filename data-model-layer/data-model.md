@@ -1,5 +1,6 @@
-IPLD Data Model
-===============
+# Specification: IPLD Data Model
+
+**Status: Descriptive - Draft**
 
 The IPLD Data Model is a core part of the IPLD specification,
 which describes what data is representable in IPLD --

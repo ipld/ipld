@@ -1,4 +1,6 @@
-# graphsync
+# Graphsync
+
+**Status: Prescriptive - Draft**
 
 A protocol to synchronize graphs across peers.
 

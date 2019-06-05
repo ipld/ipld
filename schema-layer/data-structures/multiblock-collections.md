@@ -1,4 +1,4 @@
-# IPLD Multi-block Collections
+# Concept: IPLD Multi-block Collections
 
 Organizing IPLD data into usable, efficient, complex collections spanning many blocks aimed for use by end-user applications.
 

@@ -1,0 +1,415 @@
+## -----
+## This is the schema describing the schema declarations for IPLD Schemas.
+## Yes, it's self-describing! :)
+## -----
+
+## Type names are a simple alias of string.
+##
+## There are some additional rules that should be applied:
+##   - Type names should by convention begin with a capital letter;
+##   - Type names must be all printable characters (no whitespace);
+##   - Type names must not contain punctuation (dashes, dots, etc).
+##
+## Type names are strings meant for human consumption at a local scope.
+## When making a Schema, note that the TypeName is the key of the map:
+## a TypeName must be unique within the Schema.
+##
+type TypeName string
+
+## SchemaMap is a complete set of types;
+## it is simply a map of TypeName to detailed declaration of that Type.
+##
+## A simple schema map with one type might look like this:
+##
+## ```
+## {
+##   "MyFooType": {
+##     "type": "string"
+##   }
+## }
+## ```
+##
+type SchemaMap map {TypeName:Type}
+
+## Schema is a single-member union, which can be used in serialization
+## to make a form of "nominative type declaration".
+##
+## A complete (if quite short) Schema might look like this:
+##
+## ```
+## {
+##   "schema": {
+##     "MyFooType": {
+##       "type": "string"
+##     }
+##   }
+## }
+## ```
+##
+type Schema union {
+	| SchemaMap "schema"
+} representation keyed
+
+## The types of Type are a union.
+##
+## The Type union is serialized using "inline" union representation,
+## which means all of its members have map representations, and there will be
+## an entry in that map called "type" which contains the union discriminator.
+##
+## Some of the kinds of type are so simple the union discriminator is the only
+## content at all, e.g. strings:
+##
+## ```
+## {
+##   "type": "string"
+## }
+## ```
+##
+## Other types have more content.  Consider this example of a map type:
+##
+## ```
+## {
+##   "type": "map",
+##   "keyType": "String",
+##   "valueType": "Int"
+## }
+## ```
+##
+type Type union {
+	| TypeBool "bool"
+	| TypeString "string"
+	| TypeBytes "bytes"
+	| TypeInt "int"
+	| TypeFloat "float"
+	| TypeMap "map"
+	| TypeList "list"
+	| TypeLink "link"
+	| TypeUnion "union"
+	| TypeStruct "struct"
+	| TypeEnum "enum"
+} representation inline "kind"
+
+## TypeKind enumerates all the major kinds of type.
+## Notice this enum's members are the same as the set of strings used as
+## discriminants in the Type union.
+##
+## TODO: not actually sure we'll need to declare this.  Only usage is
+## in the Type union representation details?
+type TypeKind enum {
+	| "bool"
+	| "string"
+	| "bytes"
+	| "int"
+	| "float"
+	| "map"
+	| "list"
+	| "link"
+	| "union"
+	| "struct"
+	| "enum"
+}
+
+## RepresentationKind is similar to TypeKind, but includes only those concepts
+## which exist at the IPLD *Data Model* level.
+##
+## In other words, structs, unions, and enumerations are not present:
+## those concepts are introduced in the IPLD Schema system, and when serialized,
+## all of them must be transformable to one of these representation kinds
+## (e.g. a "struct" TypeKind will usually be transformed to a "map"
+## RepresentationKind; "enum" TypeKind are always "string" RepresentationKind;
+## and so on.)
+##
+## RepresentationKind strings are sometimes used to to indicate part of the
+## definition in the details of Type; for example, they're used describing
+## some of the detailed behaviors of a "kinded"-style union type.
+type RepresentationKind enum {
+	| "bool"
+	| "string"
+	| "bytes"
+	| "int"
+	| "float"
+	| "map"
+	| "list"
+	| "link"
+}
+
+## TypeBool describes a simple boolean type.
+## It has no details.
+##
+type TypeBool struct {}
+
+## TypeString describes a simple string type.
+## It has no details.
+##
+type TypeString struct {}
+
+## TypeBytes describes a simple byte array type.
+## It has no details.
+##
+type TypeBytes struct {}
+
+## TypeInt describes a simple integer numeric type.
+## It has no details.
+##
+type TypeInt struct {}
+
+## TypeFloat describes a simple floating point numeric type.
+## It has no details.
+##
+type TypeFloat struct {}
+
+## TypeMap describes a key-value map.
+## The keys and values of the map have some specific type of their own.
+##
+type TypeMap struct {
+	keyType TypeName # additionally, the referenced type must be reprkind==string.
+	valueType TypeTerm
+	valueNullable Bool
+} representation map {
+	field valueNullable default "false"
+}
+
+## TypeList describes a list.
+## The values of the list have some specific type of their own.
+##
+type TypeList struct {
+	valueType TypeTerm
+	valueNullable Bool
+} representation map {
+	field valueNullable default "false"
+}
+
+## TypeLink describes a hash linking to another object (a CID).
+##
+## REVIEW: this currently has no details... but possibly it should have a
+## type hint for what we expect when resolving the link?
+##
+type TypeLink struct {}
+
+## TypeUnion describes a union (sometimes called a "sum type", or
+## more verbosely, a "discriminated union").
+## A union is a type that can have a value of several different types, but
+## unlike maps or structs, in a union only one of those values may be present
+## at a time.
+##
+## Unions can be defined as representing in several different ways: see
+## the documentation on the UnionRepresentation type for details.
+##
+## The set of types which the union can contain are specified in a map
+## inside the representation field.  (The key type of the map varies per
+## representation strategy, so it's not possible to keep on this type directly.)
+##
+type TypeUnion struct {
+	representation UnionRepresentation
+}
+
+## UnionRepresentation is a union of all the distinct ways a TypeUnion's values
+## can be mapped onto a serialized format for the IPLD Data Model.
+##
+## There are "keyed", "envelop", and "inline" strategies, which are all ways
+## to produce representations in a map format (some literature may describe
+## this as "tagged" style unions), and a fourth style, "kinded" unions, may
+## actually encode itself as any of the other representation kinds!
+##
+## Note: Unions can be used to produce a "nominative" style of type declarations
+## -- yes, even given that IPLD Schema systems are natively "structural" typing!
+##
+type UnionRepresentation union {
+	| UnionRepresentation_Kinded "kinded"
+	| UnionRepresentation_Keyed "keyed"
+	| UnionRepresentation_Envelope "envelope"
+	| UnionRepresentation_Inline "inline"
+} representation keyed
+
+## "Kinded" union representations describe a bidirectional mapping between
+## a RepresentationKind and a Type (referenced by name) which should be the
+## union member decoded when one sees this RepresentationKind.
+##
+## The referenced type must of course produce the RepresentationKind it's
+## matched with!
+type UnionRepresentation_Kinded map {RepresentationKind:TypeName}
+
+## "Keyed" union representations will encode as a map, where the map has
+## exactly one entry, the key string of which will be used to look up the name
+## of the Type; and the value should be the content, and be of that Type.
+##
+## Note: when writing a new protocol, it may be wise to prefer keyed unions
+## over the other styles wherever possible; keyed unions tend to have good
+## performance characteristics, as they have most "mechanical sympathy" with
+## parsing and deserialization implementation order.
+type UnionRepresentation_Keyed map {String:TypeName}
+
+## "Envelope" union representations will encode as a map, where the map has
+## exactly two entries: the two keys should be of the exact strings specified
+## for this envelope representation.  The value for the discriminator key
+## should be one of the strings in the discriminant table.  The value for
+## the content key should be the content, and be of the Type matching the
+## lookup in the discriminant table.
+type UnionRepresentation_Envelope struct {
+	discriminatorKey String
+	contentKey String
+	discriminantTable {String:TypeName}
+}
+
+## "Inline" union representations require that all of their members encode
+## as a map, and encode their type info into the same map as the member data.
+## Thus, the map for an inline union may have any number of entries: it is
+## however many fields the member value has, plus one (for the discriminant).
+##
+## All members of an inline union must be struct types and must encode to
+## the map RepresentationKind.  Other types which encode to map (such as map
+## types themselves!) cannot be used: the potential for content values with
+## with keys overlapping with the discriminatorKey would result in undefined
+## behavior!  Similarly, the member struct types may not have fields which
+## have names that collide with the discriminatorKey.
+##
+## When designing a new protocol, use inline unions sparringly; despite
+## appearing simple, they have the most edge cases of any kind of union
+## representation, and their implementation is generally the most complex and
+## is difficult to optimize deserialization to support.
+type UnionRepresentation_Inline struct {
+	discriminatorKey String
+	discriminantTable {String:TypeName}
+}
+
+## TypeStruct describes a type which has a group of fields of varying Type.
+## Each field has a name, which is used to access its value, similarly to
+## accessing values in a map.
+##
+## The most typical representation of a struct is as a map, in which case field
+## names also serve as the the map keys (though this is a default, and details
+## of this representation may be configured; and other representation strategies
+## also exist).
+##
+type TypeStruct struct {
+	fields {String:StructField}
+	representation StructRepresentation
+}
+
+## StructField describes the properties of each field declared by a TypeStruct.
+##
+## StructField contains properties similar to TypeMap -- namely, it describes
+## a content type (as a TypeTerm -- it supports inline definitions) -- and
+## has a boolean property for whether or not the value is permitted to be null.
+##
+## In addition, StructField also has a property called "optional".
+## An "optional" field is one which is permitted to be absent entirely.
+## This is distinct from "nullable": a field can be optional=false and
+## nullable=true, in which case it's an error if the key is missing entirely,
+## but null is of course valid.  Conversely, if a field is optional=true and
+## nullable=false, it's an error if the field is present and assigned null, but
+## fine for a map to be missing a key of the field's name entirely and still be
+## recognized as this struct.
+## (The specific behavior of optionals may vary per StructRepresentation.)
+##
+## Note that the 'optional' and 'nullable' properties are not themselves
+## optional... however, in the IPLD serial representation of schemas, you'll
+## often see them absent from the map encoding a StructField.  This is because
+## these fields are specified to have a *default* of false.
+## Defaults in a map representation of a struct mean that those entries may
+## be missing from the map encoding... but unlike with "optional" fields, there
+## is no "undefined" value; absense is simply interpreted as the default.
+## (With default fields, an explicitly encoded default value is actually an
+## error instead!)  "Optional" fields give rise to N+1 cardinality logic,
+## just like "nullable" fields; "default" fields *do not*.
+##
+type StructField struct {
+	type TypeTerm
+	optional Bool
+	nullable Bool
+} representation map {
+	field optional default "false"
+	field nullable default "false"
+}
+
+## TypeTerm is a union of either TypeName or an InlineDefn. th It's used for the
+## value type in the recursive types (maps, lists, and the fields of structs),
+## which allows the use of InlineDefn in any of those positions.
+##
+## TypeTerm is simply a TypeName if the kind of data is a string; this is the
+## simple case.
+##
+## Note that TypeTerm isn't used to describe *keys* in the recursive types that
+## have them (maps, structs) -- recursive types in keys would not lend itself
+## well to serialization!
+## TypeTerm also isn't used to describe members in Unions -- this is a choice
+## aimed to limit syntactical complexity (both at type definition authoring
+## time, as well as for the sake of error messaging during typechecking).
+##
+type TypeTerm union {
+	| TypeName string
+	| InlineDefn map
+} representation kinded
+
+## InlineDefn represents a declaration of an anonymous type of one of the simple
+## recursive kinds (e.g. map or list) which is found "inline" in another type's
+## definition.  It's the more complex option of the TypeTerm union.
+##
+## Note that the representation of this union -- `representation inline "kind"`
+## -- as well as the keywords for its members -- align exactly with those
+## in the Type union.  Technically, this isn't a necessary property (in that
+## nothing would break if that sameness was violated) but it's awfully nice for
+## sanity; what we're saying here is that the representation of the types in an
+## InlineDefn should look *exactly the same* as the top-level Types... it's just
+## that we're restricted to a subset of the members.
+##
+type InlineDefn union {
+	| TypeMap "map"
+	| TypeList "list"
+} representation inline "kind"
+
+## StructRepresentation describes how a struct type should be mapped onto
+## its IPLD Data Model representation.  Typically, maps are the representation
+## kind, but other kinds and details can be configured.
+type StructRepresentation union {
+	| StructRepresentation_Map "map"
+	| StructRepresentation_Tuple "tuple"
+} representation keyed
+
+## StructRepresentation_Map describes a way to map a struct type onto a map
+## representation.  For example, fields may be aliased,
+## or default values associated.
+type StructRepresentation_Map struct {
+	fields optional {String:StructRepresentation_Map_FieldDetails}
+}
+## StructRepresentation_Map_FieldDetails describes additional properties of a
+## struct field when represented as a map.  For example, fields may be aliased,
+## or default values associated.
+##
+## If a default value is defined, then during marshalling, if the actual value
+## is the default value, that field will be omitted from the map; and during
+## unmarshalling, correspondingly, the absense of that field will be interpreted
+## as being the default value.
+##
+## Note that fields with defaults are distinct from fields which are optional!
+## The cardinality of membership of an optional field is is incremented:
+## e.g., the cardinality of "fieldname Bool" is 2; "fieldname optional Bool" is
+## membership cardinality *3*, because it may also be undefined.
+## By contrast, the cardinality of membership of a field with a default value
+## remains unchanged; there is serial state which can map to an undefined value.
+##
+## Note that 'alias' supports exactly one string, and not a list: this is
+## intentional.  The alias feature is meant to allow serial representations
+## to use a different key string than the schema type definition field name;
+## it is not intented to be used for migration purposes.
+##
+type StructRepresentation_Map_FieldDetails struct {
+	alias optional String
+	default optional Any # Review: may be better to introduce a small kinded union here which has the essential scalars as members.
+}
+
+## StructRepresentation_Tuple describes a way to map a struct type into a list
+## representation.
+##
+## Tuple representations are less flexible than map representations:
+## field order can be specified in order to override the order defined
+## in the type, but optionals and defaults are not (currently) supported.
+type StructRepresentation_Tuple struct {
+	fieldOrder optional [String]
+}
+
+## TypeEnum describes a type which has a known, pre-defined set of possible
+## values.  Each of the values must be representable a string.
+type TypeEnum struct {
+	members {String:Null}
+}

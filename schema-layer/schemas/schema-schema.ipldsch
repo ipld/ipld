@@ -29,7 +29,7 @@ type TypeName string
 ## }
 ## ```
 ##
-type SchemaMap map {TypeName:Type}
+type SchemaMap {TypeName:Type}
 
 ## Schema is a single-member union, which can be used in serialization
 ## to make a form of "nominative type declaration".
@@ -227,7 +227,7 @@ type UnionRepresentation union {
 ##
 ## The referenced type must of course produce the RepresentationKind it's
 ## matched with!
-type UnionRepresentation_Kinded map {RepresentationKind:TypeName}
+type UnionRepresentation_Kinded {RepresentationKind:TypeName}
 
 ## "Keyed" union representations will encode as a map, where the map has
 ## exactly one entry, the key string of which will be used to look up the name
@@ -237,7 +237,7 @@ type UnionRepresentation_Kinded map {RepresentationKind:TypeName}
 ## over the other styles wherever possible; keyed unions tend to have good
 ## performance characteristics, as they have most "mechanical sympathy" with
 ## parsing and deserialization implementation order.
-type UnionRepresentation_Keyed map {String:TypeName}
+type UnionRepresentation_Keyed {String:TypeName}
 
 ## "Envelope" union representations will encode as a map, where the map has
 ## exactly two entries: the two keys should be of the exact strings specified

@@ -124,6 +124,7 @@ Specifications:
 
  * Exploratory Stage
    * Authors can merge changes into exploratory specifications at their own discretion
+   * Exploratory specifications live in the `exploratory` directory until they reach the draft stage.
  * Draft Stage
    * Authors must attempt to reach a consensus between all active participants before a merge
    * If no objections are raised in a 48 hours period changes can be merged

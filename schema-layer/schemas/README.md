@@ -1,6 +1,6 @@
 # Specification: IPLD Schemas
 
-**Status: Prescriptive - Exploratory**
+**Status: Prescriptive - Draft**
 
 IPLD Schemas, currently under heavy development, are intended to make developing decentralized & distributed applications easier, clearer, and more robust.
 

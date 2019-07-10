@@ -67,8 +67,31 @@ representation strategies.
 
 ### struct map representation
 
-(TODO mostly interesting because defaults)
-(which maybe we should discuss more in the Kinds page?  belongs with nullable, optional, and other cardinality talk.)
+Map representation of structs means that the struct is represented as a map,
+where the keys are the names of the struct fields.  This is a common and
+natural way to represent structs; it's thus their default representation.
+
+#### struct map representation example
+
+```ipldsch
+type Foo struct {
+	fieldOne String
+	fieldTwo Bool
+} representation map
+```
+
+Note that sense "map" is the *default* representation for structs, the
+"`representation map`" clause at the end could have simply been elided.
+
+Some data matching the `Foo` struct (shown as JSON) is:
+
+```json
+{
+	"fieldOne": "this is field one",
+	"fieldTwo": true
+}
+```
+
 
 ### struct tuple representation
 
@@ -82,28 +105,27 @@ in the way of "self-describing" information, tuple representations can make for
 very fragile protocols, increase the difficulty of migrations, and make
 serialized data incomprehensible without the schema information in hand.
 
-### struct map representation example schema with defaults
+#### struct tuple representation example
 
 ```ipldsch
-type TypeList struct {
-	valueType TypeTerm
-	valueNullable Bool
-} representation map {
-	field valueNullable default "false"
-}
+type Foo struct {
+	fieldOne String
+	fieldTwo Bool
+} representation tuiple
 ```
 
-#### struct tuple representation example schema
-
-```ipldsch
-```
-
-#### struct tuple representation example data
+Some data matching the `Foo` struct (shown as JSON) is:
 
 ```json
+["this is field one", true]
 ```
 
-### struct stringjoin representation example schema
+Notice how this is the same data as in the
+[struct map representation example](#struct-map-representation-example);
+it's just much more compact than it was in the map representation (and
+beware -- correspondingly less self-describing!).
+
+#### struct stringjoin representation example
 
 ```ipldsch
 ## Fizzlebop is a pair of fields which serializes as "value-of-a:value-of-b" as a string.
@@ -115,7 +137,16 @@ type Fizzlebop struct {
 }
 ```
 
-### map stringpairs representation example
+Some data matching the `Fizzlebop` struct (shown as JSON) is:
+
+```json
+"value-of-a:value-of-b"
+```
+
+Since this is a struct, and none of the fields are optional, it *must* have two fields:
+therefore, a string with no `":"` characters would be rejected as not matching.
+
+#### map stringpairs representation example
 
 Say we're doing something awfully like the mount options in an /etc/fstab file:
 
@@ -129,7 +160,13 @@ type MountOptions map {String:String} representation stringpairs {
 }
 ```
 
-### union keyed representation example
+Some data matching the `MountOptions` struct (shown as JSON) is:
+
+```json
+"keys=values,serialized=thusly"
+```
+
+#### union keyed representation example
 
 ```ipldsch
 type MyKeyedUnion union {
@@ -153,7 +190,7 @@ This data would also match, as the other type:
 {"bar": 12}
 ```
 
-### union kinded representation example
+#### union kinded representation example
 
 ```ipldsch
 type MyKindedUnion union {
@@ -195,7 +232,7 @@ Note that the kinds valid in a kinded union are all Data Model-layer
 `struct` is not.  The kind that a union member type is tagged with must
 match that type's representation kind or the schema is invalid.
 
-### union envelope representation example
+#### union envelope representation example
 
 ```ipldsch
 type MyEnvelopeUnion union {
@@ -222,7 +259,7 @@ This data would also match, as the other type:
 {"tag":"bar", "msg":12}
 ```
 
-### union inline representation example
+#### union inline representation example
 
 ```ipldsch
 type MyInlineUnion union {

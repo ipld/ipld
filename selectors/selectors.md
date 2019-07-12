@@ -296,7 +296,7 @@ type Selector union {
 ## ExploreAll is similar to a `*` -- it traverses all elements of an array,
 ## or all entries in a map, and applies a next selector to the reached nodes.
 type ExploreAll struct {
-	next Selector (alias ">")
+	next Selector (rename ">")
 }
 
 ## ExploreFields traverses named fields in a map (or equivalently, struct, if
@@ -307,22 +307,22 @@ type ExploreAll struct {
 ## as a set of three nexted ExploreFields selectors, each specifying one field.
 ## (For this reason, we don't have a special "ExplorePath" feature; use this.)
 type ExploreFields struct {
-	fields {String:Selector} (alias "f>")
+	fields {String:Selector} (rename "f>")
 }
 
 ## ExploreIndex traverses a specific index in a list, and applies a next
 ## selector to the reached node.
 type ExploreIndex struct {
-	index Int (alias "i")
-	next Selector (alias ">")
+	index Int (rename "i")
+	next Selector (rename ">")
 }
 
 ## ExploreIndex traverses a list, and for each element in the range specified,
 ## will apply a next selector to those reached nodes.
 type ExploreRange struct {
-	start Int (alias "^")
-	end Int (alias "$")
-	next Selector (alias ">")
+	start Int (rename "^")
+	end Int (rename "$")
+	next Selector (rename ">")
 }
 
 ## ExploreRecursive traverses some structure using fragments of another
@@ -335,9 +335,9 @@ type ExploreRange struct {
 ## Be careful when using ExploreRecursive with a large maxDepth parameter;
 ## it can easily cause very large traversals.
 type ExploreRecursive struct {
-	sequence Selector (alias ":>")
-	maxDepth Int (alias "d")
-	stopAt Condition (alias "!") # if a node matches, we won't match it nor explore its children.
+	sequence Selector (rename ":>")
+	maxDepth Int (rename "d")
+	stopAt Condition (rename "!") # if a node matches, we won't match it nor explore its children.
 }
 
 ## ExploreRecursiveEdge is a special sentinel value which is used to mark
@@ -364,8 +364,8 @@ type ExploreUnion list [Selector]
 ## whereas a Matcher with a Condition may look deeper to make its decision,
 ## but returns a match for the node it's on rather any of the deeper values.
 type ExploreConditional struct {
-	condition Condition (alias "&")
-	next Selector (alias ">")
+	condition Condition (rename "&")
+	next Selector (rename ">")
 }
 
 ## Matcher marks a node to be included in the "result" set.

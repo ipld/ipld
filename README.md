@@ -49,7 +49,7 @@ This layer does not define data structures or types, although many codecs may co
 | [Specification: CIDs](block-layer/CID.md) | [block-layer/CID.md](block-layer/CID.md) |
 | [Specification: DAG-CBOR](block-layer/codecs/DAG-CBOR.md) | [block-layer/codecs/DAG-CBOR.md](block-layer/codecs/DAG-CBOR.md) |
 | [Specification: DAG-JSON](block-layer/codecs/DAG-JSON.md) | [block-layer/codecs/DAG-JSON.md](block-layer/codecs/DAG-JSON.md) |
-| [Specification: IPLD Selectors](block-layer/selectors/selectors.md) | [block-layer/selectors/selectors.md](block-layer/selectors/selectors.md) |
+| [Specification: IPLD Selectors](selectors/selectors.md) | [selectors/selectors.md](selectors/selectors.md) |
 | [Specification: Graphsync](block-layer/graphsync/graphsync.md) | [block-layer/graphsync/graphsync.md](block-layer/graphsync/graphsync.md) |
 
 ### Data Model Layer (Layer 1)

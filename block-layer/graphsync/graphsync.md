@@ -4,7 +4,7 @@
 
 A protocol to synchronize graphs across peers.
 
-See also [ipld](../IPLD.md), [IPLD Selectors](../selectors/selectors.md)
+See also [ipld](../IPLD.md), [IPLD Selectors](../../selectors/selectors.md)
 
 ## [Meta: Status of this doc]
 

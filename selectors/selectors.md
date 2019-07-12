@@ -6,16 +6,11 @@ This document is a designdoc for IPLD Selectors.
 
 ## [Meta: Status of this doc]
 
-- This was written around 2018-10-16 ([video presentation](https://drive.google.com/file/d/1NbbVxZQFKXwW6mdodxgTaftsI8eID-c1/view))
-- It narrows down the decision space enough to make significant progress.
-- good enough for trying out an implementation to learn more and make choices.
-- But it is not complete.
-- some choices that need to be made:
-  - [ ] select general binary and string format structure for selectors. (options given here)
-  - [ ] binary and string formats for each selector. doesn't have to be here.
-  - [ ] whether to dump all selector codes into multicodec table, or one code.
-  - [ ] which S expression selector variant to use (may be out of scope for this doc)
-- more prose here may help implementors.
+- Much of the problem definition was was written around 2018-10-16 ([video presentation](https://drive.google.com/file/d/1NbbVxZQFKXwW6mdodxgTaftsI8eID-c1/view))
+  - It narrows down the decision space enough to make significant progress.
+  - But it is not complete.
+- More concrete proposals for selector implementations (circa 2019-06) can be seen later in the doc.
+  - Particularly, in the [Schema](#schema) section.
 
 ## Motivation - what are Selectors?
 
@@ -115,46 +110,14 @@ These components imply or expand into the following things:
 Selector types
 --------------
 
-### Fields Selector
-
-Selects each of a set of path segments.
-
-(If only a single path segment is specified, this can be called a "Path Selector", but it's the same thing.)
-
-
-### Path Selector
-
-Selects a single path segment.
-
-Path selectors are a common pattern of usage, but not a specific feature in the selector spec --
-it's a degenerate case of a Fields Selector which happens to select only a single field.
-
-
-### All Selector
-
-Selects every field or index in a map or list.
-
-
-### Range Selector
-
-Selects a slice or single item of a list of items.
-
-
-### Recursive Selector
-
-Uses another Selector to select things recursively. It also takes a limit on how often this recursion should happen (the limit can be set to "infinity" to keep traversing until there are no matching paths left.
-
-The recursion may also be stopped by a given CID.
-
-
-### CID Selector
-
-There is no CID selector.  Asking for a specific CID doesn't involve any traversal; it's just asking for a node itself.  No selectors are necessary to ask for data by CID.
-
+See [Schema](#schema) section below.
 
 
 Use cases
 ---------
+
+WARN: not all of these examples have been updated recently.
+If in conflict, the [Schema](#schema) is more canonical, and the example in this section is out of date.
 
 ### Deeply nested path
 
@@ -302,67 +265,168 @@ If it's a file in some directory, you can also start at a deeper level:
 }}}}}}
 ```
 
-IPLD Schema
------------
+Schema
+------
+
+This code block describes selectors using [IPLD Schemas](../schema-layer/schemas) syntax.
 
 ```ipldsch
-# SelectorComplex is a grouping for most of the selectors, and is really just
-#  a helper for the Selector type, which introduces one more important selector
-#   to the group, but uses a different union representation to do so (for the
-#    sake of overall serial terseness).
-type SelectorComplex union {
-	| SelectAll "a"
-	| SelectFields "f" # n.b. "SelectPath" no longer exists: is a degenerate case of SelectFields.
-	| SelectIndex "i"
-	| SelectRange "r"
-	| SelectRecursive "A"
-	| SelectUnion "u"
+## SelectorEnvelope is the recommended top-level value for serialized messages
+## that don't have established existing context with marks the start of a selector:
+## it's a single-member union used to kick us towards "nominative typing".
+##
+## See https://github.com/ipld/go-ipld-prime/blob/0692e3b8cd7f231fe5d9d16a103bbbacb23dbdb5/doc/schema.md#using-schema-match-checking-as-version-detection
+## for a background on the theory behind this gentle-nominative concept.
+type SelectorEnvelope union {
+	| Selector "selector"
 } representation keyed
 
 type Selector union {
-	| SelectorComplex map
-	| SelectTrue bool
-} representation kinded
+	| Matcher "."
+	| ExploreAll "a"
+	| ExploreFields "f" # note "ExplorePath" is a degenerate case of ExploreFields.
+	| ExploreIndex "i"
+	| ExploreRange "r"
+	| ExploreRecursive "R"
+	| ExploreUnion "|"
+	| ExploreConditional "&"
+	| ExploreRecursiveEdge "@" # sentinel value; only valid in some positions.
+} representation keyed
 
-# SelectTrue is a terminal selector which will not explore any more fields,
-# and marks the node it's applied to as a match.
-type SelectTrue bool
-
-# SelectAll considers all members of the data; think of it as similar to `./*`.
-type SelectAll struct {
-	next Selector (alias ":")
+## ExploreAll is similar to a `*` -- it traverses all elements of an array,
+## or all entries in a map, and applies a next selector to the reached nodes.
+type ExploreAll struct {
+	next Selector (rename ">")
 }
 
-# SelectFields will explore each of the fields listed, and yields a distinct
-# selector for continuing to explore and match on each reached node.
-type SelectFields map {String:Selector}
-
-# SelectIndex considers a specific item in a list by its offset.
-type SelectIndex struct {
-	index Int (alias "i")
-	next Selector (alias ":")
+## ExploreFields traverses named fields in a map (or equivalently, struct, if
+## traversing on typed/schema nodes) and applies a next selector to the
+## reached nodes.
+##
+## Note that a concept of "ExplorePath" (e.g. "foo/bar/baz") can be represented
+## as a set of three nexted ExploreFields selectors, each specifying one field.
+## (For this reason, we don't have a special "ExplorePath" feature; use this.)
+type ExploreFields struct {
+	fields {String:Selector} (rename "f>")
 }
 
-# SelectRange considers each of the items in a range of positions in a list.
-type SelectRange struct {
-	start Int (alias "^")
-	end Int (alias "$")
-	next Selector (alias ":")
+## ExploreIndex traverses a specific index in a list, and applies a next
+## selector to the reached node.
+type ExploreIndex struct {
+	index Int (rename "i")
+	next Selector (rename ">")
 }
 
-# SelectRecursive applies a selector to this node, then in addition traverses
-# to any nodes matched and applies itself again to that node.  A depth counter
-# is decremented with each recursion to ensure the process terminates.
-type SelectRecursive struct {
-	depthLimit Int (alias "d")
-	next Selector (alias ":")
-	cidLimit Link
+## ExploreIndex traverses a list, and for each element in the range specified,
+## will apply a next selector to those reached nodes.
+type ExploreRange struct {
+	start Int (rename "^")
+	end Int (rename "$")
+	next Selector (rename ">")
 }
 
-# SelectUnion is a union of other selectors: if any of the selectors says
-# a node matches, it matches; and if any of the selectors return a selector
-# for a pathsegment, it'll be used; and if more than one selector returns
-# a selector for a pathsegment, a new union selector will be implicitly
-# generated during evaluation to carry all of them through.
-type SelectUnion list [Selector]
+## ExploreRecursive traverses some structure recursively.
+## To guide this exploration, it uses a "sequence", which is another Selector
+## tree; some leaf node in this sequence should contain an ExploreRecursiveEdge
+## selector, which denotes the place recursion should occur.
+##
+## In implementation, whenever evaluation reaches an ExploreRecursiveEdge marker
+## in the recursion sequence's Selector tree, the implementation logically
+## produces another new Selector which is a copy of the original
+## ExploreRecursive selector, but with a decremented maxDepth parameter, and
+## continues evaluation thusly.
+##
+## It is not valid for an ExploreRecursive selector's sequence to contain
+## no instances of ExploreRecursiveEdge; it *is* valid for it to contain
+## more than one ExploreRecursiveEdge.
+##
+## ExploreRecursive can contain a nested ExploreRecursive!
+## This is comparable to a nested for-loop.
+## In these cases, any ExploreRecursiveEdge instance always refers to the
+## nearest parent ExploreRecursive (in other words, ExploreRecursiveEdge can
+## be thought of like the 'continue' statement, or end of a for-loop body;
+## it is *not* a 'goto' statement).
+##
+## Be careful when using ExploreRecursive with a large maxDepth parameter;
+## it can easily cause very large traversals (especially if used in combination
+## with selectors like ExploreAll inside the sequence).
+type ExploreRecursive struct {
+	sequence Selector (rename ":>")
+	maxDepth Int (rename "d")
+	stopAt Condition (rename "!") # if a node matches, we won't match it nor explore its children.
+}
+
+## ExploreRecursiveEdge is a special sentinel value which is used to mark
+## the end of a sequence started by an ExploreRecursive selector: the recursion
+## goes back to the initial state of the earlier ExploreRecursive selector,
+## and proceeds again (with a decremented maxDepth value).
+##
+## An ExploreRecursive selector that doesn't contain an ExploreRecursiveEdge
+## is nonsensical.  Containing more than one ExploreRecursiveEdge is valid.
+## An ExploreRecursiveEdge without an enclosing ExploreRecursive is an error.
+type ExploreRecursiveEdge struct {}
+
+## ExploreUnion allows selection to continue with two or more distinct selectors
+## while exploring the same tree of data.
+##
+## ExploreUnion can be used to apply a Matcher on one node (causing it to
+## be considered part of a (possibly labelled) result set), while simultaneously
+## continuing to explore deeper parts of the tree with another selector,
+## for example.
+type ExploreUnion list [Selector]
+
+## Note that ExploreConditional versus a Matcher with a Condition are distinct:
+## ExploreConditional progresses deeper into a tree;
+## whereas a Matcher with a Condition may look deeper to make its decision,
+## but returns a match for the node it's on rather any of the deeper values.
+type ExploreConditional struct {
+	condition Condition (rename "&")
+	next Selector (rename ">")
+}
+
+## Matcher marks a node to be included in the "result" set.
+## (All nodes traversed by a selector are in the "covered" set (which is a.k.a.
+## "the merkle proof"); the "result" set is a subset of the "covered" set.)
+##
+## In libraries using selectors, the "result" set is typically provided to
+## some user-specified callback.
+##
+## A selector tree with only "explore*"-type selectors and no Matcher selectors
+## is valid; it will just generate a "covered" set of nodes and no "result" set.
+type Matcher struct {
+	onlyIf optional Condition # match is true based on position alone if this is not set.
+	label optional String # labels can be used to match multiple different structures in one selection.
+}
+
+## Condition is expresses a predicate with a boolean result.
+##
+## Condition clauses are used several places:
+##   - in Matcher, to determine if a node is selected.
+##   - in ExploreRecursive, to halt exploration.
+##   - in ExploreConditional,
+##
+##
+## TODO -- Condition is very skeletal and incomplete.
+## The place where Condition appears in other structs is correct;
+## the rest of the details inside it are not final nor even completely drafted.
+type Condition union {
+	# We can come back to this and expand it later...
+	# TODO: figure out how to make this recurse correctly, so I can say "hasField{hasField{or{hasValue{1}, hasValue{2}}}}".
+	| Condition_HasField "hasField"
+	| Condition_HasValue "=" # will need to contain a kinded union, lol.  these conditions are gonna get deep.)
+	| Condition_HasKind "%" # will ideally want to refer to the DataModel ReprKind enum...!  will we replicate that here?  don't want to block on cross-schema references, but it's interesting that we've finally found a good example wanting it.
+	| Condition_IsLink "/" # will need this so we can use it in recursions to say "stop at CID QmFoo".
+	| Condition_GreaterThan "greaterThan"
+	| Condition_LessThan "lessThan"
+	| Condition_And "and"
+	| Condition_Or "or"
+	# REVIEW: since we introduced "and" and "or" here, we're getting into dangertown again.  we'll need a "max conditionals limit" (a la 'gas' of some kind) near here.
+}
 ```
+
+Other related work
+------------------
+
+- [Selectors package in go-ipld-prime](https://github.com/ipld/go-ipld-prime/tree/master/traversal/selector)
+  - [Traversal func which uses Selectors](https://godoc.org/github.com/ipld/go-ipld-prime/traversal#Traverse)
+  - note that these are still skeletal PoC implementations and not yet feature-complete

@@ -67,8 +67,8 @@ Since different systems and transports may impose block size limits (often 2mb o
 
 |     |      |
 |-----|------|
-| [Specification: IPLD Data Model](data-model-layer/paths.md) | [data-model-layer/paths.md](data-model-layer/paths.md) |
-| [Specification: IPLD Paths](data-model-layer/data-model.md) | [data-model-layer/data-model.md](data-model-layer/data-model.md)
+| [Specification: IPLD Data Model](data-model-layer/data-model.md) | [data-model-layer/data-model.md](data-model-layer/data-model.md) |
+| [Specification: IPLD Paths](data-model-layer/paths.md) | [data-model-layer/paths.md](data-model-layer/paths.md)
 
 ### Schema Layer (Layer 2)
 

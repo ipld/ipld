@@ -35,7 +35,9 @@ IPLD is a set of standards and implementations for creating decentralized data-s
 - [ipld.io](https://github.com/ipld/website)
 
 ## Examples and Tutorials
-
+- ProtoSchool Tutorials: 
+   - [P2P data links with content addressing](https://proto.school/#/basics/) - An introduction to CIDs and the IPFS DAG API
+   - [Blogging on the Decentralized Web](https://proto.school/#/blog/) - An intermediate coding challenge using CIDs to build and update a complex web of data with the IPFS DAG API
 - Traversing IPLD graphs using the `ipfs dag` API: [ipfs/js-ipfs/examples/traverse-ipld-graphs](https://github.com/ipfs/js-ipfs/tree/master/examples/traverse-ipld-graphs)
 - IPLD search index for wikipedia-on-ipfs.org: [magik6k/distributed-wiki-search](https://github.com/magik6k/distributed-wiki-search)
 - Git IPLD/IPFS remote: [magik6k/git-remote-ipld](https://github.com/magik6k/git-remote-ipld)

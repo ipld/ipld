@@ -17,11 +17,25 @@ This is a useful primitive to use along with: (a) systems that require distribut
 
 ![](./selectors.jpg)
 
+(Note: syntaxes in the image are for quick understanding, but are not literal selector syntaxes (yet; we have an extension pathway).)
 
-Schema
-------
+
+Specification
+-------------
+
+Selectors are defined by an "AST" (Abstract Syntax Tree) which is itself
+specified in IPLD, and uses IPLD Schemas for clarity.
+
+Implementations of Selectors read this "AST" and evaluate its instructions to
+traverse a graph, and select nodes in it.
+
+
+### Schema
 
 This code block describes Selectors using [IPLD Schemas](../schema-layer/schemas) syntax.
+
+Descriptions of how each node should be evaluated can be found in comments
+inline in the schema.
 
 ```ipldsch
 ## SelectorEnvelope is the recommended top-level value for serialized messages

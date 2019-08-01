@@ -110,7 +110,7 @@ same result every time.
 The "stable pathing" rule holds at the Data Model layer.
 Some higher-level layers relax the rule.
 
-For example, Advanced Data Layouts operate by "feigning" an IPLD Node which
+For example, Advanced Data Layouts work by operating like an IPLD Node which
 conforms with the Data Model specified behaviors in every way -- except that
 they're internally implemented in some way that maps the Node content onto
 Blocks in a more advanced way than the basic Data Model way.  This means we

@@ -156,5 +156,5 @@ call IPLD ready.
   languages support this so *not* supporting it would be a bit awkward.
   ([#84](https://github.com/ipld/specs/issues/84))
 * **Link Spec.** We need to specify a complete and formal link spec and stick
-  with it. 
+  with it.
 * **Relative Links.** [#1](https://github.com/ipld/specs/issues/1).

@@ -3,6 +3,7 @@ IPLD Specifications
 
 The goal of IPLD is to enable decentralized data-structures that are universally addressable and linkable which in turn will enable more decentralized applications.
 These data-structures allow us to do for data what URLs and links did for HTML web pages.
+Read more about the principles that are guiding the ongoing development of IPLD in **[IPLD Foundational Principles](FOUNDATIONS.md)**.
 
 IPLD is not a single specification it is a set of specifications.
 Many of the specifications in IPLD are inter-dependent.

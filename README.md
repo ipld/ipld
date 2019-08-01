@@ -43,7 +43,7 @@ This layer does not define data structures or types, although many codecs may co
 |     |      |
 |-----|------|
 | [Concept: Block](block-layer/block.md) | [block-layer/block.md](block-layer/block.md) |
-| [Concept: Content Addressability](block-layer/content-addressability.md) | [block-layer/content-addressability.md](block-layer/content-addressability.md) |
+| [Concept: Content Addressability](concepts/content-addressability.md) | [concepts/content-addressability.md](concepts/content-addressability.md) |
 | [Concept: Multihash](block-layer/multihash.md) | [block-layer/multihash.md](block-layer/multihash.md) |
 | [Concept: Serialization and Formats](block-layer/serialization-and-formats.md) | [block-layer/serialization-and-formats.md](block-layer/serialization-and-formats.md) |
 | [Specification: CIDs](block-layer/CID.md) | [block-layer/CID.md](block-layer/CID.md) |

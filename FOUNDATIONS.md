@@ -105,6 +105,51 @@ on top of IPLD.
 **Motivation:** Deterministic computations on top of a IPLD need to produce the
 same result every time.
 
+### Higher Level Pathing
+
+The "stable pathing" rule holds at the Data Model layer.
+Some higher-level layers relax the rule.
+
+For example, Advanced Data Layouts operate by "feigning" an IPLD Node which
+conforms with the Data Model specified behaviors in every way -- except that
+they're internally implemented in some way that maps the Node content onto
+Blocks in a more advanced way than the basic Data Model way.  This means we
+can "path" across an Advanced Data Layout that acts like a map or a list as
+if it's a regular Node.  We still aim for stable pathing: however, at this
+layer, that stability now requires a fixed understanding of the Advanced Layout
+logic itself.
+
+Schemas describe data in terms of both semantic types and a representation
+strategy, and in some cases the semantic type information contains a name
+(such as a struct field name) even while the representation does not (such as
+when a struct uses "tuple" representation, causing it to be transformed into
+a list rather than a map when encoded).  In these cases, we can "path" across
+data interpreted in context of a Schema using the field names, even if at the
+Data Model layer it's been represented as a list (and thus has indexes instead
+of map keys corresponding to the field names).  This kind of pathing can be
+stable and predictable, but (as with the Advanced Data Layouts story), it
+requires slightly more information: holding the Schema declaration.
+
+**Motivation**: Different views onto data is a powerful and useful primitive.
+
+More concretely, we can observe that some of the earliest examples of systems
+built with IPLD's concepts immediately introduced higher-level pathing: for
+example, IPFS's UnixFS.  Such concept of pathing, built a layer above the core
+IPLD Data Model, has provided large amounts of value to applications.
+Recognizing this, we seek to offer some components of IPLD which make it easy
+to do these kind of constructions, but in a way that's reusable, and also fits
+well with our principles of stability and predictability.
+
+**Remaining true to principles**: Note that regular, core Data Model still
+maintains stable pathing -- this is not compromised by higher level systems
+which use additional rules and operate with additional context!  Falling back
+to the core Data Model stable pathing is *always* possible on any data.
+
+Even in higher level pathing: we still aim for stability, predictability, and
+deterministic outcomes.  While more contextual information is required for
+these higher level pathing modes, all of that information is by design easy
+to immutably snapshot and address in the same ways we link other IPLD data.
+
 ## Link Transparent Pathing
 
 Path resolution must transparently traverse links.

@@ -31,11 +31,22 @@ IPLD but there needs to be an immutable layer at the bottom.
 **Motivation:** *Having* an immutable layer is important for a lot of analysis,
 memoization, type checking, etc.
 
-## Multicodecs Are Not Types
+## Multicodecs Are Not Meant to Act As Types
 
-It's impossible to understand IPLD data at a *structural* level if we don't know
-the format. Therefore, we should avoid introducing new formats unnecessarily as
-*every* IPLD implementation needs to support these new formats.
+Multicodecs are used to indicate the format of data in a Block, and thus the
+codec which transforms that serial data into a tree of Nodes conforming to the
+[IPLD Data Model](./data-model-layer/data-model.md).  This is the limit of
+their purpose.
+
+In particular, multicodecs should not be confused with a
+[type system](https://en.wikipedia.org/wiki/Type_system).
+
+**Motivation:** Since it is impossible to understand data at a *structural*
+level without knowing the format, we use multicodecs describe the format.
+With this information, we handle the transformation into the IPLD Data Model.
+Beyond this, we don't want to use multicodecs further, because we should avoid
+introducing new formats unnecessarily: *every* IPLD implementation needs to
+support these new formats, and this is a burden it's preferable to minimize.
 
 ## No Non-Local Reasoning
 

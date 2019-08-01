@@ -1,7 +1,7 @@
 # IPLD Foundational Principles
 
 This document outlines parts of IPLD that should and should not be changed to
-ensure the success of future improvements (especially type systems).
+ensure the success of future improvements and the continuity of direction.
 
 **Definitions**
 

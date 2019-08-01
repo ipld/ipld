@@ -97,8 +97,14 @@ can be seen as using some forms of non-local reasoning.
 Applications built on top of IPLD can also use their own contextual reasoning,
 as described earlier in the relative linking example.
 
-These are not contradictions of the "no non-local reasoning" rule; it's just
-relaxed for these high-level systems, and the scope of "local" can be
+**Motivation**: Systems like HAMTs and Schemas are important to our goals in
+having good tooling in the ecosystem; both of these depend on some forms of
+reasoning which take context and apply it in addition to what's available
+strictly at the Data Model level.
+
+**Remaining true to principles**: though we're refining the rules in this section,
+these are not contradictions of the "no non-local reasoning" rule; it's just
+relaxed for these high-level systems, in that the scope of "local" can be
 understood more broadly.
 
 Since we can always interpret block structurally (e.g., parse them at least to

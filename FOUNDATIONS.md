@@ -5,13 +5,16 @@ ensure the success of future improvements (especially type systems).
 
 **Definitions**
 
-* Block: A block is a chunk of an IPLD DAG, encoded in a format. Blocks have CIDs.
-* Node: A node is a *point* in an IPLD DAG (object, array, number, etc.).
+* Block: A block is a chunk of an IPLD DAG, encoded in a format.
+  Blocks have [CID](./block-layer/CID.md)s.
+* Node: A node is a *point* in an IPLD DAG (map, list, number, etc.).
   Many nodes can exist encoded inside one Block.
 * Link: A link is a kind of IPLD Node that points to another IPLD Node.
-* Path Segment: A path segment a piece of information that describes a move from
-  one Node to another Node (effectively, either a map key or a list index).
-  A path segment only describes movement of a single stride.
+  Links are what make IPLD data a DAG rather than only a tree.
+  Links are content-addressable -- see [CID](./block-layer/CID.md).
+* Path Segment: A path segment is a piece of information that describes a move
+  from one Node to a directly connected child Node.  (In other words, a
+  Path Segment is either a map key or a list index.)
 * Path: A path is composed of Path Segments, thereby describing a traversal
   from one Node to another Node somewhere deeper in the DAG.
 

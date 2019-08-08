@@ -50,46 +50,81 @@ support these new formats, and this is a burden it's preferable to minimize.
 
 ## No Non-Local Reasoning
 
-An IPLD block should never be interpreted in the context of *anything* not
-contained in the block (and CID).
+Transforming content of a Block into Nodes conforming to the IPLD
+[Data Model](./data-model-layer/data-model.md) should never require
+interpretation in the context of anything not contained in the Block plus CID.
 
-For example, assuming we add support for relative links, the following
-definition of `foo` would not be a valid IPLD block:
+Similarly, traversing an IPLD Node according to a Path should not require
+interpretation in the context of anything not already contained in that Node plus Path.
 
-```
+**Motivation:** IPLD needs to be easy to reason about.  Systems which use
+nonlocal reasoning become harder to reason about, and much harder (if not
+impossible) to compose smoothly or with predictable results; therefore we
+should avoid this.
+
+**Negative Examples:**
+
+```javascript
+// This is an example of what is NOT possible.
 var foo = {
-  // points outside of the current block, into the parent's "baz" field.
-  "baz": {"/": "../../baz"}
+  "baz": Link("../../zot") // NOT legal: makes a non-local reference.
 }
 var bar = {
   "foo": CidOf(foo),
-  // `/foo/baz` points here.
-  "baz": "something"
+  "zot": "something" // `./foo/baz` imagines pointing here.
 }
 
-// resolution throug block `foo` depends on block `bar`.
+// resolution through block `foo` depends on block `bar`...
 Resolve("/ipld/${CidOf(bar)}/foo/baz/")
+
+// meaning this would be undefined, which is why relative links are NOT allowed:
+Resolve("/ipld/${CidOf(foo)}/baz/")
 ```
 
 For the same reason, IPLD links can't rely on an authority (e.g., a blockchain).
 
-Note: Links like this can still be encoded at the application level but they
-won't be handled by the IPLD resolver (and won't get the special "link" type).
+**Note:** Concepts that seem similar to relative linking can still be encoded
+at the application level.  This is fine, but distinct from "IPLD Links", because
+such linking won't be interpreted by IPLD path and link resolution (e.g. they
+won't get the special "link" type, and won't violate the constraints that the
+IPLD Data Model expresses a DAG, etc).
 
-**Motivation:** IPLD needs to be easy to reason about.
+### Moving beyond local reasoning
 
-**Caveat:**
+The "no non-local reasoning" rule holds at the Data Model layer.
+Some higher-level layers relax the rule.
 
-We *may* want to relax this if we want to move schemas into separate,
-deduplicated blocks (referenced by CID). If we do that, we'd need to fetch a
-block's schema before being able to interpret the it.
+For example, Advanced Data Layouts which split data across multiple blocks
+defacto carry some logical information in mind as they wield their constituent
+blocks (jumping into a HAMT mid-way through its trie with no context is unlikely
+to make any semantic sense, for example -- even though the data can still be
+parsed in terms of the Data Model).
 
-However, we need to *thoroughly* discuss any changes to this requirement.
+Schemas describe constraints around data and are typically applied over
+a whole DAG which may span multiple Blocks, and are themselves usually
+located in another Block (for ease of reference by CID).  Schemas thus also
+can be seen as using some forms of non-local reasoning.
 
-1. The space savings may not be worth it given the size of CIDs (>40 bytes),
-   compression, smart transports, and smart datastores.
-2. This change would introduce some weird interface complexities and potential
-   network dependencies.
+Applications built on top of IPLD can also use their own contextual reasoning,
+as described earlier in the relative linking example.
+
+**Motivation**: Systems like HAMTs and Schemas are important to our goals in
+having good tooling in the ecosystem; both of these depend on some forms of
+reasoning which take context and apply it in addition to what's available
+strictly at the Data Model level.
+
+**Remaining true to principles**: though we're refining the rules in this section,
+these are not contradictions of the "no non-local reasoning" rule; it's just
+relaxed for these high-level systems, in that the scope of "local" can be
+understood more broadly.
+
+Since we can always interpret block structurally (e.g., parse them at least to
+the Data Model layer) -- even in data that's also meant to be used with
+Advanced Data Layouts or Schemas other application logic that uses contextual
+concepts, etc -- we can still have replication and hashing and DAG traversal
+and all the rest of the important promises of the IPLD Data Model regardless of
+that other context, meaning these systems are purely value-add and do not
+compromise any of the other core promises of IPLD.
 
 ## No Cycles
 

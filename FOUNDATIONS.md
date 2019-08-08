@@ -108,7 +108,7 @@ same result every time.
 ### Higher Level Pathing
 
 The "stable pathing" rule holds at the Data Model layer.
-Some higher-level layers relax the rule.
+Some higher-level layers refine the rule.
 
 For example, Advanced Data Layouts work by operating like an IPLD Node which
 conforms with the Data Model specified behaviors in every way -- except that

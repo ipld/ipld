@@ -210,4 +210,4 @@ Other related work
 
 ### Design History
 
-- See [Selector Design Goals](../design-history/exploration-reports/2018.10-selectors-design-goals.md) (2018).
+- See [Selector Design Goals](../design/history/exploration-reports/2018.10-selectors-design-goals.md) (2018).

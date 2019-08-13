@@ -1,10 +1,10 @@
-# Specification: DAG-CBOR
+# Specification: DagCBOR
 
-**Status: Descriptive - Final**
+**Status: Descriptive - Draft**
 
-DAG-CBOR supports the full [IPLD Data Model](../data-model-layer/data-model.md).
+DagCBOR supports the full [IPLD Data Model].
 
-CBOR already natively supports all [IPLD Data Model Kinds](../data-model-layer/data-model.md#kinds).
+CBOR already natively supports all [IPLD Data Model Kinds].
 
 ## Format
 
@@ -14,18 +14,15 @@ with the tag 42 must be a valid CID.
 
 ## Link Format
 
-As with all IPLD formats, DagCBOR must be able to encode merkle-links. In
-DagCBOR, links are encoded using the raw-binary (identity, NUL) multibase in a
+As with all IPLD formats, DagCBOR must be able to encode [Links].
+In DagCBOR, links are encoded using the raw-binary identity [Multibase] in a
 field with a byte-string type (major type 2), with the tag 42.
 
-(the inclusion of the multibase exists for historical reasons)
+(the inclusion of the Multibase exists for historical reasons)
 
 ## Map Key Restriction
 
-In DagCBOR, map keys must be strings (TODO: drop this? We already have
-unpathable map keys). Furthermore, map keys should avoid using `/` as this is
-unpathable (TODO: drop this? IMO, we should support path escaping out of the
-box).
+In DagCBOR, map keys must be strings.
 
 ## Canonical DagCBOR
 
@@ -35,5 +32,10 @@ Canonical DagCBOR must:
    conversion.
 2. Use the [canonical CBOR](https://tools.ietf.org/html/rfc7049#section-3.9)
    encoding.
-3. Only use string map keys. Some implementations may not be able to
-   handle non-string keys.
+
+
+[IPLD Data Model]: ../../data-model-layer/data-model.md
+[IPLD Data Model Kinds]: ../../data-model-layer/data-model.md#kinds
+[Links]: ../../data-model-layer/data-model.md#link-kind
+[Multibase]: https://github.com/multiformats/multibase
+[canonical CBOR]: https://tools.ietf.org/html/rfc7049#section-3.9

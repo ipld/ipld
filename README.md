@@ -48,7 +48,7 @@ This layer does not define data structures or types, although many codecs may co
 | [Concept: Multihash](block-layer/multihash.md) | [block-layer/multihash.md](block-layer/multihash.md) |
 | [Concept: Serialization and Formats](block-layer/serialization-and-formats.md) | [block-layer/serialization-and-formats.md](block-layer/serialization-and-formats.md) |
 | [Specification: CIDs](block-layer/CID.md) | [block-layer/CID.md](block-layer/CID.md) |
-| [Specification: DAG-CBOR](block-layer/codecs/DAG-CBOR.md) | [block-layer/codecs/DAG-CBOR.md](block-layer/codecs/DAG-CBOR.md) |
+| [Specification: DagCBOR](block-layer/codecs/dag-cbor.md) | [block-layer/codecs/dag-cbor.md](block-layer/codecs/dag-cbor.md) |
 | [Specification: DAG-JSON](block-layer/codecs/DAG-JSON.md) | [block-layer/codecs/DAG-JSON.md](block-layer/codecs/DAG-JSON.md) |
 | [Specification: IPLD Selectors](selectors/selectors.md) | [selectors/selectors.md](selectors/selectors.md) |
 | [Specification: Graphsync](block-layer/graphsync/graphsync.md) | [block-layer/graphsync/graphsync.md](block-layer/graphsync/graphsync.md) |

@@ -4,6 +4,8 @@
 [![](https://img.shields.io/badge/project-IPLD-blue.svg?style=flat-square)](http://github.com/ipld/ipld)
 [![](https://img.shields.io/badge/freenode-%23ipfs-blue.svg?style=flat-square)](http://webchat.freenode.net/?channels=%23ipfs)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![build status](https://img.shields.io/circleci/project/github/ipld/website/master.svg?style=flat-square)](https://circleci.com/gh/ipld/website)
+
 
 ![ipld logo animation](https://cloud.githubusercontent.com/assets/58871/26447582/074ed6cc-4141-11e7-9d4d-a28a58597772.gif)
 
@@ -21,7 +23,7 @@ The implementation aims to progressively enhance the content. The styling is don
 git clone https://github.com/ipld/website
 ```
 
-We use `make` to build the site, and `npm` to fetch our build tool dependencies. Running `make` or `make dev` will fetch the dependencis from `npm` for you the first time you run it. 
+We use `make` to build the site, and `npm` to fetch our build tool dependencies. Running `make` or `make dev` will fetch the dependencies from `npm` for you the first time you run it.
 
 If you have any problems with building the site, try removing your local `node_module` director and re-run `make`.
 
@@ -32,6 +34,10 @@ To work on the site locally with a hot-reloading dev site served at http://local
 ```sh
 make dev
 ```
+
+When you submit a PR, the site will be built and pinned on IPFS Cluster and a preview link will be added as PR status item.
+
+When the `master` branch changes, site will be built, pinned to cluster, and the [DNSlink](https://docs.ipfs.io/guides/concepts/dnslink/) for https://ipld.io will be updated with the latest hash.
 
 To deploy the site to https://ipld.io, run:
 

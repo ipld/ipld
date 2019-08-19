@@ -15,8 +15,7 @@ with the tag 42 must be a valid CID.
 ## Link Format
 
 As with all IPLD formats, DagCBOR must be able to encode [Links].
-In DagCBOR, links are encoded using the raw-binary identity [Multibase] in a
-field with a byte-string type (major type 2), with the tag 42.
+In DagCBOR, links are [CIDs] encoded using the raw-binary identity [Multibase]. That Multibase prefix (`0x00`) *must not* be omitted. They are stored as byte-string type (major type 2), with the tag 42.
 
 (the inclusion of the Multibase exists for historical reasons)
 
@@ -37,5 +36,6 @@ Canonical DagCBOR must:
 [IPLD Data Model]: ../../data-model-layer/data-model.md
 [IPLD Data Model Kinds]: ../../data-model-layer/data-model.md#kinds
 [Links]: ../../data-model-layer/data-model.md#link-kind
+[CIDs]: ../CID.md
 [Multibase]: https://github.com/multiformats/multibase
 [canonical CBOR]: https://tools.ietf.org/html/rfc7049#section-3.9

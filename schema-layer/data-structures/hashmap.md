@@ -31,7 +31,7 @@
 
 ## Introduction
 
-The IPLD HashMap provides multi-block key/value storage and implements the Map [kind](/data-model-layer/data-model.md#kinds) as a [generic](generics.md) ***(TODO: "generic" or "advanced data structure" or "advanced layout"?)*** in the IPLD type system.
+The IPLD HashMap provides multi-block key/value storage and implements the Map [kind](/data-model-layer/data-model.md#kinds) as an advanced data layout in the IPLD type system.
 
 The IPLD HashMap is constructed as a [hash array mapped trie (HAMT)](https://en.wikipedia.org/wiki/Hash_array_mapped_trie) with buckets for value storage and [CHAMP](https://michael.steindorfer.name/publications/oopsla15.pdf) mutation semantics. The CHAMP invariant and mutation rules provide us with the ability to maintain canonical forms given any set of keys and their values, regardless of insertion order and intermediate data insertion and deletion. Therefore, for any given set of keys and their values, a consistent IPLD HashMap configuration and block encoding, the root node should always produce the same content identifier (CID).
 
@@ -96,7 +96,6 @@ See [IPLD Schemas](../../schemas) for a definition of this format.
 # Root node layout
 type HashMapRoot struct {
   hashAlg String
-  bitWidth Int
   bucketSize Int
   map Bytes
   data [ Element ]
@@ -136,10 +135,11 @@ type Value union {
 Notes:
 
 * `hashAlg` in the root block is a string identifier for a hash algorithm. The identifier should correspond to a [multihash](https://github.com/multiformats/multihash) identifier as found in the [multiformats table](https://github.com/multiformats/multicodec/blob/master/table.csv).
-* `bitWidth` in the root block should be at least `3`.
+* `bitWidth` in the root block must be at least `3`, making the minimum `map` size 1 byte.
+* `bitWidth` is not present in the root block as it is inferred from the size of the `map` byte array with the equation `log2(byteLength(map) x 8)`, being the inverse of the `map` size equation `2`<sup>`bitWidth`</sup>` / 8`.
 * `bucketSize` in the root block must be at least `1`.
 * Keys are stored in `Byte` form.
-* The size of `map` is determined by `bitWidth` since it holds one bit per possible data element. It must be `1` or `2`<sup>`bitWidth`</sup>` / 8` bytes long, whichever is largest.
+* `Element` is a kinded union that supports storing either a `Bucket` (as kind list), a link to a child node (as kind link), or as an inline, non-linked child node (as kind map).
 
 ## Algorithm in detail
 
@@ -256,7 +256,7 @@ These defaults are descriptive rather than prescriptive. New implementations may
 
 ### `bitWidth`
 
-* The default `bitWidth` is `8` for writing IPLD HashMaps. This value yields a `data` length of `2`<sup>`8`</sup>`=256`. `8` is also simple in most programming languages to slice off a list of bytes since it's a simple byte-index. However, implementations should be designed to support different `bitWidth`s encountered when reading IPLD HashMaps. The minimum supported `bitWidth` should be `3`. No maximum is specified, however implementers should be aware that interoperability problems may arise with large `bitWidth` values.
+* The default `bitWidth` is `8` for writing IPLD HashMaps. This value yields a `data` length of `2`<sup>`8`</sup>`=256`. `8` is also simple in most programming languages to slice off a list of bytes since it's a simple byte-index. However, implementations should be designed to support different `bitWidth`s encountered when reading IPLD HashMaps. The minimum supported `bitWidth` must be `3` (for a 1-byte `map`). No maximum is specified, however implementers should be aware that interoperability problems may arise with large `bitWidth` values.
 
 ### `bucketSize`
 

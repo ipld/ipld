@@ -13,5 +13,5 @@ Cardinality concepts are also useful for clear documentation and understanding s
 modifier keywords.
 
 You can see some examples of cardinality-counting used to describe `nullable` vs `optional` vs `defaults`
-in the schema docs: [Cardinality Examples](../schema/schema-kinds.md#cardinality-examples).
+in the schema docs: [Cardinality Examples](/schemas/schema-kinds.md#cardinality-examples).
 

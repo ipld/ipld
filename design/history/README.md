@@ -193,18 +193,27 @@ and the intent and the outcomes would be very different.
 
 Yes.  (Generally.)
 
-The general vibe we're going for with this directory is that of "lab notebook".
+The vibe we're going for with this directory is that of a "lab notebook".
 So, imagine how you treat a notebook: when the page is full, you just can't
-add anymore; you have to start a new page, reference the old page -- and, as
-much as necessary, make sure the new page has all the content necessary for
+add anymore; you have to start a new page.  If the old page is from some time
+ago, you've probably accumulated a bunch of other pages of notes since then,
+so the new page can't assume any reader has recently re-read the older page:
+that means the new page has to reference the old page -- and, as much as
+necessary, the new page has to make sure it has all the content necessary for
 the new page to make sense on its own (even, yes, if that means some statements
 end up replicated with only minor rephrasing or repositioning).
 
-Remember, one of the practical benefits of this metaphorical "lab notebook" is
-that we can also easily "flip to a new page" and simply start writing notes.
-We can do this without immediately applying the energy barrier of reconciling
-every other note in the history of the notebook -- this is on purpose, because
-it makes it easier to get new ideas written down and shared.
+All of these are the kind of behaviors we're trying to replicate here, because
+they correlate well with creating a good environment for developing ideas.
+One of the practical benefits of this metaphorical "lab notebook" is that we can
+easily "flip to a new page" and simply start writing notes -- and we can do
+this without immediately applying the energy barrier of reconciling the new
+note with every other note in the history of the notebook.  This is on purpose,
+because it makes it easier to get new ideas written down and shared.
+The idea of strongly suggesting re-summarizations for any topic that's gone
+without attention for some period of time also naturally emerges from the
+framing of creating a new document.  All of these things speak to why
+periodically creating new files is a good idea.
 
 ### Does a file about a topic here mean it's dead?
 

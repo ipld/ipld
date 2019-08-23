@@ -1,17 +1,16 @@
-# Specification: IPLD Schemas
+IPLD Schemas
+============
 
 **Status: Prescriptive - Draft**
 
-IPLD Schemas, currently under heavy development, are intended to make developing decentralized & distributed applications easier, clearer, and more robust.
-
-More information can be found in:
+Documentation:
 
 - [Overview](./overview.md)
   - [Goals](./overview.md#goals)
   - [Features](./overview.md#features)
 - [Schema Kinds](./schema-kinds.md)
-- [Schema DSL](schema-dsl.md)
 - [Representations](./representations.md)
+- [Schema DSL](./schema-dsl.md)
 
 Examples:
 

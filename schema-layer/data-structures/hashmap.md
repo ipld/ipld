@@ -90,7 +90,7 @@ An important property of a HAMT is that the `data` array only contains active el
 
 The **root block** of an IPLD HashMap contains the same properties as all other blocks, in addition to configuration data that dictates how the algorithm below traverses and mutates the data structure.
 
-See [IPLD Schemas](/schema-layer/schemas) for a definition of this format.
+See [IPLD Schemas](../../schemas) for a definition of this format.
 
 ```ipldsch
 # Root node layout

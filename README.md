@@ -82,7 +82,7 @@ The Schema Layer will also serve as an enabling layer for complex multi-block da
 
 |     |      |
 |-----|------|
-| [Specification: IPLD Schemas](schema-layer/schemas/schemas.md) | [schema-layer/schemas/schemas.md](schema-layer/schemas/schemas.md) |
+| [Specification: IPLD Schemas](schemas/README.md) | [schemas/README.md](schemas/README.md) |
 | [Concept: IPLD Multi-block Collections](schema-layer/data-structures/multiblock-collections.md) | [schema-layer/data-structures/multiblock-collections.md](schema-layer/data-structures/multiblock-collections.md) |
 
 ## Specification document status

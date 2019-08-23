@@ -8,7 +8,7 @@ for example, booleans, integers, textual strings, maps and lists, etc.
 
 While the Data Model describes these representations in the abstract,
 [Codecs](Codecs) specify exactly how these data are transcribed into serialized bytes.
-(Another component of the IPLD specifications, [Schemas](/schemas), provide
+(Another component of the IPLD specifications, [Schemas](../schemas), provide
 additional optional tooling on top of the Data Model which can further refine,
 describe, and constrain the range of acceptable data values.)
 
@@ -30,7 +30,7 @@ of data representable in the IPLD Data Model:
 * Link
 
 (Note that we use the term "_kinds_" here to disambiguate this from "_types_",
-which is a term we'll use at the [Schemas](/schemas) level.)
+which is a term we'll use at the [Schemas](../schemas) level.)
 
 The _recursive kinds_ are:
 
@@ -47,7 +47,7 @@ The _scalar kinds_ (the complement of recursive) are:
 * Bytes
 * Link
 
-(Note that [Schemas](/schemas) introduce a few more kinds -- when clarification is necessary,
+(Note that [Schemas](../schemas) introduce a few more kinds -- when clarification is necessary,
 these Data Model kinds can be called the "_representation kinds_",
 while the additional kinds introduced in the Schema layer are "_perceived kinds_".)
 

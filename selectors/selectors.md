@@ -32,7 +32,7 @@ traverse a graph, and select nodes in it.
 
 ### Schema
 
-This code block describes Selectors using [IPLD Schemas](/schemas/) syntax.
+This code block describes Selectors using [IPLD Schemas](../schemas/) syntax.
 
 Descriptions of how each node should be evaluated can be found in comments
 inline in the schema.

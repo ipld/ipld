@@ -12,6 +12,7 @@ Documentation:
 - [Representations](./representations.md)
 - [Schema DSL](./schema-dsl.md)
 - [Links and IPLD Schemas](./links.md)
+- [Advanced Layouts](./advanced-layouts.md)
 
 Examples:
 

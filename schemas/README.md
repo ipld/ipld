@@ -11,6 +11,7 @@ Documentation:
 - [Schema Kinds](./schema-kinds.md)
 - [Representations](./representations.md)
 - [Schema DSL](./schema-dsl.md)
+- [Links and IPLD Schemas](./links.md)
 
 Examples:
 

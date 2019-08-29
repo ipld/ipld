@@ -146,9 +146,19 @@
 		},
 		"TypeLink": {
 			"kind": "struct",
-			"fields": {},
+			"fields": {
+				"expectedType": {
+					"type": "TypeTerm"
+				}
+			},
 			"representation": {
-				"map": {}
+				"map": {
+					"fields": {
+						"expectedType": {
+							"implicit": "Any"
+						}
+					}
+				}
 			}
 		},
 		"TypeUnion": {

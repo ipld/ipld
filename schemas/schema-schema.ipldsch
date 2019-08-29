@@ -178,11 +178,16 @@ type TypeList struct {
 } representation map
 
 ## TypeLink describes a hash linking to another object (a CID).
-##
-## REVIEW: this currently has no details... but possibly it should have a
-## type hint for what we expect when resolving the link?
-##
-type TypeLink struct {}
+## A link also has an "expectedType" that provides a hinting mechanism
+## suggesting what we should find if we were to follow the link. This
+## cannot be strictly enforced by a node or block-level schema
+## validation but may be enforced elsewhere in an application relying on
+## a schema.
+## The expectedType is specified with the `&Any` link shorthand, where
+## `Any` may be replaced with a specific type.
+type TypeLink struct {
+	expectedType TypeTerm (implicit "Any")
+}
 
 ## TypeUnion describes a union (sometimes called a "sum type", or
 ## more verbosely, a "discriminated union").

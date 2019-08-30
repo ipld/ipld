@@ -54,9 +54,9 @@ type Schema union {
 ##
 ## The Type union is serialized using "inline" union representation,
 ## which means all of its members have map representations, and there will be
-## an entry in that map called "type" which contains the union discriminator.
+## an entry in that map called "type" which contains the union discriminant.
 ##
-## Some of the kinds of type are so simple the union discriminator is the only
+## Some of the kinds of type are so simple the union discriminant is the only
 ## content at all, e.g. strings:
 ##
 ## ```
@@ -239,12 +239,12 @@ type UnionRepresentation_Keyed {String:TypeName}
 
 ## "Envelope" union representations will encode as a map, where the map has
 ## exactly two entries: the two keys should be of the exact strings specified
-## for this envelope representation.  The value for the discriminator key
+## for this envelope representation.  The value for the discriminant key
 ## should be one of the strings in the discriminant table.  The value for
 ## the content key should be the content, and be of the Type matching the
 ## lookup in the discriminant table.
 type UnionRepresentation_Envelope struct {
-	discriminatorKey String
+	discriminantKey String
 	contentKey String
 	discriminantTable {String:TypeName}
 }
@@ -257,16 +257,16 @@ type UnionRepresentation_Envelope struct {
 ## All members of an inline union must be struct types and must encode to
 ## the map RepresentationKind.  Other types which encode to map (such as map
 ## types themselves!) cannot be used: the potential for content values with
-## with keys overlapping with the discriminatorKey would result in undefined
+## with keys overlapping with the discriminantKey would result in undefined
 ## behavior!  Similarly, the member struct types may not have fields which
-## have names that collide with the discriminatorKey.
+## have names that collide with the discriminantKey.
 ##
 ## When designing a new protocol, use inline unions sparringly; despite
 ## appearing simple, they have the most edge cases of any kind of union
 ## representation, and their implementation is generally the most complex and
 ## is difficult to optimize deserialization to support.
 type UnionRepresentation_Inline struct {
-	discriminatorKey String
+	discriminantKey String
 	discriminantTable {String:TypeName}
 }
 
@@ -303,13 +303,14 @@ type TypeStruct struct {
 ## Note that the 'optional' and 'nullable' properties are not themselves
 ## optional... however, in the IPLD serial representation of schemas, you'll
 ## often see them absent from the map encoding a StructField.  This is because
-## these fields are specified to have a *default* of false.
-## Defaults in a map representation of a struct mean that those entries may
+## these fields are specified to be implicitly false.
+## Implicits in a map representation of a struct mean that those entries may
 ## be missing from the map encoding... but unlike with "optional" fields, there
-## is no "undefined" value; absense is simply interpreted as the default.
-## (With default fields, an explicitly encoded default value is actually an
+## is no "undefined" value; absence is simply interpreted as the value specified
+## as the implicit.
+## (With implicit fields, an explicitly encoded implicit value is actually an
 ## error instead!)  "Optional" fields give rise to N+1 cardinality logic,
-## just like "nullable" fields; "default" fields *do not*.
+## just like "nullable" fields; "implicit" fields *do not*.
 ##
 type StructField struct {
 	type TypeTerm
@@ -365,34 +366,34 @@ type StructRepresentation union {
 
 ## StructRepresentation_Map describes a way to map a struct type onto a map
 ## representation.  For example, fields may be aliased,
-## or default values associated.
+## or implicit values associated.
 type StructRepresentation_Map struct {
 	fields optional {String:StructRepresentation_Map_FieldDetails}
 }
 ## StructRepresentation_Map_FieldDetails describes additional properties of a
 ## struct field when represented as a map.  For example, fields may be aliased,
-## or default values associated.
+## or implicit values associated.
 ##
-## If a default value is defined, then during marshalling, if the actual value
-## is the default value, that field will be omitted from the map; and during
-## unmarshalling, correspondingly, the absense of that field will be interpreted
-## as being the default value.
+## If an implicit value is defined, then during marshalling, if the actual value
+## is the implicit value, that field will be omitted from the map; and during
+## unmarshalling, correspondingly, the absence of that field will be interpreted
+## as being the implicit value.
 ##
-## Note that fields with defaults are distinct from fields which are optional!
+## Note that fields with implicits are distinct from fields which are optional!
 ## The cardinality of membership of an optional field is is incremented:
 ## e.g., the cardinality of "fieldname Bool" is 2; "fieldname optional Bool" is
 ## membership cardinality *3*, because it may also be undefined.
-## By contrast, the cardinality of membership of a field with a default value
+## By contrast, the cardinality of membership of a field with an implicit value
 ## remains unchanged; there is serial state which can map to an undefined value.
 ##
 ## Note that 'alias' supports exactly one string, and not a list: this is
 ## intentional.  The alias feature is meant to allow serial representations
 ## to use a different key string than the schema type definition field name;
-## it is not intented to be used for migration purposes.
+## it is not intended to be used for migration purposes.
 ##
 type StructRepresentation_Map_FieldDetails struct {
 	alias optional String
-	default optional Any # Review: may be better to introduce a small kinded union here which has the essential scalars as members.
+	implicit optional Any # Review: may be better to introduce a small kinded union here which has the essential scalars as members.
 }
 
 ## StructRepresentation_Tuple describes a way to map a struct type into a list
@@ -400,7 +401,7 @@ type StructRepresentation_Map_FieldDetails struct {
 ##
 ## Tuple representations are less flexible than map representations:
 ## field order can be specified in order to override the order defined
-## in the type, but optionals and defaults are not (currently) supported.
+## in the type, but optionals and implicits are not (currently) supported.
 type StructRepresentation_Tuple struct {
 	fieldOrder optional [String]
 }

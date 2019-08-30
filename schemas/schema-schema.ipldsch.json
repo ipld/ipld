@@ -20,7 +20,7 @@
 			"kind": "union",
 			"representation": {
 				"inline": {
-					"discriminatorKey": "kind",
+					"discriminantKey": "kind",
 					"discriminantTable": {
 						"bool": "TypeBool",
 						"string": "TypeString",
@@ -118,7 +118,7 @@
 				"map": {
 					"fields": {
 						"valueNullable": {
-							"default": false
+							"implicit": false
 						}
 					}
 				}
@@ -138,7 +138,7 @@
 				"map": {
 					"fields": {
 						"valueNullable": {
-							"default": false
+							"implicit": false
 						}
 					}
 				}
@@ -186,7 +186,7 @@
 		"UnionRepresentation_Envelope": {
 			"kind": "struct",
 			"fields": {
-				"discriminatorKey": {
+				"discriminantKey": {
 					"type": "String"
 				},
 				"contentKey": {
@@ -207,7 +207,7 @@
 		"UnionRepresentation_Inline": {
 			"kind": "struct",
 			"fields": {
-				"discriminatorKey": {
+				"discriminantKey": {
 					"type": "String"
 				},
 				"discriminantTable": {
@@ -257,10 +257,10 @@
 				"map": {
 					"fields": {
 						"optional": {
-							"default": false
+							"implicit": false
 						},
 						"nullable": {
-							"default": false
+							"implicit": false
 						}
 					}
 				}
@@ -279,7 +279,7 @@
 			"kind": "union",
 			"representation": {
 				"inline": {
-					"discriminatorKey": "kind",
+					"discriminantKey": "kind",
 					"discriminantTable": {
 						"map": "TypeMap",
 						"list": "TypeList"
@@ -319,7 +319,7 @@
 					"type": "String",
 					"optional": true
 				},
-				"default": {
+				"implicit": {
 					"type": "Any",
 					"optional": true
 				}

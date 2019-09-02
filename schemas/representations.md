@@ -111,7 +111,7 @@ serialized data incomprehensible without the schema information in hand.
 type Foo struct {
 	fieldOne String
 	fieldTwo Bool
-} representation tuiple
+} representation tuple
 ```
 
 Some data matching the `Foo` struct (shown as JSON) is:

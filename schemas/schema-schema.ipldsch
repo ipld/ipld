@@ -179,7 +179,57 @@ type TypeMap struct {
 	keyType TypeName # additionally, the referenced type must be reprkind==string.
 	valueType TypeTerm
 	valueNullable Bool (implicit "false")
+	representation MapRepresentation
 } representation map
+
+## MapRepresentation describes how a map type should be mapped onto
+## its IPLD Data Model representation.  By default a map is a map in the
+## Data Model but other kinds can be configured.
+##
+type MapRepresentation union {
+	| MapRepresentation_Map "map"
+	| Representation_StringPairs "stringpairs"
+	| Representation_ListPairs "listpairs"
+} representation keyed
+
+## MapRepresentation_Map describes that a map should be encoded as
+## a map in the Data Model
+##
+type MapRepresentation_Map struct {}
+
+## Representation_StringPairs describes that a map, or struct, should
+## be encoded as a string of delimited "k/v" entries, e.g. "k1=v1,k2=v2".
+## The separating delimiter may be specified with "entryDelim", and the k/v
+## delimiter may be specified with "innerDelim". So a "k=v" naive
+## comma-separated form would use an "innerDelim" of "=" and an "entryDelim"
+## of ",".
+##
+## This serial representation is limited: the domain of keys must
+## exclude the "innerDelim" and values and keys must exclude ",".
+## There is no facility for escaping, such as in escaped CSV.
+## This also leads to a further restriction that this representation is only
+## valid for maps and structs whose keys and values may all be encoded to string
+## form without conflicts in delimiter character. It is recommended, therefore,
+## that its use be limited to structs containing values with the basic data
+## model kinds that exclude multiple values (i.e. no maps, lists, and therefore
+## structs or unions).
+##
+type Representation_StringPairs struct {
+	innerDelim String
+	entryDelim String
+}
+
+## Representation_ListPairs describes that a map, or struct, should
+## be encoded as a as a list in the IPLD Data Model. This list comprises
+## a sub-list for each entry, in the form: [[k1,v1],[k2,v2]].
+##
+## This representation type is similar to StructRepresentation_Tuple except
+## it includes the keys. In the case of maps, this is critical since the
+## keys are not defined in the schema (hence "tuple" representation isn't
+## available for maps), but is optional for structs since they are. A tuple
+## representation for a struct will encode more compact than listpairs.
+##
+type Representation_ListPairs struct {}
 
 ## TypeList describes a list.
 ## The values of the list have some specific type of their own.
@@ -390,6 +440,9 @@ type InlineDefn union {
 type StructRepresentation union {
 	| StructRepresentation_Map "map"
 	| StructRepresentation_Tuple "tuple"
+	| Representation_StringPairs "stringpairs"
+	| StructRepresentation_StringJoin "stringjoin"
+	| Representation_listpairs "listpairs"
 } representation keyed
 
 ## StructRepresentation_Map describes a way to map a struct type onto a map
@@ -438,6 +491,23 @@ type StructRepresentation_Map_FieldDetails struct {
 ## field order can be specified in order to override the order defined
 ## in the type, but optionals and implicits are not (currently) supported.
 type StructRepresentation_Tuple struct {
+	fieldOrder optional [String]
+}
+
+## StructRepresentation_StringJoin describes a way to encode a struct to
+## a string in the IPLD Data Model. Similar to tuple representation, the
+## keys are dropped as they may be inferred from the struct definition.
+## values are concatenated, in order, and separated by a "join" delimiter.
+## For example, specifying ":" as the "join": "v1,v2,v3".
+##
+## stringjoin is necessarily restrictive and therefore only valid for structs
+## whose values may all be encoded to string form without conflicts in "join"
+## character. It is recommended, therefore, that its use be limited to structs
+## containing values with the basic data model kinds that exclude multiple
+## values (i.e. no maps, lists, and therefore structs or unions).
+##
+type StructRepresentation_StringJoin struct {
+	join String
 	fieldOrder optional [String]
 }
 

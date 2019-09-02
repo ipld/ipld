@@ -124,6 +124,9 @@
 				},
 				"valueNullable": {
 					"type": "Bool"
+				},
+				"representation": {
+					"type": "MapRepresentation"
 				}
 			},
 			"representation": {
@@ -134,6 +137,44 @@
 						}
 					}
 				}
+			}
+		},
+		"MapRepresentation": {
+			"kind": "union",
+			"representation": {
+				"keyed": {
+					"map": "MapRepresentation_Map",
+					"stringpairs": "Representation_StringPairs",
+					"listpairs": "Representation_ListPairs"
+				}
+			}
+		},
+		"MapRepresentation_Map": {
+			"kind": "struct",
+			"fields": {},
+			"representation": {
+				"map": {}
+			}
+		},
+		"Representation_StringPairs": {
+			"kind": "struct",
+			"fields": {
+				"innerDelim": {
+					"type": "String"
+				},
+				"entryDelim": {
+					"type": "String"
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"Representation_ListPairs": {
+			"kind": "struct",
+			"fields": {},
+			"representation": {
+				"map": {}
 			}
 		},
 		"TypeList": {
@@ -314,7 +355,10 @@
 			"representation": {
 				"keyed": {
 					"map": "StructRepresentation_Map",
-					"tuple": "StructRepresentation_Tuple"
+					"tuple": "StructRepresentation_Tuple",
+					"stringpairs": "Representation_StringPairs",
+					"stringjoin": "StructRepresentation_StringJoin",
+					"listpairs": "Representation_listpairs"
 				}
 			}
 		},
@@ -353,6 +397,24 @@
 		"StructRepresentation_Tuple": {
 			"kind": "struct",
 			"fields": {
+				"fieldOrder": {
+					"type": {
+						"kind": "list",
+						"valueType": "String"
+					},
+					"optional": true
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"StructRepresentation_StringJoin": {
+			"kind": "struct",
+			"fields": {
+				"join": {
+					"type": "String"
+				},
 				"fieldOrder": {
 					"type": {
 						"kind": "list",

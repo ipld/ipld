@@ -8,7 +8,8 @@
 ## There are some additional rules that should be applied:
 ##   - Type names should by convention begin with a capital letter;
 ##   - Type names must be all printable characters (no whitespace);
-##   - Type names must not contain punctuation (dashes, dots, etc).
+##   - Type names must not contain punctuation other than underscores
+##     (dashes, dots, etc.).
 ##
 ## Type names are strings meant for human consumption at a local scope.
 ## When making a Schema, note that the TypeName is the key of the map:
@@ -357,9 +358,23 @@ type UnionRepresentation_Inline struct {
 ## also exist).
 ##
 type TypeStruct struct {
-	fields {String:StructField}
+	fields {FieldName:StructField}
 	representation StructRepresentation
 }
+
+## FieldName is an alias of string.
+##
+## There are some additional rules that should be applied:
+##   - Field names should by convention begin with a lower-case letter;
+##   - Field names must be all printable characters (no whitespace);
+##   - Field names must not contain punctuation other than underscores
+##     (dashes, dots, etc.).
+##
+## Field names are strings meant for human consumption at a local scope.
+## When making a Schema, note that the FieldName is the key of the map:
+## a FieldName must be unique within the Schema.
+##
+type FieldName string
 
 ## StructField describes the properties of each field declared by a TypeStruct.
 ##
@@ -455,7 +470,7 @@ type StructRepresentation union {
 ## 'implicit' options.
 ##
 type StructRepresentation_Map struct {
-	fields optional {String:StructRepresentation_Map_FieldDetails}
+	fields optional {FieldName:StructRepresentation_Map_FieldDetails}
 }
 
 ## StructRepresentation_Map_FieldDetails describes additional properties of a
@@ -491,7 +506,7 @@ type StructRepresentation_Map_FieldDetails struct {
 ## field order can be specified in order to override the order defined
 ## in the type, but optionals and implicits are not (currently) supported.
 type StructRepresentation_Tuple struct {
-	fieldOrder optional [String]
+	fieldOrder optional [FieldName]
 }
 
 ## StructRepresentation_StringJoin describes a way to encode a struct to
@@ -508,7 +523,7 @@ type StructRepresentation_Tuple struct {
 ##
 type StructRepresentation_StringJoin struct {
 	join String
-	fieldOrder optional [String]
+	fieldOrder optional [FieldName]
 }
 
 ## TypeEnum describes a type which has a known, pre-defined set of possible

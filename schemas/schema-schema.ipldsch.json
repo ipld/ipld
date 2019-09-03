@@ -291,7 +291,7 @@
 				"fields": {
 					"type": {
 						"kind": "map",
-						"keyType": "String",
+						"keyType": "FieldName",
 						"valueType": "StructField"
 					}
 				},
@@ -302,6 +302,9 @@
 			"representation": {
 				"map": {}
 			}
+		},
+		"FieldName": {
+			"kind": "string"
 		},
 		"StructField": {
 			"kind": "struct",
@@ -368,7 +371,7 @@
 				"fields": {
 					"type": {
 						"kind": "map",
-						"keyType": "String",
+						"keyType": "FieldName",
 						"valueType": "StructRepresentation_Map_FieldDetails"
 					},
 					"optional": true

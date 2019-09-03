@@ -66,6 +66,18 @@
 				"link": null
 			}
 		},
+		"AnyScalar": {
+			"kind": "union",
+			"representation": {
+				"kinded": {
+					"bool": "Bool",
+					"string": "String",
+					"bytes": "Bytes",
+					"int": "Int",
+					"float": "Float"
+				}
+			}
+		},
 		"TypeBool": {
 			"kind": "struct",
 			"fields": {},
@@ -148,7 +160,7 @@
 			"kind": "struct",
 			"fields": {
 				"expectedType": {
-					"type": "TypeTerm"
+					"type": "String"
 				}
 			},
 			"representation": {
@@ -330,7 +342,7 @@
 					"optional": true
 				},
 				"implicit": {
-					"type": "Any",
+					"type": "AnyScalar",
 					"optional": true
 				}
 			},

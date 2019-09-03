@@ -135,6 +135,18 @@ type RepresentationKind enum {
 	| "link"
 }
 
+## AnyScalar defines a union of the basic non-complex kinds.
+##
+## Useful defining usage of IPLD nodes that do compose from other nodes.
+##
+type AnyScalar union {
+	| Bool bool
+	| String string
+	| Bytes bytes
+	| Int int
+	| Float float
+} representation kinded
+
 ## TypeBool describes a simple boolean type.
 ## It has no details.
 ##
@@ -178,15 +190,25 @@ type TypeList struct {
 } representation map
 
 ## TypeLink describes a hash linking to another object (a CID).
+##
 ## A link also has an "expectedType" that provides a hinting mechanism
 ## suggesting what we should find if we were to follow the link. This
 ## cannot be strictly enforced by a node or block-level schema
 ## validation but may be enforced elsewhere in an application relying on
 ## a schema.
+##
 ## The expectedType is specified with the `&Any` link shorthand, where
 ## `Any` may be replaced with a specific type.
+##
+## Unlike other kinds, we use `&Type` to denote a link Type rather than
+## `Link`. In this usage, we replace `Type` the expected Type, with `&Any`
+## being shorthand for "a link which may resolve to a type of any kind".
+##
+## `expectedType` is a String, but it should validate as "Any" or a TypeName
+## found somewhere in the schema.
+##
 type TypeLink struct {
-	expectedType TypeTerm (implicit "Any")
+	expectedType String (implicit "Any")
 }
 
 ## TypeUnion describes a union (sometimes called a "sum type", or
@@ -406,7 +428,7 @@ type StructRepresentation_Map struct {
 ##
 type StructRepresentation_Map_FieldDetails struct {
 	rename optional String
-	implicit optional Any # Review: may be better to introduce a small kinded union here which has the essential scalars as members.
+	implicit optional AnyScalar
 }
 
 ## StructRepresentation_Tuple describes a way to map a struct type into a list

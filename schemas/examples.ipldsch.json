@@ -3,7 +3,9 @@
 		"ExampleWithNullable": {
 			"kind": "map",
 			"keyType": "String",
-			"valueType": "String",
+			"valueType": {
+				"kind": "link"
+			},
 			"valueNullable": true
 		},
 		"ExampleWithAnonDefns": {
@@ -42,6 +44,12 @@
 							"valueType": "String",
 							"valueNullable": true
 						}
+					}
+				},
+				"boomField": {
+					"type": {
+						"kind": "link",
+						"expectedType": "ExampleWithNullable"
 					}
 				}
 			},

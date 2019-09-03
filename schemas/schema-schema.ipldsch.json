@@ -325,7 +325,7 @@
 		"StructRepresentation_Map_FieldDetails": {
 			"kind": "struct",
 			"fields": {
-				"alias": {
+				"rename": {
 					"type": "String",
 					"optional": true
 				},

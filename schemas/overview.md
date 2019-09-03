@@ -43,8 +43,9 @@ All of this maps over the IPLD Data Model:
 
 - every type has a representation;
 - e.g. maps are represented as maps; structs are also represented as maps!
-- representations can specify aliases for how to serialize things; e.g. provide
-  shorter serial strings to use in place of longer struct names.
+- representations can specify a mapping for serialized field names, which can
+  be useful in cases such as requiring serialization compactness but preferring
+  verbosity in the schema for descriptive purposes.
 - representations are customizable, including mapping a type onto a different
   representation kind entirely!  e.g. a struct can be declared to have a
   list representation (making it shorter to serialize, if less self-describing);

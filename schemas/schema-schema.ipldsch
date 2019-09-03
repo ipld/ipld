@@ -364,19 +364,27 @@ type InlineDefn union {
 ## StructRepresentation describes how a struct type should be mapped onto
 ## its IPLD Data Model representation.  Typically, maps are the representation
 ## kind, but other kinds and details can be configured.
+##
 type StructRepresentation union {
 	| StructRepresentation_Map "map"
 	| StructRepresentation_Tuple "tuple"
 } representation keyed
 
 ## StructRepresentation_Map describes a way to map a struct type onto a map
-## representation.  For example, fields may be aliased,
-## or implicit values associated.
+## representation. Field serialization options may optionally be configured to
+## enable mapping serialized keys using the 'rename' option, or implicit values
+## specified where the field is omitted from the serialized form using the
+## 'implicit' option.
+##
+## See StructRepresentation_Map_FieldDetails for details on the 'rename' and
+## 'implicit' options.
+##
 type StructRepresentation_Map struct {
 	fields optional {String:StructRepresentation_Map_FieldDetails}
 }
+
 ## StructRepresentation_Map_FieldDetails describes additional properties of a
-## struct field when represented as a map.  For example, fields may be aliased,
+## struct field when represented as a map.  For example, fields may be renamed,
 ## or implicit values associated.
 ##
 ## If an implicit value is defined, then during marshalling, if the actual value
@@ -391,13 +399,13 @@ type StructRepresentation_Map struct {
 ## By contrast, the cardinality of membership of a field with an implicit value
 ## remains unchanged; there is serial state which can map to an undefined value.
 ##
-## Note that 'alias' supports exactly one string, and not a list: this is
-## intentional.  The alias feature is meant to allow serial representations
+## Note that 'rename' supports exactly one string, and not a list: this is
+## intentional.  The rename feature is meant to allow serial representations
 ## to use a different key string than the schema type definition field name;
 ## it is not intended to be used for migration purposes.
 ##
 type StructRepresentation_Map_FieldDetails struct {
-	alias optional String
+	rename optional String
 	implicit optional Any # Review: may be better to introduce a small kinded union here which has the essential scalars as members.
 }
 

@@ -47,8 +47,10 @@
 			},
 			"representation": {
 				"map": {
-					"fieldAliases": {
-						"fooField": "foo_field"
+					"fields": {
+						"fooField": {
+							"rename": "foo_field"
+						}
 					}
 				}
 			}

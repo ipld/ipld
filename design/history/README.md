@@ -72,13 +72,18 @@ are not themselves suitable to being treated as artifacts for reference.
 There are several reasons we believe a directory of files to be superior to
 github issues for our purposes:
 
-- It's preferable to save github issues for real issues that need active engagement;
-- it's possible to link to specific headings in markdown in files in github,
-  while it is *not* possible to do this to headings within in issue bodies;
-- and it's important and desirable that conversations reach halting states;
-  we want to emphasize that "thread necros" are *bad*, and rebooting a
-  conversation is better done as a *new* conversation that to has a clear start
-  and an active resummarization of why they're present-tense.
+- It's preferable to save github issues for what they're best at:
+  being an "inbox" for topics that need active engagement.
+- It's important and desirable that conversations reach halting states:
+  we want to emphasize that reviving discussions that haven't seen any update
+  for a long time is probably an unproductive flow.
+  Rebooting a conversation is better done as a *new* conversation that has a
+  clear start, an active resummarization of any past discussion, and some
+  remarks abut what information is new or why the topic is present-tense.
+- Mechanically, it's possible to link to specific headings in markdown in files in github,
+  while it is *not* possible to do this to headings within in issue bodies.
+  This seems minor, but results in substantial limitations in the ability to
+  break things down in a github issue or reference parts later if the topic is large.
 
 Overall: remember: We want to produce artifacts we can use as touchpoints
 in discussion, and *not* be the discussion format itself.
@@ -97,7 +102,9 @@ design discussions in issues almost invariably receive protest when closed,
 even if the issue has been open (sometimes for *years*!) without comment.
 
 Yet closing issues is necessary to prevent the issue list from becoming
-a graveyard full of ghastly distracting vuvuzelas.  What to do?
+distracting or dysfunctional.  The result of long-term failure to close issues
+is so disquieting it's often colloquially referred to as an "issue graveyard"!
+What to do?
 
 Sometimes, we try to navigate a middle road here by suggesting that key
 content from an issue text be captured in a design history document.

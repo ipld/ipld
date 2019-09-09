@@ -144,8 +144,8 @@
 			"representation": {
 				"keyed": {
 					"map": "MapRepresentation_Map",
-					"stringpairs": "Representation_StringPairs",
-					"listpairs": "Representation_ListPairs"
+					"stringpairs": "MapRepresentation_StringPairs",
+					"listpairs": "MapRepresentation_ListPairs"
 				}
 			}
 		},
@@ -156,7 +156,7 @@
 				"map": {}
 			}
 		},
-		"Representation_StringPairs": {
+		"MapRepresentation_StringPairs": {
 			"kind": "struct",
 			"fields": {
 				"innerDelim": {
@@ -170,7 +170,7 @@
 				"map": {}
 			}
 		},
-		"Representation_ListPairs": {
+		"MapRepresentation_ListPairs": {
 			"kind": "struct",
 			"fields": {},
 			"representation": {
@@ -359,9 +359,9 @@
 				"keyed": {
 					"map": "StructRepresentation_Map",
 					"tuple": "StructRepresentation_Tuple",
-					"stringpairs": "Representation_StringPairs",
+					"stringpairs": "StructRepresentation_StringPairs",
 					"stringjoin": "StructRepresentation_StringJoin",
-					"listpairs": "Representation_listpairs"
+					"listpairs": "StructRepresentation_ListPairs"
 				}
 			}
 		},
@@ -403,9 +403,23 @@
 				"fieldOrder": {
 					"type": {
 						"kind": "list",
-						"valueType": "String"
+						"valueType": "FieldName"
 					},
 					"optional": true
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"StructRepresentation_StringPairs": {
+			"kind": "struct",
+			"fields": {
+				"innerDelim": {
+					"type": "String"
+				},
+				"entryDelim": {
+					"type": "String"
 				}
 			},
 			"representation": {
@@ -421,11 +435,18 @@
 				"fieldOrder": {
 					"type": {
 						"kind": "list",
-						"valueType": "String"
+						"valueType": "FieldName"
 					},
 					"optional": true
 				}
 			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"StructRepresentation_ListPairs": {
+			"kind": "struct",
+			"fields": {},
 			"representation": {
 				"map": {}
 			}

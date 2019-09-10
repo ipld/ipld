@@ -1,5 +1,5 @@
 {
-	"schema": {
+	"types": {
 		"TypeName": {
 			"kind": "string"
 		},
@@ -8,12 +8,26 @@
 			"keyType": "TypeName",
 			"valueType": "Type"
 		},
+		"AdvancedDataLayoutName": {
+			"kind": "string"
+		},
+		"AdvancedDataLayoutMap": {
+			"kind": "map",
+			"keyType": "AdvancedDataLayoutName",
+			"valueType": "AdvancedDataLayout"
+		},
 		"Schema": {
-			"kind": "union",
-			"representation": {
-				"keyed": {
-					"schema": "SchemaMap"
+			"kind": "struct",
+			"fields": {
+				"types": {
+					"type": "SchemaMap"
+				},
+				"advanced": {
+					"type": "AdvancedDataLayoutMap"
 				}
+			},
+			"representation": {
+				"map": {}
 			}
 		},
 		"Type": {
@@ -78,6 +92,13 @@
 				}
 			}
 		},
+		"AdvancedDataLayout": {
+			"kind": "struct",
+			"fields": {},
+			"representation": {
+				"map": {}
+			}
+		},
 		"TypeBool": {
 			"kind": "struct",
 			"fields": {},
@@ -93,6 +114,26 @@
 			}
 		},
 		"TypeBytes": {
+			"kind": "struct",
+			"fields": {
+				"representation": {
+					"type": "BytesRepresentation"
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"BytesRepresentation": {
+			"kind": "union",
+			"representation": {
+				"keyed": {
+					"bytes": "BytesRepresentation_Bytes",
+					"advanced": "AdvancedDataLayoutName"
+				}
+			}
+		},
+		"BytesRepresentation_Bytes": {
 			"kind": "struct",
 			"fields": {},
 			"representation": {
@@ -145,7 +186,8 @@
 				"keyed": {
 					"map": "MapRepresentation_Map",
 					"stringpairs": "MapRepresentation_StringPairs",
-					"listpairs": "MapRepresentation_ListPairs"
+					"listpairs": "MapRepresentation_ListPairs",
+					"advanced": "AdvancedDataLayoutName"
 				}
 			}
 		},
@@ -185,6 +227,9 @@
 				},
 				"valueNullable": {
 					"type": "Bool"
+				},
+				"representation": {
+					"type": "ListRepresentation"
 				}
 			},
 			"representation": {
@@ -195,6 +240,22 @@
 						}
 					}
 				}
+			}
+		},
+		"ListRepresentation": {
+			"kind": "union",
+			"representation": {
+				"keyed": {
+					"list": "ListRepresentation_List",
+					"advanced": "AdvancedDataLayoutName"
+				}
+			}
+		},
+		"ListRepresentation_List": {
+			"kind": "struct",
+			"fields": {},
+			"representation": {
+				"map": {}
 			}
 		},
 		"TypeLink": {

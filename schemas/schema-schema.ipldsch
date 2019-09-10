@@ -32,6 +32,22 @@ type TypeName string
 ##
 type SchemaMap {TypeName:Type}
 
+## AdvancedDataLayoutName defines the name of an ADL as a string.
+##
+## The same constraints and conventions apply as for TypeName.
+##
+## This identifier is used for keys in the AdvancedDataLayoutMap and also as
+## references to ADLs where the "advanced" representation strategy is used for
+## the types that support it.
+##
+type AdvancedDataLayoutName string
+
+## AdvancedDataLayoutMap defines the set of ADLs found within the schema. It
+## maps the name (AdvancedDataLayoutName) to the AdvancedDataLayout, which is
+## currently an empty map.
+##
+type AdvancedDataLayoutMap {AdvancedDataLayoutName:AdvancedDataLayout}
+
 ## Schema is a single-member union, which can be used in serialization
 ## to make a form of "nominative type declaration".
 ##
@@ -47,9 +63,10 @@ type SchemaMap {TypeName:Type}
 ## }
 ## ```
 ##
-type Schema union {
-	| SchemaMap "schema"
-} representation keyed
+type Schema struct {
+	types SchemaMap
+	advanced AdvancedDataLayoutMap
+}
 
 ## The types of Type are a union.
 ##
@@ -148,6 +165,19 @@ type AnyScalar union {
 	| Float float
 } representation kinded
 
+## AdvancedDataLayout defines `advanced` definitions which are stored in the
+## top-level "advanced" map (AdvancedDataLayoutMap)
+##
+## Used as `advanced Foo` rather than `type Foo` to indicate an advanced data
+## layout (ADL) with that name which can be used as a representation for type
+## definitions whose kind the ADL is able to support.
+##
+## The AdvancedDataLayoutName is currently the only identifier that can be used
+## to make a connection with the algorithm/logic behind this ADL. Future
+## iterations may formalize this connection by some other means.
+##
+type AdvancedDataLayout struct {}
+
 ## TypeBool describes a simple boolean type.
 ## It has no details.
 ##
@@ -159,9 +189,24 @@ type TypeBool struct {}
 type TypeString struct {}
 
 ## TypeBytes describes a simple byte array type.
-## It has no details.
 ##
-type TypeBytes struct {}
+type TypeBytes struct {
+	representation BytesRepresentation
+}
+
+## BytesRepresentation specifies how a TypeBytes is to be serialized. By
+## default it will be stored as bytes in the data model but it may be replaced
+## with an ADL.
+##
+type BytesRepresentation union {
+	| BytesRepresentation_Bytes "bytes"
+	| AdvancedDataLayoutName "advanced"
+} representation keyed
+
+## BytesRepresentation_Bytes is the default representation for TypeBytes and
+## will be used implicitly if no representation is specified.
+##
+type BytesRepresentation_Bytes struct {}
 
 ## TypeInt describes a simple integer numeric type.
 ## It has no details.
@@ -191,6 +236,7 @@ type MapRepresentation union {
 	| MapRepresentation_Map "map"
 	| MapRepresentation_StringPairs "stringpairs"
 	| MapRepresentation_ListPairs "listpairs"
+	| AdvancedDataLayoutName "advanced"
 } representation keyed
 
 ## MapRepresentation_Map describes that a map should be encoded as
@@ -237,7 +283,22 @@ type MapRepresentation_ListPairs struct {}
 type TypeList struct {
 	valueType TypeTerm
 	valueNullable Bool (implicit "false")
+	representation ListRepresentation
 } representation map
+
+## ListRepresentation describes how a map type should be mapped onto
+## its IPLD Data Model representation.  By default a list is a list in the
+## data model but it may be replaced with an ADL.
+##
+type ListRepresentation union {
+	| ListRepresentation_List "list"
+	| AdvancedDataLayoutName "advanced"
+} representation keyed
+
+## ListRepresentation_List is the default representation for TypeList and
+## will be used implicitly if no representation is specified.
+##
+type ListRepresentation_List struct {}
 
 ## TypeLink describes a hash linking to another object (a CID).
 ##

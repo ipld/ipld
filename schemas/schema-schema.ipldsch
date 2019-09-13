@@ -117,18 +117,17 @@ type Type union {
 ## TODO: not actually sure we'll need to declare this.  Only usage is
 ## in the Type union representation details?
 type TypeKind enum {
-	| "bool"
-	| "string"
-	| "bytes"
-	| "int"
-	| "float"
-	| "map"
-	| "list"
-	| "link"
-	| "union"
-	| "struct"
-	| "enum"
-	| "copy"
+	| Bool
+	| String
+	| Bytes
+	| Int
+	| Float
+	| Map
+	| List
+	| Link
+	| Union
+	| Struct
+	| Enum
 }
 
 ## RepresentationKind is similar to TypeKind, but includes only those concepts
@@ -145,14 +144,14 @@ type TypeKind enum {
 ## definition in the details of Type; for example, they're used describing
 ## some of the detailed behaviors of a "kinded"-style union type.
 type RepresentationKind enum {
-	| "bool"
-	| "string"
-	| "bytes"
-	| "int"
-	| "float"
-	| "map"
-	| "list"
-	| "link"
+	| Bool
+	| String
+	| Bytes
+	| Int
+	| Float
+	| Map
+	| List
+	| Link
 }
 
 ## AnyScalar defines a union of the basic non-complex kinds.
@@ -641,11 +640,50 @@ type StructRepresentation_StringJoin struct {
 type StructRepresentation_ListPairs struct {}
 
 ## TypeEnum describes a type which has a known, pre-defined set of possible
-## values.  Each of the values must be representable a string.
+## values. Each of the values must be representable as a string (EnumValue)
+## when using the default "string" representation, or when using an "int"
+## representation, an integer must also be supplied along with the EnumValue.
+##
+## Integer and string values (for int and string representations respectively)
+## are provided in parens in the DSL. Where the string used in serialization is
+## the same as the EnumValue, it may be omitted. For int representation enums,
+## all int values are required.
 ##
 type TypeEnum struct {
-	members {String:Null}
+  members {EnumValue:Null}
+	representation EnumRepresentation
 }
+
+## EnumValue is a string that has limitations for use as a member of an enum
+## set. The rules for EnumValue are the same as for TypeName but without the
+## convention of an uppercase first character. Capitalization is left up to
+## the user.
+##
+type EnumValue string
+
+## EnumRepresentation describes how an enum type should be mapped onto
+## its IPLD Data Model representation. By default an enum is represented as a
+## string kind but it may also be represented as an int kind.
+##
+type EnumRepresentation union {
+	| EnumRepresentation_String "string"
+	| EnumRepresentation_Int "int"
+} representation keyed
+
+## EnumRepresentation_String describes the way an enum is represented as a
+## string in the data model. By default, the strings used as EnumValue will be
+## used at the serialization. A custom string may be provided (with `Foo ("x")`
+## in the DSL) which will be stored here in the representation block. Missing
+## entries in this map will use the default.
+##
+type EnumRepresentation_String {EnumValue:String}
+
+## EnumRepresentation_Int describes the way an enum is represented as an int
+## in the data model. A mapping of names to ints is required to perform the
+## conversion from int to enum value. In the DSL, int values _must_ be provided
+## for each EnumValue (with `Foo ("100")`, those are stored here.
+##
+type EnumRepresentation_Int {EnumValue:Int}
 
 ## TypeCopy describes a special "copy" unit that indicates that a type name
 ## should copy the type descriptor of another type. TypeCopy does not redirect a

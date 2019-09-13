@@ -55,31 +55,36 @@
 		"TypeKind": {
 			"kind": "enum",
 			"members": {
-				"bool": null,
-				"string": null,
-				"bytes": null,
-				"int": null,
-				"float": null,
-				"map": null,
-				"list": null,
-				"link": null,
-				"union": null,
-				"struct": null,
-				"enum": null,
-				"copy": null
+				"Bool": null,
+				"String": null,
+				"Bytes": null,
+				"Int": null,
+				"Float": null,
+				"Map": null,
+				"List": null,
+				"Link": null,
+				"Union": null,
+				"Struct": null,
+				"Enum": null
+			},
+			"representation": {
+				"string": {}
 			}
 		},
 		"RepresentationKind": {
 			"kind": "enum",
 			"members": {
-				"bool": null,
-				"string": null,
-				"bytes": null,
-				"int": null,
-				"float": null,
-				"map": null,
-				"list": null,
-				"link": null
+				"Bool": null,
+				"String": null,
+				"Bytes": null,
+				"Int": null,
+				"Float": null,
+				"Map": null,
+				"List": null,
+				"Link": null
+			},
+			"representation": {
+				"string": {}
 			}
 		},
 		"AnyScalar": {
@@ -536,14 +541,39 @@
 				"members": {
 					"type": {
 						"kind": "map",
-						"keyType": "String",
+						"keyType": "EnumValue",
 						"valueType": "Null"
-					}
+					 }
+				},
+				"representation": {
+					"type": "EnumRepresentation"
 				}
 			},
 			"representation": {
 				"map": {}
 			}
+		},
+		"EnumRepresentation": {
+			"kind": "union",
+			"representation": {
+				"keyed": {
+					"string": "EnumRepresentation_String",
+					"int": "EnumRepresentation_Int"
+				}
+			}
+		},
+		"EnumValue": {
+			"kind": "string"
+		},
+		"EnumRepresentation_String": {
+			"kind": "map",
+			"keyType": "EnumValue",
+			"valueType": "String"
+		},
+		"EnumRepresentation_Int": {
+			"kind": "map",
+			"keyType": "EnumValue",
+			"valueType": "Int"
 		},
 		"TypeCopy": {
 			"kind": "struct",

@@ -1,6 +1,20 @@
 Kinds and their Representations
 -------------------------------
 
+* [Kinds and their Representations](#kinds-and-their-representations)
+* [Available representations](#available-representations)
+* [Representation Strategy Reference](#representation-strategy-reference)
+  * [struct map representation](#struct-map-representation)
+  * [struct tuple representation](#struct-tuple-representation)
+  * [struct stringjoin representation](#struct-stringjoin-representation)
+  * [map stringpairs representation](#map-stringpairs-representation)
+  * [union keyed representation](#union-keyed-representation)
+  * [union kinded representation](#union-kinded-representation)
+  * [union envelope representation](#union-envelope-representation)
+  * [union inline representation](#union-inline-representation)
+  * [enum string representation](#enum-string-representation)
+  * [enum int representation](#enum-int-representation)
+
 A type at the Schema level must be mapped onto a representation expressible
 within the Data Model.
 
@@ -26,7 +40,7 @@ more detailed parameters which are specific to the strategy (e.g., the struct
 map representation has a concept of 'default' values which is unique to that
 strategy).
 
-### table
+## Available representations
 
 (Kinds for which no meaningful customization is possible -- Null, Boolean,
 Integer, Float, String, Bytes, and List -- are elided.
@@ -52,19 +66,17 @@ Link is also not described in this section, as it's a rather unique business.)
 	- `listpairs` representation -- transcribes to `list` (of lists) in the Data Model.
 - Enum
 	- `string` representation -- the default -- transcribes the enum values as `string` in the Data Model.
+	- `int` representation -- transcribes the enum values as `int` in the Data Model.
 
 Each of these representation strategies will be explored in detail in the
 "Representation Strategy Reference" section, below.
 
-
-Representation Strategy Reference
----------------------------------
+## Representation Strategy Reference
 
 In this section, we'll go into detail on each representation strategy,
 and include examples of both schemas using it and data matching it.
 See the "Kinds and their Representations" section for an introduction to
 representation strategies.
-
 
 ### struct map representation
 
@@ -72,7 +84,7 @@ Map representation of structs means that the struct is represented as a map,
 where the keys are the names of the struct fields.  This is a common and
 natural way to represent structs; it's thus their default representation.
 
-#### struct map representation example
+**Example**
 
 ```ipldsch
 type Foo struct {
@@ -93,7 +105,6 @@ Some data matching the `Foo` struct (shown as JSON) is:
 }
 ```
 
-
 ### struct tuple representation
 
 Tuple representation allows structs to be packed into a list representation.
@@ -106,7 +117,7 @@ in the way of "self-describing" information, tuple representations can make for
 very fragile protocols, increase the difficulty of migrations, and make
 serialized data incomprehensible without the schema information in hand.
 
-#### struct tuple representation example
+**Example**
 
 ```ipldsch
 type Foo struct {
@@ -126,7 +137,7 @@ Notice how this is the same data as in the
 it's just much more compact than it was in the map representation (and
 beware -- correspondingly less self-describing!).
 
-#### struct stringjoin representation example
+### struct stringjoin representation
 
 ```ipldsch
 ## Fizzlebop is a pair of fields which serializes as "value-of-a:value-of-b" as a string.
@@ -147,7 +158,7 @@ Some data matching the `Fizzlebop` struct (shown as JSON) is:
 Since this is a struct, and none of the fields are optional, it *must* have two fields:
 therefore, a string with no `":"` characters would be rejected as not matching.
 
-#### map stringpairs representation example
+### map stringpairs representation
 
 Say we're doing something awfully like the mount options in an /etc/fstab file:
 
@@ -167,7 +178,7 @@ Some data matching the `MountOptions` struct (shown as JSON) is:
 "keys=values,serialized=thusly"
 ```
 
-#### union keyed representation example
+### union keyed representation
 
 ```ipldsch
 type MyKeyedUnion union {
@@ -191,7 +202,7 @@ This data would also match, as the other type:
 {"bar": 12}
 ```
 
-#### union kinded representation example
+### union kinded representation
 
 ```ipldsch
 type MyKindedUnion union {
@@ -233,7 +244,7 @@ Note that the kinds valid in a kinded union are all Data Model-layer
 `struct` is not.  The kind that a union member type is tagged with must
 match that type's representation kind or the schema is invalid.
 
-#### union envelope representation example
+### union envelope representation
 
 ```ipldsch
 type MyEnvelopeUnion union {
@@ -260,7 +271,7 @@ This data would also match, as the other type:
 {"tag":"bar", "msg":12}
 ```
 
-#### union inline representation example
+### union inline representation
 
 ```ipldsch
 type MyInlineUnion union {
@@ -308,3 +319,64 @@ type Bls12_381Signature bytes
 At the block level, this presents as a byte array, where the first byte is the discriminator (`0x00` or `0x01`) and the remainder is sliced to form either of the two types depending on the discriminator.
 
 `byteprefix` is not valid for unions where any of the constitutive types are _not_ `Bytes`.
+
+### enum string representation
+
+By default, an enum is simply represented as a string in the data model. An
+`enum` in the schema simply defines the list of possible strings that could be
+used in that position.
+
+**Example**
+
+```ipldsch
+type Status enum {
+	| Nope
+	| Yep
+	| Maybe
+}
+```
+
+This enum dictates that where `Status` is used, we should find one of `"Nope"`,
+`"Yep"` or `"Maybe"`.  No other value is valid where `Status` is used.
+
+Where the serialized strings are different to the values used for the enum, they
+may be provided in parens:
+
+**Example**
+
+```ipldsch
+type Status enum {
+	| Nope ("Nay")
+	| Yep  ("Yay")
+	| Maybe
+}
+```
+
+In this example, the serialization expects, and uses, the strings `Nay`, `Yay`
+and `Maybe`.
+
+### enum int representation
+
+An alternative representation for enums is the "int" representation that is
+closer to what users may expect from enums in certain programming languages
+that map enum values to integers. In IPLD Schemas we explicitly define the
+mapping to integers, so the user can dictate the appropriate data model values.
+
+**Example**
+
+```ipldsch
+type Status enum {
+	| Nope  ("0")
+	| Yep   ("1")
+	| Maybe ("100")
+} representation int
+```
+
+As with the "string" representaiton, "int" representation enums still quote the
+integer strings. Schema tooling will convert them to integers when using.
+
+There are no optional values, as for "string" representation enums, all values
+must be provided when using "int" representation enums.
+
+In our example, serialization expects, and uses, data model integer values `0`,
+`1`, and `100`. No other values at this position are valid.

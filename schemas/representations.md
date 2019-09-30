@@ -43,6 +43,7 @@ Link is also not described in this section, as it's a rather unique business.)
 	- `kinded` representation -- transcribes to varying (!) kinds in the Data Model.
 	- `envelope` representation -- transcribes to a dual-entry `map` in the Data Model.
 	- `inline` representation -- transcribes to a `map` in the Data Model (and has additional limitations).
+	- `byteprefix` representation -- transcribes to `bytes` in the Data Model, only usable for unions of `bytes`.
 - Struct
 	- `map` representation -- the default -- transcribes to `map` in the Data Model.
 	- `tuple` representation -- transcribes to `list` in the Data Model.
@@ -291,3 +292,19 @@ This is because inline unions are only a defined concept when working with types
 that have a map representation -- so, our `Bar` type in the previously examples,
 which was of `int` kind, doesn't work for this example.  We replaced it with
 another struct type, which -- since it has a `map` representation -- works.
+
+#### union byteprefix representation example
+
+```ipldsch
+type Signature union {
+	| Secp256k1Signature 0
+	| Bls12_381Signature 1
+} representation byteprefix
+
+type Secp256k1Signature bytes
+type Bls12_381Signature bytes
+```
+
+At the block level, this presents as a byte array, where the first byte is the discriminator (`0x00` or `0x01`) and the remainder is sliced to form either of the two types depending on the discriminator.
+
+`byteprefix` is not valid for unions where any of the constitutive types are _not_ `Bytes`.

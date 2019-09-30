@@ -293,7 +293,8 @@
 					"kinded": "UnionRepresentation_Kinded",
 					"keyed": "UnionRepresentation_Keyed",
 					"envelope": "UnionRepresentation_Envelope",
-					"inline": "UnionRepresentation_Inline"
+					"inline": "UnionRepresentation_Inline",
+					"byteprefix": "UnionRepresentation_BytePrefix"
 				}
 			}
 		},
@@ -339,6 +340,21 @@
 						"kind": "map",
 						"keyType": "String",
 						"valueType": "TypeName"
+					}
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"UnionRepresentation_BytePrefix": {
+			"kind": "struct",
+			"fields": {
+				"discriminantTable": {
+					"type": {
+						"kind": "map",
+						"keyType": "TypeName",
+						"valueType": "Int"
 					}
 				}
 			},

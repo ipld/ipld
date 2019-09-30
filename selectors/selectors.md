@@ -51,7 +51,7 @@ type SelectorEnvelope union {
 type Selector union {
 	| Matcher "."
 	| ExploreAll "a"
-	| ExploreFields "f" # note "ExplorePath" is a degenerate case of ExploreFields.
+	| ExploreFields "f"
 	| ExploreIndex "i"
 	| ExploreRange "r"
 	| ExploreRecursive "R"
@@ -70,9 +70,9 @@ type ExploreAll struct {
 ## traversing on typed/schema nodes) and applies a next selector to the
 ## reached nodes.
 ##
-## Note that a concept of "ExplorePath" (e.g. "foo/bar/baz") can be represented
-## as a set of three nexted ExploreFields selectors, each specifying one field.
-## (For this reason, we don't have a special "ExplorePath" feature; use this.)
+## Note that a concept of exploring a whole path (e.g. "foo/bar/baz") can be
+## represented as a set of three nexted ExploreFields selectors, each
+## specifying one field.
 type ExploreFields struct {
 	fields {String:Selector} (rename "f>")
 }

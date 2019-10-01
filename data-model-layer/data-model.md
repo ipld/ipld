@@ -12,6 +12,24 @@ While the Data Model describes these representations in the abstract,
 additional optional tooling on top of the Data Model which can further refine,
 describe, and constrain the range of acceptable data values.)
 
+Motivation
+----------
+
+There is not **one** block format but **many** block formats widely used today in content 
+addressed data structures. We assume that we'll see more of these block formats in the 
+future and not less. It is quite clear then that a reasonable and more future proof approach 
+to using these data structures is to be block format agnostic.
+
+The data model defines a common respresentation of basic types that **are easily representable
+by common programming languages.** This provides the foundation for block format agnostic tools
+to be built using familiar native types in a programmer's preferred language. As such, there
+is an element of "lowest common denominator" to the IPLD Data Model in that it cannot support
+some advanced features (like non-string keys for Maps) because support for such a feature
+is not common enough among programming languages.
+
+This does not mean that a block format could not support more advanced features than exist in the 
+data model, it just means that the common set of tools IPLD is building w/ its block format 
+agnostic approach cannot be easily leveraged to use those features.
 
 Kinds
 -----

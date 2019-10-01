@@ -42,7 +42,7 @@ inline in the schema.
 ## that don't have established existing context with marks the start of a selector:
 ## it's a single-member union used to kick us towards "nominative typing".
 ##
-## See https://github.com/ipld/go-ipld-prime/blob/0692e3b8cd7f231fe5d9d16a103bbbacb23dbdb5/doc/schema.md#using-schema-match-checking-as-version-detection
+## See https://github.com/ipld/specs/tree/master/schemas/migration.md
 ## for a background on the theory behind this gentle-nominative concept.
 type SelectorEnvelope union {
 	| Selector "selector"

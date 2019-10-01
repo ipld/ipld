@@ -11,8 +11,8 @@ and show the Selectors as YAML documents.
 these examples are JSON for convenience and by convention, but all
 the examples would work the same even if they were in other formats.
 Similarly, **Selectors themselves are just IPLD documents**, so while
-we've written yaml forms here, they could just as well be e.g. JSON or CBOR.
-When we write yaml, we'll also use quoted strings for user-supplied strings,
+we've written YAML forms here, they could just as well be e.g. JSON or CBOR.
+When we write YAML, we'll also use quoted strings for user-supplied strings,
 and unquoted strings as map keys when it's for a field specified by the schema.
 
 For human convenience, we will also pretend there are a few modifications
@@ -125,7 +125,7 @@ Selector:
 ```
 
 This will traverse the same set of nodes as the previous example -- however,
-it has has a *slightly* different effect!
+it has has a *slightly* different effect.
 
 Using a recursive selector in this way matches *each* of the "parent" nodes,
 up to the depth limit -- meaning it matches five nodes, instead of the

@@ -1,10 +1,10 @@
 # [WIP] DagPB Spec
 
-DAG-PB does not support the full ["IPLD Data Model v1."](../IPLD-Data-Model-v1.md)
+DagPB does not support the full ["IPLD Data Model v1."](../IPLD-Data-Model-v1.md)
 
 ## Format
 
-The DAG-PB IPLD format is a legacy format implemented with a single protobuf.
+The DagPB IPLD format is a legacy format implemented with a single protobuf.
 
 ```protobuf
 // An IPFS MerkleDAG Link
@@ -86,9 +86,9 @@ We could implicitly transform the protobuf to some new structure in the IPLD dat
 }
 ```
 
-## Canonical DAG-PB
+## Canonical DagPB
 
-Canonical DAG-PB must:
+Canonical DagPB must:
 
 1. Contain only the specified protobuf fields.
 2. Use standard protobuf encoding, with the following field orders:

@@ -1,5 +1,5 @@
-Schemas and Migration
----------------------
+IPLD Schemas and Migration
+--------------------------
 
 Fundamental to our approach to schemas is an understanding:
 
@@ -38,14 +38,14 @@ There are a handful of recognizable patterns that are used frequently:
 
 - Using a dummy union to get nominative typing at the document root.
   - e.g. `{"foo": {...}}`, using "foo" as the type+version hint.
-    The union is has only single member, and we use this in concert with
-    multiple schemas and probing: it returns quickly in the case of a non-match.
+    The union has only single member, and we use this in concert with multiple
+    schemas and probing: it returns quickly in the case of a non-match.
   - Any union representation will do.
     - Keyed unions: `{"foo-v2": {...}}`
     - Envelope unions: `{"version": "2", "content":{...}}`
 	- Inline unions: `{"version": "2", ...}`
 	- A single-member struct would also fit the pattern, being functionally
-      equivalent to a keyed union.
+          equivalent to a keyed union.
   - See the schema-schema for an example of this!
 - Using a "version" union (with multiple members).
   - e.g. `{"version": "1.2.3", "data":{...}}`
@@ -59,7 +59,7 @@ There are a handful of recognizable patterns that are used frequently:
       info, plus some ignored fields which will contain the further content.
       This simple schema is assumed to match completely.
     - Secondly, using information from that first pass, user-specified logic
-	  selects a complete schema, which is then used to handle the full data.
+      selects a complete schema, which is then used to handle the full data.
 
 (Currently, this probing is left to the library user.  More built-in features
 around this are expected to come in the future.)
@@ -96,7 +96,7 @@ Neither can be deployed to reliable effect without a plan.
 Explicit versioning labelling is prone to treating the version label as a
 semantic junk drawer, upon which we can heap unbounded amounts of
 not-necessarily-related semantics.
-This is a temptation which can be migitated through diligence, but the
+This is a temptation which can be mitigated through diligence, but the
 fundamental incentive is always there: like global variables in programming,
 a document-global explicit version allows lazy coding and fosters presumptions.
 
@@ -158,8 +158,8 @@ If you're using codegen based on the schema, note that you'll probably only
 need to use codegen for the most recent / most preferred version of the schema.
 (This is a good thing!  We wouldn't want tons of generated code per version
 to start stacking up in our repos.)
-Parsing of data for other versions can be handled by ipldcbor.Node or other
+Parsing of data for other versions can be handled by `ipldcbor.Node` or other
 such implementations which are optimized for handling serial data; the
 migration function is a natural place to build the codegenerated native typed
-Nodes, and so each half of the process can easily use the Node implementation
-that is best suited.
+`Node`s, and so each half of the process can easily use the `Node`
+implementation that is best suited.

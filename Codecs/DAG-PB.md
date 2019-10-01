@@ -32,7 +32,7 @@ message PBNode {
 ```
 
 The objects link names are specified in the 'Name' field of the PBLink object.
-All links in an object must either be blank or unique within the object.
+All link names in an object must either be blank or unique within the object.
 
 ## Pathing
 

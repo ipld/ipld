@@ -19,7 +19,7 @@ For human convenience, we will also pretend there are a few modifications
 to the Selector schema:
 
 - we will disregard all 'rename' shortenings specified by the schema;
-- and we will use type names (snakeCase'd) for union discriminators,
+- and we will use type names for union discriminators,
   instead of the shorter keys specified in the schema for those unions.
 
 Therefore, note that the *real* serialized selectors will be significantly terser!
@@ -53,15 +53,21 @@ Example data (as JSON):
 A Selector to extract the "year" data could look like this:
 
 ```yaml
-selectFields:
-  "characters":
-    selectFields:
-      "kathryn-janeway":
-        selectFields:
-          "birthday":
-            selectFields:
-              "year":
-                matcher: {}
+Selector:
+  ExploreFields:
+    fields:
+      "characters":
+        ExploreFields:
+          fields:
+            "kathryn-janeway":
+              ExploreFields:
+                fields:
+                  "birthday":
+                    ExploreFields:
+                      fields:
+                        "year":
+                          Matcher:
+                            {}
 ```
 
 
@@ -81,33 +87,42 @@ The shape of a block could look like this (in JSON):
 
 If you know you want five parents you could continue to use explicit Field Selectors:
 
-```json
-{"selectFields":{"parent":
-	{"selectFields":{"parent":
-		{"selectFields":{"parent":
-			{"selectFields":{"parent":
-				{"selectFields":{"parent":
-					{"matcher":{}}}}}}}}}}}}
+```yaml
+Selector:
+  ExploreFields:
+    fields:
+      "parent":
+        ExploreFields:
+          fields:
+            "parent":
+              ExploreFields:
+                fields:
+                  "parent":
+                    ExploreFields:
+                      fields:
+                        "parent":
+                          ExploreFields:
+                            fields:
+                              "parent":
+                                Matcher:
+                                  {}
 ```
 
-This selector matches the fivth-deepest "parent" (and in the context of
-graphsync or other merkleproof applications, will yield all five nodes).
+This selector matches the fivth-deepest "parent"
 
 But this gets a bit verbose.  We can explore the same tree in a similar
 pattern with another mechanism -- recursive exploration:
 
 ```yaml
-selectRecursive:
-  depthLimit: 5
-  next:
-    selectFields:
-      "parent":
-
+Selector:
+  ExploreRecursive:
+    maxDepth: 5
+    sequence:
+      ExploreFields:
+        fields:
+          "parent":
+            ExploreRecursiveEdge
 ```
-
-// FIXME, well, at least it's obvious now how different it is.
-// there's no 'after' system, though.  so we literally can't match the above.
-// the whole example is bad.  it needs a larger corpus or it's wildly unclear.
 
 This will traverse the same set of nodes as the previous example -- however,
 it has has a *slightly* different effect!
@@ -116,9 +131,8 @@ Using a recursive selector in this way matches *each* of the "parent" nodes,
 up to the depth limit -- meaning it matches five nodes, instead of the
 previous example, which matches only the last one.
 
-In terms of graphsync or other merkleproof applications, the selector will yield
-the same set, since the set of nodes *considered* for matches is the same as
-in the previous example.
+Implementations that return all visited notes (and not only the matched ones)
+will return the same set of notes for both examples.
 
 
 ### Getting changes up to a certain one
@@ -138,46 +152,67 @@ The shape of a change could look like this (in JSON):
 It will be a Recursive Selector following along until it reaches a link of a
 certain value (`somecid` in this case):
 
-```json
-{"selectRecursive": {
-  "depthLimit": 5,
-  "next":
-    {"selectFields":{"parent":
-      true}},
-  "cidLimit": "somecid"
-}}
+```yaml
+Selector:
+  ExploreRecursive:
+    maxDepth: 100
+    sequence:
+      ExploreFields:
+        fields:
+          "prev":
+            ExploreRecursiveEdge
+    stopAt:
+      TBD: # Conditions are specified yet
 ```
 
 
 ### Getting a full sub-DAG
 
-For getting a full file from UnixFSv1 you need to retrieve a full sub-DAG.
+For getting a full file from [UnixFSv1] you need to retrieve a full sub-DAG.
 
 An example selector to get the full sub-DAG rooted at a certain CID:
 
 
-```json
-{"selectRecursive": {
-  "next":
-    {"selectFields":{"Links":
-      {"selectAll":
-        {"selectFields":{"multihash":
-          true}}}}}
-}}
+```yaml
+Selector:
+  ExploreRecursive:
+    maxDepth: 1000
+    sequence:
+      ExploreFields:
+        fields:
+          "Links"
+            ExploreAll:
+              next:
+                ExploreFields:
+                  fields:
+                    "multihash":
+                      ExploreRecursiveEdge
 ```
+
 
 If it's a file in some directory, you can also start at a deeper level:
 
-```json
-{"selectFields":{"with":
-  {"selectFields":{"some":
-    {"selectFields":{"subdirectory":
-      {"selectRecursive": {
-        "next":
-          {"selectFields":{"Links":
-            {"selectAll":
-              {"selectFields":{"multihash":
-                true}}}}}
-      }}
-}}}}}}
+```yaml
+Selector:
+  ExploreFields:
+    fields:
+      "some":
+        ExploreFields:
+          fields:
+            "subdirectory":
+              # Here starts the same recursion as above
+              ExploreRecursive:
+                maxDepth: 1000
+                sequence:
+                  ExploreFields:
+                    fields:
+                      "Links"
+                        ExploreAll:
+                          next:
+                            ExploreFields:
+                              fields:
+                                "multihash":
+                                  ExploreRecursiveEdge
 ```
+
+[UnixFSv1]: https://github.com/ipfs/specs/tree/master/unixfs

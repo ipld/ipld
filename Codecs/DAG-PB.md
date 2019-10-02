@@ -1,4 +1,4 @@
-# [WIP] DagPB Spec
+# DagPB Spec
 
 DagPB does not support the full ["IPLD Data Model v1."](../IPLD-Data-Model-v1.md)
 
@@ -36,55 +36,14 @@ All link names in an object must either be blank or unique within the object.
 
 ## Pathing
 
-TODO: See https://github.com/ipld/specs/issues/55
-TODO: Also see https://github.com/ipfs/unixfs-v2/issues/24 (specifically: the "Revise History" option).
+There is some overlap between the Go and JavaScript implementation of DagPB. Both support pathing with link names: `/<name1>/<name2>/…`.
 
-Neither go-ipfs nor js-ipfs agree so we have some room here because we're going to break something.
+In Go, this is the only way, which implies that is is impossible to path through nodes that don't name their links. Also neither the Data section nor the Links section/metadata are accessible through paths.
 
-### Alternative: go-ipfs
+In the JavaScript implementation, there is an additional way to path through the data. It's based purely on the structure of object, i.e. `/Links/<index>/Hash/…`. This way you have direct access to the `Data`, `Links`, and `size` fields, e.g. `/Links/<index>/Hash/Data`.
 
-In go-ipfs, we resolve use link names directly in paths: `/$name1/$name2/...`.
-Neither the Data section nor the Links section/metadata are accessible through
-paths.
+These two ways of pathing can be combined, so you can access e.g. the `Data` field of a named link via `/<name/Data`. You can also use both approaches within a single path, e.g. `/<name1>/Links/0/Hash/Data` or `/Links/<index>/Hash/<name>/Data`. When using the DAG API in js-ipfs, then the pathing over the structure has precedence, so you won't be able to use named pathing on a named link called `Links`, you would need to use the index of the link instead.
 
-It's also impossible to path through nodes that don't name their links.
-
-### Alternative: js-ipfs
-
-As far as I can tell, js-ipfs supports pathing both by name and by index with
-paths like: `/Links/$name/Hash/...` or `/Links/$idx/Hash`.
-
-### Alternative: Correct IPLD
-
-Based purely on the _structure_, we should only support pathing by index. That
-is, `/Links/$idx/Hash`.
-
-### Alternative: Transform
-
-We could implicitly transform the protobuf to some new structure in the IPLD data model.
-
-1. If the object has no links, the "links" section is "null".
-2. If the object has links with names, all links must have unique names so we can treat links as a map:
-
-```
-{
-  "Data": ...,
-  "Links": {
-    "$name": {"target": Qm..., "size": ...}
-  }
-}
-```
-
-3. If the object has links without names, we can pack them into an array:
-
-```
-{
-  "Data": ...,
-  "Links": [
-    {"target": Qm..., "size": ...}
-  ]
-}
-```
 
 ## Canonical DagPB
 

@@ -1,5 +1,5 @@
-IPLD Schemas and Migration
---------------------------
+IPLD Schemas and migration
+==========================
 
 Fundamental to our approach to schemas is an understanding:
 
@@ -23,7 +23,8 @@ Migration comes in two parts:
 
 We'll spend a few sections on part 1, and then get on to part 2.
 
-### Using Schema Match checking as Version Detection
+Version detection
+-----------------
 
 We don't include any built-in/blessed concepts of versioning in IPLD Schemas.
 It's not necessary: we have rich primitives which can be used to build
@@ -81,7 +82,8 @@ using IPLD Schemas!  If you're working on a system which hasn't started using
 IPLD Schemas yet, and you aim to in the future, *start using version hinting*
 based on these designs *now*; the benefits can be reaped later.
 
-### Some comments on versioning-theory
+Versioning theory
+-----------------
 
 There are different philosophies of versioning: namely, explicit versioning
 labels and version detection; which to use is a choice.
@@ -110,7 +112,8 @@ It's impossible to make a blanket prescription of how to associate version
 information with data.  Different choices have different tradeoffs.
 IPLD Schemas aim to make either choice (or hybrids of approach!) viable.
 
-### Strongly linked Schemas
+Strongly linked schemas
+-----------------------
 
 It is possible to have a document which links directly to its own Schema!
 Since IPLD Schemas are themselves representable in IPLD, it's outright trivial
@@ -128,9 +131,9 @@ already build your application logic against, etc... an explicitly linked schema
 doesn't necessarily provide more value in terms of migration than any of the
 other forms of versioning; it's essentially the same as using explicit labels.
 
-### Actually Migrating!
+Actually migrating
+------------------
 
-... Okay, this was a little bit of bait-and-switch.
 IPLD Schemas aren't completely magic.
 
 Some part of migration is inevitably left up to application logic.

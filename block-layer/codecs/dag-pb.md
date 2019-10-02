@@ -1,6 +1,6 @@
 # DagPB Spec
 
-DagPB does not support the full ["IPLD Data Model v1."](../IPLD-Data-Model-v1.md)
+DagPB does not support the full ["IPLD Data Model."](../../data-model-layer/data-model.md)
 
 ## Format
 

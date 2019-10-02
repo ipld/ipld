@@ -168,9 +168,33 @@ Selector:
 
 ### Getting a full sub-DAG
 
-For getting a full file from [UnixFSv1] you need to retrieve a full sub-DAG.
+For getting a full file from [UnixFSv1] you need to retrieve a full sub-DAG. A JSON representation of the structure we are querying would look like this:
 
-An example selector to get the full sub-DAG rooted at a certain CID:
+```json
+{
+  "Links": [{
+    "Name": "subdir1",
+    "Tsize": 87,
+    "Hash": {
+      "Links": [{
+        "Name": "somedata.txt",
+        "Tize": 30,
+        "Hash": {
+          "Data": "there's data in here",
+          "Links": []
+        }
+      }]
+    }
+  },{
+    "Name": "subdir2",
+    "TSize": 74,
+    "Hash": …
+  }]
+}
+
+```
+
+An example selector to traverse a full sub-DAG following the `Links` recursively and matching the `Name` and `Data` fields.
 
 
 ```yaml
@@ -180,39 +204,19 @@ Selector:
     sequence:
       ExploreFields:
         fields:
-          "Links"
+          "Name":
+            Matcher:
+              {}
+          "Data":
+            Matcher:
+              {}
+          "Links":
             ExploreAll:
               next:
                 ExploreFields:
                   fields:
-                    "multihash":
+                    "Hash":
                       ExploreRecursiveEdge
-```
-
-
-If it's a file in some directory, you can also start at a deeper level:
-
-```yaml
-Selector:
-  ExploreFields:
-    fields:
-      "some":
-        ExploreFields:
-          fields:
-            "subdirectory":
-              # Here starts the same recursion as above
-              ExploreRecursive:
-                maxDepth: 1000
-                sequence:
-                  ExploreFields:
-                    fields:
-                      "Links"
-                        ExploreAll:
-                          next:
-                            ExploreFields:
-                              fields:
-                                "multihash":
-                                  ExploreRecursiveEdge
 ```
 
 [UnixFSv1]: https://github.com/ipfs/specs/tree/master/unixfs

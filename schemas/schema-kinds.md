@@ -1,29 +1,118 @@
-Schema Kinds
-------------
+# Schema Kinds
 
-Recursive types contain additional type definitions for either their
-keys (in the case of maps),
-values (in the case of maps and lists),
-or fields (in the case of structs).
+* [Extending the IPLD Data Model](#extending-the-ipld-data-model)
+  * [Data Model Kinds](#data-model-kinds)
+  * [Schema Kinds](#schema-kinds)
+    * [List](#list)
+    * [Map](#map)
+    * [Union](#union)
+    * [Struct](#struct)
+    * [Enum](#enum)
+    * [Copy](#copy)
+* [Value Type Modifiers](#value-type-modifiers)
+  * [Nullable Values](#nullable-values)
+  * [Optional Fields](#optional-fields)
+  * [Fields with Defaults](#fields-with-defaults)
+  * [Combining Nullable, Optional, and Default](#combining-nullable-optional-and-default)
+* [Understanding Cardinality](#understanding-cardinality)
+  * [Cardinality Examples](#cardinality-examples)
 
-### table
+## Extending the IPLD Data Model
 
-- Null
-- Boolean
-- Integer
-- Float
-- String
-- Bytes
-- List
-- Map
-- Link
-- Union
-- Struct
-- Enum
+### Data Model Kinds
 
+IPLD Schemas define a set of "kinds" that are built upon the
+[IPLD Data Model](https://github.com/ipld/specs/blob/master/data-model-layer/data-model.md#kinds).
+The Data Model defines the basic set of data types (kinds) that are easily
+representable by common programming languages and are supportable by expressive
+serialization formats such as JSON and CBOR. The Data Model defines its list of
+kinds as:
 
-Value Type Modifiers
---------------------
+  * Null
+  * Boolean
+  * Integer
+  * Float
+  * String
+  * Bytes
+  * List
+  * Map
+  * Link
+
+### Schema Kinds
+
+IPLD Schemas, while built upon the data model, enables the definition of data
+structures that give us new discrete kinds, thus extending the Data Model Kinds
+into a new list of Schema Kinds:
+
+  * Null
+  * Boolean
+  * Integer
+  * Float
+  * String
+  * Bytes
+  * List
+  * Map
+  * Link
+  * **Union**
+  * **Struct**
+  * **Enum**
+  * **Copy**
+
+We define ***"Recursive Kinds"*** as the kinds that are comprised of other
+kinds: List, Map, Union, Struct, and Enum. These kinds provide the primary
+mechanism through which IPLD Schemas can be used to describe non-trivial
+data structures.
+
+Further, we define Copy as a ***"Meta Kind"*** because it is useful for
+simplifying schema authoring and/or increasing the descriptiveness of a schema
+for the purpose of documentation. It exists only within schema tooling and is
+not exposed to user-facing code or data.
+
+#### List
+
+As a Schema Kind, Lists have more restrictions in the data they can contain. In
+the data model, a List is defined simply as a list of arbitrary data model
+kinds with no strict restrictions that may require uniformity. At the schema
+layer, a List is defined as a list of one specific schema type. For example,
+`type Foo [String]` defines a list of Strings, and _only_ matches a list of
+Strings. This restriction isn't as limiting as it may appear because Unions
+allow for significant flexibility, particularly in the case of `kinded` Unions.
+
+#### Map
+
+Similar to List, a Map at the schema layer requires a strict definition of the
+value types. The data model dictates that IPLD only supports string keys, so any
+type used as keys in schema Maps must be represented as strings. The value types
+have the same restrictions as for List element types. For example,
+`type Bar {String:Float}` matches a map with Float values, and _only_ Float
+values. But as in List, Unions allow for additional flexibility in the data
+model kinds that may appear as values.
+
+#### Union
+
+Unions are represented as a **Map** in the data model for `keyed`, `envelope`
+and `inline` representations, and varying data model kinds for `kinded` unions,
+as described by [representations.md](representations.md).
+
+#### Struct
+
+Structs are represented as a **Map** in the data model by default but may be
+used to describe **String** and **List** encodings, as described by
+[representations.md](representations.md).
+
+#### Enum
+
+Enums are represented as either a **String** or **Int** in the data model, as
+described by [representations.md](representations.md).
+
+#### Copy
+
+Copy is a Meta Kind that indicates that a type should be implemented and encoded
+the same as another type but with an alternate name. This is a short-hand to
+avoid defining multiple types of the same shape and encoding but with different
+names.
+
+## Value Type Modifiers
 
 Values and fields in recursive types can have modifiers.
 
@@ -75,8 +164,7 @@ The `nullable` and `default` modifiers may be freely combined without issue.
 It is not valid to combine the `optional` and `default` modifiers.
 
 
-Understanding Cardinality
--------------------------
+## Understanding Cardinality
 
 ### Cardinality Examples
 

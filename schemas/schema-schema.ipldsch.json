@@ -46,7 +46,8 @@
 						"link": "TypeLink",
 						"union": "TypeUnion",
 						"struct": "TypeStruct",
-						"enum": "TypeEnum"
+						"enum": "TypeEnum",
+						"copy": "TypeCopy"
 					}
 				}
 			}
@@ -64,7 +65,8 @@
 				"link": null,
 				"union": null,
 				"struct": null,
-				"enum": null
+				"enum": null,
+				"copy": null
 			}
 		},
 		"RepresentationKind": {
@@ -537,6 +539,17 @@
 						"keyType": "String",
 						"valueType": "Null"
 					}
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"TypeCopy": {
+			"kind": "struct",
+			"fields": {
+				"fromType": {
+					"type": "TypeName"
 				}
 			},
 			"representation": {

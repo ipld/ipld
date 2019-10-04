@@ -166,35 +166,49 @@ Selector:
 ```
 
 
-### Getting a full sub-DAG
+### Retrieving data recursively
 
-For getting a full file from [UnixFSv1] you need to retrieve a full sub-DAG. A JSON representation of the structure we are querying would look like this:
+[UnixFSv1] is a good case of a recursive data structure. Any number of links can be used to create deeply nested structures. The following example is inspired by UnixFSv1, but uses a simplified structure, so that we don't get lost in UnixFSv1 specific implementation details.
+
+Our basic structure looks like this:
 
 ```json
 {
-  "Links": [{
-    "Name": "subdir1",
-    "Tsize": 87,
-    "Hash": {
-      "Links": [{
-        "Name": "somedata.txt",
-        "Tize": 30,
-        "Hash": {
-          "Data": "there's data in here",
+  "data": "<only-nodes-without-further-links-have-this-set>",
+  "links": [{
+    "name": "<name-of-the-link>",
+    "cid": "<a-cid-that-points-to-another-block>"
+  },
+  …
+  ]
+}
+```
+
+The recursion comes into play with the `cid` field that points to another block that has exactly the same structure. As you can transparently path through IPLD structures that are composed of several blocks, we just omit those in the following example and pretend that we have a single large object describing our file system.
+
+
+```json
+{
+  "links": [{
+    "name": "subdir1",
+    "cid": {
+      "links": [{
+        "name": "somedata.txt",
+        "cid": {
+          "data": "there's data in here",
           "Links": []
         }
       }]
     }
   },{
     "Name": "subdir2",
-    "TSize": 74,
-    "Hash": …
+    "cid": …
   }]
 }
 
 ```
 
-An example selector to traverse a full sub-DAG following the `Links` recursively and matching the `Name` and `Data` fields.
+The following selector visits all `links` and matches all `data` fields:
 
 
 ```yaml
@@ -204,18 +218,15 @@ Selector:
     sequence:
       ExploreFields:
         fields:
-          "Name":
+          "data":
             Matcher:
               {}
-          "Data":
-            Matcher:
-              {}
-          "Links":
+          "links":
             ExploreAll:
               next:
                 ExploreFields:
                   fields:
-                    "Hash":
+                    "cid":
                       ExploreRecursiveEdge
 ```
 

@@ -1,10 +1,12 @@
 # DagPB Spec
 
+**Status: Descriptive - Draft**
+
 DagPB does not support the full ["IPLD Data Model."](../../data-model-layer/data-model.md)
 
 ## Format
 
-The DagPB IPLD format is a legacy format implemented with a single protobuf.
+The DagPB IPLD format is a format implemented with a single protobuf.
 
 ```protobuf
 // An IPFS MerkleDAG Link
@@ -32,11 +34,13 @@ message PBNode {
 ```
 
 The objects link names are specified in the 'Name' field of the PBLink object.
-All link names in an object must either be blank or unique within the object.
+All link names in an object must either be omitted or unique within the object.
 
 ## Pathing
 
-There is some overlap between the Go and JavaScript implementation of DagPB. Both support pathing with link names: `/<name1>/<name2>/…`.
+The pathing is currently different between implementations. Please see [issue #55] for more information about the harmonization effort. This section describes the current implementations as of September 2019.
+
+The Go and JavaScript implementation both support pathing with link names: `/<name1>/<name2>/…`.
 
 In Go, this is the only way, which implies that is is impossible to path through nodes that don't name their links. Also neither the Data section nor the Links section/metadata are accessible through paths.
 
@@ -57,3 +61,5 @@ Canonical DagPB must:
 Historical Note: The ordering (Links then Data) of the PBNode message is due to
 a bug in the initial protobuf encoder that was used in the first implementation
 of ipfs. Take care to maintain this ordering for full compatibility.
+
+[issue #55]: https://github.com/ipld/specs/issues/55

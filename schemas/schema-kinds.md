@@ -115,6 +115,11 @@ names.
 ## Value Type Modifiers
 
 Values and fields in recursive types can have modifiers.
+These modifiers are:
+
+- `nullable` (for map values, list values, and struct fields)
+- `optional` (for struct fields)
+` `implicit` (for struct fields -- in some representations)
 
 ### Nullable Values
 
@@ -143,25 +148,67 @@ valid members by one -- see the "Cardinality Examples" table below.
 
 The `optional` modifier may be stacked with the `nullable` modifier.
 
-### Fields with Defaults
+### Fields with Implicit Values
 
-Defaults are somewhat more complicated than the other two modifiers,
-and also unusually, are a concept that resides in the *representation* clause
-rather than the *type* definition clause.
+An `implicit` modifier declares that when a field is found absent in data,
+it should instead be treated as some other value in the domain.
+At the same time, if an application sets the field to that value,
+it will be mapped to absense of that field when represented.
 
-The precise semantics of defaults vary per representation strategy;
+Implicit values may be considered similar to "defaults" -- and if you're looking
+for defaults, you should look at implicits -- but we've chosen a distinctive
+name for implicits because "defaults" are often a one-way conversion;
+whereas we've designed the implicit value system specifically to work
+bidirectionally -- both during serialization and deserialization -- without
+losing information.
+
+It may be interesting to note that implicits are a concept that resides in
+the *representation* clause rather than the *type* definition clause.
+This is the case because implicits do not change the cardinality of the type.
+Correspondingly, the syntatic position of an implicit declaration is on the
+end of the line declarating a field, and in paranthesis (this is the same as
+where the 'rename' and other representation-level directives can be found).
+
+The precise semantics of implicit values may vary per representation strategy;
 the discussion here is only for the general pattern, and you should also
 refer to the [reference documentation for representation strategies](./representations.md#representation-strategy-reference)
 for more details specific to the representations strategies you use.
 
-(FUTURE: there's discussion that "default" may not be the clearest name for
-this concepts.  Alternatives floated include "absent", "void", "omitted"...)
+### Combining Nullable, Optional, and Implicit
 
-### Combining Nullable, Optional, and Default
+The `nullable` and `optional` modifiers may be freely combined without issue,
+as may be the `nullable` and `implicit` modifiers.
 
-The `nullable` and `default` modifiers may be freely combined without issue.
+It is not valid to combine the `optional` and `implicit` modifiers -- since
+both regard behavior around struct fields when the data is absent in the serial
+form, it only makes sense to use exclusively one or the other on a field.
 
-It is not valid to combine the `optional` and `default` modifiers.
+There may be additional restrictions on whether `optional` and `implicit`
+modifiers may be used on a struct field based on what kind of representation
+strategy the struct has.  For example, `optional` and `implicit` cannot be
+used in fields in the middle of a struct when the representation is as tuple,
+because this could make parsing ambiguous.  The
+[reference documentation for representation strategies](./representations.md#representation-strategy-reference)
+should provide more detailed information on this.
+
+### Choosing between Optional and Implicit
+
+Use `implicit` when the absense of a value should be treated as another
+value that fits unambiguously into your domain; use `optional` when there's
+no such in-domain value.
+
+For example, if you have some integer field, and if `0` is distinctive from
+from the field being absent, use`optional`.
+If `0` (or some other value of your choice like `-1`) can be used as a
+entinel value in your application logic, while not being serialized as such,
+then you may wish to consider using `implicit`.
+
+One usage pattern to particularly note: if writing a schema for definiting
+configuration that a user may provide, and it has some concept of "defaults",
+and your application also needs to be able to *remember* whether a value was
+the default or explicitly user-provided (e.g. to re-emit the config without
+altering this)
+
 
 
 ## Understanding Cardinality

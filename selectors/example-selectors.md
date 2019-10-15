@@ -196,12 +196,12 @@ The recursion comes into play with the `cid` field that points to another block 
         "name": "somedata.txt",
         "cid": {
           "data": "there's data in here",
-          "Links": []
+          "links": []
         }
       }]
     }
   },{
-    "Name": "subdir2",
+    "name": "subdir2",
     "cid": …
   }]
 }

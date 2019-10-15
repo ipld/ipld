@@ -117,9 +117,9 @@ names.
 Values and fields in recursive types can have modifiers.
 These modifiers are:
 
-- `nullable` (for map values, list values, and struct fields)
-- `optional` (for struct fields)
-` `implicit` (for struct fields -- in some representations)
+- `nullable` for map values, list values, and struct fields
+- `optional` for struct fields
+- `implicit` for struct fields -- in some representations
 
 ### Nullable Values
 
@@ -164,10 +164,14 @@ losing information.
 
 It may be interesting to note that implicits are a concept that resides in
 the *representation* clause rather than the *type* definition clause.
-This is the case because implicits do not change the cardinality of the type.
-Correspondingly, the syntatic position of an implicit declaration is on the
-end of the line declarating a field, and in paranthesis (this is the same as
-where the 'rename' and other representation-level directives can be found).
+This is the case because implicits do not change the cardinality of the type
+(see the [Understanding Cardinality](#understanding-cardinality) table
+later in this document for more examples of what this means, and how it
+compares in semantics with the other modifiers).
+As a representational rather than type definition feature, the syntatic
+position for an implicit declaration is on the end of the line declaring a
+field, and in paranthesis (the same as where the 'rename' and other
+representation-level directives can be found).
 
 The precise semantics of implicit values may vary per representation strategy;
 the discussion here is only for the general pattern, and you should also
@@ -198,16 +202,19 @@ value that fits unambiguously into your domain; use `optional` when there's
 no such in-domain value.
 
 For example, if you have some integer field, and if `0` is distinctive from
-from the field being absent, use`optional`.
+from the field being absent, use `optional`.
 If `0` (or some other value of your choice like `-1`) can be used as a
-entinel value in your application logic, while not being serialized as such,
+sentinel value in your application logic, while not being serialized as such,
 then you may wish to consider using `implicit`.
 
-One usage pattern to particularly note: if writing a schema for definiting
-configuration that a user may provide, and it has some concept of "defaults",
-and your application also needs to be able to *remember* whether a value was
+One usage pattern to particularly note: imagine writing a schema for defining
+configuration that a user may provide, and it has some concept of "defaults".
+If your application also needs to be able to *remember* whether a value was
 the default or explicitly user-provided (e.g. to re-emit the config without
-altering this)
+altering this), you want to use `optional`!
+In this situation, `implicit` may cause the provided value to be lost at the
+application-layer if it was equal to the default, whereas `optional` will
+expose and correctly preserve the value's presense or absence.
 
 
 

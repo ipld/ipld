@@ -170,17 +170,18 @@ Selector:
 
 [UnixFSv1] is a good case of a recursive data structure. Any number of links can be used to create deeply nested structures. The following example is inspired by UnixFSv1, but uses a simplified structure, so that we don't get lost in UnixFSv1 specific implementation details.
 
-Our basic structure looks like this:
+The basic structure described by an [IPLD Schema]:
 
-```json
-{
-  "data": "<only-nodes-without-further-links-have-this-set>",
-  "links": [{
-    "name": "<name-of-the-link>",
-    "cid": "<a-cid-that-points-to-another-block>"
-  },
-  …
-  ]
+```ipldsch
+type FileSystem struct {
+  # Only leaf nodes have data
+  data optional Bytes
+  links [Link]
+}
+
+type Link struct {
+  name String
+  cid &FileSystem
 }
 ```
 
@@ -195,7 +196,7 @@ The recursion comes into play with the `cid` field that points to another block 
       "links": [{
         "name": "somedata.txt",
         "cid": {
-          "data": "there's data in here",
+          "data": "74686572652773206461746120696e2068657265",
           "links": []
         }
       }]
@@ -231,3 +232,4 @@ Selector:
 ```
 
 [UnixFSv1]: https://github.com/ipfs/specs/tree/master/unixfs
+[IPLD Schema]: ../schemas

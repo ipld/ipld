@@ -66,16 +66,16 @@ message GraphsyncMessage {
     int32 id = 1;       // unique id set on the requester side
     bytes root = 2;     // a CID for the root node in the query
     bytes selector = 3; // ipld selector to retrieve
-    bytes extra = 4;    // aux information. useful for other protocols
+    map<string, bytes> extra = 4;    // side channel information for other protocols
     int32 priority = 5;	// the priority (normalized). default to 1
     bool  cancel = 6;   // whether this cancels a request
   }
 
   message Response {
-    int32 id = 1;     // the request id
-    int32 status = 2; // a status code.
+    int32 id = 1;       // the request id
+    int32 status = 2;   // a status code.
     bytes metadata = 3; // metadata about response
-    bytes extra = 4;
+    map<string, bytes> extra = 4;    // side channel information for other protocols
   }
 
   message Block {
@@ -121,6 +121,12 @@ type LinkMetadata struct {
 
 type ResponseMetadata [LinkMetadata]
 ```
+
+### Side Channel Information
+
+The 'extra' field on both a graphsync request and a graphsync response is used to communicate side channel information that other protocols using graphsync may need to determine how to service a graphsync request. 
+
+The extra field is a map type, where the keys are protocol names, and the values are a data relevant to that protocol
 
 ### Response Status Codes
 

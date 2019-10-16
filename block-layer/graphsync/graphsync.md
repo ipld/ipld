@@ -66,16 +66,17 @@ message GraphsyncMessage {
     int32 id = 1;       // unique id set on the requester side
     bytes root = 2;     // a CID for the root node in the query
     bytes selector = 3; // ipld selector to retrieve
-    map<string, bytes> extra = 4;    // side channel information for other protocols
+    map<string, bytes> extra = 4; // side channel information
     int32 priority = 5;	// the priority (normalized). default to 1
     bool  cancel = 6;   // whether this cancels a request
+    repeated bytes excluded_cids = 7; // cids not to send blocks for
   }
 
   message Response {
     int32 id = 1;       // the request id
     int32 status = 2;   // a status code.
     bytes metadata = 3; // metadata about response
-    map<string, bytes> extra = 4;    // side channel information for other protocols
+    map<string, bytes> extra = 4;    // side channel information
   }
 
   message Block {
@@ -90,6 +91,15 @@ message GraphsyncMessage {
   repeated Block    data      = 4; // Blocks related to the responses
 }
 ```
+
+### Excluded CIDs
+
+Often a node may know ahead of time that it has some of the blocks needed to match a selector query in its local store already. Some reasons this might occur include:
+
+- a previous request was interrupted
+- a previous request for a subset of the requested selector was already completed
+
+A node can pass additional information about CIDs it already has to the responder node, which the responder node MAY choose not to send in its response.
 
 ### Response Metadata
 

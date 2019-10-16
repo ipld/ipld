@@ -66,17 +66,15 @@ message GraphsyncMessage {
     int32 id = 1;       // unique id set on the requester side
     bytes root = 2;     // a CID for the root node in the query
     bytes selector = 3; // ipld selector to retrieve
-    map<string, bytes> extra = 4; // side channel information
+    map<string, bytes> extensions = 4; // side channel information
     int32 priority = 5;	// the priority (normalized). default to 1
     bool  cancel = 6;   // whether this cancels a request
-    repeated bytes excluded_cids = 7; // cids not to send blocks for
   }
 
   message Response {
-    int32 id = 1;       // the request id
-    int32 status = 2;   // a status code.
-    bytes metadata = 3; // metadata about response
-    map<string, bytes> extra = 4;    // side channel information
+    int32 id = 1;     // the request id
+    int32 status = 2; // a status code.
+    map<string, bytes> extensions = 3;    // side channel information
   }
 
   message Block {
@@ -92,51 +90,14 @@ message GraphsyncMessage {
 }
 ```
 
-### Excluded CIDs
 
-Often a node may know ahead of time that it has some of the blocks needed to match a selector query in its local store already. Some reasons this might occur include:
+### Extensions
 
-- a previous request was interrupted
-- a previous request for a subset of the requested selector was already completed
+The Graphsync protocol is extensible. A graphsync request and a graphsync response contain an `extensions` field, which is a map type. Each key of the extensions field specifies the name of the extension, while the value is data (serialized as bytes) relevant to that extension.
 
-A node can pass additional information about CIDs it already has to the responder node, which the responder node MAY choose not to send in its response.
+Extensions help make Graphsync operate more efficiently, or provide a mechanism for exchanging side channel information for other protocols. An implementation can choose to support one or more extensions, but it does not have to.
 
-### Response Metadata
-
-Response metadata provides information about the response to help the requestor more efficiently verify the blocks sent back from the responder are valid for the requested IPLD selector. It contains information about the CIDs the responder traversed, in order, during the course of performing the selector query and whether or not the corresponding block was present in its local block store.
-
-It is an IPLD node of the format:
-
-```json
-[
-  {
-    "link": "cidabcdef",
-    "blockPresent": true
-  },
-  {
-    "link": "abcdedf443",
-    "blockPresent": false
-  },
-  ...
-]
-```
-
-or in IPLD Schema:
-
-```ipldsch
-type LinkMetadata struct {
-  link Cid
-  blockPresent Bool
-}
-
-type ResponseMetadata [LinkMetadata]
-```
-
-### Side Channel Information
-
-The 'extra' field on both a graphsync request and a graphsync response is used to communicate side channel information that other protocols using graphsync may need to determine how to service a graphsync request. 
-
-The extra field is a map type, where the keys are protocol names, and the values are a data relevant to that protocol
+A list of well known extensions is found [here](./known_extensions.md)
 
 ### Response Status Codes
 

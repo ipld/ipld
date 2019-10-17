@@ -117,9 +117,14 @@ type ExploreRange struct {
 ## Be careful when using ExploreRecursive with a large maxDepth parameter;
 ## it can easily cause very large traversals (especially if used in combination
 ## with selectors like ExploreAll inside the sequence).
+##
+## If no maxDepth is specified, recursion will continue as long as
+## the selection continues to traverse ExploreRecursiveEdge - be very careful
+## with this
+
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")
-	maxDepth Int (rename "d")
+	maxDepth optional Int (rename "d")
 	stopAt optional Condition (rename "!") # if a node matches, we won't match it nor explore its children.
 }
 

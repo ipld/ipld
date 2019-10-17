@@ -543,7 +543,7 @@
 						"kind": "map",
 						"keyType": "EnumValue",
 						"valueType": "Null"
-					 }
+					}
 				},
 				"representation": {
 					"type": "EnumRepresentation"
@@ -553,6 +553,9 @@
 				"map": {}
 			}
 		},
+		"EnumValue": {
+			"kind": "string"
+		},
 		"EnumRepresentation": {
 			"kind": "union",
 			"representation": {
@@ -561,9 +564,6 @@
 					"int": "EnumRepresentation_Int"
 				}
 			}
-		},
-		"EnumValue": {
-			"kind": "string"
 		},
 		"EnumRepresentation_String": {
 			"kind": "map",

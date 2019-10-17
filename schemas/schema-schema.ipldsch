@@ -3,6 +3,7 @@
 ## Yes, it's self-describing! :)
 ## -----
 
+##
 ## Type names are a simple alias of string.
 ##
 ## There are some additional rules that should be applied. Type names:
@@ -222,12 +223,16 @@ type TypeFloat struct {}
 ## TypeMap describes a key-value map.
 ## The keys and values of the map have some specific type of their own.
 ##
+## A constraint on keyType is that the referenced type must have a string
+## representation kind. The IPLD Data Model only allows for string keys on maps,
+## so this constraint is imposed here.
+##
 type TypeMap struct {
-	keyType TypeName # additionally, the referenced type must be reprkind==string.
+	keyType TypeName
 	valueType TypeTerm
 	valueNullable Bool (implicit "false")
 	representation MapRepresentation
-} representation map
+}
 
 ## MapRepresentation describes how a map type should be mapped onto
 ## its IPLD Data Model representation.  By default a map is a map in the
@@ -285,7 +290,7 @@ type TypeList struct {
 	valueType TypeTerm
 	valueNullable Bool (implicit "false")
 	representation ListRepresentation
-} representation map
+}
 
 ## ListRepresentation describes how a map type should be mapped onto
 ## its IPLD Data Model representation.  By default a list is a list in the
@@ -490,7 +495,7 @@ type StructField struct {
 	type TypeTerm
 	optional Bool (implicit "false")
 	nullable Bool (implicit "false")
-} representation map
+}
 
 ## TypeTerm is a union of either TypeName or an InlineDefn. th It's used for the
 ## value type in the recursive types (maps, lists, and the fields of structs),
@@ -650,7 +655,7 @@ type StructRepresentation_ListPairs struct {}
 ## all int values are required.
 ##
 type TypeEnum struct {
-  members {EnumValue:Null}
+	members {EnumValue:Null}
 	representation EnumRepresentation
 }
 

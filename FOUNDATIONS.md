@@ -143,7 +143,7 @@ IPLD links must not be cyclic, even if we add support for relative links.
    This makes it easier to correctly and securely implement some graph
    algorithms, even on potentially untrusted data in a distributed system.
 2. Consistency: Without complex hacks, it's impossible to create link cycles
-   *between* hash-linked blocks. Allowing link cycles one one level (e.g., in
+   *between* hash-linked blocks. Allowing link cycles on one level (e.g., in
    relative links within a single block) but not on a larger scale (between
    blocks) is inconsistent (even though there's nothing we can do about it).
 

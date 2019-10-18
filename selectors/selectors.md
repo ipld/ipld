@@ -118,9 +118,9 @@ type ExploreRange struct {
 ## it can easily cause very large traversals (especially if used in combination
 ## with selectors like ExploreAll inside the sequence).
 ##
-## If no maxDepth is specified, recursion will continue as long as
-## the selection continues to traverse ExploreRecursiveEdge - be very careful
-## with this
+## If no maxDepth is specified, it is up to the implementation library using 
+## selectors to identify an appropriate max depth as neccesary so that recursion
+## is not infinite
 
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")

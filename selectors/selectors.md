@@ -120,7 +120,7 @@ type ExploreRange struct {
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")
 	maxDepth Int (rename "d")
-	stopAt Condition (rename "!") # if a node matches, we won't match it nor explore its children.
+	stopAt optional Condition (rename "!") # if a node matches, we won't match it nor explore its children.
 }
 
 ## ExploreRecursiveEdge is a special sentinel value which is used to mark

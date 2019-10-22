@@ -100,8 +100,8 @@ type ExploreRange struct {
 ## In implementation, whenever evaluation reaches an ExploreRecursiveEdge marker
 ## in the recursion sequence's Selector tree, the implementation logically
 ## produces another new Selector which is a copy of the original
-## ExploreRecursive selector, but with a decremented maxDepth parameter, and
-## continues evaluation thusly.
+## ExploreRecursive selector, but with a decremented depth parameter for limit
+## (if limit is of type depth), and continues evaluation thusly.
 ##
 ## It is not valid for an ExploreRecursive selector's sequence to contain
 ## no instances of ExploreRecursiveEdge; it *is* valid for it to contain
@@ -114,19 +114,28 @@ type ExploreRange struct {
 ## be thought of like the 'continue' statement, or end of a for-loop body;
 ## it is *not* a 'goto' statement).
 ##
-## Be careful when using ExploreRecursive with a large maxDepth parameter;
+## Be careful when using ExploreRecursive with a large depth limit parameter;
 ## it can easily cause very large traversals (especially if used in combination
 ## with selectors like ExploreAll inside the sequence).
 ##
-## If no maxDepth is specified, it is up to the implementation library using 
-## selectors to identify an appropriate max depth as neccesary so that recursion
-## is not infinite
+## limit is a union type -- it can have an integer depth value (key "depth") or
+## no value (key "none"). If limit has no value it is up to the 
+## implementation library using selectors to identify an appropriate max depth
+## as neccesary so that recursion is not infinite
 
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")
-	maxDepth optional Int (rename "d")
+	limit RecursionLimit (rename "l")
 	stopAt optional Condition (rename "!") # if a node matches, we won't match it nor explore its children.
 }
+
+type RecursionLimit union {
+	| RecursionLimit_None "none"
+	| RecursionLimit_Depth "depth"
+} representation keyed
+
+type RecursionLimit_None struct {}
+type RecursionLimit_Depth int
 
 ## ExploreRecursiveEdge is a special sentinel value which is used to mark
 ## the end of a sequence started by an ExploreRecursive selector: the recursion

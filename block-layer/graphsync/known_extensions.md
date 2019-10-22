@@ -1,8 +1,8 @@
 # Graphsync: Known Extensions
 
-### Excluded CIDs
+### Do Not Send CIDs
 
-Extension Name: `graphsync/exclude-cids`
+Extension Name: `graphsync/do-not-send-cids`
 
 What it does:
 
@@ -18,10 +18,10 @@ When a requestor sends a request, it should send a CBOR encoded IPLD Node that i
 The IPLD schema is as follows:
 
 ```ipldsch
-type ExcludedCids [Cid]
+type DoNotSendCids [Cid]
 ```
 
-The responder node, if it supports the extension, will not send those blocks back in the response. It does not send a value back in the response for this extension.
+The responder node will execute the selector query as it would normally. However, if it supports the extension, when the selector query passes over any blocks that have a cid from the DoNotSend list, the responder will not send that block back, knowing ahead of time the requestor already has it. The responder does not send a value back in the response for this extension.
 
 ### Response Metadata
 
@@ -29,7 +29,7 @@ Extension Name: `graphsync/response-metadata`
 
 What it does:
 
-Response metadata provides information about the response to help the requestor more efficiently verify the blocks sent back from the responder are valid for the requested IPLD selector. It contains information about the CIDs the responder traversed, in order, during the course of performing the selector query and whether or not the corresponding block was present in its local block store.
+Response metadata provides information about the response to help the requestor more efficiently verify that the blocks sent back from the responder are valid for the requested IPLD selector. It contains information about the CIDs the responder traversed, in order, during the course of performing the selector query, and whether or not the corresponding block was present in its local block store. Telling the requestor immediately that the query passed over a block the responder did not have allows the requestor to advance its local query, and return a seperate error for that particular block.
 
 How it works:
 

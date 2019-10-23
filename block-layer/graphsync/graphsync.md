@@ -66,7 +66,7 @@ message GraphsyncMessage {
     int32 id = 1;       // unique id set on the requester side
     bytes root = 2;     // a CID for the root node in the query
     bytes selector = 3; // ipld selector to retrieve
-    bytes extra = 4;    // aux information. useful for other protocols
+    map<string, bytes> extensions = 4; // side channel information
     int32 priority = 5;	// the priority (normalized). default to 1
     bool  cancel = 6;   // whether this cancels a request
   }
@@ -74,7 +74,7 @@ message GraphsyncMessage {
   message Response {
     int32 id = 1;     // the request id
     int32 status = 2; // a status code.
-    bytes extra = 3;
+    map<string, bytes> extensions = 3;    // side channel information
   }
 
   message Block {
@@ -90,6 +90,15 @@ message GraphsyncMessage {
 }
 ```
 
+
+### Extensions
+
+The Graphsync protocol is extensible. A graphsync request and a graphsync response contain an `extensions` field, which is a map type. Each key of the extensions field specifies the name of the extension, while the value is data (serialized as bytes) relevant to that extension.
+
+Extensions help make Graphsync operate more efficiently, or provide a mechanism for exchanging side channel information for other protocols. An implementation can choose to support one or more extensions, but it does not have to.
+
+A list of well known extensions is found [here](./known_extensions.md)
+
 ### Response Status Codes
 
 ```
@@ -98,7 +107,7 @@ message GraphsyncMessage {
 11   Additional Peers. PeerIDs in extra.
 12   Not enough vespene gas ($)
 13   Other Protocol - info in extra.
-14   Partial Response w/ metadata, may include blocks, metadata in extra
+14   Partial Response w/ metadata, may include blocks
 
 # success - terminal
 20   Request Completed, full content.

@@ -221,7 +221,7 @@ The deletion algorithm below is presented as an iterative operation. It can also
 
 These collection-spanning iteration operations are **optional** for implementations.
 
-The storage order of entries in an IPLD HashMap is entirely dependent on the hash algorithm and `bitWidth`. Therefore IPLD HashMaps are considered to be random for practical purposes (as opposed to ordered-by-construction or ordered-by-comparator, see [IPLD Multi-block Collections / Collection types](https://github.com/ipld/specs/blob/master/schema-layer/data-structures/multiblock-collections.md#collection-types])). It is left to the implementation to decide the tree-traversal order and algorithm used to iterate over entries.
+The storage order of entries in an IPLD HashMap is entirely dependent on the hash algorithm and `bitWidth`. Therefore IPLD HashMaps are considered to be random for practical purposes (as opposed to ordered-by-construction or ordered-by-comparator, see [IPLD Multi-block Collections / Collection types](https://github.com/ipld/specs/blob/master/data-structures/multiblock-collections.md#collection-types])). It is left to the implementation to decide the tree-traversal order and algorithm used to iterate over entries.
 
 An implementation should only emit any given `key`, `value` or `key` / `value` entry pair once per iteration.
 

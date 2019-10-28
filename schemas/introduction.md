@@ -74,9 +74,8 @@ IPLD Schemas provide a means to connect the serialization and deserialization pr
 
 Work on code generation is ongoing.
 
-## Schema DSL and Reified Form
+## Schema Language: DSL and Reified Form
 
 IPLD Schemas take two forms: a dedicated DSL and a reified form that is generally presented as JSON. The DSL is designed for expressibility and clarity as a user-facing tool. It is useful for as a specifier as well as a documentation tool. The DSL also allows for inline comments and allows for some flexibility regarding newlines and whitespace. The reified form, however, is more stable. It does not capture comments and is more tightly constrained within JSON form. It is intended that user-facing instances of IPLD Schemas will present the DSL, while internal, programmatic uses will use the reified form. The IPLD Schema tools in [JavaScript](https://github.com/ipld/js-ipld-schema) and [Go](https://github.com/ipld/go-ipld-schema) can perform various conversions and validations between these formats.
 
 The IPLD Schema’s own internal representation is also defined in the schema language itself. This is referred to as the “**schema-schema**”. The [DSL form](https://github.com/ipld/specs/blob/master/schemas/schema-schema.ipldsch) and the [reified form](https://github.com/ipld/specs/blob/master/schemas/schema-schema.ipldsch.json) of the schema-schema are kept up to date with the IPLD Schema specification. This schema-schema makes IPLD Schemas *mostly* self-describing, in that an instance of an IPLD Schema can be validated against the schema-schema to determine if it has a valid form. There are some additional constraints on IPLD Schema forms that are not strictly covered in the schema-schema itself, such as rules around valid characters for type names. While there are comments in the schema-schema that make it a very useful document for understanding the internal representation of IPLD Schemas, additional specification is required, particularly for the DSL which is not adequately covered by schema-schema.
-

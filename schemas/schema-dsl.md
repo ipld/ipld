@@ -1,5 +1,4 @@
-Schema DSL
-==========
+# IPLD Schema DSL
 
 IPLD Schemas can be represented in a compact, human-friendly
 [DSL](https://en.wikipedia.org/wiki/Domain_specific_language).

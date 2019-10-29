@@ -1,19 +1,18 @@
-Kinds and their Representations
--------------------------------
+# Representations of IPLD Schema Kinds
 
-* [Kinds and their Representations](#kinds-and-their-representations)
-* [Available representations](#available-representations)
-* [Representation Strategy Reference](#representation-strategy-reference)
-  * [struct map representation](#struct-map-representation)
-  * [struct tuple representation](#struct-tuple-representation)
-  * [struct stringjoin representation](#struct-stringjoin-representation)
-  * [map stringpairs representation](#map-stringpairs-representation)
-  * [union keyed representation](#union-keyed-representation)
-  * [union kinded representation](#union-kinded-representation)
-  * [union envelope representation](#union-envelope-representation)
-  * [union inline representation](#union-inline-representation)
-  * [enum string representation](#enum-string-representation)
-  * [enum int representation](#enum-int-representation)
+* [Available representations](#Available-representations)
+* [Representation Strategy Reference](#Representation-Strategy-Reference)
+	* [struct map representation](#struct-map-representation)
+	* [struct tuple representation](#struct-tuple-representation)
+	* [struct stringjoin representation](#struct-stringjoin-representation)
+	* [map stringpairs representation](#map-stringpairs-representation)
+	* [union keyed representation](#union-keyed-representation)
+	* [union kinded representation](#union-kinded-representation)
+	* [union envelope representation](#union-envelope-representation)
+	* [union inline representation](#union-inline-representation)
+		* [union byteprefix representation example](#union-byteprefix-representation-example)
+	* [enum string representation](#enum-string-representation)
+	* [enum int representation](#enum-int-representation)
 
 A type at the Schema level must be mapped onto a representation expressible
 within the Data Model.
@@ -49,24 +48,24 @@ these kinds in the future; there are simply none to date.
 Link is also not described in this section, as it's a rather unique business.)
 
 - Map
-	- `map` representation -- the default -- transcribes to `map` in the Data Model.
-	- `stringpairs` representation -- transcribes to `string` in the Data Model.
-	- `listpairs` representation -- transcribes to `list` (of lists) in the Data Model.
+  - `map` representation -- the default -- transcribes to `map` in the Data Model.
+  - `stringpairs` representation -- transcribes to `string` in the Data Model.
+  - `listpairs` representation -- transcribes to `list` (of lists) in the Data Model.
 - Union
-	- `keyed` representation -- transcribes to a single-entry `map` in the Data Model.
-	- `kinded` representation -- transcribes to varying (!) kinds in the Data Model.
-	- `envelope` representation -- transcribes to a dual-entry `map` in the Data Model.
-	- `inline` representation -- transcribes to a `map` in the Data Model (and has additional limitations).
-	- `byteprefix` representation -- transcribes to `bytes` in the Data Model, only usable for unions of `bytes`.
+  - `keyed` representation -- transcribes to a single-entry `map` in the Data Model.
+  - `kinded` representation -- transcribes to varying (!) kinds in the Data Model.
+  - `envelope` representation -- transcribes to a dual-entry `map` in the Data Model.
+  - `inline` representation -- transcribes to a `map` in the Data Model (and has additional limitations).
+  - `byteprefix` representation -- transcribes to `bytes` in the Data Model, only usable for unions of `bytes`.
 - Struct
-	- `map` representation -- the default -- transcribes to `map` in the Data Model.
-	- `tuple` representation -- transcribes to `list` in the Data Model.
-	- `stringpairs` representation -- transcribes to `string` in the Data Model.
-	- `stringjoin` representation -- transcribes to `string` in the Data Model.
-	- `listpairs` representation -- transcribes to `list` (of lists) in the Data Model.
+  - `map` representation -- the default -- transcribes to `map` in the Data Model.
+  - `tuple` representation -- transcribes to `list` in the Data Model.
+  - `stringpairs` representation -- transcribes to `string` in the Data Model.
+  - `stringjoin` representation -- transcribes to `string` in the Data Model.
+  - `listpairs` representation -- transcribes to `list` (of lists) in the Data Model.
 - Enum
-	- `string` representation -- the default -- transcribes the enum values as `string` in the Data Model.
-	- `int` representation -- transcribes the enum values as `int` in the Data Model.
+  - `string` representation -- the default -- transcribes the enum values as `string` in the Data Model.
+  - `int` representation -- transcribes the enum values as `int` in the Data Model.
 
 Each of these representation strategies will be explored in detail in the
 "Representation Strategy Reference" section, below.

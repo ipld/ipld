@@ -1,5 +1,4 @@
-Advanced Layouts for IPLD Schemas
----------------------------------
+# Advanced Layouts for IPLD Schemas
 
 An "advanced layout" is a special type in an IPLD Schema that denotes an abstract node that may _act_ as one of the standard IPLD [schema kinds](./schema-kinds.md) when interacted with above the schema layer, but be represented in entirely different data forms at the data model layer. Advanced layouts allow us to use transformational logic to present consistent interfaces to significantly more complex data than the data model otherwise allows or significantly larger data than reasonable block sizes allow.
 
@@ -14,7 +13,7 @@ Example uses of advanced layouts include:
 
 Advanced layouts necessarily involve a form of logic to perform their data transformations. Many use-cases even necessitate interaction with block loading and storing mechanisms, such as traversal of a large `bytes` array stored across a chain of blocks. There is currently no formal requirement for where this logic resides, how it is loaded, or how it is associated with an IPLD Schema definition. This topic will continue to evolve. There is potential in the future for such logic to be embedded _in_ IPLD blocks themselves via WebAssembly, such that an advanced layout is represented both by the data and the logic required to read it. See [#130](https://github.com/ipld/specs/issues/130) for an early exploration of some of these themes.
 
-## Basic schema definition and use
+## Basic Schema Definition and Use
 
 At its most basic, no properties are mandated for advanced layout. One may be defined simply with the keyword `advanced` in a similar manner to `type`:
 

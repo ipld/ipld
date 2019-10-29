@@ -1,5 +1,4 @@
-Links and IPLD Schemas
----------------------
+# Links and IPLD Schemas
 
 IPLD Schemas are designed to describe data bounded by blocks. They are intentionally _not_ agnostic to block boundaries to contain the complexity of validation. You ought to be able to apply a schema to a block and have enough information to make fast, complete, validation.
 
@@ -28,7 +27,7 @@ type Bar link
 
 This works for and for `envelope` `union`s, and also `kinded` `union`s, as `link` is a kind that can be discriminated. `inline` `union`s, however, currently describe complex types (structs) so cannot directly describe `link`s, although the containing `struct`s may contain `link`s.
 
-## Link destination type hinting
+## Link Destination Type Hinting
 
 In many cases it is helpful to describe what is intended to occur across block boundaries, even though this cannot be verified by schemas in their per-block usage. For the purpose of codegen and as a documentation tool, we can provide "hinting" regarding the shape of the data (in schema terms) on the other side of a link.
 

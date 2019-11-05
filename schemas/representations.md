@@ -1,16 +1,22 @@
 # Representations of IPLD Schema Kinds
 
+TODO: call out "representation kind" specifically for each strategy
+
 * [Available representations](#Available-representations)
 * [Representation Strategy Reference](#Representation-Strategy-Reference)
 	* [struct map representation](#struct-map-representation)
 	* [struct tuple representation](#struct-tuple-representation)
+	* TODO: [struct stringpairs representation](#struct-stringpairs-representation)
 	* [struct stringjoin representation](#struct-stringjoin-representation)
+	* TODO: [struct listpairs representation](#struct-listpairs-representation)
+	* TODO: [map map representation](#map-map-representation)
 	* [map stringpairs representation](#map-stringpairs-representation)
+	* TODO: [map listpairs representation](#map-listpairs-representation)
 	* [union keyed representation](#union-keyed-representation)
 	* [union kinded representation](#union-kinded-representation)
 	* [union envelope representation](#union-envelope-representation)
 	* [union inline representation](#union-inline-representation)
-		* [union byteprefix representation example](#union-byteprefix-representation-example)
+	* [union byteprefix representation](#union-byteprefix-representation)
 	* [enum string representation](#enum-string-representation)
 	* [enum int representation](#enum-int-representation)
 
@@ -157,6 +163,8 @@ Some data matching the `Fizzlebop` struct (shown as JSON) is:
 Since this is a struct, and none of the fields are optional, it *must* have two fields:
 therefore, a string with no `":"` characters would be rejected as not matching.
 
+TODO: limitations
+
 ### map stringpairs representation
 
 Say we're doing something awfully like the mount options in an /etc/fstab file:
@@ -176,6 +184,9 @@ Some data matching the `MountOptions` struct (shown as JSON) is:
 ```json
 "keys=values,serialized=thusly"
 ```
+
+TODO: extract limitations note from inline above and expand
+TODO: amend to make it clear that this applies to structs too, or introduce a new heading for struct stringpairs and link it here.
 
 ### union keyed representation
 
@@ -303,7 +314,7 @@ that have a map representation -- so, our `Bar` type in the previously examples,
 which was of `int` kind, doesn't work for this example.  We replaced it with
 another struct type, which -- since it has a `map` representation -- works.
 
-#### union byteprefix representation example
+### union byteprefix representation
 
 ```ipldsch
 type Signature union {

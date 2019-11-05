@@ -1,21 +1,23 @@
 # IPLD Schema DSL
 
-* [Basics](#basics)
-  * [Records: `type` and `advanced`](#records-type-and-advanced)
-  * [Newlines and Whitespace](#newlines-and-whitespace)
-  * [Comments](#comments)
-* [Schema Kinds](#schema-kinds)
-* [Naming Types](#naming-types)
-* [Named Scalar Types (typedefs)](#named-scalar-types-typedefs)
-* [Links](#links)
-* [Inline Recursive Types](#inline-recursive-types)
-* [Representations](#representations)
-  * [Parens after field descriptions](#parens-after-field-descriptions)
-* [Structs](#structs)
-* [Enums](#enums)
-* [Unions](#unions)
-* [Advanced Data Layouts](#advanced-data-layouts)
-* [Schemas in Markdown](#schemas-in-markdown)
+* [Basics](#Basics)
+  * [Records: `type` and `advanced`](#Records-type-and-advanced)
+  * [Newlines and Whitespace](#Newlines-and-Whitespace)
+  * [Comments](#Comments)
+* [Schema Kinds](#Schema-Kinds)
+* [Naming Types](#Naming-Types)
+* [Named Scalar Types (typedefs)](#Named-Scalar-Types-typedefs)
+* [Links](#Links)
+* [Inline Recursive Types](#Inline-Recursive-Types)
+* [Representations](#Representations)
+  * [Representation options](#Representation-options)
+  * [Parens after field descriptions](#Parens-after-field-descriptions)
+* [Structs](#Structs)
+* [Enums](#Enums)
+* [Unions](#Unions)
+* [Copy](#Copy)
+* [Advanced Data Layouts](#Advanced-Data-Layouts)
+* [Schemas in Markdown](#Schemas-in-Markdown)
 
 IPLD Schemas can be represented in a compact, human-friendly [DSL](https://en.wikipedia.org/wiki/Domain_specific_language). IPLD Schemas can also be naturally represented as an IPLD node graph, typically presented in JSON form. The human-friendly DSL compiles into this IPLD-native format.
 
@@ -104,7 +106,7 @@ Type names are unique within a Schema and are ideally unique within related Sche
 
 ## Named Scalar Types (typedefs)
 
-The non-recursive (scalar) Schema kinds may all appear as typedef'd types. That is, a unique name may be assigned to a kind and that name may be used in place of the kind later in the schema. Multiple unique type names may share the same kind.
+The non-recursive (scalar) Schema kinds (Boolean, Integer, Float, String, Bytes, Link) may all appear as typedef'd types. That is, a unique name may be assigned to a kind and that name may be used in place of the kind later in the schema. Multiple unique type names may share the same kind.
 
 ```ipldsch
 type Foo string
@@ -128,17 +130,590 @@ There are a number of reasons to typedef a scalar Schema kind:
 
 ## Links
 
+Links in IPLD Schemas are a special-case. The Data Model kind "Link" is expressed by a token prefixed with the `&` character. The remainder of the token should be `Any` or the name of a type.
+
+Links can be typedef'd, `type Foo &Bar` or can appear inline: `type Baz {String:&Bang}`.
+
+Further, the type name is not a strict assertion that can be directly tested against underlying data, it is simply a hint regarding what should be found when following the link identified by the [CID](../block-layer/CID.md) at the position indicated by the Schema link. Strict assertions of this expected type may be applied at layers above the Schema validation layer when the link is resolved and the node decoded.
+
+For more information about Links in Schemas, see [Links and IPLD Schemas](./links.md).
+
 ## Inline Recursive Types
+
+The scalar types (Boolean, Integer, Float, String, Bytes, Link) may appear inline or be typedef'd. In addition, both Map and Link types may appear both inline and as their own type. The additional Schema kinds (Struct, Enum, Union, Copy) do not have an inline variant.
+
+```ipldsch
+type IntList [Int]
+
+type MapOfIntLists {String:IntList}
+
+type Foo {
+  id Int
+  data MapOfIntLists
+}
+```
+
+is equivalent to:
+
+```ipldsch
+type Foo {
+  id Int
+  data [{String:Float}]
+}
+```
+
+As with typedef'd scalar kinds, this has implications for codegen and other API interactions with Schema types. Rather than having an explicit name, `FloatMap`, a generated name may be applied to the List type found at `Foo->data` and the type of the Map nodes found within that list.
+
+The inline facility is provided for convenience but explicitness is always recommended above expedience, including this case, in order to improve the documentation role of Schemas. By naming Map and List elements the author can express intent to the user and provide clarity through Schema-consuming tools.
 
 ## Representations
 
-### Parens after field descriptions
+The concept of "representations" is a key component of IPLD Schemas and should be understood in order to create and read effective IPLD Schemas.
+
+In the Data Model there are only 9 kinds (Null, Boolean, Integer, Float, String, Bytes, List, Map & Link). The Schema layer adds 4 more (Union, Struct, Enum & Copy). These aren't present at the Data Model and are opaque to serialization formats. Instead, they must be "represented" as a base Data Model kind. Each data type at the Schema layer, therefore, has a "representation kind". Scalar kinds are represented as the same kind at the Data Model layer (except in the case of Advanced Data Layouts, see below).
+
+A Struct is represented as a Map by default when serialized and deserialized. The Struct adds the ability to apply additional constraints about the keys, the types found when consuming the value nodes of the Map, whether certain keys must be present and what to do when they aren't present. Enums also have a default representation; when one is not specified, they are assumed to be represented as Strings when serialized or deserialized, but with constraints about valid strings for the node(s) where the Enum appears.
+
+A Copy type is a special case, it copies all properties of the copied type other than its name, including the representation.
+
+Unions don't have a default representation as they express a concept that is commonly represented in a number of ways, so a representation must be supplied when defining a Union type.
+
+Some Schema kinds have alternative representation "strategies" that dictate how a type is to be represented in serialized form. Most of these strategies change the representation kind of the type but some retain the same kind and simply alter how the type is encoded within that kind. The `stringjoin` and `stringpairs` representation strategies that can be used for Struct types both change the representation kind for a Struct from the default Map to a String. The method for encoding to a single String is different for both. A `stringjoin` strategy appends the fields in order separated by a delimiter  (e.g. `"v1,v2"`) while a `stringpairs` strategy include the field names, requiring a field delimited as well as an entry delimited (e.g. `"f1=v1,f2=v2"`). Similarly, the `listpairs` and `tuple` Struct representations both use a List representation kind but use different strategies to encode within a List.
+
+To specify a type's representation, the keyword `representation` is supplied after the main type definition and is followed by a representation strategy name valid for that type.
+
+For example, consider this Struct:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String
+	fieldTwo Bool
+}
+```
+
+We could decode the following JSON (using the dag-json codec) into a `Foo` type:
+
+```json
+{
+  "fieldOne": "This is field one of Foo",
+  "fieldTwo": false
+}
+```
+
+A Struct can also have the default representation expressed explicitly:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String
+	fieldTwo Bool
+} representation map
+```
+
+These two descriptors of `Foo` are identical when parsed as the `representation map` is implicit for Structs when a representation is not supplied.
+
+The Struct can also be represented as a List when we supply the `tuple` representation type:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String
+	fieldTwo Bool
+} representation tuple
+```
+
+When encountering a Map at the Data Layer where this variant of `Foo` is expected, an error or failed-validation would occur. Instead, the data for this Struct is a simple List of two elements, the first one a String and the second a Bool. In JSON this may look like:
+
+```json
+[ "This is field one of Foo", false ]
+```
+
+A full list of the available representation strategies and their kinds that can be supplied for various Schema kinds can be found in [Representations of IPLD Schema Kinds](./schema-kinds.md).
+
+### Representation Options
+
+Some representation strategies have additional options that can be supplied and some have required options that are required in order to properly shape the type representation. There are two methods that representation options are supplied: within the `representation` block for general options and inline adjacent to type fields in parens where representation options are specific to fields.
+
+#### General Representation Options
+
+Our `Foo` struct with a `tuple` representation may be serialized in an alternate field order by supplying the general `fieldOrder` option:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String
+	fieldTwo Bool
+} representation tuple {
+  fieldOrder ["fieldTwo", "fieldOne"]
+}
+```
+
+Serialization of such a type in JSON may appear as:
+
+```json
+[ false, "This is field one of Foo" ]
+```
+
+The `stringjoin` representation for Structs has a required option, `join`. There is no default for this option, so a Schema specifying a `stringjoin` Struct without it is invalid:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String
+	fieldTwo Bool
+} representation stringjoin {
+	join ":"
+}
+```
+
+This representation for `Foo` would seriaize into a single String node:
+
+```json
+"This is field one of Foo:false"
+```
+
+This representation for Structs has limitations as there is no escaping mechanism for the join character, so it should be used with caution. Similar restrictions apply to the `stringpairs` Map representation. See [Representations of IPLD Schema Kinds](./schema-kinds.md) for more details on such restrictions.
+
+#### Field-specific Representation Options
+
+Where a representation option applies to a specific field, the option is presented inline, next to the field, in parens to indicate it as a distinctive descriptor.
+
+Two common field-specific representation options for Structs are `implicit` and `rename`:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String (rename "one")
+	fieldTwo Bool (rename "two" implicit "false")
+}
+```
+
+Note here that `nullable` is a distinct option for the field than `rename` and `implicit`. This is because `nullable` impacts the shape of the user-facing API for `Foo`, whereas `rename` and `implicit` only impact the serialization (representation) of `Foo` so are effectively hidden to the user. See [Value Type Modifiers](./schema-kinds.md#Value-Type-Modifiers) for a discussion on such matters as well as the impacts on value cardinality.
+
+A `rename` option specifies that at serialization and deserialization, a field has an alternate name than that present in the Schema. An `implicit` specifies that, when not present in the serialized form, the field should have a certain value.
+
+Recall our original serialized form for `Foo`:
+
+```json
+{
+  "fieldOne": "This is field one of Foo",
+  "fieldTwo": false
+}
+```
+
+With the `rename` and `implicit` options above, this same data would be serialized as:
+
+```json
+{
+  "one": "This is field one of Foo"
+}
+```
+
+See [Fields with Implicit Values](./schema-kinds.md#Fields-with-Implicit-Values) for more information on `implicit`. In the same document you will also find a discussion regarding combining `nullable`, `optional` and `implicit` and the limitations thereof.
+
+Whenever a value appears in a representation option, it must be quoted, regardless of type. In our example above, `implicit "false"` quoted a Bool option. This will be interpreted appropriately depending on context, in this case it is clear that the type of the quoted value should be a Bool.
+
+Another example of field options is the `int` representation for Enums, where the field option is mandatory:
+
+```ipldsch
+type Status enum {
+	| Nope  ("0")
+	| Yep   ("1")
+	| Maybe ("100")
+} representation int
+```
+
+In this case we are mapping Int values at in the serialized form to the three Enum values. Note also that the values are again quoted, but will be interpreted appropriately as integers because the context makes that clear.
 
 ## Structs
 
+The basic DSL form of a Struct has the following structure:
+
+```
+type TypeName struct {
+  Field1Name Field1Type
+  Field2Name Field2Type
+  ... etc.
+}
+```
+
+Where `TypeName` is a unique name for the type and follows the naming rules above. Field names follow the same rules as for type naming except that a lower-case first character is allowed and is encouraged as the conventional form. All fields have a type and the type should be one of the existing implicit Schema types (`Int`, `String` etc.) or be present as a named type elsewhere within the document. Field types can be recursive in that they can refer to the parent type, indicating a nested data structure (obviously such a nested data structure must have nullable or optional elements that prevent it from being necessarily infinitely recursive).
+
+Structs must always have a body, enclosed by `{`, `}`. Fields must new-line delimited and should be indented for clarity.
+
+The `representation` strategy for Structs is `map` by default, so may be omitted. Additional representation strategies See [Representations of IPLD Schema Kinds](./representations.md) for more details on these representation strategies.
+
+Field representation options are presented in parens when present and representations requiring additional general options is presented in a separate `representation` block enclosed by `{`, `}`. For example, a Struct laden with both field representation options and general representation options:
+
+```ipldsch
+type Foo struct {
+	fieldOne nullable String (rename "one")
+	fieldTwo Bool (rename "two" implicit "false")
+} representation stringpairs {
+  innerDelim "="
+	entryDelim ","
+}
+```
+
+Valid representation strategies for Structs are:
+
+* `map`
+* `tuple`
+* `stringpairs`
+* `stringjoin`
+* `listpairs`
+
+More details about these representation strategies, including their various options and their representation kinds can be found in [Representations of IPLD Schema Kinds](./representations.md).
+
 ## Enums
 
+Enums are used to indicate a distinct, fixed list of values. Enums in IPLD Schemas have a String representation kind, using the value token as the serialized value by default.
+
+```ipldsch
+type Status enum {
+	| Nope
+	| Yep
+	| Maybe
+}
+
+type Response struct {
+  timestamp Int
+  status Status
+}
+```
+
+In this example, where `Status` is used, as the `status` field in the `Response` Struct, we expect to find a String in the serialized form that is one of `"Nope"`, `"Yep"` or `"Maybe"`. This string value is not presented via an API interacting via this Schema, rather, the special tokens `Nope`, `Yep` and `Maybe` may be used instead. Codegen would present these values as distinct types that can be passed to a struct / class implementing `Response` when interacting with the `status` field.
+
+The serialized strings may be different from values:
+
+```ipldsch
+type Status enum {
+	| Nope ("Nay")
+	| Yep  ("Yay")
+	| Maybe
+}
+```
+
+Creating a differential between the Strings at the Data Model layer and the tokens that an API may use at the Schema layer.
+
+An alternate representation strategy for Enums may be specified: `int`. With an `int` representation strategy, the values are serialized and deserialized as Data Model Ints but the Enum value tokens are presented at the Schema Layer:
+
+```ipldsch
+type Status enum {
+	| Nope  ("0")
+	| Yep   ("1")
+	| Maybe ("100")
+} representation int
+```
+
+Note again that the Int values are quoted in the field representation parens, they will be interpreted and validated as integers when parsing as the context of an `int` representation strategy makes this clear.
+
+More details about these representation strategies can be found in [Representations of IPLD Schema Kinds](./representations.md).
+
 ## Unions
+
+### Introduction to Unions: Kinded Unions
+
+IPLD Schema Unions describe various means for nodes that may be one of a number of kinds or forms. Consider a node that contains the following data, perhaps as part of a signalling protocol:
+
+```json
+{
+  "msg": "Something bad happened",
+  "payload": "ERROR"
+}
+```
+
+And an alternative form that is also acceptable but signals a different state and meaning:
+
+```json
+{
+  "msg": "All good",
+  "payload": {
+    "percent": 0.6,
+    "last": "61626378797a"
+  }
+}
+```
+
+In this example, we have a Map that can be represented as a Struct since it has only two fields, but the `progress` field dosn't have a stable kind so we can't use any of the existing Schema types to represent the field type. Instead, we can introduce a Union and can take different forms depending on the different acceptable forms.
+
+IPLD Schemas are intended to be efficient, so the ability to discriminate on Union types is limited to what we can find _at the current node_. That is, we can't inspect whether a node has a child that takes a particular form and use that as a discriminator (such as inspecting the keys or values of a Map). A Schema must be able to fail validation at a node being inspected where the data does not match the expected form.
+
+In our example, the discriminator for type found at `payload` is the _kind_ of node present. It is either a String kind of a Map kind. We can make an immediate determination of type based on this piece of information.
+
+Our Schema for this data could be written as:
+
+```ipldsch
+type Message struct {
+  msg String
+  payload Payload
+}
+
+type Payload union {
+	| Error string
+	| Progress map
+} representation kinded
+
+type Error string
+
+type Progress struct {
+  percent Float
+  last String
+}
+```
+
+Our `Payload` Union can be read as "one of `Error` or `Progress`" and could have additional elements if there are different forms that a `"payload"` could take. All Unions require a representation strategy to be stated, there is no default strategy. In this case we are specifying the `kinded` strategy, so we are opting to discriminate the type by inspecting the kind present at the data model layer. If we find a String at the data model layer then we can safely assume it is an `Error`. If we find a Map then we assume it's a `Progress` type but we have to proceed to validate it against `Progress` and check whether the Map has the required two elements, but at this point the validation job of `Payload` is done, it only needs to check for the presence of String or Map.
+
+### Limitations of Union Discrimination
+
+Authoring Unions in IPLD Schemas help expose some of the limitations of quickly validating data that is allowed to vary. If we extend our example and introduce another acceptable form of `"payload"` we can see how this ability to quickly discriminate breaks down and introduces the need to do child-contents checking to discriminate:
+
+```json
+{
+  "msg": "Ping",
+  "payload": {
+    "ts": 1572935564043,
+    "nonce": "424f524b"
+  }
+}
+```
+
+We've introduced a new message type but lost the ability to discriminate based in kind as our new type is also a Map. A Schema that accommodates for this additional payload type is possible but forces the burden of discrimination and onto the consumer of the data as well as some additional validation burden:
+
+```ipldsch
+type Message struct {
+  msg String
+  payload Payload
+}
+
+type Payload union {
+	| Error string
+	| ProgressOrPing map
+} representation kinded
+
+type Error string
+
+type ProgressOrPing struct {
+  percent optional Float
+  last optional String
+  ts optional Int
+  nonce optional String
+}
+```
+
+Now the user of such a Schema must do their own field inspection to determine whether a `ProgressOrPing` is a progress message or a ping. Additionally, the burden of ensuring that both `percent` and `last` are present _or_ `ts` and `nonce` are present is left to the user, the Schema layer can't help here. The trade-off present in this scenario regards validation of a node by inspection of its child nodes. Type type of data is common in the real world but IPLD Schemas encourage better data shape design to allow for fast validation through clear discrimination where such variance exists.
+
+### Alternative Discrimination Strategies
+
+If we are designing the data layout for our example protocol (rather than consuming something we have no control over the design of), we could choose a alternate strategy that would allow more efficient discrimination. Unions allow for five different representation strategies that allow for different kinds of discrimination.
+
+#### Keyed
+
+If our generic `"payload"` could be replaced with a specific key that discriminates the type of the payload, we could use a `keyed` Union:
+
+```json
+{
+  "msg": "Something bad happened",
+  "error": "ERROR"
+}
+```
+
+```json
+{
+  "msg": "All good",
+  "progress": {
+    "percent": 0.6,
+    "last": "61626378797a"
+  }
+}
+```
+
+```json
+{
+  "msg": "Ping",
+  "ping": {
+    "ts": 1572935564043,
+    "nonce": "424f524b"
+  }
+}
+```
+
+We can now easily handle this data with the following Schema:
+
+```ipldsch
+type Message struct {
+  msg String
+  payload Payload
+}
+
+type Payload union {
+	| Error "error"
+	| Progress "progress"
+  | Ping "ping"
+} representation keyed
+
+type Error string
+
+type Progress struct {
+  percent Float
+  last String
+}
+
+type Ping struct {
+  ts Int
+  nonce String
+}
+```
+
+Our `Payload` union now has the `keyed` representation strategy. This strategy still assumes a Map representation kind at the current node but one that has various keys that are used to discriminate the type present. `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union. Validation of such data can now check for the presence of each of these keys, _exactly one_ of them exists, and then hand off validation to the expected type at the node found in the valud of that key. If an `"error"` key is found, it will proceed to validate `Error` which assumes that the node is a String. If a `"progress"` key is found, it will proceed to validate that it finds a Map at the value node and that it matches the `Progress` type, etc.
+
+#### Envelope
+
+A strategy similar to `keyed`, but more explicit and allowing for the retention of the `"payload"` node is the `envelope` representation strategy. With this strategy we expect that the type will be present as the value of a fixed key of a Map (`"payload"`), but we can discriminate the type of data to be found by inspecting the value of another key in the Map:
+
+```json
+{
+  "msg": "Something bad happened",
+  "tag": "error",
+  "payload": "ERROR"
+}
+```
+
+```json
+{
+  "msg": "All good",
+  "tag": "progress",
+  "payload": {
+    "percent": 0.6,
+    "last": "61626378797a"
+  }
+}
+```
+
+```json
+{
+  "msg": "Ping",
+  "tag": "ping",
+  "payload": {
+    "ts": 1572935564043,
+    "nonce": "424f524b"
+  }
+}
+```
+
+This strategy takes us back to the original form of the messages but adds an explicit discriminator to the Map. Our Schema can now take the following form:
+
+```ipldsch
+type Message struct {
+  msg String
+  payload Payload
+}
+
+type Payload union {
+	| Error "error"
+	| Progress "progress"
+  | Ping "ping"
+} representation envelope {
+	discriminantKey "tag"
+	contentKey "payload"
+}
+
+type Error string
+
+type Progress struct {
+  percent Float
+  last String
+}
+
+type Ping struct {
+  ts Int
+  nonce String
+}
+```
+
+This `envelope` representation strategy requires the options `discriminantKey` and `contentKey`. The `discriminantKey` tells the Schema the key of the discriminator value, while the discriminator values are listed next to the types of the Union (in this case, the same values as for the `keyed` Union).
+
+#### Inline
+
+An `inline` representation strategy _pulls up_ nested structures into the current node rather than navigating down to a child nodes to interpret the constituent type as per the previous Union representation strategies. Discrimination between types use a `discriminantKey`, also in the current node. This necessarily means that the current node must be a map representation kind and constituent types of a Union must also have map representation kinds.
+
+Our example must be extended so that the `Error` type can be extracted from a map representation:
+
+```json
+{
+  "msg": "Something bad happened",
+  "tag": "error",
+  "message": "ERROR"
+}
+```
+
+```json
+{
+  "msg": "All good",
+  "tag": "progress",
+  "percent": 0.6,
+  "last": "61626378797a"
+  }
+}
+```
+
+```json
+{
+  "msg": "Ping",
+  "tag": "ping",
+  "ts": 1572935564043,
+  "nonce": "424f524b"
+}
+```
+
+```ipldsch
+type Message struct {
+  msg String
+  payload Payload
+}
+
+type Payload union {
+	| Error "error"
+	| Progress "progress"
+  | Ping "ping"
+} representation inline {
+	discriminantKey "tag"
+}
+
+type Error struct {
+  message String
+}
+
+type Progress struct {
+  percent Float
+  last String
+}
+
+type Ping struct {
+  ts Int
+  nonce String
+}
+```
+
+The interface presented by this Schema is adjusted in comparison to the previous Unions as `Error` is now a Struct with a `message` field.
+
+### Byteprefix Unions for Bytes
+
+A special case union exists for handling Bytes kinds. Where a node contains a byte array (Bytes kind), we may want to discriminate between two different uses of that byte array at the application layer. For example, consider two different encoding schemes where we store a "key" field that is distinct for the each encoding scheme. For practical purposes they are both byte arrays, but at the application layer it helps to have them separated into distinct forms, perhaps so we can make simple assertions about getting the expected key type for the given encoding scheme. There are additional documentation clarity benefits for extracting distinct forms and naming them in a Schema that may factor in to such a decision.
+
+```ipldsch
+type Authorization struct {
+  key PublicKey
+  keyType String
+}
+
+type PublicKey union {
+	| RsaPubkey 0
+	| Ed25519Pubkey 1
+} representation byteprefix
+
+type RsaPubkey bytes
+type Ed25519Pubkey bytes
+```
+
+By declaring a `byteprefix` union, we specify that the first byte of the byte array found at the `key` node of `Authorization` will discriminate which `type` the public key is. That first byte will be sliced off and expected to be either `0x0` or `0x1`, then the remainder of the byte array will be extracted and encapsulated inside either `RsaPubkey` or `Ed25519Pubkey` depending on the discriminator byte.
+
+## Copy
 
 ## Advanced Data Layouts
 

@@ -1,23 +1,31 @@
-# IPLD Schema DSL
+# Authoring IPLD Schemas
 
-* [Basics](#Basics)
-  * [Records: `type` and `advanced`](#Records-type-and-advanced)
-  * [Newlines and Whitespace](#Newlines-and-Whitespace)
-  * [Comments](#Comments)
-* [Schema Kinds](#Schema-Kinds)
-* [Naming Types](#Naming-Types)
-* [Named Scalar Types (typedefs)](#Named-Scalar-Types-typedefs)
-* [Links](#Links)
-* [Inline Recursive Types](#Inline-Recursive-Types)
-* [Representations](#Representations)
-  * [Representation options](#Representation-options)
-  * [Parens after field descriptions](#Parens-after-field-descriptions)
-* [Structs](#Structs)
-* [Enums](#Enums)
-* [Unions](#Unions)
-* [Copy](#Copy)
-* [Advanced Data Layouts](#Advanced-Data-Layouts)
-* [Schemas in Markdown](#Schemas-in-Markdown)
+* [Basics](#basics)
+  * [Records: `type` and `advanced`](#records-type-and-advanced)
+  * [Newlines and Whitespace](#newlines-and-whitespace)
+  * [Comments](#comments)
+* [Schema Kinds](#schema-kinds)
+* [Naming Types](#naming-types)
+* [Named Scalar Types (typedefs)](#named-scalar-types-typedefs)
+* [Links](#links)
+* [Inline Recursive Types](#inline-recursive-types)
+* [Representations](#representations)
+  * [Representation Options](#representation-options)
+    * [General Representation Options](#general-representation-options)
+    * [Field-specific Representation Options](#field-specific-representation-options)
+* [Structs](#structs)
+* [Enums](#enums)
+* [Unions](#unions)
+  * [Introduction to Unions: Kinded Unions](#introduction-to-unions-kinded-unions)
+  * [Limitations of Union Discrimination](#limitations-of-union-discrimination)
+  * [Alternative Discrimination Strategies](#alternative-discrimination-strategies)
+    * [Keyed](#keyed)
+    * [Envelope](#envelope)
+    * [Inline](#inline)
+  * [Byteprefix Unions for Bytes](#byteprefix-unions-for-bytes)
+* [Copy](#copy)
+* [Advanced Data Layouts](#advanced-data-layouts)
+* [Schemas in Markdown](#schemas-in-markdown)
 
 IPLD Schemas can be represented in a compact, human-friendly [DSL](https://en.wikipedia.org/wiki/Domain_specific_language). IPLD Schemas can also be naturally represented as an IPLD node graph, typically presented in JSON form. The human-friendly DSL compiles into this IPLD-native format.
 
@@ -272,7 +280,7 @@ This representation for Structs has limitations as there is no escaping mechanis
 
 #### Field-specific Representation Options
 
-Where a representation option applies to a specific field, the option is presented inline, next to the field, in parens to indicate it as a distinctive descriptor.
+The content in the main `type` declaration block (between opening `{` and closing `}`) is intended to represent the type as a user-facing concept, including the [cardinality](./schema-kinds.md#Understanding-Cardinality) of the fields. However, content in parens (`(`, `)`) presented next to individual fields is an exception to this rule. This content is field-specific representation options. That is, the options presented inside these parens would ordinarily belong below in the `representation` block because it regards the interaction with the serialized form. It is present next to the fields to primarily avoid the duplication of re-declaring the fields in the `representaiton` block.
 
 Two common field-specific representation options for Structs are `implicit` and `rename`:
 
@@ -283,7 +291,25 @@ type Foo struct {
 }
 ```
 
-Note here that `nullable` is a distinct option for the field than `rename` and `implicit`. This is because `nullable` impacts the shape of the user-facing API for `Foo`, whereas `rename` and `implicit` only impact the serialization (representation) of `Foo` so are effectively hidden to the user. See [Value Type Modifiers](./schema-kinds.md#Value-Type-Modifiers) for a discussion on such matters as well as the impacts on value cardinality.
+A cleaner declaration that separates type declaration from serialized form representation details might present this as:
+
+```
+# This is not valid IPLD Schema but is presented to illustrate the additional verbosity being avoided
+
+type Foo struct {
+	fieldOne nullable String
+	fieldTwo Bool
+} representation map {
+  fields {
+  	fieldOne rename "one"
+	  fieldTwo rename "two" implicit "false"
+  }
+}
+```
+
+In our example we can see that `nullable` is a distinct option for the field compared to `rename` and `implicit`. This is because `nullable` impacts the shape of the user-facing API for `Foo`, whereas `rename` and `implicit` only impact the serialization (representation) of `Foo` so are effectively hidden to the user.
+
+See [Value Type Modifiers](./schema-kinds.md#Value-Type-Modifiers) for a discussion on such matters as well as the impacts on value cardinality.
 
 A `rename` option specifies that at serialization and deserialization, a field has an alternate name than that present in the Schema. An `implicit` specifies that, when not present in the serialized form, the field should have a certain value.
 
@@ -715,38 +741,89 @@ By declaring a `byteprefix` union, we specify that the first byte of the byte ar
 
 ## Copy
 
+The Copy Schema kind is a special case that provides a mechanism for copying the definition of one named type into a new name. It uses the `=` token after the new type's name followed by name of the type being copied. It is not possible to copy an unnamed (anonymous) type.
+
+```
+type Ping struct {
+  ts Int
+  nonce String
+}
+
+type Pong = Ping
+```
+
+This example is strictly equivalent to the following in terms of the interaction above the Schema layer:
+
+```
+type Ping struct {
+  ts Int
+  nonce String
+}
+
+type Pong struct {
+  ts Int
+  nonce String
+}
+```
+
+The Schema tooling and the reified form of the Schema retains a `copy` kind marker, but tooling that consumes Schemas is expected to treat this marker as an indirection to the named type being copied and copy the entirety of that type's definition to the new name.
+
+The Copy type is provided for convenience and should also prove beneficial in pointing out relationships between types.
+
 ## Advanced Data Layouts
+
+Advanced Data Layouts (ADL) are a mechanism for breaking out of Schema processing into custom logic where such logic cannot be expressed in Schemas but where connection with Schema kinds may be beneficial.
+
+ADLs are not considered `type`s in the Schema sense, rather, they masquerade as types, or more specifically, have the ability to masquerade as Schema kinds when used in certain conditions.
+
+Declaration of an ADL is similar to declaring a `type` but only requires a name:
+
+```ipldsch
+advanced ROT13
+```
+
+Once declared as an entity in the Schema, the name (`ROT13` in this case) may be used as a _representation_ elsewhere in the Schema. We do this with `representation advanced` followed by the name:
+
+```ipldsch
+type MyString string representation advanced ROT13
+```
+
+Coupling this `type` and the `advanced` definition, we are declaring that there exists above the Schema layer some logic labelled `ROT13` that is able to interact with the Data Model layer on behalf of `MyString` and present a standard String kind interface for such a purpose.
+
+How the ADL logic is wired in to the Schema tooling will be language and tooling specific. For the purpose of Schema authoring, an `advanced` definition and usage can be considered as a mechanism to break out of the standard _Data-model-to-Schema_ processing that is performed, and instead, inserting custom logic in that flow for the particular node in question such that it becomes _Data-model-to-ADL-to-Schema_.
+
+The interaction with the Data Model is also left up to the ADL, so it is not limited to consuming a particular node. Rather, it can consume any number of nodes (or no nodes!) and even traverse links in an opaque fashion. Another example of an ADL example provides an example of this. In this case, we declare a sharded Map kind which may be used to scale to Maps of very large size and therefore include multiple, independent, blocks:
+
+```ipldsch
+advanced ShardedMap
+
+type MyMap { String : &Any } representation advanced ShardedMap
+```
+
+In this case, we declare a `MyMap` type that is considered a Map kind for the purpose of the rest of the Schema and presents as such above the Schema layer. Meanwhile we have inserted custom logic, labelled `ShardedMap`, that takes care of the decode/encode and traversal required to present a standard Map kind to the user of such a Schema.
+
+**`representation advanced` is currently only available for Map, List and Bytes kinds**. Additional use cases (such as the hypothetical String kind above) may be considered in the future.
+
+See [Advanced Layouts for IPLD Schemas](./advanced-layouts.md) for more details regarding Advanced Data Layouts.
 
 ## Schemas in Markdown
 
-<!--
-Notes
------
+IPLD Schemas are intended to serve a documentation role as well as a programmatic declarative role. In this documentation role, inline comments (`#`) can be helpful to expand on declarations with explanations, but expanding this documentation form to embedding IPLD Schemas in consumable Markdown is also possible. When embedded in Markdown in code blocks with the right language marker, IPLD Schema tooling can accept Markdown files and extract only those IPLD Schema portions it finds, substituting for a stand-alone Schema file.
 
-These errata document some of the finer details of the schema DSL
-which you don't need to read to get started, but may help clarify the
-internal logic of why some parts of the syntax look the way they do.
+When embedding IPLD Schema declarations in Markdown, use code blocks with the language marker `ipldsch`, i.e.:
 
-### Parens after field descriptions
+<pre>
+```ipldsch
+type Foo struct {
+  a   Int
+  b   Int
+  msg Message
+}
 
-For the most part,
-text in the "type" block describes properties of the type -- meaning: things
-which affect the cardinality and essence of how we treat the thing --
-and text in the "representation" block describes everything else -- meaning
-things which change how we map things into the Data Model, but conserve
-cardinality.
+type Message string
+```
+</pre>
 
-Sometimes a line which describes a field in a struct has some additional
-text at the end of the line which is surrounded by parenthesis.
-These parenthesis denote that the contained text is actually "representation"
-description.  If we kept to the rule above, in order to specify information
-relating to a specific field down in the representation block, we'd end up
-repeating the field name.  The parenthesis are our solution to avoiding this
-textual redundancy, while also continuing to mark the difference between type
-and representational information.
+Any such block found in a Markdown document will be extracted and stitched together to form a single Schema document.
 
-If you look at the IPLD-native format rather than the DSL, you'll see that
-the representation and type information remains in clearly separate trees,
-and does indeed repeat field names; this concession of the parenthesis is
-for the DSL's convenience only.
--->
+Additionally, it is also possible to perform this process across multiple Markdown documents for sufficiently complex Schema declarations. When the IPLD Schema tooling is provided a list of Markdown files it will extract the `ipldsch` blocks and stitch them all together and assume they comprise a single stand-alone Schema document.

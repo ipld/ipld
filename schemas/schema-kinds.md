@@ -217,8 +217,6 @@ In this situation, `implicit` may cause the provided value to be lost at the
 application-layer if it was equal to the default, whereas `optional` will
 expose and correctly preserve the value's presense or absence.
 
-
-
 ## Understanding Cardinality
 
 ### Cardinality Examples

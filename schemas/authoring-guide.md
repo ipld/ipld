@@ -10,9 +10,9 @@
 * [Links](#links)
 * [Inline Recursive Types](#inline-recursive-types)
 * [Representations](#representations)
-  * [Representation Options](#representation-options)
-    * [General Representation Options](#general-representation-options)
-    * [Field-specific Representation Options](#field-specific-representation-options)
+  * [Representation Parameters](#representation-parameters)
+    * [General Representation Parameters](#general-representation-parameters)
+    * [Field-specific Representation Parameters](#field-specific-representation-parameters)
 * [Structs](#structs)
 * [Enums](#enums)
 * [Unions](#unions)
@@ -236,13 +236,13 @@ When encountering a Map at the Data Layer where this variant of `Foo` is expecte
 
 A full list of the available representation strategies and their kinds that can be supplied for various Schema kinds can be found in [Representations of IPLD Schema Kinds](./schema-kinds.md).
 
-### Representation Options
+### Representation Parameters
 
-Some representation strategies have additional options that can be supplied and some have required options that are required in order to properly shape the type representation. There are two methods that representation options are supplied: within the `representation` block for general options and inline adjacent to type fields in parens where representation options are specific to fields.
+Some representation strategies have additional parameters that can be supplied and some have required parameters that are required in order to properly shape the type representation. There are two methods that representation parameters are supplied: within the `representation` block for general parameters and inline adjacent to type fields in parens where representation parameters are specific to fields.
 
-#### General Representation Options
+#### General Representation Parameters
 
-Our `Foo` struct with a `tuple` representation may be serialized in an alternate field order by supplying the general `fieldOrder` option:
+Our `Foo` struct with a `tuple` representation may be serialized in an alternate field order by supplying the general `fieldOrder` parameter:
 
 ```ipldsch
 type Foo struct {
@@ -259,7 +259,7 @@ Serialization of such a type in JSON may appear as:
 [ false, "This is field one of Foo" ]
 ```
 
-The `stringjoin` representation for Structs has a required option, `join`. There is no default for this option, so a Schema specifying a `stringjoin` Struct without it is invalid:
+The `stringjoin` representation for Structs has a required parameter, `join`. There is no default for this parameter, so a Schema specifying a `stringjoin` Struct without it is invalid:
 
 ```ipldsch
 type Foo struct {
@@ -278,11 +278,11 @@ This representation for `Foo` would seriaize into a single String node:
 
 This representation for Structs has limitations as there is no escaping mechanism for the join character, so it should be used with caution. Similar restrictions apply to the `stringpairs` Map representation. See [Representations of IPLD Schema Kinds](./schema-kinds.md) for more details on such restrictions.
 
-#### Field-specific Representation Options
+#### Field-specific Representation Parameters
 
-The content in the main `type` declaration block (between opening `{` and closing `}`) is intended to represent the type as a user-facing concept, including the [cardinality](./schema-kinds.md#Understanding-Cardinality) of the fields. However, content in parens (`(`, `)`) presented next to individual fields is an exception to this rule. This content is field-specific representation options. That is, the options presented inside these parens would ordinarily belong below in the `representation` block because it regards the interaction with the serialized form. It is present next to the fields to primarily avoid the duplication of re-declaring the fields in the `representaiton` block.
+The content in the main `type` declaration block (between opening `{` and closing `}`) is intended to represent the type as a user-facing concept, including the [cardinality](./schema-kinds.md#Understanding-Cardinality) of the fields. However, content in parens (`(`, `)`) presented next to individual fields is an exception to this rule. This content is field-specific representation parameters. That is, the parameters presented inside these parens would ordinarily belong below in the `representation` block because it regards the interaction with the serialized form. It is present next to the fields to primarily avoid the duplication of re-declaring the fields in the `representaiton` block.
 
-Two common field-specific representation options for Structs are `implicit` and `rename`:
+Two common field-specific representation parameters for Structs are `implicit` and `rename`:
 
 ```ipldsch
 type Foo struct {
@@ -307,11 +307,11 @@ type Foo struct {
 }
 ```
 
-In our example we can see that `nullable` is a distinct option for the field compared to `rename` and `implicit`. This is because `nullable` impacts the shape of the user-facing API for `Foo`, whereas `rename` and `implicit` only impact the serialization (representation) of `Foo` so are effectively hidden to the user.
+In our example we can see that `nullable` is a distinct parameter for the field compared to `rename` and `implicit`. This is because `nullable` impacts the shape of the user-facing API for `Foo`, whereas `rename` and `implicit` only impact the serialization (representation) of `Foo` so are effectively hidden to the user.
 
 See [Value Type Modifiers](./schema-kinds.md#Value-Type-Modifiers) for a discussion on such matters as well as the impacts on value cardinality.
 
-A `rename` option specifies that at serialization and deserialization, a field has an alternate name than that present in the Schema. An `implicit` specifies that, when not present in the serialized form, the field should have a certain value.
+A `rename` parameter specifies that at serialization and deserialization, a field has an alternate name than that present in the Schema. An `implicit` specifies that, when not present in the serialized form, the field should have a certain value.
 
 Recall our original serialized form for `Foo`:
 
@@ -322,7 +322,7 @@ Recall our original serialized form for `Foo`:
 }
 ```
 
-With the `rename` and `implicit` options above, this same data would be serialized as:
+With the `rename` and `implicit` parameters above, this same data would be serialized as:
 
 ```json
 {
@@ -332,9 +332,9 @@ With the `rename` and `implicit` options above, this same data would be serializ
 
 See [Fields with Implicit Values](./schema-kinds.md#Fields-with-Implicit-Values) for more information on `implicit`. In the same document you will also find a discussion regarding combining `nullable`, `optional` and `implicit` and the limitations thereof.
 
-Whenever a value appears in a representation option, it must be quoted, regardless of type. In our example above, `implicit "false"` quoted a Bool option. This will be interpreted appropriately depending on context, in this case it is clear that the type of the quoted value should be a Bool.
+Whenever a value appears in a representation parameter, it must be quoted, regardless of type. In our example above, `implicit "false"` quoted a Bool parameter. This will be interpreted appropriately depending on context, in this case it is clear that the type of the quoted value should be a Bool.
 
-Another example of field options is the `int` representation for Enums, where the field option is mandatory:
+Another example of field parameters is the `int` representation for Enums, where the field parameter is mandatory:
 
 ```ipldsch
 type Status enum {
@@ -364,7 +364,7 @@ Structs must always have a body, enclosed by `{`, `}`. Fields must new-line deli
 
 The `representation` strategy for Structs is `map` by default, so may be omitted. Additional representation strategies See [Representations of IPLD Schema Kinds](./representations.md) for more details on these representation strategies.
 
-Field representation options are presented in parens when present and representations requiring additional general options is presented in a separate `representation` block enclosed by `{`, `}`. For example, a Struct laden with both field representation options and general representation options:
+Field representation parameters are presented in parens when present and representations requiring additional general parameters is presented in a separate `representation` block enclosed by `{`, `}`. For example, a Struct laden with both field representation parameters and general representation parameters:
 
 ```ipldsch
 type Foo struct {
@@ -384,7 +384,7 @@ Valid representation strategies for Structs are:
 * `stringjoin`
 * `listpairs`
 
-More details about these representation strategies, including their various options and their representation kinds can be found in [Representations of IPLD Schema Kinds](./representations.md).
+More details about these representation strategies, including their various parameters and their representation kinds can be found in [Representations of IPLD Schema Kinds](./representations.md).
 
 ## Enums
 
@@ -652,7 +652,7 @@ type Ping struct {
 }
 ```
 
-This `envelope` representation strategy requires the options `discriminantKey` and `contentKey`. The `discriminantKey` tells the Schema the key of the discriminator value, while the discriminator values are listed next to the types of the Union (in this case, the same values as for the `keyed` Union).
+This `envelope` representation strategy requires the parameters `discriminantKey` and `contentKey`. The `discriminantKey` tells the Schema the key of the discriminator value, while the discriminator values are listed next to the types of the Union (in this case, the same values as for the `keyed` Union).
 
 #### Inline
 

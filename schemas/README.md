@@ -26,7 +26,7 @@ IPLD Schemas
   * [Links](./authoring-guide.md#links)
   * [Inline Recursive Types](./authoring-guide.md#inline-recursive-types)
   * [Representations](./authoring-guide.md#representations)
-    * [Representation Options](./authoring-guide.md#representation-options)
+    * [Representation Parameters](./authoring-guide.md#representation-parameters)
   * [Structs](./authoring-guide.md#structs)
   * [Enums](./authoring-guide.md#enums)
   * [Unions](./authoring-guide.md#unions)

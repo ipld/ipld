@@ -1,22 +1,22 @@
 # Representations of IPLD Schema Kinds
 
-* [Available Representation Strategies](#available-representation-strategies)
-* [Representation Strategy Reference](#representation-strategy-reference)
-  * [Struct `map` Representation](#struct-map-representation)
-  * [Struct `tuple` Representation](#struct-tuple-representation)
-  * [Struct `stringpairs` Representation](#struct-stringpairs-representation)
-  * [Struct `stringjoin` Representation](#struct-stringjoin-representation)
-  * [Struct `listpairs` Representation](#struct-listpairs-representation)
-  * [Map `map` Representation](#map-map-representation)
-  * [Map `stringpairs` Representation](#map-stringpairs-representation)
-  * [Map `listpairs` Representation](#map-listpairs-representation)
-  * [Union `keyed` Representation](#union-keyed-representation)
-  * [Union `kinded` Representation](#union-kinded-representation)
-  * [Union `envelope` Representation](#union-envelope-representation)
-  * [Union `inline` Representation](#union-inline-representation)
-  * [Union `byteprefix` Representation](#union-byteprefix-representation)
-  * [Enum `string` Representation](#enum-string-representation)
-  * [Enum `int` Representation](#enum-int-representation)
+* [Available Representation Strategies](#Available-Representation-Strategies)
+* [Representation Strategy Reference](#Representation-Strategy-Reference)
+  * [Struct `map` Representation](#Struct-map-Representation)
+  * [Struct `tuple` Representation](#Struct-tuple-Representation)
+  * [Struct `stringpairs` Representation](#Struct-stringpairs-Representation)
+  * [Struct `stringjoin` Representation](#Struct-stringjoin-Representation)
+  * [Struct `listpairs` Representation](#Struct-listpairs-Representation)
+  * [Map `map` Representation](#Map-map-Representation)
+  * [Map `stringpairs` Representation](#Map-stringpairs-Representation)
+  * [Map `listpairs` Representation](#Map-listpairs-Representation)
+  * [Union `keyed` Representation](#Union-keyed-Representation)
+  * [Union `kinded` Representation](#Union-kinded-Representation)
+  * [Union `envelope` Representation](#Union-envelope-Representation)
+  * [Union `inline` Representation](#Union-inline-Representation)
+  * [Union `byteprefix` Representation](#Union-byteprefix-Representation)
+  * [Enum `string` Representation](#Enum-string-Representation)
+  * [Enum `int` Representation](#Enum-int-Representation)
 
 A type at the Schema layer must be mapped onto a representation expressible within the Data Model. Each Schema type, therefore, has a "representation kind" which dictates what Data Model kind it is represented as. Each Schema type has a "representation strategy" for converting it, where required, into a "representation kind".
 
@@ -65,12 +65,12 @@ For example, a type declaration laden with representation parameters:
 
 ```ipldsch
 type Foo struct {
-	x Int (rename "a")
-	y Int (rename "b" implicit "0")
+  x Int (rename "a")
+  y Int (rename "b" implicit "0")
   msg String
 } representation stringpairs {
   innerDelim "="
-	entryDelim ","
+  entryDelim ","
 }
 ```
 
@@ -114,8 +114,8 @@ A Data Model Map representation of Structs means that the Struct is represented 
 
 ```ipldsch
 type Foo struct {
-	fieldOne String
-	fieldTwo Bool
+  fieldOne String
+  fieldTwo Bool
 } representation map
 ```
 
@@ -125,8 +125,8 @@ Some data matching the `Foo` Struct (shown as JSON) is:
 
 ```json
 {
-	"fieldOne": "this is field one",
-	"fieldTwo": true
+  "fieldOne": "this is field one",
+  "fieldTwo": true
 }
 ```
 
@@ -137,10 +137,12 @@ The `map` Struct representation strategy also allows for field-specific paramete
 
 ```ipldsch
 type Foo struct {
-	fieldOne String (rename "one")
-	fieldTwo Bool (rename "two" implicit "false")
+  fieldOne String (rename "one")
+  fieldTwo Bool (rename "two" implicit "false")
 } representation map
 ```
+
+The field-specific parameters (`rename` and `implicit`) are only available for the `map` Struct representation strategy. They are technically possible in some other forms (i.e. `listpairs` and `stringpairs`) and support may be extended in the future.
 
 See [Value Type Modifiers](./schema-kinds.md#Value-Type-Modifiers) for a discussion on such matters as well as the impacts on value cardinality.
 
@@ -156,8 +158,8 @@ The `tuple` Struct representation strategy allows Structs to be packed into a co
 
 ```ipldsch
 type Foo struct {
-	fieldOne String
-	fieldTwo Bool
+  fieldOne String
+  fieldTwo Bool
 } representation tuple
 ```
 
@@ -179,8 +181,8 @@ No field-specific parameters are available for the `tuple` Struct representation
 
 ```ipldsch
 type Foo struct {
-	fieldOne String
-	fieldTwo Bool
+  fieldOne String
+  fieldTwo Bool
 } representation tuple {
   fieldOrder ["fieldTwo", "fieldOne"]
 }
@@ -206,11 +208,11 @@ This serial representation is strictly limited: the domain of available for fiel
 
 ```ipldsch
 type Foo struct {
-	fieldOne String
-	fieldTwo Bool
+  fieldOne String
+  fieldTwo Bool
 } representation stringpairs {
   innerDelim "="
-	entryDelim ","
+  entryDelim ","
 }
 ```
 
@@ -237,10 +239,10 @@ The `stringjoin` Struct representation strategy encodes a Struct to a single Str
 
 ```ipldsch
 type Fizzlebop struct {
-	a String
-	b String
+  a String
+  b String
 } representation stringjoin {
-	join ":"
+  join ":"
 }
 ```
 
@@ -266,8 +268,8 @@ The `listpairs` Struct representation strategy encodes a Struct to a List of Lis
 
 ```ipldsch
 type Foo struct {
-	fieldOne String
-	fieldTwo Bool
+  fieldOne String
+  fieldTwo Bool
 } representation listpairs
 ```
 
@@ -279,7 +281,7 @@ Some data matching the `Foo` Struct (shown as JSON) is:
 
 Each entry of the parent List is a List containing exactly two entries, where the first is the exact field name and the second is the value.
 
-No field-specific parameters are available for the `listpairs` Struct representation strategy (i.e. `implicit` and `rename` which are available for `map`), although these may be introduced in the future since they are technically possible with this strategy. No general parameters are available.
+No field-specific parameters are available for the `listpairs` Struct representation strategy (i.e. `implicit` and `rename` which are available for `map`).
 
 ### Map `map` Representation
 
@@ -321,8 +323,8 @@ A string that is similar in format to the options found in an /etc/fstab file mi
 
 ```ipldsch
 type MountOptions {String:String} representation stringpairs {
-	innerDelim "="
-	entryDelim ","
+  innerDelim "="
+  entryDelim ","
 }
 ```
 
@@ -371,8 +373,8 @@ When using a `keyed` Union representation strategy, the Union lists the quoted k
 
 ```ipldsch
 type MyKeyedUnion union {
-	| Foo "foo"
-	| Bar "bar"
+  | Foo "foo"
+  | Bar "bar"
 } representation keyed
 
 type Foo struct {
@@ -414,8 +416,8 @@ The `kinded` Union representation strategy doesn't introduce any kind of wrappin
 
 ```ipldsch
 type MyKindedUnion union {
-	| Foo map
-	| Bar int
+  | Foo map
+  | Bar int
 } representation kinded
 
 type Foo struct {
@@ -449,8 +451,8 @@ Note that a type that has a different Schema kind to its representation kind use
 
 ```ipldsch
 type MyKindedUnion union {
-	| Foo map
-	| Bar int
+  | Foo map
+  | Bar int
   | Bang string
 } representation kinded
 
@@ -462,7 +464,7 @@ type Bar int
 
 type Bang {String:Int} representation stringpairs {
   innerDelim ":"
-	entryDelim "|"
+  entryDelim "|"
 }
 ```
 
@@ -482,11 +484,11 @@ Each constituent type of an `envelope` Union is accompanied by a quoted string t
 
 ```ipldsch
 type MyEnvelopeUnion union {
-	| Foo "foo"
-	| Bar "bar"
+  | Foo "foo"
+  | Bar "bar"
 } representation envelope {
-	discriminantKey "tag"
-	contentKey "msg"
+  discriminantKey "tag"
+  contentKey "msg"
 }
 
 type Foo struct {
@@ -537,10 +539,10 @@ Each constituent type of an `inline` Union is accompanied by a quoted string tha
 
 ```ipldsch
 type MyInlineUnion union {
-	| Foo "foo"
-	| Bar "bar"
+  | Foo "foo"
+  | Bar "bar"
 } representation inline {
-	discriminantKey "tag"
+  discriminantKey "tag"
 }
 
 type Foo struct {
@@ -588,8 +590,8 @@ The `byteprefix` Union representation strategy is used strictly for Bytes repres
 
 ```ipldsch
 type Signature union {
-	| Secp256k1Signature 0
-	| Bls12_381Signature 1
+  | Secp256k1Signature 0
+  | Bls12_381Signature 1
 } representation byteprefix
 
 type Secp256k1Signature bytes
@@ -610,9 +612,9 @@ By default, a Schema Enum is simply represented as a String in the data model. A
 
 ```ipldsch
 type Status enum {
-	| Nope
-	| Yep
-	| Maybe
+  | Nope
+  | Yep
+  | Maybe
 }
 ```
 
@@ -624,9 +626,9 @@ Where the serialized Strings are different to the values used for the Enum, they
 
 ```ipldsch
 type Status enum {
-	| Nope ("Nay")
-	| Yep  ("Yay")
-	| Maybe
+  | Nope ("Nay")
+  | Yep  ("Yay")
+  | Maybe
 }
 ```
 
@@ -644,9 +646,9 @@ An alternative representation strategy for enums is `int`, which is closer to wh
 
 ```ipldsch
 type Status enum {
-	| Nope  ("0")
-	| Yep   ("1")
-	| Maybe ("100")
+  | Nope  ("0")
+  | Yep   ("1")
+  | Maybe ("100")
 } representation int
 ```
 

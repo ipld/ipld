@@ -104,7 +104,7 @@ The schema kinds have matching tokens that appear throughout IPLD Schemas. Depen
 
 ## Naming Types
 
-By convention, type names should begin with a capital letter although this requirement is not strict. Type names must only contain contain printable ASCII characters excluding space and punctuation other than underscores and the first character should be a letter. A strict regular expression for type names would be: `[a-zA-Z][a-zA-Z0-9_]*`. A regular expression following convention would be: `[A-Z][a-zA-Z0-9_]*`.
+By convention, type names should begin with a capital letter although this requirement is not strict. Type names must only contain alphanumeric ASCII characters and underscores, and the first character should be a letter. A strict regular expression for type names would be: `[a-zA-Z][a-zA-Z0-9_]*`. A regular expression following convention would be: `[A-Z][a-zA-Z0-9_]*`.
 
 Camel case with an upper case first character is recommended. Underscore `_` should be used sparingly. `ThisIsRecommend`, `This_Not_So_Much`, `Thisisnotrecommended`, `neitherIsThis`.
 
@@ -166,11 +166,11 @@ is equivalent to:
 ```ipldsch
 type Foo {
   id Int
-  data [{String:Float}]
+  data {String:[Int]}
 }
 ```
 
-As with typedef'd scalar kinds, this has implications for codegen and other API interactions with Schema types. Rather than having an explicit name, `FloatMap`, a generated name may be applied to the List type found at `Foo->data` and the type of the Map nodes found within that list.
+As with typedef'd scalar kinds, this has implications for codegen and other API interactions with Schema types. Rather than having a explicit names, `MapOfIntLists` and `IntList`, auto-generated names may be applied to `Foo->data` and the type of the List nodes found within that Map. (e.g. perhaps `Foo__dataType`, `Foo__data__valueType`).
 
 The inline facility is provided for convenience but explicitness is always recommended above expedience, including this case, in order to improve the documentation role of Schemas. By naming Map and List elements the author can express intent to the user and provide clarity through Schema-consuming tools.
 
@@ -194,8 +194,8 @@ For example, consider this Struct:
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String
-	fieldTwo Bool
+  fieldOne nullable String
+  fieldTwo Bool
 }
 ```
 
@@ -212,8 +212,8 @@ A Struct can also have the default representation expressed explicitly:
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String
-	fieldTwo Bool
+  fieldOne nullable String
+  fieldTwo Bool
 } representation map
 ```
 
@@ -223,8 +223,8 @@ The Struct can also be represented as a List when we supply the `tuple` represen
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String
-	fieldTwo Bool
+  fieldOne nullable String
+  fieldTwo Bool
 } representation tuple
 ```
 
@@ -246,8 +246,8 @@ Our `Foo` struct with a `tuple` representation may be serialized in an alternate
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String
-	fieldTwo Bool
+  fieldOne nullable String
+  fieldTwo Bool
 } representation tuple {
   fieldOrder ["fieldTwo", "fieldOne"]
 }
@@ -263,10 +263,10 @@ The `stringjoin` representation for Structs has a required parameter, `join`. Th
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String
-	fieldTwo Bool
+  fieldOne nullable String
+  fieldTwo Bool
 } representation stringjoin {
-	join ":"
+  join ":"
 }
 ```
 
@@ -286,8 +286,8 @@ Two common field-specific representation parameters for Structs are `implicit` a
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String (rename "one")
-	fieldTwo Bool (rename "two" implicit "false")
+  fieldOne nullable String (rename "one")
+  fieldTwo Bool (rename "two" implicit "false")
 }
 ```
 
@@ -297,12 +297,12 @@ A cleaner declaration that separates type declaration from serialized form repre
 # This is not valid IPLD Schema but is presented to illustrate the additional verbosity being avoided
 
 type Foo struct {
-	fieldOne nullable String
-	fieldTwo Bool
+  fieldOne nullable String
+  fieldTwo Bool
 } representation map {
   fields {
-  	fieldOne rename "one"
-	  fieldTwo rename "two" implicit "false"
+    fieldOne rename "one"
+    fieldTwo rename "two" implicit "false"
   }
 }
 ```
@@ -338,9 +338,9 @@ Another example of field parameters is the `int` representation for Enums, where
 
 ```ipldsch
 type Status enum {
-	| Nope  ("0")
-	| Yep   ("1")
-	| Maybe ("100")
+  | Nope  ("0")
+  | Yep   ("1")
+  | Maybe ("100")
 } representation int
 ```
 
@@ -352,8 +352,8 @@ The basic DSL form of a Struct has the following structure:
 
 ```
 type TypeName struct {
-  Field1Name Field1Type
-  Field2Name Field2Type
+  field1Name Field1Type
+  field2Name Field2Type
   ... etc.
 }
 ```
@@ -364,17 +364,25 @@ Structs must always have a body, enclosed by `{`, `}`. Fields must new-line deli
 
 The `representation` strategy for Structs is `map` by default, so may be omitted. Additional representation strategies See [Representations of IPLD Schema Kinds](./representations.md) for more details on these representation strategies.
 
-Field representation parameters are presented in parens when present and representations requiring additional general parameters is presented in a separate `representation` block enclosed by `{`, `}`. For example, a Struct laden with both field representation parameters and general representation parameters:
+Field representation parameters are presented in parens when present and representations requiring additional general parameters is presented in a separate `representation` block enclosed by `{`, `}`. For example, a Struct with both field representation parameters and general representation parameters:
 
 ```ipldsch
 type Foo struct {
-	fieldOne nullable String (rename "one")
-	fieldTwo Bool (rename "two" implicit "false")
+  fieldOne nullable String (rename "one")
+  fieldTwo Bool (rename "two" implicit "false")
 } representation stringpairs {
   innerDelim "="
-	entryDelim ","
+  entryDelim ","
 }
 ```
+
+Leading to a serialized form such as:
+
+```json
+"one=This is field one of Foo,two=true"
+```
+
+More details regarding `stringpairs` can be found below and in [Representations of IPLD Schema Kinds](./representations.md).
 
 Valid representation strategies for Structs are:
 
@@ -392,9 +400,9 @@ Enums are used to indicate a distinct, fixed list of values. Enums in IPLD Schem
 
 ```ipldsch
 type Status enum {
-	| Nope
-	| Yep
-	| Maybe
+  | Nope
+  | Yep
+  | Maybe
 }
 
 type Response struct {
@@ -409,9 +417,9 @@ The serialized strings may be different from values:
 
 ```ipldsch
 type Status enum {
-	| Nope ("Nay")
-	| Yep  ("Yay")
-	| Maybe
+  | Nope ("Nay")
+  | Yep  ("Yay")
+  | Maybe
 }
 ```
 
@@ -421,9 +429,9 @@ An alternate representation strategy for Enums may be specified: `int`. With an 
 
 ```ipldsch
 type Status enum {
-	| Nope  ("0")
-	| Yep   ("1")
-	| Maybe ("100")
+  | Nope  ("0")
+  | Yep   ("1")
+  | Maybe ("100")
 } representation int
 ```
 
@@ -456,7 +464,7 @@ And an alternative form that is also acceptable but signals a different state an
 }
 ```
 
-In this example, we have a Map that can be represented as a Struct since it has only two fields, but the `progress` field dosn't have a stable kind so we can't use any of the existing Schema types to represent the field type. Instead, we can introduce a Union and can take different forms depending on the different acceptable forms.
+In this example, we have a Map that can be represented as a Struct since it has only two fields, but the `payload` field dosn't have a stable kind so we can't use any of the existing Schema types to represent the field type. Instead, we can introduce a Union and can take different forms depending on the different acceptable forms.
 
 IPLD Schemas are intended to be efficient, so the ability to discriminate on Union types is limited to what we can find _at the current node_. That is, we can't inspect whether a node has a child that takes a particular form and use that as a discriminator (such as inspecting the keys or values of a Map). A Schema must be able to fail validation at a node being inspected where the data does not match the expected form.
 
@@ -471,8 +479,8 @@ type Message struct {
 }
 
 type Payload union {
-	| Error string
-	| Progress map
+  | Error string
+  | Progress map
 } representation kinded
 
 type Error string
@@ -508,8 +516,8 @@ type Message struct {
 }
 
 type Payload union {
-	| Error string
-	| ProgressOrPing map
+  | Error string
+  | ProgressOrPing map
 } representation kinded
 
 type Error string
@@ -522,7 +530,7 @@ type ProgressOrPing struct {
 }
 ```
 
-Now the user of such a Schema must do their own field inspection to determine whether a `ProgressOrPing` is a progress message or a ping. Additionally, the burden of ensuring that both `percent` and `last` are present _or_ `ts` and `nonce` are present is left to the user, the Schema layer can't help here. The trade-off present in this scenario regards validation of a node by inspection of its child nodes. Type type of data is common in the real world but IPLD Schemas encourage better data shape design to allow for fast validation through clear discrimination where such variance exists.
+Now the user of such a Schema must do their own field inspection to determine whether a `ProgressOrPing` is a progress message or a ping. Additionally, the burden of ensuring that both `percent` and `last` are present _or_ `ts` and `nonce` are present is left to the user, the Schema layer can't help here. The trade-off present in this scenario regards validation of a node by inspection of its child nodes. This type of data is common in the real world but IPLD Schemas encourage better data shape design to allow for fast validation through clear discrimination where such variance exists.
 
 ### Alternative Discrimination Strategies
 
@@ -568,8 +576,8 @@ type Message struct {
 }
 
 type Payload union {
-	| Error "error"
-	| Progress "progress"
+  | Error "error"
+  | Progress "progress"
   | Ping "ping"
 } representation keyed
 
@@ -631,12 +639,12 @@ type Message struct {
 }
 
 type Payload union {
-	| Error "error"
-	| Progress "progress"
+  | Error "error"
+  | Progress "progress"
   | Ping "ping"
 } representation envelope {
-	discriminantKey "tag"
-	contentKey "payload"
+  discriminantKey "tag"
+  contentKey "payload"
 }
 
 type Error string
@@ -674,7 +682,6 @@ Our example must be extended so that the `Error` type can be extracted from a ma
   "tag": "progress",
   "percent": 0.6,
   "last": "61626378797a"
-  }
 }
 ```
 
@@ -694,11 +701,11 @@ type Message struct {
 }
 
 type Payload union {
-	| Error "error"
-	| Progress "progress"
+  | Error "error"
+  | Progress "progress"
   | Ping "ping"
 } representation inline {
-	discriminantKey "tag"
+  discriminantKey "tag"
 }
 
 type Error struct {
@@ -725,12 +732,12 @@ A special case union exists for handling Bytes kinds. Where a node contains a by
 ```ipldsch
 type Authorization struct {
   key PublicKey
-  keyType String
+  keySize Int
 }
 
 type PublicKey union {
-	| RsaPubkey 0
-	| Ed25519Pubkey 1
+  | RsaPubkey 0
+  | Ed25519Pubkey 1
 } representation byteprefix
 
 type RsaPubkey bytes

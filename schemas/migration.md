@@ -44,8 +44,8 @@ There are a handful of recognizable patterns that are used frequently:
   - Any union representation will do.
     - Keyed unions: `{"foo-v2": {...}}`
     - Envelope unions: `{"version": "2", "content":{...}}`
-	- Inline unions: `{"version": "2", ...}`
-	- A single-member struct would also fit the pattern, being functionally
+  - Inline unions: `{"version": "2", ...}`
+  - A single-member struct would also fit the pattern, being functionally
           equivalent to a keyed union.
   - See the schema-schema for an example of this!
 - Using a "version" union (with multiple members).

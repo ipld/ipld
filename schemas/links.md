@@ -21,7 +21,9 @@ type MyKeyedUnion union {
   | Bar "bar"
 } representation keyed
 
-type Foo struct { froz Bool }
+type Foo struct {
+  froz Bool
+}
 type Bar link
 ```
 
@@ -59,7 +61,9 @@ type MyKeyedUnion union {
   | &Grop "bar"
 } representation keyed
 
-type Foo struct { froz Bool }
+type Foo struct {
+  froz Bool
+}
 ```
 
 There is no facility in IPLD Schemas for implicitly describing a "may be a link, or may be inline" data structure. However we can do this explicitly with `kinded` `union`s, although without strong guarantees regarding what we might find when we follow a link:

@@ -10,7 +10,7 @@ Many of the specifications in IPLD are inter-dependent.
 
 ## Glossary
 
-* **DAG**: Short for ["Directred Acyclic Graph."](https://en.m.wikipedia.org/wiki/Directed_acyclic_graph) 
+* **DAG**: Short for ["Directed Acyclic Graph."](https://en.m.wikipedia.org/wiki/Directed_acyclic_graph) 
 It's a tree where two branches can point to the same sub-branch, but only in one direction 
 so there's no possibility of recursion.
 

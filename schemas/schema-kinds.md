@@ -233,11 +233,15 @@ expose and correctly preserve the value's presense or absence.
 </tr>
 
 <tr>
-<td width=40%><pre>
+<td width=40%>
+
+```ipldsch
 type Foo struct {
 	bar Bool
 }
-</pre></td>
+```
+
+</td>
 <td width=20%>
 <code>{"bar": true}</code><br>
 <code>{"bar": false}</code><br>
@@ -247,11 +251,15 @@ type Foo struct {
 </tr>
 
 <tr>
-<td><pre>
+<td>
+
+```ipldsch
 type Foo struct {
 	bar nullable Bool
 }
-</pre></td>
+```
+
+</td>
 <td>
 <code>{"bar": true}</code><br>
 <code>{"bar": false}</code><br>
@@ -262,11 +270,15 @@ type Foo struct {
 </tr>
 
 <tr>
-<td><pre>
+<td>
+
+```ipldsch
 type Foo struct {
 	bar optional Bool
 }
-</pre></td>
+```
+
+</td>
 <td>
 <code>{"bar": true}</code><br>
 <code>{"bar": false}</code><br>
@@ -277,11 +289,15 @@ type Foo struct {
 </tr>
 
 <tr>
-<td><pre>
+<td>
+
+```ipldsch
 type Foo struct {
 	bar optional nullable Bool
 }
-</pre></td>
+```
+
+</td>
 <td>
 <code>{"bar": true}</code><br>
 <code>{"bar": false}</code><br>
@@ -293,13 +309,17 @@ type Foo struct {
 </tr>
 
 <tr>
-<td><pre>
+<td>
+
+```ipldsch
 type Foo struct {
 	bar Bool
 } representation map {
 	field bar default "false"
 }
-</pre></td>
+```
+
+</td>
 <td>
 <code>{"bar": true}</code><br>
 <code>{}</code><br>

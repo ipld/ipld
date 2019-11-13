@@ -819,7 +819,7 @@ IPLD Schemas are intended to serve a documentation role as well as a programmati
 
 When embedding IPLD Schema declarations in Markdown, use code blocks with the language marker `ipldsch`, i.e.:
 
-<pre>
+<pre class="language-markdown"><code>
 ```ipldsch
 type Foo struct {
   a   Int
@@ -829,7 +829,7 @@ type Foo struct {
 
 type Message string
 ```
-</pre>
+</code></pre>
 
 Any such block found in a Markdown document will be extracted and stitched together to form a single Schema document.
 

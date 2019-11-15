@@ -142,7 +142,7 @@ Links in IPLD Schemas are a special-case. The Data Model kind "Link" is expresse
 
 Links can be typedef'd, `type Foo &Bar` or can appear inline: `type Baz {String:&Bang}`.
 
-Further, the type name is not a strict assertion that can be directly tested against underlying data, it is simply a hint regarding what should be found when following the link identified by the [CID](../block-layer/CID.md) at the position indicated by the Schema link. Strict assertions of this expected type may be applied at layers above the Schema validation layer when the link is resolved and the node decoded.
+Further, the type name is not a strict assertion that can be directly tested against underlying data, it is simply a hint regarding what should be found when following the link identified by the [CID](https://github.com/ipld/specs/blob/master/block-layer/CID.md) at the position indicated by the Schema link. Strict assertions of this expected type may be applied at layers above the Schema validation layer when the link is resolved and the node decoded.
 
 For more information about Links in Schemas, see [Links and IPLD Schemas](./links.md).
 

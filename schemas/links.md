@@ -83,6 +83,6 @@ type Element union {
 # ... further definitions for `Bucket`
 ```
 
-In this example, from the [HashMap](../data-structures/hashmap.md) spec, we describe a `map`, named `HashMapNode` that contains a `data` property which is a list of `Element`s. These `Element`s may be one of three things: a `map` that contains another `HashMapNode` (an inlined child for a tree data structure), a `link` which is assumed to lead to a `HashMapNode` (a linked child) or a `Bucket` (not described here) which comprises a `list`.
+In this example, from the [HashMap](https://github.com/ipld/specs/blob/master/data-structures/hashmap.md) specification, we describe a `map`, named `HashMapNode` that contains a `data` property which is a list of `Element`s. These `Element`s may be one of three things: a `map` that contains another `HashMapNode` (an inlined child for a tree data structure), a `link` which is assumed to lead to a `HashMapNode` (a linked child) or a `Bucket` (not described here) which comprises a `list`.
 
 Our validator can scan the `data` list and check that each element is one of: `map`, `link` and `list`. We make no strong assertions that the `link` actually yields a `HashMapNode` but such assertions may be built into code generated from this schema _when_ the link is loaded and validated.

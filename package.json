@@ -6,7 +6,7 @@
     "prepare:json": "find html/ -name \\*.json -exec sh -c \"echo '---\\neditLink: false\\n---\\n\\n\\`\\`\\`json' > {}.md && cat {} >> {}.md && echo '\\`\\`\\`' >> {}.md\" \\;",
     "build:vue": "vuepress build html --no-cache",
     "build": "set -e; for t in prepare:base prepare:content prepare:ipldsch prepare:json build:vue; do npm run $t; done",
-    "serve": "echo '\n\n\u001b[1mView IPLD Specs @ http://localhost:1337/specs/\u001b[22m\n\n'; npx st --dir html/.vuepress/dist --no-cache --index index.html -u /specs/"
+    "serve": "echo '\n\n\u001b[1mView IPLD Specs @ http://localhost:1337/\u001b[22m\n\n'; npx st --dir html/.vuepress/dist --no-cache --index index.html"
   },
   "dependencies": {
     "vuepress": "^1.2.0"

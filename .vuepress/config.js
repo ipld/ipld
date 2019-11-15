@@ -19,7 +19,7 @@ function linkfix (md) {
 module.exports = {
   title: 'IPLD Specifications',
   description: 'Specifications for the Inter-planetary Linked Data project',
-  base: '/specs/',
+  base: '/',
   themeConfig: {
     repo: 'ipld/specs',
     editLinks: true,

@@ -21,7 +21,9 @@ jobs:
       with:
         node-version: '12.x'
     - run: npm install
-    - run: npm run build
+    - run: |
+        npm run build
+        cp ./.vuepress/CNAME ./html/.vuepress/dist/
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v2.5.1

@@ -41,7 +41,7 @@ The DSL treats newlines as significant, they are used to break up records (`type
 
 Multiple newline characters are folded in to one during parsing, so newlines may be used for formatting and documentation purposes where appropriate. It is also not necessary to separate records by a specific number of newlines, although a single blank line is typical.
 
-Whitespace characters (tab and space) and also folded in to a single space during parsing, so may be used for formatting and documentation purposes where appropriate. Most tokens that don't need to be proceeded by a newline should be separated by at least one newline character. There are other tokens that don't strictly require a newline (e.g. `{String:Int}` for Map definitions where 5 tokens may be conjoined, but also may be separated, `{ String : Int }`). Indenting is not strictly required for record component descriptors but are typical as they can be used to express intent.
+Whitespace characters (tab and space) are also folded in to a single space during parsing, so may be used for formatting and documentation purposes where appropriate. Most tokens that don't need to be proceeded by a newline should be separated by at least one newline character. There are other tokens that don't strictly require a newline (e.g. `{String:Int}` for Map definitions where 5 tokens may be conjoined, but also may be separated, `{ String : Int }`). Indenting is not strictly required for record component descriptors but are typical as they can be used to express intent.
 
 ```ipldsch
 type Foo struct {

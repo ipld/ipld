@@ -154,7 +154,7 @@ The `optional` modifier may be stacked with the `nullable` modifier.
 An `implicit` modifier declares that when a field is found absent in data,
 it should instead be treated as some other value in the domain.
 At the same time, if an application sets the field to that value,
-it will be mapped to absense of that field when represented.
+it will be mapped to absence of that field when represented.
 
 Implicit values may be considered similar to "defaults" -- and if you're looking
 for defaults, you should look at implicits -- but we've chosen a distinctive

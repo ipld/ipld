@@ -198,7 +198,7 @@ should provide more detailed information on this.
 
 ### Choosing between Optional and Implicit
 
-Use `implicit` when the absense of a value should be treated as another
+Use `implicit` when the absence of a value should be treated as another
 value that fits unambiguously into your domain; use `optional` when there's
 no such in-domain value.
 

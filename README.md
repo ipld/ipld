@@ -58,6 +58,7 @@ This layer does not define data structures or types, although many codecs may co
 | [Specification: DAG-JSON](block-layer/codecs/DAG-JSON.md) | [block-layer/codecs/DAG-JSON.md](block-layer/codecs/DAG-JSON.md) |
 | [Specification: IPLD Selectors](selectors/selectors.md) | [selectors/selectors.md](selectors/selectors.md) |
 | [Specification: Graphsync](block-layer/graphsync/graphsync.md) | [block-layer/graphsync/graphsync.md](block-layer/graphsync/graphsync.md) |
+| [Specification: Content Addressable aRchives (CAR / .car)](block-layer/content-addressable-archives.md) | [block-layer/content-addressable-archives.md](block-layer/content-addressable-archives.md) |
 
 ### Data Model Layer (Layer 1)
 

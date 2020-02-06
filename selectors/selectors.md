@@ -84,7 +84,7 @@ type ExploreIndex struct {
 	next Selector (rename ">")
 }
 
-## ExploreIndex traverses a list, and for each element in the range specified,
+## ExploreRange traverses a list, and for each element in the range specified,
 ## will apply a next selector to those reached nodes.
 type ExploreRange struct {
 	start Int (rename "^")

@@ -6,14 +6,13 @@
 
 [![](https://img.shields.io/badge/made%20by-Protocol%20Labs-blue.svg?style=flat-square)](https://protocol.ai)
 [![](https://img.shields.io/badge/project-ipld-orange.svg?style=flat-square)](https://github.com/ipld/ipld)
-[![](https://img.shields.io/badge/freenode-%23ipld-orange.svg?style=flat-square)](https://webchat.freenode.net/?channels=%23ipld)
 
 ### Welcome to the Internet of Data-Structures
 
 IPLD is a set of standards and implementations for creating decentralized data-structures that are universally addressable and linkable. These structures will allow us to do for data what URLs and links did for HTML web pages.
 
-- [Enter IPLD](#enter-ipld)
 - [Docs](#docs)
+- [Stacks](#stacks)
 - [Examples and Tutorials](#examples-and-tutorials)
 - [Tools](#tools)
 - [Implementations](#implementations)
@@ -22,17 +21,20 @@ IPLD is a set of standards and implementations for creating decentralized data-s
 - [Contribute](#contribute)
 - [License](#license)
 
-## Enter IPLD
-
-**Watch the Merkle Forest Talk**
-
-[![](/img/enter-merkle-forest.jpg)](https://www.youtube.com/watch?v=Bqs_LzBjQyk)
-
 ## Docs
 
 - [IPLD Specs](https://github.com/ipld/specs)
-- [CID spec](https://github.com/ipld/cid)
-- [ipld.io](https://github.com/ipld/website)
+- [CID spec](https://github.com/multiformats/cid)
+
+## Stacks
+
+IPLD has a [layer model]() and is much more than "one thing." As such, implementations of IPLD aren't single libraries but stacks of libraries that vary a bit by programming language.
+
+### Go
+
+### JavaScript
+
+### Rust
 
 ## Examples and Tutorials
 - ProtoSchool Tutorials: 
@@ -49,13 +51,10 @@ IPLD is a set of standards and implementations for creating decentralized data-s
 - CLI for interacting with IPLD: [tableflip/ipld-explorer-cli](https://github.com/tableflip/ipld-explorer-cli)
 - CID inspector: [cid-utils.ipfs.team](http://cid-utils.ipfs.team/)
 
-## Implementations
+## Codec Implementations
 
 | Package | JavaScript | Go | Java |
 | ------- | ---------- | -- | ---- |
-| CID | [ipld/js-cid](https://github.com/ipld/js-cid) | [ipfs/go-cid](https://github.com/ipfs/go-cid) | [ipld/java-cid](https://github.com/ipld/java-cid) |
-| IPLD Node interface | [ipld/interface-ipld-format](https://github.com/ipld/interface-ipld-format) | [ipfs/go-ipld-format](https://github.com/ipfs/go-ipld-format) | |
-| IPLD Resolver | [ipld/js-ipld-resolver](https://github.com/ipld/js-ipld-resolver) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
 | CBOR (default) | [ipld/js-ipld-dag-cbor](https://github.com/ipld/js-ipld-dag-cbor) | [ipfs/go-ipld-cbor](https://github.com/ipfs/go-ipld-cbor) |[ipld/java-ipld-cbor](https://github.com/ipld/java-ipld-cbor) |
 | Merkledag/Protobuf (legacy) | [ipld/js-ipld-dag-pb](https://github.com/ipld/js-ipld-dag-pb) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |
 | Raw | [ipld/js-ipld-raw](https://github.com/ipld/js-ipld-raw) | wip: [ipfs/go-ipld-format#8](https://github.com/ipfs/go-ipld-format/issues/8) | |

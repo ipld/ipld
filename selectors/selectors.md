@@ -154,7 +154,7 @@ type ExploreRecursiveEdge struct {}
 ## be considered part of a (possibly labelled) result set), while simultaneously
 ## continuing to explore deeper parts of the tree with another selector,
 ## for example.
-type ExploreUnion list [Selector]
+type ExploreUnion [Selector]
 
 ## Note that ExploreConditional versus a Matcher with a Condition are distinct:
 ## ExploreConditional progresses deeper into a tree;
@@ -202,7 +202,7 @@ type Condition union {
 	| Condition_And "and"
 	| Condition_Or "or"
 	# REVIEW: since we introduced "and" and "or" here, we're getting into dangertown again.  we'll need a "max conditionals limit" (a la 'gas' of some kind) near here.
-}
+} representation keyed
 ```
 
 

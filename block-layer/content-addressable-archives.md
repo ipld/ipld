@@ -151,7 +151,7 @@ The CAR format contains no specified means of padding to achieve specific total 
 
 ### Go
 
-https://github.com/ipfs/go-car
+https://github.com/ipld/go-car
 
 As used in Filecoin for genesis block sharing. Supports creation via a DAG walk from a datastore:
 

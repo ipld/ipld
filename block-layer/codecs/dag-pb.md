@@ -4,9 +4,9 @@
 
 DAG-PB does not support the full ["IPLD Data Model."](../../data-model-layer/data-model.md)
 
-## Format
+## Serial Format
 
-The DAG-PB IPLD format is a format implemented with a single protobuf:
+The DAG-PB IPLD serial format is described with a single protobuf:
 
 ```protobuf
 // An IPFS MerkleDAG Link
@@ -36,6 +36,10 @@ message PBNode {
 The objects link names are specified in the 'Name' field of the PBLink object.
 All link names in an object must either be omitted or unique within the object.
 
+## Logical Format
+
+When we handle DAG-PB content at the Data Model level, we treat these objects as maps.
+
 This layout can be expressed with [IPLD Schemas](../../schemas/README.md) as:
 
 ```ipldsch
@@ -51,9 +55,21 @@ type PBNode struct {
 }
 ```
 
-## Pathing
+The first node in a block of DAG-PB data will match the `PBNode` type.
 
-The pathing is currently different between implementations. Please see [issue #55] for more information about the harmonization effort. This section describes the current implementations as of September 2019.
+When decoding data with the DAG-PB codec, maps with exactly these fields will result.
+
+When creating data, you can create maps using the standard Data Model concepts,
+and as long as they have exactly these fields, the DAG-PB codec can encode them.
+If additional fields are present, the DAG-PB codec will error, because there is no way to encode them.
+
+## Alternative Pathing
+
+While the [logical format](#logical-format) implicitly describes a set of mechanisms for pathing over and through DAG-PB data,
+DAG-PB also enjoys some other special forms of pathing in addition to the Data Model norms, and these are supported by most major applications that use DAG-PB.
+
+This alternative pathing is covered here as part of this descriptive spec, but was developed independently of the Data Model and is thus not well standardized.
+It currently differs between implementations. Please see [issue #55] for more information about the harmonization effort. This section describes the current implementations as of September 2019.
 
 The Go and JavaScript implementation both support pathing with link names: `/<name1>/<name2>/…`.
 

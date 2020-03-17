@@ -15,7 +15,7 @@ You'll find this document is linked to by the IPLD specs -- both for describing
 key theoretical foundations of the Data Model, and also to better describe some
 of the advanced features in the Schema layer (plus the reasons for them) --
 *and* you'll also find this document linked to by the
-[library design notes](../design/libraries) -- where we use some of this
+[library design notes](../design/libraries), where we use some of this
 terminology to describe features of programming languages without resorting
 to language-specific vocabulary.
 

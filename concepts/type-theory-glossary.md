@@ -175,7 +175,7 @@ strings are usually treated as a single token in serializers, despite being "inf
 numbers are infinite (even if there are some practical problems with this:
 see [what about numbers?](#what-about-numbers) in the [Types in the Wild](#types-in-the-wild) chapter),
 but certainly aren't usually considered to be recursive (though this does sometimes
-see usage in theory -- see (Peano Arithmetic)[https://en.wikipedia.org/wiki/Peano_arithmetic]!);
+see usage in theory -- see [Peano Arithmetic](https://en.wikipedia.org/wiki/Peano_arithmetic)!);
 and so on.
 
 As with infinite recursives, note that it's still useful to do math around these.

@@ -352,9 +352,23 @@ Integers are often implemented in such a way that values that would require beyo
 arguably, this makes them more like a (very (*very*) large) enum than anything else.
 Floating point numbers implemented in IEE764 style also have their own entire host of foibles.
 
+Some languages provide "big" numbers in their standard libraries.
+These "big" numbers are typically implemented by storing data as bytes,
+and expose mathematical operations on themselves as methods.
+By using a non-fixed number of bytes, they can be true [infinite scalars](#infinite-scalars).
+However, these "big" numbers are typically *not interchangeable* with the language's built-in number types,
+because the performance characteristics of these "big" numbers and their storage format
+is radically different than that of fixed-bit-size built-ins.
+(Attempts to shoe-horn "big" numbers and regular numbers into a single type tends
+to result in increasing the size of regular numbers, and few languages accept this tradeoff.)
+Since "big" numbers and built-in numbers usually aren't interchangeable,
+"big" numbers complicate rather than simplify the discussion;
+and since "big" numbers are the more rarely used of the two styles,
+most of our concerns in practice continue to orbit around fixed-bit-size numbers.
+
 The scope of this document is not to solve this conundrum, nor to try to convince you how you should consider numbers.
-However, in IPLD, we usually do consider integers to be [infinite scalars](#infinite-scalars),
-with the caveat that libraries processing data which exceeds the boundaries they can process should error and halt explicitly.
+In IPLD, we usually do consider integers to be [infinite scalars](#infinite-scalars);
+we add the caveat that libraries processing data which exceeds the boundaries they can process should error and halt explicitly.
 (In IPLD, we have the good fortune that this definition is unusually easy to stick to:
 since we only carry data around, and don't provide mathematical operations on it,
 it's easy to expect that data which was processable on the way in will remain processable throughout the time we handle it.)

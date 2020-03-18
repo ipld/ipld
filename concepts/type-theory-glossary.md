@@ -151,9 +151,11 @@ the cardinality is "|3*2|".
 
 Infinite recursives, as it says in the name, have infinite cardinality.
 
-Maps and lists are both examples of infinite recursives.
-Since we can keep inserting entries into a map, or appending values to a list,
-and still have a map or list respectively, we can't count their cardinality.
+Maps and lists are recursives because they can contain other values,
+including more maps and lists.
+Maps and lists are also infinite (even at a single level, before considering recursion):
+since we can keep inserting entries into a map, or appending values to a list,
+and still have a map or list respectively, we treat their cardinality as infinite.
 
 Note that it's still useful to do math around these, though.
 For example, if you have "maybe a map" (see the [maybe types](#maybe-types) section,

@@ -394,17 +394,3 @@ Instead, the *whole Schema* is treated as an interface:
 since you can take some data and take a schema, and attempt to unify them to get typed data if the schema "matches"...
 you can use a series of Schemas in the same way as you'd use a series of interfaces.
 (IPLD Schemas are effectively [*structural*](explicit-versus-structural-interfaces) interfaces.)
-
-
-Different sizes of Infinity
----------------------------
-
-// todo: not quite sure what to say about this.  the answer isn't "give up", that's for sure.
-
-// but i'm also not sure how to give this a brief treatment in a beginner-friendly way.
-
-// maybe just some admonishments about the dangers of subtracting from infinity -- i.e. "reserved keywords" -- would be useful.
-
-// "infinity plus one" is also still very useful to track opaquely as "a+1" rather than flatten to inf.
-
-// something about shifting/unshifting prefixes/suffixes could be useful -- link to "infinite hotel" metaphor.  folks seem to often find this a bit heady, though, so a more applied story would be nice.

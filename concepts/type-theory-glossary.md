@@ -350,7 +350,7 @@ numbers are [infinite scalars](#infinite-scalars).
 Of course, this is rarely true in practice.
 Integers are often implemented in such a way that values that would require beyond 32 (or 64, etc) bits are unrepresentable;
 arguably, this makes them more like a (very (*very*) large) enum than anything else.
-Floating point numbers implemented in IEE764 style also have their own entire host of foibles.
+Floating point numbers implemented in IEEE754 style also have their own entire host of foibles.
 
 Some languages provide "big" numbers in their standard libraries.
 These "big" numbers are typically implemented by storing data as bytes,

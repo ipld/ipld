@@ -101,10 +101,10 @@ Sum types have a cardinality that is *the sum of cardinality of their member typ
 
 Sum types usually show up in prose descriptions of data as the word "or".
 
-For example, say: "I have a boolean *or* an int" --
+For example, say: "I have a boolean *or* an integer" --
 this would be an example of a sum type,
 and its cardinality would be "|inf+2|" --
-countable infinity for the int, and plus two for the boolean.
+countable infinity for the integer, and plus two for the boolean.
 
 A clearer example might take two enums -- let's call them
 "Animals" (it has members "cat", "dog", "rabbit"),

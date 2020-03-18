@@ -363,8 +363,8 @@ it's easy to expect that data which was processable on the way in will remain pr
 Types in IPLD Schemas
 ---------------------
 
-It probably won't surprise to you hear that IPLD Schema's core features
-map very closely to the categories of types we've discussed:
+
+The core features of IPLD Schemas map very closely to the categories of types we've discussed:
 
 - [enums](#enums) are `enum`.
 - [sum types](#sum-types) are `union`.

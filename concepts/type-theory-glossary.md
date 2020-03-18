@@ -330,7 +330,7 @@ In Rust, `struct` creates a product type.
 ### interfaces in the wild
 
 In Java, the `interface` keyword introduces an interface.
-These interfaces are [*explicit*](#explicit-versus-structural-interfaces) -- a class must use the `implements` keyword to explicitly state that it can satisfy that interface.
+These interfaces are [*explicit*](#explicit-versus-structural-interfaces): a class must use the `implements` keyword to explicitly state that it can satisfy that interface.
 (That the class has sufficient methods to match the interface is then also checked at compile time -- but having the methods is not necessary rather than sufficient for the "implements" relationship to be considered true).
 
 In Go, the `interface` keyword introduces an interface.

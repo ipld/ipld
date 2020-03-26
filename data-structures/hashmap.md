@@ -42,8 +42,9 @@ The IPLD HashMap is constructed as a [hash array mapped trie (HAMT)](https://en.
 * [Java implementation](https://github.com/msteindorfer/oopsla15-artifact/) accompanying the original CHAMP paper (see https://github.com/msteindorfer/oopsla15-artifact/blob/master/pdb.values/src/org/eclipse/imp/pdb/facts/util/TrieMap_5Bits.java and other TrieMap files in the same directory).
 * [Optimizing Hash-Array Mapped Tries for Fast and Lean Immutable JVM Collections](https://blog.acolyer.org/2015/11/27/hamt/) a high-level description of HAMT data structures in general and the specifics of CHAMP.
 * Peergos [CHAMP](https://github.com/Peergos/Peergos/blob/master/src/peergos/shared/hamt/Champ.java) implementation
-* [IAMap](https://github.com/rvagg/iamap) JavaScript implementation
-* [go-hamt-ipld](https://github.com/ipfs/go-hamt-ipld) Go implementation
+* [IAMap](https://github.com/rvagg/iamap) JavaScript implementation of the algorithm
+* [ipld-hashmap](https://github.com/rvagg/js-ipld-hashmap) JavaScript IPLD frontend to IAMap with a mutable API
+* [go-hamt-ipld](https://github.com/ipfs/go-hamt-ipld) Go implementation, not strictly aligned to this spec
 
 ## Summary
 

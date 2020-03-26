@@ -113,11 +113,11 @@ type Element union {
   | Bucket list
 } representation kinded
 
-type Bucket list [ BucketEntry ]
+type Bucket [ BucketEntry ]
 
 type BucketEntry struct {
   key Bytes
-  value Value (implicit "null")
+  value Value
 } representation tuple
 
 type Value union {

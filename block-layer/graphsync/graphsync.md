@@ -69,6 +69,7 @@ message GraphsyncMessage {
     map<string, bytes> extensions = 4; // side channel information
     int32 priority = 5;	// the priority (normalized). default to 1
     bool  cancel = 6;   // whether this cancels a request
+    bool  update = 7;   // whether this is an update to an in progress request
   }
 
   message Response {
@@ -99,6 +100,14 @@ Extensions help make Graphsync operate more efficiently, or provide a mechanism 
 
 A list of well known extensions is found [here](./known_extensions.md)
 
+### Updating requests
+
+A client may send an updated version of a request. 
+
+An update contains ONLY extension data, which the responder can use to modify an in progress request. For example, if a responder supports the Do Not Send CIDs extension, it could choose to also accept an update to this list and ignore CIDs encountered later. It is not possible to modify the original root and selector of a request through this mechanism. If this is what is needed, you should cancel the request and send a new one. 
+
+The update mechanism in conjunction with the paused response code can also be used to support incremental payment protocols.
+
 ### Response Status Codes
 
 ```
@@ -108,6 +117,7 @@ A list of well known extensions is found [here](./known_extensions.md)
 12   Not enough vespene gas ($)
 13   Other Protocol - info in extra.
 14   Partial Response w/ metadata, may include blocks
+15   Request Paused, pending update, see extensions for info
 
 # success - terminal
 20   Request Completed, full content.

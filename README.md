@@ -113,6 +113,18 @@ In many cases these specifications are not intended to drive new implementations
 Documents labelled "Specification" in this repository will also be labelled with a descriptor that indicates the category and status.
 e.g. _"Status: Prescriptive - Draft"_ or _"Status: Descriptive - Final"_.
 
+## Design documentation & Library recommendations
+
+Included in this repository are some documents which chronicle our process in developing these specs,
+as well as some documents which are advisory to library authors (but not specifications, per se):
+
+- [design/...](/design) -- gathers all such documents
+- [design/history/...](/design/history) -- gathers research work and pre-spec content and notes
+- [design/libraries/...](/design/libraries) -- gathers recommendations for library authors
+
+These documents may be useful to read for those who want to participate more deeply in the
+design and specification processes (as well as implementation processes!) of IPLD.
+
 ## Contributing & Discussion
 
 Suggestions, contributions, criticisms are welcome.

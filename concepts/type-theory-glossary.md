@@ -60,19 +60,12 @@ Four: `(true, true)`, `(true, false)`, `(false, true)`, or `(false, false)`.
 So, the cardinality of two booleans is `4`.
 
 The exercise gets more interesting as we consider larger accumulations of values.
-
-Consider three boolean values: how many states can it have?
-(You can draw the full table yourself, for this one.)
-When you count them all up, you should reach `8`.
-
-But now, let's imagine something new: suppose we've got some sort of values
-that we call "nooleans".  Nooleans can have the value 'nue' or 'fuu'.
+We will also find that how the cardinality count accumulates differs based on
+how the types are composed!
 
 We'll explore more examples of this, and start identifying categories of
 things where we can do predictable kinds of math with cardinality in
 the next section: [Categories of Types](#categories-of-types).
-(Spoiler: the examples above correspond to an enum, then a product type,
-then another bigger product type, and finally a sum type.)
 
 
 Categories of Types

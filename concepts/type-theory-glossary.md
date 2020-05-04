@@ -76,9 +76,9 @@ We can identify a few categories of "types" based on how we evaluate their cardi
 and so they *may* match the name used in your favorite programming language -- but
 whether or not the same is familiar, the *concept* is universal, even across languages!)
 
-### enums
+### enumerated types
 
-Enums have a cardinality that is some integer.
+Enumerated types (usually, "enum" for short) have a cardinality that is some integer.
 
 For example, an enum might have members named "Foo", "Bar", and "Baz";
 and the cardinality of that enum is "|3|".
@@ -268,12 +268,12 @@ Here's a few (non-exhaustive) examples in a handful of languages:
 
 ### enums in the wild
 
-In Java, the `enum` keyword maps directly the category of [enum](#enums) we've defined here.
+In Java, the `enum` keyword maps directly the category of [enum](#enumerated-types) we've defined here.
 
 In Go, *there is no direct support for enums*.
 However, it's often implemented in practice by a typedef of an int, and a table of named constants.
 
-In Rust, there's an `enum` keyword, and it may be used to implement [enum](#enums) as we've defined it here.
+In Rust, there's an `enum` keyword, and it may be used to implement [enum](#enumerated-types) as we've defined it here.
 However, if you're coming from a Rust background, and trying to understand this document and compare to other languages,
 be cautious here: the Rust `enum` keyword *also* provides what we call [sum types](#sum-types).
 
@@ -380,7 +380,7 @@ Types in IPLD Schemas
 
 The core features of IPLD Schemas map very closely to the categories of types we've discussed:
 
-- [enums](#enums) are `enum`.
+- [enumerated types](#enumerated-types) are `enum`.
 - [sum types](#sum-types) are `union`.
 - [product types](#product-types) are `struct`.
 - [infinite recursives](#infinite-recursives) appear as `list` and `map`.

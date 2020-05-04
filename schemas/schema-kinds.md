@@ -219,7 +219,14 @@ expose and correctly preserve the value's presense or absence.
 
 ## Understanding Cardinality
 
+For more information on cardinality and the basics of how we reason about it,
+check out the [Type Theory Glossary](/concepts/type-theory-glossary.md)
+from the [Concepts](/concepts/) documentation.
+
 ### Cardinality Examples
+
+These examples show how we count cardinality in IPLD Schemas
+in the presence of the `nullable` and `optional` keywords:
 
 <!-- forgive the html. -->
 <!-- multi-line content and markdown tables don't mix, unfortunately. -->

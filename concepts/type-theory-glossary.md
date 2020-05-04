@@ -314,6 +314,18 @@ For some `Maybe<T>`, the cardinality is "1+|T|".
 to create clear comparisons between differently named but functionally
 identical concepts between programming language communities!)
 
+#### indiscriminate unions
+
+Some languages (notably, C/C++) have a concept of "union" which is related,
+but markedly _not_ a sum type, because this particular concept of a union
+is not "discriminated" -- it doesn't actually itself contain all the info needed
+to completely understand or handle it.
+This kind of "union" can be used to _build_ a sum type semantic,
+but only in combination with an additional bit of memory used to indicate
+(or "discriminate", if you will) what member type the union actually contains.
+
+We mention this here because the terminology is sometimes confusing.
+
 ### product types in the wild
 
 In Java, `class` creates a product type.

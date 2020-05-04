@@ -345,7 +345,12 @@ numbers are [infinite scalars](#infinite-scalars).
 Of course, this is rarely true in practice.
 Integers are often implemented in such a way that values that would require beyond 32 (or 64, etc) bits are unrepresentable;
 arguably, this makes them more like a (very (*very*) large) enum than anything else.
-Floating point numbers implemented in IEEE754 style also have their own entire host of foibles.
+Floating point numbers implemented in IEEE754 style also have their own entire host of foibles
+(they're still subject to limitations that stem from finite bit-size implementations;
+they have different ranges of representability than an integer of the same bit size;
+the _precision_ they can represent varies with _how big_ the number in question is;
+they include _interesting_ values such as signed zeros which one might readily
+argue should not even be representable in an ideal system... and so on!).
 
 Some languages provide "big" numbers in their standard libraries.
 These "big" numbers are typically implemented by storing data as bytes,

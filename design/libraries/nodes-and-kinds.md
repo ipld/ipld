@@ -1,7 +1,46 @@
 Nodes and Kinds
 ===============
 
-Your IPLD library should have two key types:
+**Preface: purpose of this document:**
+
+This document is intended for developers of new (or renovating) IPLD libraries.
+It contains design suggestions based on the experience of building (and rebuilding)
+IPLD libraries in various languages, and reflecting on the lessons learned.
+It also contains both notes on practical limitations we've found for implementations,
+and reflections on how to express things clearly within the type systems of the
+host language a library is implemented in (whatever that may be).
+
+**Preface: limitations of this document:**
+
+Since this document is aimed at _new libraries_, it's also implicitly expecting
+that the new library might be in a _new language_.
+We can't presume to know precisely what that language will enable or encourage!
+Therefore, there will be limits to how transferable the advice in this document may be.
+We do expect that the best way to express IPLD concepts may vary based on
+the language a library is created in.  We accept this and try to write this
+document anyway, and make it as useful as it can be.
+
+These guidelines are written with particular attention to the limitations that
+are typical to strongly typed languages. (Some of the phrasing used reflect
+this -- we refer to "types", "enumerations", "interfaces", "packages", etc.
+However, these concepts can still translate even to languages with varying
+amounts of compile-time type checking, and indeed even to those with none.
+While the concepts are certainly not identical across all languages,
+we hope that they're close enough to be meaningful to a thoughtful reader.)
+
+We expect that common concepts for IPLD libraries will emerge across many languages,
+and hope that some vocabulary for these concepts is something we can share.
+Loosely and untyped languages may need to interpret these guidelines
+appropriately while extracting the key concepts; but even among languages with
+stricter concepts of compile-time type checking, the meaning of "interface"
+can vary greatly -- _all_ readers will need to be ready to use their best judgement.
+
+---
+
+Cornerstone Types
+=================
+
+Your IPLD library should have two cornerstone types:
 
 1. `Node`;
 2. `Kind`.
@@ -114,23 +153,45 @@ anyway will save you from potentially discovering the need for some costly
 refactors later!)
 
 
+Nodes vs NodeBuilders
+---------------------
+
+If you choose to pursue a distinction between mutable and immutable data
+in the design of your library, it may be useful to create two separate
+interfaces for each phase of the data's lifecycle.
+These might be called "Node" (for the immutable data)
+and "NodeBuilder" (for the mutating/building phase of the data's life).
+
+It is not necessary to have distinct interfaces for this;
+a library can also opt to have a mutable concept of "node".
+Immutable interfaces can be particularly well-suited to IPLD data, though;
+it's worth considering them.
+
+
 Higher level functions
 ----------------------
 
 Almost all features should be implemented to take `Node` arguments,
 and return `Node` values.
 
-Traversals and walks can be implemented in this way.
+Traversals and walks can be implemented in this way: e.g.
+`function walk(start Node, vistorFn func(visted Node))`.
 
 Selectors can be implemented in this way.
+(Continue with the idea above for traversals.)
 
 Transformations can be implemented in this way.
+(Continue with the idea above for traversals.)
 
-Codecs themselves can be implemented this way.
+Codecs themselves can be implemented this way:
+marshalling is a traverse over nodes, so `func marshal(obj Node) -> bytes`,
+and unmarshalling is something like `func unmarshal(bytes, NodeBuilder) -> Node`.
 
-(Note that if your library has a `Node`/`NodeBuilder` dualism for immutability
-purposes, then of course Transformations as well as Codecs for deserialization
-will also have `NodeBuilder` arguments.)
+(Note that if your library has a `Node`/`NodeBuilder` split for immutability purposes,
+then of course any operation that builds new nodes,
+such as transformations or codecs during unmarshalling,
+will have a `NodeBuilder` parameter.
+If your library has a mutable `Node`, these function signatures might appear differently.)
 
 By defining all these functions in terms of `Node`, they can be used the same
 in any of the various contexts described in the

@@ -2,7 +2,7 @@
 
 **Status: Descriptive - Final**
 
-DAG-JSON supports the full [IPLD Data Model](../data-model-layer/data-model.md).
+DAG-JSON supports the full [IPLD Data Model](../../data-model-layer/data-model.md).
 
 ## Format
 

@@ -55,7 +55,7 @@ This layer does not define data structures or types, although many codecs may co
 | [Concept: Serialization and Formats](block-layer/serialization-and-formats.md) | [block-layer/serialization-and-formats.md](block-layer/serialization-and-formats.md) |
 | [Specification: CIDs](block-layer/CID.md) | [block-layer/CID.md](block-layer/CID.md) |
 | [Specification: DagCBOR](block-layer/codecs/dag-cbor.md) | [block-layer/codecs/dag-cbor.md](block-layer/codecs/dag-cbor.md) |
-| [Specification: DAG-JSON](block-layer/codecs/DAG-JSON.md) | [block-layer/codecs/DAG-JSON.md](block-layer/codecs/DAG-JSON.md) |
+| [Specification: DagJSON](block-layer/codecs/dag-json.md) | [block-layer/codecs/dag-json.md](block-layer/codecs/dag-json.md) |
 | [Specification: IPLD Selectors](selectors/selectors.md) | [selectors/selectors.md](selectors/selectors.md) |
 | [Specification: Graphsync](block-layer/graphsync/graphsync.md) | [block-layer/graphsync/graphsync.md](block-layer/graphsync/graphsync.md) |
 | [Specification: Content Addressable aRchives (CAR / .car)](block-layer/content-addressable-archives.md) | [block-layer/content-addressable-archives.md](block-layer/content-addressable-archives.md) |

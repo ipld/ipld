@@ -1,12 +1,12 @@
-# DagPB Spec
+# DAG-PB Spec
 
 **Status: Descriptive - Draft**
 
-DagPB does not support the full ["IPLD Data Model."](../../data-model-layer/data-model.md)
+DAG-PB does not support the full ["IPLD Data Model."](../../data-model-layer/data-model.md)
 
 ## Format
 
-The DagPB IPLD format is a format implemented with a single protobuf.
+The DAG-PB IPLD format is a format implemented with a single protobuf.
 
 ```protobuf
 // An IPFS MerkleDAG Link
@@ -49,9 +49,9 @@ In the JavaScript implementation, there is an additional way to path through the
 These two ways of pathing can be combined, so you can access e.g. the `Data` field of a named link via `/<name/Data`. You can also use both approaches within a single path, e.g. `/<name1>/Links/0/Hash/Data` or `/Links/<index>/Hash/<name>/Data`. When using the DAG API in js-ipfs, then the pathing over the structure has precedence, so you won't be able to use named pathing on a named link called `Links`, you would need to use the index of the link instead.
 
 
-## Canonical DagPB
+## Canonical DAG-PB
 
-Canonical DagPB must:
+Canonical DAG-PB must:
 
 1. Contain only the specified protobuf fields.
 2. Use standard protobuf encoding, with the following field orders:

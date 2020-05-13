@@ -213,7 +213,7 @@ inline data into large objects (lots of duplication and copying).
 
 ## Primitives
 
-The "recommended" IPLD format (currently DagCBOR) needs to support *at a minimum*:
+The "recommended" IPLD format (currently DAG-CBOR) needs to support *at a minimum*:
 
 * 32/64 bit integers without losing information.
 * 32/64 bit floats without losing information.

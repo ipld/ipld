@@ -22,7 +22,7 @@ All kinds of the IPLD Data Model except Bytes and Link are supported natively by
 
 Contrary to popular belief, JSON as a format supports Big Integers. It's only
 JavaScript itself that has trouble with them. This means JS implementations
-of `dag-json` can't use the native JSON parser and serializer.
+of DAG-JSON can't use the native JSON parser and serializer.
 
 ### Other kinds
 

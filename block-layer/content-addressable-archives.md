@@ -51,7 +51,7 @@ The CAR format comprises a sequence of length-prefixed IPLD block data, where th
 ```
 |--------- Header --------| |---------------------------------- Data -----------------------------------|
 
-[ varint | dag-cbor block ] [ varint | CID | block ] [ varint | CID | block ] [ varint | CID | block ] …
+[ varint | DAG-CBOR block ] [ varint | CID | block ] [ varint | CID | block ] [ varint | CID | block ] …
 ```
 
 ### Header

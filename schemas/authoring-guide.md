@@ -199,7 +199,7 @@ type Foo struct {
 }
 ```
 
-We could decode the following JSON (using the dag-json codec) into a `Foo` type:
+We could decode the following JSON (using the DAG-JSON codec) into a `Foo` type:
 
 ```json
 {

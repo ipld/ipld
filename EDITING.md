@@ -15,12 +15,14 @@ Communicate!
 
 There's lots of ways to communicate with the IPLD team and community.
 
-- IRC/Matrix/Discord: FIXME LINK
+- Chat (all of these are federated; pick any form of client you like):
+  - IRC: [#ipld on Freenode](irc://irc.freenode.net/ipld) ([webchat](https://webchat.freenode.net/?channels=ipld))
+  - Matrix: https://matrix.to/#/#freenode_#ipld:matrix.org
 - All our development is in the open on GitHub:
-  - This repo is https://github.com/ipld/specs/ !
+  - This repo is https://github.com/ipld/specs/
   - Other work exists in other repos the same org: https://github.com/ipld/
   - GitHub issues and Pull Requests work just fine.
-- We have a (mostly) weekly meeting on Zoom: FIXME LINK
+- We have a (mostly) weekly meeting on Zoom: https://github.com/ipld/team-mgmt#weekly-call
 
 If you'd like to discuss something before proposing a change,
 there's lots of venues that can host a conversation.

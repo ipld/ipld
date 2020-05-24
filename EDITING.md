@@ -33,14 +33,14 @@ then work on PRs later if an idea seems worth pursuing.
 Make sure your change fits
 --------------------------
 
-### textual changes
+### Textual changes
 
 Small textual changes can be made by Pull Request easily.  Go for it!
 
 (Since the amount of effort involved in creating and reviewing this kind of
 change is minimal for both sides, it's easier to just send it than to ask permission.)
 
-### semantic changes
+### Semantic changes
 
 _Editing specifications is **really** hard!_
 
@@ -108,7 +108,7 @@ any kind of [semantic change](#semantic-changes).
 Stylistic Preferences
 ---------------------
 
-### headings
+### Headings
 
 Be careful with headings -- they should look good as links.
 Being able to link deeply into a spec document is every bit as important
@@ -126,7 +126,7 @@ For example, "#block-layer" is preferable to "#block-layer-layer-0".
 Clarifications and secondary terminology variations are better expressed in the body text
 than jammed into the heading and adding tongue-twisters to links.
 
-### linking
+### Linking
 
 The preferred linking format depends on what you're linking to and how far away it is.
 In general, the aim is to make editing easier in the long run.
@@ -143,7 +143,7 @@ In general, the aim is to make editing easier in the long run.
   - If linking to specific line numbers, a full commit hash is an absolute requirement.  It is otherwise far too easy to have "working" but semantically invalid links.
   - If aiming to whole packages or high level documents in other repos, it _may_ be viable to link to the master branch.  But be judicious.
 
-### todos
+### Todos
 
 Some documents have "TODO"s within them.
 
@@ -163,7 +163,7 @@ None of these factors have a clear yes-or-no answer (nor are they intended to),
 so, ultimately, expect this to be resolved by discussion during review.
 By default?  Fewer "TODO"s are better: avoid introducing them if you can.
 
-### line breaks
+### Line breaks
 
 Linebreaks are non-semantic in markdown, so where to break lines is up to you.
 We don't enforce any strict line-length limit.

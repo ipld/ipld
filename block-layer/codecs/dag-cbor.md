@@ -46,6 +46,7 @@ Therefore the DAG-CBOR codec must:
      - If two keys have different lengths, the shorter one sorts earlier;
      - If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.
    * Indefinite-length items must be made into definite-length items.
+3. Encode and decode a single top-level CBOR object and not allow back-to-back concatenated objects, as suggested by [section 3.1 of the CBOR specification] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes, whether valid or invalid CBOR, should fail validation.
 
 ### Floating Point Encoding (Unresolved)
 
@@ -84,6 +85,7 @@ One of these approaches will be chosen and the libraries for the other language 
 [CIDs]: ../CID.md
 [Multibase]: https://github.com/multiformats/multibase
 [section 3.9 of the CBOR specification]: https://tools.ietf.org/html/rfc7049#section-3.9
+[section 3.1 of the CBOR specification]: https://tools.ietf.org/html/rfc7049#section-3.1
 [borc]: https://github.com/dignifiedquire/borc
 [dag-cbor]: https://github.com/ipld/js-ipld-dag-cbor/
 [refmt]: https://github.com/polydawn/refmt/

@@ -58,6 +58,9 @@ into a new list of Schema Kinds:
   * **Struct**
   * **Enum**
   * **Copy**
+  
+Blocks encoded with the `raw` codec are considered valid `Bytes` kinds. You can refer
+to the codec specifications to see how other kinds are encoded in each codec.
 
 We define ***"Recursive Kinds"*** as the kinds that are comprised of other
 kinds: List, Map, Union, Struct, and Enum. These kinds provide the primary

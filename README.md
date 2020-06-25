@@ -92,6 +92,8 @@ The Schema Layer will also serve as an enabling layer for complex multi-block da
 | [Concept: IPLD Multi-block Collections](data-structures/multiblock-collections.md) | [data-structures/multiblock-collections.md](data-structures/multiblock-collections.md) |
 | [Specification: IPLD Schemas](schemas/README.md) | [schemas/README.md](schemas/README.md) |
 | [Specification: HashMap](data-structures/hashmap.md) | [data-structures/hashmap.md](data-structures/hashmap.md) |
+| [Specification: FlexibleByteLayout](data-structures/flexible-byte-layout.md) | [data-structures/flexible-byte-layout.md](data-structures/flexible-byte-layout.md) |
+
 
 ## Specification document status
 

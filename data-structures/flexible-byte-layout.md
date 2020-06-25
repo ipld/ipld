@@ -20,8 +20,9 @@ type NestedByte struct {
 } representation tuple
 ```
 
-`FlexibleByteLayout` uses a potentially recursive union type. This allows you to build very large nested
-dags via NestedByteList that can themselves contain additional NestedByteLists, links to BytesUnions.
+`FlexibleByteLayout` is the entrypoint/root of the data structure and uses a potentially recursive
+union type. This allows you to build very large nested dags via `NestedByteList` that can themselves
+contain additional `NestedByteList`s or actual `Bytes` (via Links to `FlexibleByteLayout` in `NestedByte`).  
 
 An implementation must define a custom function for reading ranges of binary
 data but once implemented, you can read data regardless of the layout algorithm used.
@@ -36,3 +37,4 @@ will not be able to read properly. However, the property is **not secure** and a
 could write it as whatever they please. As such, it should not be relied upon when calculating usage
 against a quota or any similar calculation where there may be an incentive for an encoder to alter the
 length.
+

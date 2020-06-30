@@ -4,56 +4,123 @@
 
 JOSE is a stanard for signing and encrypting JSON objects. The various specifications for JOSE can be found in the [IETF datatracker](https://datatracker.ietf.org/wg/jose/documents/). 
 
-DAG JOSE supports the full [IPLD Data Model](../data-model-layer/data-model.md).
+DAG JOSE supports the full [IPLD Data Model](../data-model-layer/data-model.md) (within the payload).
 
 ## Format
 
-The are two main ways to represent a JOSE node. As a JWS ([json web signature](https://datatracker.ietf.org/doc/rfc7515/?include_text=1)) and JWE ([json web encryption](https://datatracker.ietf.org/doc/rfc7516/?include_text=1)). These two formats  acts as the primitives in JOSE and can be used to create JWT and JWM objects. This specification describes how to encode JWS and JWE as an IPLD format.
+The are two main ways to represent a JOSE object. As a JWS ([json web signature](https://datatracker.ietf.org/doc/rfc7515/?include_text=1)) and JWE ([json web encryption](https://datatracker.ietf.org/doc/rfc7516/?include_text=1)). These two formats  acts as the primitives in JOSE and can be used to create JWT and JWM objects etc. This specification describes how to encode JWS and JWE as an IPLD format.
+
+### Representation
+
+The layout of a decoded JOSE object is described by the IPLD schema defined below. We will refer to this layout as the `Decoded Representation`. 
+
+```ipldsch
+type Signature struct {
+  header optional {String:Any}
+  protected optional {String:Any}
+  signature Bytes
+}
+
+type JWS struct {
+  payload Any
+  signatures [Signature]
+}
+
+type Recipient struct {
+  encrypted_key optional Bytes
+  header optional {String:Any}
+}
+
+type JWE struct {
+  aad optional Bytes
+  ciphertext Bytes
+  iv optional Bytes
+  protected optional {String:Any}
+  recipients [Recipient]
+  tag optional Bytes
+  unprotected optional {String:Any}
+}
+
+type JOSE union {
+  | JWS jws
+  | JWE jwe
+} representation kinded
+```
 
 ### Serialization
 
-Both JWS and JWE supports different serialization formats: `Compact Serialization`, `Flattened JSON Serialization`, and `General JSON Serialization`. The first two are more concise, but they only allow for one recipient. Therefore DAG JOSE always uses the `Compact Serialization` if there is just one recipient, and the `General JSON Serialization` if there are multiple recipients. This ensures maximum compatibility and compactness with minimum ambiguity. 
+Both JWS and JWE supports three different serialization formats: `Compact Serialization`, `Flattened JSON Serialization`, and `General JSON Serialization`. The first two are more concise, but they only allow for one recipient. Therefore DAG JOSE always uses the `General Serialization` which ensures maximum compatibility with minimum ambiguity. 
 
-The implementation of the serialization function should accept all JOSE formats and convert them if necessary.
+The implementation of the serialization function should accept all JOSE formats including the `Decoded Representation` and convert them if necessary. 
+
+#### General JSON Serialization
+
+Below the  `General JSON Serialization` can be observed. Note that all data represented as `String` here is data that has been encoded using `base64url`. Converting `Compact Serialization` and `Flattened JSON Serialization` to the general serialization is trivial.
+
+```ipldsch
+type GeneralSignature struct {
+  header optional {String:Any}
+  protected optional String
+  signature String
+}
+
+type GeneralJWS struct {
+  payload String
+  signatures [GeneralSignature]
+}
+
+type GeneralRecipient struct {
+  encrypted_key optional String
+  header optional {String:Any}
+}
+
+type GeneralJWE struct {
+  aad optional String
+  ciphertext String
+  iv optional String
+  protected optional String
+  recipients [GeneralRecipient]
+  tag optional String
+  unprotected optional {String:Any}
+}
+
+type GeneralJOSE union {
+  | GeneralJWS jws
+  | GeneralJWE jwe
+} representation kinded
+```
+
+##### Serializing the Decoded Representation
+
+When serializing a JOSE object from the `Decoded Representation` special care needs to be taken with the `payload` property as well as the `protected` properties. 
+
+###### Protected
+
+The `protected` property in JWE and JWS have the type `{String:Any}`. This means that it may include data with *Link Kind* and *Bytes Kind*. These should be converted into pure JSON in the same way as it's done in [DAG-JSON](./dag-json.md). However, the properties should **not** be sorted since that would cause any integrity check on the JOSE data to fail. Once in JSON format the `protected` property should be converted into `base64url` using the method described in the JOSE spec  (`BASE64URL(UTF8(data))`). 
+
+###### Payload
+
+The payload property of JWS can be of either `Bytes` or  `{String:Any}` types. If the former it's simply just encoded as `base64url`. If the latter, it should be encoded in the same manner as the `protected` property.
+
+Note that any change in the ordering of the properties of the payload at this point would cause potential validation of the JOSE object to fail. Good signature libraries will sort the payload before the signature is applied.
 
 #### Ordering
 
-Codec implementors **MUST** use the specified order of JOSE properties to ensure hashes consistently match for the same block data. Since JWS and JWE have a strict set of properties this is straight forward.
+Once the data has been converted to the `General Serialization`, codec implementors **MUST** use the same sorting algorithm as [DAG-JSON](./dag-json.md) to sort the data to ensure hashes consistently match for the same block data.
 
-#### JWS
+## Additional information
 
-The top level object has two properties which should have the order: `payload` then `signatures`. The `signatures` property contains an array of signature elements. Within each of these elements there are three properties which should have the order: `protected`, `header`, then `signature`. Important to note here is that `protected` and `header` may be absent.
+### Reccomended JOSE creation strategy
 
-The content of the `payload`, `signature`, and `protected` properties are `base64url` encoded and therefore does not need any sorting. In contrast, the `header` property contains an unencoded JSON object and should sort object keys by their (UTF-8) encoded representation, i.e. with byte comparisons.
+When creating a JOSE object there are some suggested approaches of how to format the data that is being signed / encrypted / authenticated that will keep you out of trouble. The main thing to keep in mind is that signatures / data authentication could be invalidated if the order of the properties in the JOSE object changes. It's therefore a good idea to sort the properties before any signature / authentication is added. The best way to do this is simply to use the same strategy employed by [DAG-JSON](./dag-json.md), which will also convert `Link` and `Bytes` to JSON representation. 
+For JWS the relevant properties to do this for is `protected` and `payload` since the signature is done over  `ASCII(BASE64URL(UTF8(JWS Protected Header)) || '.' || BASE64URL(JWS Payload))` according to the [JWS specification](https://datatracker.ietf.org/doc/rfc7515/?include_text=1).
 
-Finally all whitespace should be stripped. This produces the most compact and consistent representation which will ensure that two codecs producing the same data end up with matching block hashes.
+For JWE it is `protected` and the cleartext before it is encrypted into `ciphertext`.
 
-##### JWS payload
+### Decryption of JWEs
 
-In it's serialized format a JWS `payload` is encoded using `base64url`. The content of the payload can encode any arbitrary data. To distinguish different data formats a `cty` (Content Type) Header Parameter can be defined. However, it's not required in any way, so it's not something that can be relied upon. It's quite common that the content of the `payload` simply contains JSON. With DAG-JOSE the `payload` is extended to also support [DAG-JSON](./dag-json.md) (with *Bytes Kind* and *Link Kind*). 
+Similar to the `payload` of JWS, the decrypted data of a JWE may be encoded as [DAG-JSON](./dag-json.md) as described above. The implementation of the decryption function should account for this if neccessary to allow the data be interpreted as an IPLD dag node. In the future the decryption itself could be described using an [Advanced IPLD schema layout](../../schemas/advanced-layouts.md). 
 
-This means that the `payload` can be represented in two different ways:
+### Implementations
 
-* `base64url` encoded ([DAG-JSON](./dag-json.md), or arbitrary data)
-* Deserialized DAG-JSON
-
-The serialization function should accept both of these input formats and convert them if necessary.
-
-Note that the JWS signature happens over `ASCII(BASE64URL(UTF8(JWS Protected Header)) || '.' || BASE64URL(JWS Payload))` according to the [JWS specification](https://datatracker.ietf.org/doc/rfc7515/?include_text=1), so if the `payload` contains JSON it need to be ordered in a determinitic way for the signature to always be correct. The DAG-JOSE format should not prefer any specific ordering as different JWS implementations might have different preferences. If [DAG-JSON](./dag-json.md) is used this is however completely mitigated since it uses strict ordering.
-
-##### Deserializing the payload
-
-When the JWS is deserialized the `payload` should also be decoded using [DAG-JSON](./dag-json.md) if possible. If [DAG-JSON](./dag-json.md) is not detected, the `payload` should not be decoded. By decoding the payload, standard IPLD tools can be used to traverse the content and potential links within the signed data.
-
-#### JWE
-
-With JWE there are a few more properties that needs to be in the correct order: `protected`, `unprotected`, `iv`, `aad`, `ciphertext`, `tag`, then `recipients`. Within the `recipients` array each element should have the property order: `header` then `encrypted_key`. Important to note here is that only the `ciphertext` property is required, all other properties may be absent.
-
-The content of the `protected`, `iv`, `aad`, `ciphertext`, `tag`, and `encrypted_key` properties are `base64url` encoded and therefore does not need any sorting. In contrast, the `unprotected` and `header` property contains unencoded JSON objects and should sort object keys by their (UTF-8) encoded representation, i.e. with byte comparisons.
-
-Finally all whitespace should be stripped. This produces the most compact and consistent representation which will ensure that two codecs producing the same data end up with matching block hashes.
-
-##### Decrypting the JWE
-
-Similar to the `payload` of JWS, the decrypted data of a JWE may be encoded as [DAG-JSON](./dag-json.md). The implementation of the decryption function should account for this if neccessary to allow the data be interpreted as an IPLD dag node. 
-
+* [Javascript](https://github.com/oed/js-dag-jose)

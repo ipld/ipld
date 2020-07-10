@@ -1,0 +1,9 @@
+.nyc_output
+build
+coverage
+package-lock.json
+node_modules
+.DS_Store
+yarn.lock
+.dagdb.car
+docs/.vuepress/dist

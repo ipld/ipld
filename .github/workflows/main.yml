@@ -1,0 +1,33 @@
+name: gh-pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Build with Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: |
+        npm run build
+        # cp ./.vuepress/CNAME ./.vuepress/dist/
+
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v2.5.1
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./.vuepress/dist/

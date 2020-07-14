@@ -27,7 +27,6 @@ jobs:
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./.vuepress/dist/
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./.vuepress/dist/

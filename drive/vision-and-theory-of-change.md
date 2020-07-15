@@ -26,7 +26,30 @@ the right _conditions_ for our desired outcomes to be able to emerge.
 The IPLD Theory of Change
 -------------------------
 
-// TODO
+IPLD is the “data” layer of our vision for a Decentralized Web.
+However, since IPLD doesn’t really concern itself with how blocks are stored or how they are distributed,
+the work we’re doing can be leveraged by many projects and use cases beyond just “Decentralization.”
+
+As an example, git is a decentralized technology built on decentralized primitives,
+yet most people interact with aspects of git through centralized services (GitHub, GitLab, etc).
+These services solve acute coordination problems while git itself delivers an unmatched user experience because it’s built on primitives that don’t assume a central authority.
+
+IPLD brings a superset of the capabilities of git’s internals to the developer community.
+We don’t yet know how those will be leveraged, but it’s a fair bet that many of them
+especially in the near future, will use centralization or federation in order to solve some acute problems their applications face.
+
+There’s both a gradual story to technical progress and a more radical one.
+The radical one is that certain core innovations spark fundamental changes in the computing ecosystem.
+Another says that adoption of technological changes are more gradual and that something that is too big of a change cannot be adopted quickly.
+
+IPLD comes from the perspective of radical change (Let’s Re-Decentralize the Web!)
+but it’s a simple enough primitive that you can also see the case for it being adopted as part of a more gradual shift in computing,
+where centralized, federated and edge services adopt it to solve problems it’s uniquely well suited to.
+This increases general familiarity with the project and its primitives and lays the groundwork for continued gradual change towards fully distributed systems.
+
+The great thing about IPLD is that we don’t have to pick one of these theories;
+IPLD is well suited to both and as long as we don’t assume our community will come from a specific perspective we can just release good code,
+plant a lot of seeds in different developer communities, and see which ones sprout and grow.
 
 
 An Example

@@ -12,5 +12,8 @@
   "license": "(Apache-2.0 AND MIT)",
   "devDependencies": {
     "vuepress": "^1.5.2"
+  },
+  "dependencies": {
+    "vuepress-plugin-code-switcher": "^1.0.3"
   }
 }

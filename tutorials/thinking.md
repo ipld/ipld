@@ -3,6 +3,9 @@
 You're already using many data structures in your programs. Here's
 an example.
 
+<CodeSwitcher :languages="{js:'JavaScript',go:'Go',rust:'Rust'}">
+<template v-slot:js>
+
 ```js
 const person = {
   name: 'Mikeal Rogers',
@@ -10,6 +13,23 @@ const person = {
   twitter: '@mikeal'
 }
 ```
+
+</template>
+<template v-slot:go>
+
+```go
+var todo
+```
+
+</template>
+<template v-slot:rust>
+
+```rust
+let todo
+```
+
+</template>
+</CodeSwitcher>
 
 Let's think about what this really is.
 
@@ -31,6 +51,9 @@ and everything those references might reference, we would call that the person's
 Now let's build a data structure that captures some relationships between
 nodes.
 
+<CodeSwitcher :languages="{js:'JavaScript',go:'Go',rust:'Rust'}">
+<template v-slot:js>
+
 ```js
 const earth = []
 const pluto = []
@@ -47,6 +70,23 @@ index({ name: 'Oglethorpe'}, pluto)
 
 const galaxy = { earth, pluto }
 ```
+
+</template>
+<template v-slot:go>
+
+```go
+var todo
+```
+
+</template>
+<template v-slot:rust>
+
+```rust
+let todo
+```
+
+</template>
+</CodeSwitcher>
 
 Let's explore our graph of the galaxy. It has two properties, one for each planet
 we've decided to index. If I want to see who is on planet earth, I check that property.
@@ -71,6 +111,9 @@ for linking data together. CID's act like pointers **and** they act like URLs.
 They let us safely reference data that might be on the other side of the
 internet, or locally in memory, or anywhere else. **This is how we decentralize data structures!**
 
+<CodeSwitcher :languages="{js:'JavaScript',go:'Go',rust:'Rust'}">
+<template v-slot:js>
+
 ```js
 import Block from '@ipld/block/defaults.js'
 
@@ -86,6 +129,24 @@ const example = async () => {
 }
 example()
 ```
+
+</template>
+<template v-slot:go>
+
+```go
+var todo
+```
+
+</template>
+<template v-slot:rust>
+
+```rust
+let todo
+```
+
+</template>
+</CodeSwitcher>
+
 Prints
 ```
 bagaaierakbgholyvqnp2kjpr5ep6yh6u4uhop7cv7wvabydbctksletsilkq
@@ -102,16 +163,56 @@ I can then retreive this data from anyone on the internet **without trusting the
 
 Let's look back at a few things we did.
 
+<CodeSwitcher :languages="{js:'JavaScript',go:'Go',rust:'Rust'}">
+<template v-slot:js>
+
 ```js
 const block = Block.encoder(person, 'json')
 ```
 
+</template>
+<template v-slot:go>
+
+```go
+var todo
+```
+
+</template>
+<template v-slot:rust>
+
+```rust
+let todo
+```
+
+</template>
+</CodeSwitcher>
+
 We encode this data using JSON. Now it has been serialized to a binary representation we
 can store and/or send to someone else.
+
+<CodeSwitcher :languages="{js:'JavaScript',go:'Go',rust:'Rust'}">
+<template v-slot:js>
 
 ```js
 const cid = await block.cid()
 ```
+
+</template>
+<template v-slot:go>
+
+```go
+var todo
+```
+
+</template>
+<template v-slot:rust>
+
+```rust
+let todo
+```
+
+</template>
+</CodeSwitcher>
 
 Then we're going to do a cryptographic computation on that serialized binary which gives us
 a **globally unique** identifier for that binary. The CID tells us "this is JSON data
@@ -136,6 +237,9 @@ around the internet.
 
 Here's where things get **really** interesting.
 
+<CodeSwitcher :languages="{js:'JavaScript',go:'Go',rust:'Rust'}">
+<template v-slot:js>
+
 ```js
 const createPerson = name => Block.encoder({ name }, 'json')
 
@@ -157,6 +261,23 @@ const createGalaxy = async () => {
 }
 createGalaxy()
 ```
+
+</template>
+<template v-slot:go>
+
+```go
+var todo
+```
+
+</template>
+<template v-slot:rust>
+
+```rust
+let todo
+```
+
+</template>
+</CodeSwitcher>
 
 Now we have a data structure made of **blocks**. In IPLD, we call each hashed piece of data a **block**.
 A block could have one or many nodes *inside that block* (like a large nested JSON object).

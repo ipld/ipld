@@ -1,1 +1,4 @@
-module.exports = { base: '/docs' }
+module.exports = {
+  plugins: [ 'code-switcher' ],
+  base: '/docs'
+}

@@ -1,0 +1,14 @@
+digraph {
+	"Pathing" -> "Data Model"
+	"Traversals" -> {"Pathing", "Data Model"}
+	"ADLs" -> {"Data Model", "Linking"}
+	"Data Model" -> {"Linking", "#root"}
+	"Schemas" -> "Data Model"
+	"Selectors" -> "Traversals"
+	"Graphsync" -> "Selectors"
+	"Unixfsv2" -> {"Pathing", "Data Model", "Traversals", "ADLs"}
+	"Unixfsv2" -> "Schemas" // dotted line
+}
+
+// literally everything that points to schemas does so with a dotted line,
+// because you can *always* implement those things without a schema implementation in your langauge of choice or involved in your dev process... it'll just probably be more work.

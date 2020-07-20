@@ -7,8 +7,12 @@ digraph {
 	"Selectors" -> "Traversals"
 	"Graphsync" -> "Selectors"
 	"Unixfsv2" -> {"Pathing", "Data Model", "Traversals", "ADLs"}
-	"Unixfsv2" -> "Schemas" // dotted line
+	"Unixfsv2" -> "Schemas" [style=dashed]
+	"Pathing" -> {"Schemas", "ADLs"} [color=grey]
 }
 
-// literally everything that points to schemas does so with a dotted line,
+// dotted line means "you will have an easier time implementing this if your IPLD libraries support this feature", but it's not strictly necessary, either.
+// grey line means this feature is primarily defined in terms of the black lines outbound from the source node, but can also be defined in terms of the target of the grey lines.
+
+// literally everything that points to schemas does so with a dotted line (or a grey line),
 // because you can *always* implement those things without a schema implementation in your langauge of choice or involved in your dev process... it'll just probably be more work.

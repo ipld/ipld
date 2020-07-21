@@ -36,8 +36,34 @@ Where does the Data Model fit in?
 In short: when you write code using IPLD libraries, you'll be interacting with Data Model concepts constantly.
 
 
-Kinds, in detail
-----------------
+Node
+----
+
+Every value in the Data Model is a "node".
+
+A map value is a node (and all of its contained keys and all of the contained values are nodes);
+a list value is a node (and all of its contained values are nodes);
+a string is a node; a boolean is a node; etc.
+
+IPLD libraries usually have an interface called "Node" which matches this concept.
+
+Most of the rest of IPLD is described in terms of functions that either inspect or create nodes:
+
+- Serialization with a [Codec](codecs.md) is roughly `codec.serialize(node) -> (bytes|error)`
+- Deserialization with a [Codec](codecs.md) is roughly `codec.deserialize(bytes) -> (node|error)`
+- etc.
+
+
+Kind
+----
+
+A "kind" is _which_ of the Data Model kinds a "node"'s value is.
+
+In other words, a kind is one of the values from the enumerated list of (`map`|`list`|`string`|...etc).
+
+
+Kinds reference
+---------------
 
 // TODO finish adding all the relevant h3's here, obviously
 

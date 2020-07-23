@@ -10,13 +10,14 @@ It is flexible enough to support very small and very large (multi-block) binary 
 type FlexibleByteLayout union {
   | Bytes bytes
   | NestedByteList list
+  | &FlexibleByteLayout link
 } representation kinded
 
 type NestedByteList [ NestedByte ]
 
 type NestedByte struct {
   length Int
-  part &FlexibleByteLayout
+  part FlexibleByteLayout
 } representation tuple
 ```
 

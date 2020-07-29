@@ -100,4 +100,34 @@ Steve and Mikeal have skating in common.
 
 ## Storing IPLD data in IPFS
 
+The easiest way to persist IPLD data so that it's globally availible
+is to using the IPFS network.
 
+The `js-ipfs` project has an API for storing block data at `ipfs.block`.
+
+```js
+import IPFS from 'ipfs'
+
+const ipfs = await IPFS.create()
+await ipfs.start()
+
+const save = obj => {
+  const block = Block.encoder(obj, 'dag-cbor')
+  const data = block.encode()
+  const cid = await block.cid()
+
+  // js-ipfs uses an older CID value type so we must convert to string
+  await ipfs.block.put(data, { cid: cid.toString() })
+  return cid
+}
+
+const mikeal = await save({ name: 'Mikeal', interests: [ skating ] })
+const robert = await save({ name: 'Robert', interests: [ rowing, running ]})
+const steve = await save({ name: 'Steve', interests: [ running, skating ] })
+
+console.log('Seeding Mikeal as ', mikeal.toString())
+console.log('Seeding Robert as ', robert.toString())
+console.log('Seeding Steve as ', steve.toString())
+```
+
+TODO: `js-ipfs-lite`.

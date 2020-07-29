@@ -204,7 +204,7 @@ It is unresolved whether an implementation must verify that a CID present in the
 
 ### CID version
 
-It is unresolved whether both CID versions 0 and 1 format are valid in the roots array and at the start of each block Section. Current implementations do not check CID version in the roots array, and both CUD versions are also acceptable in each block Section. Discussions on this specification have suggested limiting CIDs used throughout the format (not within blocks) to CIDv1&mdash;requiring conversion if an encoder is provided with a CIDv0 and requiring readers of a CAR to ensure CIDv1 is the only available block key.
+It is unresolved whether both CID versions 0 and 1 format are valid in the roots array and at the start of each block Section. Current implementations do not check CID version in the roots array, and both CID versions are also acceptable in each block Section. Discussions on this specification have suggested limiting CIDs used throughout the format (not within blocks) to CIDv1&mdash;requiring conversion if an encoder is provided with a CIDv0 and requiring readers of a CAR to ensure CIDv1 is the only available block key.
 
 ### Duplicate Blocks
 

@@ -26,7 +26,7 @@ Paths vs Path Segments
 Unified pathing
 ---------------
 
-We have a concept of pathing with unifies the way we handle data in the (raw) Data Model, data processed with IPLD Schemas, and data which is accessed via ADLs.
+We have a concept of pathing which unifies the way we handle data in the (raw) Data Model, data processed with IPLD Schemas, and data which is accessed via ADLs.
 
 
 

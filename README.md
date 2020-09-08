@@ -8,42 +8,13 @@ Read more about the principles that are guiding the ongoing development of IPLD 
 IPLD is not a single specification, it is a set of specifications.
 Many of the specifications in IPLD are inter-dependent.
 
-## Glossary
+![What is IPLD?](./what_is_ipld.png)
 
-* **DAG**: Short for ["Directed Acyclic Graph."](https://en.m.wikipedia.org/wiki/Directed_acyclic_graph) 
-It's a tree where two branches can point to the same sub-branch, but only in one direction 
-so there's no possibility of recursion.
-
-## IPLD Layer Model
-
-This layer model is a simplified hierarchy of IPLD concepts and requirements.
-
-```
-┌──────────────────────────────────────────────────┐
-│                                                  │ 
-│                   Schema Layer                   │
-│ (advanced types for multi-block data structures) │
-│                                                  │
-├──────────────────────────────────────────────────┤
-│                                                  │
-│                 Data Model Layer                 │
-│  (basic types for single-block data structures)  │
-│                                                  │
-├──────────────────────────────────────────────────┤
-│                                                  │
-│                   Block Layer                    │
-│               (cid, data, codec)                 │           
-│                                                  │
-└──────────────────────────────────────────────────┘
-```
-
-### Block Layer (Layer 0)
+## IPLD Blocks
 
 The block layer encompasses all content addressed block formats and specifies how blocks are addressed, how they self-describe their codec for encoding/decoding, and how blocks link between each other.
 
-This layer alone is enough to accomplish basic graph replication across a variety of formats (Ethereum, Bitcoin, Git, DAG-PB, DAG-CBOR, etc).
-
-This layer does not define data structures or types, although many codecs may convert these formats into native types, there are no type requirements or assurances about types at the block layer.
+IPLD blocks alone do not define data structures or types, although many codecs may convert these formats into native types, there are no type requirements or assurances about types at the block layer.
 
 **Documents:**
 
@@ -52,21 +23,32 @@ This layer does not define data structures or types, although many codecs may co
 | [Concept: Block](block-layer/block.md) | [block-layer/block.md](block-layer/block.md) |
 | [Concept: Content Addressability](concepts/content-addressability.md) | [concepts/content-addressability.md](concepts/content-addressability.md) |
 | [Concept: Multihash](block-layer/multihash.md) | [block-layer/multihash.md](block-layer/multihash.md) |
+| [Specification: Content Addressable aRchives (CAR / .car)](block-layer/content-addressable-archives.md) | [block-layer/content-addressable-archives.md](block-layer/content-addressable-archives.md) |
+| [Specification: Graphsync](block-layer/graphsync/graphsync.md) | [block-layer/graphsync/graphsync.md](block-layer/graphsync/graphsync.md) |
+
+## IPLD Codecs
+
+Codecs serve as an intermediary between raw bytes and the IPLD Data Model. They determine how data is converted to and from the Data Model.
+
+Codecs vary in the completeness in which they can represent the IPLD Data Model. [DAG-CBOR](block-layer/codecs/dag-cbor.md) and [DAG-JSON](block-layer/codecs/dag-json.md) are native IPLD codecs that currently enable the most complete form of the Data Model. Their base codecs, CBOR and JSON, are also valid IPLD codecs, are unable to represent some Data Model kinds on their own, in particular the Link (CID) kind (and Bytes for JSON), so DAG-JSON and DAG-CBOR provide mechanisms to represent these kinds.
+
+IPLD can operate across a broad range of content-addressable codecs, including Git, Ethereum, Bitcoin, and more. [DAG-PB](block-layer/codecs/dag-pb.md) is a legacy IPLD format that is still actively used for representing file data for [IPFS](https://ipfs.io).
+
+|     |      |
+|-----|------|
 | [Concept: Serialization and Formats](block-layer/serialization-and-formats.md) | [block-layer/serialization-and-formats.md](block-layer/serialization-and-formats.md) |
 | [Specification: CIDs](block-layer/CID.md) | [block-layer/CID.md](block-layer/CID.md) |
 | [Specification: DAG-CBOR](block-layer/codecs/dag-cbor.md) | [block-layer/codecs/dag-cbor.md](block-layer/codecs/dag-cbor.md) |
 | [Specification: DAG-JSON](block-layer/codecs/dag-json.md) | [block-layer/codecs/dag-json.md](block-layer/codecs/dag-json.md) |
-| [Specification: IPLD Selectors](selectors/selectors.md) | [selectors/selectors.md](selectors/selectors.md) |
-| [Specification: Graphsync](block-layer/graphsync/graphsync.md) | [block-layer/graphsync/graphsync.md](block-layer/graphsync/graphsync.md) |
-| [Specification: Content Addressable aRchives (CAR / .car)](block-layer/content-addressable-archives.md) | [block-layer/content-addressable-archives.md](block-layer/content-addressable-archives.md) |
+| [Specification: DAG-PB](block-layer/codecs/dag-pb.md) | [block-layer/codecs/dag-pb.md](block-layer/codecs/dag-pb.md) |
 
-### Data Model Layer (Layer 1)
+## The IPLD Data Model
 
-The Data Model Layer describes a set of base required types to be implemented by a subset of IPLD codecs.
+The Data Model describes a set of base required types to be implemented by a subset of IPLD codecs.
 
 With these basic types authors can create various single-block data structures which can be read with predictable paths and selectors.
 
-With just the data model layer, several data structures can be authored and put into a single block.
+With just the data model, several data structures can be authored and put into a single block.
 These data  structures can also link to one another, but a *single* collection (Map or List) cannot be spread across many blocks with only the Data Model.
 
 Since different systems and transports may impose block size limits (often 2mb or more) in order to control memory usage, larger collections need to be sharded over many blocks at the Schema Layer.
@@ -77,13 +59,14 @@ Since different systems and transports may impose block size limits (often 2mb o
 |-----|------|
 | [Specification: IPLD Data Model](data-model-layer/data-model.md) | [data-model-layer/data-model.md](data-model-layer/data-model.md) |
 | [Specification: IPLD Paths](data-model-layer/paths.md) | [data-model-layer/paths.md](data-model-layer/paths.md)
+| [Specification: IPLD Selectors](selectors/selectors.md) | [selectors/selectors.md](selectors/selectors.md) |
 
-### Schema Layer (Layer 2)
+### Schemas and Advanced Data Layouts
 
-IPLD Schemas define a mapping from the Data Model Layer (Layer 1) to instantiated data structures comprising complex layouts.
-The Schema Layer adds the ability to extend the IPLD Data Model to the wide variety of types required for typical programatic interaction with a data source without the need to implement custom translation abstractions.
+IPLD Schemas define a mapping from the Data Model to instantiated data structures comprising complex layouts.
+Schemas add the ability to extend the IPLD Data Model to the wide variety of types required for typical programatic interaction with a data source without the need to implement custom translation abstractions.
 
-The Schema Layer will also serve as an enabling layer for complex multi-block data structures by providing stability and consistency of data model use within individual blocks and defined interaction points for the logic required for building and interacting with advanced data layouts, such as multi-block Maps, Lists and Sets.
+Schemas will also serve as an enabling layer for complex multi-block data structures via Advanced Data Layouts by providing stability and consistency of data model use within individual blocks and defined interaction points for the logic required for building and interacting with advanced data layouts, such as multi-block Maps, Lists and Sets.
 
 **Documents:**
 
@@ -93,7 +76,6 @@ The Schema Layer will also serve as an enabling layer for complex multi-block da
 | [Specification: IPLD Schemas](schemas/README.md) | [schemas/README.md](schemas/README.md) |
 | [Specification: HashMap](data-structures/hashmap.md) | [data-structures/hashmap.md](data-structures/hashmap.md) |
 | [Specification: FlexibleByteLayout](data-structures/flexible-byte-layout.md) | [data-structures/flexible-byte-layout.md](data-structures/flexible-byte-layout.md) |
-
 
 ## Specification document status
 
@@ -162,6 +144,12 @@ Concepts and other documents (including README.md):
  * If no objections are raised in a 48 hours period changes can be merged
  * If objections cannot be resolved the change can be voted on by the IPLD Team
 
+## Glossary
+
+* **DAG**: Short for ["Directed Acyclic Graph."](https://en.m.wikipedia.org/wiki/Directed_acyclic_graph) 
+It's a tree where two branches can point to the same sub-branch, but only in one direction 
+so there's no possibility of recursion.
+
 ## IPLD Team
 
 The IPLD Team consists of currently active IPLD developers.
@@ -170,6 +158,8 @@ The IPLD Team consists of currently active IPLD developers.
 * @vmx
 * @warpfork
 * @rvagg
+* @ribasushi
+* @mvdan
 
 ## License
 

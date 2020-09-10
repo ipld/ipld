@@ -15,7 +15,12 @@ type FlexibleByteLayout union {
 
 type NestedByteList [ NestedByte ]
 
-type NestedByte struct {
+type NestedByte union {
+  | Bytes bytes
+  | NestedFBL list
+} representation kinded
+
+type NestedFBL struct {
   length Int
   part FlexibleByteLayout
 } representation tuple

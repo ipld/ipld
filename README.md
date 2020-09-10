@@ -56,7 +56,7 @@ That's IPLD.
 
 IPLD is how we go from *data* to **data structures**.
 
-We do this with two concepts: a new link type and a data model.
+We do this with a new link type and a data model.
 
 For links we use a [CID](). A CID is an extension of `multihash`,
 in fact a `multihash` is part of a `CID`. All we extend it with

@@ -9,7 +9,7 @@ ecosystem of formats and data structures for building
 applications that can be fully decentralized.
 
 This ecosystem is held together by a few concepts and
-standards that ensure compatability between formats
+standards that ensure compatibility between formats
 and programming languages.
 
 You'll find numerous libraries for working with IPLD.
@@ -35,7 +35,7 @@ into the link the way you do with a URL. This is really powerful,
 but by itself it's a bit limited.
 
 For one thing, there are lots of hash algorithms, and they keep
-getting better. A hash doesn't say *what* sort of of hash it. We
+getting better. A hash doesn't say *what* sort of hash it is. We
 solved that with something called [`multihash`]()
 which is just a hash that says "I'm a hash of this particular
 algorithm."
@@ -56,7 +56,7 @@ That's IPLD.
 
 IPLD is how we go from *data* to **data structures**.
 
-We do this with two things: a new link type and a data model.
+We do this with two concepts: a new link type and a data model.
 
 For links we use a [CID](). A CID is an extension of `multihash`,
 in fact a `multihash` is part of a `CID`. All we extend it with

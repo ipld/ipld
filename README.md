@@ -19,7 +19,28 @@ community. You don't need to be a committer in repository
 in the IPLD GitHub org to be a part of this community,
 you're already almost there just by reading this far.
 
-### From Data to Data Structures
+## Table of Contents
+
+- [Overview](/overview/)
+- [Vision](/vision/)
+- [Getting Started](/getting-started/)
+	- [Tutorials](/getting-started/tutorials/)
+	- [User Stories](/getting-started/user-stories/)
+- [Blocks](/blocks/)
+- [Codecs](/codecs/)
+- [Data Model](/data-model/)
+- [Pathing](/pathing/)
+- [Schemas](/schemas/)
+- [Advanced Data Layouts](/advanced-layouts/)
+- [Selectors](/selectors)
+- [Ecosystem](/ecosystem/)
+	- [Graphsync](/ecosystem/graphsync.md)
+- [Details](/details/)
+- [Open Research](/opens-research/)
+- [Glossary](/glossary.md)
+- [FAQ](/FAQ.md)
+
+## From Data to Data Structures
 
 Hashes are wonderful.
 

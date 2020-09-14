@@ -10,6 +10,7 @@
 * [Implementations](#implementations)
   * [JavaScript](#javascript)
   * [Go](#go)
+  * [Java](#java)
 * [Limitations](#limitations)
   * [JavaScript](#javascript-1)
 
@@ -79,6 +80,13 @@ One of these approaches will be chosen and the libraries for the other language 
 
  * Strictness is not yet enforced on decode, blocks encoded that don't follow the strictness rules are not rejected
  * All floating point value are encoded as 64-bits
+
+### Java
+
+[java ipld from Peergos](https://github.com/Peergos/Peergos/tree/master/src/peergos/shared/cbor) adhere to this specification, with the following caveats:
+
+ * Strictness is not yet enforced on decode, blocks encoded that don't follow the strictness rules are not rejected
+ * Floats are disabled
 
 ## Limitations
 

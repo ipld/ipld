@@ -38,6 +38,7 @@ you're already almost there just by reading this far.
 - [Details](/details/)
 - [Open Research](/opens-research/)
 - [Glossary](/glossary.md)
+- [Media](/media/)
 - [FAQ](/FAQ.md)
 
 ## From Data to Data Structures

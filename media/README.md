@@ -7,6 +7,8 @@ Here is some other IPLD content around the web:
 
 ### Foundations for Decentralization: Data with IPLD @ GPN19
 
+<img src="./res/gpn19thumb.png" width=300 style="float: right; margin:1em 2em;">
+
 ** https://media.ccc.de/v/gpn19-105-foundations-for-decentralization-data-with-ipld **
 
 This talk introduces IPLD and is targeted at giving newcomers a rapid overview, from the top to bottom of the system.

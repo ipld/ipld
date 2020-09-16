@@ -20,7 +20,6 @@ function linkfix (md) {
 module.exports = {
   title: 'IPLD Documentation',
   description: 'Documentation for the Inter-planetary Linked Data project',
-  base: '/docs',
   plugins: [ 'code-switcher' ],
   themeConfig: {
     repo: 'ipld/docs',
@@ -32,34 +31,9 @@ module.exports = {
       { text: 'Home', link: '/' }
     ],
     sidebar: [
-      { title: 'Thinking in Data Structures',
-        path: '/tutorials/thinking'
-      },
-      { title: 'Getting Started',
-        path: '/',
-        collapsable: false,
-        sidebarDepth: 2,
-        children: [
-          ['getting-started/js', 'JavaScript' ],
-          ['getting-started/go', 'Go' ],
-          ['getting-started/rust', 'Rust' ]
-        ]
-      },
-      { title: 'IPLD Schemas',
-        collapsable: false,
-        path: '/schemas/',
-        sidebarDepth: 2,
-        children: [
-          ['schemas/goals', 'Goals'],
-          ['schemas/feature-summary', 'Feature Summary'],
-          ['schemas/introduction', 'Introduction'],
-          ['schemas/authoring-guide', 'Authoring Guide'],
-          'schemas/links',
-          'schemas/schema-kinds',
-          ['schemas/representations', 'Representations'],
-          ['schemas/advanced-layouts', 'Advanced Layouts']
-        ]
-      }
+      '/',
+      '/tutorial',
+      '/docs/schemas'
     ]
   },
   extendMarkdown: md => {

@@ -100,15 +100,15 @@ that can be traversed though a normalized data model. Effectively,
 you can write format agnostic tools for reading, distributing, and
 persisting all content addressed data.
 
-## Tutorials
+## Tutorial
 
-We highly recommend you read the following tutorials
-before trying to use IPLD. These tutorials are language
-agnostic and include examples in JavaScript, Go and Rust.
+We highly recommend you read the following tutorial
+before trying to use IPLD. This tutorial is language
+agnostic and includes examples in JavaScript, Go and Rust.
 
-* [Thinking in data structures](./tutorial.md)
-  * [Decentralizing data]()
-  * [Introduction to IPLD Schemas]()
+* [Thinking in Data Structures](./tutorial.md)
+  * [Addressing](./tutorial.md#addressing)
+  * [Linking](./tutorial.md#linking)
 
 ## Getting Started
 
@@ -123,11 +123,16 @@ Using IPLD can vary from language to language.
 
 ## Documentation
 
+- [Glossary](./docs/glossary.md)
+  - [Blocks]('./docs/glossary.md#blocks)
+  - [Codecs]('./docs/glossary.md#codecs)
+    - [DAG-CBOR]('./docs/glossary.md#dag-cbor)
+    - [DAG-JSON]('./docs/glossary.md#dag-json)
+  - [Data-Model]('./docs/glossary.md#data-model
 - [Overview](./docs/overview)
 - [Vision](./docs/vision)
 - [Blocks](./docs/blocks)
 - [Codecs](./docs/codecs)
-- [Data Model](./docs/data-model)
 - [Pathing](./docs/pathing)
 - [Schemas](./docs/schemas)
 - [Advanced Data Layouts](./docs/advanced-layouts)
@@ -136,7 +141,6 @@ Using IPLD can vary from language to language.
   - [Graphsync](./docs/ecosystem/graphsync.md)
 - [Details](./docs/details)
 - [Open Research](./docs/opens-research)
-- [Glossary](./docs/glossary.md)
 - [Media](./docs/media)
 - [FAQ](./docs/FAQ.md)
 

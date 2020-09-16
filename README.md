@@ -19,28 +19,6 @@ community. You don't need to be a committer in repository
 in the IPLD GitHub org to be a part of this community,
 you're already almost there just by reading this far.
 
-## Table of Contents
-
-- [Overview](/overview/)
-- [Vision](/vision/)
-- [Getting Started](/getting-started/)
-	- [Tutorials](/tutorials/)
-	- [Synthesizing Systems](/getting-started/synthesis/)
-- [Blocks](/blocks/)
-- [Codecs](/codecs/)
-- [Data Model](/data-model/)
-- [Pathing](/pathing/)
-- [Schemas](/schemas/)
-- [Advanced Data Layouts](/advanced-layouts/)
-- [Selectors](/selectors)
-- [Ecosystem](/ecosystem/)
-	- [Graphsync](/ecosystem/graphsync.md)
-- [Details](/details/)
-- [Open Research](/opens-research/)
-- [Glossary](/glossary.md)
-- [Media](/media/)
-- [FAQ](/FAQ.md)
-
 ## From Data to Data Structures
 
 Hashes are wonderful.
@@ -143,8 +121,25 @@ Using IPLD can vary from language to language.
 * [Getting started in Rust]()
   * [Persisting IPLD data in `rust-ipfs`]()
 
-## Advanced Topics
+## Documentation
 
-* [Complete IPLD Schema Documentation]()
-* [Comparing IPLD to traditional Databases]()
-* [How does IPFS use IPLD?]()
+- [Overview](/overview/)
+- [Vision](/vision/)
+- [Getting Started](/getting-started/)
+	- [Tutorials](/tutorials/)
+	- [Synthesizing Systems](/getting-started/synthesis/)
+- [Blocks](/blocks/)
+- [Codecs](/codecs/)
+- [Data Model](/data-model/)
+- [Pathing](/pathing/)
+- [Schemas](/schemas/)
+- [Advanced Data Layouts](/advanced-layouts/)
+- [Selectors](/selectors)
+- [Ecosystem](/ecosystem/)
+	- [Graphsync](/ecosystem/graphsync.md)
+- [Details](/details/)
+- [Open Research](/opens-research/)
+- [Glossary](/glossary.md)
+- [Media](/media/)
+- [FAQ](/FAQ.md)
+

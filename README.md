@@ -36,7 +36,7 @@ but by itself it's a bit limited.
 
 For one thing, there are lots of hash algorithms, and they keep
 getting better. A hash doesn't say *what* sort of hash it is. We
-solved that with something called [`multihash`]()
+solved that with something called [`multihash`](https://github.com/multiformats/multihash)
 which is just a hash that says "I'm a hash of this particular
 algorithm."
 
@@ -58,7 +58,7 @@ IPLD is how we go from *data* to **data structures**.
 
 We do this with a new link type and a data model.
 
-For links we use a [CID](). A CID is an extension of `multihash`,
+For links we use a [CID](https://specs.ipld.io/block-layer/CID.html). A CID is an extension of `multihash`,
 in fact a `multihash` is part of a `CID`. All we extend it with
 is a *codec* that tells us what format the data is in (JSON, CBOR,
 Bitcoin, Ethereum, etc). This way, we can actually link between
@@ -119,7 +119,7 @@ Using IPLD can vary from language to language.
 * [Getting started in Go](./getting-started/go)
   * [Persisting IPLD data in `go-ipfs`](./getting-started/go#IPFS)
 * [Getting started in Rust](./getting-started/rust)
-  * [Persisting IPLD data in `rust-ipfs`](./getting-started/rust)
+  * [Persisting IPLD data in `rust-ipfs`](./getting-started/rust#IPFS)
 
 
 ## Glossary
@@ -134,6 +134,8 @@ Using IPLD can vary from language to language.
 [JSON encoded IPLD Data Model](./docs/glossary.md#dag-json)
 ### Data-Model
 [Simple common types for working with IPLD](./docs/glossary.md#data-model)
+### HAMT
+[Multi-block map for large data sets.](./docs/glossary.md#hamt)
 
 ## Documentation
 ### [Overview](./docs/overview)

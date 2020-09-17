@@ -9,12 +9,14 @@ data that has not been decoded yet, or data that has just recently been encoded.
 Most users don't work directly with blocks. Instead, block data is encoded/decoded into [Data Model](#data-model). It's only if your'e writing a database, or a filesystem, or a replicator that you will work directly
 with blocks.
 
+[Full Block specification.](https://specs.ipld.io/block-layer/block.html)
+
 ## CID
 
 CID is a Content IDentifier. It's self-describing data structure identifier. In other
 words, it's a hash that says what kind of hash it is and how to decode it.
 
-The [full specification](https://github.com/multiformats/cid) is part of multi-formats.
+[IPLD CID Specification.](https://specs.ipld.io/block-layer/CID.html) The [full format specification](https://github.com/multiformats/cid) is part of multi-formats.
 
 ## Codecs
 
@@ -27,13 +29,26 @@ Examples:
 
 * [dag-cbor](#DAG-CBOR)
 * [dag-json](#DAG-JSON)
-* [bitcoin](#bitcoin-codec)
+* bitcoin
 * cbor
 * json
 
+
+
 ### DAG-CBOR
 
+IPLD Data Model implemented as a subset of CBOR with additional constraints
+for hash consistent representations.
+
+[Full DAG-CBOR specification.](https://specs.ipld.io/block-layer/codecs/dag-cbor.html)
+
 ### DAG-JSON
+
+**Not Recommended.**
+
+IPLD Data Model implemented serialized to JSON.
+
+[Full DAG-JSON specification.](https://specs.ipld.io/block-layer/codecs/dag-json.html)
 
 ## Data Model
 
@@ -63,3 +78,13 @@ Finally, there is a `link` kind represented by a [CID](#CID). You'll find
 CID type implementations for every programming language which are leveraged
 by all IPLD codecs in that language.
 
+[Full IPLD Data Model specification.](https://specs.ipld.io/data-model-layer/data-model.html)
+
+## HAMT
+
+HAMT stands for ["Hash Array Mapped Trie"](https://en.wikipedia.org/wiki/Hash_array_mapped_trie).
+
+HAMT's in IPLD differ from typical in-memory implementation as we require the use of "buckets"
+to manage performance.
+
+[Full IPLD HAMT specification.](https://specs.ipld.io/data-structures/hashmap.html)

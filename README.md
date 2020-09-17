@@ -126,7 +126,7 @@ Using IPLD can vary from language to language.
 [Full Glossary.](./docs/glossary.md)
 ### Blocks
 [Abstract key/value pairing of CID and encoded data.](./docs/glossary.md#blocks)
-### Codec
+### Codecs
 [IPLD Data Model encoder/decoder for various multicodecs](./docs/glossary.md#codecs)
 #### DAG-CBOR
 [CBOR subset for IPLD Data Model](./docs/glossary.md#dag-cbor)

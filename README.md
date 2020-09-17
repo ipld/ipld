@@ -151,3 +151,26 @@ Using IPLD can vary from language to language.
 ### [Media](./docs/media)
 ### [FAQ](./docs/FAQ.md)
 
+## Specifications
+
+You can refer to the [specifications website]() for a full list of content.
+
+There are numerous links to specifications throughout this documentation site.
+
+The following curated list of specification pages may be of interest to those
+seeking additional forms of documentation.
+
+## Theory of Change
+
+## Design Documents
+
+[Various documents about the design, and history of design thought, in and around
+IPLD.](https://specs.ipld.io/design/)
+
+## Foundational Principals
+
+[The foundation principals of globally content addressed data structures.](https://specs.ipld.io/foundations.html)
+
+## IPLD Team
+
+[List of IPLD team members.](https://specs.ipld.io/#ipld-team)

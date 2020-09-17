@@ -23,7 +23,7 @@ jobs:
     - run: npm install
     - run: |
         npm run build
-        # cp ./.vuepress/CNAME ./.vuepress/dist/
+        cp ./.vuepress/CNAME ./.vuepress/dist/
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.6.3

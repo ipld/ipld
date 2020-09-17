@@ -138,10 +138,10 @@ Using IPLD can vary from language to language.
 [Multi-block map for large data sets.](./docs/glossary.md#hamt)
 
 ## Documentation
-### [Overview](./docs/overview)
-### [Vision](./docs/vision)
-### [Pathing](./docs/pathing)
-### [Schemas](./docs/schemas)
+### [Getting things done in IPLD](./docs/gtd)
+### [IPLD in the Interplanetary Ecosystem (IPFS, etc)](./ecosystem)
+### [IPLD Objectives and Scope](./docs/objectives)
+### [IPLD Schemas](./docs/schemas)
 ### [Advanced Data Layouts](./docs/advanced-layouts)
 ### [Selectors](./docs/selectors)
 ### [Ecosystem](./docs/ecosystem)

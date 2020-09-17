@@ -9,11 +9,10 @@ in order: if you can get something done with the things at the top of this file,
 do that; if you can't, only then should you keep reading down the list to
 the more invasive and high-effort options that are available.
 
-
 Use the Data Model
 ------------------
 
-You can get lots done with just the [Data Model](/data-model/) and core APIs.
+You can get lots done with just the [Data Model](/doc/glossary#data-model) and core APIs.
 
 Whenever you want to get something done with IPLD,
 we suggest you start by just sketching out what you want to do by using the Data Model.
@@ -21,7 +20,6 @@ This is similar to saying "just sketch examples of your desired API in JSON";
 maybe you'll want more formality to your structure later,
 and maybe you'll want to write more auto-validation rules, etc;
 but those can come later.
-
 
 Use Schemas
 -----------
@@ -45,7 +43,6 @@ Schemas can be used to do some very basic transformations of data --
 like transforming long-form names for fields in data into shorter names
 before passing them into or out of serialization -- but that's the extent
 of their powers; they can't do any more dynamic restructuring than that.
-
 
 Use ADLs
 --------
@@ -72,13 +69,12 @@ data _without them_, and just handle the raw Data Model contents directly.
 Often this will be less useful... but it can be a good debugging tool,
 and useful for comprehensible and reusable data structure design.
 
-
 Write a new Codec
 -----------------
 
 This should be your absolute last resort.
 
-Writing a new [Codec](/codecs/) poses future portability questions.
+Writing a new [Codec](/doc/glossary#codecs) poses future portability questions.
 Every IPLD library in every programming language will need to implement it;
 many, practically speaking, won't -- unless you give them a very good reason.
 Therefore, it's best to stick to one of the already widely supported codecs.
@@ -98,8 +94,6 @@ But if you're designing a new system that's IPLD from the start,
 we really recommend using existing codecs.
 It's just easier to hit the ground running, and there's little value
 and lots of costs to trying to forge your own way through a new codec.
-
-
 
 But Why?
 --------

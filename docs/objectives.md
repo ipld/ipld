@@ -10,6 +10,22 @@ and more on our concept of enablement.)
 Things IPLD is concerned with
 -----------------------------
 
+## Databases
+
+We want IPLD to provide many of the useful attributes of an SQL-style database for purely local/offline applications:
+IPLD Schemas and IPLD Selectors provide features comparable to DDLs and SQL,
+and set the stage for building migration systems.
+
+At the same time, IPLD works on a concept of "blocks" which are much more comparable to messages:
+they're easy to send and receive over the network, and critically, can be regarded individually
+(there's no supposition of monolithicity, as SQL-style databases have).
+
+Our aim is that IPLD should straddle this divide and operate on either side of it gracefully.
+The same libraries and concepts and tooling should work well regardless of if you're building an offline app
+or a massively distributed system with remote actors coming and going and sending messages all the time.
+
+## Additional concerns
+
 In order to make building on decentralized data structures be excellent, we see the following major goals:
 
 - Some minimal legibility of data is required.
@@ -65,3 +81,6 @@ Things IPLD is not concerned with
   IPLD should even work fine and provide value with *no* networking, or work fantastically with "sneakernet".
   (The libp2p project is also pursuing useful work in networking and focused on decentralized systems;
   it's not directly related to IPLD, but they should work well together, and you might want to check it out.)
+
+
+

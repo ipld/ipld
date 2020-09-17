@@ -35,7 +35,7 @@ Examples:
 
 ### DAG-JSON
 
-### Data Model
+## Data Model
 
 The Data Model describes common base types called *kinds*.
 

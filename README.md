@@ -121,26 +121,31 @@ Using IPLD can vary from language to language.
 * [Getting started in Rust](./getting-started/rust)
   * [Persisting IPLD data in `rust-ipfs`](./getting-started/rust)
 
-## Documentation
 
-- [Glossary](./docs/glossary.md)
-  - [Blocks]('./docs/glossary.md#blocks)
-  - [Codecs]('./docs/glossary.md#codecs)
-    - [DAG-CBOR]('./docs/glossary.md#dag-cbor)
-    - [DAG-JSON]('./docs/glossary.md#dag-json)
-  - [Data-Model]('./docs/glossary.md#data-model
-- [Overview](./docs/overview)
-- [Vision](./docs/vision)
-- [Blocks](./docs/blocks)
-- [Codecs](./docs/codecs)
-- [Pathing](./docs/pathing)
-- [Schemas](./docs/schemas)
-- [Advanced Data Layouts](./docs/advanced-layouts)
-- [Selectors](./docs/selectors)
-- [Ecosystem](./docs/ecosystem)
-  - [Graphsync](./docs/ecosystem/graphsync.md)
-- [Details](./docs/details)
-- [Open Research](./docs/opens-research)
-- [Media](./docs/media)
-- [FAQ](./docs/FAQ.md)
+## Glossary
+[Full Glossary.](./docs/glossary.md)
+### Blocks
+[Abstract key/value pairing of CID and encoded data.](./docs/glossary.md#blocks)
+### Codec
+[IPLD Data Model encoder/decoder for various multicodecs](./docs/glossary.md#codecs)
+#### DAG-CBOR
+[CBOR subset for IPLD Data Model](./docs/glossary.md#dag-cbor)
+#### DAG-JSON
+[JSON encoded IPLD Data Model](./docs/glossary.md#dag-json)
+### Data-Model
+[Simple common types for working with IPLD](./docs/glossary.md#data-model)
+
+## Documentation
+### [Overview](./docs/overview)
+### [Vision](./docs/vision)
+### [Pathing](./docs/pathing)
+### [Schemas](./docs/schemas)
+### [Advanced Data Layouts](./docs/advanced-layouts)
+### [Selectors](./docs/selectors)
+### [Ecosystem](./docs/ecosystem)
+#### [Graphsync](./docs/ecosystem/graphsync.md)
+### [Details](./docs/details)
+### [Open Research](./docs/opens-research)
+### [Media](./docs/media)
+### [FAQ](./docs/FAQ.md)
 

@@ -30,11 +30,24 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' }
     ],
-    sidebar: [
-      '/',
-      '/tutorial',
-      '/docs/schemas'
-    ]
+    sidebar: {
+      '/schemas/': [{
+        title: 'IPLD Schemas',
+        collapsable: false,
+        sidebarDepth: 2,
+        children: [
+          ['goals', 'Goals'],
+          ['feature-summary', 'Feature Summary'],
+          ['introduction', 'Introduction'],
+          ['authoring-guide', 'Authoring Guide'],
+          'links',
+          'schema-kinds',
+          ['representations', 'Representations'],
+          ['advanced-layouts', 'Advanced Layouts']
+        ]
+      }],
+      '/': 'auto'
+    }
   },
   extendMarkdown: md => {
     // use more markdown-it plugins!

@@ -88,3 +88,18 @@ HAMT's in IPLD differ from typical in-memory implementation as we require the us
 to manage performance.
 
 [Full IPLD HAMT specification.](https://specs.ipld.io/data-structures/hashmap.html)
+
+## Graphsync
+
+Graphsync is a replication protocol for IPLD. It's used heavily by Filecoin and experimentally by
+IPFS.
+
+Graphsync uses [IPLD Selectors](#selectors) to replicate sections of a larger IPLD graph.
+
+[Full Graphsync specification.](https://specs.ipld.io/block-layer/graphsync/graphsync.html)
+
+## Selectors
+
+Selectors define a selection criteria for IPLD graph queries.
+
+[Full IPLD Selectors specification.](https://specs.ipld.io/selectors/selectors.html)

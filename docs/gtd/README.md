@@ -24,7 +24,7 @@ but those can come later.
 Use Schemas
 -----------
 
-[Schemas](/schemas/) are for when you want to formalize structures.
+[Schemas](https://specs.ipld.io/schemas/) are for when you want to formalize structures.
 They can be useful for documentation;
 they do validation of data structures so you know what you're handling;
 they can be used for version detection and feature detection;

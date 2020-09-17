@@ -23,7 +23,7 @@ ADLs build upon the concepts that are introduced standardized by the Data Model.
 - ADLs convert [Data Model nodes](data-model.md#node) into *another node*
   (or, when writing new data, provide an interface to go the other way: let the user act like they're creating a node, but in the background create several nodes, or a different structure, which stores that data).
 - [Codecs](codecs.md) and ADLs compose smoothly -- Codecs can deserialize and serialize the Data Model data that is the "raw" "interior" content of an ADL.
-- [Schemas](schemas.md) technically have nothing to do with ADLs...
+- [Schemas](https://specs.ipld.io/schemas/) technically have nothing to do with ADLs...
 	- but, Schemas can be useful for _signaling_ when ADLs should be used to handle data ([more on that later](#signaling-with-schemas));
 	- and in practice, ADL specifications often include a Schema which describes them, simply for clarity (and ADL implementations might choose use that Schema in their internal code, too).
 - [Traversals](traversal.md) and [pathing](pathing.md) work transparently over ADLs (which is part of why ADLs exist and what makes them awesome in the first place)!

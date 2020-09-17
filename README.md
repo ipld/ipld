@@ -154,12 +154,12 @@ so there's no possibility of recursion.
 
 The IPLD Team consists of currently active IPLD developers.
 
-* @mikeal
-* @vmx
-* @warpfork
-* @rvagg
-* @ribasushi
-* @mvdan
+* [@mikeal](https://github.com/mikeal)
+* [@vmx](https://github.com/vmx)
+* [@warpfork](https://github.com/warpfork)
+* [@rvagg](https://github.com/rvagg)
+* [@ribasushi](https://github.com/ribasushi)
+* [@mvdan](https://github.com/mvdan)
 
 ## License
 

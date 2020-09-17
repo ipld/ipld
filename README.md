@@ -136,6 +136,10 @@ Using IPLD can vary from language to language.
 [Simple common types for working with IPLD](./docs/glossary.md#data-model)
 ### HAMT
 [Multi-block map for large data sets.](./docs/glossary.md#hamt)
+### Graphsync
+[Replication protocol using IPLD Selectors.](./docs/glossary.md#graphsync)
+### Selectors
+[Graph selection queries for IPLD.](./docs/glossary.md#selectors)
 
 ## Documentation
 ### [Getting things done in IPLD](./docs/gtd)
@@ -143,7 +147,6 @@ Using IPLD can vary from language to language.
 ### [IPLD Objectives and Scope](./docs/objectives)
 ### [IPLD Schemas](./docs/schemas)
 ### [Advanced Data Layouts](./docs/advanced-layouts)
-### [Selectors](./docs/selectors)
 ### [Ecosystem](./docs/ecosystem)
 #### [Graphsync](./docs/ecosystem/graphsync.md)
 ### [Details](./docs/details)

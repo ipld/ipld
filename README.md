@@ -123,7 +123,7 @@ Using IPLD can vary from language to language.
 
 ## Media
 
-[Talks, blog posts, and other media about IPLD.](./docs/media')
+[Talks, blog posts, and other media about IPLD.](./docs/media)
 
 
 ## Documentation
@@ -151,7 +151,8 @@ documented.
 Guide to [data structures that move beyond our simple data model]('./docs/advanced-layouts)
 representations.
 
-### [FAQ](./FAQ)
+### FAQ
+[Frequently Asked Questions.](./FAQ)
 
 ## Glossary
 

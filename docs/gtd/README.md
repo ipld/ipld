@@ -12,7 +12,7 @@ the more invasive and high-effort options that are available.
 Use the Data Model
 ------------------
 
-You can get lots done with just the [Data Model](/doc/glossary#data-model) and core APIs.
+You can get lots done with just the [Data Model](/#data-model) and core APIs.
 
 Whenever you want to get something done with IPLD,
 we suggest you start by just sketching out what you want to do by using the Data Model.
@@ -74,7 +74,7 @@ Write a new Codec
 
 This should be your absolute last resort.
 
-Writing a new [Codec](/doc/glossary#codecs) poses future portability questions.
+Writing a new [Codec](/#codecs) poses future portability questions.
 Every IPLD library in every programming language will need to implement it;
 many, practically speaking, won't -- unless you give them a very good reason.
 Therefore, it's best to stick to one of the already widely supported codecs.

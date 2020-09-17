@@ -45,7 +45,8 @@ module.exports = {
           ['representations', 'Representations'],
           ['advanced-layouts', 'Advanced Layouts']
         ]
-      }]
+      }],
+      '/': 'auto'
     }
   },
   extendMarkdown: md => {

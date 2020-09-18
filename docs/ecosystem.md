@@ -1,9 +1,9 @@
-IPLD in the Interplanetary Ecosystem
+IPLD in the InterPlanetary Ecosystem
 ====================================
 
-IPLD is a part of the "Interplanetary Ecosystem".
+IPLD is a part of the "InterPlanetary Ecosystem".
 You can it without any of the other projects in that ecosystem, but it may be useful to understand this history;
-and if you come to IPLD via one of the other Interplanetary projects (such as IPFS),
+and if you come to IPLD via one of the other InterPlanetary projects (such as IPFS),
 this document can help you understand the relationship and the distinctions.
 
 IPLD
@@ -44,7 +44,7 @@ IPLD does not depend on IPFS.
 
 ### history
 
-The IPFS project is the first project of the Interplanetary ecosystem.
+The IPFS project is the first project of the InterPlanetary ecosystem.
 Many early ideas emerged in this project... and were only extracted sometime later!
 
 IPLD is one such idea that incubated in the IPFS project, and was only extracted later.
@@ -70,7 +70,7 @@ to the useful (NAT traversal, "hole punching", protocol negociations, etc)
 to the neat (pubkey-based persistent network peer identity toolkits)
 to the awesome (DHTs and other advanced network routing and distributed storage components).
 
-libp2p is developed by some of the same people as IPLD, IPFS, and the other Interplanetary projects.
+libp2p is developed by some of the same people as IPLD, IPFS, and the other InterPlanetary projects.
 Like IPLD, libp2p is a project that historically emerged from IPFS when it became apparent that it would be widely reusable;
 now, many other projects also use libp2p as a networking abstraction, or lean on its routing and storage components.
 

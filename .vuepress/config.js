@@ -16,10 +16,9 @@ function linkfix (md) {
   }
 }
 
-
 module.exports = {
   title: 'IPLD Documentation',
-  description: 'Documentation for the Inter-planetary Linked Data (IPLD) project',
+  description: 'Documentation for the InterPlanetary Linked Data (IPLD) project',
   plugins: [ 'code-switcher' ],
   themeConfig: {
     repo: 'ipld/docs',

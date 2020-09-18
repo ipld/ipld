@@ -15,7 +15,7 @@ and programming languages.
 You'll find numerous libraries for working with IPLD.
 You may even create a few of your own. That library is
 part of the IPLD ecosystem and you're now a part of its
-community. You don't need to be a committer in repository
+community. You don't need to be a committer in a repository
 in the IPLD GitHub org to be a part of this community,
 you're already almost there just by reading this far.
 
@@ -24,7 +24,7 @@ you're already almost there just by reading this far.
 Hashes are wonderful.
 
 If you hash something you can give that hash to anyone else
-in the world, anywhere in the galaxy (IP stands for Interplanetary),
+in the world, anywhere in the galaxy (IP stands for InterPlanetary),
 they can tell if they have that data and when they send
 it to you, you're able to verify it was the right data even
 without trusting that person.
@@ -56,11 +56,13 @@ That's IPLD.
 
 IPLD is how we go from *data* to **data structures**.
 
-We do this with a new link type and a data model.
+**We do this with a new link type and a data model.**
+
+### Links
 
 For links we use a [CID](https://specs.ipld.io/block-layer/CID.html). A CID is an extension of `multihash`,
-in fact a `multihash` is part of a `CID`. All we extend it with
-is a *codec* that tells us what format the data is in (JSON, CBOR,
+in fact a `multihash` is part of a `CID`. We simply add a *codec* to a `multihash`
+that tells us what format the data is in (JSON, CBOR,
 Bitcoin, Ethereum, etc). This way, we can actually link between
 data in different formats and any link to data anyone ever gives
 us can be decoded so that it can become more than just a series
@@ -70,37 +72,46 @@ CID is a [standard]() that anyone can implement, even people that
 have no other interest in IPLD beyond the need for hash links to
 different data types can use it.
 
-The IPLD Data Model is a bit more conceptual, as it is applied
-to formats that had never considered IPLD.
+### The Data Model
 
-Every language has a library for JSON encoding and decoding. These
-languages all adapt the JSON data model (types) into whatever the
-best fit for their language is. Our data model is very similar,
-but we add a few more types.
+The IPLD Data Model is a bit more conceptual and can be applied
+to formats that have never considered IPLD.
 
-First, we add a link type using CID as our link format. We also
-add binary values, which are missing from JSON. We support nothing
-beyond that other than the types JSON has already defined quite well.
+Consider that every programming language has a library for JSON encoding and decoding. These
+languages all adapt the JSON data model (types) into the
+best fit for that language. A "number" in JSON has many potential mappings in
+different languages, a JSON library has to decide how it is most appropriately represented.
+Our data model is very similar to the JSON data model, but we add a few more types.
+
+First, we add a **link** type using CID as our link format. We also
+add a **binary** type, which are missing from JSON. We support nothing
+beyond these and the other types that JSON has already defined quite well.
 
 We then apply this data model to more than just our own formats. We
 have specifications and libraries for interpreting many formats into
 this data model. For instance, Bitcoin blocks know nothing about IPLD
 since they were designed long before IPLD existed. We have a decoder
-for Bitcoin that presents the data found in a Bitcoin block as IPLD
+for Bitcoin that presents the data found in a Bitcoin block as the IPLD
 Data Model.
 
 This provides a consistent interpretation of all formats across all programming
-languages in IPLD terms. For instance, the links in Bitcoin blocks are
-only to other Bitcoin blocks and do not use CID's internally, but when
-you use an IPLD codec to read them the links will all be normalized
-to CID's that link to Bitcoin blocks.
+languages in IPLD terms. For instance, Bitcoin data includes hashes to identify
+blocks and transactions to form a heavily interlinked blockchain. Bitcoin doesn't
+use CID's internally, but when you use an IPLD codec to read Bitcoin data, the
+hashes will be normalized to CIDs so we maintain a consistent "link" type that
+includes the content address (hash), the hash algorithm (double-SHA2-256) and the
+IPLD codec (e.g. `bitcoin-block` or `bitcoin-tx`).
 
 This lets you build data structures that freely link between formats
 that can be traversed though a normalized data model. Effectively,
 you can write format agnostic tools for reading, distributing, and
-persisting all content addressed data.
+persisting all content addressed data. Your custom IPLD data structure, encoded
+in your chosen IPLD codec, can link to anyone else's IPLD data, arbitrary
+Bitcoin blocks, Git commits and a universe of content addressed data.
 
-## Tutorial
+## Getting Started
+
+### Tutorial
 
 We highly recommend you read the following tutorial
 before trying to use IPLD. This tutorial is language
@@ -110,9 +121,12 @@ agnostic and includes examples in JavaScript, Go and Rust.
   * [Addressing](./tutorial.md#addressing)
   * [Linking](./tutorial.md#linking)
 
-## Getting Started
+### Programming language guides
 
-Using IPLD can vary from language to language.
+When you have understood the basics of IPLD, you will need to familiarize
+yourself with the available IPLD libraries available for your programming
+language. Each language is different in the way they present and interact with
+IPLD data.
 
 * [Getting started in JavaScript](./getting-started/js)
   * [Persisting IPLD data in `js-ipfs` and `js-ipfs-lite`](./getting-started/js#storing-ipld-data-in-ipfs)
@@ -125,138 +139,158 @@ Using IPLD can vary from language to language.
 
 [Talks, blog posts, and other media about IPLD.](./docs/media)
 
+## Further Reading
 
-## Documentation
-### Getting things done in IPLD
-
-[Great guide](./docs/gtd) for how to approach IPLD depending on the problem
-you're trying to solve.
-
-### IPLD in the Interplanetary Ecosystem
-
-Details of how [IPLD fits into the ecosystem of IPFS](./ecosystem) and other decentralized
-technologies.
-
-### IPLD Objectives and Scope
-
-[IPLD's unique worldview](./docs/objectives) and the boundaries of what IPLD is intended to solve.
-
-### IPLD Schemas
-
-IPLD has a [powerful schema language](https://specs.ipld.io/schemas/) that is extensively
-documented.
-
-### Advanced Data Layouts
-
-Guide to [data structures that move beyond our simple data model]('./docs/advanced-layouts)
-representations.
+* **[Getting Things Done with IPLD](./docs/gtd)**: How you approach IPLD depends
+  on the problem you are trying to solve. Read our guide to understand how IPLD
+  can be best used to solve your data problems.
+* **[IPLD in the InterPlanetary Ecosystem](./docs/ecosystem.md)**: The array
+  of new technologies that IPLD relates to can be confusing at first. Read our
+  guide to understand how IPLD relates to **IPFS**, **libp2p**, **CIDs**,
+  **multiformats** and more.
+* **[Objectives and Scope of IPLD](./docs/objectives)**: Why are we pursuing
+  this project and where do we hope it to go? Read our guide to understand what
+  guides our development efforts.
+* **[IPLD Schemas](https://specs.ipld.io/schemas/)**: Describing the shape and
+  layout of data structures is important for documentation, communication,
+  validation and much more. Read about our the Schema language designed around
+  the IPLD Data Model.
+* **[Advanced Data Layouts](./docs/advanced-layouts)**: A large amount of the
+  power afforded by IPLD is in creating complex and potentially very large data
+  structures. Advanced Data Layouts (ADLs) are how we formally define them and
+  the logic used to create and traverse linked data and create abstractions that
+  are familiar to any programmer (e.g. a "map" that holds millions of records on
+  the persistent web).
 
 ### FAQ
-[Frequently Asked Questions.](./FAQ)
+
+[Frequently Asked Questions](./FAQ)
 
 ## Glossary
 
-### Blocks
+### Block
 
-The term "block" is used to refer to the pairing of a raw binary and a CID. In other words, it's
-data that has not been decoded yet, or data that has just recently been encoded.
+The term "block" is used to refer to the pairing of a raw binary and a CID.
 
-Most users don't work directly with blocks. Instead, block data is encoded/decoded into [Data Model](#data-model). It's only if your'e writing a database, or a filesystem, or a replicator that you will work directly
-with blocks.
+Most users don't work directly with raw blocks. Instead, block binary data is
+encoded and decoded to and from the IPLD [Data Model](#data-model). It's only if
+writing a storage system such as a database, a filesystem or a replicator that
+you will work directly with blocks.
 
-[Full Block specification.](https://specs.ipld.io/block-layer/block.html)
+The term "block" is sometimes loosely used to refer to the Data Model
+instantiation of decoded raw block data. While this is often useful when
+conceptualizing data and the way links are composed and traversed, the strict
+definition of "block" is intended to refer to the `Binary:CID` pairing.
+
+See the [Block specification](https://specs.ipld.io/block-layer/block.html) for
+further details.
 
 ### CID
 
-CID is a Content IDentifier. It's self-describing data structure identifier. In other
-words, it's a hash that says what kind of hash it is and how to decode it.
+CID is a **Content IDentifier**. It's a self-describing data structure identifier. In other
+words, it's a hash that says what kind of hash it is and how to decode the binary
+data identified by the hash.
 
-[IPLD CID Specification.](https://specs.ipld.io/block-layer/CID.html) The [full format specification](https://github.com/multiformats/cid) is part of multi-formats.
+See the [CID specification](https://specs.ipld.io/block-layer/CID.html) further
+details. In addition, the [full format specification](https://github.com/multiformats/cid)
+is part of the multiformats project and should be referred to when creating a
+CID implementation for a new language.
 
-### Codecs
+### Codec
 
-The term "codec" refers to a [mutlicodec]() specific encoder/decoder.
+The term "codec" refers to a [mutlicodec]() which defines a specific binary data
+encoder and/or decoder (usually both).
 
-A codec is responsible for encoding [Data Model](#data-model) to Binary and for
-decoding Binary to [Data Model](#data-model).
+A codec is responsible for encoding [Data Model](#data-model) instantiations into
+binary and decoding binary into the [Data Model](#data-model).
 
 Examples:
 
-* [dag-cbor](#DAG-CBOR)
-* [dag-json](#DAG-JSON)
-* bitcoin
-* cbor
-* json
+* [DAG-CBOR](#DAG-CBOR)
+* [DAG-JSON](#DAG-JSON)
+* bitcoin-block, bitcoin-tx
+* Git
+* CBOR
+* JSON
 
 #### DAG-CBOR
 
-IPLD Data Model implemented as a subset of CBOR with additional constraints
-for hash consistent representations.
+DAG-CBOR is a codec that implements the IPLD Data Model as a subset of CBOR, with additional constraints
+for hash consistent representations. DAG-CBOR adds a "link" type using a CBOR
+tag.
 
-[Full DAG-CBOR specification.](https://specs.ipld.io/block-layer/codecs/dag-cbor.html)
+See the full [DAG-CBOR specification](https://specs.ipld.io/block-layer/codecs/dag-cbor.html)
+for further information, including details about features and types of CBOR
+encoding that are excluded from DAG-CBOR in order to make it a suitable format
+for content addressed data.
 
 #### DAG-JSON
 
-**Not Recommended.**
+**Not recommended for production use**
 
-IPLD Data Model implemented serialized to JSON.
+DAG-JSON is a codec that implements the IPLD Data Model using JSON serialization.
+DAG-JSON adds "link" and "binary" types as well as additional constraints for
+hash consistent representations.
 
-[Full DAG-JSON specification.](https://specs.ipld.io/block-layer/codecs/dag-json.html)
+See the full [DAG-JSON specification](https://specs.ipld.io/block-layer/codecs/dag-json.html)
+for further information.
 
 ### Data Model
 
-The Data Model describes common base types called *kinds*.
+The IPLD Data Model describes common base types that we call **kinds** ("types"
+is a term that we prefer to reserve for data structures described by IPLD Schemas).
 
 These *kinds* allow IPLD to create data structures using simple types
 accessible across many programming languages and encoding formats.
 
 Using the Data Model we can implement file systems, databases, and custom
 application data structures in a format agnostic way and even link between
-these structures and formats using commong toolchains.
+these structures and formats using common toolchains.
 
 All JSON types are Data Model kinds:
 
-* `map`
-* `list`
 * `boolean` (true, false)
 * `null`
 * `string` (utf8)
-* `numbers`
-  * `int`
-  * `float`
+* numbers:
+  - `integer`
+  - `float`
+* `map`
+* `list`
 
-There is a `bytes` kind for raw binary data.
+In addition, there is a `bytes` kind for raw binary data.
 
-Finally, there is a `link` kind represented by a [CID](#CID). You'll find
-CID type implementations for every programming language which are leveraged
-by all IPLD codecs in that language.
+Finally, there is a `link` kind represented by a [CID](#CID).
 
-[Full IPLD Data Model specification.](https://specs.ipld.io/data-model-layer/data-model.html)
+Read the full [IPLD Data Model specification](https://specs.ipld.io/data-model-layer/data-model.html)
+for further details.
 
 ### HAMT
 
 HAMT stands for ["Hash Array Mapped Trie"](https://en.wikipedia.org/wiki/Hash_array_mapped_trie).
 
 HAMT's in IPLD differ from typical in-memory implementation as we require the use of "buckets"
-to manage performance.
+to manage performance and use links to connect blocks to form potentially very large collections of data.
 
-[Full IPLD HAMT specification.](https://specs.ipld.io/data-structures/hashmap.html)
+Read our [IPLD Hashmap (HAMT) specification](https://specs.ipld.io/data-structures/hashmap.html)
+for furthe details.
 
 ### Graphsync
 
-Graphsync is a replication protocol for IPLD. It's used heavily by Filecoin and experimentally by
+Graphsync is a replication protocol for IPLD. It's used heavily by [Filecoin](https://filecoin.io) and experimentally by
 IPFS.
 
 Graphsync uses [IPLD Selectors](#selectors) to replicate sections of a larger IPLD graph.
 
-[Full Graphsync specification.](https://specs.ipld.io/block-layer/graphsync/graphsync.html)
+Read the full [Graphsync specification](https://specs.ipld.io/block-layer/graphsync/graphsync.html)
+for further details.
 
 ### Selectors
 
-Selectors define a selection criteria for IPLD graph queries.
+Selectors define selection criteria for IPLD graph queries.
 
-IPLD Selectors are a declarative format for specifying a walk over a [Data Model](#data-model) graph --
-what nodes to walk over (or not), recursively; and, some positions to "visit" (with a callback, typically, though library implementation details may vary).
+IPLD Selectors are a declarative format for specifying a walk over a [Data Model](#data-model)
+graph&mdash;what nodes to walk over (or not), recursively; and, some positions to "visit" (with a callback, typically, though library implementation details may vary).
 You can think of Selectors as being roughly like "regexps for graphs".
 
 Selectors are natively implemented in most IPLD libraries (for performance reasons),
@@ -265,30 +299,20 @@ The format is described in IPLD (using [IPLD Schemas](https://specs.ipld.io/sche
 so it's possible to serialize Selectors in any [Codec](#codecs) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
 
-[Full IPLD Selectors specification.](https://specs.ipld.io/selectors/selectors.html)
-
+Read the full [IPLD Selectors specification](https://specs.ipld.io/selectors/selectors.html)
+for further details.
 
 ## Specifications
 
-You can refer to the [specifications website]() for a full list of content.
+You can refer to the [specifications website](https://ipld.github.io/specs/) for a full list of content.
 
 There are numerous links to specifications throughout this documentation site.
 
 The following curated list of specification pages may be of interest to those
-seeking additional forms of documentation.
+seeking additional forms of documentation:
 
-### Theory of Change
-
-### Design Documents
-
-[Various documents about the design, and history of design thought, in and around
-IPLD.](https://specs.ipld.io/design/)
-
-### Foundational Principals
-
-[The foundation principals of globally content addressed data structures.](https://specs.ipld.io/foundations.html)
-
-### IPLD Team
-
-[List of IPLD team members.](https://specs.ipld.io/#ipld-team)
-
+* **[IPLD Exploratory Specifications](https://specs.ipld.io/design/)**:
+  Various documents about the design, and history of design thought, in and around IPLD.
+* **[IPLD Foundational Principles](https://specs.ipld.io/FOUNDATIONS.html)**:
+  The foundation principals of globally content addressed data structures.
+* **[Core IPLD team members](https://specs.ipld.io/#ipld-team)**.

@@ -19,7 +19,7 @@ function linkfix (md) {
 
 module.exports = {
   title: 'IPLD Documentation',
-  description: 'Documentation for the Inter-planetary Linked Data project',
+  description: 'Documentation for the Inter-planetary Linked Data (IPLD) project',
   plugins: [ 'code-switcher' ],
   themeConfig: {
     repo: 'ipld/docs',
@@ -30,6 +30,7 @@ module.exports = {
     nav: [
       { text: 'Home', link: '/' }
     ],
+    logo: '/images/logo.svg',
     sidebar: {
       '/schemas/': [{
         title: 'IPLD Schemas',

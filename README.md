@@ -265,6 +265,21 @@ Finally, there is a `link` kind represented by a [CID](#CID).
 Read the full [IPLD Data Model specification](https://specs.ipld.io/data-model-layer/data-model.html)
 for further details.
 
+### Nodes
+
+A "node" in IPLD is a point in a graph&mdash;an element of the Data Model in an
+instantiated data structure. A "block" will typically contain many nodes. Graph
+traversal involves navigating nodes across block boundaries and identifying specific
+elements within a Data Model representation.
+
+It is useful to consider the Data Model as being formed of "scalar" and "recursive"
+kinds when considering nodes and possible traversal. "Scalar" kinds are terminal
+nodes in the Data Model: null, boolean, integer, float, string, bytes. "Recursive" kinds
+can contain other kinds within them and therefore allow deeper traversal: map and list.
+The link kind is scalar, but is typically treated as a transparent node for the purpose
+of traversal such that data spanning many blocks can be addressed as a single graph of
+nodes.
+
 ### HAMT
 
 HAMT stands for ["Hash Array Mapped Trie"](https://en.wikipedia.org/wiki/Hash_array_mapped_trie).

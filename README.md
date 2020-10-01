@@ -68,7 +68,7 @@ data in different formats and any link to data anyone ever gives
 us can be decoded so that it can become more than just a series
 of bytes.
 
-CID is a [standard]() that anyone can implement, even people that
+CID is a [standard](https://github.com/multiformats/cid) that anyone can implement, even people that
 have no other interest in IPLD beyond the need for hash links to
 different data types can use it.
 
@@ -132,8 +132,6 @@ IPLD data.
   * [Persisting IPLD data in `js-ipfs` and `js-ipfs-lite`](./getting-started/js#storing-ipld-data-in-ipfs)
 * [Getting started in Go](./getting-started/go)
   * [Persisting IPLD data in `go-ipfs`](./getting-started/go#IPFS)
-* [Getting started in Rust](./getting-started/rust)
-  * [Persisting IPLD data in `rust-ipfs`](./getting-started/rust#IPFS)
 
 ## Media
 

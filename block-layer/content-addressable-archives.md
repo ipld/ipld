@@ -192,7 +192,9 @@ Regarding the `roots` property of the Header block:
 * The current JavaScript implementation allows for zero or more roots
 * Current usage of the CAR format in Filecoin requires exactly one CID
 
-It is unresolved how the `roots` array should be constrained, but it is recommended that only a single root CID be used in this version of the CAR format.
+It is unresolved how the `roots` array should be constrained. **It is recommended that only a single root CID be used in this version of the CAR format.**
+
+A work-around for use-cases where the inclusion of a root CID is difficult but needing to be safely within the "at least one" recommendation is to use an empty CID: `\x01\x55\x00\x00` (zero-length "identity" multihash with "raw" codec). Since current implemetations for this version of the CAR specification don't check for the existence of root CIDs _(see [Root CID block existence](#root-cid-block-existence))_, this will be safe as far as CAR implementations are concerned. However, there is no guarantee that applications that use CAR files will correctly consume (ignore) this empty root CID.
 
 ### Zero blocks
 
@@ -201,6 +203,8 @@ It is unresolved whether a valid CAR must contain _at least one_ block or whethe
 ### Root CID block existence
 
 It is unresolved whether an implementation must verify that a CID present in the roots array of the Header also appears as a block in the archive. While it is expected that this would be the case, it is unresolved whether encoders and decoders must validate the existence of root blocks in the archive.
+
+Current implementations of this version of the CAR specification _do not_ check for root block existence in the CAR body.
 
 ### CID version
 

@@ -116,7 +116,7 @@ The remainder of a Section, after length-prefix and CID, comprises the raw byte 
 
 ### Determinism
 
-Deterministic CAR creation is not covered by this specification. However, deterministic generation of a CAR from a given graph is possible and is relied upon by certain uses of the format, most notably, [Filecoin](https://filecoin-project.github.io/specs).
+Deterministic CAR creation is not covered by this specification. However, deterministic generation of a CAR from a given graph is possible and is relied upon by certain uses of the format, most notably, [Filecoin](https://filecoin-project.github.io/specs). Specifically a *filecoin-deterministic car-file* is currently implementation-defined as containing all DAG-forming blocks in first-seen order, as a result of a depth-first DAG traversal starting from a single root. 
 
 Additional rules for the generation of the CAR format may be applied in order to ensure that the same CAR is always generated from the same data. The burden of this determinism is primarily placed on [selectors](../selectors/selectors.md) whereby a given selector applied to a given graph will always yield blocks in the same order regardless of implementation.
 

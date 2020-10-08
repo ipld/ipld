@@ -128,7 +128,7 @@ Notes:
 
 * `hashAlg` in the root block is an integer code identifying the hash algorithm used for mapping keys to their positions in the structure. The code should correspond to a [multihash](https://github.com/multiformats/multihash) code as found in the [multiformats table](https://github.com/multiformats/multicodec/blob/master/table.csv).
 * `bitWidth` in the root block must be at least `3`, making the minimum `map` size 1 byte.
-* `bitWidth` is not present in the root block as it is inferred from the size of the `map` byte array with the equation `log2(byteLength(map) x 8)`, being the inverse of the `map` size equation `2`<sup>`bitWidth`</sup>` / 8`.
+* `bitWidth` is not present in the root block as it is inferred from the size of the `map` byte array with the equation `log2(byteLength(map) x 8)`, being the inverse of the `map` size equation `2`<sup>`bitWidth`</sup>` / 8`. For lower-level languages, you can use the cheaper equivalent `trailingZeroBits(byteLength(map)) + 3`.
 * `bucketSize` in the root block must be at least `1`.
 * Keys are stored in `Byte` form.
 * `Element` is a kinded union that supports storing either a `Bucket` (as kind list), a link to a child node (as kind link), or as an inline, non-linked child node (as kind map).
@@ -248,7 +248,7 @@ These defaults are descriptive rather than prescriptive. New implementations may
 
 ### `bitWidth`
 
-* The default `bitWidth` is `8` for writing IPLD HashMaps. This value yields a `data` length of `2`<sup>`8`</sup>`=256`. `8` is also simple in most programming languages to slice off a list of bytes since it's a simple byte-index. However, implementations should be designed to support different `bitWidth`s encountered when reading IPLD HashMaps. The minimum supported `bitWidth` must be `3` (for a 1-byte `map`). No maximum is specified, however implementers should be aware that interoperability problems may arise with large `bitWidth` values.
+* The default `bitWidth` is `8` for writing IPLD HashMaps. This value yields a `data` length of `2`<sup>`8`</sup>`=256`. `8` is also simple in most programming languages to slice off a list of bytes since it's a simple byte-index. However, implementations should be designed to support different `bitWidth`s encountered when reading IPLD HashMaps. The minimum supported `bitWidth` must be `3` (for a 1-byte `map`). No maximum is specified, however implementers should be aware that interoperability problems may arise with large `bitWidth` values. For lower-level languages, you can work out the `data` length via the equivalent `1 << (bitWidth - 3)`.
 
 ### `bucketSize`
 

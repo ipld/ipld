@@ -99,7 +99,7 @@ See [IPLD Schemas](../../schemas) for a definition of this format.
 ```ipldsch
 # Root node layout
 type HashMapRoot struct {
-  hashAlg String
+  hashAlg Int
   bucketSize Int
   map Bytes
   data [ Element ]

@@ -7,7 +7,7 @@ A block in IPLD is data paired with an address (CID). With the
 `@ipld/block` API you can encode data directly into a block.
 
 ```js
-import Block from '@ipld/block/defaults.js'
+import Block from '@ipld/block/defaults'
 
 const person = { name: 'Mikeal Rogers' }
 const childBlock = Block.encoder(person, 'dag-cbor')
@@ -36,7 +36,7 @@ await Promise.all([childBlock, rootBlock].map(b => store.put(b)))
 
 const printPeople = async () => {
   const rootLink = await rootBlock.cid()
-  const peopleBlock = await store.get(root)
+  const peopleBlock = await store.get(rootLink)
   const people = peopleBlock.decode()
   for (const link of people) {
     const block = await store.get(link)
@@ -70,14 +70,14 @@ const compareInterests = async (person1, person2) => {
   const [ decode1, decode2 ] = blocks.map(block => block.decode())
   const seen = new Set()
   const commonInterests = []
-  person1.interests.forEach(cid => seen.add(cid.toString()))
-  for (const cid of person2.interests) {
+  decode1.interests.forEach(cid => seen.add(cid.toString()))
+  for (const cid of decode2.interests) {
     if (seen.has(cid.toString())) {
       const block = await store.get(cid)
       commonInterests.push(block.decode())
     }
   }
-  const people = `${person1.name} and ${person2.name}`
+  const people = `${decode1.name} and ${decode2.name}`
   if (commonInterests.length === 0) {
     console.log(`${people} have nothing in common.`)
   } else {
@@ -106,12 +106,13 @@ is to using the IPFS network.
 The `js-ipfs` project has an API for storing block data at `ipfs.block`.
 
 ```js
+import Block from '@ipld/block/defaults'
 import IPFS from 'ipfs'
 
 const ipfs = await IPFS.create()
 await ipfs.start()
 
-const save = obj => {
+const save = async obj => {
   const block = Block.encoder(obj, 'dag-cbor')
   const data = block.encode()
   const cid = await block.cid()

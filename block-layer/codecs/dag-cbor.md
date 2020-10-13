@@ -20,10 +20,10 @@ DAG-CBOR uses the [Concise Binary Object Representation (CBOR)] data format, whi
 
 ## Format
 
-The CBOR IPLD format is called DAG-CBOR to disambiguate it from regular CBOR. Most CBOR objects are valid DAG-CBOR. The primary differences are:
-  * tag `42` interpreted as CIDs
+The CBOR IPLD format is called DAG-CBOR to disambiguate it from regular CBOR. Most simple CBOR objects are valid DAG-CBOR. The primary differences are:
+  * tag `42` interpreted as CIDs, no other tags are supported
   * maps may only be keyed by strings
-  * additional strictness requirements about valid data encoding forms
+  * additional strictness requirements are applied to ensure canonical data encoding forms
 
 ## Links
 
@@ -33,23 +33,27 @@ The inclusion of the Multibase prefix exists for historical reasons and the iden
 
 ## Map Keys
 
-In DAG-CBOR, map keys must be strings, as defined by the [IPLD Data Model].
+In DAG-CBOR, map keys must be strings, as defined by the [IPLD Data Model]. Other map keys, such as ints, are not supported and should be rejected when encountered.
 
 ## Strictness
 
-DAG-CBOR requires that there exist a single way of encoding any given object, and that encoded forms contain no superfluous data that may be ignored or lost in a round-trip decode/encode.
+DAG-CBOR requires that there exist a single, canonical way of encoding any given object, and that encoded forms contain no superfluous data that may be ignored or lost in a round-trip decode/encode.
 
 Therefore the DAG-CBOR codec must:
 
 1. Use no tags other than the CID tag (`42`). A valid DAG-CBOR encoder must not encode using any additional tags and a valid DAG-CBOR decoder must reject objects containing additional tags as invalid.
-2. Use the canonical CBOR encoding defined by the the suggestions in [section 3.9 of the CBOR specification]. A valid DAG-CBOR decoder should reject objects not following these restrictions as invalid. Specifically:
+   * This includes any of the initial values of the tag registry in [section 2.4 of the CBOR specification], such as dates, bignums, bigfloats, URIs, regular expressions and other complex, or simple values whether or not they map to the [IPLD Data Model].
+2. The only usable major type 7 minor types are those for encoding Floats (`25`, `26`, `27`), True (`20`), False (`21`) and Null (`22`).
+	 * "Simple values" are not supported. This includes all registered or unregistered simple values that are encoded with a major type 7.
+	 * Undefined (`23`) is not supported.
+3. Use the canonical CBOR encoding defined by the suggestions in [section 3.9 of the CBOR specification]. A valid DAG-CBOR decoder should reject objects not following these restrictions as invalid. Specifically:
    * Integer encoding must be as short as possible.
    * The expression of lengths in major types 2 through 5 must be as short as possible.
    * The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys.
      - If two keys have different lengths, the shorter one sorts earlier;
      - If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.
-   * Indefinite-length items must be made into definite-length items.
-3. Encode and decode a single top-level CBOR object and not allow back-to-back concatenated objects, as suggested by [section 3.1 of the CBOR specification] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes, whether valid or invalid CBOR, should fail validation.
+   * Indefinite-length items are not supported, only definite-length items are usable.
+4. Encode and decode a single top-level CBOR object and not allow back-to-back concatenated objects, as suggested by [section 3.1 of the CBOR specification] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes, whether valid or invalid CBOR, should fail validation.
 
 ### Floating Point Encoding (Unresolved)
 
@@ -118,6 +122,7 @@ A new [BigInt] built-in type is currently being adopted across JavaScript engine
 [Links]: ../../data-model-layer/data-model.md#link-kind
 [CIDs]: ../CID.md
 [Multibase]: https://github.com/multiformats/multibase
+[section 2.4 of the CBOR specification]: https://tools.ietf.org/html/rfc7049#section-2.4
 [section 3.9 of the CBOR specification]: https://tools.ietf.org/html/rfc7049#section-3.9
 [section 3.1 of the CBOR specification]: https://tools.ietf.org/html/rfc7049#section-3.1
 [borc]: https://github.com/dignifiedquire/borc

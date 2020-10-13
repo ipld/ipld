@@ -242,7 +242,7 @@ These defaults are descriptive rather than prescriptive. New implementations may
 
 ### `hashAlg`
 
-* The default supported hash algorithm for writing IPLD HashMaps is the x64 form of the 128-bit [MurmurHash3](https://github.com/aappleby/smhasher) (identified by the multihash name ['murmur3-128'](https://github.com/multiformats/multicodec/blob/master/table.csv)). Note the x86 form will produce different output so should not be confused with the x64 form. Additionally, [some JavaScript implementations](https://cimi.io/murmurhash3js-revisited/) do not correctly decompose UTF-8 strings into their constituent bytes for hashing so will not produce portable results.
+* The default supported hash algorithm for writing IPLD HashMaps is SHA2-256 (identified by the multihash multicodec code `0x12`).
 * Pluggability of hash algorithms is encouraged to allow users to switch switch if their use-case has a compelling reason. Such pluggability requires the supply of an algorithm that takes Bytes and returns Bytes. Users changing the hash algorithm need to be aware that such pluggability restricts the ability of other implementations to read their data since matching hash algorithms also need to be supplied on the read-side.
 
 ### `bitWidth`
@@ -272,11 +272,6 @@ Future iterations of this specification may explore:
  * Default hash algorithm(s) outputting a larger number of bits (e.g. a cryptographic hash function such as SHA2-256).
  * Resetting the `index` calculation to take bits from the start of the hash once maximum-depth is reached, allowing or theoretically infinite depth data structures.
  * Allowing flexibility in `bucketSize` at maximum-depth nodes.
-
-### Hash algorithm
-
-* The use of MurmurHash3 x64 128-bit needs further research and modelling. There may be more appropriate default algorithms for the IPLD HashMap with more optimal characteristics (speed, randomness, suitability for a web environment, etc.).
-* There may arise a demonstrated need to encode a nonce or key in the root block to support keyed hash algorithms.
 
 ### Buckets
 

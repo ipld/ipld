@@ -138,7 +138,7 @@ type Value union {
 
 Notes:
 
-* `hashAlg` in the root block is a string identifier for a hash algorithm. The identifier should correspond to a [multihash](https://github.com/multiformats/multihash) identifier as found in the [multiformats table](https://github.com/multiformats/multicodec/blob/master/table.csv).
+* `hashAlg` in the root block is an integer code identifying the hash algorithm used for mapping keys to their positions in the structure. The code should correspond to a [multihash](https://github.com/multiformats/multihash) code as found in the [multiformats table](https://github.com/multiformats/multicodec/blob/master/table.csv).
 * `bitWidth` in the root block must be at least `3`, making the minimum `map` size 1 byte.
 * `bitWidth` is not present in the root block as it is inferred from the size of the `map` byte array with the equation `log2(byteLength(map) x 8)`, being the inverse of the `map` size equation `2`<sup>`bitWidth`</sup>` / 8`.
 * `bucketSize` in the root block must be at least `1`.

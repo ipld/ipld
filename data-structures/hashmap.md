@@ -101,15 +101,14 @@ See [IPLD Schemas](../../schemas) for a definition of this format.
 type HashMapRoot struct {
   hashAlg Int
   bucketSize Int
-  map Bytes
-  data [ Element ]
+  hamt HashMapNode
 }
 
 # Non-root node layout
 type HashMapNode struct {
   map Bytes
   data [ Element ]
-}
+} representation tuple
 
 type Element union {
   | HashMapNode map
@@ -121,19 +120,8 @@ type Bucket [ BucketEntry ]
 
 type BucketEntry struct {
   key Bytes
-  value Value
+  value Any
 } representation tuple
-
-type Value union {
-  | Bool bool
-  | String string
-  | Bytes bytes
-  | Int int
-  | Float float
-  | Map map
-  | List list
-  | Link link
-} representation kinded
 ```
 
 Notes:
@@ -272,7 +260,7 @@ Implementations may impose a maximum key size for writing IPLD HashMaps. Reading
 
 ### Inline values
 
-Implementations may choose to write all values in separate blocks and store only CIDs in Value locations in an IPLD HashMap. Alternatively, a rough size heuristic may also be applied to make a decision regarding inline versus linked blocks. Or this decision could be left up to the user via some API choice. As storage of arbitrary kinds in Value locations is allowed by this specification, implementations should support this for read operations.
+Implementations may choose to write all values in separate blocks and store only CIDs in `value` locations in an IPLD HashMap. Alternatively, a rough size heuristic may also be applied to make a decision regarding inline versus linked blocks. Or this decision could be left up to the user via some API choice. As storage of arbitrary kinds in `value` locations is allowed by this specification, implementations should support this for read operations.
 
 ## Possible future improvements and areas for research
 
@@ -332,21 +320,8 @@ type Bucket [ BucketEntry ]
 
 type BucketEntry struct {
   key Bytes
-  value Value
+  value Any
 } representation tuple
-
-# There is currently no limitation on the types available for storage as long
-# as they can be decoded from the bytes. Currently the Filecoin HAMT is used
-# to store inline objects rather than links to objects.
-type Value union {
-  | Bool bool
-  | String string
-  | Bytes bytes
-  | Int int
-  | Float float
-  | Map map
-  | List list
-  | Link link
-} representation kinded
 ```
 
+There is currently no limitation on the types available for storage as `value`s as long as they can be decoded from the bytes. In practice, the Filecoin HAMT is used to store inline objects rather than links to objects.

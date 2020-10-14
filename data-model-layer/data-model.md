@@ -7,10 +7,11 @@ which describes what data is representable in IPLD --
 for example, booleans, integers, textual strings, maps and lists, etc.
 
 While the Data Model describes these representations in the abstract,
-[Codecs](Codecs) specify exactly how these data are transcribed into serialized bytes.
-(Another component of the IPLD specifications, [Schemas](../schemas), provide
-additional optional tooling on top of the Data Model which can further refine,
-describe, and constrain the range of acceptable data values.)
+[Codecs](../block-layer/codecs) specify exactly how these data are transcribed
+into serialized bytes. (Another component of the IPLD specifications,
+[Schemas](../schemas), provide additional optional tooling on top of the Data
+Model which can further refine, describe, and constrain the range of acceptable
+data values.)
 
 Motivation
 ----------

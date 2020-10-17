@@ -2,7 +2,7 @@ IPLD in the InterPlanetary Ecosystem
 ====================================
 
 IPLD is a part of the "InterPlanetary Ecosystem".
-You can it without any of the other projects in that ecosystem, but it may be useful to understand this history;
+You can use it without any of the other projects in that ecosystem, but it may be useful to understand this history;
 and if you come to IPLD via one of the other InterPlanetary projects (such as IPFS),
 this document can help you understand the relationship and the distinctions.
 

@@ -128,7 +128,7 @@ Product types usually show up in prose descriptions of data as the word "and".
 
 For example, say: "I have a boolean and another boolean and another boolean" --
 you might write code for this as `struct{ a bool, b bool, c bool }`,
-and its cardinality would be "|2*2*2|" -- "|8|" --
+and its cardinality would be "|2\*2\*2|" -- "|8|" --
 two for each of the booleans, and multiplied because each of them may vary independently,
 and thus each of the booleans adds another "dimension" to the state space described by this combined value.
 
@@ -138,7 +138,7 @@ and "Furniture" (it has members "chair", and "desk") --
 we could say "I have an Animal, *and* it's on top of a Furniture" --
 and then I could have any one of of *six* states
 ("cat on a chair", "cat on desk", "dog on a chair", etc):
-the cardinality is "|3*2|".
+the cardinality is "|3\*2|".
 
 ### infinite recursives
 
@@ -179,7 +179,7 @@ you have a [sum type](#sum-types) (more specifically, a [maybe type](#maybe-type
 and even if the cardinality of string is "infinite", it's still useful to declare
 the cardinality of your string is "a" (an arbitrary placeholder),
 and then the cardinality of "string or null" is "|a+1|".
-(In practice: how often have you had an API bug burn you on the different
+(In practice: how often have you had an API bug burn you on the difference
 between null and an empty string, or the difference between null and absent?
 This is why we keep counting cardinality even after an infinity shows up!)
 
@@ -216,8 +216,9 @@ This "open membership" is commonly known as **interfaces**.
 ### interfaces
 
 Interfaces have the concept of "open membership", and are also typically
-combined with some definition of "features" that are required if something
-will be considered to implement the interface.
+combined with some definition of "features", also called as traits or behavior
+in some languages, that are required if something will be considered to
+implement the interface.
 
 In programming languages, the definition of "features" usually is expressed in
 terms of a set of methods.  This makes sense for programming languages,

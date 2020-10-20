@@ -111,7 +111,6 @@ type HashMapNode struct {
 } representation tuple
 
 type Element union {
-  | HashMapNode map
   | &HashMapNode link
   | Bucket list
 } representation kinded
@@ -131,7 +130,7 @@ Notes:
 * `bitWidth` is not present in the root block as it is inferred from the size of the `map` byte array with the equation `log2(byteLength(map) x 8)`, being the inverse of the `map` size equation `2`<sup>`bitWidth`</sup>` / 8`. For lower-level languages, you can use the cheaper equivalent `trailingZeroBits(byteLength(map)) + 3`.
 * `bucketSize` in the root block must be at least `1`.
 * Keys are stored in `Byte` form.
-* `Element` is a kinded union that supports storing either a `Bucket` (as kind list), a link to a child node (as kind link), or as an inline, non-linked child node (as kind map).
+* `Element` is a kinded union that supports storing either a `Bucket` (as kind `list`) or a link to a child node (as kind `link`).
 
 ## Algorithm in detail
 
@@ -142,7 +141,7 @@ Notes:
 3. Take the left-most `bitWidth` bits, offset by `depth x bitWidth`, from the hash to form an `index`. At each level of the data structure, we increment the section of bits we take from the hash so that the `index` comprises a different set of bits as we move down.
 4. If the `index` bit in the node's `map` is `0`, we can be certain that the `key` does not exist in this data structure, so return an empty value (as appropriate for the implementation platform).
 5. If the `index` bit in the node's `map` is `1`, the value may exist. Perform a `popcount()` on the `map` up to `index` such that we count the number of `1` bits up to the `index` bit-position. This gives us `dataIndex`, an index in the `data` array to look up the value or insert a new bucket.
-6. If the `dataIndex` element of `data` contains a link (CID) to a child block or an inline child block, increment `depth` and repeat with the child node identified by the link from step **3**.
+6. If the `dataIndex` element of `data` contains a link (CID) to a child block, increment `depth` and repeat with the child node identified by the link from step **3**.
 7. If the `dataIndex` element of `data` contains a bucket (array), iterate through entries in the bucket:
    1. If an entry has the `key` we are looking for, return the `value`.
    2. If no entries contain the `key` we are looking for, return an empty value (as appropriate for the implementation platform). Note that the bucket will be sorted by `key` so a scan can stop when a scan yields keys greater than `key`.
@@ -152,7 +151,7 @@ Notes:
 1. Set a `depth` value to `0`, indicating the root block
 2. The `key` is hashed, using `hashAlg`.
 3. Take the left-most `bitWidth` bits, offset by `depth x bitWidth`, from the hash to form an `index`. At each level of the data structure, we increment the section of bits we take from the hash so that the `index` comprises a different set of bits as we move down.
-4. If the `index` bit in the node's `map` is `0`, a new bucket needs to be created at the current node. If the `index` bit in the node's `map` is `1`, a value exists for this `index` in the node's `data` which may be a bucket (which may be full) or may be a link to a child node or an inline child node.
+4. If the `index` bit in the node's `map` is `0`, a new bucket needs to be created at the current node. If the `index` bit in the node's `map` is `1`, a value exists for this `index` in the node's `data` which may be a bucket (which may be full) or may be a link to a child node.
 5. Perform a `popcount()` on the `map` up to `index` such that we count the number of `1` bits up to the `index` bit-position. This gives us `dataIndex`, an index in the `data` array to look up the value or insert a new bucket.
 6. If the `index` bit in the node's `map` is `0`:
    1. Mutate the current node (create a copy).
@@ -164,7 +163,7 @@ Notes:
       2. Record the new CID of the mutated child in the appropriate position of the mutated parent's `data` array. 
       3. Recursively proceed, by recording the new CIDs of each node in a mutated copy of its parent node until `depth` of `0` where we produce the the new root block and its CID.
 7. If the `index` bit in the node's `map` is `1`:
-   1. If the `dataIndex` element of `data` contains a link (CID) to a child node or an inline child node, increment `depth`:
+   1. If the `dataIndex` element of `data` contains a link (CID) to a child node, increment `depth`:
       1. If `(depth x bitWidth) / 8` is now greater than the `digestLength`, a "max collisions" failure has occurred and an error state should be returned to the user.
       2. If `(depth x bitWidth) / 8` is less than the number of bytes in the hash, repeat with the child node identified in step **3**.
    2. If the `dataIndex` element of `data` contains a bucket (array) and the bucket's size is less than `bucketSize`:
@@ -188,7 +187,7 @@ The deletion algorithm below is presented as an iterative operation. It can also
 3. Take the left-most `bitWidth` bits, offset by `depth x bitWidth`, from the hash to form an `index`. At each level of the data structure, we increment the section of bits we take from the hash so that the `index` comprises a different set of bits as we move down.
 4. If the `index` bit in the node's `map` is `0`, we can be certain that the `key` does not exist in this data structure, so there is no need to proceed.
 5. If the `index` bit in the node's `map` is `1`, the value may exist. Perform a `popcount()` on the `map` up to `index` such that we count the number of `1` bits up to the `index` bit-position. This gives us `dataIndex`, an index in the `data` array to look up the value or insert a new bucket.
-6. If the `dataIndex` element of `data` contains a link (CID) to a child node or an inline child block, increment `depth` and repeat with the child node identified in step **3**.
+6. If the `dataIndex` element of `data` contains a link (CID) to a child node, increment `depth` and repeat with the child node identified in step **3**.
 7. If the `dataIndex` element of `data` contains a bucket (array), iterate through entries in the bucket:
    1. If no entries contain the `key` we are looking for, there is no need to proceed. Note that the bucket will be sorted by `key` so a scan can stop when a scan yields keys greater than `key`.
    2. If an entry has the `key` we are looking for, we need to remove it and possibly collapse this node and any number of parent nodes depending on the number of entries remaining. This helps ensure canonical form. Note that there are two possible states below, if neither case matches the state of the current node, we have not satisfied the invariant and the tree is not in a canonical state (i.e. something has failed):

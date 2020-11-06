@@ -983,9 +983,73 @@ type MultisigV0Transaction struct {
 
 ### PaymentChannelActor
 
+```
+type PaychV0State struct {
+  From Address
+  To Address
+  ToSend BigInt
+  SettlingAt ChainEpoch
+  MinSettleHeight ChainEpoch
+  LaneStates &PaychV0LaneStatesAMT # AMT[Int]PaychV0LaneState
+} representation tuple
+```
+
+**AMT**: This is an ADL representing `type PaychV0LaneStates [PaychV0LaneState]` indexed by Lane ID.
+
+```ipldsch
+type PaychV0LaneStatesAMT struct {
+  height Int
+  count Int
+  node PaychV0LaneStatesAMTNode
+} representation tuple
+
+type PaychV0LaneStatesAMTNode struct {
+  bitmap Bytes
+  children [&PaychV0LaneStatesAMTNode]
+  values [PaychV0LaneState]
+} representation tuple
+
+type PaychV0LaneState struct {
+  Redeemed BigInt
+  Nonce Int
+} representation tuple
+```
+
 ### StoragePowerActor
 
 ### VerifiedRegistryActor
 
+```ipldsch
+type VerifregV0State struct {
+  RootKey Address
+  Verifiers &DataCapHAMT
+  VerifiedClients &DataCapHAMT
+}
+```
+
+**HAMT**: This is an ADL representing `type DataCapMap {Address:StoragePower}`.
+
+```ipldsch
+type DataCapHAMT struct {
+  map Bytes
+  data [ DataCapHAMTElement ]
+} representation tuple
+
+type DataCapHAMTElement union {
+  | DataCapHAMTLink "0"
+  | DataCapHAMTBucket "1"
+} representation keyed
+
+type DataCapHAMTLink &DataCapHAMT
+
+type DataCapHAMTBucket [ DataCapHAMTBucketEntry ]
+
+type DataCapHAMTBucketEntry struct {
+  key Address
+  value StoragePower # inline
+} representation tuple
+```
+
 ### SystemActor
 
+The system actor has an empty state

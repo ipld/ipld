@@ -11,24 +11,26 @@ For more information about the IPLD Schema language, see the [specificaiton](htt
 ## Basic Types
 
 ```ipldsch
+# Address is a `https://github.com/filecoin-project/go-address` in its binary byte format.
+# It may be used as a hamt key, and will be often visualized or presented to users
+# in its more readable string form.
 type Address bytes
 
-# Used as a fudge to get arbitrary bytes into map keys
-type RawAddress string
+# Go big.Int
+# Prefer presenting to users either as a number or a string view of the decimal number
+# for readability.
+type BigInt bytes
 
-type CidString string
-
-type BigInt bytes # Go big.Int
-
+# An indicator of which RPC method on an actor a message should trigger execution of.
 type MethodNum int
 
+# The 'f0...' subset of Addresses used for the actual indexes of actors in a state root.
 type ActorID int
 
+# the height of a block in the chain. Should fit in an Int64
 type ChainEpoch int
 
 type TokenAmount BigInt
-
-type UnpaddedPieceSize int # TODO: where is this used?
 
 type PaddedPieceSize int
 
@@ -54,8 +56,6 @@ type RegisteredSealProof int
 
 type TransactionID # TxnID
 ```
-
-TODO: where is `SealVerifyInfo` used?
 
 ## Crypto Types
 
@@ -138,10 +138,12 @@ type MessageReceipt struct {
 ```
 
 ```ipldsch
+# note: Info is a Link to an empty struct
+# https://github.com/filecoin-project/lotus/blob/master/chain/types/state.go#L26
 type StateRoot struct {
   Version Int
   Actors &ActorsHAMT
-  Info &Any # TODO: what does this point to?
+  Info &Any
 } representation tuple
 ```
 
@@ -233,9 +235,11 @@ type ActorsHAMTBucketEntry struct {
   value Actor # inline
 } representation tuple
 
+# TODO: head is a link to an implicit union of the specific actor state
+# keyed on the value of code.
 type Actor struct {
   code &Any # An inline CID encoded as raw+identity
-  head &Any # TODO: Is this where the various actor types get linked?
+  head &Any
   nonce Int # TODO: Should this be "CallSeqNum"?
   balance Bytes
 } representation tuple
@@ -245,15 +249,13 @@ type Actor struct {
 
 ```ipldsch
 type InitV0State struct {
-  AddressMap &ActorIDHAMT # TODO: confirm this is actually a HAMT here (defined below)
+  AddressMap &ActorIDHAMT
   NextID ActorID
   NetworkName String
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type ActorIDHAMT {RawAddress:ActorID}`.
-
-Note that this HAMT block form is indistinguishable from `DealIDHAMT` and `BalanceTableHAMT` which are also `{String:Int}`.
+**HAMT**: This is an ADL representing `type ActorIDHAMT {Address:ActorID}`.
 
 ```ipldsch
 type ActorIDHAMT struct {
@@ -271,7 +273,7 @@ type ActorIDHAMTLink &ActorIDHAMT
 type ActorIDHAMTBucket [ ActorIDHAMTBucketEntry ]
 
 type ActorIDHAMTBucketEntry struct {
-  key Bytes # RawAddress
+  key Address
   value ActorID
 } representation tuple
 ```

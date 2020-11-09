@@ -63,8 +63,8 @@ type TransactionID # TxnID
 
 ```ipldsch
 type Signature union {
-  SignatureBLS 0
   SignatureSecp256k1 1
+  SignatureBLS 2
 } representation byteprefix
 ```
 

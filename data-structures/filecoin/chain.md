@@ -1,4 +1,4 @@
-# Filecoin Data Structures
+# Filecoin Main Chain Data Structures
 
 Schemas are grouped by their serialized blocks. Other than those types listed in "Basic Types" and "Crypto Types", each grouping of schema types in a code block represents a data structure that is serialized into a single IPLD block with its own Link (CID).
 
@@ -45,6 +45,8 @@ type PartitionNumber int
 type BitField bytes
 
 type StoragePower BigInt
+
+type DataCap StoragePower
 
 type DealID int
 
@@ -186,7 +188,7 @@ type Message struct {
   GasFeeCap BigInt
   GasPremium BigInt
   Method MethodNum
-  Params Bytes
+  Params Bytes # See the Filecoin Messages Data Structures document for encoded DAG-CBOR message params
 } representation tuple
 
 type SignedMessage struct {
@@ -540,7 +542,7 @@ type DealOpsByEpochHAMTSetBucketEntry struct {
 } representation tuple
 ```
 
-### StorageMarketActor
+### StorageMinerActor
 
 ```ipldsch
 type MinerV0State struct {
@@ -1209,7 +1211,7 @@ type DataCapHAMTBucket [ DataCapHAMTBucketEntry ]
 
 type DataCapHAMTBucketEntry struct {
   key Address # Address
-  value StoragePower # inline
+  value DataCap # inline
 } representation tuple
 ```
 

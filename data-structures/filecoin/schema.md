@@ -138,12 +138,17 @@ type MessageReceipt struct {
 ```
 
 ```ipldsch
-# note: Info is a Link to an empty struct
-# https://github.com/filecoin-project/lotus/blob/master/chain/types/state.go#L26
 type StateRoot struct {
   Version Int
   Actors &ActorsHAMT
-  Info &Any
+  Info &StateInfo
+} representation tuple
+```
+
+Note that `StateInfo` is an [empty struct](https://github.com/filecoin-project/lotus/blob/f225b7b928de73e20dd8b8d4d075a56fbf3b8a25/chain/types/state.go#L26), which encodes as an empty CBOR array (`0x80`).
+
+```ipldsch
+type StateInfo struct {
 } representation tuple
 ```
 
@@ -213,7 +218,7 @@ type SignedMessageLinkAMTNode struct {
 
 ## Actors
 
-**HAMT**: This is an ADL representing `type ActorsMap {RawAddress:Actors}`.
+**HAMT**: This is an ADL representing `type ActorsMap {AddressString:Actors}`, where `AddressString` is the string form of the raw bytes of the `Address`.
 
 ```ipldsch
 type ActorsHAMT struct {
@@ -231,15 +236,13 @@ type ActorsHAMTLink &ActorsHAMT
 type ActorsHAMTBucket [ ActorsHAMTBucketEntry ]
 
 type ActorsHAMTBucketEntry struct {
-  key Bytes # RawAddress bytes
+  key Bytes # Address bytes
   value Actor # inline
 } representation tuple
 
-# TODO: head is a link to an implicit union of the specific actor state
-# keyed on the value of code.
 type Actor struct {
   code &Any # An inline CID encoded as raw+identity
-  head &Any
+  head &Any # An implicit union of each actor type, keyed by `code` here
   nonce Int # TODO: Should this be "CallSeqNum"?
   balance Bytes
 } representation tuple
@@ -255,7 +258,7 @@ type InitV0State struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type ActorIDHAMT {Address:ActorID}`.
+**HAMT**: This is an ADL representing `type ActorIDHAMT {AddressString:ActorID}`, where `AddressString` is the string form of the raw bytes of the `Address`.
 
 ```ipldsch
 type ActorIDHAMT struct {
@@ -451,7 +454,7 @@ type MarketV0DealProposal struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type BalanceTable {RawAddress:TokenAmount}`.
+**HAMT**: This is an ADL representing `type BalanceTable {AddressString:TokenAmount}`, where `AddressString` is the string form of the raw bytes of the `Address`.
 
 Note that this HAMT block form is indistinguishable from `ActorIDHAMT` and `DealIDHAMT` which are also `{String:Int}`.
 
@@ -471,7 +474,7 @@ type BalanceTableHAMTLink &BalanceTableHAMT
 type BalanceTableHAMTBucket [ BalanceTableHAMTBucketEntry ]
 
 type BalanceTableHAMTBucketEntry struct {
-  key Bytes # RawAddress
+  key Bytes # Address
   value TokenAmount
 } representation tuple
 ```
@@ -983,7 +986,7 @@ type MultisigV0Transaction struct {
 
 ### PaymentChannelActor
 
-```
+```ipldsch
 type PaychV0State struct {
   From Address
   To Address
@@ -1017,6 +1020,29 @@ type PaychV0LaneState struct {
 
 ### StoragePowerActor
 
+TODO: still working on `PowerV0CronEventHAMT` and `PowerV0ClaimHAMT`. Also need to figure out what `ProofValidationBatch` points to.
+
+```ipldsch
+type PowerV0State struct {
+  TotalRawBytePower StoragePower
+  TotalBytesCommitted StoragePower
+  TotalQualityAdjPower StoragePower
+  TotalQABytesCommitted StoragePower
+  TotalPledgeCollateral TokenAmount
+  ThisEpochRawBytePower StoragePower
+  ThisEpochQualityAdjPower StoragePower
+  ThisEpochPledgeCollateral TokenAmount
+  ThisEpochQAPowerSmoothed nullable V0FilterEstimate
+  MinerCount Int
+  MinerAboveMinPowerCount Int
+  CronEventQueue &PowerV0CronEventHAMT # Multimap, (HAMT[ChainEpoch]AMT[CronEvent]
+  FirstCronEpoch ChainEpoch
+  LastProcessedCronEpoch ChainEpoch
+  Claims &PowerV0ClaimHAMT # Map, HAMT[address]Claim
+  ProofValidationBatch nullable &Any
+} representation tuple
+```
+
 ### VerifiedRegistryActor
 
 ```ipldsch
@@ -1027,11 +1053,11 @@ type VerifregV0State struct {
 }
 ```
 
-**HAMT**: This is an ADL representing `type DataCapMap {Address:StoragePower}`.
+**HAMT**: This is an ADL representing `type DataCapMap {AddressString:StoragePower}`, where `AddressString` is the string form of the raw bytes of the `Address`.
 
 ```ipldsch
 type DataCapHAMT struct {
-  map Bytes
+  map Bytes # Address
   data [ DataCapHAMTElement ]
 } representation tuple
 
@@ -1052,4 +1078,9 @@ type DataCapHAMTBucketEntry struct {
 
 ### SystemActor
 
-The system actor has an empty state
+Note that `SystemActor` is an empty struct, which encodes as an empty CBOR array (`0x80`).
+
+```ipldsch
+type SystemActor struct {
+} representation tuple
+```

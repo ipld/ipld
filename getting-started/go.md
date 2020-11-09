@@ -24,8 +24,8 @@ import (
 var linkBuilder = cidlink.LinkBuilder{cid.Prefix{
 	Version:  1,    // Usually '1'.
 	Codec:    0x71, // dag-cbor as per multicodec
-	MhType:   0x15, // sha3-384 as per multicodec
-	MhLength: 48,   // sha3-224 hash has a 48-byte sum.
+	MhType:   0x15, // sha3-384 as per multihash
+	MhLength: 48,   // sha3-384 hash has a 48-byte sum.
 }}
 ```
 

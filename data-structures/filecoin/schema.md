@@ -61,8 +61,8 @@ type TransactionID # TxnID
 
 ```ipldsch
 type Signature union {
-  SignatureSecp256k1 0 # TODO: check the prefix bytes
-  SignatureBLS 1
+  SignatureBLS 0
+  SignatureSecp256k1 1
 } representation byteprefix
 ```
 
@@ -97,7 +97,7 @@ type BlockHeader struct {
   ParentWeight Bytes
   Height ChainEpoch
   ParentStateRoot &StateRoot
-  ParentMessageReceipts &Any # TODO: specs suggest this is an AMT of `MessageReceipt`
+  ParentMessageReceipts &MessageReceiptAMT
   Messages &TxMeta
   BLSAggregate nullable Signature
   Timestamp Int
@@ -126,10 +126,25 @@ type PoStProof struct {
 } representation tuple
 ```
 
-TODO: I haven't seen this, is it correct? Apparently in an AMT?
+**AMT**: This is an ADL representing `type MessageReceiptList [MessageReceipt]`.
 
 ```ipldsch
 type ExitCode int
+
+```ipldsch
+type MessageReceiptAMT struct {
+  height Int
+  count Int
+  node MessageReceiptAMTNode
+} representation tuple
+
+# This can also be the root of a block
+type MessageReceiptAMTNode struct {
+  bitmap Bytes
+  children [&MessageReceiptAMTNode]
+  values [&Message]
+} representation tuple
+
 type MessageReceipt struct {
   ExitCode ExitCode
   Return   Bytes
@@ -243,7 +258,7 @@ type ActorsHAMTBucketEntry struct {
 type Actor struct {
   code &Any # An inline CID encoded as raw+identity
   head &Any # An implicit union of each actor type, keyed by `code` here
-  nonce Int # TODO: Should this be "CallSeqNum"?
+  nonce CallSeqNum
   balance Bytes
 } representation tuple
 ```
@@ -379,7 +394,7 @@ type DealProposalAMTNode struct {
 } representation tuple
 
 type MarketV0DealProposal struct {
-  PieceCID &Any # A CID with fil-commitment-unsealed + sha2_256-trunc254-padded
+  PieceCID &Any # CommP: A CID with fil-commitment-unsealed + sha2_256-trunc254-padded
   PieceSize PaddedPieceSize
   VerifiedDeal Bool
   Client Address
@@ -479,7 +494,7 @@ type BalanceTableHAMTBucketEntry struct {
 } representation tuple
 ```
 
-**SetMultimap (HAMT+HAMT)**: This is an ADL representing a Set within a Map `type DealOpsByEpoch {ChainEpochString:{DealID:Null}}` where `ChainEpochString` is a text form of the `ChainEpoch` integer and `DealIDString` is the bytes of a uvarint form of `DealID`.
+**SetMultimap (HAMT+HAMT)**: This is an ADL representing a Set within a Map `type DealOpsByEpoch {ChainEpochString:{DealIDString:Null}}`, where `ChainEpochString` is a text form of the `ChainEpoch` integer and `DealIDString` is the bytes of a uvarint form of `DealID`.
 
 ```ipldsch
 # HAMT/map root structure
@@ -1020,8 +1035,6 @@ type PaychV0LaneState struct {
 
 ### StoragePowerActor
 
-TODO: still working on `PowerV0CronEventHAMT` and `PowerV0ClaimHAMT`. Also need to figure out what `ProofValidationBatch` points to.
-
 ```ipldsch
 type PowerV0State struct {
   TotalRawBytePower StoragePower
@@ -1035,11 +1048,135 @@ type PowerV0State struct {
   ThisEpochQAPowerSmoothed nullable V0FilterEstimate
   MinerCount Int
   MinerAboveMinPowerCount Int
-  CronEventQueue &PowerV0CronEventHAMT # Multimap, (HAMT[ChainEpoch]AMT[CronEvent]
+  CronEventQueue &PowerV0CronEventHAMT # Multimap: HAMT[ChainEpoch]AMT[PowerV0CronEvent]
   FirstCronEpoch ChainEpoch
   LastProcessedCronEpoch ChainEpoch
-  Claims &PowerV0ClaimHAMT # Map, HAMT[address]Claim
-  ProofValidationBatch nullable &Any
+  Claims &PowerV0ClaimHAMT # HAMT[address]PowerV0Claim
+  ProofValidationBatch nullable &ProofValidationBatchHAMT # Multimap: HAMT[Address]AMT[SealVerifyInfo]
+} representation tuple
+```
+
+**Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type PowerV0CronEventMap {ChainEpochString:[PowerV0CronEvent]}`, where `ChainEpochString` is a text form of the `ChainEpoch` integer the `CronEvent` list is a queue.
+
+```ipldsch
+# HAMT/map root structure
+
+type PowerV0CronEventHAMT struct {
+  map Bytes
+  data [ PowerV0CronEventHAMTElement ]
+} representation tuple
+
+type PowerV0CronEventHAMTElement union {
+  | PowerV0CronEventHAMTLink "0"
+  | PowerV0CronEventHAMTBucket "1"
+} representation keyed
+
+type PowerV0CronEventHAMTLink &PowerV0CronEventHAMTLink
+
+type PowerV0CronEventHAMTBucket [ PowerV0CronEventHAMTBucketEntry ]
+
+type PowerV0CronEventHAMTBucketEntry struct {
+  key Bytes # ChainEpoch as a string
+  value &PowerV0CronEventAMT
+} representation tuple
+
+# AMT/set leaf structure (list of CronEvents)
+
+type PowerV0CronEventAMT struct {
+  height Int
+  count Int
+  node PowerV0CronEventAMTNode
+} representation tuple
+
+# This can also be the root of a block
+type PowerV0CronEventAMTNode struct {
+  bitmap Bytes
+  children [&PowerV0CronEventAMTNode]
+  values [PowerV0CronEvent]
+} representation tuple
+
+type PowerV0CronEvent struct {
+  MinerAddr Address
+  CallbackPayload Bytes
+} representation tuple
+```
+
+**HAMT**: This is an ADL representing `type PowerV0ClaimMap {AddressString:PowerV0Claim}`, where `AddressString` is the string form of the raw bytes of the `Address`.
+
+```ipldsch
+type PowerV0ClaimMapHAMT struct {
+  map Bytes
+  data [ PowerV0ClaimMapHAMTElement ]
+} representation tuple
+
+type PowerV0ClaimMapHAMTElement union {
+  | PowerV0ClaimMapHAMTLink "0"
+  | PowerV0ClaimMapHAMTBucket "1"
+} representation keyed
+
+type PowerV0ClaimMapHAMTLink &PowerV0ClaimMapHAMT
+
+type PowerV0ClaimMapHAMTBucket [ PowerV0ClaimMapHAMTBucketEntry ]
+
+type PowerV0ClaimMapHAMTBucketEntry struct {
+  key Bytes # Address
+  value PowerV0Claim
+} representation tuple
+
+type PowerV0Claim struct {
+  RawBytePower StoragePower
+  QualityAdjPower StoragePower
+} representation tuple
+```
+
+**Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type ProofValidationBatchMap {AddressString:[SealVerifyInfo]}`, where `AddressString` is the string form of the raw bytes of the `Address` and the `CronEvent` list is a queue.
+
+```ipldsch
+# HAMT/map root structure
+
+type ProofValidationBatchHAMT struct {
+  map Bytes
+  data [ ProofValidationBatchHAMTElement ]
+} representation tuple
+
+type ProofValidationBatchHAMTElement union {
+  | ProofValidationBatchHAMTLink "0"
+  | ProofValidationBatchHAMTBucket "1"
+} representation keyed
+
+type ProofValidationBatchHAMTLink &ProofValidationBatchHAMTLink
+
+type ProofValidationBatchHAMTBucket [ ProofValidationBatchHAMTBucketEntry ]
+
+type ProofValidationBatchHAMTBucketEntry struct {
+  key Bytes # ChainEpoch as a string
+  value &ProofValidationBatchAMT
+} representation tuple
+
+# AMT/set leaf structure (list of CronEvents)
+
+type ProofValidationBatchAMT struct {
+  height Int
+  count Int
+  node ProofValidationBatchAMTNode
+} representation tuple
+
+# This can also be the root of a block
+type ProofValidationBatchAMTNode struct {
+  bitmap Bytes
+  children [&ProofValidationBatchAMTNode]
+  values [SealVerifyInfo]
+} representation tuple
+
+type SealVerifyInfo struct {
+  SealProof RegisteredSealProof
+  SectorID SectorID
+  DealIDs [DealID]
+  Randomness Bytes
+  InteractiveRandomness Bytes
+  Proof Bytes
+  SealedCID &Any # CommR: A CID with fil-commitment-sealed + poseidon-bls12_381-ac-fc1
+  UnsealedCID &Any # CommD: A CID with fil-commitment-unsealed + sha2_256-trunc254-padded
 } representation tuple
 ```
 
@@ -1057,7 +1194,7 @@ type VerifregV0State struct {
 
 ```ipldsch
 type DataCapHAMT struct {
-  map Bytes # Address
+  map Bytes
   data [ DataCapHAMTElement ]
 } representation tuple
 
@@ -1071,7 +1208,7 @@ type DataCapHAMTLink &DataCapHAMT
 type DataCapHAMTBucket [ DataCapHAMTBucketEntry ]
 
 type DataCapHAMTBucketEntry struct {
-  key Address
+  key Address # Address
   value StoragePower # inline
 } representation tuple
 ```

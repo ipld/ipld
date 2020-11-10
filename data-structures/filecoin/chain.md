@@ -30,6 +30,10 @@ type ActorID int
 # the height of a block in the chain. Should fit in an Int64
 type ChainEpoch int
 
+# the ChainEpoch as bytes, where the integer is converted to its string form and
+# the string's bytes are used
+type ChainEpochBytes bytes
+
 type TokenAmount BigInt
 
 type PaddedPieceSize int
@@ -39,6 +43,10 @@ type PeerID bytes
 type SectorSize int
 
 type SectorNumber int
+
+# the SectorNumber as bytes, where the integer is encoded as a uvarint and the
+# resulting bytes are used
+type SectorNumberBytes bytes
 
 type PartitionNumber int
 
@@ -50,6 +58,10 @@ type DataCap StoragePower
 
 type DealID int
 
+# the DealID as bytes, where the integer is encoded as a uvarint and the resulting
+# bytes are used
+type DealIDBytes bytes
+
 type DealWeight BigInt
 
 type Multiaddr bytes
@@ -57,6 +69,20 @@ type Multiaddr bytes
 type RegisteredSealProof int
 
 type TransactionID # TxnID
+
+# the TransactionID as bytes, where the integer is encoded as a varint (not uvarint)
+# and the resulting bytes are used
+type TransactionIDBytes bytes
+
+# Spacetime is defined as "A quantity of space x time (in byte-epochs)"
+type Spacetime BigInt
+
+type ExitCode int
+
+# Message parameters are encoded as DAG-CBOR and the resulting bytes are
+# embedded as `Params` fields in some structs.
+# See the Filecoin Messages Data Structures document for encoded DAG-CBOR message params
+type CborEncodedParams Bytes
 ```
 
 ## Crypto Types
@@ -89,16 +115,25 @@ type TokenAmounts struct {
 ## Chain
 
 ```ipldsch
+# The `ParentStateRoot` link will point either directly to `ActorsHAMT' for v0
+# or `StateRoot` which links to `ActorsHAMT` for v2.
+# See Lotus chain/state/LoadStateTree()
+type StateRootLink &Any
+
+# The type hint here, `BlockHeader`, holds true except for the case of the
+# Genesis block, which is a different format entirely.
+type TipSetKey [&BlockHeader]
+
 type BlockHeader struct {
   Miner Address
   Ticket nullable Ticket
   ElectionProof nullable ElectionProof
   BeaconEntries [BeaconEntry]
   WinPoStProof [PoStProof]
-  Parents [&Any] # TODO: can we &BlockHeader this or is it a union with Genesis?
+  Parents TipSetKey
   ParentWeight Bytes
   Height ChainEpoch
-  ParentStateRoot &StateRoot
+  ParentStateRoot StateRootLink
   ParentMessageReceipts &MessageReceiptAMT
   Messages &TxMeta
   BLSAggregate nullable Signature
@@ -129,9 +164,6 @@ type PoStProof struct {
 ```
 
 **AMT**: This is an ADL representing `type MessageReceiptList [MessageReceipt]`.
-
-```ipldsch
-type ExitCode int
 
 ```ipldsch
 type MessageReceiptAMT struct {
@@ -188,7 +220,7 @@ type Message struct {
   GasFeeCap BigInt
   GasPremium BigInt
   Method MethodNum
-  Params Bytes # See the Filecoin Messages Data Structures document for encoded DAG-CBOR message params
+  Params CborEncodedParams
 } representation tuple
 
 type SignedMessage struct {
@@ -235,7 +267,7 @@ type SignedMessageLinkAMTNode struct {
 
 ## Actors
 
-**HAMT**: This is an ADL representing `type ActorsMap {AddressString:Actors}`, where `AddressString` is the string form of the raw bytes of the `Address`.
+**HAMT**: This is an ADL representing `type ActorsMap {Address:Actors}`.
 
 ```ipldsch
 type ActorsHAMT struct {
@@ -253,7 +285,7 @@ type ActorsHAMTLink &ActorsHAMT
 type ActorsHAMTBucket [ ActorsHAMTBucketEntry ]
 
 type ActorsHAMTBucketEntry struct {
-  key Bytes # Address bytes
+  key Address
   value Actor # inline
 } representation tuple
 
@@ -261,7 +293,7 @@ type Actor struct {
   code &Any # An inline CID encoded as raw+identity
   head &Any # An implicit union of each actor type, keyed by `code` here
   nonce CallSeqNum
-  balance Bytes
+  balance BigInt
 } representation tuple
 ```
 
@@ -275,7 +307,7 @@ type InitV0State struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type ActorIDHAMT {AddressString:ActorID}`, where `AddressString` is the string form of the raw bytes of the `Address`.
+**HAMT**: This is an ADL representing `type ActorIDHAMT {Address:ActorID}`.
 
 ```ipldsch
 type ActorIDHAMT struct {
@@ -316,8 +348,6 @@ type CronV0Entry struct {
 **v0**
 
 ```ipldsch
-type Spacetime bytes
-
 type RewardV0State struct {
   CumsumBaseline Spacetime
   CumsumRealized Spacetime
@@ -471,9 +501,7 @@ type MarketV0DealProposal struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type BalanceTable {AddressString:TokenAmount}`, where `AddressString` is the string form of the raw bytes of the `Address`.
-
-Note that this HAMT block form is indistinguishable from `ActorIDHAMT` and `DealIDHAMT` which are also `{String:Int}`.
+**HAMT**: This is an ADL representing `type BalanceTable {Address:TokenAmount}`.
 
 ```ipldsch
 type BalanceTableHAMT struct {
@@ -491,12 +519,12 @@ type BalanceTableHAMTLink &BalanceTableHAMT
 type BalanceTableHAMTBucket [ BalanceTableHAMTBucketEntry ]
 
 type BalanceTableHAMTBucketEntry struct {
-  key Bytes # Address
+  key Address
   value TokenAmount
 } representation tuple
 ```
 
-**SetMultimap (HAMT+HAMT)**: This is an ADL representing a Set within a Map `type DealOpsByEpoch {ChainEpochString:{DealIDString:Null}}`, where `ChainEpochString` is a text form of the `ChainEpoch` integer and `DealIDString` is the bytes of a uvarint form of `DealID`.
+**SetMultimap (HAMT+HAMT)**: This is an ADL representing a Set within a Map `type DealOpsByEpoch {ChainEpochBytes:{DealIDBytes:Null}}`.
 
 ```ipldsch
 # HAMT/map root structure
@@ -516,7 +544,7 @@ type DealOpsByEpochHAMTLink &DealOpsByEpochHAMTLink
 type DealOpsByEpochHAMTBucket [ DealOpsByEpochHAMTBucketEntry ]
 
 type DealOpsByEpochHAMTBucketEntry struct {
-  key Bytes
+  key ChainEpochBytes
   value &DealOpsByEpochAMT
 } representation tuple
 
@@ -537,7 +565,7 @@ type DealOpsByEpochHAMTSet_Link &DealOpsByEpochHAMTSet
 type DealOpsByEpochHAMTSetBucket [ DealOpsByEpochHAMTSetBucketEntry ]
 
 type DealOpsByEpochHAMTSetBucketEntry struct {
-  key Bytes # The bytes of the string form of ChainEpoch
+  key DealIDBytes
   value Null
 } representation tuple
 ```
@@ -775,7 +803,7 @@ type MinerV2Deadline struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type SectorPreCommitOnChainInfoMap {SectorNumberString:SectorPreCommitOnChainInfo}`. Where SectorNumberString is the uvarint bytes (string) form of `SectorNumber`.
+**HAMT**: This is an ADL representing `type SectorPreCommitOnChainInfoMap {SectorNumberBytes:SectorPreCommitOnChainInfo}`
 
 ```ipldsch
 type MinerV0SectorPreCommitOnChainInfoHAMT struct {
@@ -793,7 +821,7 @@ type MinerV0SectorPreCommitOnChainInfoHAMTLink &MinerV0SectorPreCommitOnChainInf
 type MinerV0SectorPreCommitOnChainInfoHAMTBucket [ MinerV0SectorPreCommitOnChainInfoHAMTBucketEntry ]
 
 type MinerV0SectorPreCommitOnChainInfoHAMTBucketEntry struct {
-  key Bytes
+  key SectorNumberBytes
   value MinerV0SectorPreCommitOnChainInfo # inline
 } representation tuple
 
@@ -970,7 +998,7 @@ type MultisigV0State struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type MultisigV0TransactionMap {TransactionIDString:MultisigV0Transaction}`. Where TransactionIDString is the varint (not uvarint) bytes (string) form of `TransactionID`.
+**HAMT**: This is an ADL representing `type MultisigV0TransactionMap {TransactionIDBytes:MultisigV0Transaction}`
 
 ```ipldsch
 type MultisigV0TransactionHAMT struct {
@@ -996,7 +1024,7 @@ type MultisigV0Transaction struct {
   To Address
   Value TokenAmount
   Method MethodNum
-  Params Bytes
+  Params CborEncodedParams
   Approved [Address]
 } representation tuple
 ```
@@ -1058,7 +1086,7 @@ type PowerV0State struct {
 } representation tuple
 ```
 
-**Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type PowerV0CronEventMap {ChainEpochString:[PowerV0CronEvent]}`, where `ChainEpochString` is a text form of the `ChainEpoch` integer the `CronEvent` list is a queue.
+**Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type PowerV0CronEventMap {ChainEpochBytes:[PowerV0CronEvent]}`, where the `CronEvent` list is a queue.
 
 ```ipldsch
 # HAMT/map root structure
@@ -1078,7 +1106,7 @@ type PowerV0CronEventHAMTLink &PowerV0CronEventHAMTLink
 type PowerV0CronEventHAMTBucket [ PowerV0CronEventHAMTBucketEntry ]
 
 type PowerV0CronEventHAMTBucketEntry struct {
-  key Bytes # ChainEpoch as a string
+  key ChainEpochBytes
   value &PowerV0CronEventAMT
 } representation tuple
 
@@ -1103,7 +1131,7 @@ type PowerV0CronEvent struct {
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type PowerV0ClaimMap {AddressString:PowerV0Claim}`, where `AddressString` is the string form of the raw bytes of the `Address`.
+**HAMT**: This is an ADL representing `type PowerV0ClaimMap {Address:PowerV0Claim}`.
 
 ```ipldsch
 type PowerV0ClaimMapHAMT struct {
@@ -1121,7 +1149,7 @@ type PowerV0ClaimMapHAMTLink &PowerV0ClaimMapHAMT
 type PowerV0ClaimMapHAMTBucket [ PowerV0ClaimMapHAMTBucketEntry ]
 
 type PowerV0ClaimMapHAMTBucketEntry struct {
-  key Bytes # Address
+  key Address
   value PowerV0Claim
 } representation tuple
 
@@ -1131,7 +1159,7 @@ type PowerV0Claim struct {
 } representation tuple
 ```
 
-**Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type ProofValidationBatchMap {AddressString:[SealVerifyInfo]}`, where `AddressString` is the string form of the raw bytes of the `Address` and the `CronEvent` list is a queue.
+**Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type ProofValidationBatchMap {Address:[SealVerifyInfo]}`, where `SealVerifyInfo` is a queue.
 
 ```ipldsch
 # HAMT/map root structure
@@ -1151,7 +1179,7 @@ type ProofValidationBatchHAMTLink &ProofValidationBatchHAMTLink
 type ProofValidationBatchHAMTBucket [ ProofValidationBatchHAMTBucketEntry ]
 
 type ProofValidationBatchHAMTBucketEntry struct {
-  key Bytes # ChainEpoch as a string
+  key Address
   value &ProofValidationBatchAMT
 } representation tuple
 
@@ -1192,7 +1220,7 @@ type VerifregV0State struct {
 }
 ```
 
-**HAMT**: This is an ADL representing `type DataCapMap {AddressString:StoragePower}`, where `AddressString` is the string form of the raw bytes of the `Address`.
+**HAMT**: This is an ADL representing `type DataCapMap {Address:StoragePower}`.
 
 ```ipldsch
 type DataCapHAMT struct {
@@ -1210,7 +1238,7 @@ type DataCapHAMTLink &DataCapHAMT
 type DataCapHAMTBucket [ DataCapHAMTBucketEntry ]
 
 type DataCapHAMTBucketEntry struct {
-  key Address # Address
+  key Address
   value DataCap # inline
 } representation tuple
 ```

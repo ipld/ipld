@@ -19,7 +19,7 @@ type MessageParamsInitExec struct {
 
 ## RewardActor
 
-```
+```ipldsch
 type MessageParamsRewardConstructor StoragePower
 
 type MessageParamsRewardAwardBlockReward struct {

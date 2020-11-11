@@ -96,6 +96,16 @@ type Signature union {
 
 ## Genesis Block
 
+There is a single block at the base of the entire chain with this layout. It is
+the only structure that uses an actual Map at the representation level (other
+structs use the `tuple` representation which encodes them as Lists). It is
+encoded with DAG-CBOR with a SHA2-256 which gives the CID:
+`bafyreiaqpwbbyjo4a42saasj36kkrpv4tsherf2e7bvezkert2a7dhonoi`.
+
+Note that this block does not conform to strict DAG-CBOR in that its Map keys
+are not sorted according to canonical rules. Therefore it does not round-trip
+cleanly through current DAG-CBOR codecs.
+
 ```ipldsch
 type Genesis struct {
   Datetime String
@@ -120,8 +130,10 @@ type TokenAmounts struct {
 # See Lotus chain/state/LoadStateTree()
 type StateRootLink &Any
 
-# The type hint here, `BlockHeader`, holds true except for the case of the
-# Genesis block, which is a different format entirely.
+# The type hint here, `BlockHeader`, holds true **except** for the case of the
+# final Genesis block, which is a different format entirely. Note there is a
+# `BlockHeader` "genesis" but its `Parents` is a single CID pointing to the
+# original genesis block which is described by the `Genesis` type.
 type TipSetKey [&BlockHeader]
 
 type BlockHeader struct {

@@ -327,6 +327,10 @@ state.
 # An inline CID encoded as raw+identity, see above
 type ActorCode &Any
 
+# An implicit union of each actor state types, keyed by the `ActorCode` (`code`)
+# field and its variations listed above
+type ActorStateLink &Any
+
 type ActorsHAMT struct {
   map Bytes
   data [ ActorsHAMTElement ]
@@ -348,7 +352,7 @@ type ActorsHAMTBucketEntry struct {
 
 type Actor struct {
   code ActorCode
-  head &Any # An implicit union of each actor type, keyed by `code` here
+  head ActorStateLink
   nonce CallSeqNum
   balance BigInt
 } representation tuple
@@ -356,12 +360,22 @@ type Actor struct {
 
 ### InitActor
 
+The InitActor state is the same in v0 and v2.
+
+**v0**
+
 ```ipldsch
 type InitV0State struct {
   AddressMap &ActorIDHAMT # HAMT[Address]ActorID
   NextID ActorID
   NetworkName String
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type InitV2State InitV0State
 ```
 
 **HAMT**: This is an ADL representing `type ActorIDHAMT {Address:ActorID}`.
@@ -391,6 +405,8 @@ type ActorIDHAMTBucketEntry struct {
 
 The CronActor state is the same in v0 and v2.
 
+**v0**
+
 ```ipldsch
 type CronV0State struct {
   Entries [CronV0Entry]
@@ -402,6 +418,12 @@ type CronV0Entry struct {
   # The method number to call (must accept empty parameters)
   MethodNum MethodNum
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type CronV2State CronV0State
 ```
 
 ### RewardActor
@@ -488,10 +510,18 @@ type RewardV2State struct {
 
 The CronActor state is the same in v0 and v2 and only contains an `Address`.
 
+**v0**
+
 ```ipldsch
 type AccountV0State struct {
   Address Address
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type AccountV2State AccountV0State
 ```
 
 ### StorageMarketActor
@@ -522,6 +552,12 @@ type MarketV0State struct {
   # Total storage fee that is locked in escrow -> unlocked when payments are made
   TotalClientStorageFee TokenAmount
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type MarketV2State MarketV0State
 ```
 
 **AMT**: This is an ADL representing `type DealProposalList [DealProposal]`, indexed by `DealID`.
@@ -679,6 +715,8 @@ type DealOpsByEpochHAMTSetBucketEntry struct {
 
 ### StorageMinerActor
 
+**v0**
+
 ```ipldsch
 type MinerV0State struct {
   # Information not related to sectors
@@ -719,6 +757,57 @@ type MinerV0State struct {
   Deadlines &MinerV0Deadlines
   # Deadlines with outstanding fees for early sector termination
   EarlyTerminations BitField
+} representation tuple
+```
+
+```ipldsch
+type MinerV0Info struct {
+  Owner Address
+  Worker Address
+  ControlAddresses nullable [Address]
+  PendingWorkerKey nullable MinerV0WorkerChangeKey
+  PeerId PeerID
+  Multiaddrs nullable [Multiaddr]
+  SealProofType Int
+  SectorSize SectorSize
+  WindowPoStPartitionSectors Int
+} representation tuple
+
+type MinerV0WorkerChangeKey struct {
+  NewWorker Address
+  EffectiveAt ChainEpoch
+} representation tuple
+```
+
+```ipldsch
+type MinerV0VestingFunds struct {
+  Funds [MinerV0VestingFund]
+} representation tuple
+
+type MinerV0VestingFund struct {
+  Epoch ChainEpoch
+  Amount TokenAmount
+} representation tuple
+```
+
+```ipldsch
+type MinerV0Deadlines struct {
+  Due MinerV0DeadlineLinkList
+} representation tuple
+
+# Must be 48 CIDs
+type MinerV0DeadlineLinkList [&MinerV0Deadline]
+```
+
+```ipldsch
+type MinerV0Deadline struct {
+  Partitions &MinerV0PartitionAMT # AMT[PartitionNumber]Partition
+  ExpirationEpochs &BitFieldQueueAMT # AMT[ChainEpoch]BitField
+  PostSubmissions BitField
+  EarlyTerminations BitField
+  LiveSectors Int
+  TotalSectors Int
+  FaultyPower MinerV0PowerPair
 } representation tuple
 ```
 
@@ -770,27 +859,6 @@ type MinerV2State struct {
 ```
 
 ```ipldsch
-type MinerV0Info struct {
-  Owner Address
-  Worker Address
-  ControlAddresses nullable [Address]
-  PendingWorkerKey nullable MinerV0WorkerChangeKey
-  PeerId PeerID
-  Multiaddrs nullable [Multiaddr]
-  SealProofType Int
-  SectorSize SectorSize
-  WindowPoStPartitionSectors Int
-} representation tuple
-
-type MinerV0WorkerChangeKey struct {
-  NewWorker Address
-  EffectiveAt ChainEpoch
-} representation tuple
-```
-
-**v2**
-
-```ipldsch
 type MinerV2Info struct {
   Owner Address
   Worker Address
@@ -806,76 +874,7 @@ type MinerV2Info struct {
 } representation tuple
 ```
 
-```ipldsch
-type MinerV0VestingFunds struct {
-  Funds [MinerV0VestingFund]
-} representation tuple
-
-type MinerV0VestingFund struct {
-  Epoch ChainEpoch
-  Amount TokenAmount
-} representation tuple
-```
-
-```ipldsch
-type MinerV0Deadlines struct {
-  Due MinerV0DeadlineLinkList
-} representation tuple
-
-# Must be 48 CIDs
-type MinerV0DeadlineLinkList struct {
-  deadline1 &MinerV0Deadline
-  deadline2 &MinerV0Deadline
-  deadline3 &MinerV0Deadline
-  deadline4 &MinerV0Deadline
-  deadline5 &MinerV0Deadline
-  deadline6 &MinerV0Deadline
-  deadline7 &MinerV0Deadline
-  deadline8 &MinerV0Deadline
-  deadline9 &MinerV0Deadline
-  deadline10 &MinerV0Deadline
-  deadline11 &MinerV0Deadline
-  deadline12 &MinerV0Deadline
-  deadline13 &MinerV0Deadline
-  deadline14 &MinerV0Deadline
-  deadline15 &MinerV0Deadline
-  deadline16 &MinerV0Deadline
-  deadline17 &MinerV0Deadline
-  deadline18 &MinerV0Deadline
-  deadline19 &MinerV0Deadline
-  deadline20 &MinerV0Deadline
-  deadline21 &MinerV0Deadline
-  deadline22 &MinerV0Deadline
-  deadline23 &MinerV0Deadline
-  deadline24 &MinerV0Deadline
-  deadline25 &MinerV0Deadline
-  deadline26 &MinerV0Deadline
-  deadline27 &MinerV0Deadline
-  deadline28 &MinerV0Deadline
-  deadline29 &MinerV0Deadline
-  deadline30 &MinerV0Deadline
-  deadline31 &MinerV0Deadline
-  deadline32 &MinerV0Deadline
-  deadline33 &MinerV0Deadline
-  deadline34 &MinerV0Deadline
-  deadline35 &MinerV0Deadline
-  deadline36 &MinerV0Deadline
-  deadline37 &MinerV0Deadline
-  deadline38 &MinerV0Deadline
-  deadline39 &MinerV0Deadline
-  deadline40 &MinerV0Deadline
-  deadline41 &MinerV0Deadline
-  deadline42 &MinerV0Deadline
-  deadline43 &MinerV0Deadline
-  deadline44 &MinerV0Deadline
-  deadline45 &MinerV0Deadline
-  deadline46 &MinerV0Deadline
-  deadline47 &MinerV0Deadline
-  deadline48 &MinerV0Deadline
-} representation tuple
-```
-
-**v2** (same form as `MinerV0Deadlines` but the eventual link to `MinerV2Partition` is different.)
+Ssame form as `MinerV0Deadlines` but the eventual link to `MinerV2Partition` is different.
 
 ```ipldsch
 type MinerV2Deadlines struct {
@@ -883,71 +882,8 @@ type MinerV2Deadlines struct {
 } representation tuple
 
 # Must be 48 CIDs
-type MinerV2DeadlineLinkList struct {
-  deadline1 &MinerV2Deadline
-  deadline2 &MinerV2Deadline
-  deadline3 &MinerV2Deadline
-  deadline4 &MinerV2Deadline
-  deadline5 &MinerV2Deadline
-  deadline6 &MinerV2Deadline
-  deadline7 &MinerV2Deadline
-  deadline8 &MinerV2Deadline
-  deadline9 &MinerV2Deadline
-  deadline10 &MinerV2Deadline
-  deadline11 &MinerV2Deadline
-  deadline12 &MinerV2Deadline
-  deadline13 &MinerV2Deadline
-  deadline14 &MinerV2Deadline
-  deadline15 &MinerV2Deadline
-  deadline16 &MinerV2Deadline
-  deadline17 &MinerV2Deadline
-  deadline18 &MinerV2Deadline
-  deadline19 &MinerV2Deadline
-  deadline20 &MinerV2Deadline
-  deadline21 &MinerV2Deadline
-  deadline22 &MinerV2Deadline
-  deadline23 &MinerV2Deadline
-  deadline24 &MinerV2Deadline
-  deadline25 &MinerV2Deadline
-  deadline26 &MinerV2Deadline
-  deadline27 &MinerV2Deadline
-  deadline28 &MinerV2Deadline
-  deadline29 &MinerV2Deadline
-  deadline30 &MinerV2Deadline
-  deadline31 &MinerV2Deadline
-  deadline32 &MinerV2Deadline
-  deadline33 &MinerV2Deadline
-  deadline34 &MinerV2Deadline
-  deadline35 &MinerV2Deadline
-  deadline36 &MinerV2Deadline
-  deadline37 &MinerV2Deadline
-  deadline38 &MinerV2Deadline
-  deadline39 &MinerV2Deadline
-  deadline40 &MinerV2Deadline
-  deadline41 &MinerV2Deadline
-  deadline42 &MinerV2Deadline
-  deadline43 &MinerV2Deadline
-  deadline44 &MinerV2Deadline
-  deadline45 &MinerV2Deadline
-  deadline46 &MinerV2Deadline
-  deadline47 &MinerV2Deadline
-  deadline48 &MinerV2Deadline
-} representation tuple
+type MinerV2DeadlineLinkList [&MinerV2Deadline]
 ```
-
-```ipldsch
-type MinerV0Deadline struct {
-  Partitions &MinerV0PartitionAMT # AMT[PartitionNumber]Partition
-  ExpirationEpochs &BitFieldQueueAMT # AMT[ChainEpoch]BitField
-  PostSubmissions BitField
-  EarlyTerminations BitField
-  LiveSectors Int
-  TotalSectors Int
-  FaultyPower MinerV0PowerPair
-} representation tuple
-```
-
-**v2**
 
 ```ipldsch
 type MinerV2Deadline struct {
@@ -1144,6 +1080,10 @@ type MinerV0ExpirationSet struct {
 
 ### MultisigActor
 
+The MultisigActor state is the same in v0 and v2.
+
+**v0**
+
 ```ipldsch
 type MultisigV0State struct {
   Signers [Address]
@@ -1154,6 +1094,12 @@ type MultisigV0State struct {
   UnlockDuration ChainEpoch
   PendingTxns &MultisigV0TransactionHAMT # HAMT[TransactionID]Multisigv0Transaction
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type MultisigV2State MultisigV0State
 ```
 
 **HAMT**: This is an ADL representing `type MultisigV0TransactionMap {TransactionIDBytes:MultisigV0Transaction}`
@@ -1189,6 +1135,10 @@ type MultisigV0Transaction struct {
 
 ### PaymentChannelActor
 
+The PaymentChannelActor state is the same in v0 and v2.
+
+**v0**
+
 ```ipldsch
 type PaychV0State struct {
   From Address
@@ -1198,6 +1148,12 @@ type PaychV0State struct {
   MinSettleHeight ChainEpoch
   LaneStates &PaychV0LaneStatesAMT # AMT[Int]PaychV0LaneState
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type PaychV2State PaychV0State
 ```
 
 **AMT**: This is an ADL representing `type PaychV0LaneStates [PaychV0LaneState]` indexed by Lane ID.
@@ -1223,6 +1179,10 @@ type PaychV0LaneState struct {
 
 ### StoragePowerActor
 
+The StoragePowerActor state is the same in v0 and v2.
+
+**v0**
+
 ```ipldsch
 type PowerV0State struct {
   TotalRawBytePower StoragePower
@@ -1242,6 +1202,12 @@ type PowerV0State struct {
   Claims &PowerV0ClaimHAMT # HAMT[address]PowerV0Claim
   ProofValidationBatch nullable &ProofValidationBatchHAMT # Multimap: HAMT[Address]AMT[SealVerifyInfo]
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type PowerV2State PowerV0State
 ```
 
 **Multimap (HAMT+AMT)**: This is an ADL representing a List within a Map `type PowerV0CronEventMap {ChainEpochBytes:[PowerV0CronEvent]}`, where the `CronEvent` list is a queue.
@@ -1370,12 +1336,22 @@ type SealVerifyInfo struct {
 
 ### VerifiedRegistryActor
 
+The VerifiedRegistryActor state is the same in v0 and v2.
+
+**v0**
+
 ```ipldsch
 type VerifregV0State struct {
   RootKey Address
   Verifiers &DataCapHAMT
   VerifiedClients &DataCapHAMT
 }
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type VerifregV2State VerifregV0State
 ```
 
 **HAMT**: This is an ADL representing `type DataCapMap {Address:StoragePower}`.
@@ -1403,9 +1379,19 @@ type DataCapHAMTBucketEntry struct {
 
 ### SystemActor
 
-Note that `SystemActor` is an empty struct, which encodes as an empty CBOR array (`0x80`).
+Note that `SystemV0State` is an empty struct, which encodes as an empty CBOR array (`0x80`).
+
+The SystemActor state is the same in v0 and v2.
+
+**v0**
 
 ```ipldsch
-type SystemActor struct {
+type SystemV0State struct {
 } representation tuple
+```
+
+**v2** _(Same as v0)_
+
+```ipldsch
+type SystemV2State SystemV0State
 ```

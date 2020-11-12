@@ -74,15 +74,22 @@ type TransactionID # TxnID
 # and the resulting bytes are used
 type TransactionIDBytes bytes
 
-# Spacetime is defined as "A quantity of space x time (in byte-epochs)"
+# A quantity of space x time (in byte-epochs) representing power committed to the network for some duration.
 type Spacetime BigInt
 
 type ExitCode int
 
 # Message parameters are encoded as DAG-CBOR and the resulting bytes are
 # embedded as `Params` fields in some structs.
-# See the Filecoin Messages Data Structures document for encoded DAG-CBOR message params
+# See the Filecoin Messages Data Structures document for encoded DAG-CBOR message
+# params
 type CborEncodedParams Bytes
+
+# Message receipt returns are encoded as DAG-CBOR and the resulting bytes are
+# embedded as the `Return` field in `MessageReceipt`.
+# See the Filecoin Messages Data Structures document for encoded DAG-CBOR message
+# returns
+type CborEncodedReturn Bytes
 ```
 
 ## Crypto Types
@@ -193,7 +200,7 @@ type MessageReceiptAMTNode struct {
 
 type MessageReceipt struct {
   ExitCode ExitCode
-  Return   Bytes
+  Return   CborEncodedReturn
   GasUsed  Int
 } representation tuple
 ```
@@ -281,7 +288,45 @@ type SignedMessageLinkAMTNode struct {
 
 **HAMT**: This is an ADL representing `type ActorsMap {Address:Actors}`.
 
+Actors are identified by a Code which is represented as a CID. The current form
+uses a `raw` codec combined with an `identity` multihash to encode a set of
+fixed strings uniquely representing the Actor type. Version 0 Actors use the
+prefix `fil/1/` while version 2 Actors use the prefix `fil/2/`, followed by the
+Actor name.
+
+The `code` field in the `Actor` struct contains this CID and indicates the type
+of block to be found when following the `head` link to load the specific Actor
+state.
+
+| Code string | CID | CID Bytes |
+| --- | --- | --- |
+| "fil/1/system" | `bafkqaddgnfwc6mjpon4xg5dfnu` | `0x0155000c66696c2f312f73797374656d` |
+| "fil/1/init" | `bafkqactgnfwc6mjpnfxgs5a` | `0x0155000a66696c2f312f696e6974` |
+| "fil/1/cron" | `bafkqactgnfwc6mjpmnzg63q` | `0x0155000a66696c2f312f63726f6e` |
+| "fil/1/storagepower" | `bafkqaetgnfwc6mjpon2g64tbm5sxa33xmvza` | `0x0155001266696c2f312f73746f72616765706f776572` |
+| "fil/1/storageminer" | `bafkqaetgnfwc6mjpon2g64tbm5sw22lomvza` | `0x0155001266696c2f312f73746f726167656d696e6572` |
+| "fil/1/storagemarket" | `bafkqae3gnfwc6mjpon2g64tbm5sw2ylsnnsxi` | `0x0155001366696c2f312f73746f726167656d61726b6574` |
+| "fil/1/paymentchannel" | `bafkqafdgnfwc6mjpobqxs3lfnz2gg2dbnzxgk3a` | `0x0155001466696c2f312f7061796d656e746368616e6e656c` |
+| "fil/1/reward" | `bafkqaddgnfwc6mjpojsxoylsmq` | `0x0155000c66696c2f312f726577617264` |
+| "fil/1/verifiedregistry" | `bafkqaftgnfwc6mjpozsxe2lgnfswi4tfm5uxg5dspe` | `0x0155001666696c2f312f76657269666965647265676973747279` |
+| "fil/1/account" | `bafkqadlgnfwc6mjpmfrwg33vnz2a` | `0x0155000d66696c2f312f6163636f756e74` |
+| "fil/1/multisig" | `bafkqadtgnfwc6mjpnv2wy5djonuwo` | `0x0155000e66696c2f312f6d756c7469736967` |
+| "fil/2/system" | `bafkqaddgnfwc6mrpon4xg5dfnu` | `0x0155000c66696c2f322f73797374656d` |
+| "fil/2/init" | `bafkqactgnfwc6mrpnfxgs5a` | `0x0155000a66696c2f322f696e6974` |
+| "fil/2/cron" | `bafkqactgnfwc6mrpmnzg63q` | `0x0155000a66696c2f322f63726f6e` |
+| "fil/2/storagepower" | `bafkqaetgnfwc6mrpon2g64tbm5sxa33xmvza` | `0x0155001266696c2f322f73746f72616765706f776572` |
+| "fil/2/storageminer" | `bafkqaetgnfwc6mrpon2g64tbm5sw22lomvza` | `0x0155001266696c2f322f73746f726167656d696e6572` |
+| "fil/2/storagemarket" | `bafkqae3gnfwc6mrpon2g64tbm5sw2ylsnnsxi` | `0x0155001366696c2f322f73746f726167656d61726b6574` |
+| "fil/2/paymentchannel" | `bafkqafdgnfwc6mrpobqxs3lfnz2gg2dbnzxgk3a` | `0x0155001466696c2f322f7061796d656e746368616e6e656c` |
+| "fil/2/reward" | `bafkqaddgnfwc6mrpojsxoylsmq` | `0x0155000c66696c2f322f726577617264` |
+| "fil/2/verifiedregistry" | `bafkqaftgnfwc6mrpozsxe2lgnfswi4tfm5uxg5dspe` | `0x0155001666696c2f322f76657269666965647265676973747279` |
+| "fil/2/account" | `bafkqadlgnfwc6mrpmfrwg33vnz2a` | `0x0155000d66696c2f322f6163636f756e74` |
+| "fil/2/multisig" | `bafkqadtgnfwc6mrpnv2wy5djonuwo` | `0x0155000e66696c2f322f6d756c7469736967` |
+
 ```ipldsch
+# An inline CID encoded as raw+identity, see above
+type ActorCode &Any
+
 type ActorsHAMT struct {
   map Bytes
   data [ ActorsHAMTElement ]
@@ -302,7 +347,7 @@ type ActorsHAMTBucketEntry struct {
 } representation tuple
 
 type Actor struct {
-  code &Any # An inline CID encoded as raw+identity
+  code ActorCode
   head &Any # An implicit union of each actor type, keyed by `code` here
   nonce CallSeqNum
   balance BigInt
@@ -313,7 +358,7 @@ type Actor struct {
 
 ```ipldsch
 type InitV0State struct {
-  AddressMap &ActorIDHAMT
+  AddressMap &ActorIDHAMT # HAMT[Address]ActorID
   NextID ActorID
   NetworkName String
 } representation tuple
@@ -344,37 +389,60 @@ type ActorIDHAMTBucketEntry struct {
 
 ### CronActor
 
+The CronActor state is the same in v0 and v2.
+
 ```ipldsch
 type CronV0State struct {
   Entries [CronV0Entry]
 } representation tuple
 
 type CronV0Entry struct {
+  # The actor to call (must be an ID-address)
   Receiver Address
+  # The method number to call (must accept empty parameters)
   MethodNum MethodNum
 } representation tuple
 ```
 
 ### RewardActor
 
+The RewardActor state differs between v0 and v2.
+
 **v0**
 
 ```ipldsch
 type RewardV0State struct {
+  # CumsumBaseline is a target CumsumRealized needs to reach for EffectiveNetworkTime to increase
+  # CumsumBaseline and CumsumRealized are expressed in byte-epochs.
   CumsumBaseline Spacetime
+  # CumsumRealized is cumulative sum of network power capped by BalinePower(epoch)
   CumsumRealized Spacetime
+  # EffectiveNetworkTime is ceiling of real effective network time `theta` based on
+  # CumsumBaselinePower(theta) == CumsumRealizedPower
+  # Theta captures the notion of how much the network has progressed in its baseline
+  # and in advancing network time.
   EffectiveNetworkTime ChainEpoch
+  # EffectiveBaselinePower is the baseline power at the EffectiveNetworkTime epoch
   EffectiveBaselinePower StoragePower
+  # The reward to be paid in per WinCount to block producers.
+  # The actual reward total paid out depends on the number of winners in any round.
+  # This value is recomputed every non-null epoch and used in the next non-null epoch.
   ThisEpochReward TokenAmount
+  # Smoothed ThisEpochReward
   ThisEpochRewardSmoothed nullable V0FilterEstimate
+  # The baseline power the network is targeting at st.Epoch
   ThisEpochBaselinePower StoragePower
+  # Epoch tracks for which epoch the Reward was computed
   Epoch ChainEpoch
+  # TotalMined tracks the total FIL awared to block miners
   TotalMined TokenAmount
 } representation tuple
 
+# Alpha Beta Filter "position" (value) and "velocity" (rate of change of value) estimates
+# Estimates are in Q.128 format
 type V0FilterEstimate struct {
-  PositionEstimate BigInt
-  VelocityEstimate BigInt
+  PositionEstimate BigInt # Q.128
+  VelocityEstimate BigInt # Q.128
 } representation tuple
 ```
 
@@ -382,21 +450,43 @@ type V0FilterEstimate struct {
 
 ```ipldsch
 type RewardV2State struct {
+  # CumsumBaseline is a target CumsumRealized needs to reach for EffectiveNetworkTime to increase
+  # CumsumBaseline and CumsumRealized are expressed in byte-epochs.
   CumsumBaseline Spacetime
+  # CumsumRealized is cumulative sum of network power capped by BaselinePower(epoch)
   CumsumRealized Spacetime
+  # EffectiveNetworkTime is ceiling of real effective network time `theta` based on
+  # CumsumBaselinePower(theta) == CumsumRealizedPower
+  # Theta captures the notion of how much the network has progressed in its baseline
+  # and in advancing network time.
   EffectiveNetworkTime ChainEpoch
+  # EffectiveBaselinePower is the baseline power at the EffectiveNetworkTime epoch
   EffectiveBaselinePower StoragePower
+  # The reward to be paid in per WinCount to block producers.
+  # The actual reward total paid out depends on the number of winners in any round.
+  # This value is recomputed every non-null epoch and used in the next non-null epoch.
   ThisEpochReward TokenAmount
+  # Smoothed ThisEpochReward
   ThisEpochRewardSmoothed V0FilterEstimate
+  # The baseline power the network is targeting at st.Epoch
   ThisEpochBaselinePower StoragePower
+  # Epoch tracks for which epoch the Reward was computed
   Epoch ChainEpoch
+  # TotalStoragePowerReward tracks the total FIL awarded to block miners
   TotalStoragePowerReward TokenAmount
+  # Simple and Baseline totals are constants used for computing rewards.
+  # They are on chain because of a historical fix resetting baseline value
+  # in a way that depended on the history leading immediately up to the
+  # migration fixing the value.  These values can be moved from state back
+  # into a code constant in a subsequent upgrade.
   SimpleTotal BigInt
   BaselineTotal BigInt
 } representation tuple
 ```
 
 ### AccountActor
+
+The CronActor state is the same in v0 and v2 and only contains an `Address`.
 
 ```ipldsch
 type AccountV0State struct {
@@ -406,18 +496,30 @@ type AccountV0State struct {
 
 ### StorageMarketActor
 
+The StorageMarketActor state is the same in v0 and v2.
+
 ```ipldsch
 type MarketV0State struct {
   Proposals &DealProposalAMT # AMT[DealID]DealProposal
   States &DealStateAMT # AMT[DealID]DealState
-  PendingProposals &MarketV0DealProposalHAMT # HAMT[DealCid]DealProposal
+  # PendingProposals tracks dealProposals that have not yet reached their deal start date.
+  # We track them here to ensure that miners can't publish the same deal proposal twice.
+  PendingProposals &DealProposalHAMT # HAMT[DealCid]DealProposal
+  # Total amount held in escrow, indexed by actor address (including both locked and unlocked amounts).
   EscrowTable &BalanceTableHAMT # HAMT[Address]TokenAmount
+  # Amount locked, indexed by actor address.
+  # Note: the amounts in this table do not affect the overall amount in escrow:
+  # only the _portion_ of the total escrow amount that is locked.
   LockedTable &BalanceTableHAMT # HAMT[Address]TokenAmount
   NextID DealID
+  # Metadata cached for efficient iteration over deals.
   DealOpsByEpoch &DealOpsByEpochHAMT # SetMultimap: HAMT[ChainEpoch]Set[DealID]
   LastCron ChainEpoch
+  # Total Client Collateral that is locked -> unlocked when deal is terminated
   TotalClientLockedCollateral TokenAmount
+  # Total Provider Collateral that is locked -> unlocked when deal is terminated
   TotalProviderLockedCollateral TokenAmount
+  # Total storage fee that is locked in escrow -> unlocked when payments are made
   TotalClientStorageFee TokenAmount
 } representation tuple
 ```
@@ -438,12 +540,18 @@ type DealProposalAMTNode struct {
 } representation tuple
 
 type MarketV0DealProposal struct {
-  PieceCID &Any # CommP: A CID with fil-commitment-unsealed + sha2_256-trunc254-padded
+  # CommP: A CID with fil-commitment-unsealed + sha2_256-trunc254-padded
+  PieceCID &Any
   PieceSize PaddedPieceSize
   VerifiedDeal Bool
   Client Address
   Provider Address
+  # An arbitrary client chosen label to apply to the deal
   Label String
+  # Nominal start epoch. Deal payment is linear between StartEpoch and EndEpoch,
+  # with total amount StoragePricePerEpoch * (EndEpoch - StartEpoch).
+  # Storage deal must appear in a sealed (proven) sector no later than StartEpoch,
+  # otherwise it is invalid.
   StartEpoch ChainEpoch
   EndEpoch ChainEpoch
   StoragePricePerEpoch TokenAmount
@@ -468,48 +576,35 @@ type DealStateAMTNode struct {
 } representation tuple
 
 type MarketV0DealState struct {
-  SectorStartEpoch ChainEpoch
-  LastUpdatedEpoch ChainEpoch
-  SlashEpoch ChainEpoch
+  SectorStartEpoch ChainEpoch # -1 if not yet included in proven sector
+  LastUpdatedEpoch ChainEpoch # -1 if deal state never updated
+  SlashEpoch ChainEpoch # -1 if deal never slashed
 } representation tuple
 ```
 
-**HAMT**: This is an ADL representing `type ActorsMap {DealCidBytes:Actors}`.
+**HAMT**: This is an ADL representing `type DealProposalMap {DealCidBytes:DealProposal}`.
 
 ```ipldsch
+# The bytes form of the the CID of a `MarketV0DealProposal` object as a block
 type DealCidBytes bytes
 
-type MarketV0DealProposalHAMT struct {
+type DealProposalHAMT struct {
   map Bytes
-  data [ MarketV0DealProposalHAMTElement ]
+  data [ DealProposalHAMTElement ]
 } representation tuple
 
-type MarketV0DealProposalHAMTElement union {
-  | MarketV0DealProposalHAMTLink "0"
+type DealProposalHAMTElement union {
+  | DealProposalHAMTLink "0"
   | Bucket "1"
 } representation keyed
 
-type MarketV0DealProposalHAMTLink &MarketV0DealProposalHAMT
+type DealProposalHAMTLink &DealProposalHAMT
 
-type MarketV0DealProposalHAMTBucket [ MarketV0DealProposalHAMTBucketEntry ]
+type DealProposalHAMTBucket [ DealProposalHAMTBucketEntry ]
 
-type MarketV0DealProposalHAMTBucketEntry struct {
+type DealProposalHAMTBucketEntry struct {
   key DealCidBytes
   value MarketV0DealProposal
-} representation tuple
-
-type MarketV0DealProposal struct {
-  PieceCID &Any # A CID with fil-commitment-unsealed + sha2_256-trunc254-padded
-  PieceSize PaddedPieceSize
-  VerifiedDeal Bool
-  Client Address
-  Provider Address
-  Label String
-  StartEpoch ChainEpoch
-  EndEpoch ChainEpoch
-  StoragePricePerEpoch TokenAmount
-  ProviderCollateral TokenAmount
-  ClientCollateral TokenAmount
 } representation tuple
 ```
 
@@ -586,18 +681,43 @@ type DealOpsByEpochHAMTSetBucketEntry struct {
 
 ```ipldsch
 type MinerV0State struct {
+  # Information not related to sectors
   Info  &MinerV0Info
+  # Total funds locked as PreCommitDeposits
   PreCommitDeposits TokenAmount
+  # Total rewards and added funds locked in vesting table
   LockedFunds TokenAmount
+  # VestingFunds (Vesting Funds schedule for the miner)
   VestingFunds &MinerV0VestingFunds
+  # Sum of initial pledge requirements of all active sectors
   InitialPledge TokenAmount
+  # Sectors that have been pre-committed but not yet proven.
   PreCommittedSectors &MinerV0SectorPreCommitOnChainInfoHAMT # HAMT[SectorNumber]SectorPreCommitOnChainInfo
+  # PreCommittedSectorsExpiry maintains the state required to expire PreCommittedSectors
   PreCommittedSectorsExpiry &BitFieldQueueAMT # AMT[ChainEpoch]BitField
+  # Allocated sector IDs. Sector IDs can never be reused once allocated
   AllocatedSectors &BitField
+  # Information for all proven and not-yet-garbage-collected sectors.
+  # Sectors are removed from this AMT when the partition to which the
+  # sector belongs is compacted.
   Sectors &MinerV0SectorOnChainInfoAMT # AMT[SectorNumber]SectorOnChainInfo
+  # The first epoch in this miner's current proving period. This is the first epoch in which a PoSt for a
+  # partition at the miner's first deadline may arrive. Alternatively, it is after the last epoch at which
+  # a PoSt for the previous window is valid.
+  # Always greater than zero, this may be greater than the current epoch for genesis miners in the first
+  # WPoStProvingPeriod epochs of the chain; the epochs before the first proving period starts are exempt from Window
+  # PoSt requirements.
+  # Updated at the end of every period by a cron callback.
   ProvingPeriodStart ChainEpoch
+  # Index of the deadline within the proving period beginning at ProvingPeriodStart that has not yet been
+  # finalized.
+  # Updated at the end of each deadline window by a cron callback.
   CurrentDeadline Int
+  # The sector numbers due for PoSt at each deadline in the current proving period, frozen at period start.
+  # New sectors are added and expired ones removed at proving period boundary.
+  # Faults are not subtracted from this in state, but on the fly.
   Deadlines &MinerV0Deadlines
+  # Deadlines with outstanding fees for early sector termination
   EarlyTerminations BitField
 } representation tuple
 ```
@@ -606,19 +726,45 @@ type MinerV0State struct {
 
 ```ipldsch
 type MinerV2State struct {
+  # Information not related to sectors
   Info  &MinerV2Info
+  # Total funds locked as PreCommitDeposits
   PreCommitDeposits TokenAmount
+  # Total rewards and added funds locked in vesting table
   LockedFunds TokenAmount
+  # VestingFunds (Vesting Funds schedule for the miner)
   VestingFunds &MinerV0VestingFunds
+  # Absolute value of debt this miner owes from unpaid fees
   FeeDebt TokenAmount
+  # Sum of initial pledge requirements of all active sectors
   InitialPledge TokenAmount
+  # Sectors that have been pre-committed but not yet proven
   PreCommittedSectors &MinerV0SectorPreCommitOnChainInfoHAMT # HAMT[SectorNumber]SectorPreCommitOnChainInfo
+  # PreCommittedSectorsExpiry maintains the state required to expire PreCommittedSectors
   PreCommittedSectorsExpiry &BitFieldQueueAMT # AMT[ChainEpoch]BitField
+  # Allocated sector IDs. Sector IDs can never be reused once allocated
   AllocatedSectors &BitField
+  # Information for all proven and not-yet-garbage-collected sectors.
+  # Sectors are removed from this AMT when the partition to which the
+  # sector belongs is compacted.
   Sectors &MinerV0SectorOnChainInfoAMT # AMT[SectorNumber]SectorOnChainInfo
+  # The first epoch in this miner's current proving period. This is the first epoch in which a PoSt for a
+  # partition at the miner's first deadline may arrive. Alternatively, it is after the last epoch at which
+  # a PoSt for the previous window is valid.
+  # Always greater than zero, this may be greater than the current epoch for genesis miners in the first
+  # WPoStProvingPeriod epochs of the chain; the epochs before the first proving period starts are exempt from Window
+  # PoSt requirements.
+  # Updated at the end of every period by a cron callback.
   ProvingPeriodStart ChainEpoch
+  # Index of the deadline within the proving period beginning at ProvingPeriodStart that has not yet been
+  # finalized.
+  # Updated at the end of each deadline window by a cron callback.
   CurrentDeadline Int
+  # The sector numbers due for PoSt at each deadline in the current proving period, frozen at period start.
+  # New sectors are added and expired ones removed at proving period boundary.
+  # Faults are not subtracted from this in state, but on the fly.
   Deadlines &MinerV2Deadlines
+  # Deadlines with outstanding fees for early sector termination
   EarlyTerminations BitField
 } representation tuple
 ```

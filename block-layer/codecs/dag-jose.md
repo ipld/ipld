@@ -94,7 +94,7 @@ type DecodedJWE struct {
 type DecodedJOSE union { DecodedJWE | DecodedJWS }
 ```
 
-##Implementations
+## Implementations
 
 - [Javascript](https://github.com/oed/js-dag-jose)
 - [Go](https://github.com/alexjg/go-dag-jose)

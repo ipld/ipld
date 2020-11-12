@@ -1,5 +1,46 @@
 # Filecoin Main Chain Data Structures
 
+* [Basic Types](#basic-types)
+* [Crypto Types](#crypto-types)
+* [Genesis Block](#genesis-block)
+* [Chain](#chain)
+* [Messages](#messages)
+* [Actors](#actors)
+  * [Actor type linking](#actor-type-linking)
+  * [InitActor](#initactor)
+    * [v0](#v0)
+    * [v2](#v2)
+  * [CronActor](#cronactor)
+    * [v0](#v0-1)
+    * [v2](#v2-1)
+  * [RewardActor](#rewardactor)
+    * [v0](#v0-2)
+    * [v2](#v2-2)
+  * [AccountActor](#accountactor)
+    * [v0](#v0-3)
+    * [v2](#v2-3)
+  * [StorageMarketActor](#storagemarketactor)
+    * [v0](#v0-4)
+    * [v2](#v2-4)
+  * [StorageMinerActor](#storagemineractor)
+    * [v0](#v0-5)
+    * [v2](#v2-5)
+  * [MultisigActor](#multisigactor)
+    * [v0](#v0-6)
+    * [v2](#v2-6)
+  * [PaymentChannelActor](#paymentchannelactor)
+    * [v0](#v0-7)
+    * [v2](#v2-7)
+  * [StoragePowerActor](#storagepoweractor)
+    * [v0](#v0-8)
+    * [v2](#v2-8)
+  * [VerifiedRegistryActor](#verifiedregistryactor)
+    * [v0](#v0-9)
+    * [v2](#v2-9)
+  * [SystemActor](#systemactor)
+    * [v0](#v0-10)
+    * [v2](#v2-10)
+
 Schemas are grouped by their serialized blocks. Other than those types listed in "Basic Types" and "Crypto Types", each grouping of schema types in a code block represents a data structure that is serialized into a single IPLD block with its own Link (CID).
 
 Advanced Data Layouts (ADLs) are shown in their expanded form here, as the data appears on-block. Their logical forms for programmatic purposes are `Map` for the HAMT and `List` for the AMT.
@@ -288,6 +329,8 @@ type SignedMessageLinkAMTNode struct {
 
 **HAMT**: This is an ADL representing `type ActorsMap {Address:Actors}`.
 
+### Actor type linking
+
 Actors are identified by a Code which is represented as a CID. The current form
 uses a `raw` codec combined with an `identity` multihash to encode a set of
 fixed strings uniquely representing the Actor type. Version 0 Actors use the
@@ -298,30 +341,30 @@ The `code` field in the `Actor` struct contains this CID and indicates the type
 of block to be found when following the `head` link to load the specific Actor
 state.
 
-| Code string | CID | CID Bytes |
-| --- | --- | --- |
-| "fil/1/system" | `bafkqaddgnfwc6mjpon4xg5dfnu` | `0x0155000c66696c2f312f73797374656d` |
-| "fil/1/init" | `bafkqactgnfwc6mjpnfxgs5a` | `0x0155000a66696c2f312f696e6974` |
-| "fil/1/cron" | `bafkqactgnfwc6mjpmnzg63q` | `0x0155000a66696c2f312f63726f6e` |
-| "fil/1/storagepower" | `bafkqaetgnfwc6mjpon2g64tbm5sxa33xmvza` | `0x0155001266696c2f312f73746f72616765706f776572` |
-| "fil/1/storageminer" | `bafkqaetgnfwc6mjpon2g64tbm5sw22lomvza` | `0x0155001266696c2f312f73746f726167656d696e6572` |
-| "fil/1/storagemarket" | `bafkqae3gnfwc6mjpon2g64tbm5sw2ylsnnsxi` | `0x0155001366696c2f312f73746f726167656d61726b6574` |
-| "fil/1/paymentchannel" | `bafkqafdgnfwc6mjpobqxs3lfnz2gg2dbnzxgk3a` | `0x0155001466696c2f312f7061796d656e746368616e6e656c` |
-| "fil/1/reward" | `bafkqaddgnfwc6mjpojsxoylsmq` | `0x0155000c66696c2f312f726577617264` |
-| "fil/1/verifiedregistry" | `bafkqaftgnfwc6mjpozsxe2lgnfswi4tfm5uxg5dspe` | `0x0155001666696c2f312f76657269666965647265676973747279` |
-| "fil/1/account" | `bafkqadlgnfwc6mjpmfrwg33vnz2a` | `0x0155000d66696c2f312f6163636f756e74` |
-| "fil/1/multisig" | `bafkqadtgnfwc6mjpnv2wy5djonuwo` | `0x0155000e66696c2f312f6d756c7469736967` |
-| "fil/2/system" | `bafkqaddgnfwc6mrpon4xg5dfnu` | `0x0155000c66696c2f322f73797374656d` |
-| "fil/2/init" | `bafkqactgnfwc6mrpnfxgs5a` | `0x0155000a66696c2f322f696e6974` |
-| "fil/2/cron" | `bafkqactgnfwc6mrpmnzg63q` | `0x0155000a66696c2f322f63726f6e` |
-| "fil/2/storagepower" | `bafkqaetgnfwc6mrpon2g64tbm5sxa33xmvza` | `0x0155001266696c2f322f73746f72616765706f776572` |
-| "fil/2/storageminer" | `bafkqaetgnfwc6mrpon2g64tbm5sw22lomvza` | `0x0155001266696c2f322f73746f726167656d696e6572` |
-| "fil/2/storagemarket" | `bafkqae3gnfwc6mrpon2g64tbm5sw2ylsnnsxi` | `0x0155001366696c2f322f73746f726167656d61726b6574` |
-| "fil/2/paymentchannel" | `bafkqafdgnfwc6mrpobqxs3lfnz2gg2dbnzxgk3a` | `0x0155001466696c2f322f7061796d656e746368616e6e656c` |
-| "fil/2/reward" | `bafkqaddgnfwc6mrpojsxoylsmq` | `0x0155000c66696c2f322f726577617264` |
-| "fil/2/verifiedregistry" | `bafkqaftgnfwc6mrpozsxe2lgnfswi4tfm5uxg5dspe` | `0x0155001666696c2f322f76657269666965647265676973747279` |
-| "fil/2/account" | `bafkqadlgnfwc6mrpmfrwg33vnz2a` | `0x0155000d66696c2f322f6163636f756e74` |
-| "fil/2/multisig" | `bafkqadtgnfwc6mrpnv2wy5djonuwo` | `0x0155000e66696c2f322f6d756c7469736967` |
+| Code string | Actor state type | CID | CID Bytes |
+| --- | --- | --- | --- |
+| `"fil/1/init"` | [`InitV0State`](#initv0state) | `bafkqactgnfwc6mjpnfxgs5a` | `0x0155000a66696c2f312f696e6974` |
+| `"fil/2/init"` | [`InitV2State`](#initv2state) | `bafkqactgnfwc6mrpnfxgs5a` | `0x0155000a66696c2f322f696e6974` |
+| `"fil/1/cron"` | [`CronV0State`](#cronv0state) | `bafkqactgnfwc6mjpmnzg63q` | `0x0155000a66696c2f312f63726f6e` |
+| `"fil/2/cron"` | [`CronV2State`](#cronv2state) | `bafkqactgnfwc6mrpmnzg63q` | `0x0155000a66696c2f322f63726f6e` |
+| `"fil/1/reward"` | [`RewardV0State`](#rewardv0state) | `bafkqaddgnfwc6mjpojsxoylsmq` | `0x0155000c66696c2f312f726577617264` |
+| `"fil/2/reward"` | [`RewardV2State`](#rewardv2state) | `bafkqaddgnfwc6mrpojsxoylsmq` | `0x0155000c66696c2f322f726577617264` |
+| `"fil/1/account"` | [`AccountV0State`](#accountv0state) | `bafkqadlgnfwc6mjpmfrwg33vnz2a` | `0x0155000d66696c2f312f6163636f756e74` |
+| `"fil/2/account"` | [`AccountV2State`](#accountv2state) | `bafkqadlgnfwc6mrpmfrwg33vnz2a` | `0x0155000d66696c2f322f6163636f756e74` |
+| `"fil/1/storagemarket"` | [`MarketV0State`](#marketv0state) | `bafkqae3gnfwc6mjpon2g64tbm5sw2ylsnnsxi` | `0x0155001366696c2f312f73746f726167656d61726b6574` |
+| `"fil/2/storagemarket"` | [`MarketV2State`](#marketv2state) | `bafkqae3gnfwc6mrpon2g64tbm5sw2ylsnnsxi` | `0x0155001366696c2f322f73746f726167656d61726b6574` |
+| `"fil/1/storageminer"` | [`MinerV0State`](#minerv0state) | `bafkqaetgnfwc6mjpon2g64tbm5sw22lomvza` | `0x0155001266696c2f312f73746f726167656d696e6572` |
+| `"fil/2/storageminer"` | [`MinerV2State`](#minerv2state) | `bafkqaetgnfwc6mrpon2g64tbm5sw22lomvza` | `0x0155001266696c2f322f73746f726167656d696e6572` |
+| `"fil/1/multisig"` | [`MultisigV0State`](#multisigv0state) | `bafkqadtgnfwc6mjpnv2wy5djonuwo` | `0x0155000e66696c2f312f6d756c7469736967` |
+| `"fil/2/multisig"` | [`MultisigV2State`](#multisigv2state) | `bafkqadtgnfwc6mrpnv2wy5djonuwo` | `0x0155000e66696c2f322f6d756c7469736967` |
+| `"fil/1/paymentchannel"` | [`PaychV0State`](#paychv0state) | `bafkqafdgnfwc6mjpobqxs3lfnz2gg2dbnzxgk3a` | `0x0155001466696c2f312f7061796d656e746368616e6e656c` |
+| `"fil/2/paymentchannel"` | [`PaychV2State`](#paychv2state) | `bafkqafdgnfwc6mrpobqxs3lfnz2gg2dbnzxgk3a` | `0x0155001466696c2f322f7061796d656e746368616e6e656c` |
+| `"fil/1/storagepower"` | [`PowerV0State`](#powerv0state) | `bafkqaetgnfwc6mjpon2g64tbm5sxa33xmvza` | `0x0155001266696c2f312f73746f72616765706f776572` |
+| `"fil/2/storagepower"` | [`PowerV2State`](#powerv2state) | `bafkqaetgnfwc6mrpon2g64tbm5sxa33xmvza` | `0x0155001266696c2f322f73746f72616765706f776572` |
+| `"fil/1/verifiedregistry"` | [`VerifregV0State`](#verifregv0state) | `bafkqaftgnfwc6mjpozsxe2lgnfswi4tfm5uxg5dspe` | `0x0155001666696c2f312f76657269666965647265676973747279` |
+| `"fil/2/verifiedregistry"` | [`VerifregV2State`](#verifregv2state) | `bafkqaftgnfwc6mrpozsxe2lgnfswi4tfm5uxg5dspe` | `0x0155001666696c2f322f76657269666965647265676973747279` |
+| `"fil/1/system"` | [`SystemV0State`](#systemv0state) | `bafkqaddgnfwc6mjpon4xg5dfnu` | `0x0155000c66696c2f312f73797374656d` |
+| `"fil/2/system"` | [`SystemV2State`](#systemv2state) | `bafkqaddgnfwc6mrpon4xg5dfnu` | `0x0155000c66696c2f322f73797374656d` |
 
 ```ipldsch
 # An inline CID encoded as raw+identity, see above
@@ -362,7 +405,9 @@ type Actor struct {
 
 The InitActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="initv0state"></a>
 
 ```ipldsch
 type InitV0State struct {
@@ -372,7 +417,11 @@ type InitV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="initv2state"></a>
 
 ```ipldsch
 type InitV2State InitV0State
@@ -405,7 +454,9 @@ type ActorIDHAMTBucketEntry struct {
 
 The CronActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="cronv0state"></a>
 
 ```ipldsch
 type CronV0State struct {
@@ -420,7 +471,11 @@ type CronV0Entry struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="cronv2state"></a>
 
 ```ipldsch
 type CronV2State CronV0State
@@ -430,7 +485,9 @@ type CronV2State CronV0State
 
 The RewardActor state differs between v0 and v2.
 
-**v0**
+#### v0
+
+<a name="rewardv0state"></a>
 
 ```ipldsch
 type RewardV0State struct {
@@ -468,7 +525,9 @@ type V0FilterEstimate struct {
 } representation tuple
 ```
 
-**v2**
+#### v2
+
+<a name="rewardv2state"></a>
 
 ```ipldsch
 type RewardV2State struct {
@@ -510,7 +569,9 @@ type RewardV2State struct {
 
 The CronActor state is the same in v0 and v2 and only contains an `Address`.
 
-**v0**
+#### v0
+
+<a name="accountv0state"></a>
 
 ```ipldsch
 type AccountV0State struct {
@@ -518,7 +579,11 @@ type AccountV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="accountv2state"></a>
 
 ```ipldsch
 type AccountV2State AccountV0State
@@ -527,6 +592,10 @@ type AccountV2State AccountV0State
 ### StorageMarketActor
 
 The StorageMarketActor state is the same in v0 and v2.
+
+#### v0
+
+<a name="marketv0state"></a>
 
 ```ipldsch
 type MarketV0State struct {
@@ -554,7 +623,11 @@ type MarketV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="marketv2state"></a>
 
 ```ipldsch
 type MarketV2State MarketV0State
@@ -715,7 +788,9 @@ type DealOpsByEpochHAMTSetBucketEntry struct {
 
 ### StorageMinerActor
 
-**v0**
+#### v0
+
+<a name="minerv0state"></a>
 
 ```ipldsch
 type MinerV0State struct {
@@ -811,7 +886,9 @@ type MinerV0Deadline struct {
 } representation tuple
 ```
 
-**v2**
+#### v2
+
+<a name="minerv2state"></a>
 
 ```ipldsch
 type MinerV2State struct {
@@ -1022,8 +1099,6 @@ type MinerV0PowerPair struct {
 } representation tuple
 ```
 
-**v2**
-
 **AMT**: This is an ADL representing `type MinerV2PartitionList [MinerV2Partition]` indexed by `PartitionNumber`.
 
 ```ipldsch
@@ -1082,7 +1157,9 @@ type MinerV0ExpirationSet struct {
 
 The MultisigActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="multisigv0state"></a>
 
 ```ipldsch
 type MultisigV0State struct {
@@ -1096,7 +1173,11 @@ type MultisigV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="multisigv2state"></a>
 
 ```ipldsch
 type MultisigV2State MultisigV0State
@@ -1137,7 +1218,9 @@ type MultisigV0Transaction struct {
 
 The PaymentChannelActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="paychv0state"></a>
 
 ```ipldsch
 type PaychV0State struct {
@@ -1150,7 +1233,11 @@ type PaychV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="paychv2state"></a>
 
 ```ipldsch
 type PaychV2State PaychV0State
@@ -1181,7 +1268,9 @@ type PaychV0LaneState struct {
 
 The StoragePowerActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="powerv0state"></a>
 
 ```ipldsch
 type PowerV0State struct {
@@ -1204,7 +1293,11 @@ type PowerV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="powerv2state"></a>
 
 ```ipldsch
 type PowerV2State PowerV0State
@@ -1338,7 +1431,9 @@ type SealVerifyInfo struct {
 
 The VerifiedRegistryActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="verifregv0state"></a>
 
 ```ipldsch
 type VerifregV0State struct {
@@ -1348,7 +1443,11 @@ type VerifregV0State struct {
 }
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="verifregv2state"></a>
 
 ```ipldsch
 type VerifregV2State VerifregV0State
@@ -1383,14 +1482,20 @@ Note that `SystemV0State` is an empty struct, which encodes as an empty CBOR arr
 
 The SystemActor state is the same in v0 and v2.
 
-**v0**
+#### v0
+
+<a name="systemv0state"></a>
 
 ```ipldsch
 type SystemV0State struct {
 } representation tuple
 ```
 
-**v2** _(Same as v0)_
+#### v2
+
+_(Same as v0)_
+
+<a name="systemv2state"></a>
 
 ```ipldsch
 type SystemV2State SystemV0State

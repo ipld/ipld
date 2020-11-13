@@ -508,7 +508,7 @@ type RewardV0State struct {
   # This value is recomputed every non-null epoch and used in the next non-null epoch.
   ThisEpochReward TokenAmount
   # Smoothed ThisEpochReward
-  ThisEpochRewardSmoothed nullable V0FilterEstimate
+  ThisEpochRewardSmoothed nullable FilterEstimate
   # The baseline power the network is targeting at st.Epoch
   ThisEpochBaselinePower StoragePower
   # Epoch tracks for which epoch the Reward was computed
@@ -519,7 +519,7 @@ type RewardV0State struct {
 
 # Alpha Beta Filter "position" (value) and "velocity" (rate of change of value) estimates
 # Estimates are in Q.128 format
-type V0FilterEstimate struct {
+type FilterEstimate struct {
   PositionEstimate BigInt # Q.128
   VelocityEstimate BigInt # Q.128
 } representation tuple
@@ -548,7 +548,7 @@ type RewardV2State struct {
   # This value is recomputed every non-null epoch and used in the next non-null epoch.
   ThisEpochReward TokenAmount
   # Smoothed ThisEpochReward
-  ThisEpochRewardSmoothed V0FilterEstimate
+  ThisEpochRewardSmoothed FilterEstimate
   # The baseline power the network is targeting at st.Epoch
   ThisEpochBaselinePower StoragePower
   # Epoch tracks for which epoch the Reward was computed
@@ -845,7 +845,7 @@ type MinerV0State struct {
 
 ```ipldsch
 type MinerV0Info struct {
-#Account that owns this miner.
+  # Account that owns this miner.
   # - Income and returned collateral are paid to this address.
   # - This address is also allowed to change the worker address for the miner.
   Owner Address # Must be an ID-address
@@ -1488,7 +1488,7 @@ type PowerV0State struct {
   ThisEpochRawBytePower StoragePower
   ThisEpochQualityAdjPower StoragePower
   ThisEpochPledgeCollateral TokenAmount
-  ThisEpochQAPowerSmoothed nullable V0FilterEstimate
+  ThisEpochQAPowerSmoothed nullable FilterEstimate
   MinerCount Int
   # Number of miners having proven the minimum consensus power
   MinerAboveMinPowerCount Int
@@ -1523,7 +1523,7 @@ type PowerV2State struct {
   ThisEpochRawBytePower StoragePower
   ThisEpochQualityAdjPower StoragePower
   ThisEpochPledgeCollateral TokenAmount
-  ThisEpochQAPowerSmoothed V0FilterEstimate
+  ThisEpochQAPowerSmoothed FilterEstimate
   MinerCount Int
   # Number of miners having proven the minimum consensus power
   MinerAboveMinPowerCount Int

@@ -91,9 +91,29 @@ Boolean is a scalar kind.  Its cardinality is two -- either the value 'true' or 
 
 #### String kind
 
-String is a scalar kind.  Its cardinality is infinite -- strings do not have a length limit.
+Strings do not have any guarantees or requirements with regard to encoding.
 
-Strings should be UTF-8 text, in [NFC](https://www.unicode.org/reports/tr15/#Norm_Forms) canonicalization.
+All the hazards you typically find among programming languages and libraries working with binary
+serialization of strings apply to strings in the IPLD data model. IPLD's data model is conceptual,
+it takes the world as it is, and the world of strings has widely known compatibility issues.
+
+* Some languages/libraries guarantee a string encoding (typically UTF8), some do not.
+* Some languages/libraries can handle arbitrary byte data in strings, some do not.
+
+While some codec specifications will define a required encoding it should be noted that in practice
+many codec implementations leave this kind of validation and sanitizaton up to the consumer (application
+code) and it is typical to find arbitrary byte data in strings even in codecs that explicitely forbid it.
+
+Applications **SHOULD** only encode UTF8 data into string values and use byte values when they need
+arbitrary bytes, but IPLD libraries may not provide these guarantees and rely on the application, or often the
+programming language itself, to do so instead.
+
+Applications that only serialize valid UTF8 in string values will have fewer compatibility
+issues than applications that do not.
+
+Codec implementations that can de-serialization and roundtrip
+arbitrary byte data in strings will see fewer bug reports from people working with data produced by
+applications that serialize arbitrary byte data into strings.
 
 #### Bytes kind
 

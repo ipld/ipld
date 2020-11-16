@@ -406,4 +406,4 @@ At least, *not exactly* -- not *within* the schema.
 Instead, the *whole Schema* is treated as an interface:
 since you can take some data and take a schema, and attempt to unify them to get typed data if the schema "matches"...
 you can use a series of Schemas in the same way as you'd use a series of interfaces.
-(IPLD Schemas are effectively [*structural*](explicit-versus-structural-interfaces) interfaces.)
+(IPLD Schemas are effectively [*structural*](#explicit-versus-structural-interfaces) interfaces.)

@@ -168,7 +168,7 @@ Notes:
       2. If `(depth x bitWidth) / 8` is less than the number of bytes in the hash, repeat with the child node identified in step **3**.
    2. If the `dataIndex` element of `data` contains a bucket (array) and the bucket's size is less than `bucketSize`:
       1. Mutate the current node (create a copy).
-      2. Insert the `key` / `value` pair into the new bucket at a position sorted by `key` such that all entries in the bucket are ordered respective to their `key`s. This helps ensure canonical form.
+      2. If `key` is already present in the new bucket, change its corresponding `value` to the new one. Otherwise, insert the `key` / `value` pair at a position sorted by `key` such that all entries in the bucket are ordered respective to their `key`s. This helps ensure canonical form.
       3. Proceed to create new CIDs for the current block and each parent as per step **6.c**. until we have a new root block and its CID.
    3. If the `dataIndex` element of `data` contains a bucket (array) and the bucket's size is `bucketSize`:
       1. Create a new empty node

@@ -155,7 +155,7 @@ type IntList [Int]
 
 type MapOfIntLists {String:IntList}
 
-type Foo {
+type Foo struct {
   id Int
   data MapOfIntLists
 }
@@ -164,7 +164,7 @@ type Foo {
 is equivalent to:
 
 ```ipldsch
-type Foo {
+type Foo struct {
   id Int
   data {String:[Int]}
 }
@@ -270,7 +270,7 @@ type Foo struct {
 }
 ```
 
-This representation for `Foo` would seriaize into a single String node:
+This representation for `Foo` would serialize into a single String node:
 
 ```json
 "This is field one of Foo:false"

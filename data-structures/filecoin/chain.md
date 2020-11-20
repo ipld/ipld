@@ -14,9 +14,14 @@ structs use the `tuple` representation which encodes them as Lists). It is
 encoded with DAG-CBOR with a SHA2-256 which gives the CID:
 `bafyreiaqpwbbyjo4a42saasj36kkrpv4tsherf2e7bvezkert2a7dhonoi`.
 
+This block is not referenced as height `0` as this is reserved for the first
+`BlockHeader` block which carries the initial state (see below). This block
+links Filecoin to the Ethereum chain.
+
 Note that this block does not conform to strict DAG-CBOR in that its Map keys
 are not sorted according to canonical rules. Therefore it does not round-trip
-cleanly through current DAG-CBOR codecs.
+cleanly through current DAG-CBOR codecs, although current codecs are able to
+decode it.
 
 ```ipldsch
 type Genesis struct {
@@ -36,16 +41,20 @@ type TokenAmounts struct {
 
 ## Chain
 
+`TipSetKey` is the type for linking to the parent `BlockHeader`s. It is
+important to note that its type hint, of referring to only `BlockHeader` blocks,
+does not hold true at chain height **`0`** (CID
+`bafy2bzacecnamqgqmifpluoeldx7zzglxcljo6oja4vrmtj7432rphldpdmm2`). This block
+contains a single parent CID referring to the `Genesis` (above, CID
+`bafyreiaqpwbbyjo4a42saasj36kkrpv4tsherf2e7bvezkert2a7dhonoi`).
+
 ```ipldsch
 # The `ParentStateRoot` link will point either directly to `ActorsHAMT' for v0
 # or `StateRoot` which links to `ActorsHAMT` for v2.
 # See Lotus chain/state/LoadStateTree()
 type StateRootLink &Any
 
-# The type hint here, `BlockHeader`, holds true **except** for the case of the
-# Genesis block, which is a different format entirely. Note there is a
-# `BlockHeader` "bootstrap genesis" but its `Parents` is a single CID pointing
-# to the actual Genesis block which is described by the `Genesis` type.
+# See note above about the single case where this type hint does not hold true.
 type TipSetKey [&BlockHeader]
 
 type BlockHeader struct {

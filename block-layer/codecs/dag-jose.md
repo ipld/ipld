@@ -16,9 +16,9 @@ To map the general JSON serialization to CBOR we do the following:
 
 - Any field which is represented as `base64url(<data>)` we map directly to `Bytes` . For fields like `header` and `protected` which are specified as the `base64url(ascii(<some json>))` that means that the value is the `ascii(<some json>)` bytes.
 - For JWS we specify that the `payload` property MUST be a CID, and we set the `payload` of the encoded JOSE object to `Bytes` containing the bytes of the CID. For applications where an additional network request to retrieve the linked content is undesirable then an `identity` multihash should be used.
-- For JWE objects the `ciphertext` must decrypt to a plaintext which is the bytes of a CID. This is for the same reason as the `payload` being a CID, and the same approach of using an `identity` multihash can be used, and most likely will be the only way to retain the confidentiality of data.
+- For JWE objects the `ciphertext` must decrypt to a cleartext which is the bytes of a CID. This is for the same reason as the `payload` being a CID, and the same approach of using an `identity` multihash can be used, and most likely will be the only way to retain the confidentiality of data.
 
-Below we present an IPLD schema representing the encoded JOSE objects. Note that the `EncodedJOSE` union is not in fact a valid IPLD schema as there is no valid discriminator. The actual wire format is a single struct which contains all the keys from both the `EncodedJWE` and the `EncodedJWS` structs, implementors should follow [section 9 of the JWE spec](https://tools.ietf.org/html/rfc7516#section-9) and distinguish between these two branches of the union by checking if the `payload` attribute exists, and hence you have a JWS; or the `ciphertext` attribute, hence you have a JWE.
+Below we present an IPLD schema representing the encoded JOSE objects. Note that there are two IPLD schemas, `EncodedJWE` and `EncodedJWS`. The actual wire format is a single struct which contains all the keys from both the `EncodedJWE` and the `EncodedJWS` structs, implementors should follow [section 9 of the JWE spec](https://tools.ietf.org/html/rfc7516#section-9) and distinguish between these two branches by checking if the `payload` attribute exists, and hence you have a JWS; or the `ciphertext` attribute, hence you have a JWE.
 
 **Encoded JOSE**
 
@@ -45,23 +45,21 @@ type EncodedJWE struct {
 }
 
 type EncodedJWS struct {
-  signatures [EncodedSignature]
   payload optional Bytes
+  signatures [EncodedSignature]
 }
-
-type EncodedJOSE union { EncodedJWE | EncodedJWS }
 ```
 
 ## Padding for encryption
 
-Applications may need to pad the plaintext when encrypting to avoid leaking the size of the plaintext. This raises the question of how the application knows what part of the decrypted plaintext is padding. In this case we use the fact that the plaintext MUST be a valid CID, implementations should parse the plaintext as a CID and discard any content beyond the multihash digest size - which we assume to be the padding.
+Applications may need to pad the cleartext when encrypting to avoid leaking the size of the cleartext. This raises the question of how the application knows what part of the decrypted cleartext is padding. In this case we use the fact that the cleartext MUST be a valid CID, implementations should parse the cleartext as a CID and discard any content beyond the multihash digest size - which we assume to be the padding.
 
 
 ## Decoded JOSE
 
 Typically implementations will want to decode this format into something more useful for applications. Exactly what that will look like depends on the language of the implementation, here we use the IPLD schema language to give a somewhat language agnostic description of what the decoded representation might look like at runtime. Note that everything which is specified as `base64url(ascii(<some JSON>))` in the JOSE specs - and which we encode as `Bytes` in the wire format - is here decoded to a `String`. We also add the `link: &Any` attribute to the `DecodedJWS`,  which allows applications to easily retrieve the authenticated content.
 
-Also note that - as with the encoded representation - the `DecodedJOSE` union is not valid IPLD schema as there is no way to discriminate between them. How exactly this would be represented will depend on the language of the implementation. For example in Typescript this would be a straightforward `type DecodedJOSE = DecodedJWE | DecodedJWS`.
+Also note that, as with the encoded representation, there are two different representations; `DecodedJWE` and `DecodedJWS`. Applications can distinguish between these two branches in the same way as with the Encoded representation described above.
 
 ```ipldsch
 type DecodedSignature struct {
@@ -90,8 +88,6 @@ type DecodedJWE struct {
   tag String
   unprotected optional {String:Any}
 }
-
-type DecodedJOSE union { DecodedJWE | DecodedJWS }
 ```
 
 ## Implementations

@@ -41,6 +41,7 @@ IPLD can operate across a broad range of content-addressable codecs, including G
 | [Specification: DAG-CBOR](block-layer/codecs/dag-cbor.md) | [block-layer/codecs/dag-cbor.md](block-layer/codecs/dag-cbor.md) |
 | [Specification: DAG-JSON](block-layer/codecs/dag-json.md) | [block-layer/codecs/dag-json.md](block-layer/codecs/dag-json.md) |
 | [Specification: DAG-PB](block-layer/codecs/dag-pb.md) | [block-layer/codecs/dag-pb.md](block-layer/codecs/dag-pb.md) |
+| [Specification: DAG-JOSE](block-layer/codecs/dag-jose.md) | [block-layer/codecs/dag-jose.md](block-layer/codecs/dag-jose.md) |
 
 ## The IPLD Data Model
 

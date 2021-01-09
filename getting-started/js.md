@@ -110,7 +110,6 @@ import Block from '@ipld/block/defaults'
 import IPFS from 'ipfs'
 
 const ipfs = await IPFS.create()
-await ipfs.start()
 
 const save = async obj => {
   const block = Block.encoder(obj, 'dag-cbor')

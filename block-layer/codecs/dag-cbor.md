@@ -44,30 +44,19 @@ Therefore the DAG-CBOR codec must:
 1. Use no tags other than the CID tag (`42`). A valid DAG-CBOR encoder must not encode using any additional tags and a valid DAG-CBOR decoder must reject objects containing additional tags as invalid.
    * This includes any of the initial values of the tag registry in [section 2.4 of the CBOR specification], such as dates, bignums, bigfloats, URIs, regular expressions and other complex, or simple values whether or not they map to the [IPLD Data Model].
 2. The only usable major type 7 minor types are those for encoding Floats (`25`, `26`, `27`), True (`20`), False (`21`) and Null (`22`).
-	 * "Simple values" are not supported. This includes all registered or unregistered simple values that are encoded with a major type 7.
-	 * Undefined (`23`) is not supported.
+   * "Simple values" are not supported. This includes all registered or unregistered simple values that are encoded with a major type 7.
+   * Undefined (`23`) is not supported.
 3. Use the canonical CBOR encoding defined by the suggestions in [section 3.9 of the CBOR specification]. A valid DAG-CBOR decoder should reject objects not following these restrictions as invalid. Specifically:
    * Integer encoding must be as short as possible.
    * The expression of lengths in major types 2 through 5 must be as short as possible.
+   * The expression of tag numbers (specifically only `42`) must be as short as possible for major type 6. Therefore, for valid DAG-CBOR, the only tag token that can appear is `0xd82a` - where `0xd8` is "major type 6 with 8-bit integer to follow" and `0x2a` is the number `42`.
    * The keys in every map must be sorted lowest value to highest. Sorting is performed on the bytes of the representation of the keys.
      - If two keys have different lengths, the shorter one sorts earlier;
      - If two keys have the same length, the one with the lower value in (byte-wise) lexical order sorts earlier.
-   * Indefinite-length items are not supported, only definite-length items are usable.
+   * Indefinite-length items are not supported, only definite-length items are usable. This includes strings, bytes, lists and maps. The "break" token is also not supported.
 4. Encode and decode a single top-level CBOR object and not allow back-to-back concatenated objects, as suggested by [section 3.1 of the CBOR specification] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes, whether valid or invalid CBOR, should fail validation.
-
-### Floating Point Encoding (Unresolved)
-
-Strict **floating point** encoding rules need to be resolved. Current CBOR encoding implementations used by IPLD libraries are _not_ unified in their approach.
-
-[borc], for JavaScript (used via [dag-cbor]), uses a smallest-possible approach:
-
- * Floating point values must be encoded as the smallest of 16-, 32-, or 64-bit floating point that accurately represents the value, even for integral values.
-
-[refmt], for Go (used via [ipld-cbor] and [ipld-prime]), uses a consistent 64-bit approach:
-
- * All floating point values must be encoded as 64-bit floating point, even for integral values.
-
-One of these approaches will be chosen and the libraries for the other language will be adjusted or replaced to harmonize.
+5. Floating point values are always encoded in 64-bit, double-precision form, regardless of whether they can be represented as half (16) or single (32) precision.
+6. IEEE 754 special values `NaN`, `Infinity` and `-Infinity` should not be accepted as they do not appear in the IPLD Data Model. Therefore, tokens `0xf97c00` (`Infinity`), `0xf97e00` (`NaN`) and `0xf9fc00` (`-Infinity`) and their 32-bit and 64-bit variants, should not appear, or be accepted in DAG-CBOR binary form.
 
 ## Implementations
 
@@ -76,14 +65,16 @@ One of these approaches will be chosen and the libraries for the other language 
 [dag-cbor], used by [ipld] and [@ipld/block] adheres to this specification, with the following caveats:
 
  * Strictness is not yet enforced on decode, blocks encoded that don't follow the strictness rules are not rejected
- * Floating point values are encoded as their smallest form (see above)
+ * Floating point values are encoded as their smallest form rather than always double-precision.
+ * Many additional object types outside of the Data Model are currently accepted for encoding.
+ * IEEE 754 special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
 
 ### Go
 
 [ipld-cbor] and [ipld-prime] adhere to this specification, with the following caveats:
 
  * Strictness is not yet enforced on decode, blocks encoded that don't follow the strictness rules are not rejected
- * All floating point value are encoded as 64-bits
+ * IEEE 754 special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
 
 ### Java
 

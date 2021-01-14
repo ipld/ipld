@@ -41,7 +41,7 @@ which is just a hash that says "I'm a hash of this particular
 algorithm."
 
 So now, with multihash, a single identifier can get us any set
-of binary data (what we all a "Block") from anywhere in the world.
+of binary data (what we call a "Block") from anywhere in the world.
 
 That's *data*, we've got that covered, but now we need to go from
 *data* to **data structures**.

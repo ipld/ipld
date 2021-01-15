@@ -170,6 +170,8 @@ Codec implementations that can de-serialization and roundtrip
 arbitrary byte data in strings will see fewer bug reports from people working with data produced by
 applications that serialize arbitrary byte data into strings.
 
+The [Unicode Normalization Form](http://www.unicode.org/reports/tr15/) should be NFC.
+
 #### Bytes kind
 
 Bytes is a scalar kind.  Its cardinality is infinite -- byte sequences do not have a length limit.

@@ -60,7 +60,7 @@ some notes can be found in [open-research/ADLs-we-can-autoexecute](open-research
 
 We call this "the signaling problem".
 
-In a word: you don't.
+In short: you don't.
 
 Since the data composing the "raw", interior data of an ADL is just regular IPLD Data Model
 (it must be, after all, since it's produced by some [Codec](codec.md), which by definition produces data structures describable by the Data Model),

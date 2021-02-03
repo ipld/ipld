@@ -5,7 +5,7 @@ Other than those types listed in "Basic Types" and "Crypto Types", the top-level
 types in a code block represents a data structure that is serialized into a single IPLD block with its own Link (CID).
 
 There are some state data structures that are repeats of the same form: a modified merkle patricia trie node.
-They are not de-duplicated here for clarity to demonstrate the different purposes of those data structures.
+They are not de-duplicated here for clarity to demonstrate the different purposes and contents of those data structures.
 
 For more information about the IPLD Schema language, see the [specification](https://specs.ipld.io/schemas/).
 

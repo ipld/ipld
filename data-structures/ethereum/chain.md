@@ -95,28 +95,28 @@ contains a CID referring to the `Genesis` used to generate that first (genesis) 
 type Header struct {
     # Hash of the parent header
     # From this hash we can derive the CID for the parent header, and in this manner
-    # reference backwards to all of the previous blocks
+    # link backwards to all of the previous blocks
     ParentHash ParentReference
     
     # Hash of the rlp encoded list of uncles
     # From this hash we can derive the CID for the list of the uncles, and in this manner
-    # reference to all of the uncles contained in this block
+    # link to all of the uncles contained in this block
     UnclesHash &Uncles
     Coinbase Address
     
     # State root hash, references the root node of the state trie
     # From this hash we can derive the CID for the root of the state trie, and in this manner
-    # refence down to all of the state and storage nodes that exist at this block
+    # link down to all of the state and storage nodes that exist at this block
     StateRootHash &StateTrieNode
     
     # Tx root hash, references the root node of the tx trie
     # From this hash we can derive the CID for the root of the tx trie, and in this manner
-    # reference down to all of the transactions and transaction traces contained in this block
+    # link down to all of the transactions and transaction traces contained in this block
     TxRootHash &TxTrieNode
     
     # Receipt root hash, references the root node of the receipt trie
     # From this hash we can derive the CID for the root of the receipt trie, and in this manner
-    # reference down to all of the receipts contained in this block
+    # link down to all of the receipts contained in this block
     RctRootHash &ReceiptTrieNode
     
     Bloom Bloom
@@ -230,7 +230,7 @@ type Block struct {
 ```ipldsch
 # Transactions contains a list of references to Ethereum transactions
 # It is referenced by the KECCAK-256 hash of the RLP encoded list of transactions
-# This would be analogous to how uncles are referenced form the header
+# This would be analogous to how uncles are linked from the header
 type Transactions [&Transaction]
 ```
 
@@ -238,6 +238,6 @@ type Transactions [&Transaction]
 ```ipldsch
 # Receipts contains a list of references to Ethereum receipts
 # It is referenced by the KECCAK-256 hash of the RLP encoded list of receipts
-# This would be analogous to how uncles are referenced form the header
+# This would be analogous to how uncles are linked fromm the header
 type Receipts [&Receipt]
 ```

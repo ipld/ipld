@@ -14,10 +14,5 @@ For more information about the IPLD Schema language, see the [specification](htt
 * [Ethereum Data Structures **Basic Types**](basic_types.md)
 * [Ethereum **Crypto Types**](crypto_types.md)
 * [Ethereum **Chain** Data Structures](chain.md)
+* [Ethereum **Extended Chain** Structures](extended_chain.md)
 * [Ethereum **State** Data Structures](state.md)
-
-
-## Questions (remove later)
-1) Is there a tool to autogenerate the Go types from these ipld schemas?
-   * Cant find go-ipld-prime gengo
-2) Is there a tool to verify that our schemas are correct?

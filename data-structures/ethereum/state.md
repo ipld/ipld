@@ -91,7 +91,7 @@ This is the same RLP encoded object stored as the value in a StateTrieNode leaf.
 # These objects are stored in the state trie leafs.
 type StateAccount struct {
     Nonce    Uint
-    Balance  BigInt
+    Balance  Balance
     # Storage root hash, references the root node of the storage trie
     # From this hash we can derive the CID for the root of the storage trie, and in this manner
     # link down to all of the storage nodes that exist for this account at this block

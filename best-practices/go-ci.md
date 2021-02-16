@@ -27,6 +27,23 @@ should also run on 1.15.x. Note that upstream Go supports
 [two major releases](https://github.com/golang/go/wiki/Go-Release-Cycle#release-maintenance)
 at once as well.
 
+### Using Code Coverage Tools
+
+Code coverage can be determined in CI, but should not be used as an automatic status checks.
+
+When using Codecov, this can be achieved by using the following `codecov.yml`:
+
+```yml
+coverage:
+  status:
+    project:
+      default:
+        informational: true
+    patch:
+      default:
+        informational: true
+```
+
 #### How to use this document at Protocol Labs
 
 Marten Seemann and the IPLD team have set up [a template repository](https://github.com/ipld/.github)

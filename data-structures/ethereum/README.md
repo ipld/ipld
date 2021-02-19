@@ -14,5 +14,5 @@ For more information about the IPLD Schema language, see the [specification](htt
 * [Ethereum Data Structures **Basic Types**](basic_types.md)
 * [Ethereum **Crypto Types**](crypto_types.md)
 * [Ethereum **Chain** Data Structures](chain.md)
-* [Ethereum **Extended Chain** Structures](extended_chain.md)
+* [Ethereum **Convenience Types**](convenience_types.md)
 * [Ethereum **State** Data Structures](state.md)

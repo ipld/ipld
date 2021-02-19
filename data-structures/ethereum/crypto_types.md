@@ -10,5 +10,5 @@ type Signature struct {
     R BigInt
     S BigInt
     V BigInt
-} representation tuple
+}
 ```

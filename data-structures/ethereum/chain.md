@@ -8,38 +8,34 @@ directly from the header by the hash of the RLP encoded list of uncles.
 
 ## Header IPLD
 The `Header` IPLD represents a canonical Ethereum header.
-`ParentReference` is the type for linking to the parent `Header`. It is
-important to note that its type hint, of referring to a parent `Header` block,
-does not hold true at chain height **`0`**. At this height the header's `ParentReference`
-contains a CID referring to the `GenesisInfo` used to generate that first (genesis) block.
+
 ```ipldsch
 # Header contains the consensus fields of an Ethereum block header
 type Header struct {
-    # Hash of the parent header
-    # From this hash we can derive the CID for the parent header, and in this manner
-    # link backwards to all of the previous blocks
-    ParentHash ParentReference
+    # CID link to the parent header
+    #
+    ParentCID &Header
     
     # Hash of the rlp encoded list of uncles
     # From this hash we can derive the CID for the list of the uncles, and in this manner
     # link to all of the uncles contained in this block
-    UnclesHash &Uncles
+    UnclesCID &Uncles
     Coinbase Address
     
     # State root hash, references the root node of the state trie
     # From this hash we can derive the CID for the root of the state trie, and in this manner
     # link down to all of the state and storage nodes that exist at this block
-    StateRootHash &StateTrieNode
+    StateRootCID &StateTrieNode
     
     # Tx root hash, references the root node of the tx trie
     # From this hash we can derive the CID for the root of the tx trie, and in this manner
     # link down to all of the transactions and transaction traces contained in this block
-    TxRootHash &TxTrieNode
+    TxRootCID &TxTrieNode
     
     # Receipt root hash, references the root node of the receipt trie
     # From this hash we can derive the CID for the root of the receipt trie, and in this manner
     # link down to all of the receipts contained in this block
-    RctRootHash &RctTrieNode
+    RctRootCID &RctTrieNode
     
     Bloom Bloom
     Difficulty BigInt
@@ -50,11 +46,7 @@ type Header struct {
     Extra Bytes
     MixDigest Hash
     Nonce BlockNonce
-} representation tuple
-
-# ParentReference links to the parent header
-# See note above about the single case where this type hint does not hold true.
-type ParentReference &Header
+}
 ```
 
 ## Uncles IPLD
@@ -88,7 +80,7 @@ type Transaction struct {
     V            BigInt
     R            BigInt
     S            BigInt
-} representation tuple
+}
 ```
 
 ## Receipt IPLD
@@ -102,12 +94,12 @@ type Receipt struct {
     CumulativeGasUsed Uint
     Bloom             Bloom
     Logs              [Log]
-} representation tuple
+}
 
 # Log contains the consensus fields of an Etherem receipt log
 type Log struct {
     Address Address
     Topics  [Hash]
     Data    Bytes
-} representation tuple
+}
 ```

@@ -1,5 +1,8 @@
-# Experimental/Proposed IPLDs
-There are experimental and proposed Ethereum IPLD data structures, they necessarily break from either the canonicity of Ethereum and/or IPLD.
+# Convenience IPLD types
+The types described in the schemas below are not referenced directly from within the canonical Ethereum merkle tree.
+Instead, these types can be constructed and verified from their underlying canonical Ethereum IPLD structures using the algorithms described by their
+ADLs. These types are introduced to improve the convenience and performance of accessing and working with the canonical Ethereum IPLD objects
+for certain purposes.
 
 ## Transaction Trace IPLD
 Transaction traces contain the EVM context, input, and output for each individual OPCODE operation performed during the application of a transaction on a certain state.
@@ -18,7 +21,7 @@ type TxTrace struct {
     Frames [Frame]
     Gas Uint
     Failed Bool
-} representation tuple
+}
 
 # Frame represents the EVM context, input, and output for a specific OPCODE during a transaction trace
 type Frame struct {
@@ -30,7 +33,7 @@ type Frame struct {
     Gas    Uint
     Cost   Uint
     Value  BigInt
-} representation tuple
+}
 ```
 
 ## Block IPLD
@@ -46,7 +49,7 @@ type Block struct {
     Uncles       &Uncles
     Transactions &Transactions
     Receipts     &Receipts
-} representation tuple
+}
 ```
 
 ## Transactions IPLD
@@ -73,8 +76,6 @@ type Receipts [&Receipt]
 
 ## Genesis IPLD
 This is a single IPLD block at the base of the entire chain with this layout. It is
-the only structure that uses an actual Map at the representation level (other
-structs use the `tuple` representation which encodes them as Lists). It is
 encoded with DAG-CBOR with a KECCAK-256 which gives the CID:
 `to-be-added`.
 
@@ -153,7 +154,7 @@ type ChainConfig struct {
     # Various consensus engines
     Ethash EthashConfig
     Clique CliqueConfig
-} representation tuple
+}
 
 # EthashConfig is the consensus engine config for proof-of-work based sealing.
 type EthashConfig struct {} representation tuple
@@ -162,5 +163,5 @@ type EthashConfig struct {} representation tuple
 type CliqueConfig struct {
     Period Uint
     Epoch Uint
-} representation tuple
+}
 ```

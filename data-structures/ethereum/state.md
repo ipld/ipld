@@ -24,104 +24,106 @@ different purposes and contents of these trie structures.
     * If there are no further nodes down one of the branch's paths, an empty byte array is stored in the corresponding element.
 
 
-IMPORTANT NOTE: if the value stored at a leaf node would be smaller than or equal to the length of the hash of that leaf node (<= 32 bytes) then
-the value is directly included in the parent branch or extension node rather than the parent node referencing the entire leaf node by hash.
+NOTE: if the value stored at a leaf node would be smaller than or equal to the length of the hash of that leaf node (<= 32 bytes) then
+the value is directly included in the parent branch or extension node rather than the parent node linking to the entire leaf node.
 In this case the child is a one element list of bytes where that one element is the RLP encoded value itself. In practice this is only possible for
 the storage trie, as RLP encoded transactions, receipts, and state accounts are always greater than 32 bytes in length.
 
-NOTE TO SELF: (remove this later); can a branch node ever contain a value in the 17th position? In practice values are always stored with a key of length 32,
-and no node can have a key longer than 32 bytes, so if a node contains a value it *must* be at the bottom of the trie and therefore cannot branch
-out to any children nodes.
-
-NOTE TO SELF: (remove this later); can we use ADT to represent different trie types and their contents?
-NOTE TO SELF: (remove this later); can we use a union type for the `TrieNode` so that we can more explicity define the different kinds
-(leaf, extension, branch) of trie nodes?
-
 ```ipldsch
-# TrieNode IPLD struct
-# Node IPLD values are RLP encoded; node IPLD multihashes are the KECCAK-256 hash of the RLP encoded bytes
+# TrieNode ADL
+# Node IPLD values are RLP encoded; node IPLD multihashes are always the Keccak256 hash of the RLP encoded node bytes and the codec is dependent on the type of the trie
 type TrieNode struct {
     Elements [Bytes]
-} representation tuple
+}
 ```
 
 ## Maybe make TrieNode a union type of 3 different node types
 
 ## Transaction Trie IPLD
 This is the IPLD schema type for transaction trie nodes.
-
-Leaf node keys are the txid (KECCAK-256 hash of the transaction).
-
-Leaf node values are the RLP encoded transaction.
+* Leaf node keys are the txid (Keccak256 hash of the transaction).
+* Leaf node values are the RLP encoded transaction.
+* Links to transaction trie nodes use a Keccak256 multihash of the rlp encoded node and the EthTxTrie codec (0x92)
 ```ipldsch
 # TxTrieNode is an IPLD block for a node in the transaction trie
-# The root node of the transaction trie is referenced in the Header by the TxRootHash
+# The root node of the transaction trie is referenced in the Header by the TxRootCID
 
 type TxTrieNode TrieNode
 ```
 
 ## Receipt Trie IPLD
 This is the IPLD schema type for receipt trie nodes.
-Leaf node keys are the KECCAK-256 hash of the corresponding transaction's index.
-Leaf node values are the RLP encoded receipt.
+* Leaf node keys are the Keccak256 hash of the corresponding transaction's index.
+* Leaf node values are the RLP encoded receipt.
+* Links to receipt trie nodes use a Keccak256 multihash of the rlp encoded  node and the EthTxReceiptTrie codec (0x94)
 ```ipldsch
 # RctTrieNode is an IPLD block for a node in the receipt trie
-# The root node of the receipt trie is referenced in the Header by the RctRootHash
+# The root node of the receipt trie is referenced in the Header by the RctRootCID
 type RctTrieNode TrieNode
 ```
 
 ## State Trie IPLD
 This is the IPLD schema type for state trie nodes.
-
-Leaf node keys are the KECCAK-256 hash of the account address.
-
-Leaf node values are the RLP encoded state accounts.
+* Leaf node keys are the Keccak256 hash of the account address.
+* Leaf node values are the RLP encoded state accounts.
+* Links to state trie nodes use a Keccak256 multihash of the rlp encoded node and the EthStateTrie codec (0x96)
 ```ipldsch
 # StateTrieNode is an IPLD block for a node in the state trie
-# The root node of the state trie is referenced in the Header by the StateRootHash
+# The root node of the state trie is referenced in the Header by the StateRootCID
 type StateTrieNode TrieNode
 ```
 
 ## State Account IPLD
 This is the IPLD schema for a state account in the Ethereum state trie.
-
-This is the same RLP encoded object stored as the value in a StateTrieNode leaf.
+* This is the RLP encoded object stored as the value in a StateTrieNode leaf.
+* Links to state accounts use a Keccak256 multihash of the rlp encoded account and the EthAccountSnapshot codec (0x97)
 ```ipldsch
 # Account is the Ethereum consensus representation of accounts.
 # These objects are stored in the state trie leafs.
 type StateAccount struct {
     Nonce    Uint
     Balance  Balance
-    # Storage root hash, references the root node of the storage trie
-    # From this hash we can derive the CID for the root of the storage trie, and in this manner
-    # link down to all of the storage nodes that exist for this account at this block
-    StorageRootHash &StorageTrieNode
-    CodeHash Bytes
-} representation tuple
+    
+    # CID link to the storage trie root node
+    # This CID links down to all of the storage nodes that exist for this account at this block
+    # This link uses the EthStorageTrie codec: 0x98
+    # If this is a contract account the multihash is a Keccak256 hash of the RLP encoded root storage node
+    # If this is an externally controlled account, the multihash is a Keccak256 hash of an RLP encoded empty byte array
+    StorageTrieCID &StorageTrieNode
+    
+    # CID link to the byte code for this account
+    # This link uses the Raw codec: 0x55
+    # If this is a contract account the multihash is a Keccak256 hash of the contract byte code for this contract
+    # If this is an externally controlled account the multihash is the Keccak256 hash of an empty byte array
+    CodeCID &ByteCode
+}
+
+type ByteCode bytes
 ```
 
 ## Storage Trie IPLD
 This is the IPLD schema type for storage trie nodes.
 
-Leaf node keys are the KECCAK-256 hash of the storage slot key.
-The value of a storage slot key is ultimately dependent on the EVM byte code compiler used.
+* Leaf node keys are the Keccak256 hash of the storage slot key.
+* The value of a storage slot key is ultimately dependent on the EVM byte code compiler used.
 For solidity, the most widely used compiler, the keys are generated as such:
-1) First, slot position is defined as the position a variable is declared. E.g. the first variable declared in a smart contract
+    1) First, slot position is defined as the position a variable is declared. E.g. the first variable declared in a smart contract
    will have a slot position of `0`
-2) For primitive data type variables- such as `string`, `int`, `bool`- their storage slot key is the 32-byte left-padded slot position.
+    2) For primitive data type variables- such as `string`, `int`, `bool`- their storage slot key is the 32-byte left-padded slot position.
    E.g. for an `int` declared as the first variable in a contract its slot key is equal to `0000000000000000000000000000000000000000000000000000000000000000`
    and its leaf node key is KECCAK_256(`0000000000000000000000000000000000000000000000000000000000000000`)
-3) For composite data type variables things get more complicated:
-    * For mappings, each entry in the mapping is stored at a different storage leaf. The storage slot key for a specific entry in a mapping is
+    3) For composite data type variables things get more complicated, e.g. for mappings, each entry in the mapping is stored at a different storage leaf. The storage slot key for a specific entry in a mapping is
       calculated as the KECCAK_256 hash of the entry's key in the map + the mapping's slot position. E.g. for a mapping `mapping(address => uint)` that is declared
       as the first variable in a contract, the storage slot key for the mapping element with key `0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7` will be equal to
       KECCAK_256(`0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7` + `0000000000000000000000000000000000000000000000000000000000000000`). The leaf node key will then be equal
       to the hash of this storage slot key e.g. KECCAK_256(KECCAK_256(`0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7` + `0000000000000000000000000000000000000000000000000000000000000000`))
   
-Leaf node values are the RLP encoded storage values.
+* Leaf node values are the RLP encoded storage values.
+* Links to storage trie nodes use a Keccak256 multihash of the rlp encoded node and the EthStorageTrie codec (0x98)
+
 ```ipldsch
 # StorageTrieNode is an IPLD block for a node in the storage trie
-# The root node of the storage trie is referenced in an StateAccount by the StorageRootHash
+# The root node of the storage trie is referenced in an StateAccount by the StorageTrieCID
 type StorageTrieNode TrieNode
 ```
 

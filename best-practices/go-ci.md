@@ -34,6 +34,7 @@ Code coverage can be determined in CI, but should not be used as an automatic st
 When using Codecov, this can be achieved by using the following `codecov.yml`:
 
 ```yml
+comment: false
 coverage:
   status:
     project:

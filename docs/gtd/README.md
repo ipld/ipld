@@ -9,6 +9,13 @@ in order: if you can get something done with the things at the top of this file,
 do that; if you can't, only then should you keep reading down the list to
 the more invasive and high-effort options that are available.
 
+In order:
+
+1. Use the Data Model.
+2. Use Schemas.
+3. Use ADLs.
+4. Write a new codec.
+
 Use the Data Model
 ------------------
 

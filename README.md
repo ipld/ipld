@@ -204,8 +204,8 @@ binary and decoding binary into the [Data Model](#data-model).
 
 Examples:
 
-* [DAG-CBOR](#DAG-CBOR)
-* [DAG-JSON](#DAG-JSON)
+* [DAG-CBOR](#dag-cbor)
+* [DAG-JSON](#dag-json)
 * bitcoin-block, bitcoin-tx
 * Git
 * CBOR

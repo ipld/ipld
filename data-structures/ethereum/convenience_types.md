@@ -1,26 +1,34 @@
 # Convenience IPLD types
-The types described in the schemas below are not referenced directly from within the canonical Ethereum merkle tree.
-Instead, these types can be constructed and verified from their underlying canonical Ethereum IPLD structures using the algorithms described by their
-ADLs. These types are introduced to improve the convenience and performance of accessing and working with the canonical Ethereum IPLD objects
-for certain purposes.
+
+The types described below are not referenced directly from within the canonical Ethereum merkle tree.
+Instead, these types can be constructed and verified from underlying canonical Ethereum IPLD structures using the algorithms described here.
+These types are introduced to improve the convenience and performance of accessing and working with the Ethereum objects for certain purposes.
 
 ## Transaction Trace IPLD
+
 Transaction traces contain the EVM context, input, and output for each individual OPCODE operation performed during the application of a transaction on a certain state.
-We would like to be able to reference these TxTrace objects by the corresponding transaction multihash
-* We need to reference by more than just txhash since the same tx can produce different traces when applied to different initial state
-    * We need a new multicodec type than we can combine with the corresponding transaction multihash, the tx index, and the state root multihash for the block the transactions are applied on top of
-    * Referencing in this manner is not a proper content hash reference since the multihash is not the hash of the `TxTrace` content that is being referenced
+These objects can be generated or verified by applying the referenced transactions on top of the referenced state.
+* The IPLD block is the RLP encoded object
+* CID links to `TxTrace` use a KECCAK_256 multihash of the RLP encoded object and the EthTxTrace codec (tbd).
 
 ```ipldsch
-# TxTrace contains the EVM context, input, and output for each OPCODE in a transaction
-# The problem is, we want to be able to reference to this from the corresponding transaction's multihash by simply
-# combining it with a different multicodec, but that would mean the multihash is not the hash of the TxTrace content but
-# rather of the corresponding transaction- which breaks IPLD convention.
+# TxTrace contains the EVM context, input, and output for each OPCODE in a transaction that was applied to a specific state
 type TxTrace struct {
-    Result Bytes
-    Frames [Frame]
-    Gas Uint
-    Failed Bool
+   # List of CIDs linking to the transactions that were used to generate this trace by applying them onto the state referenced below
+   # If this trace was produced by the first transaction in a block then this list will contain only that one transaction
+   # and thistrace was produced by applying it directly to the referenced state
+   # Otherwise, only the last transaction in the list is the one directly responsible for producing this trace whereas the
+   # proceeding ones were sequentially applied to the referenced state to generate the intermediate state that the final,
+   # trace-producing transaction, was applied on top of
+   # This is analogous to the Transactions IPLD defined below, but only in the case of a trace produced by the last
+   # transaction in a block will the list be same as a complete Transaction IPLD
+   TxCIDs [&Transaction]
+   # CID link to the root node of the state trie that the above transaction set was applied on top of to produce this trace
+   StateRootCID &StateTrieNode
+   Result Bytes
+   Frames [Frame]
+   Gas Uint
+   Failed Bool
 }
 
 # Frame represents the EVM context, input, and output for a specific OPCODE during a transaction trace
@@ -36,86 +44,118 @@ type Frame struct {
 }
 ```
 
+Provided a `Header` multihash/CID and a transaction index, we can generate a `TxTrace` by
+1) Fetching and decoding the `Header` IPLD.
+2) Stepping down into the transaction trie referenced in the header.
+   1) Collecting the transaction at the provided index and all transactions with indexes lower than the provided index.
+   2) KECCAK_256 hashing each transaction.
+   3) Convert hashes to CIDs using the KECCAK_256 multihash and EthTx codec.
+   3) Order these CIDs in a list by transaction index.
+3) Collect the `StateRootCID` from within this `Header`.
+4) Use [ipfs-ethdb](https://github.com/vulcanize/ipfs-ethdb) with state root linked in the `Header` to instantiate an EVM on top
+of the state of this block.
+5) Apply each of the transactions on top of this state using the ipfs-ethdb based EVM.
+6) For the final transaction applied, collect the trace output from the EVM.
+7) Assemble the trace output, the `Transaction` CIDs, and the root `StateTrieNode` CID into the `TxTrace` object.
+
 ## Block IPLD
-`Block` IPLD represents an entire block in the Ethereum blockchain, it contains direct content hash references to
-the RLP encoded sets of transactions and receipts for that block in order to avoid the need to traverse the transaction
+
+`Block` IPLD represents an entire block (header + body) in the Ethereum blockchain, it contains direct content hash references to
+the sets of transactions and receipts for that block in order to avoid the need to traverse the transaction
 and receipt tries to collect these sets (as is required when starting from a canonical `Header` block).
-We want to be able to reference to this from the corresponding header's multihash by simply combining that multihash with a different
-multicodec, but doing so will break IPLD convention as the multihash is not the content hash of the `Block` being referenced.
+These objects can be generated or verified by following the links within the contained `Header` to collect the `Transactions` and `Receipts`
+from the referenced transaction and receipt tries.
+* The IPLD block is a CBOR serialization of the object
+* CID links to `Block` use a KECCAK_256 multihash of the CBOR serialized object and the DagCbor codec (0x71).
+
 ```ipldsch
 # Block represents an entire block in the Ethereum blockchain.
 type Block struct {
-    Header       &Header
-    Uncles       &Uncles
-    Transactions &Transactions
-    Receipts     &Receipts
+   # CID link to the header at this block
+   # This CID is composed of the KECCAK_256 multihash of the RLP encoded header and the EthHeader codec (0x90)
+   # Note that the header contains references to the uncles and tx, receipt, and state tries at this height
+   Header       &Header
+   # CID link to the list of hashes for each of the transactions at this block
+   # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of transaction hashes and the EthTxHashList codec (tbd)
+   Transactions &TransactionHashes
+   # CID link to the list of hashes for each of the receipts at this block
+   # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of receipt hashes and the EthTxReceiptHashList codec (tbd)
+   Receipts     &ReceiptHashes
 }
 ```
 
-## Transactions IPLD
-The `Transactions` IPLD represents the entire ordered list of transactions for a given block. It is referenced by the KECCAK_256 hash of the 
-RLP encoded list. This forms a proper IPLD object, but its content hash is not referenced from within any canonical Ethereum object.
-Instead, it is referenced from the above proposed `Block` object.
+Provided a `Header` multihash/CID, we can generate a `Block` IPLD by
+1) Fetching and decoding the `Header` IPLD.
+1) Stepping down into the transaction trie referenced in the header.
+   1) Collecting each transaction stored at the leaf nodes in the trie.
+   2) KECCAK_256 hashing each transaction.
+   3) Order these hashes in a list by transaction index.
+   4) KECCAK_256 hash the RLP encoded list.
+   5) Convert to CID using the KECCAK_256 multihash and EthTxHashList codec.
+2) Stepping down into the receipt trie referenced in the header.
+   1) Collecting each receipt stored at the leaf nodes in the trie.
+   2) KECCAK_256 hashing each receipt.
+   3) Order these hashes in a list by receipt index.
+   4) KECCAK_256 hash the RLP encoded list.
+   5) Convert to CID using the KECCAK_256 multihash and EthTxReceiptHashList codec.
+3) Assemble the `Header` CID, `Transactions` CID, and `Receipts` CID into the `Block` object.
+
+## TransactionHashes IPLD
+
+This is the IPLD schema for the ordered list of all transactions for a given block.
+* The IPLD block is the RLP encoded list of transaction hashes
+* CID links to `Transactions` use a KECCAK_256 multihash of the RLP encoded list of transaction hashes and the EthTxHashList codec (tbd).
+* `Transactions` IPLDs are not referenced from any canonical Ethereum object, but are instead linked to from the above `Block` and `TxTrace` objects.
+
 ```ipldsch
-# Transactions contains a list of references to Ethereum transactions
-# It is referenced by the KECCAK-256 hash of the RLP encoded list of transactions
-# This would be analogous to how uncles are linked from the header
+# Transactions contains a list of CID that reference all of the Ethereum transactions at this block
+# These CIDs are composed from the KECCAK_256 multihash of the referenced transaction and the EthTx codec (0x93)
 type Transactions [&Transaction]
 ```
 
-## Receipts IPLD
-The `Receipts` IPLD represents the entire ordered list of receipts for a given block. It is referenced by the KECCAK_256 hash of the
-RLP encoded list. This forms a proper IPLD object, but its content hash is not referenced from within any canonical Ethereum object.
-Instead, it is referenced from the above proposed `Block` object.
+## ReceiptHashes IPLD
+
+This is the IPLD schema for the ordered list of all receipts for a given block.
+* The IPLD block is the RLP encoded list of receipt hashes
+* CID links to `Receipts` use a KECCAK_256 multihash of the RLP encoded list of receipt hashes and the EthTxReceiptHashList codec (tbd)
+* `Receipts` IPLDs are not referenced directly from any canonical Ethereum object, but are instead linked to from the above `Block` ADL object.
+
 ```ipldsch
-# Receipts contains a list of references to Ethereum receipts
-# It is referenced by the KECCAK-256 hash of the RLP encoded list of receipts
-# This would be analogous to how uncles are linked fromm the header
+# Receipts contains a list of CID that reference all of the receipts at this block
+# These CIDs are composed from the KECCAK_256 multihash of the referenced receipt and the EthTxReceipt codec (0x95)
 type Receipts [&Receipt]
 ```
 
 ## Genesis IPLD
-This is a single IPLD block at the base of the entire chain with this layout. It is
-encoded with DAG-CBOR with a KECCAK-256 which gives the CID:
-`to-be-added`.
 
-This IPLD block is not referenced as height `0` as this is reserved for the first
-`Header` block which carries the initial state. The `Header` block at height `0` (genesis block) references the
-corresponding `GenesisInfo` from which it was generated by its `ParentHash`/`ParentReference`. Since Ethereum was
-created without the IPLD format in mind, the canonical genesis block contains an "empty" `ParentHash` of `0x0000000000000000000000000000000000000000000000000000000000000000`
-which is not a multihash of the `GenesisInfo` used to create it. In order to convert this into a link to the `GenesisInfo`
-we need to break some conventions.
-
-There are three possible ways of addressing this issue:
-1) Define new multicodec types for each `GenesisInfo` variant which we combine with the `0x0000000000000000000000000000000000000000000000000000000000000000` multihash
-   to create a reference to that specific `GenesisInfo`.
-    * This breaks IPLD convention due to the multihash no longer being a hash of the referenced content
-    * We need different multicodecs for each `GenesisInfo` variant
-2) Define a single new multicodec type for the `GenesisInfo` type and include inside the genesis block IPLD `ParentReference` a true content hash reference to the corresponding `GenesisInfo`,
-   with the caveat that when hashing the genesis block IPLD to generate references to it (when generating its blockhash) we first replace the `ParentReference` content hash with the expected `0x0000000000000000000000000000000000000000000000000000000000000000`.
-    * This breaks IPLD convention for the `ParentReference` from the header at height `1` to the genesis block since that content hash will be of the canonical Ethereum genesis block containing `0x0000000000000000000000000000000000000000000000000000000000000000`
-      and not of the IPLD block which actually contains the `GenesisInfo` content hash
-3) Avoid requiring a link from the genesis block to the `GenesisInfo`, `GenesisInfo` content hashes can instead be thought of as constants that are expected to be known without reference from the genesis block.
+This is the IPLD schema for the configuration settings and genesis allocations to produce a specific genesis block and begin an Ethereum
+blockchain. It also includes a reference to the genesis block `Header` it produces. This is a single IPLD block at the base of an entire Ethereum chain.
+* The IPLD block is a CBOR serialization of the object
+* CID links to `GenesisInfo` use a KECCAK_256 multihash of the CBOR serialized object and the DagCbor codec (0x71).
 
 ```ipldsch
 # GenesisInfo specifies the header fields, state of a genesis block, and hard fork switch-over blocks through the chain configuration.
 # NOTE: we need a new multicodec type for the Genesis object
 type GenesisInfo struct {
-    Config     ChainConfig
-    Nonce      Uint
-    Timestamp  Uint
-    ExtraData  Bytes
-    GasLimit   Unit
-    Difficulty BigInt
-    Mixhash    Hash
-    Coinbase   Address
-    Alloc      GenesisAlloc
-    
-    # These fields are used for consensus tests. Please don't use them
-    # in actual genesis blocks.
-    Number     Uint
-    GasUsed    Uint
-    ParentHash Hash
+   # CID link to the genesis header this genesis info produces
+   # This CID is composed of the KECCAK_256 multihash of the linked RLP encoded header and the EthHeader codec (0x90)
+   GensisHeader &Header
+   
+   Config     ChainConfig
+   Nonce      Uint
+   Timestamp  Uint
+   ExtraData  Bytes
+   GasLimit   Unit
+   Difficulty BigInt
+   Mixhash    Hash
+   Coinbase   Address
+   Alloc      GenesisAlloc
+   
+   # These fields are used for consensus tests. Please don't use them
+   # in actual genesis blocks.
+   Number     Uint
+   GasUsed    Uint
+   ParentHash Hash
 }
 
 # GenesisAlloc is a map that specifies the initial state that is part of the genesis block.
@@ -131,9 +171,9 @@ type GenesisAccount struct {
 }
 
 # ChainConfig is the core config which determines the blockchain settings.
-# ChainConfig is stored in the database on a per block basis. This means
-# that any network, identified by its genesis block, can have its own
-# set of configuration options.
+# ChainConfig is stored in the database on a per block basis.
+# This means that any network, identified by its genesis block, can have its own set of configuration options.
+# The ChainConfig referenced in GenesisInfo is used to produce the genesis block but is not necessarily used for later blocks down the chain.
 type ChainConfig struct {
     ChainID BigInt
     HomesteadBlock BigInt
@@ -157,6 +197,7 @@ type ChainConfig struct {
 }
 
 # EthashConfig is the consensus engine config for proof-of-work based sealing.
+# At this time there are no configuration options for the Ethash engine.
 type EthashConfig struct {} representation tuple
 
 # CliqueConfig is the consensus engine config for proof-of-authority based sealing.

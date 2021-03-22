@@ -14,7 +14,7 @@ type Uint int
 # Block nonce is an 8 byte binary representation of a block's nonce
 type BlockNonce bytes
 
-# Hash represents the 32 byte Keccak256 hash of arbitrary data.
+# Hash represents the 32 byte KECCAK_256 hash of arbitrary data.
 type Hash bytes
 
 # Address represents the 20 byte address of an Ethereum account.

@@ -1,4 +1,5 @@
 # Ethereum Chain Data Structures
+
 This section contains the IPLD schemas for the blockchain data structures of Ethereum.
 This includes: headers, uncle sets, transactions, and receipts. The state trie, storage trie,
 receipt trie, and transaction trie IPLDs are described in the [state](state.md) section. It
@@ -7,34 +8,39 @@ across their respective tries beginning at the root referenced in the header. Al
 directly from the header by the hash of the RLP encoded list of uncles.
 
 ## Header IPLD
-The `Header` IPLD represents a canonical Ethereum header.
+
+This is the IPLD schema for a canonical Ethereum block header.
+* The IPLD block is the RLP encoded header
+* Links to headers use a KECCAK_256 mutlihash of the RLP encoded header and the EthHeader codec (0x90).
+* Parent headers are referenced back to by their child header.
+* The genesis header is unique in that it does not reference a parent header in `ParentCID`, instead it contains a reference to a `GenesisInfo` ADL.
 
 ```ipldsch
 # Header contains the consensus fields of an Ethereum block header
 type Header struct {
     # CID link to the parent header
-    #
+    # This CID is composed of the KECCAK_256 multihash of the linked RLP encoded header and the EthHeader codec (0x90)
     ParentCID &Header
     
-    # Hash of the rlp encoded list of uncles
-    # From this hash we can derive the CID for the list of the uncles, and in this manner
-    # link to all of the uncles contained in this block
+    # CID link to the list of uncles at this block
+    # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of Uncles and the EthHeaderList codec (0x91)
+    # Note that an uncle is simply a header that does not have an associated body
     UnclesCID &Uncles
     Coinbase Address
     
-    # State root hash, references the root node of the state trie
-    # From this hash we can derive the CID for the root of the state trie, and in this manner
-    # link down to all of the state and storage nodes that exist at this block
+    # CID link to the root node of the state trie
+    # This CID is composed of the KECCAK_256 multhash of the RLP encoded state trie root node and the EthStateTrie codec (0x96)
+    # This steps us down into the state trie, from which we can link to the rest of the state trie nodes and all the linked storage tries
     StateRootCID &StateTrieNode
     
-    # Tx root hash, references the root node of the tx trie
-    # From this hash we can derive the CID for the root of the tx trie, and in this manner
-    # link down to all of the transactions and transaction traces contained in this block
+    # CID link to the root node of the transaction trie
+    # This CID is composed of the KECCAK_256 multihash of the RLP encoded tx trie root node and the EthTxReceiptTrie codec (0x92)
+    # This steps us down into the transaction trie, from which we can link to the rest of the tx trie nodes and all of the linked transactions
     TxRootCID &TxTrieNode
     
-    # Receipt root hash, references the root node of the receipt trie
-    # From this hash we can derive the CID for the root of the receipt trie, and in this manner
-    # link down to all of the receipts contained in this block
+    # CID link to the root of the receipt trie
+    # This CID is composed of the KECCAK_256 multihash of the RLP encoded rct trie root node and the EthTxReceiptTrie codec (0x94)
+    # This steps us down into the receipt trie, from which we can link to the rest of the rct trie nodes and all of the linked receipts
     RctRootCID &RctTrieNode
     
     Bloom Bloom
@@ -50,33 +56,34 @@ type Header struct {
 ```
 
 ## Uncles IPLD
-The `Uncles` IPLD represents the ordered list of uncles for a given block. It is referenced by the KECCAK_256 hash of the
-RLP encoded list which is present as the `UnclesHash` in the Ethereum `Header`.
+This is the IPLD schema for a list of uncles ordered in ascending order by their block number.
+* The IPLD block is the RLP encoded list of uncles
+* CID links to `UncleList` use a KECCAK_256 multihash of the RLP encoded list and the EthHeaderList codec (0x92).
+* The `Uncles` is referenced in an Ethereum `Header` by the `UnclesCID`.
+
 ```ipldsch
-# Uncles contains a list of Ethereum uncles
-# It is referenced by the KECCAK-256 hash of the RLP encoded list of uncles
-# The hash of this list is the UncleHash in the header
-# NOTE: we need a new multicodec for rlp encoded list of uncles
+# Uncles contains an ordered list of Ethereum uncles (headers that have no associated body)
+# This IPLD object is referenced by a CID composed of the KECCAK_256 multihash of the RLP encoded list and the EthHeaderList codec (0x91)
 type Uncles [Header]
 ```
 
 ## Transaction IPLD
-The `Transaction` IPLD represents the consensus fields of a canonical Ethereum transaction. This will need to be updated once
-EIP-1559 is approved. `Transaction` IPLDs are not referenced directly from an `Ethereum` header but are instead
-be linked to from within the transaction trie whose root is referenced in the `Header`.
+This is the IPLD schema for a canonical Ethereum transaction. It contains only the fields required for consensus.
+Note that this will need to be updated once EIP-1559 and EIP-2718 are approved.
+* The IPLD block is the RLP encoded transaction
+* CID links to `Transaction` use a KECCAK_256 multihash of the RLP encoded transaction and the EthTx codec (0x93).
+* `Transaction` IPLDs are not referenced directly from an `Ethereum` header but are instead linked to from within the transaction trie whose root is referenced in the `Header` by the `TxRootCID`.
 ```ipldsch
 # Transaction contains the consensus fields of an Ethereum transaction
 type Transaction struct {
     AccountNonce Uint
     Price        BigInt
     GasLimit     Uint
-    Recipient    nullable Address
+    Recipient    nullable Address # null recipient means the tx is a contract creation
     Amount       BigInt
     Payload      Bytes
     
     # Signature values
-    # These are the same Signature values described in crypto_types.md
-    # But, confusingly, when packed into the RLP encoded transaction they are ordered [V || R || S] rather than [R || S || V]
     V            BigInt
     R            BigInt
     S            BigInt
@@ -84,9 +91,10 @@ type Transaction struct {
 ```
 
 ## Receipt IPLD
-The `Receipt` IPLD represents the consensus fields of a canonical Ethereum receipt.
-`Receipt` IPLDs are not referenced directly from an `Ethereum` header but are instead
-be linked to from within the receipt trie whose root is referenced in the `Header`.
+This is the IPLD schema for a canonical Ethereum receipt. It contains only the fields required for consensus.
+* The IPLD block is the RLP encoded receipt
+* CID links to `Receipt` use a KECCAK_256 multihash of the RLP encoded receipt and the EthTxReceipt codec (0x95).
+* `Receipt` IPLDs are not referenced directly from an `Ethereum` header but are instead linked to from within the receipt trie whose root is referenced in the `Header` by the `RctRootCID`.
 ```ipldsch
 # Receipt contains the consensus fields of an Ethereum receipt
 type Receipt struct {

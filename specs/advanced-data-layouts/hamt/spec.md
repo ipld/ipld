@@ -46,7 +46,7 @@ The IPLD HashMap is constructed as a [hash array mapped trie (HAMT)](https://en.
 * Peergos [CHAMP](https://github.com/Peergos/Peergos/blob/master/src/peergos/shared/hamt/Champ.java) implementation
 * [IAMap](https://github.com/rvagg/iamap) JavaScript implementation of the algorithm
 * [ipld-hashmap](https://github.com/rvagg/js-ipld-hashmap) JavaScript IPLD frontend to IAMap with a mutable API
-* [go-hamt-ipld](https://github.com/ipfs/go-hamt-ipld) Filecoin Go HAMT implementation used by the [Lotus](https://lotu.sh/) client. See the appendix for how this implementation differs from this specification.
+* [go-hamt-ipld](https://github.com/filecoin-project/go-hamt-ipld) Filecoin Go HAMT implementation used by the [Lotus](https://lotu.sh/) client. See the appendix for how this implementation differs from this specification.
 
 ## Summary
 
@@ -287,7 +287,7 @@ It encodes directly as [DAG-CBOR](/specs/codecs/dag-cbor/) but uses a different 
 This section documents the specific ways that the Filecoin HAMT variant differs from this specification.
 IPLD HashMap implementations may be able to implement a form that provides compatibility with Filecoin when requested by the user.
 
-The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/ipfs/go-hamt-ipld>.
+The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/filecoin-project/go-hamt-ipld>. Note that this document reflects v3 of the Go module, whose latest version is `v3.0.1` at the time of writing.
 
 ### Implicit and fixed parameters
 

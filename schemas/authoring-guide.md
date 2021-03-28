@@ -280,7 +280,7 @@ This representation for Structs has limitations as there is no escaping mechanis
 
 #### Field-specific Representation Parameters
 
-The content in the main `type` declaration block (between opening `{` and closing `}`) is intended to represent the type as a user-facing concept, including the [cardinality](./schema-kinds.md#Understanding-Cardinality) of the fields. However, content in parens (`(`, `)`) presented next to individual fields is an exception to this rule. This content is field-specific representation parameters. That is, the parameters presented inside these parens would ordinarily belong below in the `representation` block because it regards the interaction with the serialized form. It is present next to the fields to primarily avoid the duplication of re-declaring the fields in the `representaiton` block.
+The content in the main `type` declaration block (between opening `{` and closing `}`) is intended to represent the type as a user-facing concept, including the [cardinality](./schema-kinds.md#Understanding-Cardinality) of the fields. However, content in parens (`(`, `)`) presented next to individual fields is an exception to this rule. This content is field-specific representation parameters. That is, the parameters presented inside these parens would ordinarily belong below in the `representation` block because it regards the interaction with the serialized form. It is present next to the fields to primarily avoid the duplication of re-declaring the fields in the `representation` block.
 
 Two common field-specific representation parameters for Structs are `implicit` and `rename`:
 
@@ -464,7 +464,7 @@ And an alternative form that is also acceptable but signals a different state an
 }
 ```
 
-In this example, we have a Map that can be represented as a Struct since it has only two fields, but the `payload` field dosn't have a stable kind so we can't use any of the existing Schema types to represent the field type. Instead, we can introduce a Union and can take different forms depending on the different acceptable forms.
+In this example, we have a Map that can be represented as a Struct since it has only two fields, but the `payload` field doesn't have a stable kind so we can't use any of the existing Schema types to represent the field type. Instead, we can introduce a Union and can take different forms depending on the different acceptable forms.
 
 IPLD Schemas are intended to be efficient, so the ability to discriminate on Union types is limited to what we can find _at the current node_. That is, we can't inspect whether a node has a child that takes a particular form and use that as a discriminator (such as inspecting the keys or values of a Map). A Schema must be able to fail validation at a node being inspected where the data does not match the expected form.
 
@@ -594,7 +594,7 @@ type Ping struct {
 }
 ```
 
-Our `Payload` union now has the `keyed` representation strategy. This strategy still assumes a Map representation kind at the current node but one that has various keys that are used to discriminate the type present. `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union. Validation of such data can now check for the presence of each of these keys, _exactly one_ of them exists, and then hand off validation to the expected type at the node found in the valud of that key. If an `"error"` key is found, it will proceed to validate `Error` which assumes that the node is a String. If a `"progress"` key is found, it will proceed to validate that it finds a Map at the value node and that it matches the `Progress` type, etc.
+Our `Payload` union now has the `keyed` representation strategy. This strategy still assumes a Map representation kind at the current node but one that has various keys that are used to discriminate the type present. `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union. Validation of such data can now check for the presence of each of these keys, _exactly one_ of them exists, and then hand off validation to the expected type at the node found in the valued of that key. If an `"error"` key is found, it will proceed to validate `Error` which assumes that the node is a String. If a `"progress"` key is found, it will proceed to validate that it finds a Map at the value node and that it matches the `Progress` type, etc.
 
 #### Envelope
 

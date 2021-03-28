@@ -21,7 +21,7 @@ addressed data structures. We assume that we'll see more of these block formats 
 future and not less. It is quite clear then that a reasonable and more future proof approach 
 to using these data structures is to be block format agnostic.
 
-The data model defines a common respresentation of basic types that **are easily representable
+The data model defines a common representation of basic types that **are easily representable
 by common programming languages.** This provides the foundation for block format agnostic tools
 to be built using familiar native types in a programmer's preferred language. As such, there
 is an element of "lowest common denominator" to the IPLD Data Model in that it cannot support
@@ -156,7 +156,7 @@ it takes the world as it is, and the world of strings has widely known compatibi
 * Some languages/libraries can handle arbitrary byte data in strings, some do not.
 
 While some codec specifications will define a required encoding it should be noted that in practice
-many codec implementations leave this kind of validation and sanitizaton up to the consumer (application
+many codec implementations leave this kind of validation and sanitization up to the consumer (application
 code) and it is typical to find arbitrary byte data in strings even in codecs that explicitely forbid it.
 
 Applications **SHOULD** only encode UTF8 data into string values and use byte values when they need

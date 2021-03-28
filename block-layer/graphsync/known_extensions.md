@@ -29,7 +29,7 @@ Extension Name: `graphsync/response-metadata`
 
 What it does:
 
-Response metadata provides information about the response to help the requestor more efficiently verify that the blocks sent back from the responder are valid for the requested IPLD selector. It contains information about the CIDs the responder traversed, in order, during the course of performing the selector query, and whether or not the corresponding block was present in its local block store. Telling the requestor immediately that the query passed over a block the responder did not have allows the requestor to advance its local query, and return a seperate error for that particular block.
+Response metadata provides information about the response to help the requestor more efficiently verify that the blocks sent back from the responder are valid for the requested IPLD selector. It contains information about the CIDs the responder traversed, in order, during the course of performing the selector query, and whether or not the corresponding block was present in its local block store. Telling the requestor immediately that the query passed over a block the responder did not have allows the requestor to advance its local query, and return a separate error for that particular block.
 
 How it works:
 

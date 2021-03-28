@@ -24,7 +24,7 @@ needs substantial iteration and new content, the way to move forward is:
 - commit and share your notes, linking to existing content where you can.
 
 If you don't have push access to this repository, or want to start writing and
-sharing even earlier iterations of thoughts, Github Gists are also a great way
+sharing even earlier iterations of thoughts, GitHub Gists are also a great way
 to handle this style of editing.
 This directory can be thought of roughly like a collection of gists; we've just
 gathered the ones especially relevant to the evolution of the design of IPLD.

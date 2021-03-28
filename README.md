@@ -65,7 +65,7 @@ Since different systems and transports may impose block size limits (often 2mb o
 ### Schemas and Advanced Data Layouts
 
 IPLD Schemas define a mapping from the Data Model to instantiated data structures comprising complex layouts.
-Schemas add the ability to extend the IPLD Data Model to the wide variety of types required for typical programatic interaction with a data source without the need to implement custom translation abstractions.
+Schemas add the ability to extend the IPLD Data Model to the wide variety of types required for typical programmatic interaction with a data source without the need to implement custom translation abstractions.
 
 Schemas will also serve as an enabling layer for complex multi-block data structures via Advanced Data Layouts by providing stability and consistency of data model use within individual blocks and defined interaction points for the logic required for building and interacting with advanced data layouts, such as multi-block Maps, Lists and Sets.
 

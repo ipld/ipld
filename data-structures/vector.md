@@ -35,7 +35,7 @@ An IPLD Vector containing fewer values than the `width` of the Vector can be rep
 
 * [Understanding Clojure's Persistent Vectors, pt. 1](https://hypirion.com/musings/understanding-persistent-vector-pt-1) and [pt. 2](https://hypirion.com/musings/understanding-persistent-vector-pt-2) are excellent introductions to some of the concepts covered here, including graphics that help describe the tree structures.
 * [Fast And Space Efficient Trie Searches](https://infoscience.epfl.ch/record/64394/files/triesearches.pdf) by Phil Bagwell, 2000, and [Ideal Hash Trees](http://lampwww.epfl.ch/papers/idealhashtrees.pdf) by Phil Bagwell, 2001, introduce the AMT and HAMT concepts, which has some similarity to the data structure described here.
-* Daniel Spiewak's Strange Loop '01 presentation titled [Extreme Cleverness: Functional Data Structures in Scala](https://www.infoq.com/presentations/Functional-Data-Structures-in-Scala/) covers the concept of Bitmapped Vector Tries, roughly equivilant to Clojure's Persistent Vector which is roughly the same as the data structure outlined here.
+* Daniel Spiewak's Strange Loop '01 presentation titled [Extreme Cleverness: Functional Data Structures in Scala](https://www.infoq.com/presentations/Functional-Data-Structures-in-Scala/) covers the concept of Bitmapped Vector Tries, roughly equivalent to Clojure's Persistent Vector which is roughly the same as the data structure outlined here.
 * [sharray](https://github.com/whyrusleeping/sharray) a Go implementation of this data structure directly implemented against CBOR with Create and Iteration functionality.
 * [iavector](https://github.com/rvagg/iavector) the JavaScript reference implementation of this data structure.
 
@@ -325,7 +325,7 @@ _These will mostly involve a filtered copy with something resembling `CreateFrom
 
 ### `Values()`
 
-Collection-spanning iteration operations are **optional** for implementations, although they are encouraged as they are generally programatically useful for ordered collections.
+Collection-spanning iteration operations are **optional** for implementations, although they are encouraged as they are generally programmatically useful for ordered collections.
 
 The storage order of entries in an IPLD Vector is the same as index order. Therefore, a `Values` operation should traverse the tree from head to tail (left to right if conceptually laid out horizontally). Values should be emitted from head to tail of `data` arrays in `height` of `0` nodes _only_. All other nodes with a `height` greater than `0` are intermediate and do not contain values so should be used for traversal only.
 
@@ -349,7 +349,7 @@ The primary trade-off for `width` is node, and therefore block, size. In a maxim
 
 ### Compression for sparse arrays
 
-A compressed form of this data structure could implement a `map` similar to the HAMT algorithm in [HashMap](hashmap.md) for a more classic AMT structure. This would allow variable depth node creation for sparse arrays, compressing in both depth and height. Such an implementation would store a `map` bitmap in each node with bits set and unset to indicate wether an index is present and a `popcount()` operation performed to find the index within the `data` array. Where an array is very sparse, entire sections of the tree may be avoided. Algorithmic complexity is a trade-off for this implementation.
+A compressed form of this data structure could implement a `map` similar to the HAMT algorithm in [HashMap](hashmap.md) for a more classic AMT structure. This would allow variable depth node creation for sparse arrays, compressing in both depth and height. Such an implementation would store a `map` bitmap in each node with bits set and unset to indicate whether an index is present and a `popcount()` operation performed to find the index within the `data` array. Where an array is very sparse, entire sections of the tree may be avoided. Algorithmic complexity is a trade-off for this implementation.
 
 ### Flexible head for efficient operations a the head and for sub-trees
 

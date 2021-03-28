@@ -20,7 +20,7 @@
 
 A type at the Schema layer must be mapped onto a representation expressible within the Data Model. Each Schema type, therefore, has a "representation kind" which dictates what Data Model kind it is represented as. Each Schema type has a "representation strategy" for converting it, where required, into a "representation kind".
 
-For all Schema kinds which have direct equivalents in the Data Model (e.g. Int, String, Float), that kind is also the representation kind and there is a default representation strategy (mostly implicitly) named after that kind, i.e. a String schema kind has a String representation kind and also a `string` representation strategy that is a direct transferrence through the Data Model. The default representation is, broadly speaking, a no-op: a string remains a string, and a map is easy to enough to represent as a map!
+For all Schema kinds which have direct equivalents in the Data Model (e.g. Int, String, Float), that kind is also the representation kind and there is a default representation strategy (mostly implicitly) named after that kind, i.e. a String schema kind has a String representation kind and also a `string` representation strategy that is a direct transference through the Data Model. The default representation is, broadly speaking, a no-op: a string remains a string, and a map is easy to enough to represent as a map!
 
 The Schema layer introduces additional kinds (see [IPLD Schema Kinds](./schema-kinds.md)) that can be thought of as "perceived kinds", in that they have no direct equivalent in the Data Model but can be represented there and perceived as something different when passing through the Schema layer. Most also have default mappings.
 
@@ -652,7 +652,7 @@ type Status enum {
 } representation int
 ```
 
-As with the `string` representaiton strategy, Enums with an `int` representation strategy still quote the integer strings when provided as field-specific representation parameters. This is standard practice for field-specific representation parameters as they are converted to the correct type depending on context. In this context, they are assumed to be integers so must be convertable to integers.
+As with the `string` representation strategy, Enums with an `int` representation strategy still quote the integer strings when provided as field-specific representation parameters. This is standard practice for field-specific representation parameters as they are converted to the correct type depending on context. In this context, they are assumed to be integers so must be convertable to integers.
 
 There are no optional values, as in the `string` representation strategy, all values must be provided when using `int` representation strategy.
 

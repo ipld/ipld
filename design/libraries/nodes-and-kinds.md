@@ -118,9 +118,9 @@ examining data of the [Data Model Kinds](../../data-model-layer/data-model.md#ki
 
 - Yes, `Node` is implemented by types that just hold basic Data Model info;
 - `Node` is also implemented by [Advanced Data Layouts](../../schemas/advanced-layouts.md) --
-	- consider a HAMT that spans many separately-seralized chunks of data; it should still be usable as if it's a regular map.
+	- consider a HAMT that spans many separately-serialized chunks of data; it should still be usable as if it's a regular map.
 - `Node` is also implemented by [Schema-typed Nodes](../../schemas/) --
-	- Both if implemented by a single implementation that evalates rules at runtime (so, finite count of implementing types and known at core library compile time)...
+	- Both if implemented by a single implementation that evaluates rules at runtime (so, finite count of implementing types and known at core library compile time)...
 	- or if handled by codegen/macros (unknown count / open set of implementors of `Node`; not known at core library compile time; may be created in other packages that import the core, rather than core importing them!).
 
 Even further, some libraries may choose to make even more various
@@ -175,7 +175,7 @@ Almost all features should be implemented to take `Node` arguments,
 and return `Node` values.
 
 Traversals and walks can be implemented in this way: e.g.
-`function walk(start Node, vistorFn func(visted Node))`.
+`function walk(start Node, visitorFn func(visited Node))`.
 
 Selectors can be implemented in this way.
 (Continue with the idea above for traversals.)

@@ -85,8 +85,8 @@ Basically, we construct the corresponding CIDv1 out of the raw hash link because
 
 Given the above addressing changes, it is now possible to address raw data directly, as an IPLD node. This node is of course taken to be just a byte buffer, and devoid of links (i.e. a leaf node).
 
-The utility of this is the ability to directly address any object via hashing external to IPLD datastructures.
+The utility of this is the ability to directly address any object via hashing external to IPLD data structures.
 
 ### Support for multiple binary packed formats
 
-Contrary to prior Merkle objects (e.g. IPFS protobuf legacy, git, bitcoin, dat and others), new IPLD ojects are authenticated AND self described data blobs, each IPLD object is serialized and prefixed by a multicodec identifying its format.
+Contrary to prior Merkle objects (e.g. IPFS protobuf legacy, git, bitcoin, dat and others), new IPLD objects are authenticated AND self described data blobs, each IPLD object is serialized and prefixed by a multicodec identifying its format.

@@ -172,7 +172,7 @@ Notes:
       3. Proceed to create new CIDs for the current block and each parent as per step **6.c**. until we have a new root block and its CID.
    3. If the `dataIndex` element of `data` contains a bucket (array) and the bucket's size is `bucketSize`:
       1. Create a new empty node
-      2. For each element of the bucket, perform a `Set(key, value)` on the new empty node with a `depth` set to `depth + 1`, proceeding from step **2**. This should create a new node with `bucketSize` elements distributed approximately evenly through its `data` array. This operation will only result in more than one new node being created if all `key`s being set have the same `bitWidth` bits of their hashes at `bitWidth` position `depth + 1` (and so on). A sufficiently random hash algorithm should prevent this from occuring.
+      2. For each element of the bucket, perform a `Set(key, value)` on the new empty node with a `depth` set to `depth + 1`, proceeding from step **2**. This should create a new node with `bucketSize` elements distributed approximately evenly through its `data` array. This operation will only result in more than one new node being created if all `key`s being set have the same `bitWidth` bits of their hashes at `bitWidth` position `depth + 1` (and so on). A sufficiently random hash algorithm should prevent this from occurring.
       3.  Create a CID for the new child node.
       4.  Mutate the current node (create a copy)
       5.  Replace `dataIndex` of `data` with a link to the new child node.
@@ -203,7 +203,7 @@ The deletion algorithm below is presented as an iterative operation. It can also
       2. If `depth` is not `0` (not the root node) and there are no links in the `data` array for this node (it has no child nodes) and the number of entries across all buckets in this node is currently equal to `bucketSize + 1`, then this node needs to be collapsed into a single bucket, of `bucketSize` once the entry being deleted is removed, and replaced in its parent's `data` array in place of the link to this node.
          1. Create a new bucket and place all entries in the node except for the one being removed into the new bucket. The new bucket now contains all of the entries from the node and will be used to replace the node in the parent.
          2. Mutate the parent node (create a copy).
-         3. Replace the link to the node in the parent's `data` array with the newly created bucket. (Note the position in the parent's `data` array will be dependendent on the `key`'s `index` at `depth - 1` and the `dataIndex` calculated from the parent's `map`).
+         3. Replace the link to the node in the parent's `data` array with the newly created bucket. (Note the position in the parent's `data` array will be dependent on the `key`'s `index` at `depth - 1` and the `dataIndex` calculated from the parent's `map`).
          4. Create a CID for the new parent.
          5. If the parent is at a `depth` of `0`, i.e. the parent node, the CID represents the new root node.
          6. If the parent is not at `depth` of `0`, repeat from step **7.2** with the parent node. This process should repeat up the tree all the way to `depth` of `0`, potentially collapsing more than one node into its parent in the process.

@@ -247,7 +247,7 @@ call IPLD ready.
 
 * **Path links.** Pointers that can only point to objects at block boundaries
   are useful but severely gimped. We've been fine up till now because we
-  generally don't *edit* complicated datastructures but this will change.
+  generally don't *edit* complicated data structures but this will change.
   ([#83](https://github.com/ipld/specs/issues/83))
 * **Slice links.** For the same reason, we really should support
   `/ipld/QmID/start..stop` as a syntax for slicing an array. Most programming

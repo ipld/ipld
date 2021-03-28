@@ -103,7 +103,7 @@ Both the most recent [JavaScript](https://github.com/ipld/js-dag-pb) and [Go](ht
 
 ## Zero-length blocks
 
-The zero-length DAG-PB block is valid and will be decoded as having null `Data` and an empty `Links` arrau.
+The zero-length DAG-PB block is valid and will be decoded as having null `Data` and an empty `Links` array.
 
 With a SHA2-256 multihash, the CID of this block is:
 

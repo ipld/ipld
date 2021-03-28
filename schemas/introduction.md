@@ -36,7 +36,7 @@ At their most basic, IPLD Schemas are simply a method of describing the properti
 
 Various constraints about data cannot be expressed with IPLD Schemas, by design. For example:
 
-  * There are no [dependenent types](https://en.wikipedia.org/wiki/Dependent_type), so you cannot express constraining relationships between values.
+  * There are no [dependent types](https://en.wikipedia.org/wiki/Dependent_type), so you cannot express constraining relationships between values.
   * The Data Model doesn't express certain limitations that may be useful in a specific programming language (e.g. unsigned integers).
 
 But these limitations mean the IPLD Schema DSL as a useful documentation tool because it is fairly easy to understand without much prior exposure. This is in contrast to many other schema languages which attempt to encompass a much broader scope and suffer the complexity consequences of doing so.

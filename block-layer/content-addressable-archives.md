@@ -194,7 +194,7 @@ Regarding the `roots` property of the Header block:
 
 It is unresolved how the `roots` array should be constrained. **It is recommended that only a single root CID be used in this version of the CAR format.**
 
-A work-around for use-cases where the inclusion of a root CID is difficult but needing to be safely within the "at least one" recommendation is to use an empty CID: `\x01\x55\x00\x00` (zero-length "identity" multihash with "raw" codec). Since current implemetations for this version of the CAR specification don't check for the existence of root CIDs _(see [Root CID block existence](#root-cid-block-existence))_, this will be safe as far as CAR implementations are concerned. However, there is no guarantee that applications that use CAR files will correctly consume (ignore) this empty root CID.
+A work-around for use-cases where the inclusion of a root CID is difficult but needing to be safely within the "at least one" recommendation is to use an empty CID: `\x01\x55\x00\x00` (zero-length "identity" multihash with "raw" codec). Since current implementations for this version of the CAR specification don't check for the existence of root CIDs _(see [Root CID block existence](#root-cid-block-existence))_, this will be safe as far as CAR implementations are concerned. However, there is no guarantee that applications that use CAR files will correctly consume (ignore) this empty root CID.
 
 ### Zero blocks
 

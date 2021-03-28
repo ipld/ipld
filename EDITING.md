@@ -117,7 +117,7 @@ Being able to link deeply into a spec document is every bit as important
 as being able to read it from top to bottom.
 
 Be very careful not to have headings that are repeated; this makes linking to that heading impossible.
-(If you feel that repeated headings are still visually good formating,
+(If you feel that repeated headings are still visually good formatting,
 consider if a `"**bold text**: subject details"` approach fits.
 Because this doesn't try to produce links, it's not a problem to repeat the bold component.
 But, by the other side of the same coin, _it can't be linked to_; be mindful of the concession.)
@@ -141,7 +141,7 @@ In general, the aim is to make editing easier in the long run.
   - Links to content outside the repo should of course use the full URL.
 - Links should include the file extension for '.md' files.
   (It will be stripped by our site publish tooling, but is necessary for links to work well within github's markdown processing.)
-- When linking to source code: use the full commit hash!  (Github has a handy `'y'` shortcut for this; use it!)
+- When linking to source code: use the full commit hash!  (GitHub has a handy `'y'` shortcut for this; use it!)
   - If linking to specific line numbers, a full commit hash is an absolute requirement.  It is otherwise far too easy to have "working" but semantically invalid links.
   - If aiming to whole packages or high level documents in other repos, it _may_ be viable to link to the master branch.  But be judicious.
 

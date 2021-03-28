@@ -36,7 +36,7 @@ data but once implemented, you can read data regardless of the layout algorithm 
 Since readers only need to concern themselves with implementing the read method, they **do not**
 need to understand the algorithms used to generate the layouts. This gives a lot of flexibility
 in the future to define new layout algorithms as necessary without needing to worry about
-updating prior impelementations.
+updating prior implementations.
 
 The `length` property must be encoded with the proper byte length. If not encoded properly, readers
 will not be able to read properly. However, the property is **not secure** and a malicious encoder

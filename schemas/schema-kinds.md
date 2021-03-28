@@ -172,7 +172,7 @@ This is the case because implicits do not change the cardinality of the type
 (see the [Understanding Cardinality](#understanding-cardinality) table
 later in this document for more examples of what this means, and how it
 compares in semantics with the other modifiers).
-As a representational rather than type definition feature, the syntatic
+As a representational rather than type definition feature, the syntactic
 position for an implicit declaration is on the end of the line declaring a
 field, and in parenthesis (the same as where the 'rename' and other
 representation-level directives can be found).

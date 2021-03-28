@@ -108,7 +108,7 @@ Selector:
                                   {}
 ```
 
-This selector matches the fivth-deepest "parent"
+This selector matches the fifth-deepest "parent"
 
 But this gets a bit verbose.  We can explore the same tree in a similar
 pattern with another mechanism -- recursive exploration:

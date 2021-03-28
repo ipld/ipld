@@ -31,7 +31,7 @@ See also [ipld](../IPLD.md), [IPLD Selectors](../../selectors/selectors.md)
   - (3) The `responder` fulfills the request by sending content to the `requester` (the `response`) .
   - (4) The `responder` and `requester` can terminate the request process at any time.
   - Notes:
-    - We are explicitly avoiding the `client-server` terminology to make it clear that `requester` and `responder` are "roles" that any peer might play, and to avoid failling in the two-sided client-server model of the web..
+    - We are explicitly avoiding the `client-server` terminology to make it clear that `requester` and `responder` are "roles" that any peer might play, and to avoid failing in the two-sided client-server model of the web..
     - `requests` may be short or long-lived -- requests may be as short as microseconds or last indefinitely.
 - `priority` - a numeric label associated with a `request` implying the relative ordering of importance for requests. This is a `requester's` way of expressing to a `responder` the order in which the `requester` wishes the `requests` to be fulfilled. The `responder` SHOULD respect `priority`, though may return `responses` in any order.
 

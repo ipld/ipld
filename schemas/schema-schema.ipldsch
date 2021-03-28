@@ -414,7 +414,7 @@ type UnionRepresentation_Envelope struct {
 ## behavior!  Similarly, the member struct types may not have fields which
 ## have names that collide with the discriminantKey.
 ##
-## When designing a new protocol, use inline unions sparringly; despite
+## When designing a new protocol, use inline unions sparingly; despite
 ## appearing simple, they have the most edge cases of any kind of union
 ## representation, and their implementation is generally the most complex and
 ## is difficult to optimize deserialization to support.

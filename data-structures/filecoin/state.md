@@ -150,7 +150,7 @@ type RewardV0State struct {
   ThisEpochBaselinePower StoragePower
   # Epoch tracks for which epoch the Reward was computed
   Epoch ChainEpoch
-  # TotalMined tracks the total FIL awared to block miners
+  # TotalMined tracks the total FIL awarded to block miners
   TotalMined TokenAmount
 } representation tuple
 

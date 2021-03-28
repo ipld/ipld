@@ -10,11 +10,11 @@ here are some collected thoughts on the matter.
 
 ### Why not use github issues?
 
-Github issues are a form of "inbox": they represent things that need active response.
+GitHub issues are a form of "inbox": they represent things that need active response.
 
-Github issues are a medium for discussion: that's useful, but in many ways they
+GitHub issues are a medium for discussion: that's useful, but in many ways they
 don't lend themselves to closure, nor do they make it easy to create checkpoints
-or periodic resummarizations to keep dicussions on track; and they definitely
+or periodic resummarizations to keep discussions on track; and they definitely
 are not themselves suitable to being treated as artifacts for reference.
 
 There are several reasons we believe a directory of files to be superior to
@@ -44,7 +44,7 @@ We sometimes use the suggestion of moving a github issue towards design history.
 
 If we want the "open" and "closed" states to have any meaning, it's critical
 that things move to the closed state.  Attempting to do design processes
-entirely in Github issues doesn't necessarily obstruct this -- but
+entirely in GitHub issues doesn't necessarily obstruct this -- but
 observationally, in practice, *it does*:
 design discussions in issues almost invariably receive protest when closed,
 even if the issue has been open (sometimes for *years*!) without comment.
@@ -131,10 +131,10 @@ to use this directory and these organizational concepts) may end up copied
 into the history directory, for archive and reference and linking.
 This does not mean all text in github issues should be pasted into history files.
 
-Github issues are a mechanism for discussion.  To restate a key purpose of the
+GitHub issues are a mechanism for discussion.  To restate a key purpose of the
 design history directory: we want to use these documents as touchpoints
 in discussion, and *not as the discussion format itself*.
-It's fine for discussion to move through Github issues; it's the documents that
+It's fine for discussion to move through GitHub issues; it's the documents that
 are focuses of discussions that we're most interested in giving a home here.
 Sometimes key quotes of discussions may form a useful part of the artifact;
 just as often, it can suffice to link to the discussion in its original context.

@@ -12,7 +12,13 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.setLibrary("md", markdownLibrary);
 
 	return {
-		dir: { // These reiterate ".site" because they're joined to the input path, which is "..".
+		dir: {
+			// The input directory is set to ".." so that we achieve these two file organization goals:
+			//  1. all of the infrastructure for eleventy is in a single directory, keeping the project root tidy;
+			//  2. all of the actual content is at the project repo root (meaning paths on github and in the web also "happen" to align).
+			input:   "..",
+			output:  "_output",
+			// These reiterate ".site" because they're joined to the input path, which is "..".
 			data:    ".site/_data",
 			layouts: ".site/_layouts"
 		}

@@ -6,11 +6,11 @@ prepare:
 
 build:
 	@echo ">>> $@ >>>"
-	cd .site && npx @11ty/eleventy --input=.. --output=_output
+	cd .site && npx @11ty/eleventy
 
 dev:
 	@echo ">>> $@ >>>"
-	cd .site && npx @11ty/eleventy --input=.. --output=_output --serve
+	cd .site && npx @11ty/eleventy --serve
 
 test:
 	@echo ">>> $@ >>>"

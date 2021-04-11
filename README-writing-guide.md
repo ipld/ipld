@@ -15,6 +15,7 @@ This repo has a couple major directories at the top level:
 - **libraries**
 - **tools**
 - **design**
+- **notebook**
 
 These have slightly different audiences, and slightly different editing policies:
 
@@ -30,7 +31,10 @@ These have slightly different audiences, and slightly different editing policies
 - **tools** -- these pages gather *brief references to IPLD tools.  They should mostly refer to other repositories; it's just a discovery index.
   Some of these pages will refer to tools not directly maintained by the IPLD core team!
   The tools index pages are rendered to the website.
-- **design** -- this folder is something like a notebook for design documents, architecture decision records, and similar point-in-time content.
+- **design** -- these pages contain some recommendations for building IPLD libraries and data structures.
+  They're general notes about how things "should" be done.
+  Some of these notes also cover the foundational reasoning we used in making key choices in IPLD's core definitions.
+- **notebook** -- this folder is for notes like design documents, architecture decision records, and similar point-in-time content.
   Sometimes the IPLD core team writes documents here, but it's equally encouraged to write "lab notebook"-style documents in other mediums and link to them from here.
   Things here are non-definitive references.
   Note that the design notebook pages are *not* rendered to the website.

@@ -1,0 +1,7 @@
+{
+  "name": "ipld",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "markdown-it-anchor": "^7.1.0"
+  }
+}

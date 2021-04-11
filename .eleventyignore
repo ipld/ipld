@@ -1,0 +1,12 @@
+# Do not recurse into the site build tools itself!
+/.site/
+
+# Do not publish the notebook contents; it is not useful to spotlight them.
+/notebook/
+
+# Readme files are for github.
+README*.md
+
+# Ignore dotfiles in general.  If you want working notes files on your localhost and want to make sure they don't get processed as site content, just use a dotfile.
+.*
+.*/**

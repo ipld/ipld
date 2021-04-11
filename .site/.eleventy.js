@@ -1,7 +1,6 @@
 module.exports = function(eleventyConfig) {
 	const markdownIt = require("markdown-it");
 	const markdownItAnchor = require("markdown-it-anchor");
-
 	let markdownLibrary = markdownIt({
 		html: true,
 	}).use(markdownItAnchor, {
@@ -10,6 +9,12 @@ module.exports = function(eleventyConfig) {
 		permalinkSpace: false, // Again, please don't add actual text to the inside of the hN tag.
 		level: [2, 3, 4, 5, 6] // h1 tags are for page titles, and are generally not useful to jump to, so don't bother making anchors for those.
 	});
-
 	eleventyConfig.setLibrary("md", markdownLibrary);
+
+	return {
+		dir: { // These reiterate ".site" because they're joined to the input path, which is "..".
+			data:    ".site/_data",
+			layouts: ".site/_layouts"
+		}
+	}
 }

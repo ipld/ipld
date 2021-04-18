@@ -11,6 +11,10 @@ module.exports = function(eleventyConfig) {
 	});
 	eleventyConfig.setLibrary("md", markdownLibrary);
 
+	// Copy over static files (like css) please.
+	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
+	eleventyConfig.addPassthroughCopy({"static": "static"})
+
 	return {
 		dir: {
 			// The input directory is set to ".." so that we achieve these two file organization goals:

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/layout.css">
-	<title>{{ title }}</title>
+	<title>IPLD ♦ {{ title }}</title>
 </head>
 <body>
 
@@ -23,6 +23,7 @@
 	<aside class=sidebar>
 		<nav>
 			{% macro renderNavListItem(entry) -%}
+			{%- if entry.key %}
 			<li{% if entry.url == page.url %} class="active-page"{% endif %}>
 				<a href="{{ entry.url | url }}">{{ entry.title }}</a>
 				{%- if entry.children.length -%}
@@ -31,6 +32,7 @@
 				</ul>
 				{%- endif -%}
 			</li>
+			{%- endif %}
 			{%- endmacro %}
 
 			{% set navPages = collections.all | eleventyNavigation %}

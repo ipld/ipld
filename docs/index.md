@@ -1,6 +1,7 @@
 ---
+title: "Docs"
 eleventyNavigation:
-  key: "Docs"
+  order: 10
 ---
 
 IPLD Documentation

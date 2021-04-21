@@ -1,3 +1,9 @@
+---
+title: "Specs"
+eleventyNavigation:
+  order: 20
+---
+
 IPLD Specifications
 ===================
 

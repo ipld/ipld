@@ -1,7 +1,5 @@
 ---
-eleventyNavigation:
-  key: "Codecs"
-  parent: "Docs"
+title: "Codecs"
 ---
 
 IPLD Codecs Documentation

@@ -1,7 +1,5 @@
 ---
-eleventyNavigation:
-  key: "Known Codecs"
-  parent: "Codecs"
+title: "Known Codecs"
 ---
 
-{{ collections.all | eleventyNavigation("Known Codecs") | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+{{ collections.all | eleventyNavigation(page.url) | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}

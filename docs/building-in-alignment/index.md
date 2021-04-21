@@ -1,7 +1,5 @@
 ---
-eleventyNavigation:
-  key: "Building in Alignment"
-  parent: "Docs"
+title: "Building in Alignment"
 ---
 
 Building in Alignment with IPLD

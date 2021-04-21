@@ -11,6 +11,11 @@ module.exports = function(eleventyConfig) {
 	});
 	eleventyConfig.setLibrary("md", markdownLibrary);
 
+	// This navigation plugin consumes frontmatter from each page,
+	//  and gathers that info into a form that we use to build the nav menu.
+	const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+	eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
 	// Copy over static files (like css) please.
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
 	eleventyConfig.addPassthroughCopy({"static": "static"})
@@ -25,6 +30,7 @@ module.exports = function(eleventyConfig) {
 			// These reiterate ".site" because they're joined to the input path, which is "..".
 			data:    ".site/_data",
 			layouts: ".site/_layouts"
-		}
+		},
+		markdownTemplateEngine: "njk",
 	}
 }

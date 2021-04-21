@@ -2,7 +2,7 @@ all: prepare build test
 
 prepare:
 	@echo ">>> $@ >>>"
-	cd .site && npm install --save-dev @11ty/eleventy markdown-it-anchor
+	cd .site && npm install --save-dev @11ty/eleventy markdown-it-anchor @11ty/eleventy-navigation
 
 build:
 	@echo ">>> $@ >>>"

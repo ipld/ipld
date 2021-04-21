@@ -22,12 +22,26 @@
 
 	<aside class=sidebar>
 		<nav>
-			(todo: sidebar nav)
+			{% macro renderNavListItem(entry) -%}
+			<li{% if entry.url == page.url %} class="active-page"{% endif %}>
+				<a href="{{ entry.url | url }}">{{ entry.title }}</a>
+				{%- if entry.children.length -%}
+				<ul>
+				{%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+				</ul>
+				{%- endif -%}
+			</li>
+			{%- endmacro %}
+
+			{% set navPages = collections.all | eleventyNavigation %}
+			<ul>
+			{%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+			</ul>
 		</nav>
 	</aside>
 
 	<main>
-		{{ content }}
+		{{ content | safe }}
 	</main>
 </body>
 </html>

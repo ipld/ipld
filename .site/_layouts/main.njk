@@ -15,9 +15,17 @@
 			</svg>
 		</div>
 		<a href="/" class="logo">IPLD</a>
-		<span id="breadcrumbs">
-			(todo: breadcrumbs)
-		</span>
+		<aside class=breadcrumbs>
+			{% macro breadcrumb(path) -%}
+			{%- if path != "/" %}
+			{{ breadcrumb(path | dirname) }}
+			<li><a href="{{path}}">{{path | basename}}</a></li>
+			{%- endif %}
+			{%- endmacro %}
+			<ul>
+			{{ breadcrumb(page.url) }}
+			</ul>
+		</aside>
 	</header>
 
 	<aside class=sidebar>

@@ -103,3 +103,18 @@ main {
 		padding-left: 0rem;
 	}
 }
+
+/* Styling for the breadcrumbs. */
+aside.breadcrumbs {
+	display: inline;
+}
+.breadcrumbs ul {
+	display: inline;
+	padding: 0;
+}
+.breadcrumbs ul li {
+	display: inline-block;
+}
+.breadcrumbs ul li:before {
+	content: " » "
+}

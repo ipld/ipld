@@ -16,6 +16,11 @@ module.exports = function(eleventyConfig) {
 	const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 	eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
+	// Make some functions available as filters.
+	//  In particular, some of the path manipulation ones are used to create breadcrumbs and other navigation elements.
+	eleventyConfig.addFilter("dirname", require('path').dirname)
+	eleventyConfig.addFilter("basename", require('path').basename)
+
 	// Copy over static files (like css) please.
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
 	eleventyConfig.addPassthroughCopy({"static": "static"})

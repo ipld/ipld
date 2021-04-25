@@ -1,3 +1,9 @@
+---
+title: "Tools"
+eleventyNavigation:
+  order: 60
+---
+
 IPLD Tools
 ==========
 

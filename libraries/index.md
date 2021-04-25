@@ -1,3 +1,9 @@
+---
+title: "Libraries"
+eleventyNavigation:
+  order: 40
+---
+
 IPLD Libraries
 ==============
 

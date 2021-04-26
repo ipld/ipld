@@ -31,11 +31,12 @@
 
 	<aside class=sidebar>
 		<nav>
-			{% macro renderNavListItem(entry) -%}
+			{% macro renderNavListItemMajor(entry) -%}
 			{%- if entry.key %}
 			<li{% if entry.url == page.url %} class="active-page"{% endif %}>
 				<a href="{{ entry.url | url }}">{{ entry.title }}</a>
 				{%- if entry.children.length -%}
+				<input type="checkbox" checked>
 				<ul>
 				{%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
 				</ul>
@@ -44,9 +45,20 @@
 			{%- endif %}
 			{%- endmacro %}
 
+			{% macro renderNavListItem(entry) -%}
+			<li{% if entry.url == page.url %} class="active-page"{% endif %}>
+				<a href="{{ entry.url | url }}">{{ entry.title }}</a>
+				{%- if entry.children.length -%}
+				<ul>
+				{%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+				</ul>
+				{%- endif -%}
+			</li>
+			{%- endmacro %}
+
 			{% set navPages = collections.all | eleventyNavigation %}
 			<ul>
-			{%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+			{%- for entry in navPages %}{{ renderNavListItemMajor(entry) }}{%- endfor -%}
 			</ul>
 		</nav>
 	</aside>

@@ -4,17 +4,22 @@ nav ul {
 	list-style-type:      none;
 	padding-inline-start: 1rem;
 }
+nav ul li {
+	position:      relative;
+	z-index:       0;
+	margin-bottom: 0.3rem;
+}
 nav ul a {
-	display:          block;
+	display:          inline-block;
 	background-color: #8cc; /* todo: a different one per item, please.  Use attribute selectors for this. */
 	padding:          0.5rem 0.5rem;
 	border-bottom:    2px solid;
-	margin-top:       0.5rem;
+	z-index:          10; /* Be on top of the checkbox. */
 }
 /* Deeper list elements now need css to put them back down to normal. */
 nav ul ul {
-	color: #77b;
-	list-style-type: disc;
+	color:                #77b;
+	list-style-type:      disc;
 	padding-inline-start: 2rem;
 }
 nav ul ul a {
@@ -22,4 +27,24 @@ nav ul ul a {
 	padding:          0;
 	border:           0;
 	margin-top:       0.1rem;
+}
+
+/* A series of checkboxes (decorated not to look like checkboxes!) control menu visibility. */
+nav input[type="checkbox"] {
+	display: inline-block;
+	position: absolute;
+	top:      0;
+	right:    0;
+	width:    100%;
+	height:   2rem; /* Line height plus padding on links, to make this the same height as them. */
+	opacity:  0.2;
+	z-index:  1;
+}
+nav input[type="checkbox"] ~ ul {
+	max-height: 0;
+	overflow:   hidden;
+}
+nav input[type="checkbox"]:checked ~ ul {
+	background-color: #f00;
+	max-height: 9999rem;
 }

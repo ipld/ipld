@@ -1,4 +1,11 @@
 
+h1 {
+	border-bottom: 1px solid #dadcdf;
+}
+h2 {
+	border-bottom: 1px solid #eaecef;
+}
+
 a {
 	color: #3eaf7c;
 	text-decoration: none;

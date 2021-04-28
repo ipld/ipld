@@ -17,7 +17,7 @@ header {
 	padding:          .7rem 1.5rem;
 	box-sizing:       border-box;
 	background-color: #fff;
-	border-bottom:    1px solid #eaecef;
+	border-bottom:    1px solid #dadcdf;
 	line-height:      2.2rem;
 }
 header .logo {
@@ -38,7 +38,7 @@ aside.sidebar {
 	bottom:           0;
 	box-sizing:       border-box;
 	background-color: #FFF; /* is transparent without this. */
-	border-right:     1px solid #eaecef;
+	border-right:     1px solid #dadcdf;
 	overflow-y:       auto;
 }
 

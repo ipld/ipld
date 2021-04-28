@@ -1,3 +1,7 @@
+---
+title: "Getting Things Done"
+---
+
 Getting Things Done with IPLD
 =============================
 
@@ -19,7 +23,7 @@ In order:
 Use the Data Model
 ------------------
 
-You can get lots done with just the [Data Model](/#data-model) and core APIs.
+You can get lots done with just the [Data Model](/glossary/#data-model) and core APIs.
 
 Whenever you want to get something done with IPLD,
 we suggest you start by just sketching out what you want to do by using the Data Model.
@@ -31,7 +35,7 @@ but those can come later.
 Use Schemas
 -----------
 
-[Schemas](https://specs.ipld.io/schemas/) are for when you want to formalize structures.
+[Schemas](/glossary/#schemas) are for when you want to formalize structures.
 They can be useful for documentation;
 they do validation of data structures so you know what you're handling;
 they can be used for version detection and feature detection;
@@ -54,7 +58,7 @@ of their powers; they can't do any more dynamic restructuring than that.
 Use ADLs
 --------
 
-[ADLs](/advanced-layouts/) -- Advanced Data Layouts -- are for when you want to present data
+[ADLs](/glossary/#adl) -- Advanced Data Layouts -- are for when you want to present data
 *as if* it is IPLD Data Model (so that all the rest of our tools can work over it),
 but the serialized structure of the data is significantly (topologically) different.
 
@@ -81,7 +85,7 @@ Write a new Codec
 
 This should be your absolute last resort.
 
-Writing a new [Codec](/#codecs) poses future portability questions.
+Writing a new [Codec](/glossary/#codec) poses future portability questions.
 Every IPLD library in every programming language will need to implement it;
 many, practically speaking, won't -- unless you give them a very good reason.
 Therefore, it's best to stick to one of the already widely supported codecs.

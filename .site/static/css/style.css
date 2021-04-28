@@ -1,0 +1,14 @@
+
+a {
+	color: #3eaf7c;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+a.header-anchor:before {
+	color:           #afddcf;
+	text-decoration: none;
+	font-weight:     normal;
+}

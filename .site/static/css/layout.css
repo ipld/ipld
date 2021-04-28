@@ -72,11 +72,9 @@ main > div.content {
 	margin: 2rem;
 }
 a.header-anchor:before {
-	float:       left; /* take me out of flow so I don't push the header around. */
-	margin-left: -1.3rem;
-	content:     "#";
-	color:       #99ddbb;
-	decoration:  none;
+	float:          left; /* take me out of flow so I don't push the header around. */
+	margin-left:    -1.4rem;
+	content:        "#";
 }
 
 /* As the screen gets smaller, we shrink the nav sidebar. */

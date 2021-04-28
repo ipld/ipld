@@ -2,18 +2,19 @@
 /* The first list level we add a ton more weight to. */
 nav ul {
 	list-style-type:      none;
-	padding-inline-start: 1rem;
+	padding-inline-start: 0rem;
 }
 nav ul a {
 	display:          block;
-	background-color: #8cc; /* todo: a different one per item, please.  Use attribute selectors for this. */
+	background-color: #dafffa; /* todo: a different one per item, please.  Use attribute selectors for this. */
 	padding:          0.5rem 0.5rem;
 	border-bottom:    2px solid;
 	margin-top:       0.5rem;
+	font-weight:      bold;
 }
 /* Deeper list elements now need css to put them back down to normal. */
 nav ul ul {
-	color: #77b;
+	color: #baedda;
 	list-style-type: disc;
 	padding-inline-start: 2rem;
 }
@@ -22,4 +23,5 @@ nav ul ul a {
 	padding:          0;
 	border:           0;
 	margin-top:       0.1rem;
+	font-weight:      normal;
 }

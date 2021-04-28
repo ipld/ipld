@@ -3,10 +3,11 @@
 nav ul {
 	list-style-type:      none;
 	padding-inline-start: 0rem;
+	margin-top:           0rem;
 }
 nav ul a {
 	display:          block;
-	background-color: #dafffa; /* todo: a different one per item, please.  Use attribute selectors for this. */
+	background-color: #fafffa; /* todo: a different one per item, please.  Use attribute selectors for this. */
 	padding:          0.5rem 0.5rem;
 	border-bottom:    2px solid;
 	margin-top:       0.5rem;

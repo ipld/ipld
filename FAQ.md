@@ -27,6 +27,9 @@ Schema-related
 
 ### What's the difference between a union and an enum?
 
-Unions are a recursive, and can contain any other type (with... some details and restrictions in IPLD Schemas, due to representations).  Enums are a scalar with countable cardinality.
+Unions are a recursive, and can contain any other type (with... some details and restrictions in IPLD Schemas, due to representations).
+Enums are a scalar with countable cardinality.
 
-Unions are also known as "sum types" in some literature.  We latched onto the term "union" because A) it's one word; and B) due to the popularization of that term for it in Facebook's GraphQL.
+Unions are also known as "sum types" in some literature.
+We latched onto the term "union" because A) it's one word; and B) due to the popularization of that term for it in Facebook's GraphQL.
+Another common term for this concept is "variant".

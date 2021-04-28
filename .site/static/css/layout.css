@@ -69,7 +69,9 @@ main {
 /* The main content area should have some margins. Another div will be used to acheive this. */
 /* The buttons for grabbing header links will jab back out into them. */
 main > div.content {
-	margin: 2rem;
+	margin:    4.7rem auto;
+	max-width: 940px;
+	padding:   0 2rem;
 }
 a.header-anchor:before {
 	float:          left; /* take me out of flow so I don't push the header around. */
@@ -127,5 +129,6 @@ aside.breadcrumbs {
 	display: inline-block;
 }
 .breadcrumbs ul li:before {
-	content: " » "
+	content: " » ";
+	margin: 0 0.4rem;
 }

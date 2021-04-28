@@ -1,3 +1,9 @@
+---
+title: FAQ
+eleventyNavigation:
+  order: 110
+---
+
 Occasionally Asked Questions
 ============================
 

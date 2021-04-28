@@ -66,6 +66,19 @@ main {
 	padding-left:   20rem;
 }
 
+/* The main content area should have some margins. Another div will be used to acheive this. */
+/* The buttons for grabbing header links will jab back out into them. */
+main > div.content {
+	margin: 2rem;
+}
+a.header-anchor:before {
+	float:       left; /* take me out of flow so I don't push the header around. */
+	margin-left: -1.3rem;
+	content:     "#";
+	color:       #99ddbb;
+	decoration:  none;
+}
+
 /* As the screen gets smaller, we shrink the nav sidebar. */
 @media (max-width: 959px) {
 	aside.sidebar {

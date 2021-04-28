@@ -23,4 +23,4 @@ clean:
 
 publish: build
 	@echo ">>> $@ >>>"
-	echo "todo"
+	echo "Just push!  Fleek will pick it up from github."

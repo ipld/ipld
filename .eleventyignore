@@ -10,3 +10,6 @@ README*.md
 # Ignore dotfiles in general.  If you want working notes files on your localhost and want to make sure they don't get processed as site content, just use a dotfile.
 .*
 .*/**
+
+# Ignore the legacy content dir, which will exist during the repo consolidation process.
+/_legacy/

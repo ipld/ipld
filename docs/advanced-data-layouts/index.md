@@ -8,8 +8,8 @@ Advanced Data Layouts
 =====================
 
 Advanced Data Layouts (or just Advanced Layouts, or ADLs for short) are a kind of plugin system for IPLD
-which is used when we want to present some data as if it were a [[Data Model]] [[Node]],
-while actually storing it as a different [[Node]] (or as several [[Node]]s!).
+which is used when we want to present some data as if it were a [Data Model](/docs/data-model/) [Node](/docs/data-model/node/),
+while actually storing it as a different Node (or as several Nodes!).
 
 This is easiest to understand by example:
 
@@ -23,16 +23,16 @@ This is easiest to understand by example:
 Where do ADLs fit in?
 ---------------------
 
-You should probably read the doc about the [Data Model](data-model.md) first, if you haven't already.
+You should probably read the doc about the [Data Model](/docs/data-model/) first, if you haven't already.
 ADLs build upon the concepts that are introduced standardized by the Data Model.
 
-- ADLs convert [Data Model nodes](data-model.md#node) into *another node*
+- ADLs convert [Data Model nodes](/docs/data-model/node/) into *another node*
   (or, when writing new data, provide an interface to go the other way: let the user act like they're creating a node, but in the background create several nodes, or a different structure, which stores that data).
-- [Codecs](codecs.md) and ADLs compose smoothly -- Codecs can deserialize and serialize the Data Model data that is the "raw" "interior" content of an ADL.
-- [Schemas](https://specs.ipld.io/schemas/) technically have nothing to do with ADLs...
+- [Codecs](/docs/codecs/) and ADLs compose smoothly -- Codecs can deserialize and serialize the Data Model data that is the "raw" "interior" content of an ADL.
+- [Schemas](/docs/schemas/) technically have nothing to do with ADLs...
 	- but, Schemas can be useful for _signaling_ when ADLs should be used to handle data ([more on that later](#signaling-with-schemas));
 	- and in practice, ADL specifications often include a Schema which describes them, simply for clarity (and ADL implementations might choose use that Schema in their internal code, too).
-- [Traversals](traversal.md) and [pathing](pathing.md) work transparently over ADLs (which is part of why ADLs exist and what makes them awesome in the first place)!
+- [Traversals](/docs/data-model/traversal/) and [pathing](/docs/data-model/pathing/) work transparently over ADLs (which is part of why ADLs exist and what makes them awesome in the first place)!
 
 
 How ADLs Work
@@ -69,7 +69,7 @@ We call this "the signaling problem".
 In short: you don't.
 
 Since the data composing the "raw", interior data of an ADL is just regular IPLD Data Model
-(it must be, after all, since it's produced by some [Codec](codec.md), which by definition produces data structures describable by the Data Model),
+(it must be, after all, since it's produced by some [Codec](/docs/codecs/), which by definition produces data structures describable by the Data Model),
 then it follows that there's absolutely no way for this data to unambiguously indicate that it needs an ADL in order to be understood.
 If there was, it would imply that there's some kind of "reserved words" in the Data Model,
 which would violate some of our other central goals in IPLD, because it would mean some perfectly normal maps and lists would be invalid IPLD or gain magical meaning that they shouldn't;

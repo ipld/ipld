@@ -1,3 +1,9 @@
+---
+title: "How IPFS Web Gateways Work"
+eleventyNavigation:
+  order: 100
+---
+
 How IPFS Web Gateways Work
 ==========================
 

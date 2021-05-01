@@ -10,13 +10,15 @@ Glossary
 
 #### ADL
 
-ADL is short for **A**dvanced **D**ata **L**ayout.
-They're a concept in IPLD which describes when pluggable code is used to create data structures
+ADL is short for **A**dvanced **D**ata **L**ayout.  See [docs for Advanced Data Layouts](/docs/advanced-data-layouts/).
+
+In brief: ADLs a concept in IPLD which describes when pluggable code is used to create data structures
 which act like typical [Data Model](#data-model) [Nodes](#node)
 (meaning regular generic code can work over them just like over plain [Nodes](#node)),
 while having internal structure which is managed by the plugin code.
 
-ADLs are typically used to do things like sharding, but the definition is fairly open-ended.
+ADLs are typically used to do things like create large sharded data structures which can be accessed in the same way as simpler structures,
+but the definition is fairly open-ended.
 
 #### Block
 

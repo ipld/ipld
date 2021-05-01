@@ -1,3 +1,9 @@
+---
+title: Media
+eleventyNavigation:
+  order: 105
+---
+
 Talks, Videos and More
 ======================
 

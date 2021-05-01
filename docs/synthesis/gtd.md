@@ -1,5 +1,7 @@
 ---
 title: "Getting Things Done"
+eleventyNavigation:
+  order: 10
 ---
 
 Getting Things Done with IPLD

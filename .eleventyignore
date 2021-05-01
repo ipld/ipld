@@ -7,6 +7,9 @@
 # Readme files are for github.
 README*.md
 
+# ".meta" files are for editor's notes, and shouldn't be rendered to the web.
+**/*.meta.*
+
 # Ignore dotfiles in general.  If you want working notes files on your localhost and want to make sure they don't get processed as site content, just use a dotfile.
 .*
 .*/**

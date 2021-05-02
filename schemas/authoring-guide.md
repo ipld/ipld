@@ -538,21 +538,25 @@ If we are designing the data layout for our example protocol (rather than consum
 
 #### Keyed
 
-If our generic `"payload"` could be replaced with a specific key that discriminates the type of the payload, we could use a `keyed` Union:
+By making our `"payload"` object contain a specific key that discriminates the type of the payload, we could use a `keyed` Union:
 
 ```json
 {
   "msg": "Something bad happened",
-  "error": "ERROR"
+  "payload": {
+    "error": "ERROR"
+  }
 }
 ```
 
 ```json
 {
   "msg": "All good",
-  "progress": {
-    "percent": 0.6,
-    "last": "61626378797a"
+  "payload": {
+    "progress": {
+      "percent": 0.6,
+      "last": "61626378797a"
+    }
   }
 }
 ```
@@ -560,9 +564,11 @@ If our generic `"payload"` could be replaced with a specific key that discrimina
 ```json
 {
   "msg": "Ping",
-  "ping": {
-    "ts": 1572935564043,
-    "nonce": "424f524b"
+  "payload": {
+    "ping": {
+      "ts": 1572935564043,
+      "nonce": "424f524b"
+    }
   }
 }
 ```
@@ -594,7 +600,13 @@ type Ping struct {
 }
 ```
 
-Our `Payload` union now has the `keyed` representation strategy. This strategy still assumes a Map representation kind at the current node but one that has various keys that are used to discriminate the type present. `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union. Validation of such data can now check for the presence of each of these keys, _exactly one_ of them exists, and then hand off validation to the expected type at the node found in the valued of that key. If an `"error"` key is found, it will proceed to validate `Error` which assumes that the node is a String. If a `"progress"` key is found, it will proceed to validate that it finds a Map at the value node and that it matches the `Progress` type, etc.
+Our `Payload` union now has the `keyed` representation strategy.
+This strategy means the `Payload` will have a Map representation kind, and that map will be required to have exactly one of the various keys that are used to discriminate the type present.
+Syntatically in the Schema DSL, `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union -- these are the discriminate values that will be seen in the map.
+
+Validation of such data can now check for the presence of each of these keys, _exactly one_ of them exists, and then hand off validation to the expected type at the node found in the valued of that key.
+If an `"error"` key is found, it will proceed to validate `Error` which assumes that the node is a String.
+If a `"progress"` key is found, it will proceed to validate that it finds a Map at the value node and that it matches the `Progress` type, etc.
 
 #### Envelope
 
@@ -603,18 +615,22 @@ A strategy similar to `keyed`, but more explicit and allowing for the retention 
 ```json
 {
   "msg": "Something bad happened",
-  "tag": "error",
-  "payload": "ERROR"
+  "envelope": {
+    "tag": "error",
+    "payload": "ERROR"
+  }
 }
 ```
 
 ```json
 {
   "msg": "All good",
-  "tag": "progress",
-  "payload": {
-    "percent": 0.6,
-    "last": "61626378797a"
+  "envelope": {
+    "tag": "progress",
+    "payload": {
+      "percent": 0.6,
+      "last": "61626378797a"
+    }
   }
 }
 ```
@@ -622,20 +638,26 @@ A strategy similar to `keyed`, but more explicit and allowing for the retention 
 ```json
 {
   "msg": "Ping",
-  "tag": "ping",
-  "payload": {
-    "ts": 1572935564043,
-    "nonce": "424f524b"
+  "envelope": {
+    "tag": "ping",
+    "payload": {
+      "ts": 1572935564043,
+      "nonce": "424f524b"
+    }
   }
 }
 ```
 
-This strategy takes us back to the original form of the messages but adds an explicit discriminator to the Map. Our Schema can now take the following form:
+This strategy results in the payload data being in a predictable position in the document,
+as well as the discriminator value being in a predictable position in the document,
+but the structure in the payload part of the document varies.
+
+Our Schema can now take the following form:
 
 ```ipldsch
 type Message struct {
   msg String
-  payload Payload
+  envelope Payload
 }
 
 type Payload union {
@@ -660,7 +682,8 @@ type Ping struct {
 }
 ```
 
-This `envelope` representation strategy requires the parameters `discriminantKey` and `contentKey`. The `discriminantKey` tells the Schema the key of the discriminator value, while the discriminator values are listed next to the types of the Union (in this case, the same values as for the `keyed` Union).
+This `envelope` representation strategy requires the parameters `discriminantKey` and `contentKey`.
+The `discriminantKey` tells the Schema the key of the discriminator value, while the discriminator values are listed next to the types of the Union (in this case, the same values as we used in the `keyed` Union example, above).
 
 #### Inline
 
@@ -671,33 +694,42 @@ Our example must be extended so that the `Error` type can be extracted from a ma
 ```json
 {
   "msg": "Something bad happened",
-  "tag": "error",
-  "message": "ERROR"
+  "union": {
+    "tag": "error",
+    "message": "ERROR"
+  }
 }
 ```
 
 ```json
 {
   "msg": "All good",
-  "tag": "progress",
-  "percent": 0.6,
-  "last": "61626378797a"
+  "union": {
+    "tag": "progress",
+    "percent": 0.6,
+    "last": "61626378797a"
+  }
 }
 ```
 
 ```json
 {
   "msg": "Ping",
-  "tag": "ping",
-  "ts": 1572935564043,
-  "nonce": "424f524b"
+  "union": {
+    "tag": "ping",
+    "ts": 1572935564043,
+    "nonce": "424f524b"
+  }
 }
 ```
+
+For types in the union which are a struct with only one field (like the first example data above), this looks very similar to envelope unions... except notice that there's no `contentKey` in our union's representation definition -- so the string of the other map key in that example comes from the struct's field name!
+The behavior of `inline` union becomes clearer as the contained types get more fields: the tag field is always just *next to* the other map keys.
 
 ```ipldsch
 type Message struct {
   msg String
-  payload Payload
+  union Payload
 }
 
 type Payload union {

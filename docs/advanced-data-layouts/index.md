@@ -60,7 +60,7 @@ these will all vary per IPLD library and the language the IPLD library is in.
 
 (Someday, a system for portable ADL code would be neat.
 However, we currently consider that a research problem:
-some notes can be found in [open-research/ADLs-we-can-autoexecute](open-research/ADLs-we-can-autoexecute.md).)
+some notes can be found in [open-research/ADLs-we-can-autoexecute](/design/open-research/ADL-autoexecution/).)
 
 ### How do I know when to use an ADL to read data?
 

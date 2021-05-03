@@ -24,4 +24,4 @@ Some codecs that are widely known in IPLD are documented here.
 
 (Remember, this is not an exhaustive list of codecs.  But it's some of the ones we use most widely!)
 
-{{ collections.all | eleventyNavigation("Known Codecs") | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+{{ collections.all | eleventyNavigation(page.url+"known/") | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}

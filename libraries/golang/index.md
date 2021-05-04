@@ -31,3 +31,8 @@ are legacy libraries.
 
 These libraries are still supported, but minimally, and new features should not be expected in them.
 It's recommend that new developments use [go-ipld-prime](#go-ipld-prime) instead.
+
+In particular, be aware that features like [Selectors](/glossary/#selectors) are missing from these libraries,
+and will not be implemented in them.
+(These features require a foundational commitment to the [Data Model](/glossary/#data-model) which these libraries lack;
+attempting to introduce that would be the same as doing a total rewrite of the library.)

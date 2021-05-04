@@ -77,23 +77,6 @@ Graphsync uses [IPLD Selectors](#selectors) to replicate sections of a larger IP
 Read the full [Graphsync specification](https://specs.ipld.io/block-layer/graphsync/graphsync.html)
 for further details.
 
-### Selectors
-
-Selectors define selection criteria for IPLD graph queries.
-
-IPLD Selectors are a declarative format for specifying a walk over a [Data Model](#data-model)
-graph&mdash;what nodes to walk over (or not), recursively; and, some positions to "visit" (with a callback, typically, though library implementation details may vary).
-You can think of Selectors as being roughly like "regexps for graphs".
-
-Selectors are natively implemented in most IPLD libraries (for performance reasons),
-but the format itself is standardized.
-The format is described in IPLD (using [IPLD Schemas](https://specs.ipld.io/schemas/),
-so it's possible to serialize Selectors in any [Codec](#codecs) you want,
-and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
-
-Read the full [IPLD Selectors specification](https://specs.ipld.io/selectors/selectors.html)
-for further details.
-
 ## Specifications
 
 You can refer to the [specifications website](https://ipld.github.io/specs/) for a full list of content.

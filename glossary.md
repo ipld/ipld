@@ -101,6 +101,21 @@ That means IPLD Schemas are agnostic of [codecs](#codec).
 It also means they're entirely optional -- you can parse data with or without them --
 and you can use Schemas to describe and help process data even if that data _predates the Schema_.
 
+### Selectors
+
+IPLD Selectors are a form of graph query (or, a way to specify a traversal, if you prefer that mental model) over IPLD data.
+
+Selectors are a declarative format for specifying a walk over a [Data Model](#data-model) graph.
+Selectors can specify which nodes to walk over (or not), which order to visit in, and it can mark certain positions as "matched" (in addition to just visited).
+You can think of Selectors as being roughly like "regexps for graphs".
+Libraries may yield iterators over matched nodes, or iterators over all visited nodes, or callback oriented interfaces.
+
+Selectors are natively implemented in most IPLD libraries (for performance reasons),
+but the format itself is standardized.
+The format is described in IPLD (using [IPLD Schemas](#schemas),
+so it's possible to serialize Selectors in any [Codec](#codec) you want,
+and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
+
 #### Traversal
 
 Traversal is the act of walking across the [Data Model](#data-model).

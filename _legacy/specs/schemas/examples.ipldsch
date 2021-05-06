@@ -1,0 +1,10 @@
+
+type ExampleWithNullable {String : nullable &Any}
+
+type ExampleWithAnonDefns struct {
+	fooField optional {String:String} (rename "foo_field")
+	barField nullable {String:String}
+	bazField {String : nullable String}
+	wozField {String:[nullable String]}
+	boomField &ExampleWithNullable
+} representation map

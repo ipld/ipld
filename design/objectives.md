@@ -1,30 +1,27 @@
+---
+title: "Objectives"
+eleventyNavigation:
+  order: 10
+---
+
 Objectives and Scope of IPLD
 ============================
 
+Vision
+------
+
 We want to see more decentralized designs appearing in technology.
 
-We believe specifications for data structures are a key part of enabling that.
-(See [[Theory of Change]] for the even bigger picture,
-and more on our concept of enablement.)
+We believe specifications for data exchange,
+design languages that work in decentralized contexts,
+and content-addressing (hash-linking) of data
+are all a key part of enabling that.
+
+IPLD is a body of work to move forward on all those fronts.
+
 
 Things IPLD is concerned with
 -----------------------------
-
-## Databases
-
-We want IPLD to provide many of the useful attributes of an SQL-style database for purely local/offline applications:
-IPLD Schemas and IPLD Selectors provide features comparable to DDLs and SQL,
-and set the stage for building migration systems.
-
-At the same time, IPLD works on a concept of "blocks" which are much more comparable to messages:
-they're easy to send and receive over the network, and critically, can be regarded individually
-(there's no supposition of monolithicity, as SQL-style databases have).
-
-Our aim is that IPLD should straddle this divide and operate on either side of it gracefully.
-The same libraries and concepts and tooling should work well regardless of if you're building an offline app
-or a massively distributed system with remote actors coming and going and sending messages all the time.
-
-## Additional concerns
 
 In order to make building on decentralized data structures be excellent, we see the following major goals:
 
@@ -65,8 +62,8 @@ In order to make building on decentralized data structures be excellent, we see 
 	- (We introduce an idea called Advanced Data Layouts as a way to describe such collections, and as part of this, describe how to make the sharded content directly legible as the IPLD Data Model.)
 
 
-Things IPLD is not concerned with
-----------------------------------
+Things not in the scope of IPLD
+-------------------------------
 
 - Encryption.  It's important, but it's not our battle.
   We hope that IPLD will be useful for structuring data, both in cleartext and ciphertext.
@@ -83,4 +80,20 @@ Things IPLD is not concerned with
   it's not directly related to IPLD, but they should work well together, and you might want to check it out.)
 
 
+Comparisons
+-----------
+
+### Databases
+
+We want IPLD to provide many of the useful attributes of an SQL-style database for purely local/offline applications:
+IPLD Schemas and IPLD Selectors provide features comparable to DDLs and SQL,
+and set the stage for building migration systems.
+
+At the same time, IPLD works on a concept of "blocks" which are much more comparable to messages:
+they're easy to send and receive over the network, and critically, can be regarded individually
+(there's no supposition of monolithicity, as SQL-style databases have).
+
+Our aim is that IPLD should straddle this divide and operate on either side of it gracefully.
+The same libraries and concepts and tooling should work well regardless of if you're building an offline app
+or a massively distributed system with remote actors coming and going and sending messages all the time.
 

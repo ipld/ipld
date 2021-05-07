@@ -23,3 +23,22 @@ a.header-anchor:before {
 	text-decoration: none;
 	font-weight:     normal;
 }
+
+.callout {
+	margin:           0.5rem 0rem;
+	padding:          0.5rem 1rem;
+	background-color: rgba(100,100,100,0.4);
+	border:           1px solid rgba(0,0,0,0.7);
+}
+.callout.callout-warn {
+	background-color: rgba(200,100,0,0.4);
+}
+.callout.callout-info {
+	background-color: rgba(100,150,200,0.4);
+}
+.callout.callout-todo {
+	background-color: rgba(200,100,200,0.8);
+}
+.callout > ul {
+	padding-inline-start: 1.5rem;
+}

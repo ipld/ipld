@@ -30,6 +30,16 @@ module.exports = function(eleventyConfig) {
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
 	eleventyConfig.addPassthroughCopy({"static": "static"})
 
+	// Introduce some shortcodes used for frequently recurrent stylistic elements.
+	//  A "callout" is a box of highlighted, slightly in-set text.  Styles that cause distinct coloration include "info", "warn", "todo".
+	//   Use them in nunjucks like this: `{% callout "wow" %}foobar{% endcallout %}`.
+	eleventyConfig.addPairedShortcode("callout", function(content, style = "info", format = "md") {
+		if (format === "md") {
+			content = markdownLibrary.render(content);
+		}
+		return `<div class="callout callout-${style}">${content}</div>`;
+	});
+
 	return {
 		dir: {
 			// The input directory is set to ".." so that we achieve these two file organization goals:

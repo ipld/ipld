@@ -28,7 +28,7 @@ header .logo {
 	vertical-align: top;
 }
 
-aside.sidebar {
+aside#sidebar {
 	display:          block;
 	position:         fixed;
 	width:            20rem;
@@ -81,7 +81,7 @@ a.header-anchor:before {
 
 /* As the screen gets smaller, we shrink the nav sidebar. */
 @media (max-width: 959px) {
-	aside.sidebar {
+	aside#sidebar {
 		font-size: 15px;
 		width:     16.4rem;
 	}
@@ -93,7 +93,7 @@ a.header-anchor:before {
 /* As the screen gets quite small, we translate the nav sidebar off-screen entirely... */
 /* ... and will add buttons, and shift the header over to make room for the button, and etc. */
 @media (max-width: 719px) {
-	aside.sidebar {
+	aside#sidebar {
 		top:         0;
 		padding-top: 3.6rem;
 		transform:   translateX(-100%);
@@ -108,7 +108,7 @@ a.header-anchor:before {
 	}
 	/* The button will use a tiny piece of JS to toggle this 'sidebar-open' class, which causes it to translate back on-screen. */
 	/*  FUTURE: I feel like one could do this with a carefully styled checkbox, and thus no javascript.  That would be neat. */
-	.sidebar-open.sidebar {
+	.sidebar-open#sidebar {
 		transform: translateX(0);
 	}
 	/* And the content area just gets less and less margin. */
@@ -118,17 +118,17 @@ a.header-anchor:before {
 }
 
 /* Styling for the breadcrumbs. */
-aside.breadcrumbs {
+aside#breadcrumbs {
 	display: inline;
 }
-.breadcrumbs ul {
+#breadcrumbs ul {
 	display: inline;
 	padding: 0;
 }
-.breadcrumbs ul li {
+#breadcrumbs ul li {
 	display: inline-block;
 }
-.breadcrumbs ul li:before {
+#breadcrumbs ul li:before {
 	content: " » ";
 	margin: 0 0.4rem;
 }

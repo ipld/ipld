@@ -1,15 +1,33 @@
 module.exports = function(eleventyConfig) {
 	const markdownIt = require("markdown-it");
 	const markdownItAnchor = require("markdown-it-anchor");
+	const markdownItContainer = require('markdown-it-container');
+	const markdownItContainerCfg = function(style) {
+		return {
+			render: function (tokens, idx, _options, env, slf) {
+				if (tokens[idx].nesting === 1) {
+					tokens[idx].attrJoin('class', 'callout');
+					tokens[idx].attrJoin('class', 'callout-'+style);
+				}
+				return slf.renderToken(tokens, idx, _options, env, slf);
+			}
+		}
+	}
 	let markdownLibrary = markdownIt({
 		html: true,
-	}).use(markdownItAnchor, {
+	})
+	.use(markdownItAnchor, {
 		permalink: true, // Generate an anchor pointing back to self, for human ease in grabbing links to sections.
 		permalinkSymbol: "", // Preferable to do this with empty string, and add a visual character in CSS, because the anchor tag is placed inside the hN tag.
 		permalinkSpace: false, // Again, please don't add actual text to the inside of the hN tag.
 		permalinkBefore: true,
 		level: [2, 3, 4, 5, 6] // h1 tags are for page titles, and are generally not useful to jump to, so don't bother making anchors for those.
-	});
+	})
+	.use(require('markdown-it-footnote'))
+	.use(require('markdown-it-mark'))
+	.use(markdownItContainer, 'warn', markdownItContainerCfg('warn'))
+	.use(markdownItContainer, 'info', markdownItContainerCfg('info'))
+	.use(markdownItContainer, 'todo', markdownItContainerCfg('todo'));
 	eleventyConfig.setLibrary("md", markdownLibrary);
 
 	// This navigation plugin consumes frontmatter from each page,
@@ -32,7 +50,8 @@ module.exports = function(eleventyConfig) {
 
 	// Introduce some shortcodes used for frequently recurrent stylistic elements.
 	//  A "callout" is a box of highlighted, slightly in-set text.  Styles that cause distinct coloration include "info", "warn", "todo".
-	//   Use them in nunjucks like this: `{% callout "wow" %}foobar{% endcallout %}`.
+	//   Use them in nunjucks like this: `{% callout "info" %}foobar{% endcallout %}`.
+	//   The same thing can be done much more tersely with `:::info\nfoobar\n:::\n`., which works via markdwon-it-container instead.
 	eleventyConfig.addPairedShortcode("callout", function(content, style = "info", format = "md") {
 		if (format === "md") {
 			content = markdownLibrary.render(content);

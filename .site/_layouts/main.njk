@@ -3,13 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/static/css/layout.css">
-	<link rel="stylesheet" href="/static/css/nav.css">
-	<link rel="stylesheet" href="/static/css/style.css">
+	<link rel="stylesheet" href="/static/css/layout.css?{{ "" | cachebuster }}">
+	<link rel="stylesheet" href="/static/css/nav.css?{{ "" | cachebuster }}">
+	<link rel="stylesheet" href="/static/css/style.css?{{ "" | cachebuster }}">
 	<title>IPLD ♦ {{ title }}</title>
 </head>
 <body>
-
 	<header>
 		<div class="sidebar-button" onclick="document.getElementById('sidebar').classList.toggle('sidebar-open')">
 			<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon">

@@ -21,6 +21,10 @@ module.exports = function(eleventyConfig) {
 	//  In particular, some of the path manipulation ones are used to create breadcrumbs and other navigation elements.
 	eleventyConfig.addFilter("dirname", require('path').dirname)
 	eleventyConfig.addFilter("basename", require('path').basename)
+	//  And one that's a simple dummy to make sure assets like CSS aren't cached beyond reason.
+	//   (This approach is a bit dumb, and will bust caches more than necessary, but is much simpler to implement than content hashing.)
+	const buildtime = new Date().getTime()
+	eleventyConfig.addFilter("cachebuster", () => { return buildtime })
 
 	// Copy over static files (like css) please.
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)

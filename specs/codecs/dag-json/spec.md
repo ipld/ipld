@@ -7,7 +7,12 @@ navTitle: "Spec"
 
 **Status: Descriptive - Final**
 
-DAG-JSON supports the full [IPLD Data Model](/docs/data-model/).
+DAG-JSON very nearly supports the full [IPLD Data Model](/docs/data-model/).
+
+There are some small specific exceptions around certain small maps with specific keys,
+which are reserved in DAG-JSON to demarcate
+[links](/docs/data-model/kinds/#link-kind) and
+[bytes](/docs/data-model/kinds/#bytes-kind).
 
 ## Format
 

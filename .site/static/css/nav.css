@@ -26,3 +26,7 @@ nav ul ul a {
 	margin-top:       0.1rem;
 	font-weight:      normal;
 }
+/* Across the board, the line-height in the nav area is a lot less than in the rest of the body. */
+nav {
+	line-height: 1.3;
+}

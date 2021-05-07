@@ -6,6 +6,10 @@ h2 {
 	border-bottom: 1px solid #eaecef;
 }
 
+body {
+	line-height: 1.4;
+}
+
 a {
 	color: #3eaf7c;
 	text-decoration: none;

@@ -1,10 +1,15 @@
+---
+title: "DAG-PB Specification"
+navTitle: "Spec"
+---
+
 # DAG-PB Spec
 
 **Status: Descriptive - Final**
 
 DAG-PB is an IPLD codec that uses [Protocol Buffers](https://developers.google.com/protocol-buffers/) to describe a binary format that can encode a byte array and an associated list of links. It is the primary means of encoding structured file data for [IPFS](https://ipfs.io/), serving as the encoded data carrier for [UnixFS](https://docs.ipfs.io/concepts/file-systems/#unix-file-system-unixfs).
 
-DAG-PB does not support the full [IPLD Data Model](../../data-model-layer/data-model.md).
+DAG-PB does not support the full [IPLD Data Model](/docs/data-model/).
 
 ## Implementations
 
@@ -54,7 +59,7 @@ DAG-PB aims to have a **canonical form** for any given set of data. Therefore, i
 
 When we handle DAG-PB content at the Data Model level, we treat these objects as maps.
 
-This layout can be expressed with [IPLD Schemas](../../schemas/README.md) as:
+This layout can be expressed with [IPLD Schemas](/docs/schemas/) as:
 
 ```ipldsch
 type PBNode struct {
@@ -92,7 +97,7 @@ While the [logical format](#logical-format) implicitly describes a set of mechan
 This alternative pathing is covered here as part of this descriptive spec, but was developed independently of the Data Model and is thus not well standardized.
 The alternative pathing mechanisms differ between implementations and has been removed from the newer implementations entirely.
 
-The legacy [Go](https://github.com/ipfs/go-merkledag/tree/master/pb) and [JavaScript](github.com/ipld/js-ipld-dag-pb) implementations both support pathing with link names: `/<name1>/<name2>/…`.
+The legacy [Go](https://github.com/ipfs/go-merkledag/tree/master/pb) and [JavaScript](https://github.com/ipld/js-ipld-dag-pb) implementations both support pathing with link names: `/<name1>/<name2>/…`.
 
 In the legacy Go implementation, this is the only way, which implies that is is impossible to path through nodes that don't name their links. Also neither the Data section nor the Links section/metadata are accessible through paths.
 

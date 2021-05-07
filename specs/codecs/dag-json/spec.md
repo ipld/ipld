@@ -1,8 +1,13 @@
+---
+title: "DAG-JSON Specification"
+navTitle: "Spec"
+---
+
 # Specification: DAG-JSON
 
 **Status: Descriptive - Final**
 
-DAG-JSON supports the full [IPLD Data Model](../../data-model-layer/data-model.md).
+DAG-JSON supports the full [IPLD Data Model](/docs/data-model/).
 
 ## Format
 

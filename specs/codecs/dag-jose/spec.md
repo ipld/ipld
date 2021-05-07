@@ -1,3 +1,8 @@
+---
+title: "DAG-JOSE Specification"
+navTitle: "Spec"
+---
+
 # Specification: DAG-JOSE
 
 **Status: Descriptive - Draft**

@@ -1,3 +1,8 @@
+---
+title: "DAG-CBOR Specification"
+navTitle: "Spec"
+---
+
 # Specification: DAG-CBOR
 
 **Status: Descriptive - Draft**
@@ -114,13 +119,13 @@ The implications for DAG-CBOR of these limitaitons are:
  * Any float deserialized by the JavaScript CBOR decoder that does not have a fractional component will be indistinguishable from an integer to a JavaScript program and may not round-trip to the same bytes if originally produced by non-JavaScript code.
  * Any `Number` greater than `Number.MAX_SAFE_INTEGER` or less than `Number.MIN_SAFE_INTEGER` cannot be properly inspected for its whole-number status and is therefore encoded by the JavaScript CBOR encoder as float regardless of whether it is a whole-number or has a fractional component. [`BigInt`] should be used for [@ipld/dag-cbor] when dealing with integers outside of the safe range to ensure proper handling.
 
-[IPLD Data Model]: ../../data-model-layer/data-model.md
+[IPLD Data Model]: /docs/data-model/
 [Concise Binary Object Representation (CBOR)]: https://cbor.io/
 [RFC 8949]: https://tools.ietf.org/html/rfc8949
 [RFC 7049]: https://tools.ietf.org/html/rfc7049
-[IPLD Data Model Kinds]: ../../data-model-layer/data-model.md#kinds
-[Links]: ../../data-model-layer/data-model.md#link-kind
-[CID]: ../CID.md
+[IPLD Data Model Kinds]: /docs/data-model/kinds/
+[Links]: /docs/data-model/kinds/#link-kind
+[CID]: /glossary/#cid
 [Multibase]: https://github.com/multiformats/multibase
 [CBOR Tags Registry]: https://www.iana.org/assignments/cbor-tags/cbor-tags.xhtml
 [IPLD content identifiers (CIDs) in CBOR]: https://github.com/ipld/cid-cbor/

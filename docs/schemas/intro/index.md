@@ -9,15 +9,24 @@ eleventyNavigation:
 
 ## A Quick IPLD Primer
 
-{% callout "todo" %}
-{% endcallout %}
-
+::: todo
+- This "primer" section should be able to become briefer by referring more to other chapters of the IPLD documentation.
+:::
 
 IPLD concerns itself with the data layer of the distributed web. Its scope begins above the data storage and transmission layer, only interested in how data elements are encoded and decoded to a particular storage format and then presented in a consistent and usable form when above this encoding layer.
 
-IPLD uses a [Data Model](https://github.com/ipld/specs/blob/master/data-model-layer/data-model.md) to bound what form its standard data elements can take. The data model allows for standard scalar data types found across most programming languages and a large number of generic data encoding formats (JSON, CBOR, etc.), such as String and Int. It also includes two recursive types that are used to build more complex data structures upon the scalar types. These recursive types are List and Map and should be familiar to most programmers and are also common in many generic data encoding formats. The IPLD Data Model doesn’t include many of the types available in some encoding formats (such as the many Int sizing options available in CBOR). Similarly, it doesn’t support many of these same types available in some programming languages. Instead, it uses this bounded data presentation model as a way to build practical tools that can span many encoding formats and be practically usable in many programming languages.
+IPLD uses a [Data Model](/docs/data-model/) to bound what form its standard data elements can take.
+The data model allows for standard scalar data types found across most programming languages and a large number of generic data encoding formats (JSON, CBOR, etc.), such as String and Int.
+It also includes two recursive types that are used to build more complex data structures upon the scalar types.
+These recursive types are List and Map and should be familiar to most programmers and are also common in many generic data encoding formats.
+The IPLD Data Model doesn’t include many of the types available in some encoding formats (such as the many Int sizing options available in CBOR).
+Similarly, it doesn’t support many of these same types available in some programming languages.
+Instead, it uses this bounded data presentation model as a way to build practical tools that can span many encoding formats and be practically usable in many programming languages.
 
-IPLD’s Data Model is useful for building an abstraction at the data layer. It pushes concerns about encoding and decoding to its own dedicated domain where such concerns only have to deal with a limited set of data types and how to convert to and from those data types. But it also makes room for the development of an ecosystem of libraries and tools that are able to build on top of this model and can therefore operate according to shared assumptions about how data is presented. Such an ecosystem should empower significantly more sharing of algorithms, tools, techniques and code in the distributed web community, rather than siloing these assets in codebases that are concerned entirely with use-case-specific stacks.
+IPLD’s Data Model is useful for building an abstraction at the data layer.
+It pushes concerns about encoding and decoding to its own dedicated domain where such concerns only have to deal with a limited set of data types and how to convert to and from those data types.
+But it also makes room for the development of an ecosystem of libraries and tools that are able to build on top of this model and can therefore operate according to shared assumptions about how data is presented.
+Such an ecosystem should empower significantly more sharing of algorithms, tools, techniques and code in the distributed web community, rather than siloing these assets in codebases that are concerned entirely with use-case-specific stacks.
 
 ## Building on the Data Model
 
@@ -35,7 +44,7 @@ An additional "meta kind" is also introduced for convenience: Copy. A Copy is a 
 
 An IPLD Schema document uses these kinds to define "types". A Schema "type" refers to the data elements that are described by Schemas, where we can piece together the basic kinds to form much more sophisticated data structures that have well-defined shapes and are generally associated with a name (there is limited support for anonymous types for convenience).
 
-Read more about [IPLD Schema kinds](./schema-kinds.md).
+Read more about [IPLD Schema kinds](../schema-kinds/).
 
 Schemas are an important tool for extending IPLD’s scope into the application layer, where coherent and useful data structures are important, rather than disjointed and atomized data elements. In this way, IPLD Schemas provide a barrier to prevent data encoding and storage concerns from leaking too heavily into the application layer. Instead, IPLD can present a clear data abstraction to distributed web developers, a strong separation of concerns. Further, IPLD Schemas contain tools to embed advanced logic able to power bi-directional transformations, further pushing data representation concerns out of the application layer.
 
@@ -68,7 +77,7 @@ The fast-validation nature of IPLD Schemas also lends itself to an excellent dat
 
 Taken a step further, IPLD Schemas as a two-way (decode and encode) data description tool, abstract the representation layer for the programmer. Migrating data from older formats to newer ones can be performed by focusing on the higher-level transformation function that is applied to the schema-representation data nodes.
 
-Read more about [migrations and versioning](./migration.md).
+Read more about [migrations and versioning](../migrations/).
 
 ### Schemas as a transformational tool
 
@@ -77,7 +86,7 @@ IPLD Schemas don't provide a sophisticated set of data transformational tools bu
 * Mapping a List or a Map data structure at the Data Model layer into a Struct with well-defined and limited members.
 * Mapping "may be X or may be Y" union data structures at the Data Model layer into concrete nested data structures with predictable behavior and shape.
 * Mapping a List of tuples representing key/value pairs at the Data Model layer to a Map.
-* Abstracting the stored data through transformational logic to present entirely new forms via "advanced layouts", where code is associated with schema for two-way transforms (more on this in the [Advanced Layouts](advanced-layouts.md) section).
+* Abstracting the stored data through transformational logic to present entirely new forms via "advanced layouts", where code is associated with schema for two-way transforms (more on this in the [Advanced Layouts](../using-adls-in-schemas/) section).
 
 ### Schemas as a code generation tool
 
@@ -85,8 +94,14 @@ IPLD Schemas provide a means to connect the serialization and deserialization pr
 
 Work on code generation is ongoing.
 
-## Schema Language: DSL and Reified Form
+## Schema Language: DSL and DMT Form
 
 IPLD Schemas take two forms: a dedicated DSL and a reified form that is generally presented as JSON. The DSL is designed for expressibility and clarity as a user-facing tool. It is useful for as a specifier as well as a documentation tool. The DSL also allows for inline comments and allows for some flexibility regarding newlines and whitespace. The reified form, however, is more stable. It does not capture comments and is more tightly constrained within JSON form. It is intended that user-facing instances of IPLD Schemas will present the DSL, while internal, programmatic uses will use the reified form. The IPLD Schema tools in [JavaScript](https://github.com/ipld/js-ipld-schema) and [Go](https://github.com/ipld/go-ipld-schema) can perform various conversions and validations between these formats.
 
-The IPLD Schema’s own internal representation is also defined in the schema language itself. This is referred to as the “**schema-schema**”. The [DSL form](schema-schema.ipldsch) and the [reified form](schema-schema.ipldsch.json) of the schema-schema are kept up to date with the IPLD Schema specification. This schema-schema makes IPLD Schemas *mostly* self-describing, in that an instance of an IPLD Schema can be validated against the schema-schema to determine if it has a valid form. There are some additional constraints on IPLD Schema forms that are not strictly covered in the schema-schema itself, such as rules around valid characters for type names. While there are comments in the schema-schema that make it a very useful document for understanding the internal representation of IPLD Schemas, additional specification is required, particularly for the DSL which is not adequately covered by schema-schema.
+The IPLD Schema’s own internal representation is also defined in the schema language itself.
+This is referred to as the “**schema-schema**”.
+The [DSL form](/specs/schemas/schema-schema.ipldsch) and the [Data Model Tree form (as json)](/specs/schemas/schema-schema.ipldsch.json)
+of the schema-schema are kept up to date with the IPLD Schema specification.
+This schema-schema makes IPLD Schemas self-describing, in that an instance of an IPLD Schema can be validated against the schema-schema to determine if it has a valid form.
+There are some additional constraints on IPLD Schema forms that are not strictly covered in the schema-schema itself, such as rules around valid characters for type names.
+While there are comments in the schema-schema that make it a very useful document for understanding the internal representation of IPLD Schemas, additional specification is required, particularly for the DSL which is not adequately covered by schema-schema.

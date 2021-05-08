@@ -21,7 +21,12 @@ module.exports = function(eleventyConfig) {
 		permalinkSymbol: "", // Preferable to do this with empty string, and add a visual character in CSS, because the anchor tag is placed inside the hN tag.
 		permalinkSpace: false, // Again, please don't add actual text to the inside of the hN tag.
 		permalinkBefore: true,
-		level: [2, 3, 4, 5, 6] // h1 tags are for page titles, and are generally not useful to jump to, so don't bother making anchors for those.
+		level: [2, 3, 4, 5, 6], // h1 tags are for page titles, and are generally not useful to jump to, so don't bother making anchors for those.
+		slugify: (s) => s // Slugs should not contain URI-encoded characters (which is the default); just get rid of them.
+			.trim()
+			.toLowerCase()
+			.replace(/[\s+~\/\^]/g, "-")
+			.replace(/[().`,%·'"!?¿:@*]/g, ""),
 	})
 	.use(require('markdown-it-footnote'))
 	.use(require('markdown-it-mark'))

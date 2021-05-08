@@ -103,18 +103,17 @@ model kinds that may appear as values.
 
 Unions are represented as a **Map** in the data model for `keyed`, `envelope`
 and `inline` representations, and varying data model kinds for `kinded` unions,
-as described by [representations.md](representations.md).
+as described by the page on [Representation Strategies](../representations/).
 
 #### Struct
 
 Structs are represented as a **Map** in the data model by default but may be
-used to describe **String** and **List** encodings, as described by
-[representations.md](representations.md).
-
+used to describe **String** and **List** encodings,
+as described by the page on [Representation Strategies](../representations/).
 #### Enum
 
-Enums are represented as either a **String** or **Int** in the data model, as
-described by [representations.md](representations.md).
+Enums are represented as either a **String** or **Int** in the data model,
+as described by the page on [Representation Strategies](../representations/).
 
 #### Copy
 
@@ -186,7 +185,7 @@ representation-level directives can be found).
 
 The precise semantics of implicit values may vary per representation strategy;
 the discussion here is only for the general pattern, and you should also
-refer to the [reference documentation for representation strategies](./representations.md#representation-strategy-reference)
+refer to the [reference documentation for representation strategies](../representations/#representation-strategy-reference)
 for more details specific to the representations strategies you use.
 
 ### Combining Nullable, Optional, and Implicit
@@ -203,7 +202,7 @@ modifiers may be used on a struct field based on what kind of representation
 strategy the struct has.  For example, `optional` and `implicit` cannot be
 used in fields in the middle of a struct when the representation is as tuple,
 because this could make parsing ambiguous.  The
-[reference documentation for representation strategies](./representations.md#representation-strategy-reference)
+[reference documentation for representation strategies](../representations/#representation-strategy-reference)
 should provide more detailed information on this.
 
 ### Choosing between Optional and Implicit
@@ -230,8 +229,8 @@ expose and correctly preserve the value's presense or absence.
 ## Understanding Cardinality
 
 For more information on cardinality and the basics of how we reason about it,
-check out the [Type Theory Glossary](/concepts/type-theory-glossary.md)
-from the [Concepts](/concepts/) documentation.
+check out the [Type Theory Glossary](/design/concepts/type-theory-glossary/)
+from the [Design Concepts](/design/concepts/) documentation.
 
 ### Cardinality Examples
 

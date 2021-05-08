@@ -15,7 +15,7 @@ You'll find this document is linked to by the IPLD specs -- both for describing
 key theoretical foundations of the Data Model, and also to better describe some
 of the advanced features in the Schema layer (plus the reasons for them) --
 *and* you'll also find this document linked to by the
-[library design notes](../design/libraries), where we use some of this
+[library design notes](/design/libraries/), where we use some of this
 terminology to describe features of programming languages without resorting
 to language-specific vocabulary.
 
@@ -44,7 +44,7 @@ then it's clear that you have work to do!
 
 In practical application, you can see some examples of cardinality-counting used
 to describe `nullable` vs `optional` vs `implicit` values in the IPLD Schemas documentation:
-[Cardinality Examples](../schemas/schema-kinds.md#cardinality-examples).
+[Cardinality Examples](/docs/schemas/schema-kinds/#cardinality-examples).
 These cardinality countings are both key to the documentation,
 and key to understanding and using those features to build unambiguous APIs.
 
@@ -86,7 +86,7 @@ and the cardinality of that enum is "|3|".
 (The term "enum" might make more sense if you think of it as short for
 *enumerated*, rather than *enumerable* -- something with countable-infinity
 members is **not** considered an "enum".
-(We'd call that an [infinite scalar](#infinite-scalar) instead.))
+(We'd call that an [infinite scalar](#infinite-scalars) instead.))
 
 ### sum types
 

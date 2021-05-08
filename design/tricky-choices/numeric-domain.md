@@ -49,7 +49,7 @@ So... it should suffice.)
 
 ### Why not 2^64?
 
-See [Why 2^53](#why-2%5E53%3F).
+See [Why 2^53](#why-2-53).
 
 (It's desirable to avoid conflict with JavaScript's numeric domain limitations.)
 

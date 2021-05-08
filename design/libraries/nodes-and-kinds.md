@@ -56,7 +56,7 @@ Kind
 ----
 
 `Kind` maps very directly onto the definition of
-[Data Model Kinds](../../data-model-layer/data-model.md#kinds).
+[Data Model Kinds](/docs/data-model/kinds/).
 
 `Kind` does not include the Schema layer's concept of "struct", etc.
 
@@ -80,7 +80,7 @@ we make all data look and act like a `Node`, so that we can write all of our
 functions against the `Node` interface, and have that work for any sort of data.
 
 `Node` has functions for examining any of the
-[Data Model Kinds](../../data-model-layer/data-model.md#kinds).
+[Data Model Kinds](/docs/data-model/kinds/).
 For example, this means `Node` must be able to
 do a key lookup for a map kind,
 provide an iterator for a list kind,
@@ -113,13 +113,13 @@ a cleverer way for their compiler and type system to support this.)
 ### different implementors of Node
 
 Though the methods on the `Node` interface are defined as those necessary for
-examining data of the [Data Model Kinds](../../data-model-layer/data-model.md#kinds),
+examining data of the [Data Model Kinds](/docs/data-model/kinds/),
 **`Node` is not only implemented by the Data Model**:
 
 - Yes, `Node` is implemented by types that just hold basic Data Model info;
-- `Node` is also implemented by [Advanced Data Layouts](../../schemas/advanced-layouts.md) --
+- `Node` is also implemented by [Advanced Data Layouts](/docs/advanced-data-layouts/) ---
 	- consider a HAMT that spans many separately-serialized chunks of data; it should still be usable as if it's a regular map.
-- `Node` is also implemented by [Schema-typed Nodes](../../schemas/) --
+- `Node` is also implemented by [Schema-typed Nodes](/docs/schemas/) --
 	- Both if implemented by a single implementation that evaluates rules at runtime (so, finite count of implementing types and known at core library compile time)...
 	- or if handled by codegen/macros (unknown count / open set of implementors of `Node`; not known at core library compile time; may be created in other packages that import the core, rather than core importing them!).
 

@@ -11,7 +11,10 @@ Using ADLs in Schemas
 - This documentation needs review from a core contributor.  The language used is out of date and likely to be confusing.
 :::
 
-An ["Advanced Data Layout" (ADL)](/glossary/#adl) is a special type in an IPLD Schema that denotes an abstract node that may _act_ as one of the standard IPLD [schema kinds](./schema-kinds.md) when interacted with above the schema layer, but be represented in entirely different data forms at the data model layer. Advanced layouts allow us to use transformational logic to present consistent interfaces to significantly more complex data than the data model otherwise allows or significantly larger data than reasonable block sizes allow.
+An ["Advanced Data Layout" (ADL)](/docs/advanced-data-layouts/) is a special type in an IPLD Schema that denotes an abstract node
+that may _act_ as one of the standard IPLD [Data Model kinds](/docs/data-model/kinds/) when interacted with above the schema layer,
+but be represented in entirely different data forms at the data model layer.
+Advanced layouts allow us to use transformational logic to present consistent interfaces to significantly more complex data than the data model otherwise allows or significantly larger data than reasonable block sizes allow.
 
 Data structures such as maps, lists or byte arrays may be implemented in novel forms with the data model and may even transparently cross block boundaries to present data that is potentially both larger and more complex than a standard data model kind while affording the standard data model API interaction modes of their respective kinds.
 

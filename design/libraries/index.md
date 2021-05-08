@@ -1,3 +1,10 @@
+---
+title: "Library Design Guidance"
+navTitle: "Libraries"
+eleventyNavigation:
+  order: 50
+---
+
 Library Design Guidance
 =======================
 
@@ -8,3 +15,5 @@ library authors who want to make IPLD libraries in a new language
 Some of the information expressed here comes down to opinions moreso than specification;
 what is good ergonomics may vary wildly per language, so take these as
 recommendations rather than strictures.
+
+{{ collections.all | eleventyNavigation(page.url) | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}

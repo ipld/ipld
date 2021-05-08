@@ -39,6 +39,9 @@ a.header-anchor:before {
 .callout.callout-todo {
 	background-color: rgba(200,100,200,0.8);
 }
+.callout-todo:before {
+	content: "TODO"
+}
 .callout > ul {
 	padding-inline-start: 1.5rem;
 }

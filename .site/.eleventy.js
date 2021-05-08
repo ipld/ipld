@@ -47,6 +47,9 @@ module.exports = function(eleventyConfig) {
 	// Copy over static files (like css) please.
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
 	eleventyConfig.addPassthroughCopy({"static": "static"})
+	//  And json and ipldsch files, which appear in fixtures and specs as reference.
+	eleventyConfig.addPassthroughCopy("../specs/**/*.json")
+	eleventyConfig.addPassthroughCopy("../specs/**/*.ipldsch")
 
 	// Introduce some shortcodes used for frequently recurrent stylistic elements.
 	//  A "callout" is a box of highlighted, slightly in-set text.  Styles that cause distinct coloration include "info", "warn", "todo".

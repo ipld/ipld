@@ -1,3 +1,10 @@
+---
+title: "Schemas: Links"
+navTitle: "Links"
+eleventyNavigation:
+  order: 50
+---
+
 # Links and IPLD Schemas
 
 IPLD Schemas are designed to describe data bounded by blocks. They are intentionally _not_ agnostic to block boundaries to contain the complexity of validation. You ought to be able to apply a schema to a block and have enough information to make fast, complete, validation.

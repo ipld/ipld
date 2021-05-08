@@ -1,3 +1,10 @@
+---
+title: "Schemas: Authoring Guide"
+navTitle: "Authoring Guide"
+eleventyNavigation:
+  order: 80
+---
+
 # Authoring IPLD Schemas
 
 * [Basics](#basics)

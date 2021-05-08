@@ -1,3 +1,10 @@
+---
+title: "Schemas: Type Kinds"
+navTitle: "Type Kinds"
+eleventyNavigation:
+  order: 30
+---
+
 # IPLD Schema Kinds
 
 * [Extending the IPLD Data Model](#extending-the-ipld-data-model)

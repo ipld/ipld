@@ -1,3 +1,10 @@
+---
+title: "Schemas: Goals"
+navTitle: "Goals"
+eleventyNavigation:
+  order: 20
+---
+
 # IPLD Schemas Goals
 
 1. Provide a reasonable, easy to use, general type system for declaring useful properties about data.

@@ -1,3 +1,10 @@
+---
+title: "Schemas: Migrations"
+navTitle: "Migrations"
+eleventyNavigation:
+  order: 280
+---
+
 IPLD Schemas and migration
 ==========================
 

@@ -1,3 +1,10 @@
+---
+title: "Schemas: Feature Summary"
+navTitle: "Feature Summary"
+eleventyNavigation:
+  order: 30
+---
+
 # IPLD Schemas Feature Summary
 
 ## Constructs for Describing Common Data Forms

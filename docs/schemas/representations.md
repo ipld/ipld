@@ -1,3 +1,10 @@
+---
+title: "Schemas: Representation Strategies"
+navTitle: "Representation Strategies"
+eleventyNavigation:
+  order: 40
+---
+
 # Representations of IPLD Schema Kinds
 
 * [Available Representation Strategies](#available-representation-strategies)

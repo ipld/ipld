@@ -24,6 +24,10 @@ a.header-anchor:before {
 	font-weight:     normal;
 }
 
+td {
+	vertical-align: top;
+}
+
 .callout {
 	margin:           0.5rem 0rem;
 	padding:          0.5rem 1rem;

@@ -2,4 +2,5 @@
 title: "Known Codecs"
 ---
 
-{{ collections.all | eleventyNavigation(page.url) | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+{% import "listing.njk" as listing %}
+{{ listing.childrenTableWithSynopsys(collections.all, page.url) }}

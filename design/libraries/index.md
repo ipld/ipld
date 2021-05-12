@@ -16,4 +16,7 @@ Some of the information expressed here comes down to opinions moreso than specif
 what is good ergonomics may vary wildly per language, so take these as
 recommendations rather than strictures.
 
-{{ collections.all | eleventyNavigation(page.url) | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+---
+
+{% import "listing.njk" as listing %}
+{{ listing.childrenTableWithSynopsys(collections.all, page.url) }}

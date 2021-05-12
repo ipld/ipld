@@ -7,6 +7,11 @@ eleventyNavigation:
 IPLD Schemas
 ============
 
+:::todo
+- This page should be briefer, and mostly routing links to sub-chapters.
+:::
+
+
 IPLD Schemas are a system which can provide structural typing for data structures.
 They're meant to be useful as a _design language_ and make specifying protocols easier.
 

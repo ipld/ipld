@@ -49,4 +49,5 @@ and also reach for low friction for libraries, which should be able to be built 
 Pages within Data Model
 -----------------------
 
-{{ collections.all | eleventyNavigation(page.url) | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+{% import "listing.njk" as listing %}
+{{ listing.childrenTableWithSynopsys(collections.all, page.url) }}

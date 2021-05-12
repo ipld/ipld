@@ -13,12 +13,12 @@ while actually storing it as a different Node (or as several Nodes!).
 
 This is easiest to understand by example:
 
-- // sharded map example
-
-- // sharded bytes example
-
-- // encryption example
-
+:::todo
+- sharded map example
+- sharded bytes example
+- encryption example
+- link to unixfs "directory" story
+:::
 
 Where do ADLs fit in?
 ---------------------
@@ -40,15 +40,17 @@ How ADLs Work
 
 ### ADLs make nodes look like another node
 
-// emphasis on *one* node as the result: whether it be map or list or bytes or etc, *one*.
-
-// n.b. [..concrete example of what kind of transformation you'd be better off doing with schemas..]
+:::todo
+- emphasis on *one* node as the result: whether it be map or list or bytes or etc, *one*.
+- include concrete example of what kind of transformation you'd be better off doing with schema.
+:::
 
 ### ADL interior data is still Data Model
 
-// clarify that without ADL code activated, the raw data can still be read and even traversed... just differently.
-
-// clarify that codecs and ADLs compose, there's a clear layering there.
+:::todo
+- clarify that without ADL code activated, the raw data can still be read and even traversed... just differently.
+- clarify that codecs and ADLs compose, there's a clear layering there.
+:::
 
 ### ADLs use code
 
@@ -79,22 +81,32 @@ So!  Signaling must come from somewhere else.
 
 There are a variety of valid options:
 
+- [Signaling with Schemas](#signaling-with-schemas)
+- [Direct action within libraries](#direct-action-within-libraries)
+- [Other declarative signaling](#other-declarative-signaling)
+
 #### Signaling with Schemas
 
 One useful system we have which can provide an answer to the signaling question are IPLD Schemas.
 Since Schemas are already a declarative way to talk about the structure of data,
 it's quite reasonable that they should also be able to talk about where the structure of data uses an ADL.
 
+A page on [Using ADLs in Schemas](/docs/schemas/using-adls-in-schemas/) talks more about this.
+
 However, you don't have to use IPLD Schemas if you want to use ADLs.
 Keep reading the next couple of sections for more alternatives that you can use to answer the signaling question.
 
-// TODO a doc on this, complete with syntax examples, is necessary.
-
-// a remark should be present here on the interesting limitation about *non*-recursive descriptions being somewhat high-friction to reach with this mechanism.
-//  maybe this belongs in a separate deeper-diving doc in another page, though.
+:::todo
+- a remark should be present here on the interesting limitation about *non*-recursive descriptions being somewhat high-friction to reach with this mechanism.
+  (although maybe this belongs in a separate deeper-diving doc in another page).
+:::
 
 #### Direct action within libraries
 
+:::todo
+- discuss this
+- link to the go-ipld-prime NodeReifier callback as an example of this
+:::
 
 #### Other declarative signaling
 
@@ -121,9 +133,11 @@ Practical Considerations for ADLs and using them
 
 ### not every application that processes IPLD data will necessarily support your ADLs
 
-// "running foreign code on somebody else's budget" is not something that happens at unbounded scale on public services
+:::todo
+- "running foreign code on somebody else's budget" is not something that happens at unbounded scale on public services
+- availability in many languages/libraries, and authorship/maint effort implied -- it's better to use community-common things if you can
+  - similar to codecs in this regard
+- reminder that schemas *are* usable on public infra (like e.g. on hosted IPLD Explorer tools), because they have predictable computation cost envelopes -- reminder to prefer doing things with a schema rather than an ADL if you can; don't reach for ADLs just because you want a funky fresh custom format
+:::
 
-// availability in many languages/libraries, and authorship/maint effort implied -- it's better to use community-common things if you can
-// similar to codecs in this regard
-
-// reminder that schemas *are* usable on public infra (like e.g. on hosted IPLD Explorer tools), because they have predictable computation cost envelopes -- reminder to prefer doing things with a schema rather than an ADL if you can; don't reach for ADLs just because you want a funky fresh custom format
+See [Open Research Problems: ADL autoexecution](/design/open-research/ADL-autoexecution/).

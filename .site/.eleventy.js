@@ -35,6 +35,13 @@ module.exports = function(eleventyConfig) {
 	.use(markdownItContainer, 'todo', markdownItContainerCfg('todo'));
 	eleventyConfig.setLibrary("md", markdownLibrary);
 
+	// Configure the njk processor a bit, to let us have a directory of includes.
+	let nunjucks = require("nunjucks");
+	let nunjucksEnvironment = new nunjucks.Environment(
+		new nunjucks.FileSystemLoader("_includes")
+	);
+	eleventyConfig.setLibrary("njk", nunjucksEnvironment);
+
 	// This navigation plugin consumes frontmatter from each page,
 	//  and gathers that info into a form that we use to build the nav menu.
 	const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");

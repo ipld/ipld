@@ -26,3 +26,9 @@ Some codecs that are widely known in IPLD are documented here.
 
 {% import "listing.njk" as listing %}
 {{ listing.childrenTableWithSynopsys(collections.all, page.url+"known/") }}
+
+:::todo
+- Several more codecs need short pages herein.
+  - Each of these pages should include a humane description of why we might recommend or disrecommend that codec.
+  - Each of these pages should link to the spec page for that same codec.
+:::

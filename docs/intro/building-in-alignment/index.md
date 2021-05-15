@@ -1,5 +1,7 @@
 ---
 title: "Building in Alignment"
+eleventyNavigation:
+  order: 90
 ---
 
 Building in Alignment with IPLD

@@ -1,5 +1,7 @@
 ---
 title: InterPlanetary Ecosystem Overview
+eleventyNavigation:
+  order: 70
 ---
 
 IPLD in the InterPlanetary Ecosystem

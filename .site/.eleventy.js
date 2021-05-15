@@ -59,6 +59,8 @@ module.exports = function(eleventyConfig) {
 	// Copy over static files (like css) please.
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
 	eleventyConfig.addPassthroughCopy({"static": "static"})
+	//  And pngs.
+	eleventyConfig.addPassthroughCopy("../**/*.png")
 	//  And json and ipldsch files, which appear in fixtures and specs as reference.
 	eleventyConfig.addPassthroughCopy("../specs/**/*.json")
 	eleventyConfig.addPassthroughCopy("../specs/**/*.ipldsch")

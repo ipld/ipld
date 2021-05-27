@@ -13,8 +13,14 @@ module.exports = function(eleventyConfig) {
 			}
 		}
 	}
+	let slugify = (s) => s // Slugs should not contain URI-encoded characters (which is the default); just get rid of them.
+		.trim()
+		.toLowerCase()
+		.replace(/[\s+~\/\^]/g, "-")
+		.replace(/[().`,%·'"!?¿:@*]/g, "")
 	let markdownLibrary = markdownIt({
 		html: true,
+		linkify: true,
 	})
 	.use(markdownItAnchor, {
 		permalink: true, // Generate an anchor pointing back to self, for human ease in grabbing links to sections.
@@ -22,14 +28,21 @@ module.exports = function(eleventyConfig) {
 		permalinkSpace: false, // Again, please don't add actual text to the inside of the hN tag.
 		permalinkBefore: true,
 		level: [2, 3, 4, 5, 6], // h1 tags are for page titles, and are generally not useful to jump to, so don't bother making anchors for those.
-		slugify: (s) => s // Slugs should not contain URI-encoded characters (which is the default); just get rid of them.
-			.trim()
-			.toLowerCase()
-			.replace(/[\s+~\/\^]/g, "-")
-			.replace(/[().`,%·'"!?¿:@*]/g, ""),
+		slugify: slugify,
 	})
 	.use(require('markdown-it-footnote'))
 	.use(require('markdown-it-mark'))
+	.use(require('markdown-it-table-of-contents'), {
+		includeLevel: [2, 3],
+		slugify: slugify,
+		format: function(heading) {
+			return removeExtraText(heading);
+		},
+		transformLink: function(link) {
+			// remove backticks from markdown code
+			return link.replace(/\%60/g, "");
+		}
+	})
 	.use(markdownItContainer, 'warn', markdownItContainerCfg('warn'))
 	.use(markdownItContainer, 'info', markdownItContainerCfg('info'))
 	.use(markdownItContainer, 'todo', markdownItContainerCfg('todo'));

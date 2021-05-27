@@ -6,6 +6,7 @@
     "markdown-it-anchor": "^7.1.0",
     "markdown-it-container": "^3.0.0",
     "markdown-it-footnote": "^3.0.2",
-    "markdown-it-mark": "^3.0.1"
+    "markdown-it-mark": "^3.0.1",
+    "markdown-it-table-of-contents": "^0.5.2"
   }
 }

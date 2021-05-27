@@ -8,7 +8,7 @@ eleventyNavigation:
 # IPLD Schemas Goals
 
 1. Provide a reasonable, easy to use, general type system for declaring useful properties about data.
-2. Compose nicely over the [IPLD Data Model](https://github.com/ipld/specs/blob/master/data-model-layer/data-model.md): Schemas should be usable with any data format you can build an [IPLD Codec](https://github.com/ipld/specs/tree/master/block-layer/codecs) for.
+2. Compose nicely over the [IPLD Data Model](/docs/data-model/): Schemas should be usable with any data format you can build an [IPLD Codec](/docs/codecs/) for.
 3. Be efficient to verify: predictable; roughly linear in the size of the data and Schema; and absolutely not turing complete.
 4. Be language-agnostic: many compatible implementations of the Schema tooling should exist, as well as bindings for many languages.
 5. Assist rather than obstruct migration: we expect to be working with _existing_ data; we need to work well on this case.

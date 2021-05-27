@@ -90,7 +90,7 @@ type Message string
 
 ## Schema Kinds
 
-See [IPLD Schema Kinds](../../schema-kinds/) for more information on this topic.
+See [IPLD Schema Typekinds](/docs/schemas/features/typekinds/) for more information on this topic.
 
 The schema kinds have matching tokens that appear throughout IPLD Schemas. Depending on context, the tokens are either lower-case (e.g. `int`) or title-case (e.g. `Int`), or may omitted entirely because they can be reliably inferred. This will become clear as we proceed.
 
@@ -102,7 +102,7 @@ The schema kinds have matching tokens that appear throughout IPLD Schemas. Depen
 * Bytes: May appear as `Bytes` for a component specifier or `bytes` as a typedef. There are no additional specifiers for byte array length and there is no way to specify a single byte. The `byteprefix` Union representation type is a special case indicating a single byte dictates the type of the proceeding bytes, see below.
 * List: Is inferred by the `[Type]` shorthand for both typedefs and inline component specification. The token "List" is not used in the Schema DSL and all Lists must have value type specified (although Unions allow for significant flexibility here).
 * Map: Is inferred by the `{KeyType:ValueType}` shorthand for both typedefs and inline component specification. The token "Map" is not used in the Schema DSL and all Maps must have key and value type specified (although Unions allow for significant flexibility here).
-* Link: The `&` token prefixing a type is used as a shorthand for links. A generic link to an untyped resource uses the special `&Any`, while a link where there is an expected type to be found uses that type name as a hinting mechanism, `&Foo`. See below and [Links and IPLD Schemas](../../links/) for more information.
+* Link: The `&` token prefixing a type is used as a shorthand for links. A generic link to an untyped resource uses the special `&Any`, while a link where there is an expected type to be found uses that type name as a hinting mechanism, `&Foo`. See below and [Links in IPLD Schemas](/docs/schemas/features/links/) for more information.
 * Union: Appears as `union` following `type` and the Union's type name.
 * Struct: Appears as `struct` following `type` and the Struct's type name.
 * Enum: Appears as `enum` following `type` and the Enum's type name.
@@ -151,7 +151,7 @@ Links can be typedef'd, `type Foo &Bar` or can appear inline: `type Baz {String:
 
 Further, the type name is not a strict assertion that can be directly tested against underlying data, it is simply a hint regarding what should be found when following the link identified by the [CID](https://github.com/ipld/specs/blob/master/block-layer/CID.md) at the position indicated by the Schema link. Strict assertions of this expected type may be applied at layers above the Schema validation layer when the link is resolved and the node decoded.
 
-For more information about Links in Schemas, see [Links and IPLD Schemas](../../links/).
+For more information about Links in Schemas, see [Links in IPLD Schemas](/docs/schemas/features/links/).
 
 ## Inline Recursive Types
 
@@ -241,7 +241,7 @@ When encountering a Map at the Data Layer where this variant of `Foo` is expecte
 [ "This is field one of Foo", false ]
 ```
 
-A full list of the available representation strategies and their kinds that can be supplied for various Schema kinds can be found in [Representations Strategies](../../representations/).
+A full list of the available representation strategies and their kinds that can be supplied for various Schema kinds can be found in [Representations Strategies](/docs/schemas/features/representation-strategies/).
 
 ### Representation Parameters
 
@@ -283,12 +283,12 @@ This representation for `Foo` would serialize into a single String node:
 "This is field one of Foo:false"
 ```
 
-This representation for Structs has limitations as there is no escaping mechanism for the join character, so it should be used with caution. Similar restrictions apply to the `stringpairs` Map representation. See [Representations Strategies](../../representations/) for more details on such restrictions.
+This representation for Structs has limitations as there is no escaping mechanism for the join character, so it should be used with caution. Similar restrictions apply to the `stringpairs` Map representation. See [Representations Strategies](/docs/schemas/features/representation-strategies/) for more details on such restrictions.
 
 #### Field-specific Representation Parameters
 
 The content in the main `type` declaration block (between opening `{` and closing `}`) is intended to represent the type as a user-facing concept,
-including the [cardinality](../../schema-kinds/#understanding-cardinality) of the fields.
+including the [cardinality](/docs/schemas/features/typekinds/#understanding-cardinality) of the fields.
 However, content in parens (`(`, `)`) presented next to individual fields is an exception to this rule.
 This content is field-specific representation parameters.
 That is, the parameters presented inside these parens would ordinarily belong below in the `representation` block because it regards the interaction with the serialized form.
@@ -321,7 +321,7 @@ type Foo struct {
 
 In our example we can see that `nullable` is a distinct parameter for the field compared to `rename` and `implicit`. This is because `nullable` impacts the shape of the user-facing API for `Foo`, whereas `rename` and `implicit` only impact the serialization (representation) of `Foo` so are effectively hidden to the user.
 
-See [Value Type Modifiers](../../schema-kinds/#value-type-modifiers) for a discussion on such matters as well as the impacts on value cardinality.
+See [Value Type Modifiers](/docs/schemas/features/typekinds/#value-type-modifiers) for a discussion on such matters as well as the impacts on value cardinality.
 
 A `rename` parameter specifies that at serialization and deserialization, a field has an alternate name than that present in the Schema. An `implicit` specifies that, when not present in the serialized form, the field should have a certain value.
 
@@ -342,7 +342,7 @@ With the `rename` and `implicit` parameters above, this same data would be seria
 }
 ```
 
-See [Fields with Implicit Values](../../schema-kinds/#fields-with-implicit-values) for more information on `implicit`.
+See [Fields with Implicit Values](/docs/schemas/features/typekinds/#fields-with-implicit-values) for more information on `implicit`.
 In the same document you will also find a discussion regarding combining `nullable`, `optional` and `implicit` and the limitations thereof.
 
 Whenever a value appears in a representation parameter, it must be quoted, regardless of type. In our example above, `implicit "false"` quoted a Bool parameter. This will be interpreted appropriately depending on context, in this case it is clear that the type of the quoted value should be a Bool.
@@ -376,7 +376,7 @@ Where `TypeName` is a unique name for the type and follows the naming rules abov
 Structs must always have a body, enclosed by `{`, `}`. Fields must new-line delimited and should be indented for clarity.
 
 The `representation` strategy for Structs is `map` by default, so may be omitted.
-See the page on [Representations Strategies](../../representations/) for more details on additional alternative representation strategies.
+More details can be found in the feature detail pages about [Representations Strategies](/docs/schemas/features/representation-strategies/).
 
 Field representation parameters are presented in parens when present and representations requiring additional general parameters is presented in a separate `representation` block enclosed by `{`, `}`. For example, a Struct with both field representation parameters and general representation parameters:
 
@@ -396,7 +396,8 @@ Leading to a serialized form such as:
 "one=This is field one of Foo,two=true"
 ```
 
-More details regarding `stringpairs` can be found below, and in the page on [Representations Strategies](../../representations/).
+More details regarding `stringpairs` can be found below,
+and in the feature detail pages about [Representations Strategies](/docs/schemas/features/representation-strategies/).
 
 Valid representation strategies for Structs are:
 
@@ -407,7 +408,7 @@ Valid representation strategies for Structs are:
 * `listpairs`
 
 More details about these representation strategies, including the data model kinds the map to, and their various parameters,
-can be found in the page on [Representations Strategies](../../representations/).
+scan be found in the feature detail pages about [Representations Strategies](/docs/schemas/features/representation-strategies/).
 
 ## Enums
 
@@ -452,7 +453,7 @@ type Status enum {
 
 Note again that the Int values are quoted in the field representation parens, they will be interpreted and validated as integers when parsing as the context of an `int` representation strategy makes this clear.
 
-More details about these representation strategies can be found in [Representations of IPLD Schema Kinds](../../representations/).
+More details can be found in the feature detail pages about [Representations Strategies](/docs/schemas/features/representation-strategies/).
 
 ## Unions
 
@@ -858,7 +859,8 @@ In this case, we declare a `MyMap` type that is considered a Map kind for the pu
 
 **`representation advanced` is currently only available for Map, List and Bytes kinds**. Additional use cases (such as the hypothetical String kind above) may be considered in the future.
 
-See [Advanced Layouts for IPLD Schemas](../../using-adls-in-schemas/) for more details regarding Advanced Data Layouts.
+See [Advanced Layouts document](/docs/advanced-data-layouts) for more details regarding Advanced Data Layouts,
+and [Indicating ADLs in Schemas](/docs/schemas/features/indicating-adls/) for more details on how to use them when using IPLD Schemas.
 
 ## Schemas in Markdown
 

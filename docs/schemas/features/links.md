@@ -11,7 +11,7 @@ IPLD Schemas are designed to describe data bounded by blocks.
 Notably, IPLD Schemas are intentionally _not_ agnostic to block boundaries -- this is necessary to contain the complexity of validation:
 You ought to be able to apply a schema to a block and have enough information to make fast, complete, validation.
 
-The `link` kind is one of the [type kinds](../schema-kinds/) in schemas.
+The `link` kind is one of the [typekinds](../typekinds/) in schemas.
 It maps fairly directly to the [data model link kind](/docs/data-model/kinds/#link-kind)
 (in the same way as the `int` typekind is essentially the same as the data model `int` kind).
 However, schema links can also add a bit more information -- as we'll see later, in the

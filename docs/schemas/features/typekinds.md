@@ -103,17 +103,17 @@ model kinds that may appear as values.
 
 Unions are represented as a **Map** in the data model for `keyed`, `envelope`
 and `inline` representations, and varying data model kinds for `kinded` unions,
-as described by the page on [Representation Strategies](../representations/).
+as described by the page on [Representation Strategies](../representation-strategies/).
 
 #### Struct
 
 Structs are represented as a **Map** in the data model by default but may be
 used to describe **String** and **List** encodings,
-as described by the page on [Representation Strategies](../representations/).
+as described by the page on [Representation Strategies](../representation-strategies/).
 #### Enum
 
 Enums are represented as either a **String** or **Int** in the data model,
-as described by the page on [Representation Strategies](../representations/).
+as described by the page on [Representation Strategies](../representation-strategies/).
 
 #### Copy
 
@@ -185,7 +185,7 @@ representation-level directives can be found).
 
 The precise semantics of implicit values may vary per representation strategy;
 the discussion here is only for the general pattern, and you should also
-refer to the [reference documentation for representation strategies](../representations/#representation-strategy-reference)
+refer to the [reference documentation for representation strategies](../representation-strategies/#representation-strategy-reference)
 for more details specific to the representations strategies you use.
 
 ### Combining Nullable, Optional, and Implicit
@@ -202,7 +202,7 @@ modifiers may be used on a struct field based on what kind of representation
 strategy the struct has.  For example, `optional` and `implicit` cannot be
 used in fields in the middle of a struct when the representation is as tuple,
 because this could make parsing ambiguous.  The
-[reference documentation for representation strategies](../representations/#representation-strategy-reference)
+[reference documentation for representation strategies](../representation-strategies/#representation-strategy-reference)
 should provide more detailed information on this.
 
 ### Choosing between Optional and Implicit

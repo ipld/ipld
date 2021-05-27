@@ -29,7 +29,7 @@ A type at the Schema layer must be mapped onto a representation expressible with
 
 For all Schema kinds which have direct equivalents in the Data Model (e.g. Int, String, Float), that kind is also the representation kind and there is a default representation strategy (mostly implicitly) named after that kind, i.e. a String schema kind has a String representation kind and also a `string` representation strategy that is a direct transference through the Data Model. The default representation is, broadly speaking, a no-op: a string remains a string, and a map is easy to enough to represent as a map!
 
-The Schema layer introduces additional kinds (see [IPLD Schema Kinds](../schema-kinds/)) that can be thought of as "perceived kinds", in that they have no direct equivalent in the Data Model but can be represented there and perceived as something different when passing through the Schema layer. Most also have default mappings.
+The Schema layer introduces additional kinds (see [TypeKinds](../typekinds/)) that can be thought of as "perceived kinds", in that they have no direct equivalent in the Data Model but can be represented there and perceived as something different when passing through the Schema layer. Most also have default mappings.
 
 For example, A Struct maps directly to a Data Model Map, where the Struct's fields are Map keys and the Struct's field's values are the values found at the values of the Map's keys:
 
@@ -87,7 +87,7 @@ Schema kinds for which no meaningful customization is possible: Null, Boolean, I
 (Custom custom representation strategies for these kinds has not been ruled out and may be introduced in the future.)
 
 In addition to the representation strategies that are built-in to IPLD Schemas, [Advanced Data Layouts](/glossary/#adl) can also be used to change the way data is perceived and persisted.
-Discussion of Advanced Data Layouts and their ability to provide entirely custom representation strategies of various type can be found in the page on [Using ADLs in IPLD Schemas](../using-adls-in-schemas/).
+Discussion of Advanced Data Layouts and their ability to provide entirely custom representation strategies of various type can be found in the page on [Indicating ADLs in IPLD Schemas](../indicating-adls/).
 
 The following are the representation strategies built-in to IPLD Schemas:
 
@@ -155,7 +155,7 @@ type Foo struct {
 
 The field-specific parameters (`rename` and `implicit`) are only available for the `map` Struct representation strategy. They are technically possible in some other forms (i.e. `listpairs` and `stringpairs`) and support may be extended in the future.
 
-See [Value Type Modifiers](../schema-kinds/#value-type-modifiers) for a discussion on such matters as well as the impacts on value cardinality.
+See [Value Type Modifiers](../typekinds/#value-type-modifiers) for a discussion on such matters as well as the impacts on value cardinality.
 
 ### Struct `tuple` Representation
 

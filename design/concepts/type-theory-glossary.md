@@ -44,7 +44,7 @@ then it's clear that you have work to do!
 
 In practical application, you can see some examples of cardinality-counting used
 to describe `nullable` vs `optional` vs `implicit` values in the IPLD Schemas documentation:
-[Cardinality Examples](/docs/schemas/schema-kinds/#cardinality-examples).
+[Cardinality Examples](/docs/schemas/features/typekinds/#cardinality-examples).
 These cardinality countings are both key to the documentation,
 and key to understanding and using those features to build unambiguous APIs.
 

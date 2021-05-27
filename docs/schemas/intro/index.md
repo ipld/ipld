@@ -3,6 +3,7 @@ title: "Schemas: Introduction"
 navTitle: "Introduction"
 eleventyNavigation:
   order: 10
+  synopsys: Introduction to IPLD Schemas -- overviews, the goals of the system, simple examples, and getting-started material.
 ---
 
 # An Introduction to IPLD Schemas
@@ -44,7 +45,7 @@ An additional "meta kind" is also introduced for convenience: Copy. A Copy is a 
 
 An IPLD Schema document uses these kinds to define "types". A Schema "type" refers to the data elements that are described by Schemas, where we can piece together the basic kinds to form much more sophisticated data structures that have well-defined shapes and are generally associated with a name (there is limited support for anonymous types for convenience).
 
-Read more about [IPLD Schema kinds](../schema-kinds/).
+Read more about [Typekinds](/docs/schemas/features/typekinds/).
 
 Schemas are an important tool for extending IPLD’s scope into the application layer, where coherent and useful data structures are important, rather than disjointed and atomized data elements. In this way, IPLD Schemas provide a barrier to prevent data encoding and storage concerns from leaking too heavily into the application layer. Instead, IPLD can present a clear data abstraction to distributed web developers, a strong separation of concerns. Further, IPLD Schemas contain tools to embed advanced logic able to power bi-directional transformations, further pushing data representation concerns out of the application layer.
 
@@ -77,7 +78,7 @@ The fast-validation nature of IPLD Schemas also lends itself to an excellent dat
 
 Taken a step further, IPLD Schemas as a two-way (decode and encode) data description tool, abstract the representation layer for the programmer. Migrating data from older formats to newer ones can be performed by focusing on the higher-level transformation function that is applied to the schema-representation data nodes.
 
-Read more about [migrations and versioning](../migrations/).
+Read more about [migrations and versioning](/docs/schemas/using/migrations/).
 
 ### Schemas as a transformational tool
 
@@ -86,7 +87,7 @@ IPLD Schemas don't provide a sophisticated set of data transformational tools bu
 * Mapping a List or a Map data structure at the Data Model layer into a Struct with well-defined and limited members.
 * Mapping "may be X or may be Y" union data structures at the Data Model layer into concrete nested data structures with predictable behavior and shape.
 * Mapping a List of tuples representing key/value pairs at the Data Model layer to a Map.
-* Abstracting the stored data through transformational logic to present entirely new forms via "advanced layouts", where code is associated with schema for two-way transforms (more on this in the [Advanced Layouts](../using-adls-in-schemas/) section).
+* Abstracting the stored data through transformational logic to present entirely new forms via "advanced layouts", where code is associated with schema for two-way transforms (more on this in the [Advanced Layouts](/docs/schemas/features/indicating-adls/) section).
 
 ### Schemas as a code generation tool
 

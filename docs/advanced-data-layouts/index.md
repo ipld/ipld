@@ -91,7 +91,7 @@ One useful system we have which can provide an answer to the signaling question 
 Since Schemas are already a declarative way to talk about the structure of data,
 it's quite reasonable that they should also be able to talk about where the structure of data uses an ADL.
 
-A page on [Using ADLs in Schemas](/docs/schemas/using-adls-in-schemas/) talks more about this.
+A page on [Indicating ADLs with Schemas](/docs/schemas/features/indicating-adls/) talks more about this.
 
 However, you don't have to use IPLD Schemas if you want to use ADLs.
 Keep reading the next couple of sections for more alternatives that you can use to answer the signaling question.

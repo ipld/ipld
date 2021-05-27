@@ -32,3 +32,13 @@ Some codecs that are widely known in IPLD are documented here.
   - Each of these pages should include a humane description of why we might recommend or disrecommend that codec.
   - Each of these pages should link to the spec page for that same codec.
 :::
+
+Codecs in Code
+--------------
+
+Here are pointers to key parts of how Codecs are seen implemented in some of the IPLD libraries:
+
+- in Golang:
+	- a pair of functional interfaces describe codecs:
+	  [ipld.Encoder (godoc)](https://pkg.go.dev/github.com/ipld/go-ipld-prime#Encoder) and
+	  [ipld.Decoder (godoc)](https://pkg.go.dev/github.com/ipld/go-ipld-prime#Decoder)

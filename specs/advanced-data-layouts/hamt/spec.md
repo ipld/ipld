@@ -2,39 +2,38 @@
 
 **Status: Prescriptive - Draft**
 
-* [Introduction](#Introduction)
-* [Useful references](#Useful-references)
-* [Summary](#Summary)
-* [Structure](#Structure)
-  * [Parameters](#Parameters)
-  * [Node properties](#Node-properties)
-  * [Schema](#Schema)
-* [Algorithm in detail](#Algorithm-in-detail)
-  * [`Get(key)`](#Getkey)
-  * [`Set(key, value)`](#Setkey-value)
-  * [`Delete(key)`](#Deletekey)
-  * [`Keys()`, `Values()` and `Entries()`](#Keys-Values-and-Entries)
-  * [Differences to CHAMP](#Differences-to-CHAMP)
-  * [Canonical form](#Canonical-form)
-* [Use as a "Set"](#Use-as-a-%22Set%22)
-* [Implementation defaults](#Implementation-defaults)
-  * [`hashAlg`](#hashAlg)
-  * [`bitWidth`](#bitWidth)
-  * [`bucketSize`](#bucketSize)
-  * [Maximum key size](#Maximum-key-size)
-  * [Inline values](#Inline-values)
-* [Possible future improvements and areas for research](#Possible-future-improvements-and-areas-for-research)
-  * [Maximum depth limitations](#Maximum-depth-limitations)
-  * [Hash algorithm](#Hash-algorithm)
-  * [Buckets](#Buckets)
-  * [Security](#Security)
-* [Appendix: Filecoin HAMT Variant](#Appendix-Filecoin-hamt-variant)
-  * [Implicit and fixed parameters](#Implicit-and-fixed-parameters)
-  * [Block layout](#Block-layout)
+* [Introduction](#introduction)
+* [Useful references](#useful-references)
+* [Summary](#summary)
+* [Structure](#structure)
+  * [Parameters](#parameters)
+  * [Node properties](#node-properties)
+  * [Schema](#schema)
+* [Algorithm in detail](#algorithm-in-detail)
+  * [`Get(key)`](#getkey)
+  * [`Set(key, value)`](#setkey-value)
+  * [`Delete(key)`](#deletekey)
+  * [`Keys()`, `Values()` and `Entries()`](#keys-values-and-entries)
+  * [Differences to CHAMP](#differences-to-champ)
+  * [Canonical form](#canonical-form)
+* [Use as a "Set"](#use-as-a-set)
+* [Implementation defaults](#implementation-defaults)
+  * [`hashAlg`](#hashalg)
+  * [`bitWidth`](#bitwidth)
+  * [`bucketSize`](#bucketsize)
+  * [Maximum key size](#maximum-key-size)
+  * [Inline values](#inline-values)
+* [Possible future improvements and areas for research](#possible-future-improvements-and-areas-for-research)
+  * [Maximum depth limitations](#maximum-depth-limitations)
+  * [Buckets](#buckets)
+  * [Security](#security)
+* [Appendix: Filecoin HAMT Variant](#appendix-filecoin-hamt-variant)
+  * [Implicit and fixed parameters](#implicit-and-fixed-parameters)
+  * [Block layout](#block-layout)
 
 ## Introduction
 
-The IPLD HashMap provides multi-block key/value storage and implements the Map [kind](/data-model-layer/data-model.md#kinds) as an advanced data layout in the IPLD type system.
+The IPLD HashMap provides multi-block key/value storage and implements the [Map kind](/docs/data-model/kinds/#map-kind) as an advanced data layout in the IPLD type system.
 
 The IPLD HashMap is constructed as a [hash array mapped trie (HAMT)](https://en.wikipedia.org/wiki/Hash_array_mapped_trie) with buckets for value storage and [CHAMP](https://michael.steindorfer.name/publications/oopsla15.pdf) mutation semantics. The CHAMP invariant and mutation rules provide us with the ability to maintain canonical forms given any set of keys and their values, regardless of insertion order and intermediate data insertion and deletion. Therefore, for any given set of keys and their values, a consistent IPLD HashMap configuration and block encoding, the root node should always produce the same content identifier (CID).
 
@@ -94,7 +93,7 @@ An important property of a HAMT is that the `data` array only contains active el
 
 The **root block** of an IPLD HashMap contains the same properties as all other blocks, in addition to configuration data that dictates how the algorithm below traverses and mutates the data structure.
 
-See [IPLD Schemas](../../schemas) for a definition of this format.
+See [IPLD Schemas](/docs/schemas/) for a definition of this format.
 
 ```ipldsch
 # Root node layout
@@ -283,7 +282,10 @@ As yet, there is no known hash collision attack vector against IPLD data structu
 
 ## Appendix: Filecoin HAMT Variant
 
-The [Filecoin Project blockchain](https://filecoin-project.github.io/specs/) makes use of a HAMT that uses the same HAMT with buckets and CHAMP mutation semantics as outlined in this document. It encodes directly as [DAG-CBOR](../block-layer/codecs/dag-cbor.md) but uses a different block layout to the one specified here. This section documents the specific ways that the Filecoin HAMT variant differs from this specification. IPLD HashMap implementations may be able to implement a form that provides compatibility with Filecoin when requested by the user.
+The [Filecoin Project blockchain](https://filecoin-project.github.io/specs/) makes use of a HAMT that uses the same HAMT with buckets and CHAMP mutation semantics as outlined in this document.
+It encodes directly as [DAG-CBOR](/specs/codecs/dag-cbor/) but uses a different block layout to the one specified here.
+This section documents the specific ways that the Filecoin HAMT variant differs from this specification.
+IPLD HashMap implementations may be able to implement a form that provides compatibility with Filecoin when requested by the user.
 
 The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/ipfs/go-hamt-ipld>.
 
@@ -297,7 +299,7 @@ The Filecoin HAMT _does not_ use an explicit root block (`HashMapRoot`) to encod
 
 ### Block layout
 
-An IPLD schema representing the Filecoin HAMT varies from the IPLD HashMap [schema](#Schema) so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout:
+An IPLD schema representing the Filecoin HAMT varies from the IPLD HashMap [schema](#schema) so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout:
 
 ```ipldsch
 type HashMapNode struct {

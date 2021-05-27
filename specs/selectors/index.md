@@ -1,32 +1,39 @@
-Specification: IPLD Selectors
-=============================
+---
+title: "Specs: Selectors"
+navTitle: "Selectors"
+eleventyNavigation:
+  order: 60
+---
 
-**Status: Prescriptive - Draft**
-
+Selectors
+=========
 
 Introduction
 ------------
 
-### Motivation - what are Selectors?
+### What are Selectors?
 
-*Prerequisites: [IPLD](https://github.com/ipld/ipld), IPLD data model, [CID](https://github.com/ipld/cid).*
+:::info
+You'll want to read up on the [IPLD Data Model](/docs/data-model/) first, before learning about Selectors.
+:::
 
-IPLD Selectors are expressions that identify ("select") a subset of nodes in an IPLD dag.
+IPLD Selectors are expressions that describe a traversal over an IPLD dag,
+and mark ("select") a subset of nodes during that walk.
 
-This is a useful primitive to use along with: (a) systems that require distributing or pinning dags (IPFS, Filecoin, bitswap, graphsync, ipfs-cluster), (b) applications that require fetching subsets of data in specific orders or at specific times (video players, dataset viewers, file systems), (c) programs that transform graphs into other graphs (data transformations, ETL, etc). In short, it is a fundamental primitive required by most systems and applications in the IPLD and IPFS ecosystems, as important as [multihash](https://github.com/multiformats/multihash), [CIDs](https://github.com/ipld/cid), [IPLD Formats](https://github.com/ipld/), and more.
+You can think of Selectors as roughly like regexps for textual data, but made for IPLD graphs.
 
-![](./selectors.jpg)
-
-(Note: syntaxes in the image are for quick understanding, but are not literal selector syntaxes (yet; we have an extension pathway).)
+This is a useful primitive to use along with: (a) systems that require distributing or pinning dags (IPFS, Filecoin, bitswap, graphsync, ipfs-cluster)
+(b) applications that require fetching subsets of data in specific orders or at specific times (video players, dataset viewers, file systems),
+(c) programs that transform graphs into other graphs (data transformations, ETL, etc).
 
 
 Specification
 -------------
 
-Selectors are defined by an "AST" (Abstract Syntax Tree) which is itself
-specified in IPLD, and uses IPLD Schemas for clarity.
+Selectors are defined by an "DMT" (Data Model Tree -- similar to the concept of Abstract Syntax Tree, but syntax-agnostic)
+which is itself specified in IPLD, and uses IPLD Schemas for clarity.
 
-Implementations of Selectors read this "AST" and evaluate its instructions to
+Implementations of Selectors read this "DMT" and evaluate its instructions to
 traverse a graph, and select nodes in it.
 
 
@@ -209,8 +216,8 @@ type Condition union {
 Known issues
 ------------
 
-- Note that the status of this document is "Draft"!
 - The "Condition" system is not fully specified -- it is a placeholder awaiting further design.
+- The limit systems around recursion are primitive, and more like advisories than any kind of security feature.  Subsequent recursions can always start over with new limits.
 
 
 Other related work
@@ -220,8 +227,3 @@ Other related work
 
 - [Selectors package in go-ipld-prime](https://github.com/ipld/go-ipld-prime/tree/master/traversal/selector)
   - [Traversal func which uses Selectors](https://godoc.org/github.com/ipld/go-ipld-prime/traversal#Traverse)
-  - note that these are still skeletal PoC implementations and not yet feature-complete
-
-### Design History
-
-- See [Selector Design Goals](../design/history/exploration-reports/2018.10-selectors-design-goals.md) (2018).

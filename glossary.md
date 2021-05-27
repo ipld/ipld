@@ -45,6 +45,18 @@ and encodes [Data Model](#data-model) content into serial data.
 Sometimes we refer to the serialized data from one [Data Model](#data-model) tree (i.e., not including crossing any [links](#link))
 as forming a block "[block](#block)".
 
+#### DAG
+
+DAG is short for **D**irected **A**cyclic **G**raph.
+It describes some data where more than one path can lead to the same point,
+but there are only a finite number of paths, because the data does not include cycles.
+
+We talk about DAGs often in IPLD, because IPLD data is naturally a DAG.
+[Links](#link) mean we can connect graphs of data,
+but because [links](#link) are content-addressable, they can't form cycles.
+
+Read more about [DAGs on Wikipedia](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
+
 #### Data Model
 
 The IPLD Data Model describes common base types that we call **kinds**.

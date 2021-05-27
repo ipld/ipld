@@ -24,6 +24,10 @@ to the Selector schema:
 
 Therefore, note that the *real* serialized selectors will be significantly terser!
 
+:::todo
+- This gap between the real, terse serialized selectors and the examples here is more confusing than helpful.  Update this doc.
+:::
+
 
 Examples
 --------
@@ -168,9 +172,13 @@ Selector:
 
 ### Retrieving data recursively
 
-[UnixFSv1] is a good case of a recursive data structure. Any number of links can be used to create deeply nested structures. The following example is inspired by UnixFSv1, but uses a simplified structure, so that we don't get lost in UnixFSv1 specific implementation details.
+:::todo
+- Refering to UnixFSv1 makes things inordinately more complicated than necessary.  Please replace this with a simpler example.
+:::
 
-The basic structure described by an [IPLD Schema]:
+UnixFSv1 is a good case of a recursive data structure. Any number of links can be used to create deeply nested structures. The following example is inspired by UnixFSv1, but uses a simplified structure, so that we don't get lost in UnixFSv1 specific implementation details.
+
+The basic structure described by an [IPLD Schema](/docs/schemas/):
 
 ```ipldsch
 type FileSystem struct {
@@ -230,6 +238,3 @@ Selector:
                     "cid":
                       ExploreRecursiveEdge
 ```
-
-[UnixFSv1]: https://github.com/ipfs/specs/tree/master/unixfs
-[IPLD Schema]: ../schemas

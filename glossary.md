@@ -45,6 +45,16 @@ and encodes [Data Model](#data-model) content into serial data.
 Sometimes we refer to the serialized data from one [Data Model](#data-model) tree (i.e., not including crossing any [links](#link))
 as forming a block "[block](#block)".
 
+#### Content Addressing
+
+"Content addressability" refers to the ability to refer to content by a trustless identifier.
+
+Rather than referring to content by an imprecise name or a location-oriented concept like URL,
+content addressable systems refer to content by a cryptographic hash of the content itself.
+This allows complete decentralization of the content,
+as the identifier does not specify the retrieval method nor locations,
+and does provides a secure way to verify the content (regardless of wherever it may be found from).
+
 #### DAG
 
 DAG is short for **D**irected **A**cyclic **G**raph.
@@ -53,7 +63,7 @@ but there are only a finite number of paths, because the data does not include c
 
 We talk about DAGs often in IPLD, because IPLD data is naturally a DAG.
 [Links](#link) mean we can connect graphs of data,
-but because [links](#link) are content-addressable, they can't form cycles.
+but because [links](#link) are [content-addressable](#content-addressing), they can't form cycles.
 
 Read more about [DAGs on Wikipedia](https://en.wikipedia.org/wiki/Directed_acyclic_graph).
 

@@ -386,6 +386,9 @@ we add the caveat that libraries processing data which exceeds the boundaries th
 since we only carry data around, and don't provide mathematical operations on it,
 it's easy to expect that data which was processable on the way in will remain processable throughout the time we handle it.)
 
+The document on [Tricky Choices: Numeric Domain](/design/tricky-choices/numeric-domain/) covers this topic,
+and how we chose to deal with it, in more detail.
+
 
 Types in IPLD Schemas
 ---------------------

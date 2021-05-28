@@ -2,7 +2,6 @@
   "name": "ipld",
   "version": "1.0.0",
   "description": "IPLD Docs Site",
-  "main": "index.js",
   "scripts": {
     "fetch-hyperlink": "cd .site && wget -q https://github.com/untitaker/hyperlink/releases/download/0.1.13/hyperlink-linux-x86_64 -O _tools/hyperlink && chmod +x _tools/hyperlink",
     "test": "npm run fetch-hyperlink && .site/_tools/hyperlink .site/_output --check-anchors --sources=.",
@@ -10,10 +9,6 @@
     "serve": "cd .site && eleventy --serve",
     "clean": "rm -rf .site/_output",
     "publish": "echo 'Just push!  Fleek will pick it up from github.' && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ipld/ipld.git"
   },
   "private": true,
   "dependencies": {

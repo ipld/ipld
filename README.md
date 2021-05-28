@@ -12,6 +12,18 @@ The people who work on IPLD do so because we want a world where it's easy to bui
 and we believe robust data formats and a clear story for content-addressing them is a key piece of leverage towards that goal.
 
 
+Docs Development
+----------------
+
+With Node.js installed:
+
+* Setup: `npm install`
+* Build: `npm run build`
+* Serve locally: `npm run serve`
+* Test link integrity: `npm test`
+* Cleanup: `npm run clean`
+* Publish: Push to `master` and Fleek will do the rest
+
 License
 -------
 

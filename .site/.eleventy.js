@@ -74,8 +74,9 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({"static": "static"})
 	//  And pngs.
 	eleventyConfig.addPassthroughCopy("../**/*.png")
-	//  And json and ipldsch files, which appear in fixtures and specs as reference.
+	//  And json and ipldsch and taf files, which appear in fixtures and specs as reference.
 	eleventyConfig.addPassthroughCopy("../specs/**/*.json")
+	eleventyConfig.addPassthroughCopy("../specs/**/*.taf")
 	eleventyConfig.addPassthroughCopy("../specs/**/*.ipldsch")
 
 	// Introduce some shortcodes used for frequently recurrent stylistic elements.

@@ -212,6 +212,10 @@ type Condition union {
 } representation keyed
 ```
 
+### fixtures
+
+- [selector-fixtures-1.taf](./fixtures/selector-fixtures-1.taf)
+
 
 Known issues
 ------------

@@ -21,7 +21,7 @@ which in turn will enable more decentralized applications.
 These addressable and linkable data structures will allow us to do for data what URLs and links did for HTML web pages.
 
 We say IPLD is an ecosystem, rather than a project or a library,
-becaseu this ecosystem is held together by a few concepts and
+because this ecosystem is held together by a few concepts and
 standards that ensure compatibility between formats and programming languages.
 
 You'll find numerous libraries for working with IPLD.

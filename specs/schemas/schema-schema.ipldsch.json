@@ -355,19 +355,9 @@
 			}
 		},
 		"UnionRepresentation_BytePrefix": {
-			"kind": "struct",
-			"fields": {
-				"discriminantTable": {
-					"type": {
-						"kind": "map",
-						"keyType": "TypeName",
-						"valueType": "Int"
-					}
-				}
-			},
-			"representation": {
-				"map": {}
-			}
+			"kind": "map",
+			"keyType": "TypeName",
+			"valueType": "Int"
 		},
 		"TypeStruct": {
 			"kind": "struct",

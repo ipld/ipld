@@ -337,9 +337,28 @@ type TypeLink struct {
 ## the documentation on the UnionRepresentation type for details.
 ##
 type TypeUnion struct {
-	members [TypeName]
+	members [UnionMember]
 	representation UnionRepresentation
 }
+
+## UnionMember is a type for identifying the members of a union.
+## Most commonly, this is simply a TypeName string;
+## however, it can also be a UnionMemberInlineDefn,
+## which is used to allow inline link definitions within a kinded union as a shorthand
+## (rather than requiring all links be declared as a named type before being usable within a union).
+type UnionMember union {
+	| TypeName string
+	| UnionMemberInlineDefn map
+} representation kinded
+
+## UnionMemberInlineDefn is a very similar purpose to InlineDefn,
+## but found specifically within UnionMember.
+## It only allows describing a link type (and not maps nor lists, as InlineDefn does),
+## which is a constraint applied to union membership largely to make sure
+## if there are errors in processing unions, we can make legible messages about it!
+type UnionMemberInlineDefn union {
+	| TypeLink "link"
+} representation keyed
 
 ## UnionRepresentation is a union of all the distinct ways a TypeUnion's values
 ## can be mapped onto a serialized format for the IPLD Data Model.
@@ -378,7 +397,7 @@ type UnionRepresentation union {
 ##
 ## The referenced type must of course produce the RepresentationKind it's
 ## matched with!
-type UnionRepresentation_Kinded {RepresentationKind:TypeName}
+type UnionRepresentation_Kinded {RepresentationKind:UnionMember}
 
 ## "Keyed" union representations will encode as a map, where the map has
 ## exactly one entry, the key string of which will be used to look up the name
@@ -388,7 +407,7 @@ type UnionRepresentation_Kinded {RepresentationKind:TypeName}
 ## over the other styles wherever possible; keyed unions tend to have good
 ## performance characteristics, as they have most "mechanical sympathy" with
 ## parsing and deserialization implementation order.
-type UnionRepresentation_Keyed {String:TypeName}
+type UnionRepresentation_Keyed {String:UnionMember}
 
 ## "Envelope" union representations will encode as a map, where the map has
 ## exactly two entries: the two keys should be of the exact strings specified
@@ -399,7 +418,7 @@ type UnionRepresentation_Keyed {String:TypeName}
 type UnionRepresentation_Envelope struct {
 	discriminantKey String
 	contentKey String
-	discriminantTable {String:TypeName}
+	discriminantTable {String:UnionMember}
 }
 
 ## "Inline" union representations require that all of their members encode
@@ -538,8 +557,9 @@ type TypeNameOrInlineDefn union {
 } representation kinded
 
 ## InlineDefn represents a declaration of an anonymous type of one of the simple
-## recursive kinds (e.g. map or list) which is found "inline" in another type's
-## definition.  It's the more complex option of the TypeNameOrInlineDefn union.
+## recursive kinds (e.g. map or list) which is found "inline" in another type's definition.
+## InlineDefn also allows description of anonymous but typed links for similar reasons.
+## TypeNameOrInlineDefn is the more complex option of the TypeTerm union.
 ##
 ## Note that the representation of this union -- `representation inline "kind"`
 ## -- as well as the keywords for its members -- align exactly with those
@@ -552,6 +572,7 @@ type TypeNameOrInlineDefn union {
 type InlineDefn union {
 	| TypeMap "map"
 	| TypeList "list"
+	| TypeLink "link"
 } representation inline {
 	discriminantKey "kind"
 }

@@ -344,7 +344,7 @@
 				"members": {
 					"type": {
 						"kind": "list",
-						"valueType": "TypeName"
+						"valueType": "UnionMember"
 					}
 				},
 				"representation": {
@@ -353,6 +353,30 @@
 			},
 			"representation": {
 				"map": {}
+			}
+		},
+		"UnionMember": {
+			"kind": "union",
+			"members": [
+				"TypeName",
+				"UnionMemberInlineDefn"
+			],
+			"representation": {
+				"kinded": {
+					"string": "TypeName",
+					"map": "UnionMemberInlineDefn"
+				}
+			}
+		},
+		"UnionMemberInlineDefn": {
+			"kind": "union",
+			"members": [
+				"TypeLink"
+			],
+			"representation": {
+				"keyed": {
+					"link": "TypeLink"
+				}
 			}
 		},
 		"UnionRepresentation": {
@@ -379,12 +403,12 @@
 		"UnionRepresentation_Kinded": {
 			"kind": "map",
 			"keyType": "RepresentationKind",
-			"valueType": "TypeName"
+			"valueType": "UnionMember"
 		},
 		"UnionRepresentation_Keyed": {
 			"kind": "map",
 			"keyType": "String",
-			"valueType": "TypeName"
+			"valueType": "UnionMember"
 		},
 		"UnionRepresentation_Envelope": {
 			"kind": "struct",
@@ -399,7 +423,7 @@
 					"type": {
 						"kind": "map",
 						"keyType": "String",
-						"valueType": "TypeName"
+						"valueType": "UnionMember"
 					}
 				}
 			},
@@ -499,14 +523,16 @@
 			"kind": "union",
 			"members": [
 				"TypeMap",
-				"TypeList"
+				"TypeList",
+				"TypeLink"
 			],
 			"representation": {
 				"inline": {
 					"discriminantKey": "kind",
 					"discriminantTable": {
 						"map": "TypeMap",
-						"list": "TypeList"
+						"list": "TypeList",
+						"link": "TypeLink"
 					}
 				}
 			}

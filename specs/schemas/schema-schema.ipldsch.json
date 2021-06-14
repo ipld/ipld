@@ -308,7 +308,16 @@
 		"UnionRepresentation_Kinded": {
 			"kind": "map",
 			"keyType": "RepresentationKind",
-			"valueType": "TypeName"
+			"valueType": "KindedType"
+		},
+		"KindedType": {
+			"kind": "union",
+			"representation": {
+				"kinded": {
+					"string": "TypeName",
+					"link": "TypeLink"
+				}
+			}
 		},
 		"UnionRepresentation_Keyed": {
 			"kind": "map",

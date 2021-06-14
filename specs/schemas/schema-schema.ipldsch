@@ -431,9 +431,7 @@ type UnionRepresentation_Inline struct {
 ## byteprefix is an invalid representation for any union that contains a type
 ## that does not have a bytes representation.
 ##
-type UnionRepresentation_BytePrefix struct {
-	discriminantTable {TypeName:Int}
-}
+type UnionRepresentation_BytePrefix {TypeName:Int}
 
 ## TypeStruct describes a type which has a group of fields of varying Type.
 ## Each field has a name, which is used to access its value, similarly to

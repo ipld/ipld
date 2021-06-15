@@ -29,7 +29,10 @@
   * [Security](#security)
 * [Appendix: Filecoin HAMT Variant](#appendix-filecoin-hamt-variant)
   * [Implicit and fixed parameters](#implicit-and-fixed-parameters)
+  * [Map / Bitfield layout](#map--bitfield-layout)
   * [Block layout](#block-layout)
+    * [Actors v0.9 and v2 form](#actors-v09-and-v2-form)
+    * [Actors v3+ form](#actors-v3-form)
 
 ## Introduction
 
@@ -287,7 +290,7 @@ It encodes directly as [DAG-CBOR](/specs/codecs/dag-cbor/) but uses a different 
 This section documents the specific ways that the Filecoin HAMT variant differs from this specification.
 IPLD HashMap implementations may be able to implement a form that provides compatibility with Filecoin when requested by the user.
 
-The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/filecoin-project/go-hamt-ipld>. Note that this document reflects v3 of the Go module, whose latest version is `v3.0.1` at the time of writing.
+The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/filecoin-project/go-hamt-ipld>. Note that this document reflects details of the Filecoin HAMT up to v3 of the Go module, whose latest version is `v3.1.0` at the time of writing and is included in Filecoin [spec-actors](https://github.com/filecoin-project/specs-actors) **v3**.
 
 ### Implicit and fixed parameters
 
@@ -297,16 +300,30 @@ The Filecoin HAMT _does not_ use an explicit root block (`HashMapRoot`) to encod
 * `bitWidth`: The Filecoin HAMT fixes the bit width to `5`, meaning that each node of the HAMT can contain up to `2`<sup>`5`</sup> (`32`) elements containing either buckets or links to child nodes.
 * `bucketSize`: The Filecoin HAMT fixes the maximum length of its buckets to `3`, meaning a maximally full HAMT leaf node can contain `32 x 3` (`96`) key/value pairs.
 
+### Map / Bitfield layout
+
+Rather than encoding the HAMT node's `map` field as the full sequence of byte-to-element mapping with little-endian byte addressing, the Filecoin HAMT uses the byte layout of a Go [`big.Int`](https://golang.org/pkg/math/big/#Int) as a bitfield to represent the HAMT node's `map`. In practice this means that the byte array length can vary depending on which bits are set within the bitfield. Implementations must use the same encoding and decoding rules as `big.Int` to handle this field. See [this discussion thread](https://github.com/filecoin-project/go-hamt-ipld/issues/54#issuecomment-670314664) for an exploration of the specifics.
+
 ### Block layout
 
-An IPLD schema representing the Filecoin HAMT varies from the IPLD HashMap [schema](#schema) so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout:
+The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#Schema) and also between version of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
+
+The **v3** form of the Filecoin HAMT has the same IPLD layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is `HashMapNode`, which is the same as all other nodes and parameters are implicit.
+
+Note that there is currently no limitation on the types available for storage as `value`s as long as they can be decoded from the bytes. In practice, the Filecoin HAMT is used to store inline objects rather than links to objects.
+
+#### Actors v0.9 and v2 form
+
+Prior to **v3** the `Element` union was keyed with `"0"` and `"1"`.
 
 ```ipldsch
+# A HashMapNode is named "Node" in Filecoin code
 type HashMapNode struct {
-  map Bytes
-  data [ Element ]
+  map Bytes # named "bitfield" in Filecoin code
+  data [ Element ] # named "pointers" in Filecoin code
 } representation tuple
 
+# A BucketEntry is named "Pointer" in Filecoin code
 type Element union {
   | &HashMapNode "0"
   | Bucket "1"
@@ -314,10 +331,35 @@ type Element union {
 
 type Bucket [ BucketEntry ]
 
+# A BucketEntry is named "KV" in Filecoin code
 type BucketEntry struct {
   key Bytes
   value Any
 } representation tuple
 ```
 
-There is currently no limitation on the types available for storage as `value`s as long as they can be decoded from the bytes. In practice, the Filecoin HAMT is used to store inline objects rather than links to objects.
+#### Actors v3+ form
+
+The **v3** upgrade makes the `Element` union kinded.
+
+```ipldsch
+# A HashMapNode is named "Node" in Filecoin code
+type HashMapNode struct {
+  map Bytes # named "bitfield" in Filecoin code
+  data [ Element ] # named "pointers" in Filecoin code
+} representation tuple
+
+# A BucketEntry is named "Pointer" in Filecoin code
+type Element union {
+  | &HashMapNode link
+  | Bucket list
+} representation kinded
+
+type Bucket [ BucketEntry ]
+
+# A BucketEntry is named "KV" in Filecoin code
+type BucketEntry struct {
+  key Bytes
+  value Any
+} representation tuple
+```

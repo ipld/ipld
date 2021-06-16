@@ -308,57 +308,43 @@ Rather than encoding the HAMT node's `map` field as the full sequence of byte-to
 
 The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#Schema) and also between version of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
 
-The **v3** form of the Filecoin HAMT has the same IPLD layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is `HashMapNode`, which is the same as all other nodes and parameters are implicit.
+The **v3** form of the Filecoin HAMT has the same IPLD layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is the equivalent of `HashMapNode`, which is the same as all other nodes and parameters are implicit.
+
+Both forms of the block layout are presented in the schema below. The difference in block layout is that versions **0.9** to **2** use a keyed union for the `Element` struct (called "Pointer" in Filecoin) whereas version **3** and later use a kinded union. `FilecoinHAMTNodeV0` and `FilecoinHAMTNodeV3` are presented below as the equivalent of `HashMapNode` in the IPLD HashMap for the different versions. There is no equivalent of `HashMapRoot`.
 
 Note that there is currently no limitation on the types available for storage as `value`s as long as they can be decoded from the bytes. In practice, the Filecoin HAMT is used to store inline objects rather than links to objects.
 
-#### Actors v0.9 and v2 form
-
-Prior to **v3** the `Element` union was keyed with `"0"` and `"1"`.
-
 ```ipldsch
-# A HashMapNode is named "Node" in Filecoin code
-type HashMapNode struct {
-  map Bytes # named "bitfield" in Filecoin code
-  data [ Element ] # named "pointers" in Filecoin code
+# Equivalent to "HashMapNode", but serving as both root and intermediate node
+# v0.9-v2 form
+type FilecoinHAMTNodeV0 struct {
+  map Bytes          # field is named "bitfield" in Filecoin code
+  data [ PointerV0 ] # field is named "pointers" in Filecoin code
 } representation tuple
 
-# A BucketEntry is named "Pointer" in Filecoin code
-type Element union {
-  | &HashMapNode "0"
+# v3+ form
+type FilecoinHAMTNodeV3 struct {
+  map Bytes          # field is named "bitfield" in Filecoin code
+  data [ PointerV3 ] # field is named "pointers" in Filecoin code
+} representation tuple
+
+# Equivalent to "Element"
+# v0.9-v2 form
+type PointerV0 union {
+  | &FilecoinHAMTNodeV0 "0"
   | Bucket "1"
 } representation keyed
 
-type Bucket [ BucketEntry ]
-
-# A BucketEntry is named "KV" in Filecoin code
-type BucketEntry struct {
-  key Bytes
-  value Any
-} representation tuple
-```
-
-#### Actors v3+ form
-
-The **v3** upgrade makes the `Element` union kinded.
-
-```ipldsch
-# A HashMapNode is named "Node" in Filecoin code
-type HashMapNode struct {
-  map Bytes # named "bitfield" in Filecoin code
-  data [ Element ] # named "pointers" in Filecoin code
-} representation tuple
-
-# A BucketEntry is named "Pointer" in Filecoin code
-type Element union {
-  | &HashMapNode link
+# v3+ form
+type PointerV3 union {
+  | &FilecoinHAMTNodeV3 link
   | Bucket list
 } representation kinded
 
-type Bucket [ BucketEntry ]
+type Bucket [ KV ]
 
-# A BucketEntry is named "KV" in Filecoin code
-type BucketEntry struct {
+# Equivalent to "BucketEntry"
+type KV struct {
   key Bytes
   value Any
 } representation tuple

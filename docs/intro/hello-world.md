@@ -33,12 +33,22 @@ or just based on what fits the performance vs human-readability that you prefer 
 A key part of IPLD is its ability to link together documents.
 
 IPLD linking isn't like some other forms of linking, like URLs (which refer to "locations" of data) --
-instead, it's based on content-addressing (which means refering to data by a hash of its content, a process which does not involve data _location_).
-This means large graphs of documents can be linked together, but you don't need to go look online in some specific place to get the rest of the linked documents; you can get them anywhere that content can be found.
+instead, it's based on content-addressing (which means refering to data by a hash of its content).
+IPLD uses a format called [CIDs](/glossary/#cid) for this, to be specific.
 
-:::todo
-- Linking needs a whole page.  Put it under data model docs?
-:::
+What's neat about content-addressing is that because it does _not_ involve talking about data _location_,
+it's inherently friendly to decentralization.
+This means large graphs of documents can be linked together,
+and once you have some of the document graph,
+you don't need to go look online _to some specific server_ to get the rest of the linked documents;
+you can get them anywhere that content can be found.
+
+Content-addressing also separates document _identity_ from discussion of _authority_.
+This again contributes to decentralization-friendly systems:
+once you get part of a document graph, and have decided it's the document you're looking for,
+you can get all the related documents without having to bounce through some other
+system to re-determine what the authoratitive document is for every related document --
+you already know what that is, because you already have its content ID.
 
 ### Powerful Features
 

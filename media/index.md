@@ -11,6 +11,20 @@ Here is some other IPLD content around the web:
 
 ---
 
+## ResNetLab Courses: InterPlanetary Linked Data
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/Sgf6j_mCdjI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+This high level talk discusses what IPLD is, what the motivations are,
+how IPFS and IPLD are related,
+and introduces thinking about decentralized data structures made possible by hash-based linking.
+It's part of a larger series published by the Resilient Networks Lab about the "InterPlanetary" technologies.
+
+(duration: 31min)
+(slides and more: [link](https://research.protocol.ai/tutorials/resnetlab-on-tour/ipld/))
+
+---
+
 ## Foundations for Decentralization: Data with IPLD @ GPN19
 
 <iframe width="512" height="288" src="https://media.ccc.de/v/gpn19-105-foundations-for-decentralization-data-with-ipld/oembed" frameborder="0" allowfullscreen></iframe>

@@ -50,6 +50,8 @@ you can get all the related documents without having to bounce through some othe
 system to re-determine what the authoratitive document is for every related document --
 you already know what that is, because you already have its content ID.
 
+[See more about Content-Addressing on ProtoSchool](https://proto.school/content-addressing)!
+
 ### Powerful Features
 
 Then we provide a couple other ways to handle data via the Data Model:

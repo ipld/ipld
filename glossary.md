@@ -37,6 +37,8 @@ In other words, it's a hash that says what kind of hash it is and how to decode 
 
 See the [CID specification](https://github.com/multiformats/cid) for further details.
 
+CIDs are for [Content Addressing](#content-addressing).
+
 #### Codec
 
 The term "codec" refers to a function which decodes serial data into the [Data Model](#data-model),
@@ -54,6 +56,8 @@ content addressable systems refer to content by a cryptographic hash of the cont
 This allows complete decentralization of the content,
 as the identifier does not specify the retrieval method nor locations,
 and does provides a secure way to verify the content (regardless of wherever it may be found from).
+
+[See more about Content-Addressing on ProtoSchool](https://proto.school/content-addressing)!
 
 #### DAG
 

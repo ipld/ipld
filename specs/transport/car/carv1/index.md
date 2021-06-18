@@ -1,4 +1,10 @@
-# Specification: Content Addressable aRchives (CAR / .car)
+---
+title: "CARv1 Specification"
+eleventyNavigation:
+  synopsys: "Specification for the CARv1 format"
+---
+
+# Specification: Content Addressable aRchives (CAR / .car) v1
 
 **Status: Draft**
 
@@ -25,6 +31,7 @@
   * [Root CID block existence](#root-cid-block-existence)
   * [CID version](#cid-version)
   * [Duplicate Blocks](#duplicate-blocks)
+* [Test Fixtures](#test-fixtures)
 
 ## Summary
 
@@ -40,7 +47,7 @@ In addition to the binary block data, storage overhead for the CAR format consis
 
 This diagram shows how IPLD blocks, their root CID, and a header combine to form a CAR.
 
-![Content Addressable aRchive Diagram](content-addressable-archives.png)
+<img src="../content-addressable-archives.png" alt="Content Addressable aRchive Diagram" width="100%">
 
 The name _Certified ARchive_ has also [previously been used](https://github.com/ipfs/archive-format) to refer to the CAR format.
 
@@ -213,3 +220,9 @@ It is unresolved whether both CID versions 0 and 1 format are valid in the roots
 ### Duplicate Blocks
 
 The possibility of duplicate blocks in a single CAR (such as for padding) is currently not specified.
+
+## Test Fixtures
+
+To assist implementations in confirming compliance to this specification, the following test fixtures are available:
+
+* [carv1-basic](../fixture/carv1-basic/) - Basic CAR with linked raw, DAG-PB and DAG-CBOR blocks

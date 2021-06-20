@@ -154,8 +154,10 @@ tl;dr:
 
 - Try to do things with the plain [[Data Model]] first.
 - When you want more rigour and assistive tooling for your data structures, try [[Schema]]s.
-- If you need to do multi-block data structures, or some other Interesting interpretation of data before you treat it as [[Data Model]], then reach for [[ADL]]s.  (But do this judiciously: your data will become incomprehensible to a client that doesn't have your ADL code.  It's always better to use a common ADL than to invent a new one.)
-- As a last resort: you can invent a new [[Codec]].  If you need to process binary forms of data into [[Data Model]], and IPLD has never had a codec for this binary format before, then this is what you need.  (But do this judiciously: ideally, this is only done to bridge additional legacy formats into IPLD; new projects should be able to express their logic via the [[Data Model]] first, and then _pick_ a codec that suits, later!)
+- If you need to do multi-block data structures, or some other Interesting interpretation of data before you treat it as [[Data Model]], then reach for [[ADL]]s.
+  (But do this judiciously: your data will become incomprehensible to a client that doesn't have your ADL code.  It's always better to use a common ADL than to invent a new one.)
+- As a last resort: you can invent a new [[Codec]].  If you need to process binary forms of data into [[Data Model]], and IPLD has never had a codec for this binary format before, then this is what you need.
+  (But do this truly only as a last resort: ideally, this is only done to bridge additional legacy formats into IPLD; new projects should be able to express their logic via the [[Data Model]] first, and then _pick_ a codec that suits, off the shelf, without additional development effort!)
 
 
 

@@ -57,8 +57,10 @@ module.exports = function(eleventyConfig) {
 
 	// This navigation plugin consumes frontmatter from each page,
 	//  and gathers that info into a form that we use to build the nav menu.
-	const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-	eleventyConfig.addPlugin(eleventyNavigationPlugin);
+	eleventyConfig.addPlugin(require("@11ty/eleventy-navigation"))
+	
+	// Inline svgs into html like `{{ 'path/to/file.svg' | svgContents }}`
+	eleventyConfig.addPlugin(require("eleventy-plugin-svg-contents"))
 
 	// Make some functions available as filters.
 	//  In particular, some of the path manipulation ones are used to create breadcrumbs and other navigation elements.
@@ -71,9 +73,12 @@ module.exports = function(eleventyConfig) {
 
 	// Copy over static files (like css) please.
 	//  (Note this is not affected by the 'input' config below; it's relative to this config file's dir.)
-	eleventyConfig.addPassthroughCopy({"static": "static"})
+	eleventyConfig.addPassthroughCopy("css")
+	eleventyConfig.addPassthroughCopy("img")
+	eleventyConfig.addPassthroughCopy("js")
+	eleventyConfig.addPassthroughCopy("favicon.ico")
 	//  And pngs.
-	eleventyConfig.addPassthroughCopy("../**/*.png")
+	eleventyConfig.addPassthroughCopy("../!(_legacy|.site|node_modules)/**/*.png")
 	//  And json and ipldsch and taf files, which appear in fixtures and specs as reference.
 	eleventyConfig.addPassthroughCopy("../specs/**/*.json")
 	eleventyConfig.addPassthroughCopy("../specs/**/*.taf")
@@ -89,6 +94,30 @@ module.exports = function(eleventyConfig) {
 		}
 		return `<div class="callout callout-${style}">${content}</div>`;
 	});
+
+	eleventyConfig.addShortcode("youtube", ({id, caption}) => {
+		return `
+		<figure class="w-100 pa0 ma0" id="active-video" data-youtube-id="${id}">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="dib embed-responsive-item bg-dark-gray" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">
+				${caption}
+			</figcaption>
+		</figure>`
+	})
+
+	eleventyConfig.addShortcode("youtubePreview", ({id, caption}) => {
+		return `
+		<a class="no-underline ipld-gray" target="_blank" href="https://www.youtube.com/watch?v=${id}" data-youtube-switcher data-youtube-id=${id}>
+		  <figure class="pa0 ma0">
+    		<img class="w-100" src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
+    		<figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">
+					${caption}
+				</figcaption>
+  		</figure>
+		</a>`
+	})
 
 	return {
 		dir: {

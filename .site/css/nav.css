@@ -17,7 +17,10 @@ nav ul a {
 nav ul ul {
 	color: #baedda;
 	list-style-type: disc;
-	padding-inline-start: 2rem;
+	padding-inline-start: 1.5rem;
+}
+nav ul ul ul {
+	padding-inline-start: 1rem;
 }
 nav ul ul a {
 	background-color: transparent;

@@ -15,7 +15,7 @@ and we believe robust data formats and a clear story for content-addressing them
 Docs Development
 ----------------
 
-With Node.js installed:
+With Node.js>=16 installed:
 
 * Setup: `npm install`
 * Build: `npm run build`

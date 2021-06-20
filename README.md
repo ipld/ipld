@@ -34,7 +34,7 @@ Collaborators, contributors, and any participants in community spaces are expect
 Docs Development
 ----------------
 
-With Node.js installed:
+With Node.js>=16 installed:
 
 * Setup: `npm install`
 * Build: `npm run build`

@@ -49,7 +49,7 @@ inline in the schema.
 ## that don't have established existing context with marks the start of a selector:
 ## it's a single-member union used to kick us towards "nominative typing".
 ##
-## See https://github.com/ipld/specs/tree/master/schemas/migration.md
+## See https://ipld.io/docs/schemas/using/migrations/
 ## for a background on the theory behind this gentle-nominative concept.
 type SelectorEnvelope union {
 	| Selector "selector"

@@ -2,6 +2,7 @@
 title: InterPlanetary Ecosystem Overview
 eleventyNavigation:
   order: 70
+  synopsys: An overview of the various other "Interplanetary" and Protocol Labs projects, such as IPFS and libp2p, and how they typically fit together with IPLD in a bigger picture.
 ---
 
 IPLD in the InterPlanetary Ecosystem

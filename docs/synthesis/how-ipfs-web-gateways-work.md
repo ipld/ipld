@@ -2,6 +2,7 @@
 title: "How IPFS Web Gateways Work"
 eleventyNavigation:
   order: 100
+  synopsys: An example of how a larger system (IPFS's web "gateways") was built up using IPLD primitives.
 ---
 
 How IPFS Web Gateways Work
@@ -11,9 +12,10 @@ This document talks through how IPFS web gateways work;
 the various forms of abstraction used in accomplishing parts of that task;
 and how and why these designs are cool (and how to can reuse parts of them).
 
-> :tea:
+:::info
 > Note!  This is an _aspirational_ document -- IPFS web gateways are a feature
 > which has substantial history.  They haven't always worked like this.
+:::
 
 What are the goals?
 -------------------

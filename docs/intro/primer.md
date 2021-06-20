@@ -2,6 +2,7 @@
 title: The Brief Primer
 eleventyNavigation:
   order: 11
+  synopsys: A technicality-heavy "one pager" quick reference, spanning all of IPLD and all its details.
 ---
 
 A Terse, Quick IPLD Primer for the Engineer

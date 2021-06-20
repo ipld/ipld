@@ -2,7 +2,7 @@
 title: Hello, World
 eleventyNavigation:
   order: 10
-  synopsys: The briefest possible introduction to IPLD, and what range of concepts are inside it.
+  synopsys: An introduction to IPLD, and what range of concepts are inside it.
 ---
 
 Hello, World

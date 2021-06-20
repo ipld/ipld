@@ -2,6 +2,7 @@
 title: "Getting Things Done"
 eleventyNavigation:
   order: 10
+  synopsys: A decision tree for how to get things done with IPLD, and what parts of the system to try to apply first when problem solving.
 ---
 
 Getting Things Done with IPLD

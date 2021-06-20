@@ -2,6 +2,7 @@
 title: "Building in Alignment"
 eleventyNavigation:
   order: 90
+  synopsys: Brief notes about how to "build in alignment with" IPLD... even if you don't use any IPLD libraries directly.
 ---
 
 Building in Alignment with IPLD

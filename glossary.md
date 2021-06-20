@@ -142,6 +142,15 @@ The format is described in IPLD (using [IPLD Schemas](#schemas),
 so it's possible to serialize Selectors in any [Codec](#codec) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
 
+### Substrate
+
+"Substrate" is a vocabulary term relating to [ADLs](#adl) -- it refers to the data "inside" them,
+as contrasted with the "synthesized view" of the data, which is the node that the ADL presents itself as.
+(The substrate may also sometimes colloquially be called "content data" or "encoded form" or other terms.)
+
+For example, in a HAMT, the forest of [nodes](#node) and [blocks](#block) that make up the sharding structure
+are all considered the "substrate" data; while the map node the HAMT presents as is the "synthesized view".
+
 #### Traversal
 
 Traversal is the act of walking across the [Data Model](#data-model).

@@ -44,25 +44,40 @@ Let's break it down:
 
 ### files are just bytes
 
-(... in this context, anyway.)
+"Files" are really just "large byte sequences".
 
-TODO expound
+... for the most part.  Let's accept this simplification for a minute.
+(We'll add back in concepts about permissions and metadata later.)
 
 ### large bytes are provided by ADLs (FBL, specifically)
 
-TODO expound
+We can use the ["Flexible Byte Layout (FBL)" ADL](/specs/advanced-data-layouts/fbl/) to describe file bodies.
+This ADL provides a generalized way to read sharded large byte sequences.
+It even supports efficient seeking!
+
+### directories are just maps
+
+"Directories" are really just "maps":
+a "directory" maps a filename to either another directory, or a file; that's it.
+
+... for the most part.  Let's accept this simplification for a minute.
+(We'll add back in concepts about permissions and metadata later.)
 
 ### directories are provided by ADLs (HAMT, specifically)
 
-TODO expound
+We can use the [HAMT ADL](/specs/advanced-data-layouts/hamt/) to describe directories.
+This ADL gives us sharded maps, which means we can store directories of arbitrary size.
 
 ### navigating the path is defined by the Data Model
 
-... which is neat, because most of it is also going through ADLs,
-as we just described in the previous sections.
+... which is neat, because it means we don't need any special custom logic
+to describe how we're going to walk over this data.
+Because the path traversals are all going through ADLs,
+as we just described in the previous sections,
+that's... all there is to it.
 
-Because defining an ADL requires defining how the ADL will make its
-content data legible to regular IPLD Data Model semantics,
+Because having an ADL definition means we have a way make the ADL's
+[substrate](/glossary/#substrate) data legible as regular IPLD Data Model semantics,
 we can use standard library functions for pathing over this data.
 No special path handling logic is written for the Web Gateways
 (or other users of unixfsv2) at all!
@@ -82,6 +97,16 @@ schema that's expected for unixfsv2 data).
 If the data does match: then the schema also tells us where to expect ADLs
 to come into effect, and also tells us what Data Model semantics to expect
 from the data that is made available once the ADL logic is applied.
+
+### different parts of the system can use different views
+
+:::todo
+- Directories are actually a map pointing to metadata and to more filenodes.
+- Sometimes you use the plain HAMT ADL and see all of that;
+- Sometimes you use an ADL that steps past the HAMT **and** directly to the filenode.
+- The former is necessary for writing new data.
+- The latter provides the kind of pathing that an end-user wants when navigating and reading like a filesystem!
+:::
 
 ### if you don't have this data: we fetch it
 

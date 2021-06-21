@@ -58,7 +58,7 @@ module.exports = function(eleventyConfig) {
 	// This navigation plugin consumes frontmatter from each page,
 	//  and gathers that info into a form that we use to build the nav menu.
 	eleventyConfig.addPlugin(require("@11ty/eleventy-navigation"))
-	
+
 	// Inline svgs into html like `{{ 'path/to/file.svg' | svgContents }}`
 	eleventyConfig.addPlugin(require("eleventy-plugin-svg-contents"))
 
@@ -110,12 +110,12 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addShortcode("youtubePreview", ({id, caption}) => {
 		return `
 		<a class="no-underline ipld-gray" target="_blank" href="https://www.youtube.com/watch?v=${id}" data-youtube-switcher data-youtube-id=${id}>
-		  <figure class="pa0 ma0">
-    		<img class="w-100" src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
-    		<figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">
+			<figure class="pa0 ma0">
+				<img class="w-100" src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
+				<figcaption class="db f5 pt3 ma0 lh-copy" style="font-size:12px; height:59px;">
 					${caption}
 				</figcaption>
-  		</figure>
+			</figure>
 		</a>`
 	})
 

@@ -1,6 +1,6 @@
 all: prepare build test
 
-prepare: 
+prepare:
 	@echo ">>> $@ >>>"
 	npm install
 

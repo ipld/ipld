@@ -1,28 +1,75 @@
+---
+# no layout for me please, i'm all here
+layout:
+---
 <!DOCTYPE html>
 <html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
 <head>
-  {{ partial "head.html" . }}
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="shortcut icon" href="favicon.ico">
+
+<link rel="stylesheet" href="css/splash.css?{{ "" | cachebuster }}" />
+<link rel="stylesheet" href="css/tachyons.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet"/>
+
+<title>IPLD - The data model of the content-addressable web</title>
+<meta name="description" content="The data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD." />
+<meta name="author" content="Protocol Labs" />
+
+<meta property="og:type" content="website" />
+<meta property="og:description" content="The data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD." />
+<meta property="og:title" content="IPLD - The data model of the content-addressable web" />
+<meta property="og:site_name" content="IPLD" />
+<meta property="og:url" content="https://ipld.io/" />
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ipld.io/img/ipld-logo.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="146" />
+<meta property="og:image:height" content="166" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="IPLD" />
+<meta name="twitter:title" content="IPLD - The data model of the content-addressable web" />
+<meta name="twitter:creator" content="Protocol Labs" />
+<meta name="twitter:description" content="The data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD." />
+<meta name="twitter:domain" content="ipld.io" />
+<meta name="twitter:image:src" content="https://ipld.io/img/ipld-logo.png" />
 </head>
+
 <body lang="en" class="open-sans ipld-gray bg-white">
-{{ partial "topbar.html" . }}
+<header class="bg-white">
+  <div class="db dt-ns mw8 w-100 center">
+    <div class="db dtc-ns v-mid tc tl-ns pv3">
+      <a class="dib pl3 pl5-l" href="./" title="Home">
+        <img style="height:81px; width:135px;" src="./img/ipld.svg" />
+      </a>
+    </div>
+    <nav class="db dtc-ns v-mid tc tr-ns mt2 mt0-ns pb3 pb0-ns nowrap">
+      <a href="./docs" class="b--transparent ipld-gray hover-blue db dib-ns bb-ns pv3 pv2-ns mh3 f5 fw6 ttu link">Documentation</a>
+      <a target="_blank" href="https://github.com/ipld/ipld" class="db dib-ns bb b--transparent pv2 mh3 f5 fw6 ttu link ipld-gray hover-blue">Github</a>
+    </nav>
+  </div>
+</header>
 
 <section id="hero" style="background:#031851 url(img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc pt6 pb5 ph2">
   <div class="relative dib hover-trigger" data-mouse >
     <div style="max-width:664px;">
-      {{ readFile "static/img/splash/ipld-hero.svg" | safeHTML }}
+      {{ "./.site/img/splash/ipld-hero.svg" | svgContents | safe }}
     </div>
     <div class="dn db-l">
       <div class="absolute" style="left:-182px; top:-8px;">
-        {{ readFile "static/img/splash/hex-1.svg" | safeHTML }}
+        {{ "./.site/img/splash/hex-1.svg" | svgContents | safe }}
       </div>
       <div class="absolute" style="right:-121px; top:-8px;">
-        {{ readFile "static/img/splash/hex-2.svg" | safeHTML }}
+        {{ "./.site/img/splash/hex-2.svg" | svgContents | safe }}
       </div>
       <div class="absolute" style="left:-122px; bottom:-76px;">
-        {{ readFile "static/img/splash/hex-3.svg" | safeHTML }}
+        {{ "./.site/img/splash/hex-3.svg" | svgContents | safe }}
       </div>
       <div class="absolute" style="right:-180px; bottom:-8px;">
-        {{ readFile "static/img/splash/hex-4.svg" | safeHTML }}
+        {{ "./.site/img/splash/hex-4.svg" | svgContents | safe }}
       </div>
     </div>
   </div>
@@ -62,8 +109,28 @@
   <p class="mw7 center lh-copy tc f-18 fw6 ma0 pb5">
     The sky’s the limit as IPLD allows you to work across protocol boundaries. The point is that IPLD provides libraries that make the underlying data interoperable across tools and across protocols by default.
   </p>
-  {{ partial "use" (dict "title" "Bitcoin to Git" "desc" "Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.") }}
-  {{ partial "use" (dict "title" "Ethereum to IPFS" "desc" "Have your next contract refer to media on IPFS, perhaps modifying it and tracking its changes on each function execution. Seamlessly jump from function to object through IPLD addressing." "swap" true) }}
+  <div class="cf mw7 center w-100 pv4">
+    <div class="fl-ns w-60-m w-70-l pb2">
+      <h3 class="f3 b ma0 pv3">Bitcoin to Git</h3>
+      <p class="lh-copy f-18">
+        Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.
+      </p>
+    </div>
+    <div class="fr-ns w-40-m w-30-l pa2 tc tl-ns">
+      <img src="./img/bitcoin-to-git.svg" class="w-100" style="max-width:180px" />
+    </div>
+  </div>
+  <div class="cf mw7 center w-100 pv4">
+    <div class="fr-ns w-60-m w-70-l pb2">
+      <h3 class="f3 b ma0 pv3">Ethereum to IPFS</h3>
+      <p class="lh-copy f-18">
+        Have your next contract refer to media on IPFS, perhaps modifying it and tracking its changes on each function execution. Seamlessly jump from function to object through IPLD addressing.
+      </p>
+    </div>
+    <div class="fr-ns w-40-m w-30-l pa2 tc tl-ns">
+      <img src="./img/ethereum-to-ipfs.svg" class="w-100" style="max-width:180px" />
+    </div>
+  </div>
 </section>
 
 <section id="features" class="pv5 bg-white">
@@ -138,25 +205,42 @@
     </p>
     <div class="cf ph2-ns">
       <div class="fl w-100 w-60-l ph2 pr4-l pv3">
-        {{ partial "youtube-iframe" (dict "id" "Bqs_LzBjQyk" "caption" "Juan Benet: Enter the Merkle Forest")}}
+        {% youtube id="Sgf6j_mCdjI", caption="ResNetLab: Intro to InterPlanetary Linked Data" %}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        {{ partial "youtube-preview" (dict "id" "bi-4YGZXxwA" "caption" "Jeromy Johnson Shares IPFS Blockchain Fun")}}
+        {% youtubePreview id="Bqs_LzBjQyk", caption="Juan Benet: Enter the Merkle Forest" %}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        {{ partial "youtube-preview" (dict "id" "skMTdSEaCtA" "caption" "Why We Must Distribute The Web")}}
+        {% youtubePreview id="bi-4YGZXxwA", caption="Jeromy Johnson Shares IPFS Blockchain Fun" %}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        {{ partial "youtube-preview" (dict "id" "1Ck029slvCU" "caption" "IPLD Sprint Call")}}
+        {% youtubePreview id="skMTdSEaCtA", caption="Why We Must Distribute The Web" %}
       </div>
       <div class="fl w-50 w-25-m w-20-l ph2 pv3">
-        {{ partial "youtube-preview" (dict "id" "Pjyo2uILcOs" "caption" "Martin Becze: Interplanetary OS")}}
+        {% youtubePreview id="Pjyo2uILcOs", caption="Martin Becze: Interplanetary OS" %}
       </div>
     </div>
   </div>
 </section>
 
-{{ partial "footer.html" . }}
+<footer class="white pa3" style="background:#031851 url(img/ipld-hero-bg.jpg) no-repeat center; background-size: cover">
+  <div class="db dt-l mw8 w-100 center">
+    <div class="db dtc-l v-mid tl w-100 w-40-l pv3 ph2">
+      <p class="f6">IPLD was started and is sponsored by</p>
+      <a class="dib pt2 no-underline" href="https://protocol.ai/">
+        <img src="./img/protocollabs.svg" style="height:48px; vertical-align:middle" class="grow">
+        <span class="ml2 f4 b white ">Protocol Labs</span>
+      </a>
+    </div>
+    <div class="db dtc-l v-mid w-100 tl tr-l mt2 mt0-l ph2">
+      <nav>
+        <a href="./docs" class="b--transparent white hover-blue bb-ns db dib-ns pv2 mr3-ns f5 fw6 ttu link">Documentation</a>
+        <a href="https://github.com/ipld/ipld" class="db dib-ns pv2 mr3-ns f5 fw6 ttu link white hover-blue">Github</a>
+      </nav>
+      <small class="db f6 pt4">© <a class="link white hover-blue" href="https://protocol.ai/" target="_blank">Protocol Labs</a> | Except as <a class="link white hover-blue" href="https://protocol.ai/legal/">noted</a>, content licensed <a class="link white hover-blue" href="" target="_blank">CC-BY 3.0</a></small>
+    </div>
+  </div>
+</footer>
 
 <script type="text/javascript">
   var el = document.querySelector('[data-mouse]')

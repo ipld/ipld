@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body lang="en" class="open-sans ipld-gray bg-white">
+{{ partial "topbar.html" . }}
+
+<section id="hero" style="background:#031851 url(img/ipld-hero-bg.jpg) no-repeat center; background-size: cover" class="tc pt6 pb5 ph2">
+  <div class="relative dib hover-trigger" data-mouse >
+    <div style="max-width:664px;">
+      {{ readFile "static/img/splash/ipld-hero.svg" | safeHTML }}
+    </div>
+    <div class="dn db-l">
+      <div class="absolute" style="left:-182px; top:-8px;">
+        {{ readFile "static/img/splash/hex-1.svg" | safeHTML }}
+      </div>
+      <div class="absolute" style="right:-121px; top:-8px;">
+        {{ readFile "static/img/splash/hex-2.svg" | safeHTML }}
+      </div>
+      <div class="absolute" style="left:-122px; bottom:-76px;">
+        {{ readFile "static/img/splash/hex-3.svg" | safeHTML }}
+      </div>
+      <div class="absolute" style="right:-180px; bottom:-8px;">
+        {{ readFile "static/img/splash/hex-4.svg" | safeHTML }}
+      </div>
+    </div>
+  </div>
+  <p style="max-width:920px;" class="ma0 pt6 center f3 lh-copy fw6 white">
+    IPLD is the data model of the content-addressable web. It allows us to treat all hash-linked data structures as subsets of a unified information space, unifying all data models that link data with hashes as instances of IPLD.
+  </p>
+</section>
+
+<section id="why" class="pt5 pb6 ph3 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb4 f-30">
+      Why IPLD?
+    </h2>
+    <div class="dt w-100">
+      <div class="dtc-ns w-40-ns v-mid">
+        <img src="img/ipld-illustration.svg" style="width:407px; height:353px;" />
+      </div>
+      <div class="dtc-ns w-60-ns pl4-ns">
+        <p class="f4 b m0 pb3">
+          A data model for interoperable protocols.
+        </p>
+        <p class="f-18 lh-copy ipld-light-gray" style="max-width: 560px;">
+          Content addressing through hashes has become a widely-used means of connecting data in distributed systems, from the blockchains that run your favorite cryptocurrencies, to the commits that back your code, to the web’s content at large. Yet, whilst all of these tools rely on some common primitives, their specific underlying data structures are not interoperable.
+        </p>
+        <p class="f-18 lh-copy ipld-light-gray" style="max-width: 560px;">
+          Enter IPLD: IPLD is a single namespace for all hash-inspired protocols. Through IPLD, links can be traversed across protocols, allowing you to explore data regardless of the underlying protocol.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="use-cases" class="pt5 pb4 ph3 bg-ipld-blue ipld-gray-dark">
+  <h2 class="tc b ttu ma0 pb4 f-30">
+    Use cases
+  </h2>
+  <p class="mw7 center lh-copy tc f-18 fw6 ma0 pb5">
+    The sky’s the limit as IPLD allows you to work across protocol boundaries. The point is that IPLD provides libraries that make the underlying data interoperable across tools and across protocols by default.
+  </p>
+  {{ partial "use" (dict "title" "Bitcoin to Git" "desc" "Reference your latest commits in a git branch to a bitcoin transaction to timestamp your work. By linking your git commit, you can view the commit from your blockchain explorer.") }}
+  {{ partial "use" (dict "title" "Ethereum to IPFS" "desc" "Have your next contract refer to media on IPFS, perhaps modifying it and tracking its changes on each function execution. Seamlessly jump from function to object through IPLD addressing." "swap" true) }}
+</section>
+
+<section id="features" class="pv5 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb3 f-30">
+      Features
+    </h2>
+    <div class="cf w-100">
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
+        <img src="img/ipld-feature-1.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          A canonical data model
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          A self-contained descriptive model that uniquely identifies any hash-based data structure and ensures the same logical object always maps to the exact same sequence of bits.
+        </p>
+      </div>
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:475px">
+        <img src="img/ipld-feature-2.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          Protocol independent resolution
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          IPLD brings isolated systems together, making integration with existing protocols simple.
+        </p>
+      </div>
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-3.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          Upgradeable
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          With Multiformats support, IPLD is easily upgradeable and will grow with your favorite protocols.
+        </p>
+      </div>
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-4.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          Operates across formats
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          Express your IPLD objects in various serializable formats like JSON, CBOR, YAML, XML and many more, making IPLD a cinch to use with any framework.
+        </p>
+      </div>
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-5.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          Backwards compatible
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          Non-intrusive resolvers make IPLD easy to integrate within your existing work.
+        </p>
+      </div>
+      <div class="fl w-100 w-50-m w-third-l tc ph2 ph4-l pt4" style="height:500px">
+        <img src="img/ipld-feature-6.svg" style="height:188px;">
+        <h3 class="lh-title f3 b ipld-gray ma0 pt4 pb2">
+          A namespace for all protocols
+        </h3>
+        <p class="lh-copy f-18 ipld-light-gray">
+          IPLD allows you to explore data across protocols seamlessly, binding hash-based data structures together through a common namespace.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="media" class="pt5 pb6 bg-ipld-blue ipld-dark-gray">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb3 f-30">Media</h2>
+    <p class="center lh-copy tc f-18 ma0 pb5 ph2" style="max-width: 530px;">
+      IPLD is an open source project from the IPFS community. There are many ways you can contribute by getting involved. Learn more about IPLD from the community.
+    </p>
+    <div class="cf ph2-ns">
+      <div class="fl w-100 w-60-l ph2 pr4-l pv3">
+        {{ partial "youtube-iframe" (dict "id" "Bqs_LzBjQyk" "caption" "Juan Benet: Enter the Merkle Forest")}}
+      </div>
+      <div class="fl w-50 w-25-m w-20-l ph2 pv3">
+        {{ partial "youtube-preview" (dict "id" "bi-4YGZXxwA" "caption" "Jeromy Johnson Shares IPFS Blockchain Fun")}}
+      </div>
+      <div class="fl w-50 w-25-m w-20-l ph2 pv3">
+        {{ partial "youtube-preview" (dict "id" "skMTdSEaCtA" "caption" "Why We Must Distribute The Web")}}
+      </div>
+      <div class="fl w-50 w-25-m w-20-l ph2 pv3">
+        {{ partial "youtube-preview" (dict "id" "1Ck029slvCU" "caption" "IPLD Sprint Call")}}
+      </div>
+      <div class="fl w-50 w-25-m w-20-l ph2 pv3">
+        {{ partial "youtube-preview" (dict "id" "Pjyo2uILcOs" "caption" "Martin Becze: Interplanetary OS")}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ partial "footer.html" . }}
+
+<script type="text/javascript">
+  var el = document.querySelector('[data-mouse]')
+  el.addEventListener('mouseleave', function (evt) {
+    evt.currentTarget.classList.add('out')
+  })
+  el.addEventListener('mouseenter', function (evt) {
+    evt.currentTarget.classList.remove('out')
+  })
+</script>
+<script src="/js/youtube-switcher.js"></script>
+</body>
+</html>

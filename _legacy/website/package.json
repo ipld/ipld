@@ -1,0 +1,39 @@
+{
+  "name": "ipld.io",
+  "version": "1.0.0",
+  "description": "A static site to show you that IPLD is a thing, and a good one at that.",
+  "main": "index.js",
+  "scripts": {
+    "test": "say sorry",
+    "start": "hugo server -ws .",
+    "deploy": "hugo && ipfs add -r public",
+    "deploy:surge": "hugo && surge --project public --domain ipld.surge.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tableflip/ipld.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tableflip/ipld.io/issues"
+  },
+  "homepage": "https://github.com/tableflip/ipld.io#readme",
+  "devDependencies": {
+    "dnslink-deploy": "^1.0.7",
+    "hugo-bin": "0.18.1",
+    "imagemin-cli": "^3.0.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-optipng": "^5.2.1",
+    "imagemin-svgo": "^5.2.2",
+    "less": "^2.7.2",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "nodemon": "^1.18.10",
+    "options": "0.0.6",
+    "standard": "^10.0.2",
+    "surge": "^0.19.0",
+    "tachyons": "^4.7.4",
+    "uglify-js": "^3.0.23"
+  }
+}

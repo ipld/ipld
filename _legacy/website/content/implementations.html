@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body lang="en" class="open-sans ipld-gray bg-white">
+{{ partial "topbar.html" . }}
+
+<section id="hero" class="pv6 white tc" style="background:#031851 url(../img/implementations-hero-bg.jpg) no-repeat center; background-size: cover" class="tc">
+  <h2 class="b ttu ma0 pb5 f-30">
+    IPLD Components
+  </h2>
+  <div class="mw8 center ph3-ns">
+    <div class="cf ph2-ns">
+      <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
+        <img src="../img/ipld-component-1.svg" style="height:151px" />
+        <h3 class="f3 b ma0 pt4 pb3">CID</h3>
+        <p class="lh-copy">Self-describing content-addressed identifiers for distributed systems. This is the standard format all hash-chain based data structures can be expressed as per the IPLD standard.</p>
+      </div>
+      <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
+        <img src="../img/ipld-component-2.svg" style="height:151px" />
+        <h3 class="f3 b ma0 pt4 pb3">IPLD Tree</h3>
+        <p class="lh-copy">A cross-protocol data model based on JSON and Protobuf, and path navigation, meant to be easy to interoperate with and to have pluggable format-dependent resolvers.</p>
+      </div>
+      <div class="fl w-100 w-third-ns pv2 ph2 ph4-l">
+        <img src="../img/ipld-component-3.svg" style="height:151px" />
+        <h3 class="f3 b ma0 pt4 pb3">IPLD Resolvers</h3>
+        <p class="lh-copy">IPLD Resolvers bring new systems into the IPLD family of protocols. They can express paths that reach into tool/protocol-specific data structures, allowing you to cross-link and traverse them in their native formats.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section id="formats" class="pt5 pb6 bg-white">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb3" style="font-size:30px">
+      IPLD Formats
+    </h2>
+    <p class="center lh-copy tc fw6 ma0 pb5" style="max-width: 530px; font-size: 18px; color: #97A1AF;">
+      IPLD uniquely translates this data structure across the different formats protocols will use to point to it.
+    </p>
+    <div class="dt-l dt--fixed w-100 mw6 mw8-l center">
+      <div class="dtc-l w-100 w-40-l">
+        <h3 class="tc b ttu ma0 pb4 f3">
+          Code Example
+        </h3>
+        <div class="dt w-100 pb3" style="height:83px;">
+          <a data-example-show="git" class="dtc w-25 tc ipld-gray no-underline br tc hover-saturate pointer active" style="border-color:#D8D8D8;">
+            <img src="../img/icon-git.svg" style="width:38px; height:38px;">
+            <div class="f5 pt2">Git</div>
+          </a>
+          <a data-example-show="bitcoin" class="dtc w-25 tc ipld-gray no-underline br hover-saturate pointer" style="border-color:#D8D8D8;">
+            <img src="../img/icon-bitcoin.svg" style="width:38px; height:38px;">
+            <div class="f5 pt2">Bitcoin</div>
+          </a>
+          <a data-example-show="ethereum" class="dtc w-25 tc ipld-gray no-underline br hover-saturate pointer" style="border-color:#D8D8D8;">
+            <img src="../img/icon-ethereum.svg" style="width:27px; height:44px;">
+            <div class="f5 pt2">Ethereum</div>
+          </a>
+          <a data-example-show="ipfs" class="dtc w-25 tc ipld-gray no-underline hover-saturate pointer">
+            <img src="../img/icon-ipfs.svg" style="width:31px; height:35px;">
+            <div class="f5 pt2">IPFS</div>
+          </a>
+        </div>
+        <div class="ba pa4 tl code w-100" style="border-color:#D8D8D8; border-radius:3px; height:278px; overflow:auto;">
+          <pre data-example="git" class=""><code>{{ .Site.Data.example.git.code }}</code></pre>
+          <pre data-example="bitcoin" class="dn"><code>{{ .Site.Data.example.bitcoin.code }}</code></pre>
+          <pre data-example="ethereum" class="dn"><code>{{ .Site.Data.example.ethereum.code }}</code></pre>
+          <pre data-example="ipfs" class="dn"><code>{{ .Site.Data.example.ipfs.code }}</code></pre>
+        </div>
+      </div>
+      <div class="dn dtc-l w-10 relative">
+        <img class="db absolute left-0 right-0 center" style="bottom:120px;" src="../img/hex-arrow.svg">
+      </div>
+      <div class="dtc-l w-100 w-40-l pt4 pt0-l tc">
+        <h3 class="b ttu ma0 pb3 f3">
+          CID Format
+        </h3>
+        <div class="pb3 dn db-l">
+          {{ partial "tree" (dict "width" "73px" "height" "83px")}}
+        </div>
+        <div class="db pa4 outline tl code" style="height:278px; background:#272822; overflow:auto;">
+          <div data-example="git" class="">{{< highlight html >}}{{ .Site.Data.example.git.cid }}{{< /highlight>}}</div>
+          <div data-example="bitcoin" class="dn">{{< highlight html >}}{{ .Site.Data.example.bitcoin.cid }}{{< /highlight>}}</div>
+          <div data-example="ethereum" class="dn">{{< highlight html >}}{{ .Site.Data.example.ethereum.cid }}{{< /highlight>}}</div>
+          <div data-example="ipfs" class="dn">{{< highlight html >}}{{ .Site.Data.example.ipfs.cid }}{{< /highlight>}}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section> -->
+
+<section id="bundles" class="pt5 ph2 pb6 bg-ipld-blue ipld-dark-gray">
+  <div class="mw8 center">
+    <h2 class="tc b ttu ma0 pb3 f-30">
+      IPLD Implementations
+    </h2>
+    <p class="center lh-copy tc fw6 ma0 pb5 f-18" style="max-width: 800px;">
+      IPLD provides ready-to-use bundles for different formats and different languages. You can use these to get all the functionality in one package. See it as a quickstart.
+    </p>
+    <table class="bundle-table mw7 center">
+      <thead>
+          <tr>
+            <th style="visibility:hidden; background:transparent; border-top:transparent; border-left:transparent;"></th>
+            <th style="visibility:hidden; background:transparent; border-top:transparent; border-left:transparent;"></th>
+            <th class="f4-ns fw5">
+              {{ partial "bundle-th" (dict "name" "JavaScript" "class" "f4-ns fw5") }}
+            </th>
+            <th class="f4-ns fw5">
+              {{ partial "bundle-th" (dict "name" "Go" "class" "f4-ns fw5") }}
+            </th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "Git" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-git</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-git")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-git")}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "BitCoin" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-btc</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-btc")}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc" rowspan="5">
+            {{ partial "bundle-th" (dict "name" "Ethereum" "class" "pl2-l fw6")}}
+          </th>
+          <th class="tc">eth-block</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-ethereum")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-block-list</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-ethereum")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth" )}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-tx-trie</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-ethereum")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-state-trie</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-ethereum")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">eth-storage-trie</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-ethereum")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-eth")}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc" rowspan="2">
+            {{ partial "bundle-th" (dict "name" "IPFS" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">dag-pb</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-dag-pb")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld")}}</td>
+        </tr>
+        <tr>
+          <th class="tc">dag-cbor</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-dag-cbor" )}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-cbor")}}</td>
+        </tr>
+      </tbody>
+
+      <!-- <tbody>
+        <tr>
+          <th class="tc" rowspan="2">
+            {{ partial "bundle-th" (dict "name" "Torrent" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">torrent-file</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+        </tr>
+        <tr>
+          <th class="tc">torrent-info</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "Bencode" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-bendcode</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipld/js-ipld-bendcode")}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th class="tc">
+            {{ partial "bundle-th" (dict "name" "zcash" "class" "pl2-l fw6") }}
+          </th>
+          <th class="tc">ipld-zcash</th>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 0)}}</td>
+          <td class="hover-trigger">{{ partial "support" (dict "level" 2 "url" "https://github.com/ipfs/go-ipld-git")}}</td>
+        </tr>
+      </tbody> -->
+    </table>
+    <div class="dt-ns w-100 mw7 center pt4 pl5">
+      <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">
+        {{ partial "support" (dict "level" 2 "label" true )}}
+      </div>
+      <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">
+        {{ partial "support" (dict "level" 1 "label" true )}}
+      </div>
+      <div class="tl tc-ns dtc-ns w-33-ns ph2 pv1">
+        {{ partial "support" (dict "level" 0 "label" true )}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ partial "footer.html" . }}
+<script src="/js/example-switcher.js"></script>
+</body>
+</html>

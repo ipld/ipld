@@ -1,0 +1,169 @@
+@import (inline) "node_modules/tachyons/css/tachyons.min.css";
+
+.open-sans {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+.ipld-dark-gray {
+  color: #515561;
+}
+.ipld-gray {
+  color: #5A626E;
+}
+.ipld-light-gray {
+  color: #97A1AF;
+}
+.bg-ipld-blue {
+  background-color: #DEEDFF;
+}
+.f-30 {
+  font-size: 30px;
+}
+.f-18 {
+  font-size: 18px;
+}
+.embed-responsive {
+  position:relative;
+  overflow:hidden;
+  height:0;
+  max-width:100%;
+}
+.embed-responsive-16by9 {
+  padding-bottom:56.25%;
+}
+.embed-responsive-item {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+.bundle-table {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+.bundle-table th,
+.bundle-table td {
+  height: 60px;
+  vertical-align: middle;
+  background: #FFF;
+  border: solid 1px #97A0AE;
+}
+.bundle-table tbody:hover tr:first-child th:first-child,
+.bundle-table tr:hover th,
+.bundle-table tr:hover td {
+  background-color: #FFF7F0;
+}
+.bundle-table thead tr:hover th {
+  background-color: #FFF;
+}
+.hide {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+.hover-saturate {
+  transition: filter 0.2s linear, opacity 0.2s linear;
+  filter: saturate(0%);
+  opacity: 0.5;
+}
+.hover-saturate:hover {
+  filter: saturate(50%);
+  opacity: 0.6;
+}
+.hover-saturate.active,
+.hover-saturate:active {
+  filter: saturate(100%);
+  opacity: 1;
+}
+.hover-show {
+  display: none;
+}
+.hover-trigger:hover .hover-show {
+  display: inline-block;
+}
+.hover-trigger:hover .hover-hide {
+  display: none;
+}
+
+/* ---- Splash animation tricks --------------------------------------------- */
+svg .ipld-logo {
+  animation: scale 500ms ease-in-out 1s both;
+  transform-origin: center;
+}
+
+svg .ipld-logo-trunk {
+  animation: draw-stroke 400ms ease-in-out 1.4s forwards;
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
+}
+
+svg .ipld-logo-branch {
+  animation: draw-stroke 600ms ease-in-out 1.6s forwards;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+svg .ipld-logo-connector {
+  animation: draw-stroke 600ms ease-in-out 1.8s forwards;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+svg .ipld-logo-leaf {
+  animation: scale 800ms ease-in-out 1.8s both;
+  transform-origin: bottom;
+}
+
+@keyframes draw-stroke {
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes scale {
+    0% { transform: scale(0) }
+  100% { transform: scale(1) }
+}
+
+/* ---- animate outer hexagons on mouse over -------------------------------- */
+.draw-hex {
+  stroke-dasharray:151 153;
+  stroke-dashoffset:153;
+}
+.draw-line {
+  stroke-dasharray:20 22;
+  stroke-dashoffset:21;
+}
+
+.hover-trigger:hover .draw-hex  { animation: draw-hex-in   800ms ease-out both }
+.hover-trigger:hover .draw-line { animation: draw-line-in  800ms ease-out both }
+
+.hover-trigger.out   .draw-hex  { animation: draw-hex-out  800ms ease-out both }
+.hover-trigger.out   .draw-line { animation: draw-line-out 800ms ease-out both }
+
+@keyframes draw-hex-in {
+  0% {stroke-dashoffset:153;}
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes draw-hex-out {
+  0% {stroke-dashoffset:0;}
+  100% {stroke-dashoffset:153;}
+}
+
+@keyframes draw-line-in {
+  0% {stroke-dashoffset:21;}
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes draw-line-2-in {
+  0% {stroke-dashoffset:88;}
+  100% {stroke-dashoffset:0;}
+}
+
+@keyframes draw-line-out {
+  0% {stroke-dashoffset:0;}
+  100% {stroke-dashoffset:21;}
+}

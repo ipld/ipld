@@ -306,9 +306,9 @@ Rather than encoding the HAMT node's `map` field as the full sequence of byte-to
 
 ### Block layout
 
-The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#Schema) and also between version of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
+The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#Schema) and also between versions of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
 
-The **v3** form of the Filecoin HAMT has the same IPLD layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is the equivalent of `HashMapNode`, which is the same as all other nodes and parameters are implicit.
+The **v3** form of the Filecoin HAMT has the same [substrate](/glossary/#substrate) Data Model layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is the equivalent of `HashMapNode`—the root node is the same as all other nodes, and rather than parameters being explicit, the parameters are implicit and must be derived from the ambient Filecoin chain version.
 
 Both forms of the block layout are presented in the schema below. The difference in block layout is that versions **0.9** to **2** use a keyed union for the `Element` struct (called "Pointer" in Filecoin) whereas version **3** and later use a kinded union. `FilecoinHAMTNodeV0` and `FilecoinHAMTNodeV3` are presented below as the equivalent of `HashMapNode` in the IPLD HashMap for the different versions. There is no equivalent of `HashMapRoot`.
 

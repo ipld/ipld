@@ -6,7 +6,7 @@ eleventyNavigation:
 
 # Specification: Content Addressable aRchives (CAR / .car) v1
 
-**Status: Draft**
+**Status: Final**
 
 * [Summary](#summary)
 * [Format Description](#format-description)

@@ -441,7 +441,8 @@
 					"discriminantKey": "kind",
 					"discriminantTable": {
 						"map": "TypeMap",
-						"list": "TypeList"
+						"list": "TypeList",
+						"link": "TypeLink"
 					}
 				}
 			}

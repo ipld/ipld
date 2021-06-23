@@ -526,7 +526,9 @@ type TypeTerm union {
 
 ## InlineDefn represents a declaration of an anonymous type of one of the simple
 ## recursive kinds (e.g. map or list) which is found "inline" in another type's
-## definition.  It's the more complex option of the TypeTerm union.
+## definition.  It is also used to support expressive link declaration in
+## certain places so they don't have to be declared as their own types.
+## InlineDefn is the more complex option of the TypeTerm union.
 ##
 ## Note that the representation of this union -- `representation inline "kind"`
 ## -- as well as the keywords for its members -- align exactly with those
@@ -539,6 +541,7 @@ type TypeTerm union {
 type InlineDefn union {
 	| TypeMap "map"
 	| TypeList "list"
+	| TypeLink "link"
 } representation inline {
 	discriminantKey "kind"
 }

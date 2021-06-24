@@ -8,18 +8,17 @@ eleventyNavigation:
 
 **Status: Draft**
 
-- [Specification: Content Addressable aRchives (CAR / .car) v2](#specification-content-addressable-archives-car--car-v2)
-  - [Summary](#summary)
-  - [Format Description](#format-description)
-    - [Pragma](#pragma)
-    - [Header](#header)
-    - [Characteristics](#characteristics)
-    - [CARv1 data payload](#carv1-data-payload)
-    - [Index payload](#index-payload)
-    - [Index format](#index-format)
-      - [Format `0x300000`: IndexSorted](#format-0x300000-indexsorted)
-  - [Implementations](#implementations)
-  - [Test Fixtures](#test-fixtures)
+* [Summary](#summary)
+* [Format Description](#format-description)
+  * [Pragma](#pragma)
+  * [Header](#header)
+  * [Characteristics](#characteristics)
+  * [CARv1 data payload](#carv1-data-payload)
+  * [Index payload](#index-payload)
+  * [Index format](#index-format)
+    * [Format `0x300000`: IndexSorted](#format-0x300000-indexsorted)
+* [Implementations](#implementations)
+* [Test Fixtures](#test-fixtures)
 
 ## Summary
 
@@ -146,12 +145,12 @@ IndexSorted sorts hash digests by two dimensions: first into buckets of _digest 
 * IndexSorted may contain one or more length-grouped buckets of digests.
 * Buckets are ordered by digest length and concatenated together to form the index.
 * Each bucket is prefixed with:
-  * a "width" encoded as a 32-bit **signed** little-endian integer indicating the common byte length of the combination of hash digests and their offsets in this bucket; followed by
-  * a "count" encoded as a 64-bit **signed** little-endian integer which determines the total number of hash digests (and their offsets) bucket.
+  * a "width" encoded as a 32-bit unsigned little-endian integer indicating the common byte length of the combination of hash digests and their offsets in this bucket; followed by
+  * a "count" encoded as a 64-bit unsigned little-endian integer which determines the total number of hash digests (and their offsets) bucket.
 
 A common case of a single bucket of 32-byte hash digests is expected due to the commonality of this digest length for CIDs.
 
-Individual index entries are the concatenation of the hash digest an an additional 64-bit **unsigned** little-endian integer indicating the offset of the block from the begining of the CARv1 data payload. Offsets locate the first byte of the varint that prefix the `CID:Bytes` pair within the CARv1 payload. See the [data section in the CARv1 Specification](../carv1/index.md#data) for details on block encoding.
+Individual index entries are the concatenation of the hash digest an an additional 64-bit unsigned little-endian integer indicating the offset of the block from the begining of the CARv1 data payload. Offsets locate the first byte of the varint that prefix the `CID:Bytes` pair within the CARv1 payload. See the [data section in the CARv1 Specification](../carv1/index.md#data) for details on block encoding.
 
 For example, a bucket containing 32-byte hash digests will have a "width" of `40` as each entry in the bucket is a concatenation of the 32-byte digest and an 8-byte offset value. Hash digest length within a bucket is derived by subtracting `8` from the "width" of the bucket.
 

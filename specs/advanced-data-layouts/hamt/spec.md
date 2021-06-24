@@ -29,10 +29,8 @@
   * [Security](#security)
 * [Appendix: Filecoin HAMT Variant](#appendix-filecoin-hamt-variant)
   * [Implicit and fixed parameters](#implicit-and-fixed-parameters)
-  * [Map / Bitfield layout](#map--bitfield-layout)
+  * [Map (bitfield) layout](#map-bitfield-layout)
   * [Block layout](#block-layout)
-    * [Actors v0.9 and v2 form](#actors-v09-and-v2-form)
-    * [Actors v3+ form](#actors-v3-form)
 
 ## Introduction
 
@@ -300,13 +298,13 @@ The Filecoin HAMT _does not_ use an explicit root block (`HashMapRoot`) to encod
 * `bitWidth`: The Filecoin HAMT fixes the bit width to `5`, meaning that each node of the HAMT can contain up to `2`<sup>`5`</sup> (`32`) elements containing either buckets or links to child nodes.
 * `bucketSize`: The Filecoin HAMT fixes the maximum length of its buckets to `3`, meaning a maximally full HAMT leaf node can contain `32 x 3` (`96`) key/value pairs.
 
-### Map / Bitfield layout
+### Map (bitfield) layout
 
 Rather than encoding the HAMT node's `map` field as the full sequence of byte-to-element mapping with little-endian byte addressing, the Filecoin HAMT uses the byte layout of a Go [`big.Int`](https://golang.org/pkg/math/big/#Int) as a bitfield to represent the HAMT node's `map`. In practice this means that the byte array length can vary depending on which bits are set within the bitfield. Implementations must use the same encoding and decoding rules as `big.Int` to handle this field. See [this discussion thread](https://github.com/filecoin-project/go-hamt-ipld/issues/54#issuecomment-670314664) for an exploration of the specifics.
 
 ### Block layout
 
-The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#Schema) and also between versions of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
+The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#schema) and also between versions of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
 
 The **v3** form of the Filecoin HAMT has the same [substrate](/glossary/#substrate) Data Model layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is the equivalent of `HashMapNode`—the root node is the same as all other nodes, and rather than parameters being explicit, the parameters are implicit and must be derived from the ambient Filecoin chain version.
 

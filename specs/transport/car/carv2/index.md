@@ -152,7 +152,7 @@ Each bucket, therefore, takes the following form:
 
 As of writing there are two work-in-progress implementations:
 
-* https://github.com/ipld/go-car/tree/wip/v2/v2 - a `wip/v2` branch of go-car
+* https://github.com/ipld/go-car/tree/wip-v2/v2 - a `wip-v2` branch of go-car
 * https://github.com/ipld/js-car/pull/30 - a read-only implementation for js-car
 
 ## Test Fixtures

@@ -127,7 +127,7 @@ That means IPLD Schemas are agnostic of [codecs](#codec).
 It also means they're entirely optional -- you can parse data with or without them --
 and you can use Schemas to describe and help process data even if that data _predates the Schema_.
 
-### Selectors
+#### Selectors
 
 IPLD Selectors are a form of graph query (or, a way to specify a traversal, if you prefer that mental model) over IPLD data.
 
@@ -142,7 +142,7 @@ The format is described in IPLD (using [IPLD Schemas](#schemas),
 so it's possible to serialize Selectors in any [Codec](#codec) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
 
-### Substrate
+#### Substrate
 
 "Substrate" is a vocabulary term relating to [ADLs](#adl) -- it refers to the data "inside" them,
 as contrasted with the "synthesized view" of the data, which is the node that the ADL presents itself as.

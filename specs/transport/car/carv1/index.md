@@ -1,6 +1,12 @@
-# Specification: Content Addressable aRchives (CAR / .car)
+---
+title: "CARv1 Specification"
+eleventyNavigation:
+  synopsys: "Specification for the CARv1 format"
+---
 
-**Status: Draft**
+# Specification: Content Addressable aRchives (CAR / .car) v1
+
+**Status: Final**
 
 * [Summary](#summary)
 * [Format Description](#format-description)
@@ -25,6 +31,7 @@
   * [Root CID block existence](#root-cid-block-existence)
   * [CID version](#cid-version)
   * [Duplicate Blocks](#duplicate-blocks)
+* [Test Fixtures](#test-fixtures)
 
 ## Summary
 
@@ -34,13 +41,13 @@ The CAR format is intended as a serialized representation of any IPLD DAG (graph
 
 In addition to the binary block data, storage overhead for the CAR format consists of:
 
- * A header block encoded as [DAG-CBOR](codecs/dag-cbor.md) containing the format version and an array of root CIDs
+ * A header block encoded as [DAG-CBOR](../../../codecs/dag-cbor/) containing the format version and an array of root CIDs
  * A CID for each block preceding its binary data
  * A compressed integer prefixing each block (including the header block) indicating the total length of that block, including the length of the encoded CID
 
 This diagram shows how IPLD blocks, their root CID, and a header combine to form a CAR.
 
-![Content Addressable aRchive Diagram](content-addressable-archives.png)
+<img src="../content-addressable-archives.png" alt="Content Addressable aRchive Diagram" width="100%">
 
 The name _Certified ARchive_ has also [previously been used](https://github.com/ipfs/archive-format) to refer to the CAR format.
 
@@ -56,7 +63,7 @@ The CAR format comprises a sequence of length-prefixed IPLD block data, where th
 
 ### Header
 
-The first bytes of the CAR format hold a varint, this unsigned integer specifies the number of bytes beyond the varint itself that contain the _Header_ block. This Header block is a byte array DAG-CBOR (CBOR with tag 42 for CIDs) encoded object holding the version number and array of roots. As an [IPLD Schema](../schemas/):
+The first bytes of the CAR format hold a varint, this unsigned integer specifies the number of bytes beyond the varint itself that contain the _Header_ block. This Header block is a byte array DAG-CBOR (CBOR with tag 42 for CIDs) encoded object holding the version number and array of roots. As an [IPLD Schema](../../../../docs/schemas/):
 
 ```ipldsch
 type CarHeader struct {
@@ -110,7 +117,7 @@ The first two bytes of a multihash are varints, where the second varint is an un
 
 #### Data
 
-The remainder of a Section, after length-prefix and CID, comprises the raw byte data of the IPLD block. The encoded block may be any IPLD block format as specified by the codec in the CID. Typical codecs will be [DAG-PB](codecs/dag-pb.md), [DAG-CBOR](codecs/dag-cbor.md) or [RAW](https://github.com/ipld/specs/issues/223).
+The remainder of a Section, after length-prefix and CID, comprises the raw byte data of the IPLD block. The encoded block may be any IPLD block format as specified by the codec in the CID. Typical codecs will be [DAG-PB](../../../codecs/dag-pb/), [DAG-CBOR](../../../codecs/dag-cbor/) or [RAW](https://github.com/ipld/specs/issues/223).
 
 ## Additional Considerations
 
@@ -118,7 +125,7 @@ The remainder of a Section, after length-prefix and CID, comprises the raw byte 
 
 Deterministic CAR creation is not covered by this specification. However, deterministic generation of a CAR from a given graph is possible and is relied upon by certain uses of the format, most notably, [Filecoin](https://filecoin-project.github.io/specs). Specifically a *filecoin-deterministic car-file* is currently implementation-defined as containing all DAG-forming blocks in first-seen order, as a result of a depth-first DAG traversal starting from a single root. 
 
-Additional rules for the generation of the CAR format may be applied in order to ensure that the same CAR is always generated from the same data. The burden of this determinism is primarily placed on [selectors](../selectors/selectors.md) whereby a given selector applied to a given graph will always yield blocks in the same order regardless of implementation.
+Additional rules for the generation of the CAR format may be applied in order to ensure that the same CAR is always generated from the same data. The burden of this determinism is primarily placed on [selectors](../../../selectors/) whereby a given selector applied to a given graph will always yield blocks in the same order regardless of implementation.
 
 Care regarding the ordering of the `roots` array in the Header, as well as consideration for CID version _(see [below](#cid-version))_ and avoidance of duplicate blocks _(see [below](#duplicate-blocks))_ may also be required for strict determinism.
 
@@ -213,3 +220,9 @@ It is unresolved whether both CID versions 0 and 1 format are valid in the roots
 ### Duplicate Blocks
 
 The possibility of duplicate blocks in a single CAR (such as for padding) is currently not specified.
+
+## Test Fixtures
+
+To assist implementations in confirming compliance to this specification, the following test fixtures are available:
+
+* [carv1-basic](../fixture/carv1-basic/) - Basic CAR with linked raw, DAG-PB and DAG-CBOR blocks

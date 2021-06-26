@@ -83,6 +83,7 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("../specs/**/*.json")
 	eleventyConfig.addPassthroughCopy("../specs/**/*.taf")
 	eleventyConfig.addPassthroughCopy("../specs/**/*.ipldsch")
+	eleventyConfig.addPassthroughCopy("../specs/**/*.car")
 
 	// Introduce some shortcodes used for frequently recurrent stylistic elements.
 	//  A "callout" is a box of highlighted, slightly in-set text.  Styles that cause distinct coloration include "info", "warn", "todo".

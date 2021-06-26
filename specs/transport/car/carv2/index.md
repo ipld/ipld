@@ -22,7 +22,7 @@ eleventyNavigation:
 
 ## Summary
 
-CARv2 is a minimal upgrade to the [CARv1](../carv1/index.md) format with the primary aim of adding an optional index within the format for fast random-access to blocks.
+CARv2 is a minimal upgrade to the [CARv1](../carv1/) format with the primary aim of adding an optional index within the format for fast random-access to blocks.
 
 CARv2 makes use of CARv1 by wrapping a properly formed CARv1 with a prefix containing a pragma and header, and a suffix containing the optional index data. Once the offset and length of the CARv1 bytes are determined using CARv2 parsing rules. Though not necessarily ideal, an existing CARv1 decoder could be used to read the roots and `CID:Bytes` pairs. Likewise, a CARv1 encoder could be be used to encode this data for wrapping by a CARv2 encoder as the payload is the same format.
 
@@ -43,7 +43,7 @@ The CARv2 format can be illustrated as follows:
 
 ### Pragma
 
-The CARv2 version pragma (or ["magic bytes"](https://en.wikipedia.org/wiki/List_of_file_signatures)) was chosen for compatibility with existing CARv1 parsers. CARv1 leads with a [DAG-CBOR](../../../codecs/dag-cbor/index.md) block, prefixed with a varint where the block contains the version and roots array:
+The CARv2 version pragma (or ["magic bytes"](https://en.wikipedia.org/wiki/List_of_file_signatures)) was chosen for compatibility with existing CARv1 parsers. CARv1 leads with a [DAG-CBOR](../../../codecs/dag-cbor/) block, prefixed with a varint where the block contains the version and roots array:
 
 ```ipldsch
 type CarV1Header struct {
@@ -93,7 +93,7 @@ The characteristics bitfield contained within the CARv2 header may be used to in
 
 Currently the characteristics bitfield is not used and should have all bits unset (`0`). Future iterations of this specification may introduce characteristic indicators for features such as:
 
-* DAG walk ordering—none, depth-first, breadth-first, or via [IPLD Selector](../specs/selectors/index.md).
+* DAG walk ordering—none, depth-first, breadth-first, or via [IPLD Selector](../../../selectors/).
 * De-duplication status
 
 ### CARv1 data payload
@@ -104,7 +104,7 @@ The CARv1 data payload ends after the number of bytes indicated by the "Data siz
 
 The data payload is a complete, self-contained CARv1. As such, it must include a valid CARv1 header, including a roots array and a `version` field with a value strictly of `1`, followed by a series of data blocks. As such, conversion from a CARv2 to CARv1 simply requires extraction of the data payload without further modification.
 
-Refer to the [CARv1 Specification](../carv1/index.md) for details on the CARv1 format.
+Refer to the [CARv1 Specification](../carv1/) for details on the CARv1 format.
 
 ### Index payload
 
@@ -138,7 +138,7 @@ IndexSorted sorts hash digests by two dimensions: first into buckets of _digest 
 
 A common case of a single bucket of 32-byte hash digests is expected due to the commonality of this digest length for CIDs.
 
-Individual index entries are the concatenation of the hash digest an an additional 64-bit unsigned little-endian integer indicating the offset of the block from the begining of the CARv1 data payload. Offsets locate the first byte of the varint that prefix the `CID:Bytes` pair within the CARv1 payload. See the [data section in the CARv1 Specification](../carv1/index.md#data) for details on block encoding.
+Individual index entries are the concatenation of the hash digest an an additional 64-bit unsigned little-endian integer indicating the offset of the block from the begining of the CARv1 data payload. Offsets locate the first byte of the varint that prefix the `CID:Bytes` pair within the CARv1 payload. See the [data section in the CARv1 Specification](../carv1/#data) for details on block encoding.
 
 For example, a bucket containing 32-byte hash digests will have a "width" of `40` as each entry in the bucket is a concatenation of the 32-byte digest and an 8-byte offset value. Hash digest length within a bucket is derived by subtracting `8` from the "width" of the bucket.
 

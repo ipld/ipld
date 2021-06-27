@@ -7,7 +7,7 @@ nav ul {
 }
 nav ul a {
 	display:          block;
-	background-color: #fafffa; /* todo: a different one per item, please.  Use attribute selectors for this. */
+	background-color: #f6f6fa; /* todo: a different one per item, please.  Use attribute selectors for this. */
 	padding:          0.5rem 0.5rem;
 	border-bottom:    2px solid;
 	margin-top:       0.5rem;
@@ -15,12 +15,13 @@ nav ul a {
 }
 /* Deeper list elements now need css to put them back down to normal. */
 nav ul ul {
-	color: #baedda;
+	color: #8abafd;
 	list-style-type: disc;
-	padding-inline-start: 1.5rem;
+	padding-inline-start: 1.7rem;
+	padding-inline-end: 0.3rem; /* keep just a tiny bit away from the edge, please. */
 }
 nav ul ul ul {
-	padding-inline-start: 1rem;
+	padding-inline-start: 1.2rem;
 }
 nav ul ul a {
 	background-color: transparent;

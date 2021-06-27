@@ -11,7 +11,7 @@ body {
 }
 
 a {
-	color: #3eaf7c;
+	color: #3e7fe4;
 	text-decoration: none;
 }
 a:hover {
@@ -19,7 +19,7 @@ a:hover {
 }
 
 a.header-anchor:before {
-	color:           #afddcf;
+	color:           #afadff;
 	text-decoration: none;
 	font-weight:     normal;
 }

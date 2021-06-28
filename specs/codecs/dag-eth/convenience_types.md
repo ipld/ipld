@@ -8,7 +8,7 @@ These types are introduced to improve the convenience and performance of accessi
 
 Transaction traces contain the EVM context, input, and output for each individual OPCODE operation performed during the application of a transaction on a certain state.
 These objects can be generated or verified by applying the referenced transactions on top of the referenced state.
-* The IPLD block is the RLP encoded object
+* The IPLD block is the RLP encoded object.
 * CID links to `TxTrace` use a KECCAK_256 multihash of the RLP encoded object and the EthTxTrace codec (tbd).
 
 ```ipldsch
@@ -16,12 +16,9 @@ These objects can be generated or verified by applying the referenced transactio
 type TxTrace struct {
    # List of CIDs linking to the transactions that were used to generate this trace by applying them onto the state referenced below
    # If this trace was produced by the first transaction in a block then this list will contain only that one transaction
-   # and thistrace was produced by applying it directly to the referenced state
-   # Otherwise, only the last transaction in the list is the one directly responsible for producing this trace whereas the
-   # proceeding ones were sequentially applied to the referenced state to generate the intermediate state that the final,
-   # trace-producing transaction, was applied on top of
-   # This is analogous to the Transactions IPLD defined below, but only in the case of a trace produced by the last
-   # transaction in a block will the list be same as a complete Transaction IPLD
+   # and this trace was produced by applying it directly to the referenced state
+   # Otherwise, the trace is the output of the last transaction in the list applied to the state produced by
+   # sequentially applying the proceeding txs to the referenced state
    TxCIDs [&Transaction]
    # CID link to the root node of the state trie that the above transaction set was applied on top of to produce this trace
    StateRootCID &StateTrieNode
@@ -53,7 +50,7 @@ Provided a `Header` multihash/CID and a transaction index, we can generate a `Tx
    3) Order these CIDs in a list by transaction index.
 3) Collect the `StateRootCID` from within this `Header`.
 4) Use [ipfs-ethdb](https://github.com/vulcanize/ipfs-ethdb) with state root linked in the `Header` to instantiate an EVM on top
-of the state of this block.
+of the ipld state of this block.
 5) Apply each of the transactions on top of this state using the ipfs-ethdb based EVM.
 6) For the final transaction applied, collect the trace output from the EVM.
 7) Assemble the trace output, the `Transaction` CIDs, and the root `StateTrieNode` CID into the `TxTrace` object.
@@ -65,7 +62,7 @@ the sets of transactions and receipts for that block in order to avoid the need 
 and receipt tries to collect these sets (as is required when starting from a canonical `Header` block).
 These objects can be generated or verified by following the links within the contained `Header` to collect the `Transactions` and `Receipts`
 from the referenced transaction and receipt tries.
-* The IPLD block is a CBOR serialization of the object
+* The IPLD block is a CBOR serialization of the Block object.
 * CID links to `Block` use a KECCAK_256 multihash of the CBOR serialized object and the DagCbor codec (0x71).
 
 ```ipldsch
@@ -75,12 +72,12 @@ type Block struct {
    # This CID is composed of the KECCAK_256 multihash of the RLP encoded header and the EthHeader codec (0x90)
    # Note that the header contains references to the uncles and tx, receipt, and state tries at this height
    Header       &Header
-   # CID link to the list of hashes for each of the transactions at this block
-   # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of transaction hashes and the EthTxHashList codec (tbd)
-   Transactions &TransactionHashes
-   # CID link to the list of hashes for each of the receipts at this block
-   # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of receipt hashes and the EthTxReceiptHashList codec (tbd)
-   Receipts     &ReceiptHashes
+   # CID link to the list of transactions at this block
+   # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of transactions and the EthTxList codec (tbd)
+   Transactions &Transactions
+   # CID link to the list of receipts at this block
+   # This CID is composed of the KECCAK_256 multihash of the RLP encoded list of receipts and the EthTxReceiptList codec (tbd)
+   Receipts     &Receipts
 }
 ```
 
@@ -100,37 +97,35 @@ Provided a `Header` multihash/CID, we can generate a `Block` IPLD by
    5) Convert to CID using the KECCAK_256 multihash and EthTxReceiptHashList codec.
 3) Assemble the `Header` CID, `Transactions` CID, and `Receipts` CID into the `Block` object.
 
-## TransactionHashes IPLD
+## Transactions IPLD
 
 This is the IPLD schema for the ordered list of all transactions for a given block.
-* The IPLD block is the RLP encoded list of transaction hashes
-* CID links to `Transactions` use a KECCAK_256 multihash of the RLP encoded list of transaction hashes and the EthTxHashList codec (tbd).
+* The IPLD block is the RLP encoded list of transactions.
+* CID links to `Transactions` use a KECCAK_256 multihash of the RLP encoded list of transactions and the EthTxList codec (tbd).
 * `Transactions` IPLDs are not referenced from any canonical Ethereum object, but are instead linked to from the above `Block` and `TxTrace` objects.
 
 ```ipldsch
-# Transactions contains a list of CID that reference all of the Ethereum transactions at this block
-# These CIDs are composed from the KECCAK_256 multihash of the referenced transaction and the EthTx codec (0x93)
+# Transactions contains a list of all of the Ethereum transactions at this block
 type Transactions [&Transaction]
 ```
 
-## ReceiptHashes IPLD
+## Receipts IPLD
 
 This is the IPLD schema for the ordered list of all receipts for a given block.
-* The IPLD block is the RLP encoded list of receipt hashes
-* CID links to `Receipts` use a KECCAK_256 multihash of the RLP encoded list of receipt hashes and the EthTxReceiptHashList codec (tbd)
+* The IPLD block is the RLP encoded list of receipts.
+* CID links to `Receipts` use a KECCAK_256 multihash of the RLP encoded list of receipts and the EthTxReceiptList codec (tbd).
 * `Receipts` IPLDs are not referenced directly from any canonical Ethereum object, but are instead linked to from the above `Block` ADL object.
 
 ```ipldsch
-# Receipts contains a list of CID that reference all of the receipts at this block
-# These CIDs are composed from the KECCAK_256 multihash of the referenced receipt and the EthTxReceipt codec (0x95)
-type Receipts [&Receipt]
+# Receipts contains a list of all of the receipts at this block
+type Receipts [Receipt]
 ```
 
 ## Genesis IPLD
 
 This is the IPLD schema for the configuration settings and genesis allocations to produce a specific genesis block and begin an Ethereum
 blockchain. It also includes a reference to the genesis block `Header` it produces. This is a single IPLD block at the base of an entire Ethereum chain.
-* The IPLD block is a CBOR serialization of the object
+* The IPLD block is a CBOR serialization of the GenesisInfo object.
 * CID links to `GenesisInfo` use a KECCAK_256 multihash of the CBOR serialized object and the DagCbor codec (0x71).
 
 ```ipldsch

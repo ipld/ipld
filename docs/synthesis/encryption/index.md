@@ -26,10 +26,18 @@ Peergos builds many cryptographic systems together in their product,
 including one concept known as "Cryptrees", which is intended to be reusable.
 
 More about Peergos can be read here:
-https://book.peergos.org/overview/overview.html
+https://book.peergos.org/
 
 A whitepaper which overviews Cryptrees can be found here:
 https://raw.githubusercontent.com/ianopolous/Peergos/master/papers/wuala-cryptree.pdf
+
+---
+
+### Ceramic
+
+Ceramic uses systems such as DIDs and an encryption standard called
+[DAG-JOSE](/specs/codecs/dag-jose/), and demonstrates how to use them here:
+https://blog.ceramic.network/how-to-store-signed-and-encrypted-data-on-ipfs/
 
 ---
 
@@ -39,6 +47,10 @@ Fission builds filesystems and other data structures which include encryption.
 
 More details on Fission, and in particular, the Fission concept of "private directories"
 can be found here: https://whitepaper.fission.codes/file-system/partitions/private-directories
+
+And here: https://blog.fission.codes/web-native-file-system-presentation/
+
+And here: https://guide.fission.codes/
 
 ---
 

@@ -5,6 +5,9 @@ nav ul {
 	padding-inline-start: 0rem;
 	margin-top:           0rem;
 }
+nav a {
+	color: #5e7fe4; /* slightly different color intensity for nav vs body content links. */
+}
 nav ul a {
 	display:          block;
 	background-color: #f6f6fa; /* todo: a different one per item, please.  Use attribute selectors for this. */

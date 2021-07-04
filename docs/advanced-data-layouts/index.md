@@ -35,6 +35,38 @@ ADLs build upon the concepts that are introduced standardized by the Data Model.
 - [Traversals](/docs/data-model/traversal/) and [pathing](/docs/data-model/pathing/) work transparently over ADLs (which is part of why ADLs exist and what makes them awesome in the first place)!
 
 
+Why are ADLs useful?
+--------------------
+
+Because ADLs make complex data structures readable and writable as "just" a [Node](/docs/data-model/node/),
+it means all the features of IPLD that work over regular Nodes work over ADLs, too.
+
+For example:
+- [Traversals](/docs/data-model/traversal/) and [pathing](/docs/data-model/pathing/) work transparently over ADLs;
+- that also includes [Selectors](/glossary/#selectors) working over ADLs;
+- "IPLD Patch" tools (still forthcoming) work transprently over ADL;
+- any kind of custom library functions you've written that work over Nodes?  They'll "just work" with ADLs.
+
+This reusability makes a ton of features possible for building systems with ADLs,
+and makes it work with a minimum of development effort.
+
+In particular, the Selectors story is quite powerful, because it has no fallback.
+Having a Selector walk over the inner state of an unknown datastructure
+(let's take a HAMT as an example, though the principle is general)
+is only possible if you know the load factor of the state structure,
+or other specific details of its internal state.
+For many applications of Selectors -- especially, say, the user of Selectors
+to ask someone else on the internet to *send* you data that you don't already have --
+this would make Selectors all but useless.
+However, by running Selectors *over* an ADL, things work out nicely.
+
+(Note: some ADLs are read-only.  Some are write-only.
+Sometimes there's a symmetrical pairing of implementations; sometimes there's not.
+Some need configuration on one direction, but not on the other.
+You'll need to consult the documentation and specs for individual ADLs
+to see what they support.)
+
+
 How ADLs Work
 -------------
 

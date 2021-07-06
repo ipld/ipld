@@ -14,6 +14,7 @@ eleventyNavigation:
     * [Constraints](#constraints)
   * [Data](#data)
     * [Length](#length)
+      * [Optional mode: null byte as EOF](#optional-mode-null-byte-as-eof)
     * [CID](#cid)
     * [Data](#data-1)
 * [Additional Considerations](#additional-considerations)
@@ -89,7 +90,17 @@ Immediately following the Header block, **one or more** IPLD blocks are concaten
 
 #### Length
 
-Each Section begins with a varint representation of an unsigned integer indicating the number of bytes containing the remainder of the section.
+Each Section begins with a unsigned varint representation of an unsigned integer indicating the number of bytes containing the remainder of the section. The length must be an integer greater than zero. Encountering a zero in the length position of a new _Section_ should be considered an error when reading a CAR. Likewise, a CAR writer should only write non-zero length fields.
+
+A CAR is proplerly terminated when an end-of-stream is encountered when attempting to read a new _Section_.
+
+##### Optional mode: null byte as EOF
+
+By default a CAR reader and writer should not support the null byte (`0x00`, varint value of `0`) at the beginning of a _Section_; each _Section_ should begin with a valid unsigned varint of value greater than zero. However, a system using the CAR format may optionally choose to allow the null byte to signal termination of a CAR, allowing it to optionally be followed by arbitrary bytes that are will not considered part of the CAR.
+
+Code libraries that implement the CAR format should treat this mode as an option, and not the default for either reading or writing of the CAR format.
+
+Systems requiring determinism or those using CAR as an efficient wire transport should consider avoiding this mode of operation and rely on end-of-stream for proper termination.
 
 #### CID
 

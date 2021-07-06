@@ -1,19 +1,19 @@
 (function init (document) {
-  var previewLinks = document.querySelectorAll('[data-youtube-switcher]')
+  const previewLinks = document.querySelectorAll('[data-youtube-switcher]')
   ;[].forEach.call(previewLinks, function (node) {
     node.addEventListener('click', onPreviewClick, false)
   })
 
   function onPreviewClick (evt) {
     evt.preventDefault()
-    var preview = evt.currentTarget
-    var player = document.getElementById('active-video')
+    const preview = evt.currentTarget
+    const player = document.getElementById('active-video')
     updatePlayer(player, getYoutubeId(preview), getCaption(preview))
     updatePreview(preview, getYoutubeId(player), getCaption(player))
   }
 
   function updatePlayer (node, youtubeId, caption) {
-    var newNode = node.cloneNode(true)
+    const newNode = node.cloneNode(true)
     setYoutubeId(newNode, youtubeId)
     setCaption(newNode, caption)
     setAttr(newNode, 'iframe', 'src', '')
@@ -22,7 +22,7 @@
   }
 
   function updatePreview (node, youtubeId, caption) {
-    var newNode = node.cloneNode(true)
+    const newNode = node.cloneNode(true)
     setYoutubeId(newNode, youtubeId)
     setCaption(newNode, caption)
     setAttr(newNode, 'img', 'src', 'https://img.youtube.com/vi/' + youtubeId + '/mqdefault.jpg')

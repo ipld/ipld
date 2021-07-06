@@ -1,18 +1,12 @@
+const { dirname } = require('path')
+
 module.exports = {
-	eleventyNavigation: {
-		key: data => {
-			if (data.page.url == "/") { return undefined }
-			return data.page.url
-		},
-		parent: data => {
-			val = require('path').dirname(data.page.url)+"/"
-			if (val == "//") { return undefined }
-			return val
-		},
-		title: data => {
-			if (data.navTitle) { return data.navTitle }
-			if (data.title) { return data.title }
-			return data.page.fileSlug
-		}
-	}
+  eleventyNavigation: {
+    key: ({ page }) => page.url === '/' ? undefined : page.url,
+    parent: ({ page }) => {
+      const val = `${dirname(page.url)}/`
+      return val === '//' ? undefined : val
+    },
+    title: ({ navTitle, title, page }) => navTitle || title || page.fileSlig
+  }
 }

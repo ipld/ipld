@@ -1,6 +1,8 @@
 ---
 title: "Specs: DAG-COSMOS"
 navTitle: "DAG-COSMOS"
+eleventyNavigation:
+    synopsys: "Specification for Tendermint and Cosmos as an IPLD Data Structure and the suite of codecs used to convert Tendermint and Cosmos types to and from the IPLD Data Model"
 ---
 
 
@@ -17,10 +19,10 @@ For more information about the IPLD Schema language, see the [IPLD Schema docume
 
 ## Data Structure Descriptions
 
-* [Tendermint and Cosmos Data Structure **Basic Types**](./basic_types.md)
-* [Tendermint and Cosmos **Cryptographic Types**](./crypto_types.md)
-* [**Tendermint Chain** Data Structures](./tendermint_chain.md)
-* [**Cosmos State** Machine Data Structures](./cosmos_state.md)
+* [Tendermint and Cosmos Data Structure **Basic Types**](./basic_types)
+* [Tendermint and Cosmos **Cryptographic Types**](./crypto_types)
+* [**Tendermint Chain** Data Structures](./tendermint_chain)
+* [**Cosmos State** Machine Data Structures](./cosmos_state)
 
 ## Data Structure Diagram
 ![](tendermint_dag.png)

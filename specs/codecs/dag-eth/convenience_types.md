@@ -62,8 +62,8 @@ the sets of transactions and receipts for that block in order to avoid the need 
 and receipt tries to collect these sets (as is required when starting from a canonical `Header` block).
 These objects can be generated or verified by following the links within the contained `Header` to collect the `Transactions` and `Receipts`
 from the referenced transaction and receipt tries.
-* The IPLD block is a CBOR serialization of the Block object.
-* CID links to `Block` use a KECCAK_256 multihash of the CBOR serialized object and the DagCbor codec (0x71).
+* The IPLD block is a DAG-CBOR serialization of the `Block` object.
+* CID links to `Block` use a KECCAK_256 multihash of the DAG-CBOR serialized object and the DagCbor codec (0x71).
 
 ```ipldsch
 # Block represents an entire block in the Ethereum blockchain.
@@ -125,8 +125,8 @@ type Receipts [Receipt]
 
 This is the IPLD schema for the configuration settings and genesis allocations to produce a specific genesis block and begin an Ethereum
 blockchain. It also includes a reference to the genesis block `Header` it produces. This is a single IPLD block at the base of an entire Ethereum chain.
-* The IPLD block is a CBOR serialization of the GenesisInfo object.
-* CID links to `GenesisInfo` use a KECCAK_256 multihash of the CBOR serialized object and the DagCbor codec (0x71).
+* The IPLD block is a DAG-CBOR serialization of the `GenesisInfo` object.
+* CID links to `GenesisInfo` use a KECCAK_256 multihash of the DAG-CBOR serialized object and the DagCbor codec (0x71).
 
 ```ipldsch
 # GenesisInfo specifies the header fields, state of a genesis block, and hard fork switch-over blocks through the chain configuration.

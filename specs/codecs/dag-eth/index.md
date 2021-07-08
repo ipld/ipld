@@ -1,6 +1,8 @@
 ---
 title: "Specs: DAG-ETH"
 navTitle: "DAG-ETH"
+eleventyNavigation:
+    synopsys: "Specification for Ethereum as an IPLD Data Structure and the suite of codecs used to convert Ethereum types to and from the IPLD Data Model"
 ---
 
 # Ethereum as an IPLD Data Structure
@@ -18,7 +20,7 @@ For more information about the IPLD Schema language, see the [IPLD Schema docume
 
 ## Data Structure Descriptions
 
-* [Ethereum Data Structures **Basic Types**](./basic_types.md)
-* [Ethereum **Chain** Data Structures](./chain.md)
-* [Ethereum **Convenience Types**](./convenience_types.md)
-* [Ethereum **State** Data Structures](./state.md)
+* [Ethereum Data Structures **Basic Types**](./basic_types)
+* [Ethereum **Chain** Data Structures](./chain)
+* [Ethereum **Convenience Types**](./convenience_types)
+* [Ethereum **State** Data Structures](./state)

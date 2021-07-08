@@ -2,7 +2,7 @@
 
 This section contains the IPLD schemas for the blockchain data structures of Ethereum.
 This includes: headers, uncle sets, transactions, and receipts. The state trie, storage trie,
-receipt trie, and transaction trie IPLDs are described in the [state](./state.md) section. It
+receipt trie, and transaction trie IPLDs are described in the [state](../state) section. It
 is important to note that traversal from header to a specific transaction or receipt requires traversal
 across their respective tries beginning at the root referenced in the header. Alternatively, uncles are referenced
 directly from the header by the hash of the RLP encoded list of uncles.

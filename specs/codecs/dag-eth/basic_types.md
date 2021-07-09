@@ -9,7 +9,7 @@ type BigInt bytes
 
 # Unsigned integer
 # Used to explicity specify that an integer cannot be negative
-type Uint int
+type Uint bytes
 
 # Block nonce is an 8 byte binary representation of a block's nonce
 type BlockNonce bytes
@@ -28,4 +28,10 @@ type Balance BigInt
 
 # OpCode is a 1 byte EVM opcode
 type OpCode bytes
+
+# Time is a 64 bit uint UNIX timestamp
+type Time bytes
+
+# TxType is an 8 bit uint representing the type of the tx
+type TxType bytes
 ```

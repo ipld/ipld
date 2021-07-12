@@ -7,6 +7,6 @@ module.exports = {
       const val = `${dirname(page.url)}/`
       return val === '//' ? undefined : val
     },
-    title: ({ navTitle, title, page }) => navTitle || title || page.fileSlig
+    title: ({ navTitle, title, page }) => navTitle || title || page.fileSlug
   }
 }

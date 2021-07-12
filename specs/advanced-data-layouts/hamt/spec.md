@@ -44,9 +44,9 @@ The IPLD HashMap is constructed as a [hash array mapped trie (HAMT)](https://en.
 * [CHAMP paper](https://michael.steindorfer.name/publications/oopsla15.pdf) presented at Oopsla 2015 by Steinforder & Vinju
 * [Java implementation](https://github.com/msteindorfer/oopsla15-artifact/) accompanying the original CHAMP paper (see https://github.com/msteindorfer/oopsla15-artifact/blob/master/pdb.values/src/org/eclipse/imp/pdb/facts/util/TrieMap_5Bits.java and other TrieMap files in the same directory).
 * [Optimizing Hash-Array Mapped Tries for Fast and Lean Immutable JVM Collections](https://blog.acolyer.org/2015/11/27/hamt/) a high-level description of HAMT data structures in general and the specifics of CHAMP.
-* Peergos [CHAMP](https://github.com/Peergos/Peergos/blob/master/src/peergos/shared/hamt/Champ.java) implementation
-* [IAMap](https://github.com/rvagg/iamap) JavaScript implementation of the algorithm
-* [ipld-hashmap](https://github.com/rvagg/js-ipld-hashmap) JavaScript IPLD frontend to IAMap with a mutable API
+* Peergos [CHAMP](https://github.com/Peergos/Peergos/blob/master/src/peergos/shared/hamt/Champ.java) implementation.
+* [ipld-hashmap](https://github.com/rvagg/js-ipld-hashmap) JavaScript IPLD implementation with a mutable API.
+  * [IAMap](https://github.com/rvagg/iamap) low-level JavaScript implementation of the algorithm with an immutable API, ipld-hashmap is an IPLD-native mutable front-end to this library.
 * [go-hamt-ipld](https://github.com/filecoin-project/go-hamt-ipld) Filecoin Go HAMT implementation used by the [Lotus](https://lotu.sh/) client. See the appendix for how this implementation differs from this specification.
 
 ## Summary

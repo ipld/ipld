@@ -16,5 +16,4 @@ regardless of the insertion order of the data or the history of how the data str
 This is good news for determinism, and makes HAMTs very valuable in decentralized system design.
 
 - [HAMT ADL Specification](./spec/)
-- Fixtures:
-	- Fixtures for this system are currently lacking.  If you know of some and can link them here, please send an issue or PR.
+- [Fixtures](./fixture/)

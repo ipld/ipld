@@ -8,12 +8,12 @@
 {% macro childrenTableWithSynopsys(collectionsAll, pageUrl) -%}
 {% set navPages = collectionsAll | eleventyNavigation(pageUrl) %}
 {{ collections.all | dump }}
-<table cellspacing=6>
+<table cellspacing=6 class="children-table">
 {%- for entry in navPages %}
 	<tr>
-	<td align="right" style="font-size: 120%;"><a href="{{ entry.url | url }}">{{ entry.title }}</a></td>
-	<td> - </td>
-	<td>{{ entry.synopsys if entry.synopsys else "<i><small>no synopsys available</small></i>" | safe }}</td>
+	<td><a href="{{ entry.url | url }}">{{ entry.title }}</a></td>
+	<td>{{ " - " if entry.synopsys }}</td>
+	<td>{{ entry.synopsys if entry.synopsys | safe }}</td>
 	</tr>
 {%- endfor -%}
 </table>

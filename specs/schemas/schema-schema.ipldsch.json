@@ -356,8 +356,8 @@
 		},
 		"UnionRepresentation_BytePrefix": {
 			"kind": "map",
-			"keyType": "TypeName",
-			"valueType": "Int"
+			"keyType": "String",
+			"valueType": "TypeName"
 		},
 		"TypeStruct": {
 			"kind": "struct",

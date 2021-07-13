@@ -601,15 +601,15 @@ The `byteprefix` Union representation strategy is used strictly for Bytes repres
 
 ```ipldsch
 type Signature union {
-  | Secp256k1Signature 0
-  | Bls12_381Signature 1
+  | Secp256k1Signature "0x00"
+  | Bls12_381Signature "0x01"
 } representation byteprefix
 
 type Secp256k1Signature bytes
 type Bls12_381Signature bytes
 ```
 
-At the Data Model layer, this presents as Bytes (a byte array), where the first byte is the discriminator (`0x00` or `0x01`) and the remainder is sliced to form either of the two types depending on the discriminator.
+At the Data Model layer, this presents as Bytes (a byte array), where the first bytes are the discriminator (`0x00` or `0x01`) and the remainder is sliced to form either of the two types depending on the discriminator.
 
 No parameters are available for the `byteprefix` Union representation strategy.
 

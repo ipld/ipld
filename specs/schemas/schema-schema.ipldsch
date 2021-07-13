@@ -378,7 +378,15 @@ type UnionRepresentation union {
 ##
 ## The referenced type must of course produce the RepresentationKind it's
 ## matched with!
-type UnionRepresentation_Kinded {RepresentationKind:TypeName}
+type UnionRepresentation_Kinded {RepresentationKind:TypeNameOrLink}
+
+## "TypeNameOrLink" is used to allow inline link definitions within a kinded union
+## as a shorthand rather than requiring all links be defined as a separate type
+## before used within a kinded union.
+type TypeNameOrLink union {
+  | TypeName string
+  | TypeLink link
+} representation kinded
 
 ## "Keyed" union representations will encode as a map, where the map has
 ## exactly one entry, the key string of which will be used to look up the name
@@ -518,7 +526,9 @@ type TypeTerm union {
 
 ## InlineDefn represents a declaration of an anonymous type of one of the simple
 ## recursive kinds (e.g. map or list) which is found "inline" in another type's
-## definition.  It's the more complex option of the TypeTerm union.
+## definition.  It is also used to support expressive link declaration in
+## certain places so they don't have to be declared as their own types.
+## InlineDefn is the more complex option of the TypeTerm union.
 ##
 ## Note that the representation of this union -- `representation inline "kind"`
 ## -- as well as the keywords for its members -- align exactly with those
@@ -531,6 +541,7 @@ type TypeTerm union {
 type InlineDefn union {
 	| TypeMap "map"
 	| TypeList "list"
+	| TypeLink "link"
 } representation inline {
 	discriminantKey "kind"
 }

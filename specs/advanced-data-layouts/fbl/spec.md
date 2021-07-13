@@ -6,7 +6,7 @@
 
 It is flexible enough to support very small and very large (multi-block) binary data.
 
-```sh
+```ipldsch
 type FlexibleByteLayout union {
   | Bytes bytes
   | NestedByteList list

@@ -132,3 +132,12 @@ aside#breadcrumbs {
 	content: " » ";
 	margin: 0 0.4rem;
 }
+
+.children-table > tbody > tr > td:first-child {
+	text-align: right;
+	font-weight: bold;
+}
+
+.children-table > tbody > tr > td {
+	vertical-align: middle;
+}

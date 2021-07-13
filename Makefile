@@ -8,6 +8,10 @@ build:
 	@echo ">>> $@ >>>"
 	npm run build
 
+schema-schema:
+	@ echo ">>> $@ >>>"
+	npm run build:schema-schema
+
 dev:
 	@echo ">>> $@ >>>"
 	npm run dev

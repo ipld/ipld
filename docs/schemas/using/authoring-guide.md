@@ -29,6 +29,7 @@ eleventyNavigation:
     * [Keyed](#keyed)
     * [Envelope](#envelope)
     * [Inline](#inline)
+  * [Stringprefix Unions for Strings](#stringprefix-unions-for-strings)
   * [Byteprefix Unions for Bytes](#byteprefix-unions-for-bytes)
 * [Copy](#copy)
 * [Advanced Data Layouts](#advanced-data-layouts)
@@ -98,8 +99,8 @@ The schema kinds have matching tokens that appear throughout IPLD Schemas. Depen
 * Boolean: may appear as `Bool` for a component specifier or `bool` as a typedef.
 * Integer: May appear as `Int` for a component specifier or `int` as a typedef. There are no additional specifiers for integer size or signedness (although this may appear as adjuncts for codegen in the future).
 * Float: May appear as `Float` for a component specifier or `float` as a typedef. There are no additional specifiers for size or byte representation (although this may appear as adjuncts for codegen in the future).
-* String: May appear as `String` for a component specifier or `string` as a typedef. The Data Model assumes unicode. Specific string encodings also appear as representation forms, see below.
-* Bytes: May appear as `Bytes` for a component specifier or `bytes` as a typedef. There are no additional specifiers for byte array length and there is no way to specify a single byte. The `byteprefix` Union representation type is a special case indicating a single byte dictates the type of the proceeding bytes, see below.
+* String: May appear as `String` for a component specifier or `string` as a typedef. The Data Model assumes unicode. Specific string encodings also appear as representation forms, see below. The `stringprefix` Union representation strategy is a special case indicating a prefix string dictating the type of the proceeding characters, see below.
+* Bytes: May appear as `Bytes` for a component specifier or `bytes` as a typedef. There are no additional specifiers for byte array length and there is no way to specify a single byte. The `byteprefix` Union representation strategy is a special case indicating a single byte dictates the type of the proceeding bytes, see below.
 * List: Is inferred by the `[Type]` shorthand for both typedefs and inline component specification. The token "List" is not used in the Schema DSL and all Lists must have value type specified (although Unions allow for significant flexibility here).
 * Map: Is inferred by the `{KeyType:ValueType}` shorthand for both typedefs and inline component specification. The token "Map" is not used in the Schema DSL and all Maps must have key and value type specified (although Unions allow for significant flexibility here).
 * Link: The `&` token prefixing a type is used as a shorthand for links. A generic link to an untyped resource uses the special `&Any`, while a link where there is an expected type to be found uses that type name as a hinting mechanism, `&Foo`. See below and [Links in IPLD Schemas](/docs/schemas/features/links/) for more information.
@@ -226,7 +227,7 @@ type Foo struct {
 
 These two descriptors of `Foo` are identical when parsed as the `representation map` is implicit for Structs when a representation is not supplied.
 
-The Struct can also be represented as a List when we supply the `tuple` representation type:
+The Struct can also be represented as a List when we supply the `tuple` representation strategy:
 
 ```ipldsch
 type Foo struct {
@@ -772,6 +773,28 @@ type Ping struct {
 ```
 
 The interface presented by this Schema is adjusted in comparison to the previous Unions as `Error` is now a Struct with a `message` field.
+
+### Stringprefix Unions for Strings
+
+A special case union exists for handling String kinds. Where a node contains a string, we may want to different between two different uses of that string at the application layer. Such prefix discriminators are common in configuration option schemes, for example. Stringprefix unions reinterpret a string, stripping out the matched prefix and present the application layer with only the type, and remainder string type, that was matched. Advanced usage may also involve higher-level types that use a string representation strategy being layered on top of a matching type (e.g. a `stringjoin` map).
+
+```ipldsch
+type Username string
+
+type Credentials struct {
+  credType String
+  credToken String
+} representation stringjoin {
+  join ":"
+}
+
+type Authorization union {
+	| Username "user:"
+	| Credentials "auth:"
+} representation stringprefix
+```
+
+By declaring a `stringprefix` union, we specify that the first characters of the string matching the `Authorization` node will discriminate which `type` the public key is. Those first characters will be sliced off and expected to be either `user:` or `auth:`, then the remainder of the string will be extracted and encapsulated inside either `Username` or further decoded as the `Credentials` type (by further splitting it by `:`) depending on the discriminator prefix.
 
 ### Byteprefix Unions for Bytes
 

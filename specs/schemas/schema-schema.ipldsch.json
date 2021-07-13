@@ -301,6 +301,7 @@
 					"keyed": "UnionRepresentation_Keyed",
 					"envelope": "UnionRepresentation_Envelope",
 					"inline": "UnionRepresentation_Inline",
+					"stringprefix": "UnionRepresentation_StringPrefix",
 					"byteprefix": "UnionRepresentation_BytePrefix"
 				}
 			}
@@ -353,6 +354,11 @@
 			"representation": {
 				"map": {}
 			}
+		},
+		"UnionRepresentation_StringPrefix": {
+			"kind": "map",
+			"keyType": "String",
+			"valueType": "TypeName"
 		},
 		"UnionRepresentation_BytePrefix": {
 			"kind": "struct",

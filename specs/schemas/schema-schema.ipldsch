@@ -348,15 +348,18 @@ type TypeUnion struct {
 ## UnionRepresentation is a union of all the distinct ways a TypeUnion's values
 ## can be mapped onto a serialized format for the IPLD Data Model.
 ##
-## There are five strategies that can be used to encode a union:
-## "keyed", "envelope", "inline", "byteprefix", and "kinded".
+## There are six strategies that can be used to encode a union:
+## "keyed", "envelope", "inline", "stringprefix", "byteprefix", and "kinded".
 ## The "keyed", "envelope", and "inline" strategies are all ways to produce
 ## representations in a map format, using map keys as type discriminators
 ## (some literature may describe this as a "tagged" style of union).
-## The "byteprefix" strategy, only available only for unions in which all
-## member types themselves represent as bytes in the data model, uses another
-## byte as the type discrimination hint (and like the map-oriented strategies,
+## The "stringprefix" strategy, only available for unions in which all member
+## types themselves represent as strings in the data model, uses a prefix
+## string as the type discrimination hint (and like the map-oriented strategies,
 ## may also be seen as a form of "tagged" style unions).
+## The "byteprefix" strategy, only available for unions in which all member
+## types themselves represent as bytes in the data model, similar to
+## "stringprefix" but with bytes.
 ## The "kinded" strategy can describe a union in which member types have
 ## several different representation kinds, and uses the representation kind
 ## itself as the type discrimination hint to do so.
@@ -369,6 +372,7 @@ type UnionRepresentation union {
 	| UnionRepresentation_Keyed "keyed"
 	| UnionRepresentation_Envelope "envelope"
 	| UnionRepresentation_Inline "inline"
+	| UnionRepresentation_StringPrefix "stringprefix"
 	| UnionRepresentation_BytePrefix "byteprefix"
 } representation keyed
 
@@ -422,6 +426,20 @@ type UnionRepresentation_Inline struct {
 	discriminantKey String
 	discriminantTable {String:TypeName}
 }
+
+## UnionRepresentation_StringPrefix describes a union representation for unions
+## whose member types are all strings. Strings used for this representation
+## strategy use the first characters as the discriminator, and the subsequent
+## characters as the discriminated type's value.
+##
+## There is currently no limitation on prefix length, other than needing to be
+## at least one character. Nor is there a requirement that they all be of the
+## same length, although they must all represent unique prefixes.
+##
+## stringprefix is an invalid representation for any union that contains a type
+## that does not have a string representation.
+##
+type UnionRepresentation_StringPrefix {String:TypeName}
 
 ## UnionRepresentation_BytePrefix describes a union representation for unions
 ## whose member types are all bytes. It is encoded to a byte array whose

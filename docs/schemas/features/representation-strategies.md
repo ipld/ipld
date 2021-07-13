@@ -591,6 +591,32 @@ One general parameter is mandatory for the `inline` Union representation strateg
 
 * `discriminantKey` defines a quoted string that is used to look up a string in the Map at the current node to match against the keys provided with each of the constituent types of the Union.
 
+### Union `stringprefix` Representation
+
+**Representation Kind: String**
+
+The `stringprefix` Union representation strategy is used strictly for String representation kinds. The `byteprefix` Union representation strategy can only be used as a Union between types that can be represented as strings (e.g. plain Strings, structs with `stringjoin` representations, maps as `stringpairs`, etc.).
+
+```ipldsch
+type Username string
+
+type Credentials struct {
+  credType String
+  credToken String
+} representation stringjoin {
+  join ":"
+}
+
+type Authorization union {
+	| Username "user:"
+	| Credentials "auth:"
+} representation stringprefix
+```
+
+At the Data Model layer, strings at the `Authorization` node are prefixed with either `user:` or `auth:` and are decomposed into their matching types when represented at the Schema layer. In this case, the `Credentials` struct is further decomposed into a two-field struct by splitting the remainder of the string starting with `auth:` by the `:` characters.
+
+No parameters are available for the `stringprefix` Union representation strategy.
+
 ### Union `byteprefix` Representation
 
 **Representation Kind: Bytes**

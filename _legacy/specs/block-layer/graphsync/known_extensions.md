@@ -18,7 +18,7 @@ When a requestor sends a request, it should send a CBOR encoded IPLD Node that i
 The IPLD schema is as follows:
 
 ```ipldsch
-type DoNotSendCids [Cid]
+type DoNotSendCids list [Cid]
 ```
 
 The responder node will execute the selector query as it would normally. However, if it supports the extension, when the selector query passes over any blocks that have a cid from the DoNotSend list, the responder will not send that block back, knowing ahead of time the requestor already has it. The responder does not send a value back in the response for this extension.
@@ -59,5 +59,5 @@ type LinkMetadata struct {
   blockPresent Bool
 }
 
-type ResponseMetadata [LinkMetadata]
+type ResponseMetadata list [LinkMetadata]
 ```

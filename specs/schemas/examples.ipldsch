@@ -1,5 +1,5 @@
 
-type ExampleWithNullable {String : nullable &Any}
+type ExampleWithNullable map {String : nullable &Any}
 
 type ExampleWithAnonDefns struct {
 	fooField optional {String:String} (rename "foo_field")

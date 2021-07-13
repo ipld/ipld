@@ -79,7 +79,7 @@ type ActorIDHAMTElement union {
 
 type ActorIDHAMTLink &ActorIDHAMT
 
-type ActorIDHAMTBucket [ ActorIDHAMTBucketEntry ]
+type ActorIDHAMTBucket list [ ActorIDHAMTBucketEntry ]
 
 type ActorIDHAMTBucketEntry struct {
   key Address
@@ -346,7 +346,7 @@ type DealProposalHAMTElement union {
 
 type DealProposalHAMTLink &DealProposalHAMT
 
-type DealProposalHAMTBucket [ DealProposalHAMTBucketEntry ]
+type DealProposalHAMTBucket list [ DealProposalHAMTBucketEntry ]
 
 type DealProposalHAMTBucketEntry struct {
   key DealCidBytes
@@ -369,7 +369,7 @@ type BalanceTableHAMTElement union {
 
 type BalanceTableHAMTLink &BalanceTableHAMT
 
-type BalanceTableHAMTBucket [ BalanceTableHAMTBucketEntry ]
+type BalanceTableHAMTBucket list [ BalanceTableHAMTBucketEntry ]
 
 type BalanceTableHAMTBucketEntry struct {
   key Address
@@ -394,7 +394,7 @@ type DealOpsByEpochHAMTElement union {
 
 type DealOpsByEpochHAMTLink &DealOpsByEpochHAMTLink
 
-type DealOpsByEpochHAMTBucket [ DealOpsByEpochHAMTBucketEntry ]
+type DealOpsByEpochHAMTBucket list [ DealOpsByEpochHAMTBucketEntry ]
 
 type DealOpsByEpochHAMTBucketEntry struct {
   key ChainEpochBytes
@@ -415,7 +415,7 @@ type DealOpsByEpochHAMTSetElement union {
 
 type DealOpsByEpochHAMTSet_Link &DealOpsByEpochHAMTSet
 
-type DealOpsByEpochHAMTSetBucket [ DealOpsByEpochHAMTSetBucketEntry ]
+type DealOpsByEpochHAMTSetBucket list [ DealOpsByEpochHAMTSetBucketEntry ]
 
 type DealOpsByEpochHAMTSetBucketEntry struct {
   key DealIDBytes
@@ -535,7 +535,7 @@ type MinerV0Deadlines struct {
 } representation tuple
 
 # Must be 48 CIDs
-type MinerV0DeadlineLinkList [&MinerV0Deadline]
+type MinerV0DeadlineLinkList list [&MinerV0Deadline]
 ```
 
 ```ipldsch
@@ -657,7 +657,7 @@ type MinerV2Deadlines struct {
 } representation tuple
 
 # Must be 48 CIDs
-type MinerV2DeadlineLinkList [&MinerV2Deadline]
+type MinerV2DeadlineLinkList list [&MinerV2Deadline]
 ```
 
 ```ipldsch
@@ -702,7 +702,7 @@ type MinerV0SectorPreCommitOnChainInfoHAMTElement union {
 
 type MinerV0SectorPreCommitOnChainInfoHAMTLink &MinerV0SectorPreCommitOnChainInfoHAMT
 
-type MinerV0SectorPreCommitOnChainInfoHAMTBucket [ MinerV0SectorPreCommitOnChainInfoHAMTBucketEntry ]
+type MinerV0SectorPreCommitOnChainInfoHAMTBucket list [ MinerV0SectorPreCommitOnChainInfoHAMTBucketEntry ]
 
 type MinerV0SectorPreCommitOnChainInfoHAMTBucketEntry struct {
   key SectorNumberBytes
@@ -1024,7 +1024,7 @@ type MultisigV0TransactionHAMTElement union {
 
 type MultisigV0TransactionHAMTLink &MultisigV0TransactionHAMT
 
-type MultisigV0TransactionHAMTBucket [ MultisigV0TransactionHAMTBucketEntry ]
+type MultisigV0TransactionHAMTBucket list [ MultisigV0TransactionHAMTBucketEntry ]
 
 type MultisigV0TransactionHAMTBucketEntry struct {
   key Bytes
@@ -1192,7 +1192,7 @@ type PowerV0CronEventHAMTElement union {
 
 type PowerV0CronEventHAMTLink &PowerV0CronEventHAMTLink
 
-type PowerV0CronEventHAMTBucket [ PowerV0CronEventHAMTBucketEntry ]
+type PowerV0CronEventHAMTBucket list [ PowerV0CronEventHAMTBucketEntry ]
 
 type PowerV0CronEventHAMTBucketEntry struct {
   key ChainEpochBytes
@@ -1235,7 +1235,7 @@ type PowerV0ClaimMapHAMTElement union {
 
 type PowerV0ClaimMapHAMTLink &PowerV0ClaimMapHAMT
 
-type PowerV0ClaimMapHAMTBucket [ PowerV0ClaimMapHAMTBucketEntry ]
+type PowerV0ClaimMapHAMTBucket list [ PowerV0ClaimMapHAMTBucketEntry ]
 
 type PowerV0ClaimMapHAMTBucketEntry struct {
   key Address
@@ -1265,7 +1265,7 @@ type PowerV2ClaimMapHAMTElement union {
 
 type PowerV2ClaimMapHAMTLink &PowerV2ClaimMapHAMT
 
-type PowerV2ClaimMapHAMTBucket [ PowerV2ClaimMapHAMTBucketEntry ]
+type PowerV2ClaimMapHAMTBucket list [ PowerV2ClaimMapHAMTBucketEntry ]
 
 type PowerV2ClaimMapHAMTBucketEntry struct {
   key Address
@@ -1299,7 +1299,7 @@ type ProofValidationBatchHAMTElement union {
 
 type ProofValidationBatchHAMTLink &ProofValidationBatchHAMTLink
 
-type ProofValidationBatchHAMTBucket [ ProofValidationBatchHAMTBucketEntry ]
+type ProofValidationBatchHAMTBucket list [ ProofValidationBatchHAMTBucketEntry ]
 
 type ProofValidationBatchHAMTBucketEntry struct {
   key Address
@@ -1381,7 +1381,7 @@ type DataCapHAMTElement union {
 
 type DataCapHAMTLink &DataCapHAMT
 
-type DataCapHAMTBucket [ DataCapHAMTBucketEntry ]
+type DataCapHAMTBucket list [ DataCapHAMTBucketEntry ]
 
 type DataCapHAMTBucketEntry struct {
   key Address

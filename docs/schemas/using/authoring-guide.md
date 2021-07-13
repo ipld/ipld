@@ -126,13 +126,13 @@ The non-recursive (scalar) Schema kinds (Boolean, Integer, Float, String, Bytes,
 ```ipldsch
 type Foo string
 type Bar int
-type Boom {Foo:Bar}
+type Boom map {Foo:Bar}
 ```
 
 In terms of data layout, this is equivalent to:
 
 ```ipldsch
-type Boom {String:Int}
+type Boom map {String:Int}
 ```
 
 (Note that even though the Data Model only allows for string keys of maps, the indirection through type `Foo` is allowed since it has a string representation.)
@@ -158,9 +158,9 @@ For more information about Links in Schemas, see [Links in IPLD Schemas](/docs/s
 The scalar types (Boolean, Integer, Float, String, Bytes, Link) may appear inline or be typedef'd. In addition, both Map and Link types may appear both inline and as their own type. The additional Schema kinds (Struct, Enum, Union, Copy) do not have an inline variant.
 
 ```ipldsch
-type IntList [Int]
+type IntList list [Int]
 
-type MapOfIntLists {String:IntList}
+type MapOfIntLists map {String:IntList}
 
 type Foo struct {
   id Int
@@ -852,7 +852,7 @@ The interaction with the Data Model is also left up to the ADL, so it is not lim
 ```ipldsch
 advanced ShardedMap
 
-type MyMap { String : &Any } representation advanced ShardedMap
+type MyMap map { String : &Any } representation advanced ShardedMap
 ```
 
 In this case, we declare a `MyMap` type that is considered a Map kind for the purpose of the rest of the Schema and presents as such above the Schema layer. Meanwhile we have inserted custom logic, labelled `ShardedMap`, that takes care of the decode/encode and traversal required to present a standard Map kind to the user of such a Schema.

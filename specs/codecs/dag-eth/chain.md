@@ -77,7 +77,7 @@ This is the IPLD schema for a list of uncles ordered in ascending order by their
 ```ipldsch
 # Uncles contains an ordered list of Ethereum uncles (headers that have no associated body)
 # This IPLD object is referenced by a CID composed of the KECCAK_256 multihash of the RLP encoded list and the EthHeaderList codec (0x91)
-type Uncles [Header]
+type Uncles list [Header]
 ```
 
 ## Transaction IPLD
@@ -115,7 +115,7 @@ type Transaction struct {
 }
 
 // AccessList is an EIP-2930 access list.
-type AccessList [AccessElement]
+type AccessList list [AccessElement]
 
 // AccessElement are the element type of an access list.
 type AccessElement struct {
@@ -124,7 +124,7 @@ type AccessElement struct {
 }
 
 // StorageKeys are the keys contained in an AccessElement
-type StorageKeys [Hash]
+type StorageKeys list [Hash]
 ```
 
 ## Receipt IPLD
@@ -156,7 +156,7 @@ type Status enum {
 } representation int
 
 # Logs is a list of logs
-type Logs [Log]
+type Logs list [Log]
 
 # Log contains the consensus fields of an Etherem receipt log
 type Log struct {
@@ -166,5 +166,5 @@ type Log struct {
 }
 
 # Topics is a list of log topics
-type Topics [Hash]
+type Topics list [Hash]
 ```

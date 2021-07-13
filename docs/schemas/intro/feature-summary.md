@@ -61,7 +61,7 @@ type Foo struct {
   f nullable Bar
 }
 
-type Bar [nullable Foo]
+type Bar list [nullable Foo]
 ```
 
 **A clear syntax for non-required fields**

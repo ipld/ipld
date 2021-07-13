@@ -303,7 +303,7 @@ Schema Maps are represented as Data Model Maps by default. Schema Maps differ fr
 **Example**
 
 ```ipldsch
-type FloatMap {String:Float}
+type FloatMap map {String:Float}
 ```
 
 Some data matching the `FloatMap` Map (shown as JSON) is:
@@ -333,7 +333,7 @@ This serial representation is strictly limited: the domain of available for keys
 A string that is similar in format to the options found in an /etc/fstab file might be defined as:
 
 ```ipldsch
-type MountOptions {String:String} representation stringpairs {
+type MountOptions map {String:String} representation stringpairs {
   innerDelim "="
   entryDelim ","
 }
@@ -359,7 +359,7 @@ The `listpairs` Map representation strategy is roughly the same the `listpairs` 
 **Example**
 
 ```ipldsch
-type FloatMap {String:Float} representation listpairs
+type FloatMap map {String:Float} representation listpairs
 ```
 
 Some data matching the `FloatMap` Map (shown as JSON) is:
@@ -473,7 +473,7 @@ type Foo struct {
 
 type Bar int
 
-type Bang {String:Int} representation stringpairs {
+type Bang map {String:Int} representation stringpairs {
   innerDelim ":"
   entryDelim "|"
 }

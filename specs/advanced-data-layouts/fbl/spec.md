@@ -13,7 +13,7 @@ type FlexibleByteLayout union {
   | &FlexibleByteLayout link
 } representation kinded
 
-type NestedByteList [ NestedByte ]
+type NestedByteList list [ NestedByte ]
 
 type NestedByte union {
   | Bytes bytes

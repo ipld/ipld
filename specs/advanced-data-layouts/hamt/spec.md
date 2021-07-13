@@ -115,7 +115,7 @@ type Element union {
   | Bucket list
 } representation kinded
 
-type Bucket [ BucketEntry ]
+type Bucket list [ BucketEntry ]
 
 type BucketEntry struct {
   key Bytes
@@ -339,7 +339,7 @@ type PointerV3 union {
   | Bucket list
 } representation kinded
 
-type Bucket [ KV ]
+type Bucket list [ KV ]
 
 # Equivalent to "BucketEntry"
 type KV struct {

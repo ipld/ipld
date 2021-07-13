@@ -18,7 +18,7 @@ This fixture builds a HAMT cataloging the locations of all words appearing in th
 * Values take the following form:
 
 ```ipldsch
-type Value [Datum]
+type Value list [Datum]
 type Datum struct {
   line Int
   column Int

@@ -46,7 +46,7 @@ Similarly, an advanced layout implementing a sharded `map` may be defined and us
 ```ipldsch
 advanced ShardedMap
 
-type MyMap { String : &Any } representation advanced ShardedMap
+type MyMap map { String : &Any } representation advanced ShardedMap
 ```
 
 From this usage, we may infer that `ShardedMap` can (1) present a familiar `map` kind interface and (2) store `link`s as values (with no specific "expectedType"), referenced by standard data model `string`s. Other operating modes for `ShardedMap` may also be possible (it may be able to store other value kinds, or it may even be able to act as a `bytes` kind in spite of its name!).

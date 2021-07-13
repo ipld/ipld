@@ -31,7 +31,7 @@ type TypeName string
 ## }
 ## ```
 ##
-type SchemaMap {TypeName:Type}
+type SchemaMap map {TypeName:Type}
 
 ## AdvancedDataLayoutName defines the name of an ADL as a string.
 ##
@@ -47,7 +47,7 @@ type AdvancedDataLayoutName string
 ## maps the name (AdvancedDataLayoutName) to the AdvancedDataLayout, which is
 ## currently an empty map.
 ##
-type AdvancedDataLayoutMap {AdvancedDataLayoutName:AdvancedDataLayout}
+type AdvancedDataLayoutMap map {AdvancedDataLayoutName:AdvancedDataLayout}
 
 ## Schema is a single-member union, which can be used in serialization
 ## to make a form of "nominative type declaration".
@@ -378,7 +378,7 @@ type UnionRepresentation union {
 ##
 ## The referenced type must of course produce the RepresentationKind it's
 ## matched with!
-type UnionRepresentation_Kinded {RepresentationKind:TypeName}
+type UnionRepresentation_Kinded map {RepresentationKind:TypeName}
 
 ## "Keyed" union representations will encode as a map, where the map has
 ## exactly one entry, the key string of which will be used to look up the name
@@ -388,7 +388,7 @@ type UnionRepresentation_Kinded {RepresentationKind:TypeName}
 ## over the other styles wherever possible; keyed unions tend to have good
 ## performance characteristics, as they have most "mechanical sympathy" with
 ## parsing and deserialization implementation order.
-type UnionRepresentation_Keyed {String:TypeName}
+type UnionRepresentation_Keyed map {String:TypeName}
 
 ## "Envelope" union representations will encode as a map, where the map has
 ## exactly two entries: the two keys should be of the exact strings specified
@@ -681,14 +681,14 @@ type EnumRepresentation union {
 ## in the DSL) which will be stored here in the representation block. Missing
 ## entries in this map will use the default.
 ##
-type EnumRepresentation_String {EnumValue:String}
+type EnumRepresentation_String map {EnumValue:String}
 
 ## EnumRepresentation_Int describes the way an enum is represented as an int
 ## in the data model. A mapping of names to ints is required to perform the
 ## conversion from int to enum value. In the DSL, int values _must_ be provided
 ## for each EnumValue (with `Foo ("100")`, those are stored here.
 ##
-type EnumRepresentation_Int {EnumValue:Int}
+type EnumRepresentation_Int map {EnumValue:Int}
 
 ## TypeCopy describes a special "copy" unit that indicates that a type name
 ## should copy the type descriptor of another type. TypeCopy does not redirect a

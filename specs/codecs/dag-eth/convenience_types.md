@@ -106,7 +106,7 @@ This is the IPLD schema for the ordered list of all transactions for a given blo
 
 ```ipldsch
 # Transactions contains a list of all of the Ethereum transactions at this block
-type Transactions [&Transaction]
+type Transactions list [&Transaction]
 ```
 
 ## Receipts IPLD
@@ -118,7 +118,7 @@ This is the IPLD schema for the ordered list of all receipts for a given block.
 
 ```ipldsch
 # Receipts contains a list of all of the receipts at this block
-type Receipts [Receipt]
+type Receipts list [Receipt]
 ```
 
 ## Genesis IPLD
@@ -154,7 +154,7 @@ type GenesisInfo struct {
 }
 
 # GenesisAlloc is a map that specifies the initial state that is part of the genesis block.
-type GenesisAlloc {Address:GenesisAccount}
+type GenesisAlloc map {Address:GenesisAccount}
 
 # GenesisAccount is an account in the state of the genesis block.
 type GenesisAccount struct {

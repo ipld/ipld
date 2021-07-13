@@ -161,7 +161,7 @@ type ExploreRecursiveEdge struct {}
 ## be considered part of a (possibly labelled) result set), while simultaneously
 ## continuing to explore deeper parts of the tree with another selector,
 ## for example.
-type ExploreUnion [Selector]
+type ExploreUnion list [Selector]
 
 ## Note that ExploreConditional versus a Matcher with a Condition are distinct:
 ## ExploreConditional progresses deeper into a tree;

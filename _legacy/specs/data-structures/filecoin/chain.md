@@ -55,7 +55,7 @@ contains a single parent CID referring to the `Genesis` (above, CID
 type StateRootLink &Any
 
 # See note above about the single case where this type hint does not hold true.
-type TipSetKey [&BlockHeader]
+type TipSetKey list [&BlockHeader]
 
 type BlockHeader struct {
   Miner Address
@@ -264,7 +264,7 @@ type ActorsHAMTElement union {
 
 type ActorsHAMTLink &ActorsHAMT
 
-type ActorsHAMTBucket [ ActorsHAMTBucketEntry ]
+type ActorsHAMTBucket list [ ActorsHAMTBucketEntry ]
 
 type ActorsHAMTBucketEntry struct {
   key Address

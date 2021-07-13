@@ -99,7 +99,7 @@ The schema kinds have matching tokens that appear throughout IPLD Schemas. Depen
 * Integer: May appear as `Int` for a component specifier or `int` as a typedef. There are no additional specifiers for integer size or signedness (although this may appear as adjuncts for codegen in the future).
 * Float: May appear as `Float` for a component specifier or `float` as a typedef. There are no additional specifiers for size or byte representation (although this may appear as adjuncts for codegen in the future).
 * String: May appear as `String` for a component specifier or `string` as a typedef. The Data Model assumes unicode. Specific string encodings also appear as representation forms, see below.
-* Bytes: May appear as `Bytes` for a component specifier or `bytes` as a typedef. There are no additional specifiers for byte array length and there is no way to specify a single byte. The `byteprefix` Union representation type is a special case indicating a single byte dictates the type of the proceeding bytes, see below.
+* Bytes: May appear as `Bytes` for a component specifier or `bytes` as a typedef. There are no additional specifiers for byte array length and there is no way to specify a single byte. The `byteprefix` Union representation type is a special case indicating prefix string of one or more bytes dictates the type of the proceeding bytes, see below.
 * List: Is inferred by the `[Type]` shorthand for both typedefs and inline component specification. The token "List" is not used in the Schema DSL and all Lists must have value type specified (although Unions allow for significant flexibility here).
 * Map: Is inferred by the `{KeyType:ValueType}` shorthand for both typedefs and inline component specification. The token "Map" is not used in the Schema DSL and all Maps must have key and value type specified (although Unions allow for significant flexibility here).
 * Link: The `&` token prefixing a type is used as a shorthand for links. A generic link to an untyped resource uses the special `&Any`, while a link where there is an expected type to be found uses that type name as a hinting mechanism, `&Foo`. See below and [Links in IPLD Schemas](/docs/schemas/features/links/) for more information.
@@ -784,15 +784,17 @@ type Authorization struct {
 }
 
 type PublicKey union {
-  | RsaPubkey 0
-  | Ed25519Pubkey 1
+  | RsaPubkey "0x00"
+  | Ed25519Pubkey "0x01"
 } representation byteprefix
 
 type RsaPubkey bytes
 type Ed25519Pubkey bytes
 ```
 
-By declaring a `byteprefix` union, we specify that the first byte of the byte array found at the `key` node of `Authorization` will discriminate which `type` the public key is. That first byte will be sliced off and expected to be either `0x0` or `0x1`, then the remainder of the byte array will be extracted and encapsulated inside either `RsaPubkey` or `Ed25519Pubkey` depending on the discriminator byte.
+By declaring a `byteprefix` union, we specify that the bytes of the byte array found at the `key` node of `Authorization` will discriminate which `type` the public key is. Those first bytes will be expected to be either `0x00` or `0x01`, then the remainder of the byte array will be extracted and encapsulated inside either `RsaPubkey` or `Ed25519Pubkey` depending on the discriminator byte.
+
+The discriminator bytes are represented as properly formed hexadecimal strings (with or without the `0x` prefix) of any length greater than zero.
 
 ## Copy
 

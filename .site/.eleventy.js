@@ -1,5 +1,6 @@
 const { dirname, basename } = require('path')
 const eleventyNavigation = require('@11ty/eleventy-navigation')
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const eleventyPluginSVG = require('eleventy-plugin-svg-contents')
 const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
@@ -8,6 +9,7 @@ const markdownItFootnote = require('markdown-it-footnote')
 const markdownItMark = require('markdown-it-mark')
 const markdownItTOC = require('markdown-it-table-of-contents')
 const nunjucks = require('nunjucks')
+const prismIpldsch = require('./prism-ipldsch')
 
 module.exports = function (eleventyConfig) {
   const markdownItContainerCfg = (style) => {
@@ -70,6 +72,13 @@ module.exports = function (eleventyConfig) {
   // Inline svgs into html like `{{ 'path/to/file.svg' | svgContents }}`
   eleventyConfig.addPlugin(eleventyPluginSVG)
 
+  // Syntax highlighting for code blocks
+  eleventyConfig.addPlugin(syntaxHighlight, {
+    init: ({ Prism }) => {
+      Prism.languages.ipldsch = prismIpldsch
+    }
+  })
+
   // Make some functions available as filters.
   //  In particular, some of the path manipulation ones are used to create breadcrumbs and other navigation elements.
   eleventyConfig.addFilter('dirname', dirname)
@@ -93,7 +102,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('../specs/**/*.taf')
   eleventyConfig.addPassthroughCopy('../specs/**/*.ipldsch')
   eleventyConfig.addPassthroughCopy('../specs/**/*.car')
-  eleventyConfig.addPassthroughCopy("../specs/**/*.txt")
+  eleventyConfig.addPassthroughCopy('../specs/**/*.txt')
 
   // Introduce some shortcodes used for frequently recurrent stylistic elements.
   //  A "callout" is a box of highlighted, slightly in-set text.  Styles that cause distinct coloration include "info", "warn", "todo".

@@ -19,6 +19,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-navigation": "^0.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.2",
     "eleventy-plugin-svg-contents": "^0.7.0",
     "markdown-it-anchor": "^7.1.0",
     "markdown-it-container": "^3.0.0",

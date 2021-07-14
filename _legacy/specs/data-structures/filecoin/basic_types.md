@@ -88,7 +88,7 @@ type CborEncodedReturn Bytes
 
 ```ipldsch
 type Signature union {
-  SignatureSecp256k1 1
-  SignatureBLS 2
-} representation byteprefix
+  SignatureSecp256k1 "01"
+  SignatureBLS "02"
+} representation bytesprefix
 ```

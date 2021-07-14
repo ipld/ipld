@@ -349,11 +349,11 @@ type TypeUnion struct {
 ## can be mapped onto a serialized format for the IPLD Data Model.
 ##
 ## There are five strategies that can be used to encode a union:
-## "keyed", "envelope", "inline", "byteprefix", and "kinded".
+## "keyed", "envelope", "inline", "bytesprefix", and "kinded".
 ## The "keyed", "envelope", and "inline" strategies are all ways to produce
 ## representations in a map format, using map keys as type discriminators
 ## (some literature may describe this as a "tagged" style of union).
-## The "byteprefix" strategy, only available only for unions in which all
+## The "bytesprefix" strategy, only available only for unions in which all
 ## member types themselves represent as bytes in the data model, uses another
 ## byte as the type discrimination hint (and like the map-oriented strategies,
 ## may also be seen as a form of "tagged" style unions).
@@ -369,7 +369,7 @@ type UnionRepresentation union {
 	| UnionRepresentation_Keyed "keyed"
 	| UnionRepresentation_Envelope "envelope"
 	| UnionRepresentation_Inline "inline"
-	| UnionRepresentation_BytePrefix "byteprefix"
+	| UnionRepresentation_BytesPrefix "bytesprefix"
 } representation keyed
 
 ## "Kinded" union representations describe a bidirectional mapping between
@@ -423,7 +423,7 @@ type UnionRepresentation_Inline struct {
 	discriminantTable {String:TypeName}
 }
 
-## UnionRepresentation_BytePrefix describes a union representation for unions
+## UnionRepresentation_BytesPrefix describes a union representation for unions
 ## whose member types are all bytes. It is encoded to a byte array whose
 ## first bytes are the discriminator and subsequent bytes form the discriminated
 ## type.
@@ -433,14 +433,13 @@ type UnionRepresentation_Inline struct {
 ## Nor is there a requirement that they all be of the same length, although
 ## they must all represent unique prefixes.
 ##
-## While Schema DSL parsers may allow `0x` prefixes to the hexadecimal strings,
-## they should not be present in the internal representation, only valid
-## hexadecimal strings are allowed.
+## Only valid, upper-case, hexadecimal strings representing at least one byte
+## are allowed.
 ##
-## byteprefix is an invalid representation for any union that contains a type
+## bytesprefix is an invalid representation for any union that contains a type
 ## that does not have a bytes representation.
 ##
-type UnionRepresentation_BytePrefix {String:TypeName}
+type UnionRepresentation_BytesPrefix {String:TypeName}
 
 ## TypeStruct describes a type which has a group of fields of varying Type.
 ## Each field has a name, which is used to access its value, similarly to

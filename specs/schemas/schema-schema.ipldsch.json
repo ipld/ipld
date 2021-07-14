@@ -301,7 +301,7 @@
 					"keyed": "UnionRepresentation_Keyed",
 					"envelope": "UnionRepresentation_Envelope",
 					"inline": "UnionRepresentation_Inline",
-					"byteprefix": "UnionRepresentation_BytePrefix"
+					"bytesprefix": "UnionRepresentation_BytesPrefix"
 				}
 			}
 		},
@@ -354,7 +354,7 @@
 				"map": {}
 			}
 		},
-		"UnionRepresentation_BytePrefix": {
+		"UnionRepresentation_BytesPrefix": {
 			"kind": "map",
 			"keyType": "String",
 			"valueType": "TypeName"

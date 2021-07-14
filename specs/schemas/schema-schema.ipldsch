@@ -385,7 +385,7 @@ type UnionRepresentation_Kinded {RepresentationKind:TypeNameOrLink}
 ## before used within a kinded union.
 type TypeNameOrLink union {
   | TypeName string
-  | TypeLink link
+  | TypeLink map
 } representation kinded
 
 ## "Keyed" union representations will encode as a map, where the map has

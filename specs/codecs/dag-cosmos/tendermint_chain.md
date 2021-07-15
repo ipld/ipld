@@ -242,7 +242,7 @@ type ProposalCID &Proposal
 # a so-called Proof-of-Lock (POL) round, as noted in the POLRound.
 # If POLRound >= 0, then BlockID corresponds to the block that is locked in POLRound.
 type Proposal struct {
-	Type      SignedMsgType
+	SMType    SignedMsgType
 	Height    Int
 	Round     Int # there can not be greater than 2_147_483_647 rounds
 	POLRound  Int # -1 if null.
@@ -322,7 +322,7 @@ type DuplicateVoteEvidence struct {
 # Vote represents a prevote, precommit, or commit vote from validators for
 # consensus.
 type Vote struct {
-	Type             SignedMsgType
+	SMType           SignedMsgType
 	Height           Int
 	Round            Int
 	BlockID          BlockID

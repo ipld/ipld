@@ -3,7 +3,6 @@
 ## Yes, it's self-describing! :)
 ## -----
 
-##
 ## Type names are a simple alias of string.
 ##
 ## There are some additional rules that should be applied. Type names:

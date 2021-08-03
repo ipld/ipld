@@ -61,6 +61,10 @@ DAG-PB is **not general**.  Only very specific structures of data can be encoded
 It is very unlikely that unstructured data in the [Data Model](/glossary/#data-model) will be encodable in DAG-PB
 unless it has exactly the known structure matching DAG-PB.
 
+Remember, as mentioned in the [interoperability](#interoperability) section,
+DAG-PB is a _subset_ of Protocol Buffers: it is a specific schema within Protobuf,
+and does not support general user-specified Protobufs.
+
 See [DAG-PB Specs: Logical Format](/specs/codecs/dag-pb/spec/#logical-format) for details
 on the specific structures which are encodable in DAG-PB.
 

@@ -37,8 +37,10 @@ CARv2 consists of:
 
 The CARv2 format can be illustrated as follows:
 
+![Content Addressable aRchive v2 Sections](./carv2-sections.png)
+
 ```
-| 11-byte fixed pragma | 40-byte header | optional padding | CARv1 data payload | optional padding | optional index payload
+| 11-byte fixed pragma | 40-byte header | optional padding | CARv1 data payload | optional padding | optional index payload |
 ```
 
 ### Pragma

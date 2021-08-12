@@ -56,6 +56,14 @@ But, because it still does proper data model form path resolution, you can retri
 
 After js-ipfs v0.56.0, which contained the upgrade to the newer js-multiformats IPLD stack that uses much more plain object forms for representing the data model, **both pathing options now no longer appear to work**, although it still returns `{"links":[]}` if the path should be valid, suggesting that resolution is working but we're not seeing the nodes, but that CIDs are not being followed. There are some bugs here that we should chase down.
 
+### Sharded directories
+
+Sharded directories present a special-case for link name resolution. Requesting `QmFoo/DirName/foo` where `DirName` is a sharded directory will lookup `DirName` in the sharded HAMT starting at `QmFoo`, which may mean traversal of multiple blocks to find the block that encodes the `DirName` data.
+
+Requesting this same path with the prefix `/ipld/` _does not_ have the same behaviour. Instead, the `/ipld/` prefix interprets the nodes at the block layer rather than through the UnixFS lens. However, since it still uses the `Resolve()` function for the block it will still only resolve named links but on the UnixFS sharded block, so the names are HAMT prefixes rather than user-readable names. Our names are 2-character uppercase hexadecimal numbers and this is what the `/ipld/` pathing resolves. `QmFoo/AA/` may give us the same result as `QmFoo/DirName` if `DirName` ended up alone as `AA` in the HAMT (precise details here are unimportant for this discussion).
+
+In the current go-ipfs, the `/ipld/` has the effect of halting the use of UnixFS semantics when traversing dag-pb blocks and the impact of this is primarily that sharded directories lose their ability to be pathed by the directory names, but we are able to path by HAMT prefixes instead.
+
 ## go-ipld-prime in go-ipfs
 
 As of writing, the go-ipld-prime in go-ipfs work as represented in https://github.com/ipfs/go-ipfs/pull/7976 changes all of this for go-ipfs.
@@ -65,9 +73,10 @@ As of writing, the go-ipld-prime in go-ipfs work as represented in https://githu
 3. go-ipld-prime handles path resolution / traversals for `dag get`
 4. There is special-casing, via go-unixfsnode, such that loading a dag-pb node will attempt to reify it into a [UnixFS data model form which has a custom `LookupByString`](https://github.com/ipfs/go-unixfsnode/blob/main/pathpbnode.go) that will search its dag-pb node `Links` array for a named link and return that CID if it has one by that name.
 5. The custom `LookupByString` means that you can't resolve anything else in the data model form of the dag-pb node.
+   1. Sharded directories can still be pathed through directory names, so `QmFoo/DirName/foo` works as expected
 6. There is an `/ipld/` override for resolution, such that when the path is prefixed with this, will _not_ perform the unixfsnode reification and you'll get the "pure" data model form and can resolve all of the properties of `{Data,Links:[{Name,Tsize,Hash},...]}` in a standard pathing form.
-
-Worth noting is that the current (pre go-ipld-prime) version of go-ipfs **does not do anything special with the `/ipld/` path prefix and dag-pb nodes**. It appears to behave the same as without, resolving named links and nothing else.
+   1. The `/ipld/` prefix no longer performs link name resolution, for either plain or sharded directory nodes.
+   2. The primary loss of functionality here is that you can no longer `/ipld/QmFoo/AA/...` where `AA` is a HAMT prefix in a sharded UnixFS directory. Although it seems unlikely that this was a useful piece of functionality or that there is a measurable user group that knew about, or used this.
 
 ## Where to from here?
 
@@ -123,3 +132,17 @@ Implications:
 * js-ipfs would still need many of the changes listed above
 * Users would get the same output from `dag get` as they do now for dag-pb nodes **except for the dag-json differences with encoding bytes**(!).
 * Are there any implications for changing this for Filecoin which currently uses the new dag-pb codec for graphsync?
+
+# Option 3: Reintroduce `ProtoNode`-style name translation
+
+This option is a compromise and would formalise the middle layer between the dag-pb codec and the user. Current go-ipfs has protobuf decode -> `ProtoNode` -> UnixFS. With the jump to `ProtoNode` providing the lowercasing of `data` and `links` and transformation of links into their `ipld.Link` form as well as named link resolution. Although for practical purposes in go-ipfs, the stage prior to `ProtoNode` is not exposed to the user in a meaningful way.
+
+go-ipld-prime gives us `PBNode` (go-codec-dagpb) -> `PathedPBNode` (go-unixfsnode) || `UnixFSBasicDir` || `UnixFSHAMTShard`. Where `PathedPBNode`, `UnixFSBasicDir` and `UnixFSHAMTShard` are ADLs that translate raw `PBNode`s into forms that make go-ipfs happy. `PathedPBNode` and `UnixFSBasicDir` simply add named link functionality back by overriding `LookupByString()` to find the name in the list of links (and therefore removing `Data` and `Links` from traversal). Otherwise it presents a pass-through to `PBNode`. `UnixFSHAMTShard` adds the same named link functionality but is able to traverse multiple substrate nodes in its HAMT structure to address the name being requested.
+
+The majority of functionality for `PathedPBNode` and `UnixFSBasicDir` simply passes through to `PBNode` (so we see plain `PBNode`s when we request a `dag get` for example), which includes field name lookup for `Data` and `Links`. It ought to be a straightforward matter of using a modified schema for this layer and translate `data` to `Data` and `Links` to `links`. An additional ADL type for links would also be required to translate those names. Inspecting a node would then look like the old forms (although the json -> dag-json bytes output differences would still differ).
+
+`/ipld/` pathing would then fall back to pure data model layer semantics, inspecting `PBNode` and `PBLinks` with no go-unixfsnode reification involved.
+
+The challenges are introduced mainly on the write side. If you gave dag-json input via `dag put -f dag-pb`, the `dag-pb` would presumably remain `Data`, `Links`, etc., or would it also introduce the middle layer at this point (in which case, `dag-pb` here becomes even more of a misnomer)? Additionally, go-unixfsnode would need additional work to make it a writable ADL, which it currently is not. Although this work presumably will be done into the future as we replace more of the UnixFS functionality in go-ipfs with go-unixfsnode.
+
+The additional layer of dishonesty here may leave us worse off with users as we pretend that dag-pb doesn't look like what it actually does in our internal data model. Currently named path resolution is a form of this dishonesty, but it exists to serve the important, though legacy, purpose of pathing the classic file and directory data that dag-pb was intended to provide.

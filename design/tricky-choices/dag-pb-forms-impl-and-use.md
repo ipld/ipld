@@ -12,7 +12,7 @@ dag-pb (I don't know when it started being called that but it was originally jus
 
 ## Go data forms
 
-go-ipfs defers all its dag-pb concerns to [go-merkledag](https://github.com/ipfs/go-merkledag/). Which in turn serves as a translation layer between the serialized forms and the in-memory forms of these nodes. Serialization happens in [go-merkledag/pb](https://github.com/ipfs/go-merkledag/tree/master/pb) which started life as a protobuf codegen but has been manually tweaked since then my a few of us for various reasons.
+go-ipfs defers all its dag-pb concerns to [go-merkledag](https://github.com/ipfs/go-merkledag/). Which in turn serves as a translation layer between the serialized forms and the in-memory forms of these nodes. Serialization happens in [go-merkledag/pb](https://github.com/ipfs/go-merkledag/tree/master/pb) which started life as a protobuf codegen but has been manually tweaked since then by a few of us for various reasons.
 
 go-merkledag/pb has `PBNode` and `PBLink`, matching the protobuf schema.
 
@@ -44,7 +44,7 @@ Prior to 2020, [the dag-pb specification](https://ipld.io/specs/codecs/dag-pb/sp
 
 In https://github.com/ipld/specs/issues/245 and then https://github.com/ipld/specs/pull/247 an IPLD Schema form of dag-pb was merged. There was some discussion about casing of names at https://github.com/ipld/specs/pull/247#discussion_r390220519 where it was resolved that we should match the protobuf schema. We were apparently oblivious to the additional `ProtoNode` representation, _or_ we didn't consider it relevant to the "data model" form of dag-pb. (There is probably some valid critique of the previous siloing between IPFS and IPLD here too since the IPLD team haven't noticed any of these problems until now.)
 
-The IPLD Schema has since been used to rewrite the new JS and Go codecs for dag-pb, but this was not a major departure since these codecs (originally js-ipld-dag-pb and go-merkledag/pb) at their protobuf level were always using these forms. We were adding additiona lenses onto these codecs before they presented themselves at the IPFS `dag` API - via `ProtoNode`, `ipld.Link` and the custom printing forms in js-ipfs `dag get`.
+The IPLD Schema has since been used to rewrite the new JS and Go codecs for dag-pb, but this was not a major departure since these codecs (originally js-ipld-dag-pb and go-merkledag/pb) at their protobuf level were always using these forms. We were adding additional lenses onto these codecs before they presented themselves at the IPFS `dag` API - via `ProtoNode`, `ipld.Link` and the custom printing forms in js-ipfs `dag get`.
 
 ## Path resolution
 
@@ -92,7 +92,7 @@ Implications:
 * js-ipfs needs to stop forcing dag-pb results from `dag get` back through the dag-pb codec, just output what is resolved in the codec requested
 * js-ipfs needs other new goodness introduced in go-ipld-prime in go-ipfs
 
-### Option 2: We go the data model form wrong
+### Option 2: We got the data model form wrong
 
 The truth is that the data model form of dag-pb is whatever we want it to be. We instantiate from bytes whatever we want and the protobuf schema isn't our master here. We could choose to interpret it in the way `ProtoNode` and `ipld.Link` have been presenting it.
 
@@ -123,4 +123,3 @@ Implications:
 * js-ipfs would still need many of the changes listed above
 * Users would get the same output from `dag get` as they do now for dag-pb nodes **except for the dag-json differences with encoding bytes**(!).
 * Are there any implications for changing this for Filecoin which currently uses the new dag-pb codec for graphsync?
-

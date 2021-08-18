@@ -128,8 +128,7 @@ type ExploreRange struct {
 ## limit is a union type -- it can have an integer depth value (key "depth") or
 ## no value (key "none"). If limit has no value it is up to the 
 ## implementation library using selectors to identify an appropriate max depth
-## as necessary so that recursion is not infinite
-
+## as necessary so that recursion is not infinite.
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")
 	limit RecursionLimit (rename "l")

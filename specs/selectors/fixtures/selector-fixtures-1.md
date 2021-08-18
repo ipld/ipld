@@ -244,7 +244,7 @@ It's the same stuff, just more of it.
 {"path": "", "node": {"map": null}, "matched": false}
 {"path": "foo", "node": {"bool": true}, "matched": true}
 {"path": "nested", "node": {"map": null}, "matched": false}
-{"path": "nested/newt", "node": {"integer": 8}, "matched": true}
+{"path": "nested/newt", "node": {"int": 8}, "matched": true}
 ```
 
 ---

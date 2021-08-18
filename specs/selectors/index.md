@@ -213,7 +213,7 @@ type Condition union {
 
 ### fixtures
 
-- [selector-fixtures-1.taf](./fixtures/selector-fixtures-1.taf)
+- [selector-fixtures-1](./fixtures/selector-fixtures-1/)
 
 
 Known issues

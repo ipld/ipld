@@ -38,7 +38,7 @@ With Node.js>=16 installed:
 
 * Setup: `npm install`
 * Build: `npm run build`
-* Serve locally: `npm run serve`
+* Serve locally: `npm run start`
 * Test link integrity: `npm test`
 * Cleanup: `npm run clean`
 * Publish: Push to `master` and Fleek will do the rest

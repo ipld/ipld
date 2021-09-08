@@ -32,6 +32,20 @@
 		},
 		"Type": {
 			"kind": "union",
+			"members": [
+				"TypeBool",
+				"TypeString",
+				"TypeBytes",
+				"TypeInt",
+				"TypeFloat",
+				"TypeMap",
+				"TypeList",
+				"TypeLink",
+				"TypeUnion",
+				"TypeStruct",
+				"TypeEnum",
+				"TypeCopy"
+			],
 			"representation": {
 				"inline": {
 					"discriminantKey": "kind",
@@ -110,6 +124,13 @@
 		},
 		"AnyScalar": {
 			"kind": "union",
+			"members": [
+				"Bool",
+				"String",
+				"Bytes",
+				"Int",
+				"Float"
+			],
 			"representation": {
 				"kinded": {
 					"bool": "Bool",
@@ -154,6 +175,10 @@
 		},
 		"BytesRepresentation": {
 			"kind": "union",
+			"members": [
+				"BytesRepresentation_Bytes",
+				"AdvancedDataLayoutName"
+			],
 			"representation": {
 				"keyed": {
 					"bytes": "BytesRepresentation_Bytes",
@@ -210,6 +235,12 @@
 		},
 		"MapRepresentation": {
 			"kind": "union",
+			"members": [
+				"MapRepresentation_Map",
+				"MapRepresentation_StringPairs",
+				"MapRepresentation_ListPairs",
+				"AdvancedDataLayoutName"
+			],
 			"representation": {
 				"keyed": {
 					"map": "MapRepresentation_Map",
@@ -272,6 +303,10 @@
 		},
 		"ListRepresentation": {
 			"kind": "union",
+			"members": [
+				"ListRepresentation_List",
+				"AdvancedDataLayoutName"
+			],
 			"representation": {
 				"keyed": {
 					"list": "ListRepresentation_List",
@@ -306,6 +341,12 @@
 		"TypeUnion": {
 			"kind": "struct",
 			"fields": {
+				"members": {
+					"type": {
+						"kind": "list",
+						"valueType": "TypeName"
+					}
+				},
 				"representation": {
 					"type": "UnionRepresentation"
 				}
@@ -316,6 +357,14 @@
 		},
 		"UnionRepresentation": {
 			"kind": "union",
+			"members": [
+				"UnionRepresentation_Kinded",
+				"UnionRepresentation_Keyed",
+				"UnionRepresentation_Envelope",
+				"UnionRepresentation_Inline",
+				"UnionRepresentation_StringPrefix",
+				"UnionRepresentation_BytesPrefix"
+			],
 			"representation": {
 				"keyed": {
 					"kinded": "UnionRepresentation_Kinded",
@@ -435,6 +484,10 @@
 		},
 		"TypeTerm": {
 			"kind": "union",
+			"members": [
+				"TypeName",
+				"InlineDefn"
+			],
 			"representation": {
 				"kinded": {
 					"string": "TypeName",
@@ -444,6 +497,10 @@
 		},
 		"InlineDefn": {
 			"kind": "union",
+			"members": [
+				"TypeMap",
+				"TypeList"
+			],
 			"representation": {
 				"inline": {
 					"discriminantKey": "kind",
@@ -456,6 +513,13 @@
 		},
 		"StructRepresentation": {
 			"kind": "union",
+			"members": [
+				"StructRepresentation_Map",
+				"StructRepresentation_Tuple",
+				"StructRepresentation_StringPairs",
+				"StructRepresentation_StringJoin",
+				"StructRepresentation_ListPairs"
+			],
 			"representation": {
 				"keyed": {
 					"map": "StructRepresentation_Map",
@@ -575,6 +639,10 @@
 		},
 		"EnumRepresentation": {
 			"kind": "union",
+			"members": [
+				"EnumRepresentation_String",
+				"EnumRepresentation_Int"
+			],
 			"representation": {
 				"keyed": {
 					"string": "EnumRepresentation_String",

@@ -129,6 +129,16 @@ type ExploreRange struct {
 ## no value (key "none"). If limit has no value it is up to the 
 ## implementation library using selectors to identify an appropriate max depth
 ## as necessary so that recursion is not infinite.
+##
+## stopAt specifies a Condition that stops the traversal when it is fulfilled.
+## If throughout the traversal the selector encounters a node that matches
+## Condition it will finish exploring the current node and it won't recurse more,
+## stopping the traversal immediately.
+## If Condition is never matched, the selector performs the traversal seamlessly
+## until the end. This feature is of particular interest for applications that need to
+## recurse a large linked structure up to a specific point. stopAt can be used to
+## let the selector know where to stop recursing preventing from having to traverse 
+## the full structure.
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")
 	limit RecursionLimit (rename "l")

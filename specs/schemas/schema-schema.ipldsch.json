@@ -622,7 +622,7 @@
 				"members": {
 					"type": {
 						"kind": "map",
-						"keyType": "EnumValue",
+						"keyType": "EnumMember",
 						"valueType": "Null"
 					}
 				},
@@ -634,7 +634,7 @@
 				"map": {}
 			}
 		},
-		"EnumValue": {
+		"EnumMember": {
 			"kind": "string"
 		},
 		"EnumRepresentation": {
@@ -652,12 +652,12 @@
 		},
 		"EnumRepresentation_String": {
 			"kind": "map",
-			"keyType": "EnumValue",
+			"keyType": "EnumMember",
 			"valueType": "String"
 		},
 		"EnumRepresentation_Int": {
 			"kind": "map",
-			"keyType": "EnumValue",
+			"keyType": "EnumMember",
 			"valueType": "Int"
 		},
 		"TypeCopy": {

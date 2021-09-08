@@ -664,27 +664,27 @@ type StructRepresentation_StringJoin struct {
 ##
 type StructRepresentation_ListPairs struct {}
 
-## TypeEnum describes a type which has a known, pre-defined set of possible
-## values. Each of the values must be representable as a string (EnumValue)
-## when using the default "string" representation, or when using an "int"
-## representation, an integer must also be supplied along with the EnumValue.
+## TypeEnum describes a type which has a known, pre-defined set of possible values.
+## Each of the member values is named by a string (of EnumMember type).
 ##
+## Enums can have either string or int-based representations.
 ## Integer and string values (for int and string representations respectively)
 ## are provided in parens in the DSL. Where the string used in serialization is
-## the same as the EnumValue, it may be omitted. For int representation enums,
+## the same as the EnumMember, it may be omitted. For int representation enums,
 ## all int values are required.
 ##
 type TypeEnum struct {
-	members {EnumValue:Null}
+	members {EnumMember:Null}
 	representation EnumRepresentation
 }
 
-## EnumValue is a string that has limitations for use as a member of an enum
-## set. The rules for EnumValue are the same as for TypeName but without the
-## convention of an uppercase first character. Capitalization is left up to
-## the user.
+## EnumMember is a string that that names a member of an Enum type.
 ##
-type EnumValue string
+## The range of valid values for an EnumMember are the same as for TypeName
+## but without the convention of an uppercase first character.
+## Capitalization is left up to the discretion of the schema writer.
+##
+type EnumMember string
 
 ## EnumRepresentation describes how an enum type should be mapped onto
 ## its IPLD Data Model representation. By default an enum is represented as a
@@ -696,19 +696,19 @@ type EnumRepresentation union {
 } representation keyed
 
 ## EnumRepresentation_String describes the way an enum is represented as a
-## string in the data model. By default, the strings used as EnumValue will be
+## string in the data model. By default, the strings used as EnumMember will be
 ## used at the serialization. A custom string may be provided (with `Foo ("x")`
 ## in the DSL) which will be stored here in the representation block. Missing
 ## entries in this map will use the default.
 ##
-type EnumRepresentation_String {EnumValue:String}
+type EnumRepresentation_String {EnumMember:String}
 
 ## EnumRepresentation_Int describes the way an enum is represented as an int
 ## in the data model. A mapping of names to ints is required to perform the
 ## conversion from int to enum value. In the DSL, int values _must_ be provided
-## for each EnumValue (with `Foo ("100")`, those are stored here.
+## for each EnumMember (with `Foo ("100")`, those are stored here.
 ##
-type EnumRepresentation_Int {EnumValue:Int}
+type EnumRepresentation_Int {EnumMember:Int}
 
 ## TypeCopy describes a special "copy" unit that indicates that a type name
 ## should copy the type descriptor of another type. TypeCopy does not redirect a

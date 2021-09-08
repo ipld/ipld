@@ -68,7 +68,19 @@
 				"Enum": null
 			},
 			"representation": {
-				"string": {}
+				"string": {
+					"Bool": "bool",
+					"String": "string",
+					"Bytes": "bytes",
+					"Int": "int",
+					"Float": "float",
+					"Map": "map",
+					"List": "list",
+					"Link": "link",
+					"Union": "union",
+					"Struct": "struct",
+					"Enum": "enum"
+				}
 			}
 		},
 		"RepresentationKind": {
@@ -84,7 +96,16 @@
 				"Link": null
 			},
 			"representation": {
-				"string": {}
+				"string": {
+					"Bool": "bool",
+					"String": "string",
+					"Bytes": "bytes",
+					"Int": "int",
+					"Float": "float",
+					"Map": "map",
+					"List": "list",
+					"Link": "link"
+				}
 			}
 		},
 		"AnyScalar": {

@@ -114,20 +114,20 @@ type Type union {
 ## Notice this enum's members are the same as the set of strings used as
 ## discriminants in the Type union.
 ##
-## TODO: not actually sure we'll need to declare this.  Only usage is
-## in the Type union representation details?
+## This enum is not actually used elsewhere in the schema-schema,
+## but does correspond to the discriminant values used in the Type union.
 type TypeKind enum {
-	| Bool
-	| String
-	| Bytes
-	| Int
-	| Float
-	| Map
-	| List
-	| Link
-	| Union
-	| Struct
-	| Enum
+	| Bool ("bool")
+	| String ("string")
+	| Bytes ("bytes")
+	| Int ("int")
+	| Float ("float")
+	| Map ("map")
+	| List ("list")
+	| Link ("link")
+	| Union ("union")
+	| Struct ("struct")
+	| Enum ("enum")
 }
 
 ## RepresentationKind is similar to TypeKind, but includes only those concepts
@@ -144,14 +144,14 @@ type TypeKind enum {
 ## definition in the details of Type; for example, they're used describing
 ## some of the detailed behaviors of a "kinded"-style union type.
 type RepresentationKind enum {
-	| Bool
-	| String
-	| Bytes
-	| Int
-	| Float
-	| Map
-	| List
-	| Link
+	| Bool ("bool")
+	| String ("string")
+	| Bytes ("bytes")
+	| Int ("int")
+	| Float ("float")
+	| Map ("map")
+	| List ("list")
+	| Link ("link")
 }
 
 ## AnyScalar defines a union of the basic non-complex kinds.

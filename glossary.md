@@ -100,6 +100,22 @@ we've just added `bytes` for binary, and this `link` kind, which gives IPLD a lo
 
 There is a `link` kind is implemented by [CID](#cid)s.
 
+#### DMT
+
+DMT is short for "**D**ata **M**odel **T**ree".
+It is a term we coined in IPLD to describe data that's -- well -- in the [Data Model](#data-model) form.
+
+The term "DMT" is usually only used when necessary for differentiation:
+for example, we might say: "this data isn't in JSON form anymore; we've parsed it into DMT form".
+Another example sentence might be: "this data was created with a library DSL, but really, its true form is a standard DMT".
+And so on.
+
+The concept of DMT could also be compared to the computer science concept of an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree),
+but again, sometimes a unique term is useful for disambiguation.
+For example: "the DSL AST is somewhat richer than the DMT; the DMT only describes the logical elements of the document rather than the whole syntax used to specify them".
+(We also find the term "AST" somewhat of a bad match for what we mean by DMTs in IPLD,
+because an IPLD DMT is explicitly codec agnostic (in other words, syntax agnostic!), which doesn't line up well with the "S" in "AST".)
+
 #### Link
 
 A link is just another name for a [CID](#cid).

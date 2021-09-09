@@ -6,7 +6,7 @@
 		"SchemaMap": {
 			"map": {
 				"keyType": "TypeName",
-				"valueType": "Type"
+				"valueType": "TypeDefn"
 			}
 		},
 		"AdvancedDataLayoutName": {
@@ -33,42 +33,42 @@
 				}
 			}
 		},
-		"Type": {
+		"TypeDefn": {
 			"union": {
 				"members": [
-					"TypeBool",
-					"TypeString",
-					"TypeBytes",
-					"TypeInt",
-					"TypeFloat",
-					"TypeMap",
-					"TypeList",
-					"TypeLink",
-					"TypeUnion",
-					"TypeStruct",
-					"TypeEnum",
-					"TypeUnit",
-					"TypeAny",
-					"TypeCopy"
+					"TypeDefnBool",
+					"TypeDefnString",
+					"TypeDefnBytes",
+					"TypeDefnInt",
+					"TypeDefnFloat",
+					"TypeDefnMap",
+					"TypeDefnList",
+					"TypeDefnLink",
+					"TypeDefnUnion",
+					"TypeDefnStruct",
+					"TypeDefnEnum",
+					"TypeDefnUnit",
+					"TypeDefnAny",
+					"TypeDefnCopy"
 				],
 				"representation": {
 					"inline": {
 						"discriminantKey": "kind",
 						"discriminantTable": {
-							"bool": "TypeBool",
-							"string": "TypeString",
-							"bytes": "TypeBytes",
-							"int": "TypeInt",
-							"float": "TypeFloat",
-							"map": "TypeMap",
-							"list": "TypeList",
-							"link": "TypeLink",
-							"union": "TypeUnion",
-							"struct": "TypeStruct",
-							"enum": "TypeEnum",
-							"unit": "TypeUnit",
-							"any": "TypeAny",
-							"copy": "TypeCopy"
+							"bool": "TypeDefnBool",
+							"string": "TypeDefnString",
+							"bytes": "TypeDefnBytes",
+							"int": "TypeDefnInt",
+							"float": "TypeDefnFloat",
+							"map": "TypeDefnMap",
+							"list": "TypeDefnList",
+							"link": "TypeDefnLink",
+							"union": "TypeDefnUnion",
+							"struct": "TypeDefnStruct",
+							"enum": "TypeDefnEnum",
+							"unit": "TypeDefnUnit",
+							"any": "TypeDefnAny",
+							"copy": "TypeDefnCopy"
 						}
 					}
 				}
@@ -164,7 +164,7 @@
 				}
 			}
 		},
-		"TypeBool": {
+		"TypeDefnBool": {
 			"struct": {
 				"fields": {},
 				"representation": {
@@ -172,7 +172,7 @@
 				}
 			}
 		},
-		"TypeString": {
+		"TypeDefnString": {
 			"struct": {
 				"fields": {},
 				"representation": {
@@ -180,7 +180,7 @@
 				}
 			}
 		},
-		"TypeBytes": {
+		"TypeDefnBytes": {
 			"struct": {
 				"fields": {
 					"representation": {
@@ -214,7 +214,7 @@
 				}
 			}
 		},
-		"TypeInt": {
+		"TypeDefnInt": {
 			"struct": {
 				"fields": {},
 				"representation": {
@@ -222,7 +222,7 @@
 				}
 			}
 		},
-		"TypeFloat": {
+		"TypeDefnFloat": {
 			"struct": {
 				"fields": {},
 				"representation": {
@@ -230,7 +230,7 @@
 				}
 			}
 		},
-		"TypeMap": {
+		"TypeDefnMap": {
 			"struct": {
 				"fields": {
 					"keyType": {
@@ -306,7 +306,7 @@
 				}
 			}
 		},
-		"TypeList": {
+		"TypeDefnList": {
 			"struct": {
 				"fields": {
 					"valueType": {
@@ -352,7 +352,7 @@
 				}
 			}
 		},
-		"TypeLink": {
+		"TypeDefnLink": {
 			"struct": {
 				"fields": {
 					"expectedType": {
@@ -370,7 +370,7 @@
 				}
 			}
 		},
-		"TypeUnion": {
+		"TypeDefnUnion": {
 			"struct": {
 				"fields": {
 					"members": {
@@ -406,11 +406,11 @@
 		"UnionMemberInlineDefn": {
 			"union": {
 				"members": [
-					"TypeLink"
+					"TypeDefnLink"
 				],
 				"representation": {
 					"keyed": {
-						"link": "TypeLink"
+						"link": "TypeDefnLink"
 					}
 				}
 			}
@@ -525,7 +525,7 @@
 		"HexString": {
 			"string": {}
 		},
-		"TypeStruct": {
+		"TypeDefnStruct": {
 			"struct": {
 				"fields": {
 					"fields": {
@@ -592,17 +592,17 @@
 		"InlineDefn": {
 			"union": {
 				"members": [
-					"TypeMap",
-					"TypeList",
-					"TypeLink"
+					"TypeDefnMap",
+					"TypeDefnList",
+					"TypeDefnLink"
 				],
 				"representation": {
 					"inline": {
 						"discriminantKey": "kind",
 						"discriminantTable": {
-							"map": "TypeMap",
-							"list": "TypeList",
-							"link": "TypeLink"
+							"map": "TypeDefnMap",
+							"list": "TypeDefnList",
+							"link": "TypeDefnLink"
 						}
 					}
 				}
@@ -723,7 +723,7 @@
 				}
 			}
 		},
-		"TypeEnum": {
+		"TypeDefnEnum": {
 			"struct": {
 				"fields": {
 					"members": {
@@ -771,7 +771,7 @@
 				"valueType": "Int"
 			}
 		},
-		"TypeUnit": {
+		"TypeDefnUnit": {
 			"struct": {
 				"fields": {
 					"representation": {
@@ -801,7 +801,7 @@
 				}
 			}
 		},
-		"TypeAny": {
+		"TypeDefnAny": {
 			"struct": {
 				"fields": {},
 				"representation": {
@@ -809,7 +809,7 @@
 				}
 			}
 		},
-		"TypeCopy": {
+		"TypeDefnCopy": {
 			"struct": {
 				"fields": {
 					"fromType": {

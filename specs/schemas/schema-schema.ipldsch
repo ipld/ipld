@@ -18,19 +18,19 @@
 type TypeName string
 
 ## SchemaMap is a complete set of types;
-## it is simply a map of TypeName to detailed declaration of that Type.
+## it is simply a map of TypeName to the TypeDefn for that type.
 ##
 ## A simple schema map with one type might look like this:
 ##
 ## ```
 ## {
 ##   "MyFooType": {
-##     "type": "string"
+##     "string": {}
 ##   }
 ## }
 ## ```
 ##
-type SchemaMap {TypeName:Type}
+type SchemaMap {TypeName:TypeDefn}
 
 ## AdvancedDataLayoutName defines the name of an ADL as a string.
 ##
@@ -68,10 +68,10 @@ type Schema struct {
 	advanced AdvancedDataLayoutMap
 }
 
-## Type is a union type, where each of the possible members describes one kind of type.
-## For example, TypeBool is a member of the Type union, as is TypeMap.
+## TypeDefn is a union type, where each of the possible members describes one kind of type.
+## For example, TypeDefnBool is a member of the TypeDefn union, as is TypeDefnMap.
 ##
-## The Type union is serialized using "keyed" union representation,
+## The TypeDefn union is serialized using "keyed" union representation,
 ## which means in the serial form, we will always see a map with one key,
 ## and that key will indicate which member type is coming up as the value.
 ##
@@ -95,29 +95,31 @@ type Schema struct {
 ## }
 ## ```
 ##
-type Type union {
-	| TypeBool "bool"
-	| TypeString "string"
-	| TypeBytes "bytes"
-	| TypeInt "int"
-	| TypeFloat "float"
-	| TypeMap "map"
-	| TypeList "list"
-	| TypeLink "link"
-	| TypeUnion "union"
-	| TypeStruct "struct"
-	| TypeEnum "enum"
-	| TypeUnit "unit"
-	| TypeAny "any"
-	| TypeCopy "copy"
+type TypeDefn union {
+	| TypeDefnBool "bool"
+	| TypeDefnString "string"
+	| TypeDefnBytes "bytes"
+	| TypeDefnInt "int"
+	| TypeDefnFloat "float"
+	| TypeDefnMap "map"
+	| TypeDefnList "list"
+	| TypeDefnLink "link"
+	| TypeDefnUnion "union"
+	| TypeDefnStruct "struct"
+	| TypeDefnEnum "enum"
+	| TypeDefnUnit "unit"
+	| TypeDefnAny "any"
+	| TypeDefnCopy "copy"
 } representation keyed
 
 ## TypeKind enumerates all the major kinds of type.
 ## Notice this enum's members are the same as the set of strings used as
-## discriminants in the Type union.
+## discriminants in the TypeDefn union.
+## (Almost!  TypeDefn also contains TypeDefnCopy, which is a slight outlier.
+## (TypeDefnCopy can be used to define a type, but isn't a typekind itself.))
 ##
 ## This enum is not actually used elsewhere in the schema-schema,
-## but does correspond to the discriminant values used in the Type union.
+## but does correspond to the discriminant values used in the TypeDefn union.
 type TypeKind enum {
 	| Bool ("bool")
 	| String ("string")
@@ -146,7 +148,7 @@ type TypeKind enum {
 ## is determined by its representation strategy).
 ##
 ## RepresentationKind strings are sometimes used to to indicate part of the
-## definition in the details of Type; for example, they're used describing
+## definition in the details of TypeDefn; for example, they're used describing
 ## some of the detailed behaviors of a "kinded"-style union type.
 type RepresentationKind enum {
 	| Bool ("bool")
@@ -184,23 +186,23 @@ type AnyScalar union {
 ##
 type AdvancedDataLayout struct {}
 
-## TypeBool describes a simple boolean type.
+## TypeDefnBool describes a simple boolean type.
 ## It has no details.
 ##
-type TypeBool struct {}
+type TypeDefnBool struct {}
 
-## TypeString describes a simple string type.
+## TypeDefnString describes a simple string type.
 ## It has no details.
 ##
-type TypeString struct {}
+type TypeDefnString struct {}
 
-## TypeBytes describes a simple byte array type.
+## TypeDefnBytes describes a simple byte array type.
 ##
-type TypeBytes struct {
+type TypeDefnBytes struct {
 	representation BytesRepresentation
 }
 
-## BytesRepresentation specifies how a TypeBytes is to be serialized. By
+## BytesRepresentation specifies how a TypeDefnBytes is to be serialized. By
 ## default it will be stored as bytes in the data model but it may be replaced
 ## with an ADL.
 ##
@@ -209,29 +211,29 @@ type BytesRepresentation union {
 	| AdvancedDataLayoutName "advanced"
 } representation keyed
 
-## BytesRepresentation_Bytes is the default representation for TypeBytes and
+## BytesRepresentation_Bytes is the default representation for TypeDefnBytes and
 ## will be used implicitly if no representation is specified.
 ##
 type BytesRepresentation_Bytes struct {}
 
-## TypeInt describes a simple integer numeric type.
+## TypeDefnInt describes a simple integer numeric type.
 ## It has no details.
 ##
-type TypeInt struct {}
+type TypeDefnInt struct {}
 
-## TypeFloat describes a simple floating point numeric type.
+## TypeDefnFloat describes a simple floating point numeric type.
 ## It has no details.
 ##
-type TypeFloat struct {}
+type TypeDefnFloat struct {}
 
-## TypeMap describes a key-value map.
+## TypeDefnMap describes a key-value map.
 ## The keys and values of the map have some specific type of their own.
 ##
 ## A constraint on keyType is that the referenced type must have a string
 ## representation kind. The IPLD Data Model only allows for string keys on maps,
 ## so this constraint is imposed here.
 ##
-type TypeMap struct {
+type TypeDefnMap struct {
 	keyType TypeName
 	valueType TypeNameOrInlineDefn
 	valueNullable Bool (implicit "false")
@@ -289,10 +291,10 @@ type MapRepresentation_StringPairs struct {
 ##
 type MapRepresentation_ListPairs struct {}
 
-## TypeList describes a list.
+## TypeDefnList describes a list.
 ## The values of the list have some specific type of their own.
 ##
-type TypeList struct {
+type TypeDefnList struct {
 	valueType TypeNameOrInlineDefn
 	valueNullable Bool (implicit "false")
 	representation ListRepresentation
@@ -307,12 +309,12 @@ type ListRepresentation union {
 	| AdvancedDataLayoutName "advanced"
 } representation keyed
 
-## ListRepresentation_List is the default representation for TypeList and
+## ListRepresentation_List is the default representation for TypeDefnList and
 ## will be used implicitly if no representation is specified.
 ##
 type ListRepresentation_List struct {}
 
-## TypeLink describes an IPLD link, which is a content-addressable pointer to more data.
+## TypeDefnLink describes an IPLD link, which is a content-addressable pointer to more data.
 ## (Links in IPLD are implemented by CIDs: they're a hash that identifies another another block of data,
 ## plus a codec hint for how to parse it into IPLD Data Model).
 ##
@@ -331,11 +333,11 @@ type ListRepresentation_List struct {}
 ## This is also available in the Prelude, and that type is simply name "Link"
 ## (in other words, the Prelude contains `type Link &Any`).
 ##
-type TypeLink struct {
+type TypeDefnLink struct {
 	expectedType TypeName (implicit "Any")
 }
 
-## TypeUnion describes a union (sometimes called a "sum type", or
+## TypeDefnUnion describes a union (sometimes called a "sum type", or
 ## more verbosely, a "discriminated union", or in yet other literature, a "variant" type).
 ## A union is a type that can have a value of several different types, but
 ## unlike maps or structs, in a union, only one of those values may be present
@@ -346,7 +348,7 @@ type TypeLink struct {
 ## Also note that there is no default representation for union types --
 ## you must _always_ explicitly specify a representation strategy when defining unions!
 ##
-type TypeUnion struct {
+type TypeDefnUnion struct {
 	members [UnionMember]
 	representation UnionRepresentation
 }
@@ -367,10 +369,10 @@ type UnionMember union {
 ## which is a constraint applied to union membership largely to make sure
 ## if there are errors in processing unions, we can make legible messages about it!
 type UnionMemberInlineDefn union {
-	| TypeLink "link"
+	| TypeDefnLink "link"
 } representation keyed
 
-## UnionRepresentation is a union of all the distinct ways a TypeUnion's values
+## UnionRepresentation is a union of all the distinct ways a TypeDefnUnion's values
 ## can be mapped onto a serialized format for the IPLD Data Model.
 ##
 ## There are six strategies that can be used to encode a union:
@@ -402,7 +404,7 @@ type UnionRepresentation union {
 } representation keyed
 
 ## "Kinded" union representations describe a bidirectional mapping between
-## a RepresentationKind and a Type (referenced by name) which should be the
+## a RepresentationKind and the type which should be the
 ## union member decoded when one sees this RepresentationKind.
 ##
 ## The referenced type must of course produce the RepresentationKind it's
@@ -496,7 +498,7 @@ type UnionRepresentation_BytesPrefix struct {
 ## and consistency (and, the ability to keep the schema-schema in plain JSON!) is valuable.)
 type HexString string
 
-## TypeStruct describes a type which has a group of fields of varying Type.
+## TypeDefnStruct describes a type which has a group of fields of varying Type.
 ## Each field has a name, which is used to access its value, similarly to
 ## accessing values in a map.
 ##
@@ -505,7 +507,7 @@ type HexString string
 ## of this representation may be configured; and other representation strategies
 ## also exist).
 ##
-type TypeStruct struct {
+type TypeDefnStruct struct {
 	fields {FieldName:StructField}
 	representation StructRepresentation
 }
@@ -524,9 +526,9 @@ type TypeStruct struct {
 ##
 type FieldName string
 
-## StructField describes the properties of each field declared by a TypeStruct.
+## StructField describes the properties of each field declared by a TypeDefnStruct.
 ##
-## StructField contains properties similar to TypeMap -- namely, it describes
+## StructField contains properties similar to TypeDefnMap -- namely, it describes
 ## a content type (as a TypeNameOrInlineDefn -- it supports inline definitions) -- and
 ## has a boolean property for whether or not the value is permitted to be null.
 ##
@@ -581,20 +583,20 @@ type TypeNameOrInlineDefn union {
 ## InlineDefn represents a declaration of an anonymous type of one of the simple
 ## recursive kinds (e.g. map or list) which is found "inline" in another type's definition.
 ## InlineDefn also allows description of anonymous but typed links for similar reasons.
-## TypeNameOrInlineDefn is the more complex option of the TypeTerm union.
+## InlineDefn is the more complex option of the TypeNameOrInlineDefn union.
 ##
 ## Note that the representation of this union -- the use of a keyed representation,
 ## as well as the keywords for its members -- align exactly with those
-## in the Type union.  Technically, this isn't a necessary property (in that
+## in the TypeNameOrInlineDefn union.  Technically, this isn't a necessary property (in that
 ## nothing would break if that sameness was violated) but it's awfully nice for
 ## sanity; what we're saying here is that the representation of the types in an
-## InlineDefn should look *exactly the same* as the top-level Types... it's just
-## that we're restricted to a subset of the members.
+## InlineDefn should look *exactly the same* as the top-level type declarations...
+## it's just that within an InlineDefn, we're restricted to a subset of the members.
 ##
 type InlineDefn union {
-	| TypeMap "map"
-	| TypeList "list"
-	| TypeLink "link"
+	| TypeDefnMap "map"
+	| TypeDefnList "list"
+	| TypeDefnLink "link"
 } representation keyed
 
 ## StructRepresentation describes how a struct type should be mapped onto
@@ -716,7 +718,7 @@ type StructRepresentation_StringJoin struct {
 ##
 type StructRepresentation_ListPairs struct {}
 
-## TypeEnum describes a type which has a known, pre-defined set of possible values.
+## TypeDefnEnum describes a type which has a known, pre-defined set of possible values.
 ## Each of the member values is named by a string (of EnumMember type).
 ##
 ## Enums can have either string or int-based representations.
@@ -725,7 +727,7 @@ type StructRepresentation_ListPairs struct {}
 ## the same as the EnumMember, it may be omitted. For int representation enums,
 ## all int values are required.
 ##
-type TypeEnum struct {
+type TypeDefnEnum struct {
 	members [EnumMember]
 	representation EnumRepresentation
 }
@@ -762,15 +764,15 @@ type EnumRepresentation_String {EnumMember:String}
 ##
 type EnumRepresentation_Int {EnumMember:Int}
 
-## TypeUnit describes a type which contains no data at all (other than that fact of its existence).
-## (If this seems strange, consider that the cardinality of TypeBool is 2;
-## the cardinality of TypeUnit is simply 1.)
+## TypeDefnUnit describes a type which contains no data at all (other than that fact of its existence).
+## (If this seems strange, consider that the cardinality of a bool type is 2;
+## the cardinality of a unit type is simply 1.)
 ##
-type TypeUnit struct {
+type TypeDefnUnit struct {
 	representation UnitRepresentation
 }
 
-## UnitRepresentation is an enum for describing how a TypeUnit should be represented in the data model.
+## UnitRepresentation is an enum for describing how a TypeDefnUnit should be represented in the data model.
 ##
 ## Unit types are commonly seen represented in several ways.
 ## A null token is a common one.
@@ -800,7 +802,7 @@ type UnitRepresentation enum {
 	| Emptymap ("emptymap")
 }
 
-## TypeAny describes a type which can contain data of any kind.
+## TypeDefnAny describes a type which can contain data of any kind.
 ## It's essentially an escape valve; it says "we don't really know what lies beyond here".
 ## The type-level data model kind of an "any" type can be anything;
 ## it depends on what the inhabitant value is.
@@ -814,17 +816,17 @@ type UnitRepresentation enum {
 ## 'any' was introduced as a typekind after discovering it is not possible
 ## to emulate its behavior by constructing a union; see
 ## https://github.com/ipld/specs/issues/318 for some discussion of this.
-type TypeAny struct {}
+type TypeDefnAny struct {}
 
-## TypeCopy describes a special "copy" unit that indicates that a type name
-## should copy the type descriptor of another type. TypeCopy does not redirect a
+## TypeDefnCopy describes a special "copy" unit that indicates that a type name
+## should copy the type descriptor of another type. TypeDefnCopy does not redirect a
 ## name to another type. Instead, it copies the entire type definition and
 ## assigns it to another type.
 ##
-## The DSL defines a TypeCopy as `type NewThing = CopiedThing`, where
+## The DSL defines a TypeDefnCopy as `type NewThing = CopiedThing`, where
 ## "CopiedThing" refers to a `type` defined elsewhere in a schema and is not
 ## one of TypeKind or an inline type descriptor (`{}`, `[]`, `&`).
 ##
-type TypeCopy struct {
+type TypeDefnCopy struct {
 	fromType TypeName
 }

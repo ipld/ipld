@@ -8,3 +8,7 @@ type ExampleWithAnonDefns struct {
 	wozField {String:[nullable String]}
 	boomField &ExampleWithNullable
 } representation map
+
+type ExampleOfUnit unit representation null
+
+type ExampleOfAny any

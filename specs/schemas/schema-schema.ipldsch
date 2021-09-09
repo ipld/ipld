@@ -105,6 +105,8 @@ type Type union {
 	| TypeUnion "union"
 	| TypeStruct "struct"
 	| TypeEnum "enum"
+	| TypeUnit "unit"
+	| TypeAny "any"
 	| TypeCopy "copy"
 } representation inline {
 	discriminantKey "kind"
@@ -128,6 +130,8 @@ type TypeKind enum {
 	| Union ("union")
 	| Struct ("struct")
 	| Enum ("enum")
+	| Unit ("unit")
+	| Any ("any")
 }
 
 ## RepresentationKind is similar to TypeKind, but includes only those concepts
@@ -137,8 +141,9 @@ type TypeKind enum {
 ## those concepts are introduced in the IPLD Schema system, and when serialized,
 ## all of them must be transformable to one of these representation kinds
 ## (e.g. a "struct" TypeKind will usually be transformed to a "map"
-## RepresentationKind; "enum" TypeKind are always "string" RepresentationKind;
-## and so on.)
+## RepresentationKind; "enum" TypeKind are typically a "string" RepresentationKind;
+## and so on; exactly what RepresentationKind a type defintion will have
+## is determined by its representation strategy).
 ##
 ## RepresentationKind strings are sometimes used to to indicate part of the
 ## definition in the details of Type; for example, they're used describing
@@ -731,6 +736,60 @@ type EnumRepresentation_String {EnumMember:String}
 ## for each EnumMember (with `Foo ("100")`, those are stored here.
 ##
 type EnumRepresentation_Int {EnumMember:Int}
+
+## TypeUnit describes a type which contains no data at all (other than that fact of its existence).
+## (If this seems strange, consider that the cardinality of TypeBool is 2;
+## the cardinality of TypeUnit is simply 1.)
+##
+type TypeUnit struct {
+	representation UnitRepresentation
+}
+
+## UnitRepresentation is an enum for describing how a TypeUnit should be represented in the data model.
+##
+## Unit types are commonly seen represented in several ways.
+## A null token is a common one.
+## A true token is sometimes seen (especially, when people encode "sets" in json:
+## often this will be seen as a map where the values are keys and the map values are 'true').
+## Also, an empty map can be a useful unit value;
+## an empty map accurately communicates a lack of data.
+## (The emptymap strategy can be a particularly interesting choice if you want to
+## have a schema that is evolvable in the future to start using a struct or map
+## in the same place as the unit type currently stands, while having older documents
+## continue to be parsable by the evolved schema.)
+##
+## Unlike many of the other representation information types seen in the schema-schema,
+## this one is just an enum, rather than being a union.
+## That's because there's no possibility of every needing to annotate more customization
+## onto values in the unit type... because there are no possible values in the unit type.
+##
+## Note that there is no discernible logical difference between
+## `type Foo struct {}` and `type Foo unit representation emptymap`;
+## only that the latter can be said to be a more explicit description of intent.
+## Both will result in identical representations, and both have identical cardinality (which is 1).
+##
+type UnitRepresentation enum {
+	| Null ("null")
+	| True ("true")
+	| False ("false")
+	| Emptymap ("emptymap")
+}
+
+## TypeAny describes a type which can contain data of any kind.
+## It's essentially an escape valve; it says "we don't really know what lies beyond here".
+## The type-level data model kind of an "any" type can be anything;
+## it depends on what the inhabitant value is.
+## The representation-level kind can similarly be anything;
+## it will match whatever the type-level kind is.
+##
+## It is not possible to regain useful types on deeper values after using an 'any' type;
+## from then on, the rest of the data is locked in on having exactly that 'any' type,
+## and having no further ability to have separate type-level and representation-level behaviors.
+##
+## 'any' was introduced as a typekind after discovering it is not possible
+## to emulate its behavior by constructing a union; see
+## https://github.com/ipld/specs/issues/318 for some discussion of this.
+type TypeAny unit representation emptymap
 
 ## TypeCopy describes a special "copy" unit that indicates that a type name
 ## should copy the type descriptor of another type. TypeCopy does not redirect a

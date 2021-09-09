@@ -44,6 +44,8 @@
 				"TypeUnion",
 				"TypeStruct",
 				"TypeEnum",
+				"TypeUnit",
+				"TypeAny",
 				"TypeCopy"
 			],
 			"representation": {
@@ -61,6 +63,8 @@
 						"union": "TypeUnion",
 						"struct": "TypeStruct",
 						"enum": "TypeEnum",
+						"unit": "TypeUnit",
+						"any": "TypeAny",
 						"copy": "TypeCopy"
 					}
 				}
@@ -79,7 +83,9 @@
 				"Link": null,
 				"Union": null,
 				"Struct": null,
-				"Enum": null
+				"Enum": null,
+				"Unit": null,
+				"Any": null
 			},
 			"representation": {
 				"string": {
@@ -93,7 +99,9 @@
 					"Link": "link",
 					"Union": "union",
 					"Struct": "struct",
-					"Enum": "enum"
+					"Enum": "enum",
+					"Unit": "unit",
+					"Any": "any"
 				}
 			}
 		},
@@ -685,6 +693,38 @@
 			"kind": "map",
 			"keyType": "EnumMember",
 			"valueType": "Int"
+		},
+		"TypeUnit": {
+			"kind": "struct",
+			"fields": {
+				"representation": {
+					"type": "UnitRepresentation"
+				}
+			},
+			"representation": {
+				"map": {}
+			}
+		},
+		"UnitRepresentation": {
+			"kind": "enum",
+			"members": {
+				"Null": null,
+				"True": null,
+				"False": null,
+				"Emptymap": null
+			},
+			"representation": {
+				"string": {
+					"Null": "null",
+					"True": "true",
+					"False": "false",
+					"Emptymap": "emptymap"
+				}
+			}
+		},
+		"TypeAny": {
+			"kind": "unit",
+			"representation": "emptymap"
 		},
 		"TypeCopy": {
 			"kind": "struct",

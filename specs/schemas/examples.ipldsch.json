@@ -62,6 +62,13 @@
 					}
 				}
 			}
+		},
+		"ExampleOfUnit": {
+			"kind": "unit",
+			"representation": "null"
+		},
+		"ExampleOfAny": {
+			"kind": "any"
 		}
 	}
 }

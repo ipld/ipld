@@ -68,18 +68,19 @@ type Schema struct {
 	advanced AdvancedDataLayoutMap
 }
 
-## The types of Type are a union.
+## Type is a union type, where each of the possible members describes one kind of type.
+## For example, TypeBool is a member of the Type union, as is TypeMap.
 ##
-## The Type union is serialized using "inline" union representation,
-## which means all of its members have map representations, and there will be
-## an entry in that map called "type" which contains the union discriminant.
+## The Type union is serialized using "keyed" union representation,
+## which means in the serial form, we will always see a map with one key,
+## and that key will indicate which member type is coming up as the value.
 ##
 ## Some of the kinds of type are so simple the union discriminant is the only
 ## content at all, e.g. strings:
 ##
 ## ```
 ## {
-##   "type": "string"
+##   "string": {}
 ## }
 ## ```
 ##
@@ -87,9 +88,10 @@ type Schema struct {
 ##
 ## ```
 ## {
-##   "type": "map",
-##   "keyType": "String",
-##   "valueType": "Int"
+##   "map": {
+##     "keyType": "String",
+##     "valueType": "Int"
+##   }
 ## }
 ## ```
 ##
@@ -108,9 +110,7 @@ type Type union {
 	| TypeUnit "unit"
 	| TypeAny "any"
 	| TypeCopy "copy"
-} representation inline {
-	discriminantKey "kind"
-}
+} representation keyed
 
 ## TypeKind enumerates all the major kinds of type.
 ## Notice this enum's members are the same as the set of strings used as
@@ -578,8 +578,8 @@ type TypeNameOrInlineDefn union {
 ## InlineDefn also allows description of anonymous but typed links for similar reasons.
 ## TypeNameOrInlineDefn is the more complex option of the TypeTerm union.
 ##
-## Note that the representation of this union -- `representation inline "kind"`
-## -- as well as the keywords for its members -- align exactly with those
+## Note that the representation of this union -- the use of a keyed representation,
+## as well as the keywords for its members -- align exactly with those
 ## in the Type union.  Technically, this isn't a necessary property (in that
 ## nothing would break if that sameness was violated) but it's awfully nice for
 ## sanity; what we're saying here is that the representation of the types in an
@@ -590,9 +590,7 @@ type InlineDefn union {
 	| TypeMap "map"
 	| TypeList "list"
 	| TypeLink "link"
-} representation inline {
-	discriminantKey "kind"
-}
+} representation keyed
 
 ## StructRepresentation describes how a struct type should be mapped onto
 ## its IPLD Data Model representation.  Typically, maps are the representation

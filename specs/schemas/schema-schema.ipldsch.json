@@ -722,8 +722,11 @@
 			}
 		},
 		"TypeAny": {
-			"kind": "unit",
-			"representation": "emptymap"
+			"kind": "struct",
+			"fields": {},
+			"representation": {
+				"map": {}
+			}
 		},
 		"TypeCopy": {
 			"kind": "struct",

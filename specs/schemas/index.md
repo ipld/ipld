@@ -65,3 +65,24 @@ Examples and Fixtures
 		- [examples.ipldsch.json](./examples.ipldsch.json)
 - Fixtures:
 	- Aside from the schema-schema and examples above, more fixtures for this system are currently lacking.  If you know of some and can link them here, or are willing to write some, please send an issue or PR.
+
+
+Bootstrapping a Schema implementation
+-------------------------------------
+
+The schema-schema is intentionally designed to be relatively easy to parse.
+We chose to use features when defining the schema-schema that are the clearest to implement,
+and the most likely to be early selections for a high priority in implementing anyway;
+and we in some cases carefully avoided using features that would've been nice-to-have but technically nonessential.
+
+For example: the schema-schema only uses keyed and kinded unions, which are some of the most clear to implement.
+
+As another example: the schema schema in several places uses `type X struct {}` rather than
+using a `unit` typekind (a la `type X unit representation emptymap`).
+We chose to do this, even though use of a unit type would be more semantically explicit,
+because we figure that one less thing to implement before being able to successfully wrangle the schema-schema
+is probably going to be well-received by anyone implementing schemas in a new language.
+
+It's still probably wise to start with smaller goals than biting off the whole schema-schema at once
+as the first target for bootstrapping a new schema implementation in a new language.
+Still, we hope these choices in the design _help_.

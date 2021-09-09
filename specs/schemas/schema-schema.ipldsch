@@ -789,7 +789,7 @@ type UnitRepresentation enum {
 ## 'any' was introduced as a typekind after discovering it is not possible
 ## to emulate its behavior by constructing a union; see
 ## https://github.com/ipld/specs/issues/318 for some discussion of this.
-type TypeAny unit representation emptymap
+type TypeAny struct {}
 
 ## TypeCopy describes a special "copy" unit that indicates that a type name
 ## should copy the type descriptor of another type. TypeCopy does not redirect a

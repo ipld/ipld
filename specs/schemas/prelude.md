@@ -21,7 +21,13 @@ type Link &Any
 type Null unit representation null
 ```
 
+### Use of the Prelude is optional
+
 Note that not all schemas technically need the prelude;
 it's perfectly possible to author a schema which has a name for every single one of its types,
 and doesn't use any of the names provided by the prelude.
-For example, the schema-schema happens to get along fine without ever referring to any of the types named by the prelude.
+It's relatively rare to see this in practice, however.
+
+For example, if we examine the schema-schema, we can see it often defines its own names for most of its types.
+However, we also see it use `String` and `Int` and `Bool` in several places;
+these type names come from the prelude.

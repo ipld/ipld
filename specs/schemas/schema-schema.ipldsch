@@ -239,8 +239,10 @@ type TypeMap struct {
 }
 
 ## MapRepresentation describes how a map type should be mapped onto
-## its IPLD Data Model representation.  By default a map is a map in the
-## Data Model but other kinds can be configured.
+## its IPLD Data Model representation.
+##
+## By default, a map type is also represented as a map in the Data Model,
+## but other representation strategies can be configured.
 ##
 type MapRepresentation union {
 	| MapRepresentation_Map "map"
@@ -334,13 +336,15 @@ type TypeLink struct {
 }
 
 ## TypeUnion describes a union (sometimes called a "sum type", or
-## more verbosely, a "discriminated union").
+## more verbosely, a "discriminated union", or in yet other literature, a "variant" type).
 ## A union is a type that can have a value of several different types, but
-## unlike maps or structs, in a union only one of those values may be present
+## unlike maps or structs, in a union, only one of those values may be present
 ## at a time.
 ##
-## Unions can be defined as representing in several different ways: see
-## the documentation on the UnionRepresentation type for details.
+## Unions can be represented in several significantly different ways:
+## see the documentation of the UnionRepresentation type for details.
+## Also note that there is no default representation for union types --
+## you must _always_ explicitly specify a representation strategy when defining unions!
 ##
 type TypeUnion struct {
 	members [UnionMember]
@@ -594,8 +598,18 @@ type InlineDefn union {
 } representation keyed
 
 ## StructRepresentation describes how a struct type should be mapped onto
-## its IPLD Data Model representation.  Typically, maps are the representation
-## kind, but other kinds and details can be configured.
+## its IPLD Data Model representation.
+##
+## The default representation strategy for struct types is a map,
+## with the struct's field names as keys.
+## However, that can be configured.
+## For example, the map representation can be configured with
+## directives to use different keys in the representation form;
+## or, configured to consider some fields as having values which should be seen as the implicit value for that field,
+## meaning the entire field shouldn't get an entry in the representation map if that value is found in that field.
+## Or, wholly different representation strategies can be used
+## (such as the tuple strategy, which results in a data model list kind,
+## or stringjoin, which results a data model string kind!).
 ##
 type StructRepresentation union {
 	| StructRepresentation_Map "map"

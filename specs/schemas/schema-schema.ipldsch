@@ -459,7 +459,9 @@ type UnionRepresentation_Inline struct {
 ## stringprefix is an invalid representation for any union that contains a type
 ## that does not have a string representation.
 ##
-type UnionRepresentation_StringPrefix {String:TypeName}
+type UnionRepresentation_StringPrefix struct {
+	prefixes {String:TypeName}
+}
 
 ## UnionRepresentation_BytesPrefix describes a union representation for unions
 ## whose member types are all bytes. It is encoded to a byte array whose
@@ -477,7 +479,9 @@ type UnionRepresentation_StringPrefix {String:TypeName}
 ## bytesprefix is an invalid representation for any union that contains a type
 ## that does not have a bytes representation.
 ##
-type UnionRepresentation_BytesPrefix {String:TypeName}
+type UnionRepresentation_BytesPrefix struct {
+	prefixes {String:TypeName}
+}
 
 ## TypeStruct describes a type which has a group of fields of varying Type.
 ## Each field has a name, which is used to access its value, similarly to

@@ -458,14 +458,30 @@
 			}
 		},
 		"UnionRepresentation_StringPrefix": {
-			"kind": "map",
-			"keyType": "String",
-			"valueType": "TypeName"
+			"kind": "struct",
+			"fields": {
+				"prefixes": {
+					"kind": "map",
+					"keyType": "String",
+					"valueType": "TypeName"
+				}
+			},
+			"representation": {
+				"map": {}
+			}
 		},
 		"UnionRepresentation_BytesPrefix": {
-			"kind": "map",
-			"keyType": "String",
-			"valueType": "TypeName"
+			"kind": "struct",
+			"fields": {
+				"prefixes": {
+					"kind": "map",
+					"keyType": "String",
+					"valueType": "TypeName"
+				}
+			},
+			"representation": {
+				"map": {}
+			}
 		},
 		"TypeStruct": {
 			"kind": "struct",

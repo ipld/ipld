@@ -1,28 +1,15 @@
 {
 	"types": {
-		"TypeName": {
-			"string": {}
-		},
-		"SchemaMap": {
-			"map": {
-				"keyType": "TypeName",
-				"valueType": "TypeDefn"
-			}
-		},
-		"AdvancedDataLayoutName": {
-			"string": {}
-		},
-		"AdvancedDataLayoutMap": {
-			"map": {
-				"keyType": "AdvancedDataLayoutName",
-				"valueType": "AdvancedDataLayout"
-			}
-		},
 		"Schema": {
 			"struct": {
 				"fields": {
 					"types": {
-						"type": "SchemaMap"
+						"type": {
+							"map": {
+								"keyType": "TypeName",
+								"valueType": "TypeDefn"
+							}
+						}
 					},
 					"advanced": {
 						"type": "AdvancedDataLayoutMap"
@@ -31,6 +18,18 @@
 				"representation": {
 					"map": {}
 				}
+			}
+		},
+		"TypeName": {
+			"string": {}
+		},
+		"AdvancedDataLayoutName": {
+			"string": {}
+		},
+		"AdvancedDataLayoutMap": {
+			"map": {
+				"keyType": "AdvancedDataLayoutName",
+				"valueType": "AdvancedDataLayout"
 			}
 		},
 		"TypeDefn": {

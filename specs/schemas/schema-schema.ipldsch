@@ -3,6 +3,33 @@
 ## Yes, it's self-describing! :)
 ## -----
 
+## Schema is a the root element of an IPLD Schema document.
+##
+## A complete (if quite short) Schema might look like this:
+##
+## ```
+## {
+##   "types": {
+##     "MyFooType": {
+##       "type": "string"
+##     }
+##   }
+## }
+## ```
+##
+## The main bulk of a schema is the types map,
+## which is TypeName mapped to TypeDefn.
+##
+## Some additional top level fields are optional,
+## such as some maps which may store data about where ADLs
+## should be expected to be used within the data described by the schema.
+## However, not all schemas use these features.
+##
+type Schema struct {
+	types {TypeName:TypeDefn}
+	advanced optional AdvancedDataLayoutMap
+}
+
 ## Type names are a simple alias of string.
 ##
 ## There are some additional rules that should be applied. Type names:
@@ -16,21 +43,6 @@
 ## a TypeName must be unique within the Schema.
 ##
 type TypeName string
-
-## SchemaMap is a complete set of types;
-## it is simply a map of TypeName to the TypeDefn for that type.
-##
-## A simple schema map with one type might look like this:
-##
-## ```
-## {
-##   "MyFooType": {
-##     "string": {}
-##   }
-## }
-## ```
-##
-type SchemaMap {TypeName:TypeDefn}
 
 ## AdvancedDataLayoutName defines the name of an ADL as a string.
 ##
@@ -47,26 +59,6 @@ type AdvancedDataLayoutName string
 ## currently an empty map.
 ##
 type AdvancedDataLayoutMap {AdvancedDataLayoutName:AdvancedDataLayout}
-
-## Schema is a single-member union, which can be used in serialization
-## to make a form of "nominative type declaration".
-##
-## A complete (if quite short) Schema might look like this:
-##
-## ```
-## {
-##   "schema": {
-##     "MyFooType": {
-##       "type": "string"
-##     }
-##   }
-## }
-## ```
-##
-type Schema struct {
-	types SchemaMap
-	advanced AdvancedDataLayoutMap
-}
 
 ## TypeDefn is a union type, where each of the possible members describes one kind of type.
 ## For example, TypeDefnBool is a member of the TypeDefn union, as is TypeDefnMap.

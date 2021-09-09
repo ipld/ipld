@@ -475,13 +475,16 @@
 			"fields": {
 				"prefixes": {
 					"kind": "map",
-					"keyType": "String",
+					"keyType": "HexString",
 					"valueType": "TypeName"
 				}
 			},
 			"representation": {
 				"map": {}
 			}
+		},
+		"HexString": {
+			"kind": "string"
 		},
 		"TypeStruct": {
 			"kind": "struct",

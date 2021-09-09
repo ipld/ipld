@@ -480,8 +480,16 @@ type UnionRepresentation_StringPrefix struct {
 ## that does not have a bytes representation.
 ##
 type UnionRepresentation_BytesPrefix struct {
-	prefixes {String:TypeName}
+	prefixes {HexString:TypeName}
 }
+
+## HexString is an alias for string, to denote and clarify that it's not a regular freetext string.
+## It's seen used in the UnionRepresentation_BytesPrefix type.
+##
+## (We use hexadecimal strings in the schema-schema in some places,
+## even though we could've used bytes types, because the schema DSL also uses hex strings,
+## and consistency (and, the ability to keep the schema-schema in plain JSON!) is valuable.)
+type HexString string
 
 ## TypeStruct describes a type which has a group of fields of varying Type.
 ## Each field has a name, which is used to access its value, similarly to

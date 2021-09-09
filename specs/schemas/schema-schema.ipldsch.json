@@ -72,21 +72,21 @@
 		},
 		"TypeKind": {
 			"kind": "enum",
-			"members": {
-				"Bool": null,
-				"String": null,
-				"Bytes": null,
-				"Int": null,
-				"Float": null,
-				"Map": null,
-				"List": null,
-				"Link": null,
-				"Union": null,
-				"Struct": null,
-				"Enum": null,
-				"Unit": null,
-				"Any": null
-			},
+			"members": [
+				"Bool",
+				"String",
+				"Bytes",
+				"Int",
+				"Float",
+				"Map",
+				"List",
+				"Link",
+				"Union",
+				"Struct",
+				"Enum",
+				"Unit",
+				"Any"
+			],
 			"representation": {
 				"string": {
 					"Bool": "bool",
@@ -107,16 +107,16 @@
 		},
 		"RepresentationKind": {
 			"kind": "enum",
-			"members": {
-				"Bool": null,
-				"String": null,
-				"Bytes": null,
-				"Int": null,
-				"Float": null,
-				"Map": null,
-				"List": null,
-				"Link": null
-			},
+			"members": [
+				"Bool",
+				"String",
+				"Bytes",
+				"Int",
+				"Float",
+				"Map",
+				"List",
+				"Link"
+			],
 			"representation": {
 				"string": {
 					"Bool": "bool",
@@ -655,9 +655,8 @@
 			"fields": {
 				"members": {
 					"type": {
-						"kind": "map",
-						"keyType": "EnumMember",
-						"valueType": "Null"
+						"kind": "list",
+						"valueType": "EnumMember"
 					}
 				},
 				"representation": {
@@ -707,12 +706,12 @@
 		},
 		"UnitRepresentation": {
 			"kind": "enum",
-			"members": {
-				"Null": null,
-				"True": null,
-				"False": null,
-				"Emptymap": null
-			},
+			"members": [
+				"Null",
+				"True",
+				"False",
+				"Emptymap"
+			],
 			"representation": {
 				"string": {
 					"Null": "null",

@@ -701,7 +701,7 @@ type StructRepresentation_ListPairs struct {}
 ## all int values are required.
 ##
 type TypeEnum struct {
-	members {EnumMember:Null}
+	members [EnumMember]
 	representation EnumRepresentation
 }
 

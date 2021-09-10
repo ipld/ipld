@@ -229,26 +229,23 @@ type TypeDefnMap struct {
 	keyType TypeName
 	valueType TypeNameOrInlineDefn
 	valueNullable Bool (implicit "false")
-	representation MapRepresentation
+	representation optional MapRepresentation
 }
 
 ## MapRepresentation describes how a map type should be mapped onto
 ## its IPLD Data Model representation.
 ##
 ## By default, a map type is also represented as a map in the Data Model,
-## but other representation strategies can be configured.
+## but other representation strategies can be configured
+##
+## Note that the `TypeDefnMap.representation` field is optional --
+## the default behavior is demarcated by the lack of any of these values.
 ##
 type MapRepresentation union {
-	| MapRepresentation_Map "map"
 	| MapRepresentation_StringPairs "stringpairs"
 	| MapRepresentation_ListPairs "listpairs"
 	| AdvancedDataLayoutName "advanced"
 } representation keyed
-
-## MapRepresentation_Map describes that a map should be encoded as
-## a map in the Data Model
-##
-type MapRepresentation_Map struct {}
 
 ## MapRepresentation_StringPairs describes that a map should be encoded as a
 ## string of delimited "k/v" entries, e.g. "k1=v1,k2=v2".
@@ -289,22 +286,19 @@ type MapRepresentation_ListPairs struct {}
 type TypeDefnList struct {
 	valueType TypeNameOrInlineDefn
 	valueNullable Bool (implicit "false")
-	representation ListRepresentation
+	representation optional ListRepresentation
 }
 
 ## ListRepresentation describes how a map type should be mapped onto
 ## its IPLD Data Model representation.  By default a list is a list in the
 ## data model but it may be replaced with an ADL.
 ##
+## Note that the `TypeDefnList.representation` field is optional --
+## the default behavior is demarcated by the lack of any of these values.
+##
 type ListRepresentation union {
-	| ListRepresentation_List "list"
 	| AdvancedDataLayoutName "advanced"
 } representation keyed
-
-## ListRepresentation_List is the default representation for TypeDefnList and
-## will be used implicitly if no representation is specified.
-##
-type ListRepresentation_List struct {}
 
 ## TypeDefnLink describes an IPLD link, which is a content-addressable pointer to more data.
 ## (Links in IPLD are implemented by CIDs: they're a hash that identifies another another block of data,

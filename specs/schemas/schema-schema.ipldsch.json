@@ -242,7 +242,8 @@
 						"type": "Bool"
 					},
 					"representation": {
-						"type": "MapRepresentation"
+						"type": "MapRepresentation",
+						"optional": true
 					}
 				},
 				"representation": {
@@ -259,26 +260,16 @@
 		"MapRepresentation": {
 			"union": {
 				"members": [
-					"MapRepresentation_Map",
 					"MapRepresentation_StringPairs",
 					"MapRepresentation_ListPairs",
 					"AdvancedDataLayoutName"
 				],
 				"representation": {
 					"keyed": {
-						"map": "MapRepresentation_Map",
 						"stringpairs": "MapRepresentation_StringPairs",
 						"listpairs": "MapRepresentation_ListPairs",
 						"advanced": "AdvancedDataLayoutName"
 					}
-				}
-			}
-		},
-		"MapRepresentation_Map": {
-			"struct": {
-				"fields": {},
-				"representation": {
-					"map": {}
 				}
 			}
 		},
@@ -315,7 +306,8 @@
 						"type": "Bool"
 					},
 					"representation": {
-						"type": "ListRepresentation"
+						"type": "ListRepresentation",
+						"optional": true
 					}
 				},
 				"representation": {
@@ -332,12 +324,10 @@
 		"ListRepresentation": {
 			"union": {
 				"members": [
-					"ListRepresentation_List",
 					"AdvancedDataLayoutName"
 				],
 				"representation": {
 					"keyed": {
-						"list": "ListRepresentation_List",
 						"advanced": "AdvancedDataLayoutName"
 					}
 				}

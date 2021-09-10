@@ -485,9 +485,11 @@
 			"struct": {
 				"fields": {
 					"prefixes": {
-						"map": {
-							"keyType": "String",
-							"valueType": "TypeName"
+						"type": {
+							"map": {
+								"keyType": "String",
+								"valueType": "TypeName"
+							}
 						}
 					}
 				},
@@ -500,9 +502,11 @@
 			"struct": {
 				"fields": {
 					"prefixes": {
-						"map": {
-							"keyType": "HexString",
-							"valueType": "TypeName"
+						"type": {
+							"map": {
+								"keyType": "HexString",
+								"valueType": "TypeName"
+							}
 						}
 					}
 				},

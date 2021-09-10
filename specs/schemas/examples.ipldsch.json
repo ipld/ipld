@@ -1,67 +1,83 @@
 {
 	"schema": {
 		"ExampleWithNullable": {
-			"kind": "map",
-			"keyType": "String",
-			"valueType": {
-				"kind": "link"
-			},
-			"valueNullable": true
+			"map": {
+				"keyType": "String",
+				"valueType": {
+					"link": {}
+				},
+				"valueNullable": true
+			}
 		},
 		"ExampleWithAnonDefns": {
-			"kind": "struct",
-			"fields": {
-				"fooField": {
-					"type": {
-						"kind": "map",
-						"keyType": "String",
-						"valueType": "String"
+			"struct": {
+				"fields": {
+					"fooField": {
+						"type": {
+							"map": {
+								"keyType": "String",
+								"valueType": "String"
+							}
+						},
+						"optional": true
 					},
-					"optional": true
-				},
-				"barField": {
-					"type": {
-						"kind": "map",
-						"keyType": "String",
-						"valueType": "String"
+					"barField": {
+						"type": {
+							"map": {
+								"keyType": "String",
+								"valueType": "String"
+							}
+						},
+						"nullable": true
 					},
-					"nullable": true
-				},
-				"bazField": {
-					"type": {
-						"kind": "map",
-						"keyType": "String",
-						"valueType": "String",
-						"valueNullable": true
-					}
-				},
-				"wozField": {
-					"type": {
-						"kind": "map",
-						"keyType": "String",
-						"valueType": {
-							"kind": "list",
-							"valueType": "String",
-							"valueNullable": true
+					"bazField": {
+						"type": {
+							"map": {
+								"keyType": "String",
+								"valueType": "String",
+								"valueNullable": true
+							}
+						}
+					},
+					"wozField": {
+						"type": {
+							"map": {
+								"keyType": "String",
+								"valueType": {
+									"list": {
+										"valueType": "String",
+										"valueNullable": true
+									}
+								}
+							}
+						}
+					},
+					"boomField": {
+						"type": {
+							"link": {
+								"expectedType": "ExampleWithNullable"
+							}
 						}
 					}
 				},
-				"boomField": {
-					"type": {
-						"kind": "link",
-						"expectedType": "ExampleWithNullable"
-					}
-				}
-			},
-			"representation": {
-				"map": {
-					"fields": {
-						"fooField": {
-							"rename": "foo_field"
+				"representation": {
+					"map": {
+						"fields": {
+							"fooField": {
+								"rename": "foo_field"
+							}
 						}
 					}
 				}
 			}
+		},
+		"ExampleOfUnit": {
+			"unit": {
+				"representation": "null"
+			}
+		},
+		"ExampleOfAny": {
+			"any": {}
 		}
 	}
 }

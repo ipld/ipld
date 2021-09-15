@@ -228,7 +228,7 @@ type TypeDefnFloat struct {}
 type TypeDefnMap struct {
 	keyType TypeName
 	valueType TypeNameOrInlineDefn
-	valueNullable Bool (implicit "false")
+	valueNullable Bool (implicit false)
 	representation optional MapRepresentation
 }
 
@@ -285,7 +285,7 @@ type MapRepresentation_ListPairs struct {}
 ##
 type TypeDefnList struct {
 	valueType TypeNameOrInlineDefn
-	valueNullable Bool (implicit "false")
+	valueNullable Bool (implicit false)
 	representation optional ListRepresentation
 }
 
@@ -542,8 +542,8 @@ type FieldName string
 ##
 type StructField struct {
 	type TypeNameOrInlineDefn
-	optional Bool (implicit "false")
-	nullable Bool (implicit "false")
+	optional Bool (implicit false)
+	nullable Bool (implicit false)
 }
 
 ## TypeNameOrInlineDefn is a union of either TypeName or an InlineDefn.

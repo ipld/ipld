@@ -93,7 +93,9 @@ Following the 11 byte pragma, the CARv2 is a fixed-length sequence of 40 bytes, 
 
 The characteristics bitfield contained within the CARv2 header may be used to indicate certain features of the specific CARv2. All bits in the bitfield will be unset (`0`) by default and only set (`1`) where they are being used to signal a characteristic other than the default.
 
-Currently the characteristics bitfield is not used and should have all bits unset (`0`). Future iterations of this specification may introduce characteristic indicators for features such as:
+The first (i.e. left-most bit) value in characteristics bitfield specifies whether the index represents a full catalog of sections that appear in data payload, referred to as `fully-indexed` characteristic. When this characteristic is set (`1`), the index must include a complete catalog of the section CIDs regardless of whether they are identity CIDs or not.
+
+The reminder of characteristics bitfield is not used and should have all bits unset (`0`). Future iterations of this specification may introduce characteristic indicators for features such as:
 
 * DAG walk ordering—none, depth-first, breadth-first, or via [IPLD Selector](../../../selectors/).
 * De-duplication status
@@ -124,11 +126,11 @@ The first byte(s) of a CARv2 index (at the "Index offset" position) contain an u
 
 As the index only contains the hash digest bytes, other details contained within the block's CID and the length of the block's bytes must be derived by inspecting the initial bytes of the block entry within the data payload.
 
-Indexes **should not include identity hash CIDs**. It is assumed that any use of a CARv2 as a blockstore will return identity CID data immediately by extracting it from the CID, therefore there should be no need to provide indexing for such entries.
+Indexes **should not include identity hash CIDs unless the `fully-indexed` characteristic is set**. It is assumed that any use of a CARv2 as a blockstore will return identity CID data immediately by extracting it from the CID, therefore there should be no need to provide indexing for such entries. However, when `fully-indexed` characteristic is set, the blockstore should persist blocks with identity CID into the CARv2 data payload and index them.
 
 #### Format `0x0400`: IndexSorted
 
-A unsigned varint of `0x0400` at the "Index offset" byte position indicates the remaining bytes of the CAR should be interpreted as the "IndexSorted" format.
+An unsigned varint of `0x0400` at the "Index offset" byte position indicates the remaining bytes of the CAR should be interpreted as the "IndexSorted" format.
 
 IndexSorted sorts hash digests by two dimensions: first into buckets of _digest length_, smallest to largest, and then within those buckets ordered by a simple byte-wise sorting. In this way, locating a hash digest within the CAR requires first finding the bucket matching the length of the requested hash digest, then searching the ordered list of digests within that bucket to find the matching entry.
 
@@ -147,7 +149,26 @@ For example, a bucket containing 32-byte hash digests will have a "width" of `40
 Each bucket, therefore, takes the following form:
 
 ```
-| width (int32) | count (int64) | digest1 | digest1 offset (uint64) | digest2 | digest2 offset (uint64) ...
+| width (uint32) | count (uint64) | digest1 | digest1 offset (uint64) | digest2 | digest2 offset (uint64) ...
+```
+
+#### Format `0x0401`: MultihashIndexSorted
+
+An unsigned varint of `0x0401` at the "Index offset" byte position indicates the remaining bytes of the CAR should be interpreted as the "MultihashIndexSorted" format.
+
+MultihashIndexSorted builds on top of the `IndexSorted` by storing an additional dimension: the hash function by which digests are calculated, a.k.a. _multihash code_. More precisely, MultihashIndexSorted sorts hash digests by three dimensions: first into buckets of multihash code, smallest to largest, then into buckets of _digest length_, smallest to largest, and finally within those buckets ordered by a simple byte-wise sorting. In this way, locating a multihash within the CAR requires first finding the bucket matching the code of the requested multihash, then the length of the requested multihash digest, and finally searching the ordered list of digests within that bucket to find the matching entry.
+
+* MultihashIndexSorted may contain one or more multihash code-grouped buckets of digests.
+* Multihash code-grouped buckets may further contain one or more length-grouped buckets.
+* Buckets are ordered by multihash code then digest length, and concatenated together to form the index.
+* Each bucket is prefixed with:
+  * a "multihash code" encoded as a 64-bit unsigned little-endian integer indicating the common multihash code for the digests in this bucket; followed by
+  * length-grouped bucket structure identical to IndexSorted.
+
+Individual index entries are also identical to the IndexSorted entries. Each bucket, therefore, takes the following form:
+
+```
+| multihash-code (uint64) | width (uint32) | count (uint64) | digest1 | digest1 offset (uint64) | digest2 | digest2 offset (uint64) ...
 ```
 
 ## Implementations

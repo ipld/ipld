@@ -12,7 +12,8 @@
 						}
 					},
 					"advanced": {
-						"type": "AdvancedDataLayoutMap"
+						"type": "AdvancedDataLayoutMap",
+						"optional": true
 					}
 				},
 				"representation": {
@@ -51,24 +52,21 @@
 					"TypeDefnCopy"
 				],
 				"representation": {
-					"inline": {
-						"discriminantKey": "kind",
-						"discriminantTable": {
-							"bool": "TypeDefnBool",
-							"string": "TypeDefnString",
-							"bytes": "TypeDefnBytes",
-							"int": "TypeDefnInt",
-							"float": "TypeDefnFloat",
-							"map": "TypeDefnMap",
-							"list": "TypeDefnList",
-							"link": "TypeDefnLink",
-							"union": "TypeDefnUnion",
-							"struct": "TypeDefnStruct",
-							"enum": "TypeDefnEnum",
-							"unit": "TypeDefnUnit",
-							"any": "TypeDefnAny",
-							"copy": "TypeDefnCopy"
-						}
+					"keyed": {
+						"bool": "TypeDefnBool",
+						"string": "TypeDefnString",
+						"bytes": "TypeDefnBytes",
+						"int": "TypeDefnInt",
+						"float": "TypeDefnFloat",
+						"map": "TypeDefnMap",
+						"list": "TypeDefnList",
+						"link": "TypeDefnLink",
+						"union": "TypeDefnUnion",
+						"struct": "TypeDefnStruct",
+						"enum": "TypeDefnEnum",
+						"unit": "TypeDefnUnit",
+						"any": "TypeDefnAny",
+						"copy": "TypeDefnCopy"
 					}
 				}
 			}
@@ -92,19 +90,19 @@
 				],
 				"representation": {
 					"string": {
-						"Bool": "bool",
-						"String": "string",
-						"Bytes": "bytes",
-						"Int": "int",
-						"Float": "float",
-						"Map": "map",
-						"List": "list",
-						"Link": "link",
-						"Union": "union",
-						"Struct": "struct",
-						"Enum": "enum",
-						"Unit": "unit",
-						"Any": "any"
+						"bool": "Bool",
+						"string": "String",
+						"bytes": "Bytes",
+						"int": "Int",
+						"float": "Float",
+						"map": "Map",
+						"list": "List",
+						"link": "Link",
+						"union": "Union",
+						"struct": "Struct",
+						"enum": "Enum",
+						"unit": "Unit",
+						"any": "Any"
 					}
 				}
 			}
@@ -123,14 +121,14 @@
 				],
 				"representation": {
 					"string": {
-						"Bool": "bool",
-						"String": "string",
-						"Bytes": "bytes",
-						"Int": "int",
-						"Float": "float",
-						"Map": "map",
-						"List": "list",
-						"Link": "link"
+						"bool": "Bool",
+						"string": "String",
+						"bytes": "Bytes",
+						"int": "Int",
+						"float": "Float",
+						"map": "Map",
+						"list": "List",
+						"link": "Link"
 					}
 				}
 			}
@@ -330,14 +328,6 @@
 					"keyed": {
 						"advanced": "AdvancedDataLayoutName"
 					}
-				}
-			}
-		},
-		"ListRepresentation_List": {
-			"struct": {
-				"fields": {},
-				"representation": {
-					"map": {}
 				}
 			}
 		},
@@ -590,13 +580,10 @@
 					"TypeDefnLink"
 				],
 				"representation": {
-					"inline": {
-						"discriminantKey": "kind",
-						"discriminantTable": {
-							"map": "TypeDefnMap",
-							"list": "TypeDefnList",
-							"link": "TypeDefnLink"
-						}
+					"keyed": {
+						"map": "TypeDefnMap",
+						"list": "TypeDefnList",
+						"link": "TypeDefnLink"
 					}
 				}
 			}
@@ -786,10 +773,10 @@
 				],
 				"representation": {
 					"string": {
-						"Null": "null",
-						"True": "true",
-						"False": "false",
-						"Emptymap": "emptymap"
+						"null": "Null",
+						"true": "True",
+						"false": "False",
+						"emptymap": "Emptymap"
 					}
 				}
 			}

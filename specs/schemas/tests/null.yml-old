@@ -1,0 +1,10 @@
+schema: |
+  type Nothing null
+expected: |
+  {
+    "types": {
+      "Nothing": {
+        "kind": "null"
+      }
+    }
+  }

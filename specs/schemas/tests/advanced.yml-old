@@ -1,0 +1,55 @@
+schema: |
+  advanced HashMap
+
+  advanced Vector
+
+  advanced ByteList
+
+  type BigOlBytes bytes representation advanced ByteList
+
+  type ShardedMap {String:&BigOlBytes} representation advanced HashMap
+
+  type ShardedList [&ShardedMap] representation advanced Vector
+expected: |
+  {
+    "advanced": {
+      "HashMap": {
+        "kind": "advanced"
+      },
+      "Vector": {
+        "kind": "advanced"
+      },
+      "ByteList": {
+        "kind": "advanced"
+      }
+    },
+    "types": {
+      "BigOlBytes": {
+        "kind": "bytes",
+        "representation": {
+          "advanced": "ByteList"
+        }
+      },
+      "ShardedMap": {
+        "kind": "map",
+        "keyType": "String",
+        "valueType": {
+          "kind": "link",
+          "expectedType": "BigOlBytes"
+        },
+        "representation": {
+          "advanced": "HashMap"
+        }
+      },
+      "ShardedList": {
+        "kind": "list",
+        "valueType": {
+          "kind": "link",
+          "expectedType": "ShardedMap"
+        },
+        "representation": {
+          "advanced": "Vector"
+        }
+      }
+    }
+  }

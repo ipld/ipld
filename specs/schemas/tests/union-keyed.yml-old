@@ -1,0 +1,44 @@
+schema: |
+  type UnionKeyed union {
+    | Bool "bar"
+    | Int "foo"
+    | String "baz"
+  } representation keyed
+expected: |
+  {
+    "types": {
+      "UnionKeyed": {
+        "kind": "union",
+        "representation": {
+          "keyed": {
+            "bar": "Bool",
+            "foo": "Int",
+            "baz": "String"
+          }
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      { "foo": 100 }
+    expected: |
+      { "foo": 100 }
+  - actual: |
+      { "bar": true }
+    expected: |
+      { "bar": true }
+  - actual: |
+      { "baz": "this here is baz" }
+    expected: |
+      { "baz": "this here is baz" }
+badBlocks:
+  - |
+    { "foo": "not an int" }
+  - |
+    { "bar": "not a boolean" }
+  - |
+    { "baz": true }
+  - |
+    { }
+

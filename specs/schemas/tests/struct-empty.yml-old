@@ -1,0 +1,27 @@
+schema: |
+  type StructEmpty struct { }
+
+  type StructEmptyTight struct {}
+canonical: |
+  type StructEmpty struct {}
+
+  type StructEmptyTight struct {}
+expected: |
+  {
+    "types": {
+      "StructEmpty": {
+        "kind": "struct",
+        "fields": {},
+        "representation": {
+          "map": {}
+        }
+      },
+      "StructEmptyTight": {
+        "kind": "struct",
+        "fields": {},
+        "representation": {
+          "map": {}
+        }
+      }
+    }
+  }

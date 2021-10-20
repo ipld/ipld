@@ -90,19 +90,19 @@
 				],
 				"representation": {
 					"string": {
-						"bool": "Bool",
-						"string": "String",
-						"bytes": "Bytes",
-						"int": "Int",
-						"float": "Float",
-						"map": "Map",
-						"list": "List",
-						"link": "Link",
-						"union": "Union",
-						"struct": "Struct",
-						"enum": "Enum",
-						"unit": "Unit",
-						"any": "Any"
+						"Bool": "bool",
+						"String": "string",
+						"Bytes": "bytes",
+						"Int": "int",
+						"Float": "float",
+						"Map": "map",
+						"List": "list",
+						"Link": "link",
+						"Union": "union",
+						"Struct": "struct",
+						"Enum": "enum",
+						"Unit": "unit",
+						"Any": "any"
 					}
 				}
 			}
@@ -121,14 +121,14 @@
 				],
 				"representation": {
 					"string": {
-						"bool": "Bool",
-						"string": "String",
-						"bytes": "Bytes",
-						"int": "Int",
-						"float": "Float",
-						"map": "Map",
-						"list": "List",
-						"link": "Link"
+						"Bool": "bool",
+						"String": "string",
+						"Bytes": "bytes",
+						"Int": "int",
+						"Float": "float",
+						"Map": "map",
+						"List": "list",
+						"Link": "link"
 					}
 				}
 			}
@@ -773,10 +773,10 @@
 				],
 				"representation": {
 					"string": {
-						"null": "Null",
-						"true": "True",
-						"false": "False",
-						"emptymap": "Emptymap"
+						"Null": "null",
+						"True": "true",
+						"False": "false",
+						"Emptymap": "emptymap"
 					}
 				}
 			}

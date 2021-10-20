@@ -1,0 +1,46 @@
+schema: |
+  type StructAsMapWithRenames struct {
+    foo Int (rename "f" implicit 0)
+    bar Bool (rename "b")
+    baz String (rename "z")
+    boom String
+  }
+expected: |
+  {
+    "types": {
+      "StructAsMapWithRenames": {
+        "struct": {
+          "fields": {
+            "foo": {
+              "type": "Int"
+            },
+            "bar": {
+              "type": "Bool"
+            },
+            "baz": {
+              "type": "String"
+            },
+            "boom": {
+              "type": "String"
+            }
+          },
+          "representation": {
+            "map": {
+              "fields": {
+                "foo": {
+                  "rename": "f",
+                  "implicit": 0
+                },
+                "bar": {
+                  "rename": "b"
+                },
+                "baz": {
+                  "rename": "z"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

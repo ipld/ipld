@@ -34,8 +34,8 @@ expected: |
           ],
           "representation": {
             "string": {
-              "f": "Foo",
-              "b": "Baz"
+              "Foo": "f",
+              "Baz": "b"
             }
           }
         }

@@ -4,7 +4,7 @@ expected: |
   {
     "types": {
       "SimpleBytes": {
-        "kind": "bytes"
+        "bytes": {}
       }
     }
   }

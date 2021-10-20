@@ -8,20 +8,21 @@ expected: |
   {
     "types": {
       "SimpleStruct": {
-        "kind": "struct",
-        "fields": {
-          "foo": {
-            "type": "Int"
+        "struct": {
+          "fields": {
+            "foo": {
+              "type": "Int"
+            },
+            "bar": {
+              "type": "Bool"
+            },
+            "baz": {
+              "type": "String"
+            }
           },
-          "bar": {
-            "type": "Bool"
-          },
-          "baz": {
-            "type": "String"
+          "representation": {
+            "map": {}
           }
-        },
-        "representation": {
-          "map": {}
         }
       }
     }

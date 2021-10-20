@@ -10,17 +10,19 @@ expected: |
   {
     "types": {
       "StructEmpty": {
-        "kind": "struct",
-        "fields": {},
-        "representation": {
-          "map": {}
+        "struct": {
+          "fields": {},
+          "representation": {
+            "map": {}
+          }
         }
       },
       "StructEmptyTight": {
-        "kind": "struct",
-        "fields": {},
-        "representation": {
-          "map": {}
+        "struct": {
+          "fields": {},
+          "representation": {
+            "map": {}
+          }
         }
       }
     }

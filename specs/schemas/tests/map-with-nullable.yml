@@ -4,10 +4,11 @@ expected: |
   {
     "types": {
       "MapWithNullable": {
-        "kind": "map",
-        "keyType": "String",
-        "valueType": "String",
-        "valueNullable": true
+        "map": {
+          "keyType": "String",
+          "valueType": "String",
+          "valueNullable": true
+        }
       }
     }
   }

@@ -15,21 +15,27 @@ expected: |
   {
     "types": {
       "Bar": {
-        "kind": "bool"
+        "bool": {}
       },
       "Baz": {
-        "kind": "string"
+        "string": {}
       },
       "Foo": {
-        "kind": "int"
+        "int": {}
       },
       "UnionKinded": {
-        "kind": "union",
-        "representation": {
-          "kinded": {
-            "int": "Foo",
-            "bool": "Bar",
-            "string": "Baz"
+        "union": {
+          "members": [
+            "Foo",
+            "Bar",
+            "Baz"
+          ],
+          "representation": {
+            "kinded": {
+              "int": "Foo",
+              "bool": "Bar",
+              "string": "Baz"
+            }
           }
         }
       }

@@ -14,27 +14,29 @@ expected: |
   {
     "types": {
       "SimpleEnum": {
-        "kind": "enum",
-        "members": {
-          "Foo": null,
-          "Bar": null,
-          "Baz": null
-        },
-        "representation": {
-          "string": {}
+        "enum": {
+          "members": [
+            "Foo",
+            "Bar",
+            "Baz"
+          ],
+          "representation": {
+            "string": {}
+          }
         }
       },
       "SimpleEnumWithValues": {
-        "kind": "enum",
-        "members": {
-          "Foo": null,
-          "Bar": null,
-          "Baz": null
-        },
-        "representation": {
-          "string": {
-            "Foo": "f",
-            "Baz": "b"
+        "enum": {
+          "members": [
+            "Foo",
+            "Bar",
+            "Baz"
+          ],
+          "representation": {
+            "string": {
+              "f": "Foo",
+              "b": "Baz"
+            }
           }
         }
       }

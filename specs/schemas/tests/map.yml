@@ -4,9 +4,10 @@ expected: |
   {
     "types": {
       "SimpleMap": {
-        "kind": "map",
-        "keyType": "String",
-        "valueType": "Int"
+        "map": {
+          "keyType": "String",
+          "valueType": "Int"
+        }
       }
     }
   }

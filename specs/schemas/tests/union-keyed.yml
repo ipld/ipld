@@ -8,12 +8,18 @@ expected: |
   {
     "types": {
       "UnionKeyed": {
-        "kind": "union",
-        "representation": {
-          "keyed": {
-            "bar": "Bool",
-            "foo": "Int",
-            "baz": "String"
+        "union": {
+          "members": [
+            "Bool",
+            "Int",
+            "String"
+          ],
+          "representation": {
+            "keyed": {
+              "bar": "Bool",
+              "foo": "Int",
+              "baz": "String"
+            }
           }
         }
       }

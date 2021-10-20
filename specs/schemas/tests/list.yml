@@ -1,29 +1,25 @@
 schema: |
-  type SimpleInt int
+  type SimpleList [String]
 expected: |
   {
     "types": {
-      "SimpleInt": {
-        "kind": "int"
+      "SimpleList": {
+        "list": {
+          "valueType": "String"
+        }
       }
     }
   }
 blocks:
   - actual: |
-      100
+      [ "a", "b", "c" ]
     expected: |
-      100
+      [ "a", "b", "c" ]
   - actual: |
-      0
+      [ ]
     expected: |
-      0
-  - actual: |
-      -100
-    expected: |
-      -100
+      [ ]
 badBlocks:
-  - |
-    100.1
   - |
     "fooz"
   - |
@@ -33,6 +29,8 @@ badBlocks:
   - |
     { "foo": true }
   - |
-    []
-  - |
     [ 100 ]
+  - |
+    [ true ]
+  - |
+    [ {} ]

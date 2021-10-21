@@ -124,3 +124,76 @@ Now, data containing nulls will match this schema:
 ```json
 {"just fine": null}
 ```
+
+
+
+maps with a stringpairs representation
+--------------------------------------
+
+Maps can also be declared with representation strategies such as `stringpairs`.
+
+[testmark]:# (map-stringpairs/schema.ipldsch)
+```ipldsch
+type MapAsStringpairs {String:String} representation stringpairs {
+	innerDelim "="
+	entryDelim ","
+}
+```
+
+The DMT form of that schema, in JSON, is:
+
+[testmark]:# (map-stringpairs/schema.dmt.json)
+```json
+{
+	"types": {
+		"MapAsStringpairs": {
+			"kind": "map",
+			"keyType": "String",
+			"valueType": "String",
+			"representation": {
+				"stringpairs": {
+					"innerDelim": "=",
+					"entryDelim": ","
+				}
+			}
+		}
+	}
+}
+```
+
+The following are blocks of data, expressed as json, that should match this schema:
+
+[testmark]:# (map-stringpairs/match/multiple-entry)
+```json
+"foo=bar,baz=quux"
+```
+
+[testmark]:# (map-stringpairs/match/single-entry)
+```json
+"foo=bar"
+```
+
+[testmark]:# (map-stringpairs/match/empty)
+```json
+""
+```
+
+The following are blocks of data, expressed as json, that do not match this schema:
+
+[testmark]:# (map-stringpairs/nomatch/map)
+```json
+{"a":1, "b":2, "c":100}
+```
+
+(Remember, when a representation strategy is declared, that's that:
+_only_ that representation is valid.
+The type-level behavior might be map, but the representation here must be a string
+and must match the format described by the representation strategy's details.)
+
+[testmark]:# (map-stringpairs/nomatch/string)
+```json
+"fooz"
+```
+
+(This doesn't match because the string doesn't contain any occurrences of the delimiter
+that would let us parse it as a map entry.)

@@ -112,8 +112,9 @@ If there's a map in a protocol that contains user-defined keys: it's recommended
 However, when it comes to how we specify the range of behaviors that IPLD must describe and support,
 these arguments about encouraging convergence are not deciding factor, for several reasons:
 - the hard limits described in the previous section are still in force (and wishing those away doesn't work);
-since it is possible to do such sorting by choice within a library and ecosystem that is order-preserving,
-we overall follow the reasoning which favors order-preservation as the central design.
+- parts of a protocol where uncoordinated convergence in the data is relevant are often a protocol-specific detail;
+- since it is still possible to do such sorting by choice within a library and ecosystem that is order-preserving (but the reverse is not true!),
+  we overall favor order-preservation as the central design (and encourage sorting be applied in parts of protocols where uncoordinated convergence is relevant).
 
 
 Impacts

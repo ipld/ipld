@@ -18,7 +18,8 @@ and many of these are reusable -- either in specs, or in implementations.
 
 Here are some projects that we know about, in brief:
 
----
+Projects
+--------
 
 ### Peergos
 
@@ -52,9 +53,21 @@ And here: https://blog.fission.codes/web-native-file-system-presentation/
 
 And here: https://guide.fission.codes/
 
----
 
-### Your Reference Material Here!
+Discussions
+-----------
+
+You can also find discussions about how to work with encryption and IPLD together
+in many places on the web.  We probably can't compile an exhaustive list,
+but here are some documents we know about:
+
+- [in the notebook: exploration-reports/2021.09-dag-pb-encryption](https://github.com/ipld/ipld/tree/master/notebook/exploration-reports/2021.09-dag-pb-encryption.md)
+
+If you're interested in any of those discussions, get in touch with their authors!
+
+
+Your Reference Material Here!
+-----------------------------
 
 :::info
 If you have a project that works with IPLD and encryption,

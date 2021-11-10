@@ -65,6 +65,7 @@ type Selector union {
 	| ExploreUnion "|"
 	| ExploreConditional "&"
 	| ExploreRecursiveEdge "@" # sentinel value; only valid in some positions.
+	| ExploreInterpretAs "~"
 } representation keyed
 
 ## ExploreAll is similar to a `*` -- it traverses all elements of an array,
@@ -178,6 +179,17 @@ type ExploreUnion [Selector]
 ## but returns a match for the node it's on rather any of the deeper values.
 type ExploreConditional struct {
 	condition Condition (rename "&")
+	next Selector (rename ">")
+}
+
+## ExploreInterpretAs is a transformation that attempts to 'reify' the current node
+## using an ADL specified by 'as'. Well-known ADLs are identified by their multicodec
+## identifier, and can be found under the tag 'ipld-adl' at
+## https://github.com/multiformats/multicodec/.
+## The ExploreInterpretAs reification process may introduce a data-dependant amount
+## of budget on evaluation based on the specific traversal and ADL implementation.
+type ExploreInterpretAs struct {
+	as int (rename "c")
 	next Selector (rename ">")
 }
 

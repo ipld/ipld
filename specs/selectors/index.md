@@ -183,13 +183,12 @@ type ExploreConditional struct {
 }
 
 ## ExploreInterpretAs is a transformation that attempts to 'reify' the current node
-## using an ADL specified by 'as'. Well-known ADLs are identified by their multicodec
-## identifier, and can be found under the tag 'ipld-adl' at
-## https://github.com/multiformats/multicodec/.
+## using an ADL specified by 'as'. ADLs are recognized by agreed-upon strings,
+## similar to libp2p protocols.
 ## The ExploreInterpretAs reification process may introduce a data-dependant amount
 ## of budget on evaluation based on the specific traversal and ADL implementation.
 type ExploreInterpretAs struct {
-	as int (rename "c")
+	as String (rename "c")
 	next Selector (rename ">")
 }
 

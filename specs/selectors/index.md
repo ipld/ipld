@@ -65,6 +65,7 @@ type Selector union {
 	| ExploreUnion "|"
 	| ExploreConditional "&"
 	| ExploreRecursiveEdge "@" # sentinel value; only valid in some positions.
+	| ExploreInterpretAs "~"
 } representation keyed
 
 ## ExploreAll is similar to a `*` -- it traverses all elements of an array,
@@ -178,6 +179,16 @@ type ExploreUnion [Selector]
 ## but returns a match for the node it's on rather any of the deeper values.
 type ExploreConditional struct {
 	condition Condition (rename "&")
+	next Selector (rename ">")
+}
+
+## ExploreInterpretAs is a transformation that attempts to 'reify' the current node
+## using an ADL specified by 'as'. ADLs are recognized by agreed-upon strings,
+## similar to libp2p protocols.
+## The ExploreInterpretAs reification process may introduce a data-dependant amount
+## of budget on evaluation based on the specific traversal and ADL implementation.
+type ExploreInterpretAs struct {
+	as String (rename "c")
 	next Selector (rename ">")
 }
 

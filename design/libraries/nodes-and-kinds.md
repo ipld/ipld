@@ -26,7 +26,10 @@ this -- we refer to "types", "enumerations", "interfaces", "packages", etc.
 However, these concepts can still translate even to languages with varying
 amounts of compile-time type checking, and indeed even to those with none.
 While the concepts are certainly not identical across all languages,
-we hope that they're close enough to be meaningful to a thoughtful reader.)
+we hope that they're close enough to be meaningful to a thoughtful reader.
+If you would like some primer on these concepts, we also maintain
+a page on "[Type Theory Glossary](/design/concepts/type-theory-glossary/)"
+which is language-agnostic.)
 
 We expect that common concepts for IPLD libraries will emerge across many languages,
 and hope that some vocabulary for these concepts is something we can share.

@@ -1,15 +1,20 @@
-# Graphsync
+---
+title: "Graphsync"
+eleventyNavigation:
+  synopsys: "Graphsync is an advanced interactive transport protocol.  Graphsync uses IPLD Selectors to effeciently transfer graphs (or selections of parts of graphs) with a minimal number of independent requests and thus low overhead for high latency situations."
+---
 
-**Status: Prescriptive - Draft**
+# Graphsync
 
 A protocol to synchronize graphs across peers.
 
-See also [ipld](../IPLD.md), [IPLD Selectors](../../selectors/selectors.md)
+Graphsync uses [IPLD Selectors](/specs/selectors/) to effeciently transfer graphs (or selections of parts of graphs)
+with a minimal number of independent requests, and thus seeks to attain low overhead for high latency situations.
 
 ## [Meta: Status of this doc]
 
 - This was written around 2018-10-16 ([video presentation](https://drive.google.com/file/d/1NbbVxZQFKXwW6mdodxgTaftsI8eID-c1/view))
-- This document is unfortunately far from complete. :( I want to finish this by EOQ.
+- This document is unfortunately far from complete.
 - But this document provides enough information for an implementation to be made by someone who has already implemented bitswap (or understands it well).
 - It relies heavily on an understanding of bitswap as it is now. It likely won't be useful to people without a good understanding of how Bitswap works at the moment.
 - This requires IPLD Selectors to exist and be implemented.
@@ -98,7 +103,7 @@ The Graphsync protocol is extensible. A graphsync request and a graphsync respon
 
 Extensions help make Graphsync operate more efficiently, or provide a mechanism for exchanging side channel information for other protocols. An implementation can choose to support one or more extensions, but it does not have to.
 
-A list of well known extensions is found [here](./known_extensions.md)
+A list of well known extensions is found [here](./known_extensions/)
 
 ### Updating requests
 

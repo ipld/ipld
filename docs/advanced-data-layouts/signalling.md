@@ -28,11 +28,24 @@ we don't want any of that.
 
 So!  Signalling must come from somewhere else.
 
-There are a variety of valid options:
+There are a variety of valid options, and we'll explore some of them,
+and examples of them, in the next sections.
 
-- [Signalling with Schemas](#signalling-with-schemas)
-- [Direct action within libraries](#direct-action-within-libraries)
-- [Other declarative signalling](#other-declarative-signalling)
+Signalling Mechanisms
+---------------------
+
+- Signalling in Selectors: there is signalling for invoking ADLs at specific positions in Selector walks.
+- Signalling with Schemas: there will be signalling for invoking ADLs at recurring positions in Schemas.  (It's on the roadmap, waiting for engineer allocation.)  (This one is useful because it works on recursive structures!)
+- Acting directly in code: there will be choices made by people's code, regardless of any signalling mechanisms.  (This isn't really following any convention of signalling, but worth remember that it's a practical reality.)
+- Suites which imply Signalling: some programs and protocols will implicitly (or explicitly) have _suites_ of logic which may include ADLs (and maybe other special behaviors that don't fit a clean plugin system) which are signalled by some protocol-specific mechanism.
+	- (n.b., this is defacto how a lot of IPFS works!  All of unixfsv1 can be seen as such a "suite".)
+- Signalling with "fat pointers": there might be information that is in-band to the serialized data which should signal where to use ADLs.
+	- (Note that this is a *bad idea* if not combined with a "suite" or other form of larger wrapped-around signalling -- be careful not to do [in-band signalling](https://en.wikipedia.org/wiki/In-band_signaling), which generally leads to security issues or other design problems.)
+	- (There have also been calls to make a standardized version of this and embed it in CIDs, creating a "CIDv2".)
+
+:::todo
+Some of the above bulletpoints have full sections below.  The others need sections too.
+:::
 
 #### Signalling with Schemas
 

@@ -24,7 +24,7 @@ Fixtures
 
 This is a DAG-JOSE object, in hexidemical:
 
-[testmark]:# (jws/data.dag-jose.hex)
+[testmark]:# (jws/serial.dag-jose.hex)
 ```
 a2677061796c6f616458240171122089556551c3926679cc52c72e182a5619056a4727409ee93a26
 d05ad727ca11f46a7369676e61747572657381a26970726f7465637465644f7b22616c67223a2245
@@ -49,7 +49,7 @@ signatures/0/signature
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 (and prettyprint it), we should get this result:
 
-[testmark]:# (jws/data.dag-json-pretty)
+[testmark]:# (jws/datamodel.dag-json.pretty)
 ```json
 {
 	"link": {
@@ -69,7 +69,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 This is a DAG-JOSE object, in hexidemical:
 
-[testmark]:# (jwe-symmetric/data.dag-jose.hex)
+[testmark]:# (jwe-symmetric/serial.dag-jose.hex)
 ```
 a46269764c3d2588b80c8ef02a5ebf308b637461675059900c05b961cc30ac41638029d964486970
 726f746563746564581d7b22616c67223a22646972222c22656e63223a224131323847434d227d6a
@@ -90,7 +90,7 @@ tag
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 (and prettyprint it), we should get this result:
 
-[testmark]:# (jwe-symmetric/data.dag-json-pretty)
+[testmark]:# (jwe-symmetric/datamodel.dag-json.pretty)
 ```json
 {
 	"ciphertext": "3XqLW28NHP-raqW8vMfIHOzko4N3IRaR",
@@ -104,7 +104,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 This is a DAG-JOSE object, in hexidemical:
 
-[testmark]:# (jwe-asymmetric/data.dag-jose.hex)
+[testmark]:# (jwe-asymmetric/serial.dag-jose.hex)
 ```
 a56269764c43cc693edff366b7ef1e047e63746167508f11e3715bacbb4cab381cf0f84c79cc6970
 726f74656374656458267b22616c67223a225253412d4f4145502d323536222c22656e63223a2241
@@ -136,7 +136,7 @@ tag
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 (and prettyprint it), we should get this result:
 
-[testmark]:# (jwe-asymmetric/data.dag-json-pretty)
+[testmark]:# (jwe-asymmetric/datamodel.dag-json.pretty)
 ```json
 {
 	"ciphertext": "WTaw6WeqhaZDDhedzGYnsty4SMR-RzOw",

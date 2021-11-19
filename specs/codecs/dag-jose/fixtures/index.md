@@ -38,7 +38,12 @@ when we walk over it at the [data model](/docs/data-model/) level:
 
 [testmark]:# (jws/paths)
 ```text
-TODO
+link
+payload
+signatures
+signatures/0
+signatures/0/protected
+signatures/0/signature
 ```
 
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
@@ -46,7 +51,18 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 [testmark]:# (jws/data.dag-json-pretty)
 ```json
-TODO
+{
+	"link": {
+		"/": "bafyreiejkvsvdq4smz44yuwhfymcuvqzavveoj2at3utujwqlllspsqr6q"
+	},
+	"payload": "AXESIIlVZVHDkmZ5zFLHLhgqVhkFakcnQJ7pOibQWtcnyhH0",
+	"signatures": [
+		{
+			"protected": "eyJhbGciOiJFZERTQSJ9",
+			"signature": "-_9J5OZcl5lVuRlgI1NJEzc0FqEb6_2yVskUaQPducRQ4oe-N5ynCl57wDm4SPtm1L1bltrphpQeBOeWjVW1BQ"
+		}
+	]
+}
 ```
 
 ### JWE symmetric
@@ -65,7 +81,10 @@ when we walk over it at the [data model](/docs/data-model/) level:
 
 [testmark]:# (jwe-symmetric/paths)
 ```text
-TODO
+ciphertext
+iv
+protected
+tag
 ```
 
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
@@ -73,7 +92,12 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 [testmark]:# (jwe-symmetric/data.dag-json-pretty)
 ```json
-TODO
+{
+	"ciphertext": "3XqLW28NHP-raqW8vMfIHOzko4N3IRaR",
+	"iv": "PSWIuAyO8CpevzCL",
+	"protected": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4R0NNIn0",
+	"tag": "WZAMBblhzDCsQWOAKdlkSA"
+}
 ```
 
 ### JWE asymmetric
@@ -100,7 +124,13 @@ when we walk over it at the [data model](/docs/data-model/) level:
 
 [testmark]:# (jwe-asymmetric/paths)
 ```text
-TODO
+ciphertext
+iv
+protected
+recipients
+recipients/0
+recipients/0/encrypted_key
+tag
 ```
 
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
@@ -108,7 +138,17 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 [testmark]:# (jwe-asymmetric/data.dag-json-pretty)
 ```json
-TODO
+{
+	"ciphertext": "WTaw6WeqhaZDDhedzGYnsty4SMR-RzOw",
+	"iv": "Q8xpPt_zZrfvHgR-",
+	"protected": "eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0",
+	"recipients": [
+		{
+			"encrypted_key": "EqYaN4dFEH0vX4jU3d768hwOYSgZhElvVDzqdIKA6PFHsL4PPwJ7EIuebLrxwABJqXWBNG0kUBRjHuCv51VlxvX9WoH9ik7Qew0yROCGBj_AJef15PiZzUVUQwteHVDuSQs4OcsMfj18zc_ObskHvUMaN0PdCBA-G__7rGR2tcYSJOywbvxqqTENsCZNvasKxHSOuA_bjVsRmWloUMwLJkrbQxPAsVcwoPjAYF2agQ8D40AGFVEzGmhQDLI-OpXI-AfZYBurE7f_fU_NsYtqmFj5vZ9lvVCV1QsZa_HRhQlBBHxjTKyCBufY-0G4omt2nzYhyO-TaH44eUh81HFzww"
+		}
+	],
+	"tag": "jxHjcVusu0yrOBzw-Ex5zA"
+}
 ```
 
 

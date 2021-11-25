@@ -22,6 +22,13 @@ Fixtures
 
 ### JWS
 
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jws/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
+
 This is a DAG-JOSE object, in hexadecimal:
 
 [testmark]:# (jws/serial.dag-jose.hex)
@@ -66,6 +73,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 ```
 
 ### JWS with one signature
+
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jws-signature-1/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
 
 This is a DAG-JOSE object, in hexadecimal:
 
@@ -112,6 +126,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWS with another signature
 
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jws-signature-2/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
+
 This is a DAG-JOSE object, in hexadecimal:
 
 [testmark]:# (jws-signature-2/serial.dag-jose.hex)
@@ -156,6 +177,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 ```
 
 ### JWS with multiple signatures
+
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jws-signatures/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
 
 This is a DAG-JOSE object, in hexadecimal:
 
@@ -211,6 +239,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE symmetric
 
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jwe-symmetric/serial.dag-jose.cid)
+```
+bagcqceraxazmu67crshzqdeg3kwnfschs25epy5sbtqtjre2qw3d62kzplva
+```
+
 This is a DAG-JOSE object, in hexadecimal:
 
 [testmark]:# (jwe-symmetric/serial.dag-jose.hex)
@@ -245,6 +280,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 ```
 
 ### JWE asymmetric
+
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jwe-asymmetric/serial.dag-jose.cid)
+```
+bagcqceraqfknq7xaemcihmq2albau32ttrutxnco7xeoik6mlejismmvw5zq
+```
 
 This is a DAG-JOSE object, in hexadecimal:
 
@@ -297,6 +339,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE with no recipients
 
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jwe-no-recipients/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
+
 This is a DAG-JOSE object, in hexadecimal:
 
 [testmark]:# (jwe-no-recipients/serial.dag-jose.hex)
@@ -332,6 +381,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 ```
 
 ### JWE with one recipient
+
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jwe-recipient/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
 
 This is a DAG-JOSE object, in hexadecimal:
 
@@ -399,6 +455,13 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 ```
 
 ### JWE with multiple recipients
+
+This is the base64url-encoded CID for a DAG-JOSE object:
+
+[testmark]:# (jwe-recipients/serial.dag-jose.cid)
+```
+bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+```
 
 This is a DAG-JOSE object, in hexadecimal:
 

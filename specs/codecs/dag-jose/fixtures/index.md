@@ -78,7 +78,7 @@ This is the base64url-encoded CID for a DAG-JOSE object:
 
 [testmark]:# (jws-signature-1/serial.dag-jose.cid)
 ```
-bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+bagcqcerauben4l6ee2wjf2fnkj7vaels4p7lnytenk35j3gl2lzcbtbgyoea
 ```
 
 This is a DAG-JOSE object, in hexadecimal:
@@ -130,7 +130,7 @@ This is the base64url-encoded CID for a DAG-JOSE object:
 
 [testmark]:# (jws-signature-2/serial.dag-jose.cid)
 ```
-bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+bagcqceravvw4bx7jgkxxjwfuqo2yoja6w4cmvmu3gkew3s7yu3vt2ce7riwa
 ```
 
 This is a DAG-JOSE object, in hexadecimal:
@@ -182,7 +182,7 @@ This is the base64url-encoded CID for a DAG-JOSE object:
 
 [testmark]:# (jws-signatures/serial.dag-jose.cid)
 ```
-bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+bagcqcera542h3xc57nudkgjcceexyzyxrkwi4ikbn773ag6dqdcyjt6z6rga
 ```
 
 This is a DAG-JOSE object, in hexadecimal:
@@ -343,7 +343,7 @@ This is the base64url-encoded CID for a DAG-JOSE object:
 
 [testmark]:# (jwe-no-recipients/serial.dag-jose.cid)
 ```
-bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+bagcqcerakjv2mmdlbai3urym22bw5kaw7nqov73yaxf6xjnp7e56sclsrooa
 ```
 
 This is a DAG-JOSE object, in hexadecimal:
@@ -386,7 +386,7 @@ This is the base64url-encoded CID for a DAG-JOSE object:
 
 [testmark]:# (jwe-recipient/serial.dag-jose.cid)
 ```
-bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+bagcqcera7azagcqlpu4ivvh4xp4iv6psmb5d7eki6ln3fnfnsnbb2hzv4nxq
 ```
 
 This is a DAG-JOSE object, in hexadecimal:
@@ -460,7 +460,7 @@ This is the base64url-encoded CID for a DAG-JOSE object:
 
 [testmark]:# (jwe-recipients/serial.dag-jose.cid)
 ```
-bagcqceraxvt5izt4sz7kjfrm42dxrutp6ijywgsacllkznzekmfojypkvfea
+bagcqcera5uvz2qai6l4vmqjigwpowluilxngz3dyjnva2s3uwbfb5u4ao4fa
 ```
 
 This is a DAG-JOSE object, in hexadecimal:

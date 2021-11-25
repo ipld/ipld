@@ -22,7 +22,7 @@ Fixtures
 
 ### JWS
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jws/serial.dag-jose.cid)
 ```
@@ -74,7 +74,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWS with one signature
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jws-signature-1/serial.dag-jose.cid)
 ```
@@ -126,7 +126,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWS with another signature
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jws-signature-2/serial.dag-jose.cid)
 ```
@@ -178,7 +178,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWS with multiple signatures
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jws-signatures/serial.dag-jose.cid)
 ```
@@ -239,7 +239,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE symmetric
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jwe-symmetric/serial.dag-jose.cid)
 ```
@@ -281,7 +281,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE asymmetric
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jwe-asymmetric/serial.dag-jose.cid)
 ```
@@ -339,7 +339,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE with no recipients
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jwe-no-recipients/serial.dag-jose.cid)
 ```
@@ -382,7 +382,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE with one recipient
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jwe-recipient/serial.dag-jose.cid)
 ```
@@ -456,7 +456,7 @@ If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 
 ### JWE with multiple recipients
 
-This is the base64url-encoded CID for a DAG-JOSE object:
+This is the base64url-encoded CID for a DAG-JOSE object, when using SHA2-256 (multihash code 0x12):
 
 [testmark]:# (jwe-recipients/serial.dag-jose.cid)
 ```

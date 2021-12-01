@@ -116,6 +116,18 @@ For example: "the DSL AST is somewhat richer than the DMT; the DMT only describe
 (We also find the term "AST" somewhat of a bad match for what we mean by DMTs in IPLD,
 because an IPLD DMT is explicitly codec agnostic (in other words, syntax agnostic!), which doesn't line up well with the "S" in "AST".)
 
+#### Kind
+
+In IPLD, we use the word "kind" to refer to one of the handful of basic sorts of data we can recognize and know how to operate on.
+For example, "string" and "boolean" and "map" are all examples of kinds.
+
+Depending on context, it might be referring to [data model kind](https://ipld.io/docs/data-model/kinds/),
+or to [typekinds](https://ipld.io/docs/schemas/features/typekinds/).
+
+All data in IPLD has a [data model kind](https://ipld.io/docs/data-model/kinds/).
+Data might also have a [typekind](https://ipld.io/docs/schemas/features/typekinds/),
+but only if it was processed with IPLD Schemas.
+
 #### Link
 
 A link is just another name for a [CID](#cid).

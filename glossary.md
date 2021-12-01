@@ -31,7 +31,7 @@ It's only if writing a storage system or a data transport system that you will b
 
 #### CID
 
-CID stands for **C**ontent **ID**entifier
+CID stands for **C**ontent **ID**entifier.
 It's a self-describing data structure identifier.
 In other words, it's a hash that says what kind of hash it is and how to decode the binary data identified by the hash.
 

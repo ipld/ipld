@@ -1,0 +1,29 @@
+schema: |
+  type StructTuple struct {
+    foo Int
+    bar Bool
+    baz String
+  } representation tuple
+expected: |
+  {
+    "types": {
+      "StructTuple": {
+        "struct": {
+          "fields": {
+            "foo": {
+              "type": "Int"
+            },
+            "bar": {
+              "type": "Bool"
+            },
+            "baz": {
+              "type": "String"
+            }
+          },
+          "representation": {
+            "tuple": {}
+          }
+        }
+      }
+    }
+  }

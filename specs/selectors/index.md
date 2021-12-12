@@ -189,8 +189,22 @@ type ExploreConditional struct {
 ## of budget on evaluation based on the specific traversal and ADL implementation.
 type ExploreInterpretAs struct {
 	as String (rename "c")
+	realize InterpretRealize (rename "r") 
 	next Selector (rename ">")
 }
+
+## InterpretRealize is a union type that specifies the behavior for reification
+## of the interpreted node. When `root` is specified, the node will be reified,
+## and the resulting node will be pathed through as specified by the `next`
+## selector of the ExploreInterpretAs directive. In contrast, when `full` is
+## specified, the reified node will have it's concrete value enumerated based
+## on the resulting kind. If the node has a kind of List or Map, an iteration
+## of all items in the node will be performed, forcing realization and traversal
+## of the substrate nodes backing the reified ADL node.
+type InterpretRealize union {
+	| InterpretRealize_Root "root"
+	| InterpretRealize_Full "full"
+} representation keyed
 
 ## Matcher marks a node to be included in the "result" set.
 ## (All nodes traversed by a selector are in the "covered" set (which is a.k.a.

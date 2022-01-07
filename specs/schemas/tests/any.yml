@@ -1,0 +1,19 @@
+schema: |
+  type SimpleAny any
+expected: |
+  {
+    "types": {
+      "SimpleAny": {
+        "any": {}
+      }
+    }
+  }
+blocks:
+  - actual: |
+      100
+    expected: |
+      100
+  - actual: |
+      "foo"
+    expected: |
+      "foo"

@@ -65,7 +65,7 @@ type Selector union {
 	| ExploreUnion "|"
 	| ExploreConditional "&"
 	| ExploreRecursiveEdge "@" # sentinel value; only valid in some positions.
-	| ExploreInterpretAs "~"
+	| InterpretAs "~"
 } representation keyed
 
 ## ExploreAll is similar to a `*` -- it traverses all elements of an array,
@@ -182,13 +182,21 @@ type ExploreConditional struct {
 	next Selector (rename ">")
 }
 
-## ExploreInterpretAs is a transformation that attempts to 'reify' the current node
-## using an ADL specified by 'as'. ADLs are recognized by agreed-upon strings,
-## similar to libp2p protocols.
-## The ExploreInterpretAs reification process may introduce a data-dependant amount
-## of budget on evaluation based on the specific traversal and ADL implementation.
-type ExploreInterpretAs struct {
-	as String (rename "c")
+## InterpretAs is a clause that instructs the traversal to attempt to 'reify' the current node
+## using an ADL, which is specified by the 'as' field.
+## ADLs are identified by agreed-upon strings, similar to libp2p protocols.
+## Once reified, the traversal continues upon the newly reified view of the data,
+## rather than the original raw data.
+##
+## If the selection interpreter doesn't have an ADL implementation available
+## by the name requested, the traversal cannot continue.
+##
+## The reification process may consume a data-dependent amount of budget on evaluation,
+## based on the specific traversal and ADL implementation.
+## Similarly, steps across the ADL once reified may also consume data-dependent
+## amounts of any resource budgets.
+type InterpretAs struct {
+	as String
 	next Selector (rename ">")
 }
 

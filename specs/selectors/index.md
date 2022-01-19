@@ -127,7 +127,7 @@ type ExploreRange struct {
 ## with selectors like ExploreAll inside the sequence).
 ##
 ## limit is a union type -- it can have an integer depth value (key "depth") or
-## no value (key "none"). If limit has no value it is up to the 
+## no value (key "none"). If limit has no value it is up to the
 ## implementation library using selectors to identify an appropriate max depth
 ## as necessary so that recursion is not infinite.
 ##
@@ -138,7 +138,7 @@ type ExploreRange struct {
 ## If Condition is never matched, the selector performs the traversal seamlessly
 ## until the end. This feature is of particular interest for applications that need to
 ## recurse a large linked structure up to a specific point. stopAt can be used to
-## let the selector know where to stop recursing preventing from having to traverse 
+## let the selector know where to stop recursing preventing from having to traverse
 ## the full structure.
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")

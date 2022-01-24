@@ -1,9 +1,11 @@
 
 h1 {
-	border-bottom: 1px solid #dadcdf;
+	border-bottom: 2px solid #dadcdf;
 }
 h2 {
-	border-bottom: 1px solid #eaecef;
+	margin-top: 1.5em;
+	font-size: 165%;
+	border-bottom: 2px solid #e0e2e0;
 }
 
 body {

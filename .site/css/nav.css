@@ -31,7 +31,10 @@ nav ul ul a {
 	padding:          0;
 	border:           0;
 	margin-top:       0.1rem;
-	font-weight:      normal;
+	font-weight:      bold; /* the first layer of bullets in each zone is bold; we'll go back to normal when deeper. */
+}
+nav ul ul ul a {
+	font-weight:      normal; /* remove boldness for this and deeper levels of navigation. */
 }
 /* Across the board, the line-height in the nav area is a lot less than in the rest of the body. */
 nav {

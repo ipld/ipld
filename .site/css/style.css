@@ -40,6 +40,9 @@ td {
 .callout.callout-info {
 	background-color: rgba(100,150,200,0.4);
 }
+.callout.callout-tip {
+	background-color: rgba(150,120,180,0.4);
+}
 .callout.callout-todo {
 	background-color: rgba(200,100,200,0.8);
 }

@@ -55,6 +55,7 @@ module.exports = function (eleventyConfig) {
     })
     .use(markdownItContainer, 'warn', markdownItContainerCfg('warn'))
     .use(markdownItContainer, 'info', markdownItContainerCfg('info'))
+    .use(markdownItContainer, 'tip', markdownItContainerCfg('tip'))
     .use(markdownItContainer, 'todo', markdownItContainerCfg('todo'))
 
   eleventyConfig.setLibrary('md', markdownLibrary)

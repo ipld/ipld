@@ -28,7 +28,7 @@ Quick Compare
 
 #### interoperability
 
-DAG-PB is based on Protocol Buffers, and Protobuf libraries are already ubiqituous and can be found in many languages.
+DAG-PB is based on Protocol Buffers, and Protobuf libraries are already ubiquitous and can be found in many languages.
 If you are working in a language that doesn't have IPLD libraries yet, you can write DAG-PB interactions using other Protobuf libraries,
 although it might require some care.
 

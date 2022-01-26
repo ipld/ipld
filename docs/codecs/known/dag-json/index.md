@@ -31,7 +31,7 @@ Quick Compare
 
 #### interoperability
 
-DAG-JSON is based on JSON, and JSON libraries are already ubiqituous and can be found in many languages.
+DAG-JSON is based on JSON, and JSON libraries are already ubiquitous and can be found in many languages.
 If you are working in a language that doesn't have IPLD libraries yet, you can use another JSON library easily.
 
 #### performance

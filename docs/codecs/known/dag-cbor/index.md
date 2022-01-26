@@ -25,7 +25,7 @@ Quick Compare
 
 #### interoperability
 
-DAG-CBOR is based on CBOR, and CBOR libraries are already ubiqituous and can be found in many languages.
+DAG-CBOR is based on CBOR, and CBOR libraries are already ubiquitous and can be found in many languages.
 If you are working in a language that doesn't have IPLD libraries yet, you can use another CBOR library easily.
 
 #### performance

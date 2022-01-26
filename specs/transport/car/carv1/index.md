@@ -174,19 +174,38 @@ LoadCar(s Store, r io.Reader) (*CarHeader, error)
 
 ### JavaScript
 
-https://github.com/rvagg/js-datastore-car
+https://github.com/ipld/js-car
 
-Wraps in [Datastore](https://github.com/ipfs/interface-datastore) interface with various modes for reading and writing to support different use-cases&mdash;including streaming reading and writing:
+`@ipld/car` is consumed through factory methods on its different classes. Each class represents a discrete set of functionality, such as writing or reading .car files:
 
 ```js
-async CarDatastore.readBuffer(buffer)
-async CarDatastore.readFileComplete(file)
-async CarDatastore.readStreamComplete(stream)
-async CarDatastore.readStreaming(stream)
-async CarDatastore.writeStream(stream)
-```
+import fs from 'fs'
+import { Readable } from 'stream'
+import { CarReader, CarWriter } from '@ipld/car'
+import * as raw from 'multiformats/codecs/raw'
+import { CID } from 'multiformats/cid'
+import { sha256 } from 'multiformats/hashes/sha2'
 
-Also supports an `indexer()` that parses a file or stream and yields block index data including CID, offset and length, in addition to a `readRaw()` to read individual blocks according to their index data.
+async function example () {
+  const bytes = new TextEncoder().encode('random meaningless bytes')
+  const hash = await sha256.digest(raw.encode(bytes))
+  const cid = CID.create(1, raw.code, hash)
+  const { writer, out } = await CarWriter.create([cid])
+  Readable.from(out).pipe(fs.createWriteStream('example.car'))
+
+  await writer.put({ cid, bytes })
+  await writer.close()
+
+  const inStream = fs.createReadStream('example.car')
+  const reader = await CarReader.fromIterable(inStream)
+  const roots = await reader.getRoots()
+  const got = await reader.get(roots[0])
+
+  console.log('Retrieved [%s] from example.car with CID [%s]',
+    new TextDecoder().decode(got.bytes),
+    roots[0].toString())
+}
+```
 
 ## Unresolved Items
 

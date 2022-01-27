@@ -10,7 +10,7 @@ How IPFS Web Gateways Work
 
 This document talks through how IPFS web gateways work;
 the various forms of abstraction used in accomplishing parts of that task;
-and how and why these designs are cool (and how to can reuse parts of them).
+and how and why these designs are cool (and how you can reuse parts of them).
 
 :::info
 > Note!  This is an _aspirational_ document -- IPFS web gateways are a feature

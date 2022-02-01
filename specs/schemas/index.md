@@ -3,6 +3,7 @@ title: "Schema Specs"
 navTitle: "Schemas"
 eleventyNavigation:
   order: 48
+  synopsys: "Schemas are a technology for designing protocols, pattern matching, and validating data with IPLD.  Here you'll find detailed specifications and fixtures for the behavior of IPLD Schemas (include the Schema Schema!)."
 ---
 
 IPLD Schema Specifications

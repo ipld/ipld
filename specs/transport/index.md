@@ -1,7 +1,7 @@
 ---
 title: "Transports"
 eleventyNavigation:
-  synopsys: "Technologies for storage and transfer of collections of IPLD blocks"
+  synopsys: "Transports are any technology for storage and transfer of collections of IPLD blocks.  Here you'll find specifications for many diverse mechanisms, both static and interactive (including CAR files and Graphsync, for example)."
   order: 50
 ---
 

@@ -2,6 +2,7 @@
 title: "Codecs"
 eleventyNavigation:
   order: 42
+  synopsys: "Codecs are functions that get serial data into IPLD and turn IPLD back into serial data.  Here you'll find detailed specifications and fixtures for a number of codecs."
 ---
 
 Codec Specifications

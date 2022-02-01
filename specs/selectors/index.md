@@ -3,6 +3,7 @@ title: "Specs: Selectors"
 navTitle: "Selectors"
 eleventyNavigation:
   order: 60
+  synopsys: "Selectors are a declarative API for describing walks across IPLD data."
 ---
 
 Selectors

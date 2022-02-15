@@ -15,7 +15,7 @@ helping us improve our community.
 ### Chat
 
 - For chats with the developers and the community: Join us in any of these (bridged) locations:
-	- On Discord: join the IPLD community at https://discord.gg/xkUC8bqSCP
+	- On Discord: join the [IPLD community on IPFS Discord](https://discord.gg/xkUC8bqSCP).
 	- On IRC: (bridge coming soon) (note that we no longer use the freenode network!)
 
 ### Development

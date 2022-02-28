@@ -103,7 +103,7 @@ The Graphsync protocol is extensible. A graphsync request and a graphsync respon
 
 Extensions help make Graphsync operate more efficiently, or provide a mechanism for exchanging side channel information for other protocols. An implementation can choose to support one or more extensions, but it does not have to.
 
-A list of well known extensions is found [here](https://ipld.io/specs/transport/graphsync/known_extensions/)
+A list of well known extensions is found [here](./known_extensions.md)
 
 ### Updating requests
 

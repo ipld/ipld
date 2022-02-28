@@ -16,6 +16,7 @@ helping us improve our community.
 
 - For chats with the developers and the community: Join us in any of these (bridged) locations:
 	- On Discord: join the [IPLD community on IPFS Discord](https://discord.gg/xkUC8bqSCP).
+	- On Matrix: [#ipld:ipfs.io](https://matrix.to/#/#ipld:ipfs.io)
 	- On IRC: (bridge coming soon) (note that we no longer use the freenode network!)
 
 ### Development

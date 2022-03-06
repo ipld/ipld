@@ -235,3 +235,49 @@ The following document should result:
 	}
 }
 ```
+
+
+### Testing and conditional modification
+
+Given an initial document:
+
+[testmark]:# (test-and-conditional-modify/initial)
+```json
+{
+	"baz": "qux",
+	"foo": [
+		"a",
+		2,
+		"c"
+	]
+}
+```
+
+and a Patch OperationSequence:
+
+[testmark]:# (test-and-conditional-modify/patch)
+```json
+[
+	{ "op": "test", "path": "/baz", "value": "qux" },
+	{ "op": "test", "path": "/foo/1", "value": 2 },
+	{ "op": "add",  "path": "/bar", "value": "zar" }
+]
+```
+
+(Note that this contains both test operations as well as a subsequent add operation!
+The add operation should only apply if the test operations yield true.)
+
+The following document should result:
+
+[testmark]:# (test-and-conditional-modify/result)
+```json[
+{
+	"baz": "qux",
+	"foo": [
+		"a",
+		2,
+		"c"
+	],
+	"bar": "zar"
+}
+```

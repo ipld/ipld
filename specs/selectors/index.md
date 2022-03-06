@@ -201,6 +201,15 @@ type InterpretAs struct {
 	next Selector (rename ">")
 }
 
+## Slice is a predicate that selects only a subset of node.
+## This is applicable primarily in the context of reified nodes based on the
+## InterpetAs clause above, where the primitive (bytes or string) node is actually
+## composed from multiple underlying substrate nodes.
+type Slice struct {
+	from Int (rename "[")
+	to Int (rename "]")
+}
+
 ## Matcher marks a node to be included in the "result" set.
 ## (All nodes traversed by a selector are in the "covered" set (which is a.k.a.
 ## "the merkle proof"); the "result" set is a subset of the "covered" set.)
@@ -213,6 +222,7 @@ type InterpretAs struct {
 type Matcher struct {
 	onlyIf optional Condition # match is true based on position alone if this is not set.
 	label optional String # labels can be used to match multiple different structures in one selection.
+	subset optional Slice # if set, only the subset of the node specified by the slice is matched.
 }
 
 ## Condition is expresses a predicate with a boolean result.

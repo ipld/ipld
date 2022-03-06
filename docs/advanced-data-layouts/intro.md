@@ -71,12 +71,21 @@ Learn briefly about where ADLs fit and what problems they solve in these section
 - [Where are ADLs in the big picture?](#where-are-adls-in-the-big-picture)
   - [Codecs vs ADLs](#codecs-vs-adls)
   - [Schemas vs ADLs](#schemas-vs-adls)
-- [Applications of ADLs](#applications-of-adls)
+- [What ADLs enable](#what-adls-enable)
 
 Then, learn more about the details of what ADLs are and the boundaries of their interface in these sections:
 
 - [How ADLs Work](#how-adls-work)
 
+Also, if you're wondering [if ADLs can be composed](#can-adls-be-composed): spoiler, yes :)
+
+Beyond that, more detailed information is available in the other pages of this chapter, namely:
+
+- on [Naming](../naming/)
+- on [Signalling](../signalling/)
+- on [Dynamic Loading](../dynamic-loading/)
+
+---
 
 
 Where are ADLs in the big picture?

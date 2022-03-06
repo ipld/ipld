@@ -2,7 +2,7 @@
 title: ADL Signalling
 navTitle: Signalling ADLs
 eleventyNavigation:
-  order: 30
+  order: 40
   synopsys: How are ADLs applied?  How does data signal that it should be interpreted with an ADL?
 ---
 
@@ -37,7 +37,7 @@ It's like putting on a different pair of glasses -- maybe some do
 a better job of making the data legible than others!
 
 Therefore, signalling mechanisms -- things that tell you, or tell an IPLD library,
-when to engage an ADL, and [what ADL to engage](../identifying/) --
+when to engage an ADL, and [what ADL to engage](../naming/) --
 are *also* optional, and by nature, advisory.
 
 We'll talk about some of the various mechanisms a system can use in the next sections.
@@ -112,7 +112,7 @@ type Foobar map {String:String} using ShardMap
 In this example, the declaration `using ShardMap` says that the `Foobar` type will be using an ADL,
 and refers to an `advanced` clause elsewhere in the schema which must finish defining `ShardMap`.
 Then, where the `advanced` clause states the string `"HAMT/v1"`,
-that string is meant to [identify the ADL to use](../identifying/).
+that string is meant to [identify the ADL to use](../naming/).
 (Note that the schema also still states that it expects that type to be a [`map` kind](/docs/schemas/features/typekinds/#map) --
 this is because ADLs "aren't special"; they're just presenting a plain datamodel kind to the schema layer when applied, and the schema layer still needs to turn that into a typekind.
 Or from another justification: a human reading the schema should still know what typekind to expect here even if they have no idea what the ADL implementation is.)
@@ -179,7 +179,7 @@ In the HTTP API, similarly, a prefix of the URL path (or sometimes even a subdom
 
 While they are easy to do, note that there are several downsides to bespoke signal suites:
 
-- First, it doesn't help you tap into other IPLD features.  For example, protocols like [Graphsync](/specs/transports/graphsync/) can only give you their maximum powers if you can communicate your ADL signalling in a standard way that Graphsync can understand.  Bespoke signal suites aren't that.
+- First, it doesn't help you tap into other IPLD features.  For example, protocols like [Graphsync](/specs/transport/graphsync/) can only give you their maximum powers if you can communicate your ADL signalling in a standard way that Graphsync can understand.  Bespoke signal suites aren't that.
 - Second, if one is working on a project that wants to build an ecosystem and become user-extensible, bespokeness is not to your advantage.  By having a signal suite of your own defining, one inevitably ends up with the need to begin "gatekeeping" the list of signal suites identifiers that are well-known in their system.  This just is no fun.
 
 If you're building a protocol that hosts other protocols, or an application that hosts user-defined data,
@@ -207,7 +207,7 @@ For example, it's no problem to have an API with parameters (or even defaults) t
 and also offers a different set of parameters that can take a user-supplied [schema](#signalling-with-schemas).
 
 It's also no problem to define an API which takes its main signalling input from a [schema](#signalling-with-schemas),
-but then allows overriding it (or disabling it) in certain positions via more signals in a [selector](#signalling-within-selectors).
+but then allows overriding it (or disabling it) in certain positions via more signals in a [selector](#signalling-with-selectors).
 
 Check your IPLD library implementations for what they can support.
 
@@ -231,5 +231,5 @@ Signalling that an ADL is to be used at all is half the battle.
 Thereafter, one an IPLD library also has to react to that signal by figuring out what
 ADL algorithm you wanted; getting some code that does it; and then actually applying.
 
-These other steps are covered in the page on [Identifying ADLs](../identifying/),
+These other steps are covered in the page on [Naming ADLs](../naming/),
 and [Dynamic Loading](../dynamic-loading/).

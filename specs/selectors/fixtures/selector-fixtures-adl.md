@@ -33,6 +33,9 @@ The combination of these five data objects is replicated in `selector-fixtures-a
     ]
 }
 ```
+
+the leaves are dag-json encodings of "file chunk a\r\n" through "file chunk d\r\n".
+
 [testmark]:# (adl-interpreted/baguqeera2pkvbqv2slrvh3dswozj6ozoob53idll3rkh3zh5tqsdqjvpzu7q)
 ```json
 {
@@ -54,7 +57,7 @@ The combination of these five data objects is replicated in `selector-fixtures-a
 [testmark]:# (adl-interpreted/baguqeeraxvm7dmqutnagoxxhq2iyghr5qidbjovdi7iqdptw527gifajqlgq)
 ```json
 {
-    "/": {"bytes": "ZmlsZSBjaHVuayBkCgo"}
+    "/":{"bytes":"ZmlsZSBjaHVuayBkCgo"}
 }
 ```
 #### selector
@@ -77,6 +80,8 @@ The combination of these five data objects is replicated in `selector-fixtures-a
 ```
 
 #### expected visit events
+
+the visit will be to the synthetic node containing the contents: "file chunk b\r\nfile chunk c\r\n"
 
 [testmark]:# (adl-interpreted/expect-visit)
 ```text

@@ -7,5 +7,4 @@ DAG-JOSE
 ========
 
 - [DAG-JOSE Specification](./spec/)
-- Fixtures:
-	- [DAG-JOSE Fixtures](./fixtures/)
+- [DAG-JOSE Fixtures](./fixtures/)

@@ -2,7 +2,7 @@
 title: ADL Dynamic Loading
 navTitle: Dynamic Loading
 eleventyNavigation:
-  order: 40
+  order: 50
   synopsys: Given that ADLs are a form of plugin, and contain code, how do we load them?  This page discusses options.
 ---
 

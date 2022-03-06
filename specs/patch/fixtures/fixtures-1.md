@@ -14,7 +14,8 @@ the data can still be a tree (maps, lists, etc), but contains no links.
 
 This is the [testmark format](https://github.com/warpfork/go-testmark);
 it can be consumed programmatically.
-(Note that you probably _can't_ see these labels as this page is rendered on ts.
+(Note that you probably _can't_ see these labels as this page is rendered on the website;
+you'll have to find the markdown [source](/specs/about/#source).)
 
 ### This doesn't have to be JSON!
 
@@ -66,7 +67,7 @@ Given an initial document:
 ```json
 ["bar", "baz"]
 ```
-   
+
 and a Patch OperationSequence:
 
 [testmark]:# (inserting-into-a-list/patch)
@@ -87,3 +88,33 @@ The following document should result:
 ]
 ```
 
+
+### Removing an entry from a map
+
+Given an initial document:
+
+[testmark]:# (removing-map-entry/initial)
+```json
+{
+	"baz": "qux",
+	"foo": "bar"
+}
+```
+
+and a Patch OperationSequence:
+
+[testmark]:# (removing-map-entry/patch)
+```json
+[
+	{ "op": "remove", "path": "/baz" }
+]
+```
+
+The following document should result:
+
+[testmark]:# (removing-map-entry/result)
+```json[
+{
+	"foo": "bar"
+}
+```

@@ -80,7 +80,7 @@ and a Patch OperationSequence:
 The following document should result:
 
 [testmark]:# (inserting-into-a-list/result)
-```json[
+```json
 [
 	"bar",
 	"qux",
@@ -113,7 +113,7 @@ and a Patch OperationSequence:
 The following document should result:
 
 [testmark]:# (removing-map-entry/result)
-```json[
+```json
 {
 	"foo": "bar"
 }
@@ -144,7 +144,7 @@ and a Patch OperationSequence:
 The following document should result:
 
 [testmark]:# (replacing-map-entry/result)
-```json[
+```json
 {
 	"baz": "boo",
 	"foo": "bar"
@@ -181,7 +181,7 @@ and a Patch OperationSequence:
 The following document should result:
 
 [testmark]:# (copy/result)
-```json[
+```json
 {
 	"foo": {
 		"bar": "baz",
@@ -224,7 +224,7 @@ and a Patch OperationSequence:
 The following document should result:
 
 [testmark]:# (move/result)
-```json[
+```json
 {
 	"foo": {
 		"bar": "baz"
@@ -270,7 +270,7 @@ The add operation should only apply if the test operations yield true.)
 The following document should result:
 
 [testmark]:# (test-and-conditional-modify/result)
-```json[
+```json
 {
 	"baz": "qux",
 	"foo": [

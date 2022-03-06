@@ -118,3 +118,120 @@ The following document should result:
 	"foo": "bar"
 }
 ```
+
+
+### Replacing an entry from a map
+
+Given an initial document:
+
+[testmark]:# (replacing-map-entry/initial)
+```json
+{
+	"baz": "qux",
+	"foo": "bar"
+}
+```
+
+and a Patch OperationSequence:
+
+[testmark]:# (replacing-map-entry/patch)
+```json
+[
+	{ "op": "replace", "path": "/baz", "value": "boo" }
+]
+```
+
+The following document should result:
+
+[testmark]:# (replacing-map-entry/result)
+```json[
+{
+	"baz": "boo",
+	"foo": "bar"
+}
+```
+
+
+### Copying a value
+
+Given an initial document:
+
+[testmark]:# (copy/initial)
+```json
+{
+	"foo": {
+		"bar": "baz",
+		"waldo": "fred"
+	},
+	"qux": {
+		"corge": "grault"
+	}
+}
+```
+
+and a Patch OperationSequence:
+
+[testmark]:# (copy/patch)
+```json
+[
+	{ "op": "copy", "from": "/foo/waldo", "path": "/qux/thud" }
+]
+```
+
+The following document should result:
+
+[testmark]:# (copy/result)
+```json[
+{
+	"foo": {
+		"bar": "baz",
+		"waldo": "fred"
+	},
+	"qux": {
+		"corge": "grault",
+		"thud": "fred"
+	}
+}
+```
+
+
+### Moving a value
+
+Given an initial document:
+
+[testmark]:# (move/initial)
+```json
+{
+	"foo": {
+		"bar": "baz",
+		"waldo": "fred"
+	},
+	"qux": {
+		"corge": "grault"
+	}
+}
+```
+
+and a Patch OperationSequence:
+
+[testmark]:# (move/patch)
+```json
+[
+	{ "op": "move", "from": "/foo/waldo", "path": "/qux/thud" }
+]
+```
+
+The following document should result:
+
+[testmark]:# (move/result)
+```json[
+{
+	"foo": {
+		"bar": "baz"
+	},
+	"qux": {
+		"corge": "grault",
+		"thud": "fred"
+	}
+}
+```

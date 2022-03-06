@@ -17,57 +17,44 @@ Fixtures
 ### A slice of a unixfs file.
 
 #### data
+The combination of these five data objects is replicated in `selector-fixtures-adl.car`.
 
 [testmark]:# (adl-interpreted/root)
 ```json
 {
-    "Links": [
-        {
-            "Name": "",
-            "Hash": "shard-a",
-            "Size": 256
-        },
-        {
-            "Name": "",
-            "Hash": "shard-b",
-            "Size": 256
-        },
-        {
-            "Name": "",
-            "Hash": "shard-c",
-            "Size": 256
-        },
-        {
-            "Name": "",
-            "Hash": "shard-d",
-            "Size": 256
-        }
-    ],
-    "Data": {"/": ""}
+    "Data":{
+        "/":{"bytes":"CAIYgIBAIICAECCAgBAggIAQIICAEA"}
+    },
+    "Links":[
+        {"Hash":{"/":"baguqeera2pkvbqv2slrvh3dswozj6ozoob53idll3rkh3zh5tqsdqjvpzu7q"},"Name":"","Tsize":14},
+        {"Hash":{"/":"baguqeerasc2dhjjhbg6h3rt7rqbgpzlwzng5to3zwxcxtmdajfqt6tdyxscq"},"Name":"","Tsize":14},
+        {"Hash":{"/":"baguqeera7d7gvq7y7rugmmzh3u2552ckh6hyqno3tptbceutb5s3c4vixsua"},"Name":"","Tsize":14},
+        {"Hash":{"/":"baguqeeraxvm7dmqutnagoxxhq2iyghr5qidbjovdi7iqdptw527gifajqlgq"},"Name":"","Tsize":14}
+    ]
 }
 ```
-[testmark]:# (adl-interpreted/shard-a)
+[testmark]:# (adl-interpreted/baguqeera2pkvbqv2slrvh3dswozj6ozoob53idll3rkh3zh5tqsdqjvpzu7q)
 ```json
 {
-    "/": {"Bytes": "..."}
+    "/":{"bytes":"ZmlsZSBjaHVuayBhCgo"}
 }
 ```
-[testmark]:# (adl-interpreted/shard-b)
+[testmark]:# (adl-interpreted/baguqeerasc2dhjjhbg6h3rt7rqbgpzlwzng5to3zwxcxtmdajfqt6tdyxscq)
 ```json
 {
-    "/": {"Bytes": "..."}
+    "/":{"bytes":"ZmlsZSBjaHVuayBiCgo"}
 }
 ```
-[testmark]:# (adl-interpreted/shard-c)
+[testmark]:# (adl-interpreted/baguqeera7d7gvq7y7rugmmzh3u2552ckh6hyqno3tptbceutb5s3c4vixsua)
 ```json
 {
-    "/": {"Bytes": "..."}
+    "/":{"bytes":"ZmlsZSBjaHVuayBjCgo"}
 }
 ```
-[testmark]:# (adl-interpreted/shard-d)
+[testmark]:# (adl-interpreted/baguqeeraxvm7dmqutnagoxxhq2iyghr5qidbjovdi7iqdptw527gifajqlgq)
 ```json
 {
-    "/": {"Bytes": "..."}
+    "/": {"bytes": "ZmlsZSBjaHVuayBkCgo"}
 }
 ```
 #### selector
@@ -80,8 +67,8 @@ Fixtures
         ">": {
             ".": {
                 "subset": {
-                    "[": 256,
-                    "]": 768
+                    "[": 14,
+                    "]": 42
                 }
             }
         }
@@ -93,6 +80,5 @@ Fixtures
 
 [testmark]:# (adl-interpreted/expect-visit)
 ```text
-{"path": "shard-b", "node": {"list": null}, "matched": true}
-{"path": "shard-c", "node": {"list": null}, "matched": true}
+{"path": "", "node": {"bytes": {"/":{"bytes":"ZmlsZSBjaHVuayBiCgpmaWxlIGNodW5rIGMKCg"}}}, "matched": true}
 ```

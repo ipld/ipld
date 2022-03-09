@@ -19,9 +19,8 @@ Finding Us
 ----------
 
 - For chats with the developers and the community: Join us in any of these (bridged) locations:
-	- On Matrix: https://matrix.to/#/#ipld:ipfs.io
-	- On Discord: join the larger IPFS community at https://discord.gg/FsBu3XdjKP, then find an `#ipld` channel within!
-	- On IRC: (bridge coming soon) (note that we no longer use the freenode network!)
+    - On Discord: join the [IPLD community on IPFS Discord](https://discord.gg/xkUC8bqSCP).
+    - On Matrix: [#ipld:ipfs.io](https://matrix.to/#/#ipld:ipfs.io)
 - On Github:
 	- Check out all our repos in the https://github.com/ipld/ organization.
 	- Github issues can be used for discussing designs, documenting user needs, and submitting bug reports.

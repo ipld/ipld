@@ -144,6 +144,12 @@ The other node _kinds_, like `string`, are just values (they have no children).
 
 A "[block](#block)" will typically contain many nodes.
 
+#### Reify
+
+To "reify" an IPLD ["node"](#node) is to attempt to wrap over it with an [ADL](#adl) and return a `Node` which can be used in the rest of the model.
+For example, you can reify an IPLD node which represents a HAMT into a regular node so you can get keys from it without needing to manually traverse the nodes making up the HAMT within your application.
+Reifying is most useful when you have already parsed data into a raw tree and want to wrap it in an ADL.
+
 #### Schemas
 
 IPLD Schemas are a system for describing data with structural types.

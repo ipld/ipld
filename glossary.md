@@ -172,7 +172,7 @@ Libraries may yield iterators over matched nodes, or iterators over all visited 
 
 Selectors are natively implemented in most IPLD libraries (for performance reasons),
 but the format itself is standardized.
-The format is described in IPLD (using [IPLD Schemas](#schemas),
+The format is described in IPLD (using [IPLD Schemas](#schemas)),
 so it's possible to serialize Selectors in any [Codec](#codec) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
 

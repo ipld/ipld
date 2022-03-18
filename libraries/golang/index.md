@@ -8,17 +8,22 @@ Golang IPLD Libraries
 
 ### go-ipld-prime
 
-The primary library for working with IPLD data in Golang is [go-ipld-prime](https://github.com/ipld/go-ipld-prime)
+The primary library for working with IPLD data in Golang is [`go-ipld-prime`](https://github.com/ipld/go-ipld-prime)
 ([godoc](https://pkg.go.dev/github.com/ipld/go-ipld-prime)).
 
-The go-ipld-prime library is centered around a Node interface which match the IPLD Data Model.
-(TODO: link to the design recommendations document relating to this, when it's ported to this repo.)
+The `go-ipld-prime` library is centered around a [Node interface which matches the IPLD Data Model](/design/libraries/nodes-and-kinds/).
 
-The go-ipld-prime library comes "batteries included" with several codecs such as DAG-CBOR and DAG-JSON,
+The `go-ipld-prime` library comes "batteries included" with several codecs such as
+[DAG-CBOR](/docs/codecs/known/dag-cbor/) and [DAG-JSON](/docs/codecs/known/dag-json/),
 and also allows registering more codec implementations using the multicodec system
-(or, even more directly, by customizing the LinkSystem, which allows arbitrary callbacks for hooking).
+(or, even more directly, by customizing the `LinkSystem`, an API which allows arbitrary callbacks for hooking).
 
-The go-ipld-prime library also supports ADLs and features such as IPLD Selectors.
+The `go-ipld-prime` library supports many advanced features such as
+[ADLs](/docs/advanced-data-layouts/),
+[Schemas](/docs/schemas/),
+and [IPLD Selectors](/glossary/#selectors).
+
+
 
 Other Libraries
 ---------------

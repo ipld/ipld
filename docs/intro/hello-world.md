@@ -60,8 +60,8 @@ and [Advanced Data Layouts](/docs/advanced-data-layouts/), which let us do thing
 
 ### Diagram
 
-<a href="../what-is-ipld.png">
-<img src="../what-is-ipld.png" width=100%>
+<a href="../../../img/what-is-ipld.jpg">
+<img src="../../../img/what-is-ipld.jpg" width=100%>
 <small><i>(click to enlarge)</i></small>
 </a>
 

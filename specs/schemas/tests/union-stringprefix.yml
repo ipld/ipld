@@ -1,0 +1,26 @@
+schema: |
+  type StringPrefixUnion union {
+    | String "s"
+    | Int "#"
+  } representation stringprefix
+expected: |
+  {
+    "types": {
+      "StringPrefixUnion": {
+        "union": {
+          "members": [
+            "String",
+            "Int"
+          ],
+          "representation": {
+            "stringprefix": {
+              "prefixes": {
+                "s": "String",
+                "#": "Int"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

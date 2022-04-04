@@ -1,25 +1,37 @@
 schema: |
+  type Foo string
+  type Bar string
+  type Baz string
   type StructAsStringjoin struct {
-    foo Int
-    bar Bool
-    baz String
+    foo Foo
+    bar Bar
+    baz Baz
   } representation stringjoin {
     join ":"
   }
 expected: |
   {
     "types": {
+      "Foo": {
+        "string": {}
+      },
+      "Bar": {
+        "string": {}
+      },
+      "Baz": {
+        "string": {}
+      },
       "StructAsStringjoin": {
         "struct": {
           "fields": {
             "foo": {
-              "type": "Int"
+              "type": "Foo"
             },
             "bar": {
-              "type": "Bool"
+              "type": "Bar"
             },
             "baz": {
-              "type": "String"
+              "type": "Baz"
             }
           },
           "representation": {

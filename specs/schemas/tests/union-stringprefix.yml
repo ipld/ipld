@@ -1,22 +1,30 @@
 schema: |
+  type Foo string
+  type Bar string
   type StringPrefixUnion union {
-    | String "s"
-    | Int "#"
+    | Foo "foo:"
+    | Bar "bar:"
   } representation stringprefix
 expected: |
   {
     "types": {
+      "Foo": {
+        "string": {}
+      },
+      "Bar": {
+        "string": {}
+      },
       "StringPrefixUnion": {
         "union": {
           "members": [
-            "String",
-            "Int"
+            "Foo",
+            "Bar"
           ],
           "representation": {
             "stringprefix": {
               "prefixes": {
-                "s": "String",
-                "#": "Int"
+                "foo:": "Foo",
+                "bar:": "Bar"
               }
             }
           }

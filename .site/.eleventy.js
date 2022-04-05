@@ -10,6 +10,10 @@ const markdownItMark = require('markdown-it-mark')
 const markdownItTOC = require('markdown-it-table-of-contents')
 const nunjucks = require('nunjucks')
 const prismIpldsch = require('./prism-ipldsch')
+const loadLanguages = require('prismjs/components/')
+
+loadLanguages(['bash'])
+
 
 module.exports = function (eleventyConfig) {
   const markdownItContainerCfg = (style) => {
@@ -77,6 +81,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight, {
     init: ({ Prism }) => {
       Prism.languages.ipldsch = prismIpldsch
+      Prism.languages.sh = Prism.languages.bash
     }
   })
 

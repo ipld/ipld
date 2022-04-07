@@ -8,6 +8,8 @@ eleventyNavigation:
 
 # Cosmos as an IPLD Data Structure
 
+NOTE: This is still a work in progress!
+
 Tendermint and Cosmos can be read and accessed as IPLD data.
 
 Within these documents, schemas are grouped by their serialized blocks.

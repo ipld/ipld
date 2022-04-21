@@ -244,7 +244,7 @@ type ProposalCID &Proposal
 type Proposal struct {
 	SMType    SignedMsgType
 	Height    Int
-	Round     Int # there can not be greater than 2_147_483_647 rounds
+	Round     Int # There can not be greater than 2_147_483_647 rounds
 	POLRound  Int # -1 if null.
 	BlockID   BlockID
 	Timestamp Time
@@ -278,10 +278,10 @@ types Validators [Validator]
 # NOTE: The Address and ProposerPriority is not included in Validator.Hash();
 # make sure to update that method if changes are made here
 type Validator struct {
-	Address     Address # not included in the hash
+	Address     Address # Not included in the hash
 	PubKey      PubKey
 	VotingPower Int
-	ProposerPriority Int # not included in the hash
+	ProposerPriority Int # Not included in the hash
 }
 
 # SimpleValidator contains the Consensus fields of the Validaotr
@@ -348,8 +348,8 @@ type LightClientAttackEvidence struct {
 	CommonHeight     Int
 
 	# abci specific information
-	ByzantineValidators [Validator] # validators in the validator set that misbehaved in creating the conflicting block
-	TotalVotingPower    Int        # total voting power of the validator set at the common height
-	Timestamp           Time         # timestamp of the block at the common height
+	ByzantineValidators [Validator] # Validators in the validator set that misbehaved in creating the conflicting block
+	TotalVotingPower    Int        # Total voting power of the validator set at the common height
+	Timestamp           Time         # Timestamp of the block at the common height
 }
 ```

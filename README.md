@@ -40,7 +40,8 @@ With Node.js>=16 installed:
 * Serve locally: `npm run start`
 * Test link integrity: `npm test`
 * Cleanup: `npm run clean`
-* Publish: Push to `master` and Fleek will do the rest
+* Review: [open a pull request](https://github.com/ipld/ipld/compare) and tag @ipld/reviewers
+* Publish: Merge to `master` and Fleek will do the rest
 
 
 License

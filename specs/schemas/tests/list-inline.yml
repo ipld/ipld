@@ -1,0 +1,41 @@
+schema: |
+  type Boom bytes
+  type LinkList [&Boom]
+  type MapList [{String:Boom}]
+  type ListList [[Boom]]
+expected: |
+  {
+    "types": {
+      "Boom": {
+        "bytes": {}
+      },
+      "LinkList": {
+        "list": {
+          "valueType": {
+            "link": {
+              "expectedType": "Boom"
+            }
+          }
+        }
+      },
+      "MapList": {
+        "list": {
+          "valueType": {
+            "map": {
+              "keyType": "String",
+              "valueType": "Boom"
+            }
+          }
+        }
+      },
+      "ListList": {
+        "list": {
+          "valueType": {
+            "list": {
+              "valueType": "Boom"
+            }
+          }
+        }
+      }
+    }
+  }

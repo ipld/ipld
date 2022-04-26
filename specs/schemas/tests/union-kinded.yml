@@ -1,4 +1,6 @@
 schema: |
+  type Bam bytes
+
   type Bar bool
 
   type Baz string
@@ -9,11 +11,15 @@ schema: |
     | Foo int
     | Bar bool
     | Baz string
+    | &Bam link
   } representation kinded
 root: UnionKinded
 expected: |
   {
     "types": {
+      "Bam": {
+        "bytes": {}
+      },
       "Bar": {
         "bool": {}
       },
@@ -28,13 +34,23 @@ expected: |
           "members": [
             "Foo",
             "Bar",
-            "Baz"
+            "Baz",
+            {
+              "link": {
+                "expectedType": "Bam"
+              }
+            }
           ],
           "representation": {
             "kinded": {
               "int": "Foo",
               "bool": "Bar",
-              "string": "Baz"
+              "string": "Baz",
+              "link": {
+                "link": {
+                  "expectedType": "Bam"
+                }
+              }
             }
           }
         }

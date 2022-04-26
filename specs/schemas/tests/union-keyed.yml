@@ -1,24 +1,40 @@
 schema: |
+  type Bam bytes
+
   type UnionKeyed union {
     | Bool "bar"
     | Int "foo"
     | String "baz"
+    | &Bam "bam"
   } representation keyed
 expected: |
   {
     "types": {
+      "Bam": {
+        "bytes": {}
+      },
       "UnionKeyed": {
         "union": {
           "members": [
             "Bool",
             "Int",
-            "String"
+            "String",
+            {
+              "link": {
+                "expectedType": "Bam"
+              }
+            }
           ],
           "representation": {
             "keyed": {
               "bar": "Bool",
               "foo": "Int",
-              "baz": "String"
+              "baz": "String",
+              "bam": {
+                "link": {
+                  "expectedType": "Bam"
+                }
+              }
             }
           }
         }

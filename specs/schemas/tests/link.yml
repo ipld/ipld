@@ -4,7 +4,9 @@ expected: |
   {
     "types": {
       "SimpleLink": {
-        "kind": "link"
+        "link": {
+          "expectedType": "Any"
+        }
       }
     }
   }

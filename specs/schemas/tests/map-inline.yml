@@ -1,0 +1,44 @@
+schema: |
+  type Boom bytes
+  type LinkMap {String:&Boom}
+  type MapMap {String:{String:Boom}}
+  type ListMap {String:[Boom]}
+expected: |
+  {
+    "types": {
+      "Boom": {
+        "bytes": {}
+      },
+      "LinkMap": {
+        "map": {
+          "keyType": "String",
+          "valueType": {
+            "link": {
+              "expectedType": "Boom"
+            }
+          }
+        }
+      },
+      "MapMap": {
+        "map": {
+          "keyType": "String",
+          "valueType": {
+            "map": {
+              "keyType": "String",
+              "valueType": "Boom"
+            }
+          }
+        }
+      },
+      "ListMap": {
+        "map": {
+          "keyType": "String",
+          "valueType": {
+            "list": {
+              "valueType": "Boom"
+            }
+          }
+        }
+      }
+    }
+  }

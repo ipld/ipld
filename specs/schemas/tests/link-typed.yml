@@ -7,11 +7,12 @@ expected: |
   {
     "types": {
       "FooLink": {
-        "kind": "link",
-        "expectedType": "Foo"
+        "link": {
+          "expectedType": "Foo"
+        }
       },
       "Foo": {
-        "kind": "bytes"
+        "bytes": {}
       }
     }
   }

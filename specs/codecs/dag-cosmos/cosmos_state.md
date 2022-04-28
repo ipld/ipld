@@ -1,12 +1,14 @@
 # Cosmos State Machine Data Structures
+CosmosSDK is an SDK for building state machines that conform to the ABCI/ABCI++ and use Tendermint as their consensus layer.
+For more information of CosmosSDK, see the documentation [here](https://github.com/cosmos/cosmos-sdk/tree/main/docs).
 
 The Tendermint blockchain does not impose any constraints on the data structure(s) of the underlying state machine.
-It only requires that the data structure is Merkleized into a hash that is returned to be stored in the `AppHash` field of the `Header`.
+It only requires that the data structure is Merkleized into a hash that is returned to be stored in the `AppHash` field of the Tendermint `Header`.
 The Cosmos SDK currently uses an Immutable AVL+ ([IAVL](https://github.com/cosmos/iavl)) tree for state commitment and storage.
 In the [near future](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-040-storage-and-smt-state-commitments.md)
 this will be transitioned to using a Sparse Merkle Tree ([SMT](https://github.com/lazyledger/smt])) for state commitments.
 
-For both SMT and IAVL the values stored in or referenced from these data structures are either amino (legacy) or protobuf encoded.
+For both SMT and IAVL the values stored in or referenced from these data structures are either amino (legacy support only) or protobuf encoded.
 This also is not strictly enforced but is heavily prescribed by the SDK. In the below schemas we support rich typing for only protobuf encoded
 objects using the scheme described in [typed_protobuf.md](./typed_protobuf).
 
@@ -16,18 +18,23 @@ objects using the scheme described in [typed_protobuf.md](./typed_protobuf).
 # It serves as the basis for validating any Merkle proofs that comes from the ABCI application and represents the state of the actual application rather than the state of the blockchain itself.
 # The nature of the hash is determined by the application, Tendermint can not perform validation on it
 # For cosmos applications this CID is composed of the SHA_256 multihash of the root node in either an IAVL tree or SMT, using their repspective codecs (tbd)
-type AppStateTreeCID &AppState
+type AppStateTreeCID &AppStateRootNode
 
-# The above can also be defined as
-type AppStateTreeCID union {
-  | IAVLNodeCID "iavl"
-  | SMTNodeCID "smt"
-} representation keyed
+# AppStateNodeCID is a CID link to any IAVL or SMT node in the Tendermint/Cosmos AppState
+type AppStateNodeCID &AppStateNode
 
-type AppState union {
+# AppStateNode represents a tree node in the Tendermint/Cosmos AppState
+type AppStateNode union {
   | IAVLNode "iavl"
   | SMTNode "smt"
 } representation keyed
+
+# AppStateRootNode represents the root node in Tendermint/Cosmos AppState
+# This is simply an alias for AppStateNode that explicity types the node as the root of the tree
+type AppStateRootNode union {
+ | IAVLRootNode "iavl"
+ | SMTRootNode "smt"
+}
 ```
 
 ## FileDescriptorProto enriched SMT and IAVL IPLDs
@@ -42,12 +49,13 @@ described in [typed_protobuf.md](./typed_protobuf).
     * Keys are the unhashed keys for the protobuf encoded values
 
 ```ipldsch
+# IAVLNode is the union type for representing any node in an IAVL
 type IAVLNode union {
     | IAVLInnerNode "inner"
     | IAVLLeafNode "leaf"
 } representation keyed
 
-# IAVLRootNode is the top-most node in an IAVL; the root node of the tree.
+# IAVLRootNode is an alias for the top-most node in an IAVL; the root node of the tree.
 # It can be a leaf node if there is only one value in the tree
 type IAVLRootNode IAVLNode
 
@@ -90,6 +98,7 @@ specification outlined in the Libra whitepaper.
     * The path is the `SHA_256(key)`.
     * `value` is a protobuf encoded value and `key` is the key for this value in its separate state storage kvstore.
 ```ipldsch
+# SMTNode is the union type for representing any node in an SMT
 type SMTNode union {
     | SMTInnerNode "inner"
     | SMTLeafNode "leaf"

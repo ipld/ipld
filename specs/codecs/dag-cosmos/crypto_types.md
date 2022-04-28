@@ -10,8 +10,8 @@ type PubKey bytes
 # Private key
 type PrivKey bytes
 
-# Hashes from leaf's sibling to a root's child
-type Aunts [Hash]
+# AuntCIDs is a list of CID links to the nodes intervening a leaf's sibling and a root node's child
+type AuntCIDs [AppStateNodeCID]
 
 # Proof represents a Merkle proof.
 # NOTE: The convention for proofs is to include leaf hashes but to
@@ -23,7 +23,7 @@ type Aunts [Hash]
 type Proof struct {
 	Total    Int  # Total number of items.
 	Index    Int # Index of item to prove.
-	LeafHash Hash # Hash of item value.
-	Aunts    Aunts # Hashes from leaf's sibling to a root's child.
+	LeafCID  AppStateNodeCID # CID link to the leaf containing the item to prove.
+	AuntCIDs AuntCIDs
 }
 ```

@@ -57,6 +57,11 @@ In order to support this scheme, we also reserve a new multicodec type byte pref
 that is a simple derivative of the existing `sha2-256` multihash function that ignores the first 32 bytes of the input.
 This is necessary in order to preserve the native `hash => content` mapping of these content-type prefixed protobuf objects.
 
+e.g.
+```ipldsch
+SHA2-256-Ignore32BytePrefix
+```
+
 The above scheme provides a mechanism to provide rich type information to arbitrary protobuf objects stored in IPFS/Filecoin
 without requiring the reservation and registration of multicodec type byte prefixes for each individual type. This is
 necessary to provide generic IPLD integration for *any* Tendermint/Cosmos chain that abides by the below assumptions:

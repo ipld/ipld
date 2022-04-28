@@ -2,7 +2,7 @@
 
 ```ipldsch
 # Uint is a non-negative integer
-type Uint bytes
+type Uint Int
 
 # The main purpose of HexBytes is to enable HEX-encoding for json/encoding.
 type HexBytes bytes

@@ -71,10 +71,11 @@ type IAVLInnerNode struct {
 # IAVLValue is a union type for representing either an amino or protobuf encoded value in an IAVL leaf node
 type IAVLValue union {
     | Bytes "amino" # Binary for an amino encoded value stored in an IAVL leaf node
-    | TypedProtobufCID "proto" # Link to the TypedProtobuf IPLD representation of a protobuf encoded value stored in an IAVL leaf node
+    | TypedProtobuf "proto" # TypedProtobuf IPLD representation of a protobuf encoded value stored in an IAVL leaf node
 } representation keyed
 
 # IAVLLeafNode represents a leaf node in an IAVL Tree.
+# When calculating the multihash of this object, if the Value is of type TypedProtobuf then only the ProtoMessageBytes should be hashed
 type IAVLLeafNode struct {
     Key       Bytes
     Value     IAVLValue
@@ -116,7 +117,7 @@ type SMTInnerNode struct {
 
 # SMTValue is a union type for representing either an amino or protobuf encoded value in an SMT leaf node
 type SMTValue union {
-    | Bytes "amino" # Binary for an amino encoded value referenced from an SMT leaf node
+    | Hash "amino" # Hash for an amino encoded value referenced from an SMT leaf node, we don't attempt to content type Amino values
     | TypedProtobufCID "proto" # Link to the TypedProtobuf IPLD representation of a protobuf encoded value referenced from an SMT leaf node
 } representation keyed
 

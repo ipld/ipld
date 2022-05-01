@@ -34,7 +34,7 @@ type MerkleTreeInnerNode struct {
 type Value union {
     | SimpleValidator "validator"
     | Evidence "evidence"
-    | TxCID "tx"
+    | TypedTxCID "tx"
     | Part "part"
     | ResponseDeliverTx "result"
     | Bytes "header"
@@ -265,7 +265,7 @@ type ValidatorTreeCID &ValidatorTreeNode
 
 ## Tendermint Evidence List and Evidence
 Evidence in Tendermint is used to indicate breaches in the consensus by a validator.
-```ipld
+```ipldsch
 # EvidenceList is a simple wrapper for a list of evidence
 type EvidenceList [Evidence]
 
@@ -343,17 +343,17 @@ type EvidenceTreeCID &EvidenceTreeNode
 Transactions in Tendermint are unstructured byte arrays from the perspective of the Tendermint client. This is necessary
 to support any arbitrary ABCI/ABCI++ compliant state machine. The state machine is responsible for decoding and applying
 these transactions in a deterministic capacity.
+
+For CosmosSDK based state machines these transactions are always protobuf encoded objects,
+if we accept this as the general case we can provide rich content typing using the protobuf typing scheme
+described in [typed_protobuf.md](./typed_protobuf).
 ```ipldsch
-# Tx is an arbitrary byte array.
-# Tx has no types at the Tendermint level, instead it encodes arbitrary length-prefixed data that can be decoded and processed in a state-machine specific manner.
-type Tx [Bytes]
+# TypedTx is an alias for a TypedProtobuf object
+type TypedTx TypedProtobuf
 
-#Txs is a list of Tx.
-type Txs [Tx]
-
-# TxCID is a link to a Tx
-# TxCID uses the SHA256 multihash and the Raw codec (0x55)
-type TxCID &Tx
+# TypedTxCID is an alias for a TypedProtobufCID
+# This CID is composed of the SHA2-256-Ignore32BytePrefix multihash of the TypedProtobuf IPLD block binary and the TypedProtobuf codec (tbd)
+type TypedTxCID TypedProtobufCID
 ```
 
 ## Tendermint Tx Tree
@@ -362,7 +362,7 @@ type stored in a leaf node is a `TxTreeCID`.
 
 * The Tx Merkle Tree is Merkle Tree built from the list of transactions included in this block, ordered by their index in the block.
 * A transaction is an unstructured byte array, it's decoding is dependent on the state machine it is intended for.
-* Leaves contain a hash link (`TxCID`) to a transaction rather than the transaction itself.
+* Leaves contain a hash link (`TypedTxCID`) to a transaction rather than the transaction itself.
 * CID links to a `TxTreeNode` use an SHA256 multihash of the node binary and the TxTree codec (tbd).
 * The root node of this tree is referenced in a Tendermint `Header` by the `DataCID`.
 

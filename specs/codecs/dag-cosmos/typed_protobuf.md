@@ -43,13 +43,14 @@ type FileDescriptorSetCID &FileDescriptorSet
 
 # TypedProtobuf is an IPLD object consisting of a CID link to a FileDescriptorSet
 # and bytes for a protobuf encoded value whose type is described by the linked FileDescriptorSet
+# When calculating the multihash of this object, only the ProtoMessageBytes should be hashed
 type TypedProtobuf struct {
     DescriptorSetCID FileDescriptorSetCID
     ProtoMessageBytes Bytes
 }
 
 # TypedProtobufCID is a CID link to a TypedProtobuf block binary
-# This CID is composed of the SHA_256 multihash of the TypedProtobuf IPLD block binary and the TypedProtobuf codec (tbd)
+# This CID is composed of the SHA2-256-Ignore32BytePrefix multihash of the TypedProtobuf IPLD block binary and the TypedProtobuf codec (tbd)
 type TypedProtobufCID &TypedProtobuf
 ```
 
@@ -64,9 +65,10 @@ SHA2-256-Ignore32BytePrefix
 
 The above scheme provides a mechanism to provide rich type information to arbitrary protobuf objects stored in IPFS/Filecoin
 without requiring the reservation and registration of multicodec type byte prefixes for each individual type. This is
-necessary to provide generic IPLD integration for *any* Tendermint/Cosmos chain that abides by the below assumptions:
+necessary to provide generic IPLD integration for the transactions and state in *any* Tendermint/Cosmos chain that abides by the below assumptions:
 
-1. IAVL or SMT are used as the state commitment data structure for the CosmosSDK app.
-2. Protobuf encoding is used for values stored in the IAVL or SMT state commitment data structures.
+1. Protobuf encoding is used for the Tendermint transactions.
+2. IAVL or SMT are used as the state commitment data structure for the CosmosSDK app.
+3. Protobuf encoding is used for values stored in the IAVL or SMT state commitment data structures.
 
 

@@ -32,7 +32,7 @@ Some well-known example datasets are included in the front page, which you can n
 Some datasets using unixfs are specially treated, and can be navigated by the filesystem-like abstraction offered by unixfs.
 (In the future, we hope to make these features more generalized, by the use of ADLs; at present, unixfs's special behaviors are hardcoded.)
 
-Note that to be navigatable in the IPLD Explorer, the data has to be found somewhere in the public IPFS network swarm.
+Note that to be navigatable in the IPLD Explorer, the data has to be found somewhere in the public IPFS network swarm. Alternatively, a CAR file containing a DAG can be uploaded directly to the explorer for inspection.
 (Code contributions to increase the variety of ways data can be supplied to the IPLD Explorer would be welcome!)
 
 The source code for the IPLD Explorer is here: https://github.com/ipld/explore.ipld.io

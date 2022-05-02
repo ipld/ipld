@@ -70,7 +70,7 @@ and [Advanced Data Layouts](/docs/advanced-data-layouts/), which let us do thing
 - `Advanced Data Layouts` couple programmatic functionality with data structures, allowing for complex data structuring while presenting as the Data Model (e.g. encryption, large multi-block spanning data structures). Note that ADL APIs are more stable for reading than writing as write APIs are under development.
 - `Codecs` are bound by the data model to include a set of data types, including links (currently represented as CIDs). Codecs supporting a subset of the Data Model (DAG-PB, plain CBOR, plain JSON, etc.) likewise have limited support from functionality from Data Model components.
 - `Blocks` are arbitrary arrays of bytes identified by a CID (content identifier, including hash and codec details). IPLD doesn't concern itself with the source or nature of these bytes as long as its Codecs can read and/or write them. Limitations (size, location, availability, etc.) are concerns of the data source.
-- The `Universal Interface` the interface that applications use which abstracts over top of the raw data model and lenses like Schemas and ADLs. It can then be used by higher level APIs to load and manipulate data.
+- The `Universal Interface` is the interface that applications use which abstracts over top of the raw data model and lenses like Schemas and ADLs. It can then be used by higher level APIs to load and manipulate data.
 - `Traversal` is the act of following links and fields inside IPLD data.
 - You can `Print` IPLD data in a human-readable format which preserves it's structure.
 - `Selectors` are expressions that describe a traversal over an IPLD dag and "select" a subset of nodes during that walk.

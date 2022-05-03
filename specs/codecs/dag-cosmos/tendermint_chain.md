@@ -179,7 +179,7 @@ LeafIndex11 = protobuf(LastResultsCID)
 LeafIndex12 = protobuf(EvidenceCID)
 LeafIndex13 = protobuf(ProsperAddress)
 ```
-For a visual representation of the above, see the included [diagram](./tendermint_dag.png)
+For a visual representation of the above, see the included [diagram](../tendermint_dag.png).
 
 * CID links to a `HeaderFieldTreeNode` use an SHA256 multihash of the node binary and the TendermintHeaderFieldTree codec (tbd).
 * The root node of this tree at block `n-1` is referenced in a Tendermint `BlockID` by the `BlockCID` at block `n`.
@@ -346,7 +346,7 @@ these transactions in a deterministic capacity.
 
 For CosmosSDK based state machines these transactions are always protobuf encoded objects,
 if we accept this as the general case we can provide rich content typing using the protobuf typing scheme
-described in [typed_protobuf.md](./typed_protobuf).
+described in [typed_protobuf.md](../typed_protobuf).
 ```ipldsch
 # TypedTx is an alias for a TypedProtobuf object
 type TypedTx TypedProtobuf

@@ -10,7 +10,7 @@ this will be transitioned to using a Sparse Merkle Tree ([SMT](https://github.co
 
 For both SMT and IAVL the values stored in or referenced from these data structures are either amino (legacy support only) or protobuf encoded.
 This also is not strictly enforced but is heavily prescribed by the SDK. In the below schemas we support rich typing for only protobuf encoded
-objects using the scheme described in [typed_protobuf.md](./typed_protobuf).
+objects using the scheme described in [typed_protobuf.md](../typed_protobuf).
 
 ## App State
 ```ipldsch
@@ -40,7 +40,7 @@ type AppStateRootNode union {
 ## FileDescriptorProto enriched SMT and IAVL IPLDs
 Below we propose an approach and outline the IPLD schemas for enriching SMT and IAVL leaf node IPLDs with type information for the
 encoded protobuf values stored in (IAVL) or referenced from (SMT) nodes. This approach is dependent on the protobuf typing scheme
-described in [typed_protobuf.md](./typed_protobuf).
+described in [typed_protobuf.md](../typed_protobuf).
 
 ### Typed Protobuf IAVL Node
 * The hash of an inner node is `SHA_256(height || size || version || left_hash || right_hash)`.

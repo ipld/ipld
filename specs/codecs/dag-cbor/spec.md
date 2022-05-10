@@ -68,12 +68,12 @@ Therefore the DAG-CBOR codec must:
 
 ### Decode strictness
 
-DAG-CBOR decoders should not enforce all of the above strictness requirements by default, but may provide an opt-in for systems where round-trip determinism is a desireable feature and backward compatibility with old, non-strict data is unnecessary.
+Due to the existence and active use of historical data, and the existence and active use of non-conforming encoders, DAG-CBOR decoders may relax strictness requirements by default. A strictness opt-in may be offered for systems where round-trip determinism is a desirable feature and backward compatibility with old, non-strict data is unnecessary.
 
 In particular, the following rules may be relaxed in order to allow interoperability with historical, and other loosely encoded data:
 
 * Map key ordering: map entries may be accepted in any order
-* Integer encoding lengths need not be as short as possible
+* Integer encodings need not be as short as possible
 * Length descriptors of major types 2 through 5 need not be as short as possible
 * The expression of tag `42` need not be as short as possible (`0xd82a`)
 * Floating point values may be represented as single and half precision
@@ -82,13 +82,15 @@ In particular, the following rules may be relaxed in order to allow interoperabi
 
 ### JavaScript
 
+JavaScript users are encouraged to use **[@ipld/dag-cbor]** for DAG-CBOR encoding and decoding.
+
 **[@ipld/dag-cbor]**, for use with [multiformats] adheres to this specification, with the following caveats:
- * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
+ * Some strictness is enforced on decode; integer encodings and lengths (major types 2 through 5) must be as short as possible and tag `42` may only be represented as `0xd82a`. However, map key ordering and float encoding sizes are not enforced.
  * [`BigInt`] is accepted along with `Number` for encode, but the smallest-possible rule is followed when encoding. When decoding integers outside of the JavaScript "safe integer" range, a [`BigInt`] will be used.
 
 The legacy **[ipld-dag-cbor]** implementation adheres to this specification, with the following caveats:
 
- * Strictness is not enforced on decode; blocks encoded that do not follow the strictness rules are not rejected.
+ * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
  * Floating point values are encoded as their smallest form rather than always 64-bit.
  * Many additional object types outside of the Data Model are currently accepted for decode and encode, including `undefined`.
  * [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
@@ -98,10 +100,17 @@ Note that inability to clearly differentiate between integers and floats in Java
 
 ### Go
 
+Go users are encouraged to use **[go-ipld-prime]** for DAG-CBOR encoding and decoding.
+
 **[go-ipld-cbor]** and **[go-ipld-prime]** adhere to this specification, with the following caveats:
 
  * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
  * [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
+
+**[cbor-gen]** adheres to this specification with the following caveats:
+
+ * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
+ * Map keys are sorted in alphanumeric order using [sort.Strings()] on encode.
 
 ### Java
 
@@ -153,6 +162,8 @@ The implications for DAG-CBOR of these limitaitons are:
 [ipld-dag-cbor]: https://github.com/ipld/js-ipld-dag-cbor/
 [go-ipld-cbor]: https://github.com/ipfs/go-ipld-cbor
 [go-ipld-prime]: http://github.com/ipld/go-ipld-prime
+[cbor-gen]: https://github.com/whyrusleeping/cbor-gen
+[sort.Strings()]: https://pkg.go.dev/sort#Strings
 [Java IPLD from Peergos]: https://github.com/Peergos/Peergos/tree/master/src/peergos/shared/cbor
 [`Number`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
 [IEEE 754]: https://en.wikipedia.org/wiki/Floating-point_arithmetic

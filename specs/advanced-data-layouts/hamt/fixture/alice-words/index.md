@@ -13,8 +13,8 @@ This fixture builds a HAMT cataloging the locations of all words appearing in th
 * Words are matched using a simple `/\w+/` regular expression.
 * The HAMT uses a `bitWidth` of `5` (maximum of 32 entries or buckets per node) and a `bucketSize` of `3`.
 * Blocks are encoded using DAG-CBOR and CIDs use a SHA2-256 multihash.
-* Each entry in keyed by the word (as `Bytes` as per the HashMap spec) and the values are stored inline.
-* Values are an array of the line and column location of each occurance of the word, in order of appearance.
+* Each entry is keyed by the word (as `Bytes` as per the [HAMT spec](../../spec/)) and the values are stored inline.
+* Values are an array of the line and column location of each occurrence of the word, in order of appearance.
 * Values take the following form:
 
 ```ipldsch
@@ -28,7 +28,7 @@ type Datum struct {
 Once compiled:
 
 * The root CID of such a HAMT should be `bafyreic672jz6huur4c2yekd3uycswe2xfqhjlmtmm5dorb6yoytgflova`. This root is listed as the root of the CAR containing the blocks.
-* There will be 36 blocks: 1 root and 25 non-roots, matching the schema in the HashMap spec.
+* There will be 36 blocks: 1 root and 25 non-roots, matching the schema in the HAMT spec.
 
 Files:
 

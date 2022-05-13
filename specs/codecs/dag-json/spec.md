@@ -21,13 +21,15 @@ The native JSON IPLD format is called DAG-JSON to disambiguate it from regular J
 
 ### Serialization
 
-Codec implementors **MUST** do the following in order to ensure hashes consistently match for the same block data.
+Codec implementations **MUST** do the following when encoding data in order to ensure hashes consistently match for the same block data.
 
  - Sort object keys by their (UTF-8) encoded representation, i.e. with byte comparisons
  - Strip whitespace
 
 This produces the most compact and consistent representation which will ensure that two codecs
 producing the same data end up with matching block hashes.
+
+Codec implementers should not enforce this strictness when decoding data in order to support historical data, and data produced by non-strict encoders. However, they may provide an opt-in for systems where round-trip determinism is a desireable feature and backward compatibility with old, non-strict data is unnecessary.
 
 ### Supported kinds
 

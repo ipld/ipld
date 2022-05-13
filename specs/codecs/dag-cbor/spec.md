@@ -11,6 +11,7 @@ navTitle: "Spec"
 * [Links](#links)
 * [Map Keys](#map-keys)
 * [Strictness](#strictness)
+  * [Decode strictness](#decode-strictness)
 * [Implementations](#implementations)
   * [JavaScript](#javascript)
   * [Go](#go)
@@ -65,17 +66,31 @@ Therefore the DAG-CBOR codec must:
 5. [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` must not be accepted as they do not appear in the [IPLD Data Model]. Therefore, tokens `0xf97c00` (`Infinity`), `0xf97e00` (`NaN`) and `0xf9fc00` (`-Infinity`), their 16-bit, 32-bit and 64-bit variants, and any other [IEEE 754] byte layout that is interpreted as these values, should not appear, or be accepted in DAG-CBOR binary form.
 6. Encode and decode must operate on a single top-level CBOR object. Back-to-back concatenated objects are not allowed or supported, as suggested by [section 5.1 of RFC 8949] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes included in an IPLD block, whether valid or invalid CBOR, must not be accepted as valid DAG-CBOR.
 
+### Decode strictness
+
+Due to the existence and active use of historical data, and the existence and active use of non-conforming encoders, DAG-CBOR decoders may relax strictness requirements by default. A strictness opt-in may be offered for systems where round-trip determinism is a desirable feature and backward compatibility with old, non-strict data is unnecessary.
+
+In particular, the following rules may be relaxed in order to allow interoperability with historical, and other loosely encoded data:
+
+* Map key ordering: map entries may be accepted in any order
+* Integer encodings need not be as short as possible
+* Length descriptors of major types 2 through 5 need not be as short as possible
+* The expression of tag `42` need not be as short as possible (`0xd82a`)
+* Floating point values may be represented as single and half precision
+
 ## Implementations
 
 ### JavaScript
 
+JavaScript users are encouraged to use **[@ipld/dag-cbor]** for DAG-CBOR encoding and decoding.
+
 **[@ipld/dag-cbor]**, for use with [multiformats] adheres to this specification, with the following caveats:
- * Complete strictness is not yet enforced on decode. Specifically: correct map ordering is not enforced and floats that are not encoded as 64-bit are not rejected.
+ * Some strictness is enforced on decode; integer encodings and lengths (major types 2 through 5) must be as short as possible and tag `42` may only be represented as `0xd82a`. However, map key ordering and float encoding sizes are not enforced.
  * [`BigInt`] is accepted along with `Number` for encode, but the smallest-possible rule is followed when encoding. When decoding integers outside of the JavaScript "safe integer" range, a [`BigInt`] will be used.
 
 The legacy **[ipld-dag-cbor]** implementation adheres to this specification, with the following caveats:
 
- * Strictness is not enforced on decode; blocks encoded that do not follow the strictness rules are not rejected.
+ * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
  * Floating point values are encoded as their smallest form rather than always 64-bit.
  * Many additional object types outside of the Data Model are currently accepted for decode and encode, including `undefined`.
  * [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
@@ -85,16 +100,23 @@ Note that inability to clearly differentiate between integers and floats in Java
 
 ### Go
 
+Go users are encouraged to use **[go-ipld-prime]** for DAG-CBOR encoding and decoding.
+
 **[go-ipld-cbor]** and **[go-ipld-prime]** adhere to this specification, with the following caveats:
 
- * Strictness is not enforced on decode; blocks encoded that do not follow the strictness rules are not rejected.
+ * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
  * [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
+
+**[cbor-gen]** adheres to this specification with the following caveats:
+
+ * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
+ * Map keys are sorted in alphanumeric order using [sort.Strings()] on encode.
 
 ### Java
 
 [Java IPLD from Peergos] adheres to this specification, with the following caveats:
 
- * Strictness is not enforced on decode; blocks encoded that do not follow the strictness rules are not rejected.
+ * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
  * Floats are disabled.
 
 ## Limitations
@@ -140,6 +162,8 @@ The implications for DAG-CBOR of these limitaitons are:
 [ipld-dag-cbor]: https://github.com/ipld/js-ipld-dag-cbor/
 [go-ipld-cbor]: https://github.com/ipfs/go-ipld-cbor
 [go-ipld-prime]: http://github.com/ipld/go-ipld-prime
+[cbor-gen]: https://github.com/whyrusleeping/cbor-gen
+[sort.Strings()]: https://pkg.go.dev/sort#Strings
 [Java IPLD from Peergos]: https://github.com/Peergos/Peergos/tree/master/src/peergos/shared/cbor
 [`Number`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
 [IEEE 754]: https://en.wikipedia.org/wiki/Floating-point_arithmetic

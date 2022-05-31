@@ -281,3 +281,45 @@ The following document should result:
 	"bar": "zar"
 }
 ```
+
+
+### Testing and conditional modification - Failing case
+
+Given an initial document:
+
+[testmark]:# (test-and-conditional-fail/initial)
+```json
+{
+	"baz": "qux",
+	"foo": [
+		"a",
+		2,
+		"c"
+	]
+}
+```
+
+and a Patch OperationSequence:
+
+[testmark]:# (test-and-conditional-fail/patch)
+```json
+[
+	{ "op": "test", "path": "/baz", "value": "qux" },
+	{ "op": "test", "path": "/foo/1", "value": 3 },
+	{ "op": "add",  "path": "/bar", "value": "zar" }
+]
+```
+
+The operation should abort and the document should remain as:
+
+[testmark]:# (test-and-conditional-fail/result)
+```json
+{
+	"baz": "qux",
+	"foo": [
+		"a",
+		2,
+		"c"
+	]
+}
+```

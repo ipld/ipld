@@ -19,9 +19,9 @@ you'll have to find the markdown [source](/specs/about/#source).)
 
 ### This doesn't have to be JSON!
 
-We've used JSON here for the initial data, as well as the patch instructions and the results.
+We've used JSON (representing the DAG-JSON format) here for the initial data, as well as the patch instructions and the results.
 However, this is a totally stylistic choice.  We're just using JSON here because it's convenient and it's human-readable.
-You can equally well express all of these objects in CBOR, or other [codecs](/docs/codecs/); it makes no difference to IPLD.
+You can equally well express all of these objects in DAG-CBOR, or other [codecs](/docs/codecs/); it makes no difference to IPLD.
 The patch instruction and the subject data don't even have to be in the same codec, either.
 
 

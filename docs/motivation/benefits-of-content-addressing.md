@@ -32,7 +32,7 @@ Think of git, data is never corrupted because it is validated with hashes.
 
 ## Identity
 
-Data is self identifying, no need for externally generated identifiers (like database autoincrement fields).
+Data is self identifying; no need for externally generated identifiers (like database autoincrement fields).
 Think of git - workflows revolve around hashes to underlying commits.
 This can be important for fields such as healthcare informatics where it's important that data cannot be tampered with.
 

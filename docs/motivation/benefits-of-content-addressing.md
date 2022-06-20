@@ -17,7 +17,8 @@ For example, if you'd like to keep track of changes, you can build a DAG that li
 ## De-Duplication and Cacheability
 
 A given block is only stored once even if it is part of many independent DAGs thanks to the system being able to safely assume its CID will always reference the same data.
-This leads to reduced resource consumption (storage, bandwidth, memory), try to model data into chunks that are reusable.
+This leads to reduced resource consumption (storage, bandwidth, memory).
+To make the most use of this functionality, applications should try to model data into chunks that are reusable.
 
 Since data is immutable, in can be cached without worrying about keeping it in sync with anyone else.
 Think of git, fetch operations are fast because it only fetches changes.

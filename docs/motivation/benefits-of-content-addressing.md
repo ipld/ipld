@@ -26,7 +26,7 @@ Think of git, fetch operations are fast because it only fetches changes.
 ## Authentication/Validation
 
 A block of data can always be authenticated or validated for correctness by checking its hash.
-Even one bit difference in the data will result in a different has allowing applications to detect bad data.
+Even one bit difference in the data will result in a different hash allowing applications to detect bad data.
 Of particular interest is a clients ability to validate the data which eliminates the need to trust the server.
 Think of git, data is never corrupted because it is validated with hashes.
 

@@ -6,7 +6,7 @@ Benefits of Content Addressing
 ------------------------------
 
 IPLD is based on a concept called "Content Addressing" which is described in other articles.
-This page goes over some of the benefits that IPLD gains by making use of content addressing as part of it's core.
+This page goes over some of the benefits that IPLD gains by making use of content addressing as part of its core.
 
 ## Immutability
 

@@ -10,7 +10,7 @@ This page goes over some of the benefits that IPLD gains by making use of conten
 
 ## Immutability
 
-Since data is addressed by it's content, it is also immutable by default.
+Since data is addressed by its content, it is also immutable by default.
 This means that data cannot be changed unless you create a new piece of data from an original, which will also result in a new "address" to it.
 For example, if you'd like to keep track of changes, you can build a DAG that links to earlier versions of a piece of data.
 

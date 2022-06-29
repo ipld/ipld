@@ -10,7 +10,7 @@ navTitle: "Spec"
 * [Format](#format)
 * [Implementations](#implementations)
     * [Go](#go)
-    * [Rust/WASM](#rustwasm)
+    * [Rust/WASM](#rust-wasm)
 
 WAC supports bidirectional transport to and from the [IPLD Data Model].
 In that way it is both a "complete" IPLD Data Model representation and "fitted" to the IPLD Data Model.

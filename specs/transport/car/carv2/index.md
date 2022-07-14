@@ -17,6 +17,7 @@ eleventyNavigation:
   * [Index payload](#index-payload)
   * [Index format](#index-format)
     * [Format `0x0400`: IndexSorted](#format-0x0400-indexsorted)
+    * [Format `0x0401`: MultihashIndexSorted](#format-0x0401-multihashindexsorted)
 * [Implementations](#implementations)
 * [Test Fixtures](#test-fixtures)
 

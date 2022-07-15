@@ -176,6 +176,15 @@ The format is described in IPLD (using [IPLD Schemas](#schemas)),
 so it's possible to serialize Selectors in any [Codec](#codec) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
 
+### Signaling
+#### Signalling
+
+See the [ADL Signalling](/docs/advanced-data-layouts/signalling/) page,
+and especially the [Signalling Mechanisms](/docs/advanced-data-layouts/signalling/#signalling-mechanisms).
+
+The concept of signalling could be more generalized, as well
+(multicodec indicators can be seen as a signalling mechanism for codec selection)!
+
 #### Substrate
 
 "Substrate" is a vocabulary term relating to [ADLs](#adl) -- it refers to the data "inside" them,

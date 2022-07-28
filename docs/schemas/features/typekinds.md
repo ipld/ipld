@@ -329,9 +329,7 @@ type Foo struct {
 
 ```ipldsch
 type Foo struct {
-	bar Bool
-} representation map {
-	field bar default "false"
+	bar Bool (implicit false)
 }
 ```
 
@@ -341,7 +339,9 @@ type Foo struct {
 <code>{}</code><br>
 </td>
 <td>2</td>
-<td>Default values mean that encoding should never include the value if it's the default.  That means the set of valid representations *changes*, but it doesn't *grow* because one representation becomes invalid at the same time as a new representation is added.</td>
+<td>Implicit values mean that encoding should never include the value if it's the default/implicit value.  That means the set of valid representations *changes*, but it doesn't *grow* because one representation becomes invalid at the same time as a new representation is added.
+<br><br>Note also that the `implicit` keyword is in parens -- a slightly different syntax than how `optional` and `nullable` are used.  This is because it's a representational change; not a type change.  Representational annotations are denoted in parens, like this.
+</td>
 </tr>
 
 </table>

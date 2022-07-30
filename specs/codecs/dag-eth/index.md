@@ -20,7 +20,7 @@ For more information about the IPLD Schema language, see the [IPLD Schema docume
 
 ## Data Structure Descriptions
 
-* [Ethereum Data Structures **Basic Types**](./basic_types)
-* [Ethereum **Chain** Data Structures](./chain)
-* [Ethereum **Convenience Types**](./convenience_types)
-* [Ethereum **State** Data Structures](./state)
+* [Ethereum Data Structures **Basic Types**](./basic_types.md)
+* [Ethereum **Chain** Data Structures](./chain.md)
+* [Ethereum **Convenience Types**](./convenience_types.md)
+* [Ethereum **State** Data Structures](./state.md)

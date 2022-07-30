@@ -26,6 +26,7 @@
     "markdown-it-footnote": "^3.0.3",
     "markdown-it-mark": "^3.0.1",
     "markdown-it-table-of-contents": "^0.6.0",
+    "markdown-it-replace-link": "^1.1.0",
     "run-script-os": "^1.1.6"
   }
 }

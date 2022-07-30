@@ -41,9 +41,16 @@ module.exports = function (eleventyConfig) {
   // Inspired by https://github.com/11ty/eleventy/issues/1204
   const replaceLocalMdLinks = function(link, env) {
     const matcher = new RegExp('^(\./|\.\./|/)(.*?)(.md)(\#.*?)?$');
-    return matcher.test(link) ?
-      link.replace(matcher, "$1$2$4") :
-      link;
+    if (matcher.test(link)) {
+      // Pages with file name index.md are output at a different level in the
+      // directory hierarchy than other pages so we need to fix up relative links
+      // in those pages to their siblings so they connect.
+      const indexPage = env.page.inputPath.endsWith("/index.md");
+      const translatedLink = link.replace(matcher, "$1$2$4");
+      return indexPage ? translatedLink : translatedLink.replace(/^\.\/(.*?)/, "../$1")
+    } else {
+      return link;
+    }
   }
 
   const markdownLibrary = markdownIt({

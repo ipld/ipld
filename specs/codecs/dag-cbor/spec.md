@@ -134,7 +134,7 @@ All JavaScript numbers, both floating point and integer, (using the [`Number`] p
 
 [@ipld/dag-cbor] supports [`BigInt`] for values outside of the safe integer range, while the legacy [ipld-dag-cbor] uses the third-party [bignumber.js] library to handle these values.
 
-The implications for DAG-CBOR of these limitaitons are:
+The implications for DAG-CBOR of these limitations are:
 
  * Any integer deserialized by the JavaScript CBOR decoder greater than `Number.MAX_SAFE_INTEGER` or less than `Number.MIN_SAFE_INTEGER` will be returned as a [`BigInt`] from [@ipld/dag-cbor] or a [bignumber.js] wrapper type from [ipld-dag-cbor], which may be unexpected to users and have unexpected effects on downstream code.
  * Any `Number` serialized by the JavaScript CBOR encoder relies on a whole-number check (i.e. `Number.isInteger()`, roughly `x % 1 === 0`) to determine whether it should be encoded as an integer or a float.

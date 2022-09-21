@@ -221,7 +221,7 @@ An implementation should only emit any given `key`, `value` or `key` / `value` e
 This algorithm differs from CHAMP in the following ways:
 
 1. CHAMP separates `map` into `datamap` and `nodemap` for referencing local data elements and local references to child nodes. The `data` array is then split in half such that data elements are stored from the left and the child node links are stored from the right with a reverse index. This allows important speed and cache-locality optimizations for fully in-memory data structures but those optimizations are not present, or make negligible impact in a distributed data structure.
-2. CHAMP does not make use, of buckets, nor do common implementations of HAMTs on the JVM (e.g. Clojure, Scala, Java). Storing only entries and links removes the need for an iterative search and compare within buckets and allows direct traversal to the entries required. This is effective for in-memory data structures but is less useful when performing block-by-block traversal with distributed data structures where packing data to reduce traversals may be more important.
+2. CHAMP does not make use of buckets, nor do common implementations of HAMTs on the JVM (e.g. Clojure, Scala, Java). Storing only entries and links removes the need for an iterative search and compare within buckets and allows direct traversal to the entries required. This is effective for in-memory data structures but is less useful when performing block-by-block traversal with distributed data structures where packing data to reduce traversals may be more important.
 
 ### Canonical form
 

@@ -40,7 +40,7 @@ The source code for the IPLD Explorer is here: https://github.com/ipld/explore.i
 
 ### CID Inspector
 
-https://cid.ipfs.io/
+https://cid.ipfs.tech/
 
 This web tool allows pasting a CID into the form to have it broken down and explained:
 it shows the CID version, multihash indicator code, the multicodec indicator code, etc, broken out legibly.
@@ -48,7 +48,7 @@ it shows the CID version, multihash indicator code, the multicodec indicator cod
 
 ### Unixfs DAG visualizers
 
-https://dag.ipfs.io
+https://dag.ipfs.tech/
 
 This web tool shows what kind of internal sharding can take place in storing a file in Unixfs.
 

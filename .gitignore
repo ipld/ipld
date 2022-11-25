@@ -1,2 +1,18 @@
-node_modules
-.site/_output
+.vscode
+
+bin/*
+!bin/.gitkeep
+node_modules/
+public/
+tmp/
+
+/resources
+
+# Generated source files
+content/reference/pkg/*/
+src/styles/constants.less
+build
+
+# OS generated files
+.DS_Store
+.DS_Store?

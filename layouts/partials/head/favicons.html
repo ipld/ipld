@@ -1,0 +1,9 @@
+<meta name="theme-color" content="{{ $.Site.Params.themeColor }}">
+<link rel="icon" href="{{ "/img/ipld-tree.svg" | absURL }}" sizes="any">
+{{ if os.FileExists "/img/ipld-tree.svg" -}}
+  <link rel="icon" type="image/svg+xml" href="{{ "/img/ipld-tree.svg" | absURL }}">
+{{ end -}}
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "/img/ipld-tree.svg" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "/img/ipld-tree.svg" | absURL }}">
+<link rel="manifest" crossorigin="use-credentials" href="{{ "site.webmanifest" | absURL }}">

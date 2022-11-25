@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 600 310" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<defs>
+<marker id="a" markerWidth="7.5" orient="auto" refX="1.5" refY="1.5">
+<path d="m0 0v3l7.5-1.5z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</marker>
+</defs>
+<g transform="translate(0,-190)">
+<rect x="452.5" y="466.5" width="12" height="18" rx="2" ry="2" color="#000000" fill="#eed9ee" stroke="#e1c5e2" style="paint-order:normal"/>
+<path d="m295 380 10-20-10-20z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<g transform="translate(-50,-15)">
+<path d="m143.51 447.01c-22.816-11.901-29.657-45.275-30.315-71-0.64661-25.293 3.5796-58.299 26.199-71.238 23.329-13.345 55.764-19.412 85.76-16.239 27.084 2.865 52.179 13.263 66.789 32.639 20.046 26.587 6.0811 74.482-17.059 98.425-31.088 32.167-91.711 48.101-131.37 27.413z" color="#000000" enable-background="new" fill="#ebf0f5" style="font-variant-east_asian:normal;paint-order:normal"/>
+<path d="m165 435 100-60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m55 365h140" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m55 365 90-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m55 365 110-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m55 365 90 40" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m55 365 110 70" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m55 365 160 30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m165 435 50-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m145 405 70-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m195 365 20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m245 415-30-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m265 375-50 20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m275 335-60 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m225 310-10 85" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m195 365 70 10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m195 365-50 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m195 365-50-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m195 365-30-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m195 365 30-55" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m195 365 80-30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m165 315 60-5" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m275 335-50-25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m265 375-40-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m165 315-20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m145 405v-60" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m165 435-20-90" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m165 435-20-30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m215 395-70-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m165 435 80-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m165 435 30-70" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m265 375-20 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m245 415-100-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m265 375 10-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m225 310-80 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="55" cy="365" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="195" cy="365" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="165" cy="315" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="145" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="145" cy="405" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="165" cy="435" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="215" cy="395" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="225" cy="310" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="275" cy="335" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="265" cy="375" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="245" cy="415" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+</g>
+<g transform="translate(340.59 -55)">
+<g transform="matrix(.6383 0 0 .6383 -160.11 232.08)" stroke-width="1.5667">
+<path d="m290 182.89-21.998 12.676-1.502 2.5976v25.537l22 12.701h3l22-12.701v-25.537l-1.502-2.5976z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m313.5 98.164-22 12.701v25.537l22-12.701z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="349.3" cy="391.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="356.23" cy="384.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="342.37" cy="398.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m266.5 98.164v25.537l22 12.701v-25.537z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m280 218.73a3.3238 1.8804 53.051 0 1-2.5 1.0566 3.3238 1.8804 53.051 0 1-2.5-3.9434 3.3238 1.8804 53.051 0 1 2.5-1.0566 3.3238 1.8804 53.051 0 1 2.5 3.9434z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m290 82.891-21.998 12.676 21.998 12.676 21.998-12.676z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m278.5 194.13a3.5355 2.0375 0 0 1 5 0 3.5355 2.0375 0 0 1 0 2.8815 3.5355 2.0375 0 0 1-5 0 3.5355 2.0375 0 0 1 0-2.8815z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m296.5 194.13a3.5355 2.0375 0 0 1 5 0 3.5355 2.0375 0 0 1 0 2.8815 3.5355 2.0375 0 0 1-5 0 3.5355 2.0375 0 0 1 0-2.8815z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m300 218.73a1.8804 3.3238 36.949 0 0 2.5 1.0566 1.8804 3.3238 36.949 0 0 2.5-3.9434 1.8804 3.3238 36.949 0 0-2.5-1.0566 1.8804 3.3238 36.949 0 0-2.5 3.9434z" color="#000000" fill="none" style="paint-order:normal"/>
+</g>
+<path d="m98.514 487.01c-22.816-11.901-29.657-45.275-30.315-71-0.64661-25.293 3.5796-58.299 26.199-71.238 23.329-13.345 55.764-19.412 85.76-16.239 27.084 2.865 52.179 13.263 66.789 32.639 20.046 26.587 6.0811 74.482-17.059 98.425-31.088 32.167-91.711 48.101-131.37 27.413z" color="#000000" enable-background="new" fill="#ebf0f5" style="font-variant-east_asian:normal;paint-order:normal"/>
+<path d="m120 475 100-60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m10 405h140" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m10 405 77.894-17.355" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<path d="m10 405 98.812-44.75" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<path d="m10 405 90 40" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m10 405 99.412 63.56" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<path d="m10 405 160 30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m120 475 50-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m100 445 70-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m150 405 20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m200 455-30-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m220 415-50 20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m230 375-60 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m180 350-10 85" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m150 405 70 10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m150 405-50 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m150 405-50-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m150 405-30-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m150 405 30-55" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m150 405 80-30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m120 355 60-5" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m230 375-50-25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m220 415-40-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m120 355-20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m100 445v-60" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m120 475-20-90" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m120 475-20-30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m170 435-70-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m120 475 80-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m120 475 30-70" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m220 415-20 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m200 455-100-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m220 415 10-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m180 350-80 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="150" cy="405" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="120" cy="355" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="100" cy="385" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="100" cy="445" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="120" cy="475" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="170" cy="435" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="180" cy="350" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="230" cy="375" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="220" cy="415" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="200" cy="455" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="10" cy="405" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+</g>
+<text x="40" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="40" y="480">Peer wants to publish a message</tspan><tspan x="40" y="495">to a topic it is not subscribed to</tspan></text>
+<text x="360" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="360" y="480">Randomly select 3 peers subscribed to the</tspan><tspan x="360" y="495">topic and remember them as fan-out peers</tspan></text>
+<g transform="translate(-35,-345)">
+<text x="505" y="550" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="505" y="550" font-size="12px">Full-message peering</tspan></text>
+<path d="m495 545h-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<text x="505" y="570" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="505" y="570" font-size="12px">Fan-out peering</tspan></text>
+<path d="m475 564.5h14.5" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<text x="505" y="590" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="505" y="590" font-size="12px">Metadata-only peering</tspan></text>
+<path d="m495 584.5h-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+</g>
+</g>
+</svg>

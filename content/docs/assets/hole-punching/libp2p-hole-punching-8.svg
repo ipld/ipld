@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1289.3px" height="894.26px" style="height:894px;width:1289px" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 1289 894" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
+<defs>
+<filter id="a" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="5.338894681960375"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="10.67778936392075" dy="10.67778936392075" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="34.703" y="147.61" width="1226.6" height="595.45" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="5.3389"/>
+<rect x="61.397" y="289.8" width="1173.2" height="356.81" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="5.3389"/>
+<line x1="122.79" x2="122.79" y1="102.23" y2="788.45" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.6694"/>
+<line x1="643.34" x2="643.34" y1="102.23" y2="788.45" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.6694"/>
+<line x1="1170.6" x2="1170.6" y1="102.23" y2="788.45" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.6694"/>
+<rect x="88.092" y="8.0083" width="61.397" height="80.876" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="4.0042"/>
+<text x="106.7779" y="61.3843" fill="#000000" font-family="sans-serif" font-size="37.372" lengthAdjust="spacingAndGlyphs" textLength="24.025">A</text>
+<rect x="88.092" y="785.78" width="61.397" height="80.876" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="4.0042"/>
+<text x="106.7779" y="839.1528" fill="#000000" font-family="sans-serif" font-size="37.372" lengthAdjust="spacingAndGlyphs" textLength="24.025">A</text>
+<rect x="571.26" y="8.0083" width="136.14" height="80.876" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="4.0042"/>
+<text x="589.9479" y="61.3843" fill="#000000" font-family="sans-serif" font-size="37.372" lengthAdjust="spacingAndGlyphs" textLength="98.7696">Relay</text>
+<rect x="571.26" y="785.78" width="136.14" height="80.876" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="4.0042"/>
+<text x="589.9479" y="839.1528" fill="#000000" font-family="sans-serif" font-size="37.372" lengthAdjust="spacingAndGlyphs" textLength="98.7696">Relay</text>
+<rect x="1133.2" y="8.0083" width="64.067" height="80.876" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="4.0042"/>
+<text x="1151.8665" y="61.3843" fill="#000000" font-family="sans-serif" font-size="37.372" lengthAdjust="spacingAndGlyphs" textLength="26.6945">B</text>
+<rect x="1133.2" y="785.78" width="64.067" height="80.876" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="4.0042"/>
+<text x="1151.8665" y="839.1528" fill="#000000" font-family="sans-serif" font-size="37.372" lengthAdjust="spacingAndGlyphs" textLength="26.6945">B</text>
+<path d="m34.703 147.61h819.52v18.686l-26.694 26.694h-792.83v-45.381" fill="#eee" stroke="#000" stroke-width="2.6694"/>
+<rect x="34.703" y="147.61" width="1226.6" height="595.45" fill="none" stroke="#000" stroke-width="5.3389"/>
+<text x="74.7445" y="182.4935" fill="#000000" font-family="sans-serif" font-size="34.703" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="699.3952">A establish relayed connection to B</text>
+<polygon points="612.64 239.08 639.33 249.76 612.64 260.44 623.32 249.76" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<line x1="124.13" x2="628.65" y1="249.76" y2="249.76" stroke="#A80036" stroke-width="2.6694"/>
+<text x="142.8154" y="236.237" fill="#000000" font-family="sans-serif" font-size="34.703" lengthAdjust="spacingAndGlyphs" textLength="355.0365">Establish Connection</text>
+<path d="m61.397 289.8h600.63v18.686l-26.694 26.694h-573.93v-45.381" fill="#eee" stroke="#000" stroke-width="2.6694"/>
+<rect x="61.397" y="289.8" width="1173.2" height="356.81" fill="none" stroke="#000" stroke-width="5.3389"/>
+<text x="101.439" y="324.6833" fill="#000000" font-family="sans-serif" font-size="34.703" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="480.5005">Circuit Relay v2 Protocol</text>
+<polygon points="612.64 381.27 639.33 391.95 612.64 402.63 623.32 391.95" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<line x1="124.13" x2="628.65" y1="391.95" y2="391.95" stroke="#A80036" stroke-width="2.6694"/>
+<text x="142.8154" y="378.4267" fill="#000000" font-family="sans-serif" font-size="34.703" lengthAdjust="spacingAndGlyphs" textLength="416.4338">Request connection to B</text>
+<polygon points="1138.5 459.04 1165.2 469.72 1138.5 480.4 1149.2 469.72" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<line x1="644.67" x2="1154.5" y1="469.72" y2="469.72" stroke="#A80036" stroke-width="2.6694"/>
+<text x="663.3577" y="456.1953" fill="#000000" font-family="sans-serif" font-size="34.703" lengthAdjust="spacingAndGlyphs" textLength="461.8144">Request connection from A</text>
+<polygon points="674.04 536.81 647.34 547.49 674.04 558.16 663.36 547.49" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<line x1="658.02" x2="1167.9" y1="547.49" y2="547.49" stroke="#A80036" stroke-width="2.6694"/>
+<text x="690.0521" y="533.9638" fill="#000000" font-family="sans-serif" font-size="34.703" lengthAdjust="spacingAndGlyphs" textLength="456.4755">Accept connection request</text>
+<polygon points="153.49 614.58 126.8 625.26 153.49 635.93 142.82 625.26" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<line x1="137.48" x2="642" y1="625.26" y2="625.26" stroke="#A80036" stroke-width="2.6694"/>
+<text x="169.5099" y="611.7323" fill="#000000" font-family="sans-serif" font-size="34.703" lengthAdjust="spacingAndGlyphs" textLength="456.4755">Accept connection request</text>
+<polygon points="153.49 711.03 126.8 721.71 153.49 732.39 142.82 721.71" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<polygon points="1138.5 711.03 1165.2 721.71 1138.5 732.39 1149.2 721.71" fill="#A80036" stroke="#A80036" stroke-width="2.6694"/>
+<line x1="137.48" x2="1154.5" y1="721.71" y2="721.71" stroke="#A80036" stroke-width="2.6694"/>
+<text x="169.5099" y="708.1869" fill="#000000" font-family="sans-serif" font-size="34.703" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="632.659">Relayed Connection established</text>
+</svg>

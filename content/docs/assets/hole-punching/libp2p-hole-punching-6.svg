@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1290.1px" height="494.26px" style="height:494px;width:1290px" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 1290 494" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
+<defs>
+<filter id="a" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="5.069306930693069"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="10.138613861386139" dy="10.138613861386139" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="32.95" y="150.3" width="1229.3" height="191.11" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="5.0693"/>
+<line x1="93.782" x2="93.782" y1="107.21" y2="384.5" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.5347"/>
+<line x1="752.79" x2="752.79" y1="107.21" y2="384.5" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.5347"/>
+<rect x="58.297" y="17.743" width="60.832" height="76.792" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.802"/>
+<text x="76.0396" y="68.4233" fill="#000000" font-family="sans-serif" font-size="35.485" lengthAdjust="spacingAndGlyphs" textLength="25.3465">B</text>
+<rect x="58.297" y="381.96" width="60.832" height="76.792" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.802"/>
+<text x="76.0396" y="432.6411" fill="#000000" font-family="sans-serif" font-size="35.485" lengthAdjust="spacingAndGlyphs" textLength="25.3465">B</text>
+<rect x="626.06" y="7.604" width="253.47" height="76.792" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.802"/>
+<rect x="615.92" y="17.743" width="253.47" height="76.792" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.802"/>
+<text x="633.6634" y="68.4233" fill="#000000" font-family="sans-serif" font-size="35.485" lengthAdjust="spacingAndGlyphs" textLength="217.9802">Other_Peers</text>
+<rect x="626.06" y="381.96" width="253.47" height="76.792" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.802"/>
+<rect x="615.92" y="392.1" width="253.47" height="76.792" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.802"/>
+<text x="633.6634" y="442.7797" fill="#000000" font-family="sans-serif" font-size="35.485" lengthAdjust="spacingAndGlyphs" textLength="217.9802">Other_Peers</text>
+<path d="m32.95 150.3h1216.6v17.743l-25.347 25.346h-1191.3v-43.089" fill="#eee" stroke="#000" stroke-width="2.5347"/>
+<rect x="32.95" y="150.3" width="1229.3" height="191.11" fill="none" stroke="#000" stroke-width="5.0693"/>
+<text x="70.9703" y="183.4171" fill="#000000" font-family="sans-serif" font-size="32.95" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="1102.5743">B finding closest public Relay nodes via Kademlia Protocol</text>
+<polygon points="722.38 237.15 747.72 247.29 722.38 257.43 732.51 247.29" fill="#A80036" stroke="#A80036" stroke-width="2.5347"/>
+<line x1="93.782" x2="737.58" y1="247.29" y2="247.29" stroke="#A80036" stroke-width="2.5347"/>
+<text x="111.5248" y="234.4468" fill="#000000" font-family="sans-serif" font-size="32.95" lengthAdjust="spacingAndGlyphs" textLength="367.5248">FindNodes(PEER_ID_B)</text>
+<polygon points="121.66 310.99 96.317 321.13 121.66 331.27 111.52 321.13" fill="#A80036" stroke="#A80036" stroke-width="2.5347"/>
+<line x1="106.46" x2="750.26" y1="321.13" y2="321.13" stroke="#A80036" stroke-width="2.5347"/>
+<text x="136.8713" y="308.2884" fill="#000000" font-family="sans-serif" font-size="32.95" lengthAdjust="spacingAndGlyphs" textLength="598.1782">[ Public nodes closest to PEER_ID_B ]</text>
+</svg>

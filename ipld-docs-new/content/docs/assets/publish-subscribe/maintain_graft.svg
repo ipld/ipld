@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 570 580" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<defs>
+<linearGradient id="b">
+<stop stop-color="#ebf0f5" offset="0"/>
+<stop stop-color="#ebf0f5" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="c">
+<stop stop-color="#37384c" offset="0"/>
+<stop stop-color="#37384c" stop-opacity="0" offset="1"/>
+</linearGradient>
+<marker id="a" markerHeight="6.6666698" markerWidth="16.66667" orient="auto" refX="1.66667" refY="3.3333299">
+<path d="m0 0v6.6667l16.667-3.3333z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</marker>
+<linearGradient id="h" x1="310" x2="323" y1="431" y2="431" gradientTransform="translate(235,-405)" gradientUnits="userSpaceOnUse" xlink:href="#c"/>
+<linearGradient id="g" x1="315" x2="322" y1="415" y2="415" gradientTransform="translate(235,-405)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+<linearGradient id="f" x1="315" x2="322" y1="415" y2="415" gradientTransform="translate(235,-195)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+<linearGradient id="d" x1="315" x2="322" y1="415" y2="415" gradientTransform="translate(235,15)" gradientUnits="userSpaceOnUse" xlink:href="#b"/>
+<linearGradient id="i" x1="310" x2="323" y1="431" y2="431" gradientTransform="translate(235,-195)" gradientUnits="userSpaceOnUse" xlink:href="#c"/>
+<linearGradient id="e" x1="310" x2="323" y1="431" y2="431" gradientTransform="translate(235,15)" gradientUnits="userSpaceOnUse" xlink:href="#c"/>
+</defs>
+<g transform="translate(0,80)">
+<path d="m110-5-75-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m10 170 100 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<text x="284.53937" y="762.03394" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:1.39999998;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="284.53937" y="772.81396" font-size="11px" style="line-height:1.39999998"/></text>
+<path d="m200 100 20 10 20-10z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<circle cx="250" cy="10" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="270" cy="10" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="290" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="310" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="330" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="350" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="370" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="390" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="410" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="430" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="450" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="470" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<path d="m298.5 20.5v5h-56v-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m478.5 20.5v5h-176v-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="490" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="510" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="530" cy="10" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="550" cy="10" r="7.5" color="#000000" fill="url(#g)" style="paint-order:normal"/>
+<path d="m558.5 25.5h-76v-5" color="#000000" fill="none" stroke="url(#h)" stroke-width=".6" style="paint-order:normal"/>
+<text x="270" y="40" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="270" y="40" font-size="12px" text-align="center" text-anchor="middle">Too few</tspan></text>
+<text x="520" y="40" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="520" y="40" font-size="12px" text-align="center" text-anchor="middle">Too many</tspan></text>
+<text x="390.62936" y="40" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="390.62936" y="40" font-size="12px" text-align="center" text-anchor="middle">Acceptable amount</tspan></text>
+<text x="349" y="-20" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="349" y="-20" font-size="12px" text-align="center" text-anchor="middle">Ideal</tspan></text>
+<path d="m349.5-16v6" color="#000000" fill="none" marker-end="url(#a)" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<text x="240" y="-50" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="240" y="-50">Start with 2</tspan><tspan x="240" y="-35">full-content</tspan><tspan x="240" y="-20">peerings</tspan></text>
+<circle cx="250" cy="220" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="270" cy="220" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="290" cy="220" r="7.5" color="#000000" fill="#cddd40" style="paint-order:normal"/>
+<circle cx="310" cy="220" r="7.5" color="#000000" fill="#cddd40" style="paint-order:normal"/>
+<circle cx="330" cy="220" r="7.5" color="#000000" fill="#cddd40" style="paint-order:normal"/>
+<circle cx="350" cy="220" r="7.5" color="#000000" fill="#cddd40" style="paint-order:normal"/>
+<circle cx="370" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="390" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="410" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="430" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="450" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="470" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="490" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="510" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="530" cy="220" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="550" cy="220" r="7.5" color="#000000" fill="url(#f)" style="paint-order:normal"/>
+<text x="349" y="190" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="349" y="190" font-size="12px" text-align="center" text-anchor="middle">Ideal</tspan></text>
+<path d="m349.5 194v6" color="#000000" fill="none" marker-end="url(#a)" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<text x="240" y="145" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="240" y="145">Select more peers to graft</tspan><tspan x="240" y="160">to get to the ideal number</tspan></text>
+<path d="m200 310 20 10 20-10z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<circle cx="250" cy="430" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="270" cy="430" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="290" cy="430" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="310" cy="430" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="330" cy="430" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="350" cy="430" r="7.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="370" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="390" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="410" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="430" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="450" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="470" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="490" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="510" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="530" cy="430" r="7.5" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<circle cx="550" cy="430" r="7.5" color="#000000" fill="url(#d)" style="paint-order:normal"/>
+<text x="349" y="400" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="349" y="400" font-size="12px" text-align="center" text-anchor="middle">Ideal</tspan></text>
+<path d="m349.5 404v6" color="#000000" fill="none" marker-end="url(#a)" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<text x="240" y="375" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="240" y="375" font-size="12px">Grafting complete</tspan></text>
+<path d="m110 205 35 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 205 10 70" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 205-85 25" color="#000000" enable-background="new" fill="none" stroke="#cddd40" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 205-75-50" color="#000000" enable-background="new" fill="none" stroke="#cddd40" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 204.5h80" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 205 10-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 205 70-40" color="#000000" enable-background="new" fill="none" stroke="#cddd40" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 205 55 45" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m80 150 30 55" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 205-25 65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 205-80-5" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 205-60 65" color="#000000" enable-background="new" fill="none" stroke="#cddd40" stroke-width="2" style="paint-order:normal"/>
+<g transform="matrix(.6383 0 0 .6383 -75.106 27.079)" stroke-width="1.5667">
+<path d="m290 182.89-21.998 12.676-1.502 2.5976v25.537l22 12.701h3l22-12.701v-25.537l-1.502-2.5976z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m313.5 98.164-22 12.701v25.537l22-12.701z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="349.3" cy="391.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="356.23" cy="384.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="342.37" cy="398.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m266.5 98.164v25.537l22 12.701v-25.537z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m280 218.73a3.3238 1.8804 53.051 0 1-2.5 1.0566 3.3238 1.8804 53.051 0 1-2.5-3.9434 3.3238 1.8804 53.051 0 1 2.5-1.0566 3.3238 1.8804 53.051 0 1 2.5 3.9434z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m290 82.891-21.998 12.676 21.998 12.676 21.998-12.676z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m278.5 194.13a3.5355 2.0375 0 0 1 5 0 3.5355 2.0375 0 0 1 0 2.8815 3.5355 2.0375 0 0 1-5 0 3.5355 2.0375 0 0 1 0-2.8815z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m296.5 194.13a3.5355 2.0375 0 0 1 5 0 3.5355 2.0375 0 0 1 0 2.8815 3.5355 2.0375 0 0 1-5 0 3.5355 2.0375 0 0 1 0-2.8815z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m300 218.73a1.8804 3.3238 36.949 0 0 2.5 1.0566 1.8804 3.3238 36.949 0 0 2.5-3.9434 1.8804 3.3238 36.949 0 0-2.5-1.0566 1.8804 3.3238 36.949 0 0-2.5 3.9434z" color="#000000" fill="none" style="paint-order:normal"/>
+</g>
+<path d="m110 205 35-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5 35 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5 10 70" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110-5-85 25" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5.5h80" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5 10-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5 70-40" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m10-40 100 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5 55 45" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m80-60 30 55" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5-25 65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5-80-5" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110-5-60 65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="110" cy="-5" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<path d="m110-5 35-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="110" cy="205" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<path d="m10 380 100 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415 35 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415 10 70" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 415-85 25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 415-75-50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 414.5h80" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415 10-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415 70-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 415 55 45" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m80 360 30 55" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415-25 65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415-80-5" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m110 415-60 65" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m110 415 35-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="110" cy="415" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<path d="m298.5 230.5v5h-56v-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m478.5 230.5v5h-176v-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m558.5 235.5h-76v-5" color="#000000" fill="none" stroke="url(#i)" stroke-width=".6" style="paint-order:normal"/>
+<text x="270" y="250" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="270" y="250" font-size="12px" text-align="center" text-anchor="middle">Too few</tspan></text>
+<text x="520" y="250" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="520" y="250" font-size="12px" text-align="center" text-anchor="middle">Too many</tspan></text>
+<text x="390.62936" y="250" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="390.62936" y="250" font-size="12px" text-align="center" text-anchor="middle">Acceptable amount</tspan></text>
+<path d="m298.5 440.5v5h-56v-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m478.5 440.5v5h-176v-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m558.5 445.5h-76v-5" color="#000000" fill="none" stroke="url(#e)" stroke-width=".6" style="paint-order:normal"/>
+<text x="270" y="460" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="270" y="460" font-size="12px" text-align="center" text-anchor="middle">Too few</tspan></text>
+<text x="520" y="460" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="520" y="460" font-size="12px" text-align="center" text-anchor="middle">Too many</tspan></text>
+<text x="390.62936" y="460" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="390.62936" y="460" font-size="12px" text-align="center" text-anchor="middle">Acceptable amount</tspan></text>
+</g>
+</svg>

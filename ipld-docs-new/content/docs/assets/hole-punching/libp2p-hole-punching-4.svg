@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg style="height:1421px;width:1010px" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 1010 1421" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
+<defs>
+<filter id="a" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="3" y="3" width="996.5" height="1407.9" fill="#fff" filter="url(#a)" stroke="#000"/>
+<path d="m478 4v8.2969l-10 10h-465" fill="none" stroke="#000"/>
+<text x="6" y="16.9951" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="465">Goal: Peer A establishes a direct connection to non-dialable peer B.</text>
+<rect x="487.5" y="128.73" width="476" height="352.88" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="497.5" y="212.26" width="390" height="46.266" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="497.5" y="272.52" width="386" height="202.09" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="497.5" y="387.6" width="386" height="87.008" fill="#fff"/>
+<rect x="497.5" y="495.61" width="485" height="75.398" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="277" y="585.01" width="606.5" height="179.93" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="287" y="609.14" width="427" height="104.53" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="96" y="822.07" width="459.5" height="223.06" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="106" y="875.34" width="439.5" height="133.66" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="18" y="1059.1" width="693" height="292.46" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="28" y="1083.3" width="527.5" height="261.33" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="38" y="1107.4" width="507.5" height="137.66" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<line x1="129" x2="129" y1="68.594" y2="1368.6" stroke="#A80036" stroke-dasharray="5.0,5.0"/>
+<line x1="324" x2="324" y1="68.594" y2="1368.6" stroke="#A80036" stroke-dasharray="5.0,5.0"/>
+<line x1="521.5" x2="521.5" y1="68.594" y2="1368.6" stroke="#A80036" stroke-dasharray="5.0,5.0"/>
+<line x1="819.5" x2="819.5" y1="68.594" y2="1368.6" stroke="#A80036" stroke-dasharray="5.0,5.0"/>
+<rect x="116" y="33.297" width="23" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="123" y="53.292" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9">A</text>
+<rect x="116" y="1367.6" width="23" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="123" y="1387.5889" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="9">A</text>
+<rect x="297" y="33.297" width="51" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="304" y="53.292" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="37">Relay</text>
+<rect x="297" y="1367.6" width="51" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="304" y="1387.5889" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="37">Relay</text>
+<rect x="507.5" y="33.297" width="24" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="514.5" y="53.292" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="10">B</text>
+<rect x="507.5" y="1367.6" width="24" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="514.5" y="1387.5889" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="10">B</text>
+<rect x="769.5" y="29.297" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<rect x="765.5" y="33.297" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="772.5" y="53.292" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86">Other_Peers</text>
+<rect x="769.5" y="1367.6" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<rect x="765.5" y="1371.6" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="772.5" y="1391.5889" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86">Other_Peers</text>
+<rect x="8" y="99.16" width="984.5" height="3" fill="#eee" filter="url(#a)" stroke="#eee"/>
+<line x1="8" x2="992.5" y1="99.16" y2="99.16" stroke="#000"/>
+<line x1="8" x2="992.5" y1="102.16" y2="102.16" stroke="#000"/>
+<rect x="410.25" y="88.594" width="180" height="23.133" fill="#eee" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<text x="416.25" y="104.6606" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" text-decoration="underline" lengthAdjust="spacingAndGlyphs" textLength="161">Phase 1 - Preparation</text>
+<text x="582.25" y="104.6606" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="0"/>
+<path d="m487.5 128.73h471v7l-10 10h-461v-17" fill="#eee" stroke="#000"/>
+<rect x="487.5" y="128.73" width="476" height="352.88" fill="none" stroke="#000" stroke-width="2"/>
+<text x="502.5" y="141.7935" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="426">B determining whether it is dialable via AutoNAT protocol</text>
+<polygon points="807.5 193.26 817.5 197.26 807.5 201.26 811.5 197.26" fill="#A80036" stroke="#A80036"/>
+<line x1="521.5" x2="813.5" y1="197.26" y2="197.26" stroke="#A80036"/>
+<text x="528.5" y="161.9263" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88">DialRequest {</text>
+<text x="536.5" y="177.0591" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189">supposedly_public_addresses</text>
+<text x="528.5" y="192.1919" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8">}</text>
+<path d="m497.5 212.26h385v7l-10 10h-375v-17" fill="#eee" stroke="#000"/>
+<rect x="497.5" y="212.26" width="390" height="46.266" fill="none" stroke="#000" stroke-width="2"/>
+<text x="512.5" y="225.3247" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="340">For each provided supposedly public address</text>
+<polygon points="532.5 246.52 522.5 250.52 532.5 254.52 528.5 250.52" fill="#A80036" stroke="#A80036"/>
+<line x1="526.5" x2="818.5" y1="250.52" y2="250.52" stroke="#A80036"/>
+<text x="538.5" y="245.4575" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24">Dial</text>
+<path d="m497.5 272.52h64v7l-10 10h-54v-17" fill="#eee" stroke="#000"/>
+<rect x="497.5" y="272.52" width="386" height="202.09" fill="none" stroke="#000" stroke-width="2"/>
+<text x="512.5" y="285.5903" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19">alt</text>
+<text x="576.5" y="284.7339" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="185">[One of the dials succeeded.</text>
+<text x="576.5" y="297.5386" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="298">Thus B is dialable. No need for Hole Punching.</text>
+<text x="576.5" y="310.3433" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102">Don't continue.]</text>
+<polygon points="532.5 375.6 522.5 379.6 532.5 383.6 528.5 379.6" fill="#A80036" stroke="#A80036"/>
+<line x1="526.5" x2="818.5" y1="379.6" y2="379.6" stroke="#A80036"/>
+<text x="538.5" y="329.1372" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95">DialOutcome {</text>
+<text x="546.5" y="344.27" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27">"Ok"</text>
+<text x="546.5" y="359.4028" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124">successful_address</text>
+<text x="538.5" y="374.5356" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8">}</text>
+<line x1="497.5" x2="883.5" y1="388.6" y2="388.6" stroke="#000" stroke-dasharray="2.0,2.0"/>
+<text x="502.5" y="398.812" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="192">[None of the dials succeeded.</text>
+<text x="502.5" y="411.6167" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="339">Thus not dialable. Hole Punching needed. Continue.]</text>
+<polygon points="532.5 462.61 522.5 466.61 532.5 470.61 528.5 466.61" fill="#A80036" stroke="#A80036"/>
+<line x1="526.5" x2="818.5" y1="466.61" y2="466.61" stroke="#A80036"/>
+<text x="538.5" y="431.2778" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95">DialOutcome {</text>
+<text x="546.5" y="446.4106" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41">"Error"</text>
+<text x="538.5" y="461.5435" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8">}</text>
+<path d="m497.5 495.61h480v7l-10 10h-470v-17" fill="#eee" stroke="#000"/>
+<rect x="497.5" y="495.61" width="485" height="75.398" fill="none" stroke="#000" stroke-width="2"/>
+<text x="512.5" y="508.6763" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="435">B finding closest public Relay nodes via Kademlia Protocol</text>
+<polygon points="807.5 529.88 817.5 533.88 807.5 537.88 811.5 533.88" fill="#A80036" stroke="#A80036"/>
+<line x1="521.5" x2="813.5" y1="533.88" y2="533.88" stroke="#A80036"/>
+<text x="528.5" y="528.8091" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="145">FindNodes(PEER_ID_B)</text>
+<polygon points="532.5 559.01 522.5 563.01 532.5 567.01 528.5 563.01" fill="#A80036" stroke="#A80036"/>
+<line x1="526.5" x2="818.5" y1="563.01" y2="563.01" stroke="#A80036"/>
+<text x="538.5" y="557.9419" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="236">[ Public nodes closest to PEER_ID_B ]</text>
+<path d="m277 585.01h442v7l-10 10h-432v-17" fill="#eee" stroke="#000"/>
+<rect x="277" y="585.01" width="606.5" height="179.93" fill="none" stroke="#000" stroke-width="2"/>
+<text x="292" y="598.0747" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="397">B listening for incoming connections via closest Relay</text>
+<path d="m287 609.14h422v7l-10 10h-412v-17" fill="#eee" stroke="#000"/>
+<rect x="287" y="609.14" width="427" height="104.53" fill="none" stroke="#000" stroke-width="2"/>
+<text x="302" y="622.2075" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="377">For each closest Relay via Circuit Relay v2 Protocol</text>
+<polygon points="335.5 643.41 325.5 647.41 335.5 651.41 331.5 647.41" fill="#A80036" stroke="#A80036"/>
+<line x1="329.5" x2="520.5" y1="647.41" y2="647.41" stroke="#A80036"/>
+<text x="341.5" y="642.3403" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="131">Establish connection</text>
+<polygon points="335.5 672.54 325.5 676.54 335.5 680.54 331.5 676.54" fill="#A80036" stroke="#A80036"/>
+<line x1="329.5" x2="520.5" y1="676.54" y2="676.54" stroke="#A80036"/>
+<text x="341.5" y="671.4731" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="128">Request reservation</text>
+<polygon points="509.5 701.67 519.5 705.67 509.5 709.67 513.5 705.67" fill="#A80036" stroke="#A80036"/>
+<line x1="324.5" x2="515.5" y1="705.67" y2="705.67" stroke="#A80036"/>
+<text x="331.5" y="700.606" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120">Accept reservation</text>
+<polygon points="807.5 752.94 817.5 756.94 807.5 760.94 811.5 756.94" fill="#A80036" stroke="#A80036"/>
+<line x1="521.5" x2="813.5" y1="756.94" y2="756.94" stroke="#A80036"/>
+<text x="528.5" y="736.7388" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="129">Advertise oneself as</text>
+<text x="528.5" y="751.8716" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="274">/&lt;RELAY_ADDR&gt;/p2p-circuit/&lt;PEER_ID_B&gt;</text>
+<rect x="8" y="792.5" width="984.5" height="3" fill="#eee" filter="url(#a)" stroke="#eee"/>
+<line x1="8" x2="992.5" y1="792.5" y2="792.5" stroke="#000"/>
+<line x1="8" x2="992.5" y1="795.5" y2="795.5" stroke="#000"/>
+<rect x="400.75" y="781.94" width="199" height="23.133" fill="#eee" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<text x="406.75" y="798.0044" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" text-decoration="underline" lengthAdjust="spacingAndGlyphs" textLength="180">Phase 2 - Hole Punching</text>
+<text x="591.75" y="798.0044" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="0"/>
+<path d="m96 822.07h307v7l-10 10h-297v-17" fill="#eee" stroke="#000"/>
+<rect x="96" y="822.07" width="459.5" height="223.06" fill="none" stroke="#000" stroke-width="2"/>
+<text x="111" y="835.1372" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="262">A establish relayed connection to B</text>
+<polygon points="312.5 856.34 322.5 860.34 312.5 864.34 316.5 860.34" fill="#A80036" stroke="#A80036"/>
+<line x1="129.5" x2="318.5" y1="860.34" y2="860.34" stroke="#A80036"/>
+<text x="136.5" y="855.27" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="133">Establish Connection</text>
+<path d="m106 875.34h225v7l-10 10h-215v-17" fill="#eee" stroke="#000"/>
+<rect x="106" y="875.34" width="439.5" height="133.66" fill="none" stroke="#000" stroke-width="2"/>
+<text x="121" y="888.4028" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="180">Circuit Relay v2 Protocol</text>
+<polygon points="312.5 909.6 322.5 913.6 312.5 917.6 316.5 913.6" fill="#A80036" stroke="#A80036"/>
+<line x1="129.5" x2="318.5" y1="913.6" y2="913.6" stroke="#A80036"/>
+<text x="136.5" y="908.5356" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="156">Request connection to B</text>
+<polygon points="509.5 938.73 519.5 942.73 509.5 946.73 513.5 942.73" fill="#A80036" stroke="#A80036"/>
+<line x1="324.5" x2="515.5" y1="942.73" y2="942.73" stroke="#A80036"/>
+<text x="331.5" y="937.6685" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="173">Request connection from A</text>
+<polygon points="335.5 967.87 325.5 971.87 335.5 975.87 331.5 971.87" fill="#A80036" stroke="#A80036"/>
+<line x1="329.5" x2="520.5" y1="971.87" y2="971.87" stroke="#A80036"/>
+<text x="341.5" y="966.8013" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="171">Accept connection request</text>
+<polygon points="140.5 997 130.5 1001 140.5 1005 136.5 1001" fill="#A80036" stroke="#A80036"/>
+<line x1="134.5" x2="323.5" y1="1001" y2="1001" stroke="#A80036"/>
+<text x="146.5" y="995.9341" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="171">Accept connection request</text>
+<polygon points="140.5 1033.1 130.5 1037.1 140.5 1041.1 136.5 1037.1" fill="#A80036" stroke="#A80036"/>
+<polygon points="509.5 1033.1 519.5 1037.1 509.5 1041.1 513.5 1037.1" fill="#A80036" stroke="#A80036"/>
+<line x1="134.5" x2="515.5" y1="1037.1" y2="1037.1" stroke="#A80036"/>
+<text x="146.5" y="1032.0669" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="237">Relayed Connection established</text>
+<path d="m18 1059.1h688v7l-10 10h-678v-17" fill="#eee" stroke="#000"/>
+<rect x="18" y="1059.1" width="693" height="292.46" fill="none" stroke="#000" stroke-width="2"/>
+<text x="33" y="1072.1997" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="643">A and B coordinate dial via Direct Connection Upgrade through Relay (DCUtR) Protocol</text>
+<path d="m28 1083.3h77v7l-10 10h-67v-17" fill="#eee" stroke="#000"/>
+<rect x="28" y="1083.3" width="527.5" height="261.33" fill="none" stroke="#000" stroke-width="2"/>
+<text x="43" y="1096.3325" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32">loop</text>
+<text x="120" y="1095.4761" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="235">[Until direct connection established]</text>
+<path d="m38 1107.4h213v7l-10 10h-203v-17" fill="#eee" stroke="#000"/>
+<rect x="38" y="1107.4" width="507.5" height="137.66" fill="none" stroke="#000" stroke-width="2"/>
+<text x="53" y="1120.4653" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="168">Via relayed connection</text>
+<polygon points="509.5 1141.7 519.5 1145.7 509.5 1149.7 513.5 1145.7" fill="#A80036" stroke="#A80036"/>
+<line x1="129.5" x2="515.5" y1="1145.7" y2="1145.7" stroke="#A80036"/>
+<text x="136.5" y="1140.5981" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147">Connect { addresses }</text>
+<rect x="48" y="1158.7" width="163" height="23" fill="#FBFB77" filter="url(#a)" stroke="#A80036"/>
+<text x="52" y="1174.731" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="155">Measure round-trip time</text>
+<polygon points="140.5 1203.9 130.5 1207.9 140.5 1211.9 136.5 1207.9" fill="#A80036" stroke="#A80036"/>
+<line x1="134.5" x2="520.5" y1="1207.9" y2="1207.9" stroke="#A80036"/>
+<text x="146.5" y="1202.8638" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="147">Connect { addresses }</text>
+<polygon points="509.5 1233.1 519.5 1237.1 509.5 1241.1 513.5 1237.1" fill="#A80036" stroke="#A80036"/>
+<line x1="129.5" x2="515.5" y1="1237.1" y2="1237.1" stroke="#A80036"/>
+<text x="136.5" y="1231.9966" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="31">Sync</text>
+<rect x="118" y="1257.1" width="414" height="53" fill="#FBFB77" filter="url(#a)" stroke="#A80036"/>
+<text x="208.75" y="1273.1294" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="233">Simultaneously establish connection</text>
+<text x="208.75" y="1288.2622" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="102">- A after 1/2 RTT</text>
+<text x="208.75" y="1303.395" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="151">- B when receiving Sync</text>
+<polygon points="140.5 1332.6 130.5 1336.6 140.5 1340.6 136.5 1336.6" fill="#A80036" stroke="#A80036"/>
+<polygon points="509.5 1332.6 519.5 1336.6 509.5 1340.6 513.5 1336.6" fill="#A80036" stroke="#A80036"/>
+<line x1="134.5" x2="515.5" y1="1336.6" y2="1336.6" stroke="#A80036"/>
+<text x="146.5" y="1331.5278" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="292">Attempt direct connection / Hole Punch</text>
+</svg>

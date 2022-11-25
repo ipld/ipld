@@ -1,0 +1,70 @@
+schema: |
+  type SimpleEnum enum {
+    | Foo
+    | Bar
+    | Baz
+  }
+
+  type SimpleEnumWithValues enum {
+    | Foo ("f")
+    | Bar
+    | Baz ("b")
+  }
+expected: |
+  {
+    "types": {
+      "SimpleEnum": {
+        "enum": {
+          "members": [
+            "Foo",
+            "Bar",
+            "Baz"
+          ],
+          "representation": {
+            "string": {}
+          }
+        }
+      },
+      "SimpleEnumWithValues": {
+        "enum": {
+          "members": [
+            "Foo",
+            "Bar",
+            "Baz"
+          ],
+          "representation": {
+            "string": {
+              "Foo": "f",
+              "Baz": "b"
+            }
+          }
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      "Foo"
+    expected: |
+      "Foo"
+  - actual: |
+      "Bar"
+    expected: |
+      "Bar"
+  - actual: |
+      "Baz"
+    expected: |
+      "Baz"
+badBlocks:
+  - |
+    "fooz"
+  - |
+    true
+  - |
+    100
+  - |
+    { }
+  - |
+    { "Foo": true }
+  - |
+    []

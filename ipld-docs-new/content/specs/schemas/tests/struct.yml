@@ -1,0 +1,96 @@
+schema: |
+  type SimpleStruct struct {
+    foo Int
+    bar Bool
+    baz String
+  }
+expected: |
+  {
+    "types": {
+      "SimpleStruct": {
+        "struct": {
+          "fields": {
+            "foo": {
+              "type": "Int"
+            },
+            "bar": {
+              "type": "Bool"
+            },
+            "baz": {
+              "type": "String"
+            }
+          },
+          "representation": {
+            "map": {}
+          }
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      {
+        "foo": 100,
+        "bar": true,
+        "baz": "this is baz yo"
+      }
+    expected: |
+      {
+        "foo": 100,
+        "bar": true,
+        "baz": "this is baz yo"
+      }
+  - actual: # is this OK? string-to-int
+      |
+      {
+        "foo": "100",
+        "bar": true,
+        "baz": "this is baz yo"
+      }
+    expected: |
+      {
+        "foo": 100,
+        "bar": true,
+        "baz": "this is baz yo"
+      }
+  - actual: # is this OK? float-to-int
+      |
+      {
+        "foo": 100.0,
+        "bar": true,
+        "baz": "this is baz yo"
+      }
+    expected: |
+      {
+        "foo": 100,
+        "bar": true,
+        "baz": "this is baz yo"
+      }
+badBlocks:
+  - |
+    {
+      "foo": 100
+    }
+  - |
+    {
+      "foo": 100,
+      "bar": true
+    }
+  - |
+    {
+      "foo": "str",
+      "bar": true,
+      "baz": "this is baz yo"
+    }
+  - |
+    {
+      "foo": 100,
+      "bar": 100,
+      "baz": "this is baz yo"
+    }
+  - |
+    {
+      "foo": 100,
+      "bar": true,
+      "baz": false
+    }

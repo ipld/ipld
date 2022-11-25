@@ -1,0 +1,18 @@
+schema: |
+  type FooLink &Foo
+
+  type Foo bytes
+root: FooLink
+expected: |
+  {
+    "types": {
+      "FooLink": {
+        "link": {
+          "expectedType": "Foo"
+        }
+      },
+      "Foo": {
+        "bytes": {}
+      }
+    }
+  }

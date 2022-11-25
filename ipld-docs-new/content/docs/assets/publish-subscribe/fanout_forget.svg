@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<defs>
+<marker id="a" markerWidth="7.5" orient="auto" refX="1.5" refY="1.5">
+<path d="m0 0v3l7.5-1.5z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</marker>
+<clipPath id="b">
+<path d="m19 305v8h-1.5v-5.5h-8v14h16.5v-16.5z" color="#000000" fill="#458f97" style="paint-order:normal"/>
+</clipPath>
+</defs>
+<g transform="translate(0,-260)">
+<path d="m295 375 10-20-10-20z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m438.51 427.01c-22.816-11.901-29.657-45.275-30.315-71-0.64661-25.293 3.5796-58.299 26.199-71.238 23.329-13.345 55.764-19.412 85.76-16.239 27.084 2.865 52.179 13.263 66.789 32.639 20.046 26.587 6.0811 74.482-17.059 98.425-31.088 32.167-91.711 48.101-131.37 27.413z" color="#000000" enable-background="new" fill="#ebf0f5" style="paint-order:normal"/>
+<path d="m460 415 100-60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m350 345h140" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m350 345 90-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m350 345 110-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m350 345 90 40" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m350 345 110 70" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m350 345 160 30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m460 415 50-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m440 385 70-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m490 345 20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m540 395-30-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m560 355-50 20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m570 315-60 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m520 290-10 85" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m490 345 70 10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m490 345-50 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m490 345-50-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m490 345-30-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m490 345 30-55" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m490 345 80-30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m460 295 60-5" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m570 315-50-25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m560 355-40-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m460 295-20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m440 385v-60" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m460 415-20-90" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m460 415-20-30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m510 375-70-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m460 415 80-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m460 415 30-70" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m560 355-20 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m540 395-100-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m560 355 10-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m520 290-80 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="350" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="490" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="460" cy="295" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="440" cy="325" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="440" cy="385" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="460" cy="415" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="510" cy="375" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="520" cy="290" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="570" cy="315" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="560" cy="355" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="540" cy="395" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<g transform="translate(35)">
+<rect x="114.5" y="477.5" width="13" height="17" rx="2" ry="2" color="#000000" fill="#eed9ee" stroke="#e1c5e2" style="paint-order:normal"/>
+<text x="40" y="475" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="40" y="475">After not publishing any</tspan><tspan x="40" y="490">messages for 2 minutes…</tspan></text>
+</g>
+<text x="425" y="475" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="425" y="475">All fan-out peerings revert to</tspan><tspan x="425" y="490">metadata-only peerings</tspan></text>
+<path d="m94.101 427.01c-22.816-11.901-29.657-45.275-30.315-71-0.64661-25.293 3.5796-58.299 26.199-71.238 23.329-13.345 55.764-19.412 85.76-16.239 27.084 2.865 52.179 13.263 66.789 32.639 20.046 26.587 6.0811 74.482-17.059 98.425-31.088 32.167-91.711 48.101-131.37 27.413z" color="#000000" enable-background="new" fill="#ebf0f5" style="paint-order:normal"/>
+<path d="m115.59 415 100-60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m5.5878 345h140" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m5.5878 345 77.894-17.355" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<path d="m5.5878 345 98.812-44.75" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<path d="m5.5878 345 90 40" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m5.5878 345 99.412 63.56" color="#000000" enable-background="new" fill="none" marker-end="url(#a)" opacity=".5" stroke="#37384c" stroke-width="1.6" style="paint-order:normal"/>
+<path d="m5.5878 345 160 30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m115.59 415 50-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m95.588 385 70-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m145.59 345 20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m195.59 395-30-20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m215.59 355-50 20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m225.59 315-60 60" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m175.59 290-10 85" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m145.59 345 70 10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m145.59 345-50 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m145.59 345-50-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m145.59 345-30-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m145.59 345 30-55" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m145.59 345 80-30" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m115.59 295 60-5" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m225.59 315-50-25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m215.59 355-40-65" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m115.59 295-20 30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m95.588 385v-60" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m115.59 415-20-90" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m115.59 415-20-30" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m165.59 375-70-50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m115.59 415 80-20" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m115.59 415 30-70" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m215.59 355-20 40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m195.59 395-100-10" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m215.59 355 10-40" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m175.59 290-80 35" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="145.59" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="115.59" cy="295" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="95.588" cy="325" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="95.588" cy="385" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="115.59" cy="415" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="165.59" cy="375" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="175.59" cy="290" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="225.59" cy="315" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="215.59" cy="355" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="195.59" cy="395" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="5.5878" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<g transform="translate(0,20)">
+<circle cx="32" cy="279" r="15" color="#000000" fill="#fff" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<g transform="matrix(2,0,0,2,-3,-346)" clip-path="url(#b)" stroke-width=".5">
+<path d="m17.354 306.5a6 6 0 0 1 5.8847 4.8295 6 6 0 0 1-3.5886 6.7138 6 6 0 0 1-7.2849-2.2099 6 6 0 0 1 0.74618-7.5761l4.2426 4.2426z" color="#000000" fill="#f065a4" style="paint-order:normal"/>
+</g>
+<path d="m31 258c-1.108 0-2 0.892-2 2v4h6v-4c0-1.108-0.892-2-2-2z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m46.267 263.32 1.4142 1.4142c0.78348 0.78348 0.78348 2.045 0 2.8284l-0.70711 0.7071-4.2426-4.2426 0.70711-0.7071c0.78347-0.78348 2.045-0.78348 2.8284 0z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m31.984 268.98c-0.55229 8e-3 -0.99301 0.46334-0.98438 1.0156v8.2695c-0.61831 0.35698-0.99943 1.0165-1 1.7305 2e-3 0.71256 0.38289 1.3703 1 1.7266v1.2734c-0.0192 1.3523 2.0191 1.3523 2 0v-1.2695c0.61831-0.35698 0.99943-1.0165 1-1.7305-2e-3 -0.71256-0.38289-1.3703-1-1.7266v-8.2734c0.0088-0.56454-0.45109-1.0245-1.0156-1.0156z" color="#000000" fill="#37384c" stroke="#fff" stroke-width="4" style="paint-order:stroke fill markers"/>
+</g>
+</g>
+</svg>

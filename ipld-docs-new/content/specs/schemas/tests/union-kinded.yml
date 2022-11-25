@@ -1,0 +1,85 @@
+schema: |
+  type Bam bytes
+
+  type Bar bool
+
+  type Baz string
+
+  type Foo int
+
+  type UnionKinded union {
+    | Foo int
+    | Bar bool
+    | Baz string
+    | &Bam link
+  } representation kinded
+root: UnionKinded
+expected: |
+  {
+    "types": {
+      "Bam": {
+        "bytes": {}
+      },
+      "Bar": {
+        "bool": {}
+      },
+      "Baz": {
+        "string": {}
+      },
+      "Foo": {
+        "int": {}
+      },
+      "UnionKinded": {
+        "union": {
+          "members": [
+            "Foo",
+            "Bar",
+            "Baz",
+            {
+              "link": {
+                "expectedType": "Bam"
+              }
+            }
+          ],
+          "representation": {
+            "kinded": {
+              "int": "Foo",
+              "bool": "Bar",
+              "string": "Baz",
+              "link": {
+                "link": {
+                  "expectedType": "Bam"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      100
+    expected: |
+      100
+  - actual: |
+      true
+    expected: |
+      true
+  - actual: |
+      "this here is baz"
+    expected: |
+      "this here is baz"
+badBlocks:
+  - |
+    100.1
+  - |
+    { "foo": 100 }
+  - |
+    { "bar": true }
+  - |
+    { "baz": "don't match" }
+  - |
+    { }
+  - |
+    [ 1, 2, 3 ]

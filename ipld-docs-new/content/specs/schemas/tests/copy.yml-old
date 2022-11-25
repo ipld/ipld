@@ -1,0 +1,72 @@
+schema: |
+  type SimpleStruct struct {
+    foo Int
+    bar Bool
+    baz String
+  }
+
+  type SimpleEnum enum {
+    | Foo
+    | Bar
+    | Baz
+  }
+
+  type Bloop {String:&Any}
+
+  type CopyOfSimpleStruct = SimpleStruct
+
+  type CopyOfSimpleEnum = SimpleEnum
+
+  type Bloop2 = Bloop
+expected: |
+  {
+    "types": {
+      "SimpleStruct": {
+        "kind": "struct",
+        "fields": {
+          "foo": {
+            "type": "Int"
+          },
+          "bar": {
+            "type": "Bool"
+          },
+          "baz": {
+            "type": "String"
+          }
+        },
+        "representation": {
+          "map": {}
+        }
+      },
+      "SimpleEnum": {
+        "kind": "enum",
+        "members": {
+          "Foo": null,
+          "Bar": null,
+          "Baz": null
+        },
+        "representation": {
+          "string": {}
+        }
+      },
+      "Bloop": {
+        "kind": "map",
+        "keyType": "String",
+        "valueType": {
+          "kind": "link"
+        }
+      },
+      "CopyOfSimpleStruct": {
+        "kind": "copy",
+        "fromType": "SimpleStruct"
+      },
+      "CopyOfSimpleEnum": {
+        "kind": "copy",
+        "fromType": "SimpleEnum"
+      },
+      "Bloop2": {
+        "kind": "copy",
+        "fromType": "Bloop"
+      }
+    }
+  }

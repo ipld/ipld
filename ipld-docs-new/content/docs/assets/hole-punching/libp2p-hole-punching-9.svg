@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1287.2px" height="727.07px" style="height:727px;width:1287px" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 1287 727" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
+<defs>
+<filter id="a" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="3.590462833099579"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="7.180925666199158" dy="7.180925666199158" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="23.338" y="99.271" width="1244.1" height="525.04" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="3.5905"/>
+<rect x="41.29" y="142.59" width="810.55" height="469.14" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="3.5905"/>
+<rect x="59.243" y="185.92" width="774.64" height="247.14" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="3.5905"/>
+<line x1="222.61" x2="222.61" y1="68.752" y2="654.82" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="1.7952"/>
+<line x1="314.17" x2="314.17" y1="68.752" y2="654.82" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="1.7952"/>
+<line x1="790.8" x2="790.8" y1="68.752" y2="654.82" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="1.7952"/>
+<rect x="199.27" y="5.3857" width="41.29" height="54.39" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="2.6928"/>
+<text x="211.8373" y="41.2816" fill="#000000" font-family="sans-serif" font-size="25.133" lengthAdjust="spacingAndGlyphs" textLength="16.1571">A</text>
+<rect x="199.27" y="653.03" width="41.29" height="54.39" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="2.6928"/>
+<text x="211.8373" y="688.9253" fill="#000000" font-family="sans-serif" font-size="25.133" lengthAdjust="spacingAndGlyphs" textLength="16.1571">A</text>
+<rect x="265.69" y="5.3857" width="91.557" height="54.39" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="2.6928"/>
+<text x="278.2609" y="41.2816" fill="#000000" font-family="sans-serif" font-size="25.133" lengthAdjust="spacingAndGlyphs" textLength="66.4236">Relay</text>
+<rect x="265.69" y="653.03" width="91.557" height="54.39" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="2.6928"/>
+<text x="278.2609" y="688.9253" fill="#000000" font-family="sans-serif" font-size="25.133" lengthAdjust="spacingAndGlyphs" textLength="66.4236">Relay</text>
+<rect x="765.67" y="5.3857" width="43.086" height="54.39" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="2.6928"/>
+<text x="778.2328" y="41.2816" fill="#000000" font-family="sans-serif" font-size="25.133" lengthAdjust="spacingAndGlyphs" textLength="17.9523">B</text>
+<rect x="765.67" y="653.03" width="43.086" height="54.39" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="2.6928"/>
+<text x="778.2328" y="688.9253" fill="#000000" font-family="sans-serif" font-size="25.133" lengthAdjust="spacingAndGlyphs" textLength="17.9523">B</text>
+<path d="m23.338 99.271h1235.1v12.567l-17.952 17.952h-1217.2v-30.519" fill="#eee" stroke="#000" stroke-width="1.7952"/>
+<rect x="23.338" y="99.271" width="1244.1" height="525.04" fill="none" stroke="#000" stroke-width="3.5905"/>
+<text x="50.2665" y="122.7288" fill="#000000" font-family="sans-serif" font-size="23.338" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="1154.3338">A and B coordinate dial via Direct Connection Upgrade through Relay (DCUtR) Protocol</text>
+<path d="m41.29 142.59h138.23v12.567l-17.952 17.952h-120.28v-30.519" fill="#eee" stroke="#000" stroke-width="1.7952"/>
+<rect x="41.29" y="142.59" width="810.55" height="469.14" fill="none" stroke="#000" stroke-width="3.5905"/>
+<text x="68.2188" y="166.0528" fill="#000000" font-family="sans-serif" font-size="23.338" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="57.4474">loop</text>
+<text x="206.4516" y="164.5153" fill="#000000" font-family="sans-serif" font-size="19.748" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="421.8794">[Until direct connection established]</text>
+<path d="m59.243 185.92h382.38v12.567l-17.952 17.952h-364.43v-30.519" fill="#eee" stroke="#000" stroke-width="1.7952"/>
+<rect x="59.243" y="185.92" width="774.64" height="247.14" fill="none" stroke="#000" stroke-width="3.5905"/>
+<text x="86.1711" y="209.3768" fill="#000000" font-family="sans-serif" font-size="23.338" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="301.5989">Via relayed connection</text>
+<polygon points="769.26 247.43 787.21 254.61 769.26 261.8 776.44 254.61" fill="#A80036" stroke="#A80036" stroke-width="1.7952"/>
+<line x1="223.51" x2="780.03" y1="254.61" y2="254.61" stroke="#A80036" stroke-width="1.7952"/>
+<text x="236.0729" y="245.5198" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="263.899">Connect { addresses }</text>
+<rect x="77.195" y="277.95" width="292.62" height="41.29" fill="#FBFB77" filter="url(#a)" stroke="#A80036" stroke-width="1.7952"/>
+<text x="84.3759" y="306.7961" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="278.2609">Measure round-trip time</text>
+<polygon points="243.25 359.21 225.3 366.4 243.25 373.58 236.07 366.4" fill="#A80036" stroke="#A80036" stroke-width="1.7952"/>
+<line x1="232.48" x2="789" y1="366.4" y2="366.4" stroke="#A80036" stroke-width="1.7952"/>
+<text x="254.0252" y="357.301" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="263.899">Connect { addresses }</text>
+<polygon points="769.26 411.51 787.21 418.7 769.26 425.88 776.44 418.7" fill="#A80036" stroke="#A80036" stroke-width="1.7952"/>
+<line x1="223.51" x2="780.03" y1="418.7" y2="418.7" stroke="#A80036" stroke-width="1.7952"/>
+<text x="236.0729" y="409.6012" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="55.6522">Sync</text>
+<rect x="202.86" y="454.6" width="606.79" height="95.147" fill="#FBFB77" filter="url(#a)" stroke="#A80036" stroke-width="1.7952"/>
+<text x="297.5596" y="483.4441" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="418.2889">Simultaneously establish connection</text>
+<text x="297.5596" y="510.611" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="183.1136">- A after 1/2 RTT</text>
+<text x="297.5596" y="537.7779" fill="#000000" font-family="sans-serif" font-size="23.338" lengthAdjust="spacingAndGlyphs" textLength="271.0799">- B when receiving Sync</text>
+<polygon points="243.25 590.2 225.3 597.38 243.25 604.56 236.07 597.38" fill="#A80036" stroke="#A80036" stroke-width="1.7952"/>
+<polygon points="769.26 590.2 787.21 597.38 769.26 604.56 776.44 597.38" fill="#A80036" stroke="#A80036" stroke-width="1.7952"/>
+<line x1="232.48" x2="780.03" y1="597.38" y2="597.38" stroke="#A80036" stroke-width="1.7952"/>
+<text x="254.0252" y="588.2828" fill="#000000" font-family="sans-serif" font-size="23.338" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="524.2076">Attempt direct connection / Hole Punch</text>
+</svg>

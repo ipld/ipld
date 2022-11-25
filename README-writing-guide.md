@@ -1,12 +1,9 @@
-Writing Guide
-=============
+# Writing Guide
 
 This document is a brief writing guide for contributing to the IPLD project's docs, specs, and website.
 Please give it a quick skim when considering proposing new content.
 
-
-Which Major Group?
-------------------
+## Which Major Group?
 
 This repo has a couple major directories at the top level:
 
@@ -49,9 +46,7 @@ If writing new content, consider which group to aim for.
 - If it's for end-user information, a PR to docs might be appropriate.
 - If you're thinking of a specs proposal: goto two bullet points above :)
 
-
-File Organization
------------------
+## File Organization
 
 ### READMEs are for github
 
@@ -60,7 +55,6 @@ We use `README.md` files in some directories to provide information about editin
 We don't render `README.md` files to the website,
 so they're a reasonable place to put editing guideline information,
 or other content that's appropriate to a git/github audience but not relevant folks reading the website.
-
 
 ### how files render to web
 

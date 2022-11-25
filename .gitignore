@@ -1,4 +1,5 @@
-.site/_output
+.vscode
+
 bin/*
 !bin/.gitkeep
 node_modules/

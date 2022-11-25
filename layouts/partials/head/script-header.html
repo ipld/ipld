@@ -1,0 +1,10 @@
+{{ if .Site.Params.options.darkMode -}}
+  {{ $darkModeInit := resources.Get "js/darkmode-init.js" | js.Build | minify -}}
+  <script>{{ $darkModeInit.Content | safeJS }}</script>
+{{ end -}}
+{{- if and (.Site.Params.alert) (.Site.Params.alertDismissable) -}}
+  {{ $alertInit := resources.Get "js/alert-init.js" | js.Build | minify -}}
+  <script>{{ $alertInit.Content | safeJS }}</script>
+{{- end -}}
+<!-- Plausible Analytics -->
+<script defer data-domain="ipld.io/" src="https://plausible.io/js/script.js"></script>

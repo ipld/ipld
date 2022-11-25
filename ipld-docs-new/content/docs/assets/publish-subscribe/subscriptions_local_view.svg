@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new" version="1.1" viewBox="0 0 640 470" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<defs>
+<radialGradient id="a" cx="-82.257" cy="-260.86" r="39.956" gradientTransform="matrix(6.0445 0 0 6.0445 762.2 1856.8)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#f065a4" offset="0"/>
+<stop stop-color="#f065a4" stop-opacity=".49804" offset=".8"/>
+<stop stop-color="#f065a4" stop-opacity="0" offset="1"/>
+</radialGradient>
+<radialGradient id="c" cx="-181.18" cy="-496.26" r="39.956" gradientTransform="matrix(-6.2568 -5.6887e-7 5.3635e-7 -5.8992 -868.61 -2647.5)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#9edae5" offset="0"/>
+<stop stop-color="#9edae5" offset=".6"/>
+<stop stop-color="#9edae5" stop-opacity="0" offset="1"/>
+</radialGradient>
+<radialGradient id="b" cx="-181.18" cy="-496.26" r="39.956" gradientTransform="matrix(0 5.0434 -5.7993 0 -2613 1193.8)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#f7e01c" offset="0"/>
+<stop stop-color="#f7e01c" offset=".6"/>
+<stop stop-color="#f7e01c" stop-opacity="0" offset="1"/>
+</radialGradient>
+<radialGradient id="e" cx="-181.18" cy="-496.26" r="39.956" gradientTransform="matrix(0 -5.765 5.6632 0 3075.4 -764.5)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#aa69ac" offset="0"/>
+<stop stop-color="#aa69ac" offset=".54167"/>
+<stop stop-color="#aa69ac" stop-opacity="0" offset="1"/>
+</radialGradient>
+<radialGradient id="d" cx="-181.18" cy="-496.26" r="39.956" gradientTransform="matrix(0 4.4834 -4.4834 0 -1959.9 1092.3)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#cddd40" offset="0"/>
+<stop stop-color="#cddd40" offset=".72727"/>
+<stop stop-color="#cddd40" stop-opacity="0" offset="1"/>
+</radialGradient>
+</defs>
+<g transform="translate(0,-30)">
+<path d="m218.46 409.4c1.3905-23.153 21.361-49.887 43.242-49.887 20.838 0 37.586 17.998 45.604 35.994 2.6587 5.9674 15.848 44.042 7.0425 70.945l-101.68 2.3c0.14822-16.288 4.5513-37.314 5.7873-59.352z" color="#000000" fill="url(#d)" opacity=".3" style="paint-order:normal"/>
+<path d="m549.2 276c-17.215 17.959-73.777 14.802-114.9 1.1068-21.852-9.5825-70.945-32.608-63.623-57.173 3.1919-10.161 14.024-22.048 7.2302-34.428-26.949-49.108-8.2886-64.853 19.789-95.589 10.104-11.061 69.696 10.252 108.92 55.422 39.291 45.254 58.185 114.39 42.59 130.66z" color="#000000" fill="url(#a)" opacity=".3" style="paint-order:normal"/>
+<path d="m311.07 80.838c63.195 70.413-2.4834 190.68-24.689 217.69-22.205 27.003-91.436-8.1869-154.63-78.6-15.805-17.611-77.61-77.762-49.463-101.39 0 0 81.429-58.35 135.76-82.131 34.882 5.5595 69.388 18.101 93.022 44.434z" color="#000000" fill="url(#e)" opacity=".3" style="paint-order:normal"/>
+<path d="m13.613 367.28c-16.333-55.57 59.947-106.38 128.42-130.72 68.476-24.338 140.68-3.5072 151.24 34.654 12.134 43.869-66.558 104.43-135.03 128.77-68.476 24.338-131.47 12.052-144.63-32.706z" color="#000000" fill="url(#c)" opacity=".3" style="paint-order:normal"/>
+<path d="m431.66 389.48c-72.564 3.9601-193.32-61.85-193.32-105.5 0-48.99 56.604-77.738 129.16-81.774 36.035-2.0044 115.76 5.4811 140.02 20.361 78.649 48.223 38.527 160.67-75.874 166.91z" color="#000000" fill="url(#b)" opacity=".3" style="paint-order:normal"/>
+<g transform="translate(-45,70)" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6">
+<path d="m310 210v110" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-100 80" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-170 60" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210h-140" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-40-10" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-60-40" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-120-120" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-5-80" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210-50-170" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 40-130" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 45-40" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 120-140" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 130-60" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 70 50" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 150 60" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 130 10" color="#000000" opacity="1" style="paint-order:normal"/>
+<path d="m310 210 180-20" color="#000000" opacity="1" style="paint-order:normal"/>
+</g>
+<circle cx="445" cy="260" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="415" cy="340" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="395" cy="290" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="95" cy="340" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="125" cy="280" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="145" cy="160" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="215" cy="110" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="205" cy="240" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<text x="135" y="70" color="#000000" enable-background="accumulate" fill="#aa69ac" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="135" y="70" fill="#aa69ac" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 1</tspan></text>
+<text x="25" y="370" color="#000000" enable-background="accumulate" fill="#48bbdb" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="370" fill="#48bbdb" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 5</tspan></text>
+<text x="465" y="360" color="#000000" enable-background="accumulate" fill="#f7b730" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="465" y="360" fill="#f7b730" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 3</tspan></text>
+<text x="265" y="455" color="#000000" enable-background="accumulate" fill="#c4cd45" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="265" y="455" fill="#c4cd45" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 4</tspan></text>
+<text x="476.09363" y="167.60001" color="#000000" enable-background="accumulate" fill="#d14073" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="476.09363" y="167.60001" fill="#d14073" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 2</tspan></text>
+<circle cx="420" cy="470" r="4" color="#000000" fill="#14152d" style="paint-order:normal"/>
+<circle cx="420" cy="490" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<text x="435" y="475" color="#000000" enable-background="accumulate" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="435" y="475" font-size="12px">Viewing from this peer’s perspective</tspan></text>
+<text x="435" y="495" color="#000000" enable-background="accumulate" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="435" y="495" font-size="12px">Directly-connected peer</tspan></text>
+<rect x="410" y="443" width="20" height="15" rx="5" ry="5" color="#000000" enable-background="new" fill="#aa69ac" opacity=".3" style="paint-order:normal"/>
+<text x="435" y="455" color="#000000" enable-background="accumulate" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="435" y="455" font-size="12px">Topic</tspan></text>
+<circle cx="165" cy="360" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="395" cy="220" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="385" cy="140" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="305" cy="150" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="260" cy="200" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="225" cy="270" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="265" cy="390" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="335" cy="330" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<circle cx="310" cy="240" r="2.5" color="#000000" fill="#242651" style="paint-order:normal"/>
+<text x="505" y="264.5" color="#000000" enable-background="accumulate" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="505" y="264.5">Peers keep track of</tspan><tspan x="505" y="279.5">others’ subscriptions</tspan><tspan x="505" y="294.5">even if not subscribed</tspan><tspan x="505" y="309.5">to the same topics</tspan><tspan x="505" y="324.5">as them</tspan></text>
+<path d="m450 260.5h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="265" cy="280" r="4" color="#000000" fill="#14152d" style="paint-order:normal"/>
+</g>
+</svg>

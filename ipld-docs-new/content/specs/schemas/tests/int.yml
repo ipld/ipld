@@ -1,0 +1,38 @@
+schema: |
+  type SimpleInt int
+expected: |
+  {
+    "types": {
+      "SimpleInt": {
+        "int": {}
+      }
+    }
+  }
+blocks:
+  - actual: |
+      100
+    expected: |
+      100
+  - actual: |
+      0
+    expected: |
+      0
+  - actual: |
+      -100
+    expected: |
+      -100
+badBlocks:
+  - |
+    100.1
+  - |
+    "fooz"
+  - |
+    true
+  - |
+    { }
+  - |
+    { "foo": true }
+  - |
+    []
+  - |
+    [ 100 ]

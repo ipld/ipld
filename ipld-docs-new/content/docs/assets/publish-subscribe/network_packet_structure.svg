@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 450 930" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<defs>
+<pattern id="e" patternTransform="translate(25,147)" xlink:href="#a"/>
+<pattern id="f" patternTransform="translate(25,147)" xlink:href="#a"/>
+<pattern id="g" patternTransform="translate(25,147)" xlink:href="#a"/>
+<pattern id="a" patternTransform="translate(40,5)" xlink:href="#c"/>
+<pattern id="c" patternTransform="translate(-60,-70)" xlink:href="#d"/>
+<linearGradient id="b" x1="224.62" x2="240" y1="-220" y2="-220" gradientTransform="matrix(.975 0 0 1 1 0)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#fff" stop-opacity="0" offset="1"/>
+</linearGradient>
+<pattern id="d" width="18" height="18" patternTransform="translate(-60,-110)" patternUnits="userSpaceOnUse">
+<g transform="matrix(1.5,0,0,1.5,42,76.5)" stroke-width=".66667">
+<rect x="-28" y="-51" width="12" height="12" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m-26-51-2 2v2l4-4zm4 0-6 6v2l8-8zm4 0-10 10v2l12-12h-1zm2 2-10 10h2l8-8zm0 4-6 6h2l4-4zm0 4-2 2h2z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+</g>
+</pattern>
+<linearGradient id="h" x1="240" x2="240" y1="-115" y2="-90" gradientTransform="translate(-15,50)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#d7b9d8" offset="0"/>
+<stop stop-color="#d7b9d8" stop-opacity="0" offset="1"/>
+</linearGradient>
+</defs>
+<g transform="translate(0,430)">
+<path d="m14-405c-4.986 0-9 4.014-9 9v882c0 4.986 4.014 9 9 9h422c2.1628 0 4.1407-0.7573 5.6894-2.0195 1.8732 1.2335 4.073 1.9465 6.3106 2.0195-1.8117-1.1086-3-3.1397-3-5.3066v-885.69c0-4.986-4.014-9-9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<path d="m25-350c-5.54 0-10 4.46-10 10v239c0 5.54 4.46 10 10 10h400c2.307 0 4.4191-0.78127 6.1074-2.084 1.3682 1.2766 3.9748 2.7636 8.3926 2.084-1.1934-1.8e-4 -2.3379-0.4744-3.1816-1.3184-0.84396-0.84377-1.3182-1.9882-1.3184-3.1816v-244.5c0-5.54-4.46-10-10-10z" color="#000000" fill="#d7b9d8" style="paint-order:normal"/>
+<text x="35" y="15" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="15" font-size="9px">Recipient (Topic ID)</tspan></text>
+<rect x="25" y="20" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="33.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="33.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 1</tspan></text>
+<text x="200" y="15" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="200" y="15" font-size="9px">Sender</tspan></text>
+<rect x="355" y="20" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="15" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="15" font-size="9px">Seq no.</tspan></text>
+<text x="365" y="33.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="33.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">4</tspan></text>
+<rect x="190" y="20" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="210" y="33.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210" y="33.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer D</tspan></text>
+<text x="200" y="145" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="200" y="145" font-size="9px">Sender</tspan></text>
+<rect x="355" y="150" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="145" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="145" font-size="9px">Seq no.</tspan></text>
+<text x="365" y="163.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="163.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">3</tspan></text>
+<rect x="190" y="150" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="210" y="163.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210" y="163.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer D</tspan></text>
+<text x="35" y="-335" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="-335" font-size="9px">Sender</tspan></text>
+<rect x="25" y="-330" width="325" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="45" y="-316.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="45" y="-316.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer A</tspan></text>
+<text x="35" y="-295" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="-295" font-size="9px">Recipients (Topic ID’s)</tspan></text>
+<path d="m30-290h390c2.77 0 4.124 2.3722 5 5v15h-400v-15c0-2.77 2.23-5 5-5z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="-276.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="-276.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 1</tspan></text>
+<path d="m30-228h390c2.77 0 4.124-2.3722 5-5v-15h-400v15c0 2.77 2.23 5 5 5z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="-234.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="-234.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 3</tspan></text>
+<text x="35" y="-210" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="-210" font-size="9px">Message body</tspan></text>
+<rect x="25" y="-205" width="400" height="62" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="35" y="-191.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="-191.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">The heaviest domestic cat on record is 21.297 kilograms.</tspan></text>
+<text x="35" y="-128" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="-128" font-size="9px">Sender public key</tspan></text>
+<text x="235" y="-128" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="235" y="-128" font-size="9px">Sender signature</tspan></text>
+<text x="365" y="-335" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="-335" font-size="9px">Seq no.</tspan></text>
+<rect x="355" y="-330" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="-316.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="-316.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">5</tspan></text>
+<g transform="translate(-15,60)">
+<rect x="20" y="-450" width="134" height="17" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<text x="25" y="-438" color="#000000" fill="#ffffff" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-438" fill="#ffffff" font-size="12px" font-weight="bold">Application messages</tspan></text>
+<path d="m460-449.5h-440" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+</g>
+<g transform="translate(-15,430)">
+<rect x="20" y="-450" width="168" height="17" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<text x="25" y="-438" color="#000000" fill="#ffffff" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-438" fill="#ffffff" font-size="12px" font-weight="bold">I have seen these messages</tspan></text>
+<path d="m460-449.5h-440" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<text x="193" y="-438" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="193" y="-438" font-size="9px">(IHAVE)</tspan></text>
+<text x="215" y="-308" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="215" y="-308" font-size="9px">(IWANT)</tspan></text>
+</g>
+<g transform="translate(-15,560)">
+<rect x="20" y="-450" width="190" height="17" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<text x="25" y="-438" color="#000000" fill="#ffffff" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-438" fill="#ffffff" font-size="12px" font-weight="bold">Please send me these messages</tspan></text>
+<path d="m460-449.5h-440" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+</g>
+<text x="35.000004" y="275" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35.000004" y="275" font-size="9px">For this topic…</tspan></text>
+<g transform="translate(-15,690)">
+<rect x="20" y="-450" width="132" height="17" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<text x="25" y="-438" color="#000000" fill="#ffffff" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-438" fill="#ffffff" font-size="12px" font-weight="bold">Subscription changes</tspan></text>
+<path d="m460-449.5h-440" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+</g>
+<text x="35" y="405" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="35" y="405" font-size="9px">For this topic…</tspan></text>
+<g transform="translate(-15,820)">
+<rect x="20" y="-450" width="130" height="17" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<text x="25" y="-438" color="#000000" fill="#ffffff" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-438" fill="#ffffff" font-size="12px" font-weight="bold">Grafting and pruning</tspan></text>
+<path d="m460-449.5h-440" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+</g>
+<rect x="25" y="280" width="245" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="293.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="293.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 1</tspan></text>
+<text x="285" y="405" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="285" y="405" font-size="9px">You have been…</tspan></text>
+<rect x="275" y="410" width="150" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="375" y="423" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="375" y="423" font-size="9px">Pruned</tspan></text>
+<circle cx="365" cy="420" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<text x="300" y="423" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="300" y="423" font-size="9px">Grafted</tspan></text>
+<circle cx="290" cy="420" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<path d="m288.42 418.94q0.31854 0 0.48189 0.52272 0.3267 0.98009 0.46554 0.98009 0.10618 0 0.22053-0.16335 2.2951-3.6754 4.2471-5.9459 0.50638-0.58806 1.609-0.58806 0.26136 0 0.35121 0.049 0.0898 0.049 0.0898 0.12252 0 0.11434-0.26954 0.44921-3.1527 3.7897-5.8479 8.0042-0.18784 0.29403-0.76774 0.29403-0.58806 0-0.69423-0.049-0.2777-0.12251-0.6534-1.2496-0.42471-1.2496-0.42471-1.5682 0-0.34304 0.57172-0.66157 0.3512-0.19602 0.62073-0.19602z" color="#000000" fill="#37384c" style="text-decoration-line:none;text-indent:0;text-transform:none"/>
+<path d="m350.5 410v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<rect x="25" y="410" width="245" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="423.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="423.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 6</tspan></text>
+<rect x="25" y="431" width="245" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="444.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="444.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 7</tspan></text>
+<rect x="25" y="452" width="245" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="465.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="465.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 4</tspan></text>
+<rect x="25" y="301" width="245" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="314.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="314.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 6</tspan></text>
+<rect x="25" y="322" width="245" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="335.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="335.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 7</tspan></text>
+<g transform="translate(-15,107)">
+<rect x="40" y="-230" width="195" height="20" rx="5" ry="5" color="#000000" fill="url(#b)" style="paint-order:normal"/>
+<text x="50.002483" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="50.002483" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">133</tspan></text>
+<path d="m60-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="70.002487" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="70.002487" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">179</tspan></text>
+<path d="m80-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="90.002487" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="90.002487" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">70</tspan></text>
+<path d="m100-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="110.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="110.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">43</tspan></text>
+<path d="m120-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="130.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="130.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">69</tspan></text>
+<path d="m140-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="150.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="150.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">11</tspan></text>
+<path d="m160-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="170.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="170.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">130</tspan></text>
+<path d="m180-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="190.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="190.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">124</tspan></text>
+<path d="m200-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="210.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">170</tspan></text>
+<path d="m220-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="228.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="228.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">…</tspan></text>
+</g>
+<g transform="translate(185,107)">
+<rect x="40" y="-230" width="195" height="20" rx="5" ry="5" color="#000000" fill="url(#b)" style="paint-order:normal"/>
+<text x="50.002483" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="50.002483" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">111</tspan></text>
+<path d="m60-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="70.002487" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="70.002487" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">138</tspan></text>
+<path d="m80-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="90.002487" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="90.002487" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">217</tspan></text>
+<path d="m100-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="110.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="110.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">17</tspan></text>
+<path d="m120-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="130.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="130.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">106</tspan></text>
+<path d="m140-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="150.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="150.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">181</tspan></text>
+<path d="m160-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="170.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="170.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">66</tspan></text>
+<path d="m180-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="190.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="190.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">98</tspan></text>
+<path d="m200-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="210.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">59</tspan></text>
+<path d="m220-230v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="228.00249" y="-216.5" color="#000000" fill="#5e5e5e" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="228.00249" y="-216.5" fill="#5e5e5e" font-family="'IBM Plex Mono'" font-size="9px" text-align="center" text-anchor="middle">…</tspan></text>
+</g>
+<rect x="25" y="150" width="160" height="20" rx="5" ry="5" color="#000000" fill="url(#e)" style="paint-order:normal"/>
+<rect x="25" y="-269" width="400" height="20" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="-255.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="-255.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 2</tspan></text>
+<rect x="25" y="41" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="54.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="54.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 4</tspan></text>
+<rect x="355" y="41" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="54.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="54.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">10</tspan></text>
+<rect x="190" y="41" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="210" y="54.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210" y="54.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer E</tspan></text>
+<rect x="25" y="62" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="55" y="75.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="55" y="75.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Topic 5</tspan></text>
+<rect x="355" y="62" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="75.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="75.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">6</tspan></text>
+<rect x="190" y="62" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="210" y="75.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210" y="75.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer F</tspan></text>
+<rect x="355" y="171" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="184.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="184.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">14</tspan></text>
+<rect x="190" y="171" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="210" y="184.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210" y="184.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer C</tspan></text>
+<rect x="25" y="171" width="160" height="20" rx="5" ry="5" color="#000000" fill="url(#f)" style="paint-order:normal"/>
+<rect x="355" y="192" width="70" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="365" y="205.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="365" y="205.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">1</tspan></text>
+<rect x="190" y="192" width="160" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="210" y="205.5" color="#000000" fill="#000000" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="210" y="205.5" fill="#000000" font-family="'IBM Plex Mono'" font-size="9px">Peer B</tspan></text>
+<rect x="25" y="192" width="160" height="20" rx="5" ry="5" color="#000000" fill="url(#g)" style="paint-order:normal"/>
+<text x="15" y="-415" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".6" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="15" y="-415" fill="#37384c" font-size="16px" font-weight="bold" stroke-width=".6" style="paint-order:normal">Network packet</tspan></text>
+<text x="25" y="-355" color="#000000" fill="#aa69ac" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-355" fill="#aa69ac" font-size="9px" font-weight="bold" stroke-width=".5" style="paint-order:normal">Application message</tspan></text>
+<path d="m25-65c-5.54 0-10 4.46-10 10v15h420v-15c0-5.54-4.46-10-10-10z" color="#000000" fill="url(#h)" style="paint-order:normal"/>
+<text x="25" y="-70" color="#000000" fill="#aa69ac" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".6" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="25" y="-70" fill="#aa69ac" font-size="9px" font-weight="bold" stroke-width=".6" style="paint-order:normal">Application message</tspan></text>
+<rect x="35" y="-285" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#aa69ac" style="paint-order:normal"/>
+<rect x="35" y="-264" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#d14073" style="paint-order:normal"/>
+<rect x="35" y="-243" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#458f97" style="paint-order:normal"/>
+<rect x="35" y="25" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#aa69ac" style="paint-order:normal"/>
+<rect x="35" y="46" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#9edae5" style="paint-order:normal"/>
+<rect x="35" y="67" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#f7e01c" style="paint-order:normal"/>
+<rect x="35" y="285" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#aa69ac" style="paint-order:normal"/>
+<rect x="35" y="306" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#f065a4" style="paint-order:normal"/>
+<rect x="35" y="327" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#cddd40" style="paint-order:normal"/>
+<rect x="35" y="415" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#f065a4" style="paint-order:normal"/>
+<rect x="35" y="436" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#cddd40" style="paint-order:normal"/>
+<rect x="35" y="457" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#9edae5" style="paint-order:normal"/>
+<path d="m40.817-320-0.97144 2.3453-2.3453 0.97145-2.3453-0.97145-0.97144-2.3453 0.97144-2.3453 2.3453-0.97145 2.3453 0.97145z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<path d="m205.82 30-3.3167 3.3167-3.3167-3.3167 3.3167-3.3167z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<path d="m205.82 160-3.3167 3.3167-3.3167-3.3167 3.3167-3.3167z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<path d="m205.82 181-1.6584 2.8724h-3.3167l-1.6584-2.8724 1.6584-2.8724h3.3167z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<path d="m205.82 202-4.9751 2.8724v-5.7447z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<path d="m205.82 51-2.2918 3.1544-3.7082-1.2049v-3.899l3.7082-1.2049z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<path d="m205.82 72-1.2488 2.5931-2.806 0.64045-2.2502-1.7945v-2.8781l2.2502-1.7945 2.806 0.64045z" color="#000000" fill="#242651" fill-rule="evenodd" style="paint-order:normal"/>
+<rect x="275" y="431" width="150" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="375" y="444" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="375" y="444" font-size="9px">Pruned</tspan></text>
+<circle cx="365" cy="441" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<text x="300" y="444" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="300" y="444" font-size="9px">Grafted</tspan></text>
+<circle cx="290" cy="441" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<path d="m288.42 439.94q0.31854 0 0.48189 0.52272 0.3267 0.98009 0.46554 0.98009 0.10618 0 0.22053-0.16335 2.2951-3.6754 4.2471-5.9459 0.50638-0.58806 1.609-0.58806 0.26136 0 0.35121 0.049 0.0898 0.049 0.0898 0.12252 0 0.11434-0.26954 0.44921-3.1527 3.7897-5.8479 8.0042-0.18784 0.29403-0.76774 0.29403-0.58806 0-0.69423-0.049-0.2777-0.12251-0.6534-1.2496-0.42471-1.2496-0.42471-1.5682 0-0.34304 0.57172-0.66157 0.3512-0.19602 0.62073-0.19602z" color="#000000" fill="#37384c" style="text-decoration-line:none;text-indent:0;text-transform:none"/>
+<path d="m350.5 431v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<rect x="275" y="452" width="150" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="375" y="465" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="375" y="465" font-size="9px">Pruned</tspan></text>
+<circle cx="365" cy="462" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<text x="300" y="465" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="300" y="465" font-size="9px">Grafted</tspan></text>
+<circle cx="290" cy="462" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<path d="m363.42 460.94q0.31854 0 0.48189 0.52272 0.3267 0.98009 0.46554 0.98009 0.10618 0 0.22053-0.16335 2.2951-3.6754 4.2471-5.9459 0.50638-0.58806 1.609-0.58806 0.26136 0 0.35121 0.049 0.0898 0.049 0.0898 0.12252 0 0.11434-0.26954 0.44921-3.1527 3.7897-5.8479 8.0042-0.18784 0.29403-0.76774 0.29403-0.58806 0-0.69423-0.049-0.2777-0.12251-0.6534-1.2496-0.42471-1.2496-0.42471-1.5682 0-0.34304 0.57172-0.66157 0.3512-0.19602 0.62073-0.19602z" color="#000000" fill="#37384c" style="text-decoration-line:none;text-indent:0;text-transform:none"/>
+<path d="m350.5 452v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<text x="285" y="275" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="285" y="275" font-size="9px">I want to…</tspan></text>
+<rect x="275" y="280" width="150" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="375" y="293" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="375" y="293" font-size="9px">Unsub</tspan></text>
+<circle cx="365" cy="290" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<text x="300" y="293" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="300" y="293" font-size="9px">Subscribe</tspan></text>
+<circle cx="290" cy="290" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<path d="m288.42 288.94q0.31854 0 0.48189 0.52272 0.3267 0.98009 0.46554 0.98009 0.10618 0 0.22053-0.16335 2.2951-3.6754 4.2471-5.9459 0.50638-0.58806 1.609-0.58806 0.26136 0 0.35121 0.049 0.0898 0.049 0.0898 0.12252 0 0.11434-0.26954 0.44921-3.1527 3.7897-5.8479 8.0042-0.18784 0.29403-0.76774 0.29403-0.58806 0-0.69423-0.049-0.2777-0.12251-0.6534-1.2496-0.42471-1.2496-0.42471-1.5682 0-0.34304 0.57172-0.66157 0.3512-0.19602 0.62073-0.19602z" color="#000000" fill="#37384c" style="text-decoration-line:none;text-indent:0;text-transform:none"/>
+<path d="m350.5 280v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<rect x="275" y="301" width="150" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="375" y="314" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="375" y="314" font-size="9px">Unsub</tspan></text>
+<circle cx="365" cy="311" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<text x="300" y="314" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="300" y="314" font-size="9px">Subscribe</tspan></text>
+<circle cx="290" cy="311" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<path d="m363.42 309.94q0.31854 0 0.48189 0.52272 0.3267 0.98009 0.46554 0.98009 0.10618 0 0.22053-0.16335 2.2951-3.6754 4.2471-5.9459 0.50638-0.58806 1.609-0.58806 0.26136 0 0.35121 0.049 0.0898 0.049 0.0898 0.12252 0 0.11434-0.26954 0.44921-3.1527 3.7897-5.8479 8.0042-0.18784 0.29403-0.76774 0.29403-0.58806 0-0.69423-0.049-0.2777-0.12251-0.6534-1.2496-0.42471-1.2496-0.42471-1.5682 0-0.34304 0.57172-0.66157 0.3512-0.19602 0.62073-0.19602z" color="#000000" fill="#37384c" style="text-decoration-line:none;text-indent:0;text-transform:none"/>
+<path d="m350.5 301v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+<rect x="275" y="322" width="150" height="20" rx="5" ry="5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<text x="375" y="335" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="375" y="335" font-size="9px">Unsub</tspan></text>
+<circle cx="365" cy="332" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<text x="300" y="335" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="300" y="335" font-size="9px">Subscribe</tspan></text>
+<circle cx="290" cy="332" r="5" color="#000000" fill="none" stroke="#37384c" stroke-linecap="round" stroke-width=".6" style="paint-order:normal"/>
+<path d="m288.42 330.94q0.31854 0 0.48189 0.52272 0.3267 0.98009 0.46554 0.98009 0.10618 0 0.22053-0.16335 2.2951-3.6754 4.2471-5.9459 0.50638-0.58806 1.609-0.58806 0.26136 0 0.35121 0.049 0.0898 0.049 0.0898 0.12252 0 0.11434-0.26954 0.44921-3.1527 3.7897-5.8479 8.0042-0.18784 0.29403-0.76774 0.29403-0.58806 0-0.69423-0.049-0.2777-0.12251-0.6534-1.2496-0.42471-1.2496-0.42471-1.5682 0-0.34304 0.57172-0.66157 0.3512-0.19602 0.62073-0.19602z" color="#000000" fill="#37384c" style="text-decoration-line:none;text-indent:0;text-transform:none"/>
+<path d="m350.5 322v20" color="#000000" fill="none" stroke="#ebf0f5" style="paint-order:normal"/>
+</g>
+</svg>

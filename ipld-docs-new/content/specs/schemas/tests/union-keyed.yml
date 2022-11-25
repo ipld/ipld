@@ -1,0 +1,66 @@
+schema: |
+  type Bam bytes
+
+  type UnionKeyed union {
+    | Bool "bar"
+    | Int "foo"
+    | String "baz"
+    | &Bam "bam"
+  } representation keyed
+expected: |
+  {
+    "types": {
+      "Bam": {
+        "bytes": {}
+      },
+      "UnionKeyed": {
+        "union": {
+          "members": [
+            "Bool",
+            "Int",
+            "String",
+            {
+              "link": {
+                "expectedType": "Bam"
+              }
+            }
+          ],
+          "representation": {
+            "keyed": {
+              "bar": "Bool",
+              "foo": "Int",
+              "baz": "String",
+              "bam": {
+                "link": {
+                  "expectedType": "Bam"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      { "foo": 100 }
+    expected: |
+      { "foo": 100 }
+  - actual: |
+      { "bar": true }
+    expected: |
+      { "bar": true }
+  - actual: |
+      { "baz": "this here is baz" }
+    expected: |
+      { "baz": "this here is baz" }
+badBlocks:
+  - |
+    { "foo": "not an int" }
+  - |
+    { "bar": "not a boolean" }
+  - |
+    { "baz": true }
+  - |
+    { }
+

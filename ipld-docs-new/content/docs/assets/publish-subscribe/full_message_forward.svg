@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 530 155" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(0,-345)">
+<text x="299.53937" y="712.03394" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:1.39999998;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="299.53937" y="722.81396" font-size="11px" style="line-height:1.39999998"/></text>
+<path d="m160 410 10-20-10-20z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m43.671 378.14c4.986 0 9 4.014 9 9s-4.014 9-9 9h-22c-2.1628 0-4.1407-0.75729-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-3.6934c0-4.986 4.014-9 9-9z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m80 390 43.301-25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m80 390 43.301 25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m80 390-12.941 48.296" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m30 390h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<circle cx="80" cy="390" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<g transform="translate(-44,75.05)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+<text x="40" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="40" y="480">Incoming</tspan><tspan x="40" y="495">message</tspan></text>
+<path d="m272.5 366c4.986 0 9 4.014 9 9s-4.014 9-9 9h-22c-2.1628 0-4.1407-0.75729-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-3.6934c0-4.986 4.014-9 9-9z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m210 390h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m260 390 43.301-25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m260 390 43.301 25" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<path d="m260 390-12.941 48.296" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<circle cx="260" cy="390" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<text x="205" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="205" y="480">Peer stores a copy</tspan><tspan x="205" y="495">of the message</tspan></text>
+<path d="m340 410 10-20-10-20z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m495 350c4.986 0 9 4.014 9 9s-4.014 9-9 9h-22c-2.1628 0-4.1407-0.75729-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-3.6934c0-4.986 4.014-9 9-9z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m502.5 406c4.986 0 9 4.014 9 9s-4.014 9-9 9h-22c-2.1628 0-4.1407-0.75729-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-3.6934c0-4.986 4.014-9 9-9z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m437.5 426c4.986 0 9 4.014 9 9s-4.014 9-9 9h-22c-2.1628 0-4.1407-0.75729-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-3.6934c0-4.986 4.014-9 9-9z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m390 390h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<g transform="rotate(-30 468.12 -27.535)">
+<path d="m235 320h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(161,5.05)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<g transform="rotate(30 206.88 737.54)">
+<path d="m235 320h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(161,5.05)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<g transform="matrix(-.25882 .96593 .96593 .25882 191.73 80.185)">
+<path d="m235 320h50" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(161,5.05)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<circle cx="440" cy="390" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<text x="380" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="380" y="480">Message forwarded to all </tspan><tspan x="380" y="495">other full-message peers</tspan></text>
+</g>
+</svg>

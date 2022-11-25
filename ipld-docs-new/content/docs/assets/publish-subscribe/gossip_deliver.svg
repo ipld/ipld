@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<defs>
+<clipPath id="a">
+<path d="m19 305v8h-7v8.5h14v-16.5z" color="#000000" fill="#458f97" style="paint-order:normal"/>
+</clipPath>
+</defs>
+<g transform="translate(0,-270)">
+<rect x="53.5" y="466.5" width="12" height="18" rx="2" ry="2" color="#000000" fill="#eed9ee" stroke="#e1c5e2" style="paint-order:normal"/>
+<g transform="translate(-15,15)" fill="none" stroke="#37384c" stroke-width=".6">
+<path d="m80 330 45.224-22.125" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330 29.88 50.425" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330 4.8347 59.093" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330-45.255 20.176" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330-44.881-34.862" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330h60" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330 5.9808-49.641" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330 35.355-35.355" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m25 310 55 20" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330 35 25" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m55 286.7 25 43.301" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330-20 50" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330-55 5" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+<path d="m80 330-40 45" color="#000000" enable-background="new" opacity=".3" style="paint-order:normal"/>
+</g>
+<g transform="translate(141,10)">
+<path d="m450 280c4.986 0 9 4.014 9 9v17c0 4.986-4.014 9-9 9h-72c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-20.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="379.28" y="294.85599" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="379.28" y="294.85599" font-size="12px">I have seen:</tspan></text>
+<path d="m395.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m420.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#7b457d" style="paint-order:normal"/>
+<path d="m445.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#c395c5" style="paint-order:normal"/>
+</g>
+<g transform="translate(151,110)">
+<path d="m450 280c4.986 0 9 4.014 9 9v17c0 4.986-4.014 9-9 9h-72c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-20.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="379.28" y="294.85599" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="379.28" y="294.85599" font-size="12px">I have seen:</tspan></text>
+<path d="m395.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m420.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#7b457d" style="paint-order:normal"/>
+<path d="m445.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#c395c5" style="paint-order:normal"/>
+</g>
+<g transform="translate(16,-5)">
+<path d="m450 280c4.986 0 9 4.014 9 9v17c0 4.986-4.014 9-9 9h-72c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-20.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="379.28" y="294.85599" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="379.28" y="294.85599" font-size="12px">I have seen:</tspan></text>
+<path d="m395.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m420.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#7b457d" style="paint-order:normal"/>
+<path d="m445.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#c395c5" style="paint-order:normal"/>
+</g>
+<g transform="translate(-4,75)">
+<path d="m450 280c4.986 0 9 4.014 9 9v17c0 4.986-4.014 9-9 9h-72c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-20.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="379.28" y="294.85599" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="379.28" y="294.85599" font-size="12px">I have seen:</tspan></text>
+<path d="m395.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m420.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#7b457d" style="paint-order:normal"/>
+<path d="m445.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#c395c5" style="paint-order:normal"/>
+</g>
+<g transform="translate(181,55)">
+<path d="m450 280c4.986 0 9 4.014 9 9v17c0 4.986-4.014 9-9 9h-72c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-20.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="379.28" y="294.85599" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="379.28" y="294.85599" font-size="12px">I have seen:</tspan></text>
+<path d="m395.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m420.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#7b457d" style="paint-order:normal"/>
+<path d="m445.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#c395c5" style="paint-order:normal"/>
+</g>
+<g transform="translate(46,120)">
+<path d="m450 280c4.986 0 9 4.014 9 9v17c0 4.986-4.014 9-9 9h-72c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-20.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="379.28" y="294.85599" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="379.28" y="294.85599" font-size="12px">I have seen:</tspan></text>
+<path d="m395.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#aa69ac" style="paint-order:normal"/>
+<path d="m420.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#7b457d" style="paint-order:normal"/>
+<path d="m445.5 301c2.493 0 4.5 2.007 4.5 4.5s-2.007 4.5-4.5 4.5h-11c-1.0814 0-2.0704-0.37865-2.8447-1.0098-0.93657 0.61674-2.0365 0.97325-3.1553 1.0098 0.90586-0.55431 1.5-1.5698 1.5-2.6533v-1.8467c0-2.493 2.007-4.5 4.5-4.5z" color="#000000" fill="#c395c5" style="paint-order:normal"/>
+</g>
+<text x="284.53937" y="727.03394" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:1.39999998;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="284.53937" y="737.81396" font-size="11px" style="line-height:1.39999998"/></text>
+<path d="m145 365 10-20-10-20z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<text x="20" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="20" y="480" font-size="12px">Every 1 second…</tspan></text>
+<path d="m325 365 10-20-10-20z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<rect x="217.5" y="466.5" width="12" height="18" rx="2" ry="2" color="#000000" fill="#eed9ee" stroke="#e1c5e2" style="paint-order:normal"/>
+<text x="180" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="180" y="480">Select 6 metadata-only</tspan><tspan x="180" y="495">peerings at random</tspan></text>
+<path d="m240 345 5.9808-49.641" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m240 345 35.355-35.355" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m185 325 55 20" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m240 345 35 25" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m215 301.7 25 43.301" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m240 345-20 50" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m240 345-55 5" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m240 345-40 45" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<g transform="matrix(2,0,0,2,30,-328)" stroke-width=".5">
+<circle cx="17.5" cy="312.5" r="7.5" color="#000000" fill="#fff" stroke="#37384c" stroke-width="1" style="paint-order:normal"/>
+<g clip-path="url(#a)">
+<path d="m17.354 306.5a6 6 0 0 1 5.7956 4.4471 6 6 0 0 1-2.7956 6.7491 6 6 0 0 1-7.2426-0.95351l4.2426-4.2426z" color="#000000" fill="#f7b730" style="paint-order:normal"/>
+</g>
+<path d="m17 302c-0.554 0-1 0.446-1 1v2h3v-2c0-0.554-0.446-1-1-1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m24.633 304.66 0.70711 0.7071c0.39174 0.39174 0.39174 1.0225 0 1.4142l-0.35355 0.35355-2.1213-2.1213 0.35355-0.35355c0.39174-0.39174 1.0225-0.39174 1.4142 0z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m17.492 307.49c-0.27614 4e-3 -0.49651 0.23167-0.49219 0.50781v4.1348c-0.30916 0.17849-0.49972 0.50825-0.5 0.86523 9.79e-4 0.35628 0.19145 0.68514 0.5 0.86328v0.63672c-0.0096 0.67616 1.0096 0.67616 1 0v-0.63477c0.30916-0.17849 0.49972-0.50825 0.5-0.86523-9.79e-4 -0.35628-0.19145-0.68514-0.5-0.86328v-4.1367c0.0044-0.28227-0.22555-0.51223-0.50781-0.50781z" color="#000000" fill="#37384c" stroke="#fff" stroke-width="2" style="paint-order:stroke fill markers"/>
+</g>
+<circle cx="65" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<text x="435" y="480" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="435" y="480">Send them a list of</tspan><tspan x="435" y="495">recently seen messages</tspan></text>
+<g transform="matrix(.6383 0 0 .6383 54.894 160.76)" stroke-width="1.5667">
+<path d="m290 182.89-21.998 12.676-1.502 2.5976v25.537l22 12.701h3l22-12.701v-25.537l-1.502-2.5976z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m313.5 98.164-22 12.701v25.537l22-12.701z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="349.3" cy="391.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="356.23" cy="384.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<ellipse transform="matrix(.86603 -.5 0 1 0 0)" cx="342.37" cy="398.93" rx="2.8868" ry="2.5" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m266.5 98.164v25.537l22 12.701v-25.537z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m280 218.73a3.3238 1.8804 53.051 0 1-2.5 1.0566 3.3238 1.8804 53.051 0 1-2.5-3.9434 3.3238 1.8804 53.051 0 1 2.5-1.0566 3.3238 1.8804 53.051 0 1 2.5 3.9434z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path transform="translate(0,100)" d="m290 82.891-21.998 12.676 21.998 12.676 21.998-12.676z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m278.5 194.13a3.5355 2.0375 0 0 1 5 0 3.5355 2.0375 0 0 1 0 2.8815 3.5355 2.0375 0 0 1-5 0 3.5355 2.0375 0 0 1 0-2.8815z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m296.5 194.13a3.5355 2.0375 0 0 1 5 0 3.5355 2.0375 0 0 1 0 2.8815 3.5355 2.0375 0 0 1-5 0 3.5355 2.0375 0 0 1 0-2.8815z" color="#000000" fill="#fff" style="paint-order:normal"/>
+<path d="m300 218.73a1.8804 3.3238 36.949 0 0 2.5 1.0566 1.8804 3.3238 36.949 0 0 2.5-3.9434 1.8804 3.3238 36.949 0 0-2.5-1.0566 1.8804 3.3238 36.949 0 0-2.5 3.9434z" color="#000000" fill="none" style="paint-order:normal"/>
+</g>
+<text x="670" y="365" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="670" y="365">Seen messages specify the</tspan><tspan x="670" y="380">sender and sequence number,</tspan><tspan x="670" y="395">but not the full message contents </tspan></text>
+<path d="m634 360.5 31 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<g transform="translate(-15,15)">
+<g transform="rotate(-26.07 510 330)">
+<path d="m510 330h50.346" color="#000000" enable-background="new" fill="none" stroke="#f7b730" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(439 15)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<g transform="rotate(59.351 510 330)">
+<path d="m510 330h58.613" color="#000000" enable-background="new" fill="none" stroke="#f7b730" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(449 15)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<g transform="matrix(.081543 .99667 .99667 -.081543 139.51 -151.39)">
+<path d="m510 330h59.291" color="#000000" enable-background="new" fill="none" stroke="#f7b730" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(449 15)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<g transform="matrix(-.91334 .40719 .40719 .91334 841.43 -179.07)">
+<path d="m510 330h49.548" color="#000000" enable-background="new" fill="none" stroke="#f7b730" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(439 15)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<g transform="matrix(-.78974 -.61344 -.61344 .78974 1115.2 382.24)">
+<path d="m510 330h56.83" color="#000000" enable-background="new" fill="none" stroke="#f7b730" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(444 15)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<path d="m510 330h60" color="#000000" enable-background="new" fill="none" stroke="#f7b730" stroke-width="2" style="paint-order:normal"/>
+<g transform="translate(449 15)">
+<path d="m83 310.5 23 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 309.05v1.8l10 0.1z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+</g>
+<circle cx="495" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<g transform="translate(-270 15)" fill="none" stroke="#f7b730" stroke-width="2">
+<path d="m510 330 45.224-22.125" color="#000000" enable-background="new" style="paint-order:normal"/>
+<path d="m510 330 29.88 50.425" color="#000000" enable-background="new" style="paint-order:normal"/>
+<path d="m510 330 4.8347 59.093" color="#000000" enable-background="new" style="paint-order:normal"/>
+<path d="m510 330-45.255 20.176" color="#000000" enable-background="new" style="paint-order:normal"/>
+<path d="m510 330-44.881-34.862" color="#000000" enable-background="new" style="paint-order:normal"/>
+<path d="m510 330h60" color="#000000" enable-background="new" style="paint-order:normal"/>
+</g>
+<circle cx="240" cy="345" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+</g>
+</svg>

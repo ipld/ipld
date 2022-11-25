@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg style="height:473px;width:500px" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 500 473" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
+<defs>
+<filter id="a" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="13" y="59.297" width="476" height="352.88" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="23" y="142.83" width="390" height="46.266" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="23" y="203.09" width="382" height="202.09" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="2"/>
+<rect x="23" y="318.17" width="382" height="87.008" fill="#fff"/>
+<line x1="47" x2="47" y1="42.297" y2="429.18" stroke="#A80036" stroke-dasharray="5.0,5.0"/>
+<line x1="268" x2="268" y1="42.297" y2="429.18" stroke="#A80036" stroke-dasharray="5.0,5.0"/>
+<rect x="33" y="7" width="24" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="40" y="26.9951" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="10">B</text>
+<rect x="33" y="428.18" width="24" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="40" y="448.1748" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="10">B</text>
+<rect x="218" y="3" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<rect x="214" y="7" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="221" y="26.9951" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86">Other_Peers</text>
+<rect x="218" y="428.18" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<rect x="214" y="432.18" width="100" height="30.297" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="1.5"/>
+<text x="221" y="452.1748" fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86">Other_Peers</text>
+<path d="m13 59.297h471v7l-10 10h-461v-17" fill="#eee" stroke="#000"/>
+<rect x="13" y="59.297" width="476" height="352.88" fill="none" stroke="#000" stroke-width="2"/>
+<text x="28" y="72.3638" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="426">B determining whether it is dialable via AutoNAT protocol</text>
+<polygon points="256 123.83 266 127.83 256 131.83 260 127.83" fill="#A80036" stroke="#A80036"/>
+<line x1="47" x2="262" y1="127.83" y2="127.83" stroke="#A80036"/>
+<text x="54" y="92.4966" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88">DialRequest {</text>
+<text x="62" y="107.6294" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="189">supposedly_public_addresses</text>
+<text x="54" y="122.7622" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8">}</text>
+<path d="m23 142.83h385v7l-10 10h-375v-17" fill="#eee" stroke="#000"/>
+<rect x="23" y="142.83" width="390" height="46.266" fill="none" stroke="#000" stroke-width="2"/>
+<text x="38" y="155.895" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="340">For each provided supposedly public address</text>
+<polygon points="58 177.09 48 181.09 58 185.09 54 181.09" fill="#A80036" stroke="#A80036"/>
+<line x1="52" x2="267" y1="181.09" y2="181.09" stroke="#A80036"/>
+<text x="64" y="176.0278" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="24">Dial</text>
+<path d="m23 203.09h64v7l-10 10h-54v-17" fill="#eee" stroke="#000"/>
+<rect x="23" y="203.09" width="382" height="202.09" fill="none" stroke="#000" stroke-width="2"/>
+<text x="38" y="216.1606" fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19">alt</text>
+<text x="102" y="215.3042" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="185">[One of the dials succeeded.</text>
+<text x="102" y="228.1089" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="298">Thus B is dialable. No need for Hole Punching.</text>
+<text x="102" y="240.9136" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102">Don't continue.]</text>
+<polygon points="58 306.17 48 310.17 58 314.17 54 310.17" fill="#A80036" stroke="#A80036"/>
+<line x1="52" x2="267" y1="310.17" y2="310.17" stroke="#A80036"/>
+<text x="64" y="259.7075" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95">DialOutcome {</text>
+<text x="72" y="274.8403" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="27">"Ok"</text>
+<text x="72" y="289.9731" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="124">successful_address</text>
+<text x="64" y="305.106" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8">}</text>
+<line x1="23" x2="405" y1="319.17" y2="319.17" stroke="#000" stroke-dasharray="2.0,2.0"/>
+<text x="28" y="329.3823" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="192">[None of the dials succeeded.</text>
+<text x="28" y="342.187" fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="339">Thus not dialable. Hole Punching needed. Continue.]</text>
+<polygon points="58 393.18 48 397.18 58 401.18 54 397.18" fill="#A80036" stroke="#A80036"/>
+<line x1="52" x2="267" y1="397.18" y2="397.18" stroke="#A80036"/>
+<text x="64" y="361.8481" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="95">DialOutcome {</text>
+<text x="72" y="376.981" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="41">"Error"</text>
+<text x="64" y="392.1138" fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8">}</text>
+</svg>

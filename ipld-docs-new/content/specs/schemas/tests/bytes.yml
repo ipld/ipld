@@ -1,0 +1,10 @@
+schema: |
+  type SimpleBytes bytes
+expected: |
+  {
+    "types": {
+      "SimpleBytes": {
+        "bytes": {}
+      }
+    }
+  }

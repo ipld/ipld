@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 445 320" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+<dc:title/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(0,-180)">
+<path d="m326.51 470.01c-24.508-6.3835-60.043-25.951-56.315-51 3.8877-26.12 46.128-27.043 71.664-33.774 21.984-5.7948 48.625-16.988 68.013-5.114 19.871 12.17 37.646 43.741 27.012 64.475-17.229 33.594-73.839 34.929-110.37 25.413z" color="#000000" enable-background="new" fill="#f7e01c" opacity=".3" style="paint-order:normal"/>
+<path d="m5 429.5h190" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m195 429.5h170" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<circle cx="365" cy="430" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="5" cy="430" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<text x="370" y="490" color="#000000" fill="#f7b730" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="370" y="490" fill="#f7b730" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 3</tspan></text>
+<path d="m180 350 20 10 20-10z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+<path d="m319.44 314.36c-61.331-1.2494-178.38 23.426-180.09-37.894-1.2965-46.458 88.399-31.467 134.63-36.274 45.126-4.6923 97.255-16.163 135.89 7.6139 15.34 9.4393 34.689 30.504 27.012 46.797-16.921 35.912-77.755 20.564-117.44 19.756z" color="#000000" enable-background="new" fill="#f7e01c" opacity=".3" style="paint-order:normal"/>
+<path d="m5 279.5h190" color="#000000" enable-background="new" fill="none" opacity=".3" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m195 280h170" color="#000000" enable-background="new" fill="none" stroke="#37384c" stroke-width="2" style="paint-order:normal"/>
+<circle cx="365" cy="280" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<circle cx="5" cy="280" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<text x="370" y="335" color="#000000" fill="#f7b730" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width=".5" word-spacing="0px" style="paint-order:normal;text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="370" y="335" fill="#f7b730" font-size="12px" stroke-width=".5" text-align="center" text-anchor="middle" style="paint-order:normal">Topic 3</tspan></text>
+<circle cx="195" cy="280" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<text x="280" y="300" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="280" y="300" font-size="12px" text-align="center" text-anchor="middle">Full-message peering</tspan></text>
+<circle cx="195" cy="430" r="2.5" color="#000000" enable-background="new" fill="#242651" style="paint-order:normal"/>
+<path d="m354 182c4.986 0 9 4.014 9 9v70c0 4.986-4.014 9-9 9h-132c-2.1628 0-4.1407-0.7573-5.6894-2.0195-1.8732 1.2335-4.073 1.9465-6.3106 2.0195 1.8117-1.1086 3-3.1397 3-5.3066v-73.693c0-4.986 4.014-9 9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="223" y="198" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="223" y="198" font-size="12px">I am unsubscribed from:</tspan></text>
+<g transform="translate(197,-34.95)">
+<path d="m68 310.5 34 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 308.05v2.75h10z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+<text x="243" y="213" color="#000000" dominant-baseline="auto" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:normal;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="243" y="213" dominant-baseline="auto" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:normal;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">Topic 3</tspan></text>
+<rect x="223" y="203" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#f7e01c" style="paint-order:normal"/>
+<text x="223" y="233" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="223" y="233">Also, I’m <tspan font-weight="bold">pruning</tspan> our</tspan><tspan x="223" y="248">connection back to a</tspan><tspan x="223" y="263">metadata-only peering.</tspan></text>
+<path d="m37 232c-4.986 0-9 4.014-9 9v20c0 4.986 4.014 9 9 9h132c2.1628 0 4.1407-0.7573 5.6894-2.0195 1.8732 1.2335 4.073 1.9465 6.3106 2.0195-1.8117-1.1086-3-3.1397-3-5.3066v-23.693c0-4.986-4.014-9-9-9z" color="#000000" fill="#ebf0f5" style="paint-order:normal"/>
+<text x="38" y="248" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="38" y="248" font-size="12px">I am unsubscribed from:</tspan></text>
+<g transform="matrix(-1,0,0,1,194,-34.95)">
+<path d="m68 310.5 34 1e-5" color="#000000" fill="none" stroke="#37384c" stroke-width=".6" style="paint-order:normal"/>
+<path d="m101 308.05v2.75h10z" color="#000000" fill="#37384c" style="paint-order:normal"/>
+</g>
+<text x="58" y="263" color="#000000" dominant-baseline="auto" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:normal;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="58" y="263" dominant-baseline="auto" fill="#37384c" font-family="'IBM Plex Sans'" font-size="12px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;line-height:normal;paint-order:normal;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">Topic 3</tspan></text>
+<rect x="38" y="253" width="15" height="10" rx="3.3333" ry="3.3333" color="#000000" enable-background="new" fill="#f7e01c" style="paint-order:normal"/>
+<text x="280" y="450" color="#000000" fill="#37384c" font-family="'IBM Plex Sans'" font-size="11px" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="text-decoration-line:none;text-indent:0;text-transform:none" xml:space="preserve"><tspan x="280" y="450" font-size="12px" text-align="center" text-anchor="middle">Metadata-only peering</tspan></text>
+</g>
+</svg>

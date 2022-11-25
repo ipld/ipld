@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1287.7px" height="656.97px" style="height:656px;width:1287px" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 1287 656" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
+<defs>
+<filter id="a" x="-1" y="-1" width="300%" height="300%">
+<feGaussianBlur result="blurOut" stdDeviation="4.379811804961506"/>
+<feColorMatrix in="blurOut" result="blurOut2" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+<feOffset dx="8.759623609923011" dy="8.759623609923011" in="blurOut2" result="blurOut3"/>
+<feBlend in="SourceGraphic" in2="blurOut3"/>
+</filter>
+</defs>
+<rect x="28.469" y="129.85" width="1236.2" height="394.03" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="4.3798"/>
+<rect x="50.368" y="182.7" width="935.09" height="228.91" fill="#fff" filter="url(#a)" stroke="#000" stroke-width="4.3798"/>
+<line x1="131.39" x2="131.39" y1="92.626" y2="561.11" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.1899"/>
+<line x1="471.92" x2="471.92" y1="92.626" y2="561.11" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.1899"/>
+<line x1="1124.5" x2="1124.5" y1="92.626" y2="561.11" stroke="#A80036" stroke-dasharray="5.0,5.0" stroke-width="2.1899"/>
+<rect x="72.267" y="15.329" width="111.69" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<text x="87.5962" y="59.1168" fill="#000000" font-family="sans-serif" font-size="30.659" lengthAdjust="spacingAndGlyphs" textLength="81.0265">Relay</text>
+<rect x="72.267" y="558.92" width="111.69" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<text x="87.5962" y="602.7096" fill="#000000" font-family="sans-serif" font-size="30.659" lengthAdjust="spacingAndGlyphs" textLength="81.0265">Relay</text>
+<rect x="441.27" y="15.329" width="52.558" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<text x="456.5954" y="59.1168" fill="#000000" font-family="sans-serif" font-size="30.659" lengthAdjust="spacingAndGlyphs" textLength="21.8991">B</text>
+<rect x="441.27" y="558.92" width="52.558" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<text x="456.5954" y="602.7096" fill="#000000" font-family="sans-serif" font-size="30.659" lengthAdjust="spacingAndGlyphs" textLength="21.8991">B</text>
+<rect x="1015" y="6.5697" width="218.99" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<rect x="1006.3" y="15.329" width="218.99" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<text x="1021.5911" y="59.1168" fill="#000000" font-family="sans-serif" font-size="30.659" lengthAdjust="spacingAndGlyphs" textLength="188.3319">Other_Peers</text>
+<rect x="1015" y="558.92" width="218.99" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<rect x="1006.3" y="567.68" width="218.99" height="66.347" fill="#FEFECE" filter="url(#a)" stroke="#A80036" stroke-width="3.2849"/>
+<text x="1021.5911" y="611.4692" fill="#000000" font-family="sans-serif" font-size="30.659" lengthAdjust="spacingAndGlyphs" textLength="188.3319">Other_Peers</text>
+<path d="m28.469 129.85h967.94v15.329l-21.899 21.899h-946.04v-37.228" fill="#eee" stroke="#000" stroke-width="2.1899"/>
+<rect x="28.469" y="129.85" width="1236.2" height="394.03" fill="none" stroke="#000" stroke-width="4.3798"/>
+<text x="61.3174" y="158.4698" fill="#000000" font-family="sans-serif" font-size="28.469" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="869.3926">B listening for incoming connections via closest Relay</text>
+<path d="m50.368 182.7h924.14v15.329l-21.899 21.899h-902.24v-37.228" fill="#eee" stroke="#000" stroke-width="2.1899"/>
+<rect x="50.368" y="182.7" width="935.09" height="228.91" fill="none" stroke="#000" stroke-width="4.3798"/>
+<text x="83.2164" y="211.3184" fill="#000000" font-family="sans-serif" font-size="28.469" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="825.5945">For each closest Relay via Circuit Relay v2 Protocol</text>
+<polygon points="156.58 257.74 134.68 266.5 156.58 275.26 147.82 266.5" fill="#A80036" stroke="#A80036" stroke-width="2.1899"/>
+<line x1="143.44" x2="469.73" y1="266.5" y2="266.5" stroke="#A80036" stroke-width="2.1899"/>
+<text x="169.7177" y="255.4074" fill="#000000" font-family="sans-serif" font-size="28.469" lengthAdjust="spacingAndGlyphs" textLength="286.8777">Establish connection</text>
+<polygon points="156.58 321.54 134.68 330.3 156.58 339.06 147.82 330.3" fill="#A80036" stroke="#A80036" stroke-width="2.1899"/>
+<line x1="143.44" x2="469.73" y1="330.3" y2="330.3" stroke="#A80036" stroke-width="2.1899"/>
+<text x="169.7177" y="319.2055" fill="#000000" font-family="sans-serif" font-size="28.469" lengthAdjust="spacingAndGlyphs" textLength="280.308">Request reservation</text>
+<polygon points="445.65 385.34 467.54 394.1 445.65 402.86 454.41 394.1" fill="#A80036" stroke="#A80036" stroke-width="2.1899"/>
+<line x1="132.49" x2="458.79" y1="394.1" y2="394.1" stroke="#A80036" stroke-width="2.1899"/>
+<text x="147.8186" y="383.0036" fill="#000000" font-family="sans-serif" font-size="28.469" lengthAdjust="spacingAndGlyphs" textLength="262.7887">Accept reservation</text>
+<polygon points="1098.2 497.6 1120.1 506.36 1098.2 515.12 1107 506.36" fill="#A80036" stroke="#A80036" stroke-width="2.1899"/>
+<line x1="471.92" x2="1111.4" y1="506.36" y2="506.36" stroke="#A80036" stroke-width="2.1899"/>
+<text x="487.2541" y="462.1311" fill="#000000" font-family="sans-serif" font-size="28.469" lengthAdjust="spacingAndGlyphs" textLength="282.4979">Advertise oneself as</text>
+<text x="487.2541" y="495.2705" fill="#000000" font-family="sans-serif" font-size="28.469" lengthAdjust="spacingAndGlyphs" textLength="600.0342">/&lt;RELAY_ADDR&gt;/p2p-circuit/&lt;PEER_ID_B&gt;</text>
+</svg>

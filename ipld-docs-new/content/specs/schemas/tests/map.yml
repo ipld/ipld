@@ -1,0 +1,37 @@
+schema: |
+  type SimpleMap {String:Int}
+expected: |
+  {
+    "types": {
+      "SimpleMap": {
+        "map": {
+          "keyType": "String",
+          "valueType": "Int"
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      { "a": 1, "b": 2, "c": 100 }
+    expected: |
+      { "a": 1, "b": 2, "c": 100 }
+  - actual: |
+      { }
+    expected: |
+      { }
+badBlocks:
+  - |
+    "fooz"
+  - |
+    true
+  - |
+    [ ]
+  - |
+    { "foo": true }
+  - |
+    { "a": "b" }
+  - |
+    { "a": true }
+
+# TODO: maps without string keys .. how to do in yaml?

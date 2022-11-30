@@ -178,4 +178,4 @@ Links are concretely implemented as [`CID`](/glossary/#cid)s.
 
 ## Implementation References
 
-Kinds in Go: https://github.com/ipld/go-ipld-prime/blob/master/kind.go
+Kinds in Go: https://github.com/ipld/go-ipld-prime/blob/master/datamodel/kind.go

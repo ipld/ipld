@@ -67,7 +67,7 @@ The described tree can represent a data structure with multiple, single or no va
 In order to modify the tree (inserting, updating, or removing one or multiple values) a part of the tree needs to be re-calculated. This section describes an internal procedure that is not exposed to the caller.
 The tree is (partially) re-calculated bottom-up.
 
-Starting at the inserted/modified leaf or node referencing a now deleted/removed leaf, successively walk up the tree.If a removed item was the only item in its node: Remove the node from its parent and Check if the hash/address/CID of a new leaf/node splits the parent chunk (split the parent node if yes).
+Starting at the inserted/modified leaf or node referencing a now deleted/removed leaf, successively walk up the tree. If a removed item was the only item in its node: Remove the node from its parent and Check if the hash/address/CID of a new leaf/node splits the parent chunk (split the parent node if yes).
     Then, check if a removed leaf/node was a 'splitting node' and the nodes need to be merged (only the last node in a chunk can be a splitting node). If splitting criterion holds for the last item of the node and there is the current node is succeeded by another node on the same level: merge the currend node with the succeeding node. Continue walking up the path. If at root and it is being split: Create a new root that links to the freshly split nodes. Return the new root CID.
 
 ![](https://i.imgur.com/xE0id0V.png)

@@ -35,7 +35,7 @@ https://www.dolthub.com/blog/2020-05-13-dolt-commit-graph-and-structural-sharing
 
 Prolly trees leverage content addresibility to create ordered search indexes similar to the common B+ tree structure used for databases, but with the added ability to determenistically merge trees together.
 
-At the highest level, Prolly Trees act as a key value store whith the ability to iterate over key ranges which are alphanumerically sorted. This property of sorted iteration is important for creating database indexes for a variety of use cases like full text search, sorting of large datasets, and arbitrary search queries.
+At the highest level, Prolly Trees act as a key value store whith the ability to iterate over key ranges which are lexicographically sorted. This property of sorted iteration is important for creating database indexes for a variety of use cases like full text search, sorting of large datasets, and arbitrary search queries.
 
 ### Search Tree
 

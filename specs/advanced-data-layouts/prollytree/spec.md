@@ -253,7 +253,7 @@ Get the closest cursor to a byte prefix
 ### CursorGetKey(Cursor) : key?
 
 1. If `CursorIsValid(Cursor)` is `false`, return `null` (or throw an error)
-2. Get the `key` from `cursor.node.keys` at `index`
+2. Get the `key` from `cursor.node.keys` at `cursor.index`
 3. return the `key`
 
 ### CursorGetValue(Cursor) : value?

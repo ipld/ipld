@@ -242,8 +242,8 @@ Get the closest cursor to a byte prefix
 	2. return the `cursor`
 3. Invoke `AdvanceCursor(cursor.parent)`
 4. If `CursorIsValid(cursor.parent)` is `false`
-	5. set `cursor.index` to `length`
-	6. return the `cursor`
+	1. set `cursor.index` to `length`
+	2. return the `cursor`
 6. Get the `link` from `CursorGetLink(cursor.parent)`
 7. Checgreater or k that `link` is not `null`, throw an error if it is
 8. Get the `node` ProllyNode from `link`

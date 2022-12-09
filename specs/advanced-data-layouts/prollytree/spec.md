@@ -75,7 +75,7 @@ Starting at the inserted/modified leaf or node referencing a now deleted/removed
 ![](https://i.imgur.com/nuvInkH.png)
 ![](https://i.imgur.com/zACS8gS.png)
 
-Pay attention to the fact that the boundary algorithm is not related with the node cid, i.e node cid is got after the boundary is generated and the node is saved in blockstore. Maybe in the future we can combine the boundary algorithm and cid. 
+Pay attention to the fact that the boundary algorithm is not related to the node CID, i.e the boundary is generated *before* the node CID is generated. Maybe in the future we can combine the boundary algorithm and CID. 
 
 ### Put/Remove/Update
 

@@ -153,13 +153,13 @@ The size is calculated from the size of the `bytes` when encoding a prolly tree 
 
 ### `ProllyTreeConfig.codec`
 
-This is the multicodec ID for the codec to use when encoding the tree.
+This is the multicodec code for the codec to use when encoding the tree.
 Generally it is reccommended to use DAG-CBOR unless you really know what you're doing.
 
 ### `ProllyTreeConfig.hashFunction`
 
-This is the multicodec ID for the hash function to use for generating CIDs.
-You should use whatever the default is for CIDv1 unless you really know what you're doing.
+This is the multicodec code for the hash function to use for generating CIDs.
+It is reccommended to use SHA2-256 for your hash function unless you know what you're doing.
 
 ### `ProllyTreeConfig.strategy`
 
@@ -173,14 +173,14 @@ This is a Map with different keys representing different strategies.
 
 This spec currently supports the `byteThreshold` strategy, however we are intentionally leaving room for further chunking strategies which use more advanced algorithms such as the Weibull Distribution strategy used in Dolt.
 
-### `ByteThresholdConfig`
+### `HashThresholdConfig`
 
 This is the strategy that was described in the [Peer to Peer Ordered Search Indexes](https://0fps.net/2020/12/19/peer-to-peer-ordered-search-indexes/) paper.
 
 It works by hashing a key+value pair, reading the last 4 bytes as a 32 bit unsigned integer, and checking how many bits are 0's relative to the chunking factor.
 
 The `chunkingFactor` must be less than the maximum value of a 32 bit unsigned integer.
-It is used to calculate a "chunking threshold" using the forumala `Math.floor(4294967295 / chunkingFactor)`.
+It is used to calculate a "chunking threshold" using the formula `Math.floor(4294967295 / chunkingFactor)`.
 It is reccommended to use powers of two to make it easier to relate to how many bits should be `0` in the chunking threshold.
 
 The larger the chunking factor, the less likely it is that a given keypair will result in a chunking boundry, and thus will lead to TreeNodes with more entries within them.
@@ -197,6 +197,7 @@ When serializing data into a CID+Block, one should use the codec and multihash t
 We will assume that there is a `getNode(cid)` API which loads IPLD Nodes from a CID, and a `saveNode(node) => {cid, bytes}` which will save a node and get back a CID and the byte contents used for generating the CID. Note that `saveNode` should use the same encoding and hash algorithm as the root of the tree based on the root `ProllyTreeConfig.codec` and `ProllyTreeConfig.hashFunction`.
 
 This section also relies on the existance of a `Cursor` structure to keep track of state when iterating through a prolly tree.
+This structure should keep track of a `TreeNode` that it is currently focused on, an `index` for the entry in the node which is being focused on, and optionally a `parent` Cursor for the parent `TreeNode` being focused on.
 Note that this is not mandatory for implementations and is more of a guide to help structure how the tree can be traversed.
 Implementations may want to use other approaches to recursive traversal and updating.
 
@@ -210,7 +211,7 @@ This is useful for performing searches for keys.
 1. Define a `Cursor` struct with a `index Integer`, `node TreeNode`, and`parent Cursor`
 2. Set `cursor.node` to the `TreeNode`
 3. Set `cursor.index` to `KeyIndex(cursor.node, prefix)`
-6. Start a loop
+4. Start a loop
 	1. if `IsLeaf(cursor.node)` is `true`, break the loop
 	2. get the `link` from `CursorGetValue(cursor)`
 	3. resolve the TreeNode at the `link` to `newNode`
@@ -219,7 +220,7 @@ This is useful for performing searches for keys.
 	6. set `cursor.parent` to `parent`
 	7. set `cursor.node` to `newNode`
 	8. set `cursor.index` to `KeyIndex(cursor.node, item)`
-7. return the `cursor`
+5. return the `cursor`
 
 ### IsLeaf(TreeNode) : Boolean
 
@@ -237,11 +238,11 @@ It can sometimes be set to an invalid position if a search failed or if there ar
 1. get the `length` of `cursor.node.keys`
 2. if `length` is `0`, return `false`
 3. if `cursor.index` is less than 0, return `false`
-4. if `cursor.index` is greater than or equal to `legnth`, return `false`
+4. if `cursor.index` is greater than or equal to `length`, return `false`
 
 ### CursorIsAtEnd(Cursor) : Boolean
 
-Check if the given cursor is at the end of it's TreeNode.
+Check if the given cursor is at the end of its TreeNode.
 This is used to check if there are more items that can be traversed over.
 
 1. Get the `length` of `cursor.node.keys`
@@ -312,7 +313,7 @@ This should be called after adding a key-value pair to a leaf TreeNode to determ
 1. Get the `ChunkingStrategy` from the `config`
 2. Get the `length` of the `cursor.node` from `save(cursor.node).bytes.length`
 3. If `length` is less than `config.minChunkSize` return `false`
-5. If the `ChunkingStrategy` is not a `ByteThresholdConfig`, return an error (unsupported chunking strategy)
+5. If the `ChunkingStrategy` is not a `HashThresholdConfig`, return an error (unsupported chunking strategy)
 6. Set `threshold` to `Math.floor(MAX_UNIT32 / config.chunkingFactor)`
 7. Get the `hash` function associated with the multicodec in `config.hashFunction`
 8. Calculate the `entryHash` from the `hash(CursorGetKey(cursor) + save(CursorGetValue(cursor)).bytes)`
@@ -423,7 +424,7 @@ Removes a key from a ProllyTree if it exists
 - Set `updatedTree.root` to `save(root).cid`
 - Return `updatedTree`
 
-### Search(TreeNode, prefix) : Iterator<key, value>
+### Search(TreeNode, start) : Iterator<key, value>
 
 This is the basis for how one can search through a tree.
 This may be exposed as a public method by implementors, though they may want to add additional features like an "end" instead of a prefix.
@@ -435,8 +436,6 @@ Applications should otherwise manually detect when to stop iterating based on th
 	- If `CursorIsValid(cursor)` is `false`
 		- Close the iterator and return
 	- Get the `key` from `CursorGetKey(cursor)`
-	- If `key` does not start with `prefix`
-		- Close the iterator and return
 	- Get the `value` from `CursorGetValue(cursor)`
 	- Yield the `key` and `value` from the iterator
 	- `AdvanceCursor(TreeNode)`

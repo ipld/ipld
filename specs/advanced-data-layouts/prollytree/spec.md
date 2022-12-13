@@ -371,12 +371,18 @@ The returned `TreeNode` is for the new root of the tree.
   - Return `RebalanceTree(cursor.parent, ProllyTreeConfig)`
 - Loop
   - If `CursorIsAtEnd(cursor)`
-    - If `cursor.parent` is `null` or `ShouldCreateBoundry(ProllyTreeConfig, cursor)` is `true`
+    - If `cursor.parent` is `null` or `CursorAtChunkingBoundry(ProllyTreeConfig, cursor)` is `true`
       - break the loop
-    - Else, if `cursor.parent` has another prolly node
-      - merge it with `cursor.node`
+    - if `CursorIsAtEnd(cursor.parent)` is `true`
     	- break the loop
-  - If `ShouldCreateBoundry(ProllyTreeConfig, cursor)` is `false`
+    - Set `right` to `load(cursor.parent.values[cursor.parent.index + 1])`
+    - Create a new `merged` `TreeNode` from `MergeNodes(cursor.node, right)`
+    - Get the `length` from `save(merged).bytes`, as well as the `cid`
+    - If `length` is less than or equal to `config.maxChunkSize`
+    	- set `cursor.parent.node.values[cursor.parent.index]` to `cid`
+    	- remove the entry in `cursor.parent.node` at `cursor.parent.index + 1`
+  	- break the loop
+  - If `CursorAtChunkingBoundry(ProllyTreeConfig, cursor)` is `false`
   	- Call `AdvanceCursor(cursor)`
   	- continue to next loop cycle
 	- Call `SplitCursor(cursor)`

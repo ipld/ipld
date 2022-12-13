@@ -105,6 +105,8 @@ type ChunkingStrategy union {
 type ProllyTreeConfig struct {
 	minChunkSize Int
 	maxChunkSize Int
+	codec Int
+	hashFunction Int
 	strategy ChunkingStrategy
 } representation tuple
 ```
@@ -144,8 +146,20 @@ The size is calculated from the size of the `bytes` when encoding a prolly tree 
 
 ### `ProllyTreeConfig.maxChunkSize`
 
-The maximum size a chunk could be before it needs to be split regardless of the chunk boundries
+The maximum size a chunk could be before it needs to be split regardless of the chunk boundries.
+If a node reaches this size (or larger) after an insertion, it will trigger a chunking boundry regardless of the chunking strategy used.
+This is in order to avoid attacks that make chunks larger than necessary.
 The size is calculated from the size of the `bytes` when encoding a prolly tree node.
+
+### `ProllyTreeConfig.codec`
+
+This is the multicodec ID for the codec to use when encoding the tree.
+Generally it is reccommended to use DAG-CBOR unless you really know what you're doing.
+
+### `ProllyTreeConfig.hashFunction`
+
+This is the multicodec ID for the hash function to use for generating CIDs.
+You should use whatever the default is for CIDv1 unless you really know what you're doing.
 
 ### `ProllyTreeConfig.strategy`
 
@@ -180,12 +194,11 @@ Left to the implementation is how to generate and load data from IPLD.
 Whenever a Link is resolved to a TreeNode or ProllyTreeConfig, this is done via the IPLD LinkSystem which it an implementation detail outside of the scope of this document.
 
 When serializing data into a CID+Block, one should use the codec and multihash that's either used by root CID of the tree you are modifying, or specificed explicitly during tree creation. Blocks should also be saved to the IPLD LinkSystem and how this is done is also outside the scope of this document.
-We will assume that there is a `getNode(cid)` API which loads IPLD Nodes from a CID, and a `saveNode(node) => {cid, bytes}` which will save a node and get back a CID and the byte contents used for generating the CID. Note that `saveNode` should use the same encoding and hash algorithm as the root of the tree based on the root `ProllyTreeConfig`
+We will assume that there is a `getNode(cid)` API which loads IPLD Nodes from a CID, and a `saveNode(node) => {cid, bytes}` which will save a node and get back a CID and the byte contents used for generating the CID. Note that `saveNode` should use the same encoding and hash algorithm as the root of the tree based on the root `ProllyTreeConfig.codec` and `ProllyTreeConfig.hashFunction`.
 
 This section also relies on the existance of a `Cursor` structure to keep track of state when iterating through a prolly tree.
-
 Note that this is not mandatory for implementations and is more of a guide to help structure how the tree can be traversed.
-Implementations may want to use other approaches to recursive traversal.
+Implementations may want to use other approaches to recursive traversal and updating.
 
 Not mentioned here is a method for performing batch operations such as sequential writes.
 

@@ -5,8 +5,8 @@
 Many applications have been using IPLD to represent large datasets in use cases such as blockchains or decentralized databases.
 One side effect is that querying large amounts of data has become a more common need which often gets solved with centralized database indexes.
 IPLD Prolly Trees are an important step in this direction in that they provide an interface similar to a Database's B+ tree.
-Some of the immediate benefits of using Prolly Trees over regular B+ Trees is that Prolly Trees are self-balancing and can be determenistically merged with other trees which is important to reduce the amount of restructuring necessary for collaborativ index creation.
-In this document we will build off of prior art in [Probabilistic B-Trees](https://github.com/attic-labs/noms/blob/master/doc/intro.md#prolly-trees-probabilistic-b-trees) to define a speficication on how they can be represented in IPLD, how they can be constructed, how they can be queried, and how multiple trees can be merged together.
+Some of the immediate benefits of using Prolly Trees over regular B+ Trees is that Prolly Trees are self-balancing and can be deterministically merged with other trees which is important to reduce the amount of restructuring necessary for collaborativ index creation.
+In this document we will build off of prior art in [Probabilistic B-Trees](https://github.com/attic-labs/noms/blob/master/doc/intro.md#prolly-trees-probabilistic-b-trees) to define a specification on how they can be represented in IPLD, how they can be constructed, how they can be queried, and how multiple trees can be merged together.
 
 ## References
 
@@ -33,9 +33,9 @@ https://www.dolthub.com/blog/2020-05-13-dolt-commit-graph-and-structural-sharing
 
 ## Summary/Overview
 
-Prolly trees leverage content addresibility to create ordered search indexes similar to the common B+ tree structure used for databases, but with the added ability to determenistically merge trees together.
+Prolly trees leverage content addressability to create ordered search indexes similar to the common B+ tree structure used for databases, but with the added ability to determenistically merge trees together.
 
-At the highest level, Prolly Trees act as a key value store whith the ability to iterate over key ranges which are lexicographically sorted. This property of sorted iteration is important for creating database indexes for a variety of use cases like full text search, sorting of large datasets, and arbitrary search queries.
+At the highest level, Prolly Trees act as a key value store with the ability to iterate over key ranges which are lexicographically sorted. This property of sorted iteration is important for creating database indexes for a variety of use cases like full text search, sorting of large datasets, and arbitrary search queries.
 
 ### Search Tree
 
@@ -64,7 +64,7 @@ In order to modify the tree (inserting, updating, or removing one or multiple va
 The tree is (partially) rebalance bottom-up.
 
 Starting at the inserted/modified leaf or node referencing a now deleted/removed leaf, successively walk up the tree. If a removed item was the only item in its node: Remove the node from its parent and Check if the hash/address/CID of a new leaf/node splits the parent chunk (split the parent node if yes).
-Then, check if a removed leaf/node was a 'splitting node' and the nodes need to be merged (only the last node in a chunk can be a splitting node). If splitting criterion holds for the last item of the node and there is the current node is succeeded by another node on the same level: merge the currend node with the succeeding node. Continue walking up the path. If at root and it is being split: Create a new root that links to the freshly split nodes. Return the new root CID.
+Then, check if a removed leaf/node was a 'splitting node' and the nodes need to be merged (only the last node in a chunk can be a splitting node). If splitting criterion holds for the last item of the node and there is the current node is succeeded by another node on the same level: merge the current node with the succeeding node. Continue walking up the path. If at root and it is being split: Create a new root that links to the freshly split nodes. Return the new root CID.
 
 Pay attention to the fact that the boundary algorithm is not related to the node CID, i.e the boundary is generated *before* the node CID is generated.
 
@@ -119,11 +119,11 @@ and a `config` link to the ProllyTreeConfig which has infomration about the chun
 ### `TreeNode`
 
 This is the "Tree" part of Prolly Trees and is made to be general purpose.
-We can potentially expec to use the TreeNode structure in subsequent specs with different types of trees.
+We can potentially expect to use the TreeNode structure in subsequent specs with different types of trees.
 
 ### `TreeeNode.keys`
 
-Raw keys(keys/values input from users) for leaf node. Key-value pairs are sorted by byte value with the "larger" keys being at the end. Values are comared at the first byte, and going down to the end. This means that keys that are just a prefix come before keys that are prefix + 1 byte.
+Raw keys(keys/values input from users) for leaf node. Key-value pairs are sorted by byte value with the "larger" keys being at the end. Values are compared at the first byte, and going down to the end. This means that keys that are just a prefix come before keys that are prefix + 1 byte.
 
 ### `TreeNode.values`
 
@@ -186,7 +186,7 @@ It is reccommended to use powers of two to make it easier to relate to how many 
 The larger the chunking factor, the less likely it is that a given keypair will result in a chunking boundry, and thus will lead to TreeNodes with more entries within them.
 
 It also contains a `hashFunction` field which points at a hash function in the [multicodec table](https://github.com/multiformats/multicodec/blob/master/table.csv) to use for hashing.
-You should ensure that you are using a cryptographic hash function in order to make it more difficult to create collissions and to ensure you have an even distribution of values.
+You should ensure that you are using a cryptographic hash function in order to make it more difficult to create collisions and to ensure you have an even distribution of values.
 
 ## Algorithm in detail
 

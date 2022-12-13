@@ -40,13 +40,9 @@ At the highest level, Prolly Trees act as a key value store whith the ability to
 ### Search Tree
 
 The basic structure is that of an ordered search tree: The contained keys are organised such that they can be found (inserted, updated, ...) efficiently by value.
-
 To efficiently find keys, the tree is traversed top-to-bottom and the non-leaf nodes help navigating/comparing the values efficiently. An intermediate node contains several ordered key-address pairs, which link to further nodes (intermediate or leaf) on the next lower level.
-
 Levels go from `0` representing Leaf Nodes, and go up for each level in the tree. The root of the tree will have the highest level in the tree and can give an estimate of it's overall size.
-
 Leaf nodes contain the actual Key-Value pairs for the tree which can be iterated over as part of the overall tree iteration.
-
 
 ### Chunking
 
@@ -345,6 +341,7 @@ Merge two tree nodes together.
 - Create a new `TreeNode` `node`
 - Set `node.keys` to `left.keys`, and concat it with `right.keys`
 - Set `node.values` to `left.values`, and concat it with `right.values`
+- Return `node`
 
 ### RebalanceTree(Cursor, ProllyTreeConfig) : TreeNode
 
@@ -357,25 +354,23 @@ The returned `TreeNode` is for the new root of the tree.
   - if `cursor.parent` is null
     - return `cursor.node`
   - Remove the entry at `cursor.parent.index` in `cursor.parent.node`
-  - Return `RebalanceTree(cursor.parent)`
+  - Return `RebalanceTree(cursor.parent, ProllyTreeConfig)`
 - Loop
   - If `CursorIsAtEnd(cursor)`
     - If `cursor.parent` is `null` or `ShouldCreateBoundry(ProllyTreeConfig, cursor)` is `true`
       - break the loop
     - Else, if `cursor.parent` has another prolly node
-      -  merge it with `cursor.node`
+      - merge it with `cursor.node`
     	- break the loop
   - If `ShouldCreateBoundry(ProllyTreeConfig, cursor)` is `false`
   	- Call `AdvanceCursor(cursor)`
   	- continue to next loop cycle
 	- Call `SplitCursor(cursor)`
-- Return `RebalanceTree(cursor.parent)`
+- Return `RebalanceTree(cursor.parent, ProllyTreeConfig)`
 
 ### Put(ProllyTree tree, key, value) : ProllyTree
 
 This is a public facing API for setting keys in the prolly tree.
-
-TODO: If `length` is equal to or greater than `config.maxChunkSize`, remove the current key to another node
 
 - Get the `config` from the `tree` using `load(tree.config)`
 - Get root `node` using `load(tree.root)`
@@ -392,10 +387,17 @@ TODO: If `length` is equal to or greater than `config.maxChunkSize`, remove the 
 	  - If `length` > `config.maxChunkSize`
 	  - call `SplitCursor(cursor)`
 - TODO: If false, how is this reached? It means that there were no keys even "close" to `key`?
-- return `RebalanceTree(cursor)`
+- get a new `root` from  `RebalanceTree(cursor, config)`
+- Create a new `updatedTree` by duplicating `tree`
+- Set `updatedTree.root` to `root`
+- Return `updatedTree`
 
-### Delete(TreeNode, key, value) : TreeNode
+### Delete(ProllyTree tree, key) : ProllyTree
 
+Removes a key from a ProllyTree if it exists
+
+- Get the `config` from the `tree` using `load(tree.config)`
+- Get root `node` using `load(tree.root)`
 - Get `cursor` from `CursorAtItem(TreeNode, key)`
 - If `CursorIsValid(cursor)` is `false`
 	- Return the `TreeNode`
@@ -403,9 +405,16 @@ TODO: If `length` is equal to or greater than `config.maxChunkSize`, remove the 
 - If it is
 	- Remove the key in `cursor.node.keys` at `cursor.index`
 	- Remove the value in `cursor.node.values` at `cursor.index`
-- return `RebalanceTree(cursor)`
+- get a new `root` from  `RebalanceTree(cursor, config)`
+- Create a new `updatedTree` by duplicating `tree`
+- Set `updatedTree.root` to `save(root).cid`
+- Return `updatedTree`
 
 ### Search(TreeNode, prefix) : Iterator<key, value>
+
+This is the basis for how one can search through a tree.
+This may be exposed as a public method by implementors, though they may want to add additional features like an "end" instead of a prefix.
+Applications should otherwise manually detect when to stop iterating based on the last item's key that was yielded.
 
 - Get `cursor` from `CursorAtItem(TreeNode, key)`
 - Create an Iterator (language dependent)
@@ -417,7 +426,7 @@ TODO: If `length` is equal to or greater than `config.maxChunkSize`, remove the 
 		- Close the iterator and return
 	- Get the `value` from `CursorGetValue(cursor)`
 	- Yield the `key` and `value` from the iterator
-	- AdvanceCursor(TreeNode)
+	- `AdvanceCursor(TreeNode)`
 
 ### Diff(TreeNode base, TreeNode new) : Iterator< Diff >
 

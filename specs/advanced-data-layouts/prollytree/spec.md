@@ -121,7 +121,7 @@ and a `config` link to the ProllyTreeConfig which has infomration about the chun
 This is the "Tree" part of Prolly Trees and is made to be general purpose.
 We can potentially expect to use the TreeNode structure in subsequent specs with different types of trees.
 
-### `TreeeNode.keys`
+### `TreeNode.keys`
 
 Raw keys(keys/values input from users) for leaf node. Key-value pairs are sorted by byte value with the "larger" keys being at the end. Values are compared at the first byte, and going down to the end. This means that keys that are just a prefix come before keys that are prefix + 1 byte.
 

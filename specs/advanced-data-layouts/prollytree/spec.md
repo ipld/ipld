@@ -304,7 +304,7 @@ If the TreeNode isn't a leaf, the function will traverse into it to find the lea
 5. Get `value` from `CursorGetValue(Cursor)`
 6. Return `value`
 
-### CursorAtChunkingBoundry(ProllyTreeConfig config, Cursor) : Boolean
+### CursorAtChunkingBoundary(ProllyTreeConfig config, Cursor) : Boolean
 
 Checks if the cursor is currently pointing to a chunking boundry.
 If `true`, a new TreeNode should be created for all subsequent keys.

@@ -84,7 +84,7 @@ type ProllyTree struct {
   root &TreeNode
 } representation tuple
 
-type TreeeNode struct {
+type TreeNode struct {
   # Is leaf when level is 0
   level Int
   keys [Bytes]

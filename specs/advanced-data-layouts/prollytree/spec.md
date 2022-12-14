@@ -103,11 +103,11 @@ type ChunkingStrategy union {
 } representation keyed
 
 type ProllyTreeConfig struct {
-	minChunkSize Int
-	maxChunkSize Int
-	codec Int
-	hashFunction Int
-	strategy ChunkingStrategy
+  minChunkSize Int
+  maxChunkSize Int
+  codec Int
+  hashFunction Int
+  strategy ChunkingStrategy
 } representation tuple
 ```
 
@@ -212,14 +212,14 @@ This is useful for performing searches for keys.
 2. Set `cursor.node` to the `TreeNode`
 3. Set `cursor.index` to `KeyIndex(cursor.node, prefix)`
 4. Start a loop
-	1. if `IsLeaf(cursor.node)` is `true`, break the loop
-	2. get the `link` from `CursorGetValue(cursor)`
-	3. resolve the TreeNode at the `link` to `newNode`
-	4. Set `parent` to `cursor`
-	5. set `cursor` to a new `Cursor` struct
-	6. set `cursor.parent` to `parent`
-	7. set `cursor.node` to `newNode`
-	8. set `cursor.index` to `KeyIndex(cursor.node, item)`
+  1. if `IsLeaf(cursor.node)` is `true`, break the loop
+  2. get the `link` from `CursorGetValue(cursor)`
+  3. resolve the TreeNode at the `link` to `newNode`
+  4. Set `parent` to `cursor`
+  5. set `cursor` to a new `Cursor` struct
+  6. set `cursor.parent` to `parent`
+  7. set `cursor.node` to `newNode`
+  8. set `cursor.index` to `KeyIndex(cursor.node, item)`
 5. return the `cursor`
 
 ### IsLeaf(TreeNode) : Boolean
@@ -261,12 +261,12 @@ When reaching the end of the current TreeNode, the parent cursor will be increme
 1. Get the `length` of the `cursor.node.keys`
 2. if `cursor.index` is less than `length - 1`, increment `cursor.index` and return the `cursor`
 3. If `cursor.parent` is `null`
-	1. set `cursor.index` to `length`
-	2. return the `cursor`
+  1. set `cursor.index` to `length`
+  2. return the `cursor`
 3. Invoke `AdvanceCursor(cursor.parent)`
 4. If `CursorIsValid(cursor.parent)` is `false`
-	1. set `cursor.index` to `length`
-	2. return the `cursor`
+  1. set `cursor.index` to `length`
+  2. return the `cursor`
 6. Get the `link` from `CursorGetValue(cursor.parent)`
 7. Check that `link` is not `null`, throw an error if it is
 8. Get the `node` TreeNode from using `load(link)`
@@ -333,13 +333,13 @@ This will add a new child to the parent node, and create a parent node+cursor if
 
 - Get `left` and `right` from `SplitNode(cursor.node, cursor.index)`
 - If `cursor.parent` is null
-	- Create a new `TreeNode` `parentNode`
-	- Set `parentNode.level` to `cursor.node.level + 1`
-	- Set `parentNode.keys[0]` to `left.keys[0]`
-	- Create a new Cursor `parentCursor`
-	- Set `parentCursor.index` to `0`
-	- Set `parentCursor.node` to `parentNode`
-	- Set `cursor.parent` to `parentCursor`
+  - Create a new `TreeNode` `parentNode`
+  - Set `parentNode.level` to `cursor.node.level + 1`
+  - Set `parentNode.keys[0]` to `left.keys[0]`
+  - Create a new Cursor `parentCursor`
+  - Set `parentCursor.index` to `0`
+  - Set `parentCursor.node` to `parentNode`
+  - Set `cursor.parent` to `parentCursor`
 - Set the entry at `cursor.parent.node` at `cursor.parent.index` to `left.keys[0]`,`save(left).cid`
 - Insert a new entry into `cursor.parent.node` at `cursor.parent.index+1` to `right.keys[0]`,`save(right).cid`
 - Increment `cursor.parent.index` by `1`
@@ -351,7 +351,7 @@ This will add a new child to the parent node, and create a parent node+cursor if
 Merge two tree nodes together.
 
 - If `left.level` != `right.level`
-	- Return an error (incompatible tree node levels)
+  - Return an error (incompatible tree node levels)
 - Create a new `TreeNode` `node`
 - Set `node.keys` to `left.keys`, and concat it with `right.keys`
 - Set `node.values` to `left.values`, and concat it with `right.values`
@@ -374,18 +374,18 @@ The returned `TreeNode` is for the new root of the tree.
     - If `cursor.parent` is `null` or `CursorAtChunkingBoundry(ProllyTreeConfig, cursor)` is `true`
       - break the loop
     - if `CursorIsAtEnd(cursor.parent)` is `true`
-    	- break the loop
+      - break the loop
     - Set `right` to `load(cursor.parent.values[cursor.parent.index + 1])`
     - Create a new `merged` `TreeNode` from `MergeNodes(cursor.node, right)`
     - Get the `length` from `save(merged).bytes`, as well as the `cid`
     - If `length` is less than or equal to `config.maxChunkSize`
-    	- set `cursor.parent.node.values[cursor.parent.index]` to `cid`
-    	- remove the entry in `cursor.parent.node` at `cursor.parent.index + 1`
-  	- break the loop
+      - set `cursor.parent.node.values[cursor.parent.index]` to `cid`
+      - remove the entry in `cursor.parent.node` at `cursor.parent.index + 1`
+    - break the loop
   - If `CursorAtChunkingBoundry(ProllyTreeConfig, cursor)` is `false`
-  	- Call `AdvanceCursor(cursor)`
-  	- continue to next loop cycle
-	- Call `SplitCursor(cursor)`
+    - Call `AdvanceCursor(cursor)`
+    - continue to next loop cycle
+  - Call `SplitCursor(cursor)`
 - Return `RebalanceTree(cursor.parent, ProllyTreeConfig)`
 
 ### Put(ProllyTree tree, key, value) : ProllyTree
@@ -396,16 +396,16 @@ This is a public facing API for setting keys in the prolly tree.
 - Get root `node` using `load(tree.root)`
 - Get `cursor` from `CursorAtItem(node, key)`
 - If `CursorIsValid(cursor)` is `true`
-	- check if the key is at `CursorGetKey`
-	- If it is
-		- Set the value in the `cursor.node.values` at `cursor.index` to `value`
-	- If it isn't
-		- add the `key` to `cursor.node.keys` after the `cursor.index`, shifting subsequent items down
-		- add the `values` to `cursor.node.values` after the `cursor.index`, shifting subsequent items down
-		- increment `cursor.index` by `1`
-	- Get the `length` from `save(cursor.node).bytes`
-	  - If `length` > `config.maxChunkSize`
-	  - call `SplitCursor(cursor)`
+  - check if the key is at `CursorGetKey`
+  - If it is
+    - Set the value in the `cursor.node.values` at `cursor.index` to `value`
+  - If it isn't
+    - add the `key` to `cursor.node.keys` after the `cursor.index`, shifting subsequent items down
+    - add the `values` to `cursor.node.values` after the `cursor.index`, shifting subsequent items down
+    - increment `cursor.index` by `1`
+  - Get the `length` from `save(cursor.node).bytes`
+    - If `length` > `config.maxChunkSize`
+    - call `SplitCursor(cursor)`
 - TODO: If false, how is this reached? It means that there were no keys even "close" to `key`?
 - get a new `root` from  `RebalanceTree(cursor, config)`
 - Create a new `updatedTree` by duplicating `tree`
@@ -420,11 +420,11 @@ Removes a key from a ProllyTree if it exists
 - Get root `node` using `load(tree.root)`
 - Get `cursor` from `CursorAtItem(TreeNode, key)`
 - If `CursorIsValid(cursor)` is `false`
-	- Return the `TreeNode`
+  - Return the `TreeNode`
 - check if the key is at `CursorGetKey(cursor)`
 - If it is
-	- Remove the key in `cursor.node.keys` at `cursor.index`
-	- Remove the value in `cursor.node.values` at `cursor.index`
+  - Remove the key in `cursor.node.keys` at `cursor.index`
+  - Remove the value in `cursor.node.values` at `cursor.index`
 - get a new `root` from  `RebalanceTree(cursor, config)`
 - Create a new `updatedTree` by duplicating `tree`
 - Set `updatedTree.root` to `save(root).cid`
@@ -439,12 +439,12 @@ Applications should otherwise manually detect when to stop iterating based on th
 - Get `cursor` from `CursorAtItem(TreeNode, key)`
 - Create an Iterator (language dependent)
 - On each pull from the iterator
-	- If `CursorIsValid(cursor)` is `false`
-		- Close the iterator and return
-	- Get the `key` from `CursorGetKey(cursor)`
-	- Get the `value` from `CursorGetValue(cursor)`
-	- Yield the `key` and `value` from the iterator
-	- `AdvanceCursor(TreeNode)`
+  - If `CursorIsValid(cursor)` is `false`
+    - Close the iterator and return
+  - Get the `key` from `CursorGetKey(cursor)`
+  - Get the `value` from `CursorGetValue(cursor)`
+  - Yield the `key` and `value` from the iterator
+  - `AdvanceCursor(TreeNode)`
 
 ### Diff(TreeNode base, TreeNode new) : Iterator< Diff >
 

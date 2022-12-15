@@ -171,7 +171,8 @@ It is reccommended to use SHA2-256 for your hash function unless you know what y
 ### `ProllyTreeConfig.hashLength`
 
 This is the multihash length parameter which should be used for generating CIDs.
-It can be set to `null` or `-1` to use the default hash length from the hash function output.
+It can be set to `null` to use the default hash length from the hash function output.
+Otherwise it should be greater than `0`.
 You should generally use the default unless you have particular needs for shortening CIDs.
 Setting this to lower values increases the chances of collisions when encoding data.
 

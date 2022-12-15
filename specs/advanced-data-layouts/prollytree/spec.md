@@ -104,8 +104,10 @@ type ChunkingStrategy union {
 type ProllyTreeConfig struct {
   minChunkSize Int
   maxChunkSize Int
+  cidVersion Int
   codec Int
   hashFunction Int
+  nullable hashLength Int
   strategy ChunkingStrategy
 } representation tuple
 ```
@@ -151,6 +153,11 @@ If a node reaches this size (or larger) after an insertion, it will trigger a ch
 This is in order to avoid attacks that make chunks larger than necessary.
 The size is calculated from the size of the `bytes` when encoding a prolly tree node.
 
+### `ProllyTreeConfig.cidVersion`
+
+This is the version number for the CID version that should be used for encoding links in the tree.
+It is reccommended to use version `1`.
+
 ### `ProllyTreeConfig.codec`
 
 This is the multicodec code for the codec to use when encoding the tree.
@@ -160,6 +167,13 @@ Generally it is reccommended to use DAG-CBOR unless you really know what you're 
 
 This is the multicodec code for the hash function to use for generating CIDs.
 It is reccommended to use SHA2-256 for your hash function unless you know what you're doing.
+
+### `ProllyTreeConfig.hashLength`
+
+This is the multihash length parameter which should be used for generating CIDs.
+It can be set to `null` or `-1` to use the default hash length from the hash function output.
+You should generally use the default unless you have particular needs for shortening CIDs.
+Setting this to lower values increases the chances of collisions when encoding data.
 
 ### `ProllyTreeConfig.strategy`
 

@@ -40,9 +40,9 @@ At the highest level, Prolly Trees act as a key value store with the ability to 
 ### Search Tree
 
 The basic structure is that of an ordered search tree: The contained keys are organised such that they can be found (inserted, updated, ...) efficiently by value.
-To efficiently find keys, the tree is traversed top-to-bottom and the non-leaf nodes help navigating/comparing the values efficiently. An intermediate node contains several ordered key-address pairs, which link to further nodes (intermediate or leaf) on the next lower level.
-Levels go from `0` representing Leaf Nodes, and go up for each level in the tree. The root of the tree will have the highest level in the tree and can give an estimate of it's overall size.
-Leaf nodes contain the actual Key-Value pairs for the tree which can be iterated over as part of the overall tree iteration.
+To efficiently find keys, the tree is traversed top-to-bottom and the non-leaf nodes help navigating/comparing the values efficiently.
+An intermediate node contains several ordered key-address pairs, which link to further nodes (intermediate or leaf) on the next lower level.
+Leaf nodes are identified using an `isLeaf` flag which tells the reader to stop trying to traverse deeper and to treat the values as actual values.
 
 ### Chunking
 
@@ -85,8 +85,7 @@ type ProllyTree struct {
 } representation tuple
 
 type TreeNode struct {
-  # Is leaf when level is 0
-  level Int
+  isLeaf Boolean
   keys [Bytes]
   # If a leaf, contains entry valies
   # If an intermediate node, contains Links to further TreeNodes
@@ -131,9 +130,10 @@ Values corresponding to keys.
 For leaf nodes these will be Links pointing to additional
 Values can point to arbitrary IPLD nodes and it is up to applications to generate and process them.
 
-### `TreeNode.level`
+### `TreeNode.isLeaf`
 
-0 for leaf nodes, and add 1 for parent levels (and incrementing as more parents are added)
+A flag that gets set when a treenode is a leaf or an intermediate node.
+If `isLeaf` is false, all the `values` should be Links pointing to other TreeNodes
 
 ### `ProllyTreeConfig`
 
@@ -212,7 +212,7 @@ This is useful for performing searches for keys.
 2. Set `cursor.node` to the `TreeNode`
 3. Set `cursor.index` to `KeyIndex(cursor.node, prefix)`
 4. Start a loop
-  1. if `IsLeaf(cursor.node)` is `true`, break the loop
+  1. if `cursor.node.isLeaf` is `true`, break the loop
   2. get the `link` from `CursorGetValue(cursor)`
   3. resolve the TreeNode at the `link` to `newNode`
   4. Set `parent` to `cursor`
@@ -221,14 +221,6 @@ This is useful for performing searches for keys.
   7. set `cursor.node` to `newNode`
   8. set `cursor.index` to `KeyIndex(cursor.node, item)`
 5. return the `cursor`
-
-### IsLeaf(TreeNode) : Boolean
-
-Check to see if a given TreeNode is for a leaf, or if it is an intermediate node in the tree.
-
-1. get the `level` of the `TreeNode`
-2. if the `level` is `0` return `true`
-3. else return `false`
 
 ### CursorIsValid(Cursor) : Boolean
 
@@ -286,7 +278,7 @@ Get the current key pointed to by a cursor.
 
 Get the current value pointed to by the cursor.
 
-1. If `IsLeaf(cursor.node)` is `false`, return `null` (or throw an error)
+1. If `cursor.node.isLeaf` is `false`, return `null` (or throw an error)
 1. If `CursorIsValid(Cursor)` is `false`, return `null` (or throw an error)
 2. Get the `value` from `cursor.node.values` at `cursor.index`
 3. return the `value`
@@ -334,7 +326,7 @@ This will add a new child to the parent node, and create a parent node+cursor if
 - Get `left` and `right` from `SplitNode(cursor.node, cursor.index)`
 - If `cursor.parent` is null
   - Create a new `TreeNode` `parentNode`
-  - Set `parentNode.level` to `cursor.node.level + 1`
+  - Set `parentNode.isLeaf` to `false`
   - Set `parentNode.keys[0]` to `left.keys[0]`
   - Create a new Cursor `parentCursor`
   - Set `parentCursor.index` to `0`
@@ -350,8 +342,8 @@ This will add a new child to the parent node, and create a parent node+cursor if
 
 Merge two tree nodes together.
 
-- If `left.level` != `right.level`
-  - Return an error (incompatible tree node levels)
+- If `left.isLeaf` != `right.isLeaf`
+  - Return an error, cannot merge leaves with intermediate nodes.
 - Create a new `TreeNode` `node`
 - Set `node.keys` to `left.keys`, and concat it with `right.keys`
 - Set `node.values` to `left.values`, and concat it with `right.values`

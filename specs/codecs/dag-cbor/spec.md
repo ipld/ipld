@@ -104,19 +104,19 @@ Go users are encouraged to use **[go-ipld-prime]** for DAG-CBOR encoding and dec
 
 **[go-ipld-cbor]** and **[go-ipld-prime]** adhere to this specification, with the following caveats:
 
- * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
+ * Strictness is not enforced on decode; as per the items listed above in [Decode strictness](#decode-strictness).
  * [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` are accepted for decode and encode.
 
 **[cbor-gen]** adheres to this specification with the following caveats:
 
- * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
+ * Strictness is not enforced on decode; as per the items listed above in [Decode strictness](#decode-strictness).
  * Map keys are sorted in alphanumeric order using [sort.Strings()] on encode.
 
 ### Java
 
 [Java IPLD from Peergos] adheres to this specification, with the following caveats:
 
- * Strictness is not enforced on decode; as per the items listed above in [#decode-strictness](Decode strictness).
+ * Strictness is not enforced on decode; as per the items listed above in [Decode strictness](#decode-strictness).
  * Floats are disabled.
 
 ## Limitations

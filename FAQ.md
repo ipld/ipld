@@ -67,3 +67,16 @@ Enums are a scalar with countable cardinality.
 Unions are also known as "sum types" in some literature.
 We latched onto the term "union" because A) it's one word; and B) due to the popularization of that term for it in Facebook's GraphQL.
 Another common term for this concept is "variant".
+
+
+ADL-related
+-----------
+
+### Why couldn't you just bake in ADL signalling to the serial data in one clear way?
+
+Two major reasons:
+
+- We want to allow the same data to be viewed using various ADLs!  This is a critical feature -- and if the signalling mechanism is always embedded in the data itself, it makes this harder, not easier.
+- We don't want the IPLD Data Model to end up with "reserved words" -- and reserved words would be a requirement if we were baking ADL signalling into the serial data.  We won't go there; that would effectively break IPLD's promises for supporting arbitrary data.
+
+This means we end up with [many options for ADL signalling](/docs/advanced-data-layouts/signalling/).

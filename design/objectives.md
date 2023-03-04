@@ -20,6 +20,51 @@ are all a key part of enabling that.
 IPLD is a body of work to move forward on all those fronts.
 
 
+### Concretely
+
+The goal of IPLD is to make it possible to build "the next git" in hours, instead of days.
+(Or weeks, instead of months: whatever the original timescale is, slide it down a whole order of magnitude.)
+
+We aim to do this by taking a bunch of the practical problems you need to solve to build a decentralized / content-addressed system,
+and turn them into non-issues: either by making solutions so good there's no need to argue with them (CIDs);
+or, by making it into a pluggable system so that you can make one choice now, and defer worrying about it again until much later,
+and have agility "for free" whenever it becomes necessary to change (multicodecs, multihashes, etc).
+
+On top of that, we start adding superpowers with more library layers:
+ADLs provide sharding and scaling;
+Schemas provide a design language and ways to talk about data migrations;
+and features like Selectors to describe graph walks unlock whole other flourishings of ecosystems,
+like graph-based data transfer systems, etc.
+
+
+
+Comparisons
+-----------
+
+### Databases
+
+We want IPLD to provide many of the useful attributes of an SQL-style database for purely local/offline applications:
+IPLD Schemas and IPLD Selectors provide features comparable to DDLs and SQL,
+and set the stage for building migration systems.
+ADLs provide features comparable to database indexing.
+
+At the same time, IPLD works on a concept of "blocks" which are much more comparable to messages:
+they're easy to send and receive over the network, and critically, can be regarded individually
+(there's no supposition of monolithicity, as SQL-style databases have).
+And the IPLD Data Model is fundamentally more similar to document stores than relational databases.
+
+Our aim is that IPLD should straddle this divide between databases and message systems, and operate on either side of it gracefully.
+The same libraries and concepts and tooling should work well regardless of if you're building an offline app
+or a massively distributed system with remote actors coming and going and sending messages all the time.
+
+
+<!--
+
+The below is a bunch of true stuff, and explains how we got where we did on a bunch of key design junctures,
+but it's also just awful as a wall of text.
+If it's necessary to present this, we should workshop it until getting to some better way to present it.
+
+
 Things IPLD is concerned with
 -----------------------------
 
@@ -79,21 +124,4 @@ Things not in the scope of IPLD
   (The libp2p project is also pursuing useful work in networking and focused on decentralized systems;
   it's not directly related to IPLD, but they should work well together, and you might want to check it out.)
 
-
-Comparisons
------------
-
-### Databases
-
-We want IPLD to provide many of the useful attributes of an SQL-style database for purely local/offline applications:
-IPLD Schemas and IPLD Selectors provide features comparable to DDLs and SQL,
-and set the stage for building migration systems.
-
-At the same time, IPLD works on a concept of "blocks" which are much more comparable to messages:
-they're easy to send and receive over the network, and critically, can be regarded individually
-(there's no supposition of monolithicity, as SQL-style databases have).
-
-Our aim is that IPLD should straddle this divide and operate on either side of it gracefully.
-The same libraries and concepts and tooling should work well regardless of if you're building an offline app
-or a massively distributed system with remote actors coming and going and sending messages all the time.
-
+-->

@@ -1,0 +1,80 @@
+schema: |
+  type Bar bool
+
+  type Baz string
+
+  type Foo int
+
+  type UnionEnvelope union {
+    | Foo "foo"
+    | Bar "bar"
+    | Baz "baz"
+  } representation envelope {
+    discriminantKey "bim"
+    contentKey "bam"
+  }
+root: UnionEnvelope
+expected: |
+  {
+    "types": {
+      "Bar": {
+        "kind": "bool"
+      },
+      "Baz": {
+        "kind": "string"
+      },
+      "Foo": {
+        "kind": "int"
+      },
+      "UnionEnvelope": {
+        "kind": "union",
+        "representation": {
+          "envelope": {
+            "discriminantKey": "bim",
+            "contentKey": "bam",
+            "discriminantTable": {
+              "foo": "Foo",
+              "bar": "Bar",
+              "baz": "Baz"
+            }
+          }
+        }
+      }
+    }
+  }
+blocks:
+  - actual: |
+      { "bim": "foo", "bam": 100 }
+    expected: |
+      100
+  - actual: |
+      { "bim": "bar", "bam": true }
+    expected: |
+      true
+  - actual: |
+      { "bim": "baz", "bam": "here be baz" }
+    expected: |
+      "here be baz"
+badBlocks:
+  - |
+    { "bim": "foo" }
+  - |
+    { "bim": "bar" }
+  - |
+    { "bim": "baz" }
+  - |
+    { "bim": "foo", "bam": "zot" }
+  - |
+    { "bim": "bar", "bam": 100 }
+  - |
+    { "bim": "baz", "bam": true }
+  - |
+    100
+  - |
+    true
+  - |
+    "here be string"
+  - |
+    { }
+  - |
+    [ ]

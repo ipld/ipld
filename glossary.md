@@ -31,11 +31,13 @@ It's only if writing a storage system or a data transport system that you will b
 
 #### CID
 
-CID stands for **C**ontent **ID**entifier
+CID stands for **C**ontent **ID**entifier.
 It's a self-describing data structure identifier.
 In other words, it's a hash that says what kind of hash it is and how to decode the binary data identified by the hash.
 
 See the [CID specification](https://github.com/multiformats/cid) for further details.
+
+CIDs are for [Content Addressing](#content-addressing).
 
 #### Codec
 
@@ -54,6 +56,8 @@ content addressable systems refer to content by a cryptographic hash of the cont
 This allows complete decentralization of the content,
 as the identifier does not specify the retrieval method nor locations,
 and does provides a secure way to verify the content (regardless of wherever it may be found from).
+
+[See more about Content-Addressing on ProtoSchool](https://proto.school/content-addressing)!
 
 #### DAG
 
@@ -96,6 +100,34 @@ we've just added `bytes` for binary, and this `link` kind, which gives IPLD a lo
 
 There is a `link` kind is implemented by [CID](#cid)s.
 
+#### DMT
+
+DMT is short for "**D**ata **M**odel **T**ree".
+It is a term we coined in IPLD to describe data that's -- well -- in the [Data Model](#data-model) form.
+
+The term "DMT" is usually only used when necessary for differentiation:
+for example, we might say: "this data isn't in JSON form anymore; we've parsed it into DMT form".
+Another example sentence might be: "this data was created with a library DSL, but really, its true form is a standard DMT".
+And so on.
+
+The concept of DMT could also be compared to the computer science concept of an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree),
+but again, sometimes a unique term is useful for disambiguation.
+For example: "the DSL AST is somewhat richer than the DMT; the DMT only describes the logical elements of the document rather than the whole syntax used to specify them".
+(We also find the term "AST" somewhat of a bad match for what we mean by DMTs in IPLD,
+because an IPLD DMT is explicitly codec agnostic (in other words, syntax agnostic!), which doesn't line up well with the "S" in "AST".)
+
+#### Kind
+
+In IPLD, we use the word "kind" to refer to one of the handful of basic sorts of data we can recognize and know how to operate on.
+For example, "string" and "boolean" and "map" are all examples of kinds.
+
+Depending on context, it might be referring to [data model kind](https://ipld.io/docs/data-model/kinds/),
+or to [typekinds](https://ipld.io/docs/schemas/features/typekinds/).
+
+All data in IPLD has a [data model kind](https://ipld.io/docs/data-model/kinds/).
+Data might also have a [typekind](https://ipld.io/docs/schemas/features/typekinds/),
+but only if it was processed with IPLD Schemas.
+
 #### Link
 
 A link is just another name for a [CID](#cid).
@@ -112,6 +144,12 @@ The other node _kinds_, like `string`, are just values (they have no children).
 
 A "[block](#block)" will typically contain many nodes.
 
+#### Reify
+
+To "reify" an IPLD ["node"](#node) is to attempt to wrap over it with an [ADL](#adl) and return a `Node` which can be used in the rest of the model.
+For example, you can reify an IPLD node which represents a HAMT into a regular node so you can get keys from it without needing to manually traverse the nodes making up the HAMT within your application.
+Reifying is most useful when you have already parsed data into a raw tree and want to wrap it in an ADL.
+
 #### Schemas
 
 IPLD Schemas are a system for describing data with structural types.
@@ -123,7 +161,7 @@ That means IPLD Schemas are agnostic of [codecs](#codec).
 It also means they're entirely optional -- you can parse data with or without them --
 and you can use Schemas to describe and help process data even if that data _predates the Schema_.
 
-### Selectors
+#### Selectors
 
 IPLD Selectors are a form of graph query (or, a way to specify a traversal, if you prefer that mental model) over IPLD data.
 
@@ -134,9 +172,27 @@ Libraries may yield iterators over matched nodes, or iterators over all visited 
 
 Selectors are natively implemented in most IPLD libraries (for performance reasons),
 but the format itself is standardized.
-The format is described in IPLD (using [IPLD Schemas](#schemas),
+The format is described in IPLD (using [IPLD Schemas](#schemas)),
 so it's possible to serialize Selectors in any [Codec](#codec) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
+
+#### Signaling
+#### Signalling
+
+See the [ADL Signalling](/docs/advanced-data-layouts/signalling/) page,
+and especially the [Signalling Mechanisms](/docs/advanced-data-layouts/signalling/#signalling-mechanisms).
+
+The concept of signalling could be more generalized, as well
+(multicodec indicators can be seen as a signalling mechanism for codec selection)!
+
+#### Substrate
+
+"Substrate" is a vocabulary term relating to [ADLs](#adl) -- it refers to the data "inside" them,
+as contrasted with the "synthesized view" of the data, which is the node that the ADL presents itself as.
+(The substrate may also sometimes colloquially be called "content data" or "encoded form" or other terms.)
+
+For example, in a HAMT, the forest of [nodes](#node) and [blocks](#block) that make up the sharding structure
+are all considered the "substrate" data; while the map node the HAMT presents as is the "synthesized view".
 
 #### Traversal
 

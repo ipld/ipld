@@ -1,0 +1,86 @@
+schema: |
+  type Data bytes
+
+  type File struct {
+    name optional String
+    data optional DataUnion
+  }
+
+  type FileUnion union {
+    | File "fileInline"
+    | &File "fileLink"
+  } representation keyed
+
+  type DataUnion union {
+    | Data "dataInline"
+    | &Data "dataLink"
+  } representation keyed
+expected: |
+  {
+    "types": {
+      "Data": {
+        "bytes": {}
+      },
+      "File": {
+        "struct": {
+          "fields": {
+            "name": {
+              "type": "String",
+              "optional": true
+            },
+            "data": {
+              "type": "DataUnion",
+              "optional": true
+            }
+          },
+          "representation": {
+            "map": {}
+          }
+        }
+      },
+      "FileUnion": {
+        "union": {
+          "members": [
+            "File",
+            {
+              "link": {
+                "expectedType": "File"
+              }
+            }
+          ],
+          "representation": {
+            "keyed": {
+              "fileInline": "File",
+              "fileLink": {
+                "link": {
+                  "expectedType": "File"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DataUnion": {
+        "union": {
+          "members": [
+            "Data",
+            {
+              "link": {
+                "expectedType": "Data"
+              }
+            }
+          ],
+          "representation": {
+            "keyed": {
+              "dataInline": "Data",
+              "dataLink": {
+                "link": {
+                  "expectedType": "Data"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

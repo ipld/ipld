@@ -1,0 +1,12 @@
+schema: |
+  type SimpleLink &Any
+expected: |
+  {
+    "types": {
+      "SimpleLink": {
+        "link": {
+          "expectedType": "Any"
+        }
+      }
+    }
+  }

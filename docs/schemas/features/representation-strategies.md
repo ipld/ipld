@@ -21,7 +21,7 @@ eleventyNavigation:
   * [Union `kinded` Representation](#union-kinded-representation)
   * [Union `envelope` Representation](#union-envelope-representation)
   * [Union `inline` Representation](#union-inline-representation)
-  * [Union `byteprefix` Representation](#union-byteprefix-representation)
+  * [Union `bytesprefix` Representation](#union-bytesprefix-representation)
   * [Enum `string` Representation](#enum-string-representation)
   * [Enum `int` Representation](#enum-int-representation)
 
@@ -100,7 +100,7 @@ The following are the representation strategies built-in to IPLD Schemas:
   - `kinded`: transcribes to varying kinds in the Data Model, see below for details.
   - `envelope`: transcribes to a dual-entry _Map_ in the Data Model.
   - `inline`: transcribes to a _Map_ in the Data Model (and has additional limitations).
-  - `byteprefix`: transcribes to _Bytes_ in the Data Model, only usable for unions of Bytes.
+  - `bytesprefix`: transcribes to _Bytes_ in the Data Model, only usable for unions of Bytes.
 - **Struct**
   - `map`: _(default)_ transcribes to _Map_ in the Data Model.
   - `tuple`: transcribes to _List_ in the Data Model.
@@ -421,7 +421,7 @@ No parameters are available for the `keyed` Union representation strategy.
 
 `kinded` Unions discriminate between constituent types of the Union by inspecting the _representation kind_ present at the current node. Each type in the union must be associated with a unique representation kind and exactly one of these representation kinds must be present at the node for it to be a valid Union of the type in question.
 
-The `kinded` Union representation strategy doesn't introduce any kind of wrapping Map in the serialized form at all. Maps are only present if `map` is one of the kinds listed in the Union. Contrast this with other union representation strategies, all of which use at least one layer of Map in their representation (other than `byteprefix` Unions which are a special case).
+The `kinded` Union representation strategy doesn't introduce any kind of wrapping Map in the serialized form at all. Maps are only present if `map` is one of the kinds listed in the Union. Contrast this with other union representation strategies, all of which use at least one layer of Map in their representation (other than `bytesprefix` Unions which are a special case).
 
 **Example**
 
@@ -452,7 +452,7 @@ This data would also match, as `Bar`:
 12
 ```
 
-The syntax used in the type declaration is different for `kinded` Unions in comparison to other Union representation strategies. `kinded` Unions list a representation kind, unquoted, unlike other representation strategies which list a quoted key or discriminator (other than `byteprefix` Unions, a special case).
+The syntax used in the type declaration is different for `kinded` Unions in comparison to other Union representation strategies. `kinded` Unions list a representation kind, unquoted, unlike other representation strategies which list a quoted key or discriminator (other than `bytesprefix` Unions, a special case).
 
 The kind listed after each element of the Union must be a valid representation kind, that is, a kind at the Data Model layer, such as `string` and `map`. Schema kinds are not valid as they don't denote representation kinds (i.e. `struct` would not be a valid kind for a `kinded` Union).
 
@@ -591,27 +591,53 @@ One general parameter is mandatory for the `inline` Union representation strateg
 
 * `discriminantKey` defines a quoted string that is used to look up a string in the Map at the current node to match against the keys provided with each of the constituent types of the Union.
 
-### Union `byteprefix` Representation
+### Union `stringprefix` Representation
+
+**Representation Kind: String**
+
+The `stringprefix` Union representation strategy is used strictly for String representation kinds. The `bytesprefix` Union representation strategy can only be used as a Union between types that can be represented as strings (e.g. plain Strings, structs with `stringjoin` representations, maps as `stringpairs`, etc.).
+
+```ipldsch
+type Username string
+
+type Credentials struct {
+  credType String
+  credToken String
+} representation stringjoin {
+  join ":"
+}
+
+type Authorization union {
+	| Username "user:"
+	| Credentials "auth:"
+} representation stringprefix
+```
+
+At the Data Model layer, strings at the `Authorization` node are prefixed with either `user:` or `auth:` and are decomposed into their matching types when represented at the Schema layer. In this case, the `Credentials` struct is further decomposed into a two-field struct by splitting the remainder of the string starting with `auth:` by the `:` characters.
+
+No parameters are available for the `stringprefix` Union representation strategy.
+
+### Union `bytesprefix` Representation
 
 **Representation Kind: Bytes**
 
-The `byteprefix` Union representation strategy is used strictly for Bytes representation kinds. As there are currently no representation strategies other than the default for Bytes that encode as Bytes at the Data Model layer, the `byteprefix` Union representation strategy can only be used as a Union between named Bytes types.
+The `bytesprefix` Union representation strategy is used strictly for Bytes representation kinds. As there are currently no representation strategies other than the default for Bytes that encode as Bytes at the Data Model layer, the `bytesprefix` Union representation strategy can only be used as a Union between named Bytes types.
 
 **Example**
 
 ```ipldsch
 type Signature union {
-  | Secp256k1Signature 0
-  | Bls12_381Signature 1
-} representation byteprefix
+  | Secp256k1Signature "00"
+  | Bls12_381Signature "01"
+} representation bytesprefix
 
 type Secp256k1Signature bytes
 type Bls12_381Signature bytes
 ```
 
-At the Data Model layer, this presents as Bytes (a byte array), where the first byte is the discriminator (`0x00` or `0x01`) and the remainder is sliced to form either of the two types depending on the discriminator.
+At the Data Model layer, this presents as Bytes (a byte array), where the first bytes are the discriminator (`0x00` or `0x01`) and the remainder is sliced to form either of the two types depending on the discriminator.
 
-No parameters are available for the `byteprefix` Union representation strategy.
+No parameters are available for the `bytesprefix` Union representation strategy.
 
 ### Enum `string` Representation
 

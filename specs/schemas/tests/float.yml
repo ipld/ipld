@@ -1,0 +1,44 @@
+schema: |
+  type SimpleFloat float
+expected: |
+  {
+    "types": {
+      "SimpleFloat": {
+        "float": {}
+      }
+    }
+  }
+blocks:
+  - actual: |
+      100.1
+    expected: |
+      100.1
+  - actual: |
+      0.1
+    expected: |
+      0.1
+  - actual: |
+      100
+    expected: |
+      100.0
+  - actual: |
+      -1.1
+    expected: |
+      -1.1
+  - actual: |
+      -1
+    expected: |
+      -1
+badBlocks:
+  - |
+    "fooz"
+  - |
+    true
+  - |
+    { }
+  - |
+    { "foo": true }
+  - |
+    []
+  - |
+    [ 100 ]

@@ -11,6 +11,16 @@ DAG-PB is an IPLD codec that uses [Protocol Buffers](https://developers.google.c
 
 DAG-PB does not support the full [IPLD Data Model](/docs/data-model/).
 
+* [Implementations](#implementations)
+* [Serial Format](#serial-format)
+  * [Protobuf Strictness](#protobuf-strictness)
+* [Logical Format](#logical-format)
+  * [Constraints](#constraints)
+* [Alternative (Legacy) Pathing](#alternative-legacy-pathing)
+* [Zero-length blocks](#zero-length-blocks)
+* [Link sorting](#link-sorting)
+  * [Link sorting in go-merkledag](#link-sorting-in-go-merkledag)
+
 ## Implementations
 
 * JavaScript
@@ -80,7 +90,7 @@ type PBLink struct {
 * `Data` may be omitted or a byte array with a length of zero or more.
 * `Links`:
   * must be present, even if empty; the binary form makes no distinction between an empty array and an omitted value, in the Data Model we always instantiate an array.
-  * elements must be sorted in ascending order by their `Name` values, which are compared by bytes rather than as strings.
+  * when encoding, elements must be sorted in ascending order by their `Name` values, which are compared by bytes rather than as strings *(also see [notes below regarding sorted links](#link-sorting))*.
 	* `Name`s must be unique or be omitted.
 * `Hash`:
   * even though `Hash` is `optional` in the Protobuf encoding, it should not be treated as optional when creating new blocks or decoding existing ones, an omitted `Hash` should be interpreted as a bad block
@@ -115,3 +125,21 @@ With a SHA2-256 multihash, the CID of this block is:
 
 * CIDv1: `bafybeihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku`
 * CIDv0: `QmdfTbBqBPQ7VNxZEYEj14VmRuZBkqFbiwReogJgS1zR1n`
+
+## Link sorting
+
+The `Links` list in a DAG-PB encoded form must be sorted in ascending order by their `Name` values, which are compared by bytes rather than as strings *(also see [notes below regarding sorted links](#link-sorting))*. Missing or empty `Name` values are treated as empty-strings. Sorting should be stable, leaving duplicate `Name`s (or multiple missing or empty `Name` values) in their original order.
+
+Sorting should not be applied on decode of a DAG-PB block. The order of links found within a DAG-PB block is the order in which they appear in their binary form, so traversal over those links follows that order.
+
+Any difference in decoded form links order can impact traversals where a stable order is required.
+
+### Link sorting in go-merkledag
+
+Versions of the legacy [go-merkledag](https://github.com/ipfs/go-merkledag) interface to DAG-PB blocks prior to [v0.4.0](https://github.com/ipfs/go-merkledag/releases/tag/v0.4.0) applied sorting on decoded blocks when read through the [`DecodeProtobuf()`](https://pkg.go.dev/github.com/ipfs/go-merkledag#DecodeProtobuf) and [`DecodeProtobufBlock()`](https://pkg.go.dev/github.com/ipfs/go-merkledag#DecodeProtobufBlock) APIs.
+
+Versions of go-merkledag from v0.4.0 to v0.7.0 will sort Links of deserialized blocks with unsorted Links when certain operations are performed (such as `Size()`, `RawData()` and some others).
+
+go-merkledag v0.7.0 and later keeps unsorted the Links of deserialized blocks with unsorted Links until the node is mutated in some way, at which point the Links are automatically sorted.
+
+See [this pull request](https://github.com/ipfs/go-merkledag/pull/87) for further details.

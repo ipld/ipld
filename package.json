@@ -1,0 +1,32 @@
+{
+  "name": "ipld",
+  "version": "1.0.0",
+  "description": "IPLD Docs Site",
+  "scripts": {
+    "start": "cd .site && eleventy --serve",
+    "test": ".site/_tools/hyperlink .site/_output --check-anchors --sources=.",
+    "postinstall": "npm run fetch-hyperlink",
+    "fetch-hyperlink": "run-script-os",
+    "fetch-hyperlink:darwin": "wget -q https://github.com/untitaker/hyperlink/releases/download/0.1.15/hyperlink-mac-x86_64 -O .site/_tools/hyperlink && chmod +x .site/_tools/hyperlink",
+    "fetch-hyperlink:linux": "wget -q https://github.com/untitaker/hyperlink/releases/download/0.1.15/hyperlink-linux-x86_64 -O .site/_tools/hyperlink && chmod +x .site/_tools/hyperlink",
+    "build": "cd .site && eleventy",
+    "build:schema-schema": "npm_config_yes=true npx ipld-schema to-json -t specs/schemas/schema-schema.ipldsch > specs/schemas/schema-schema.ipldsch.json",
+    "dev": "cd .site && eleventy --serve",
+    "clean": "rm -rf .site/_output",
+    "publish": "echo 'Just push!  Fleek will pick it up from github.' && exit 1"
+  },
+  "private": true,
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+    "eleventy-plugin-svg-contents": "^0.7.0",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-footnote": "^3.0.3",
+    "markdown-it-mark": "^3.0.1",
+    "markdown-it-table-of-contents": "^0.6.0",
+    "markdown-it-replace-link": "^1.2.0",
+    "run-script-os": "^1.1.6"
+  }
+}

@@ -2,6 +2,7 @@
 title: Advanced Data Layouts
 eleventyNavigation:
   order: 46
+  synopsys: "Advanced Data Layouts are lenses applied to data in IPLD to empower data, and are used for features like sharding.  Specifications and fixtures for some well known ADLs are found here."
 ---
 
 Advanced Data Layout Specifications

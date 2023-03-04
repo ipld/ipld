@@ -1,0 +1,86 @@
+schema: |
+  type Data bytes
+
+  type File struct {
+    name optional String
+    data optional DataUnion
+  }
+
+  type FileUnion union {
+    | File map
+    | &File link
+  } representation kinded
+
+  type DataUnion union {
+    | Data bytes
+    | &Data link
+  } representation kinded
+expected: |
+  {
+    "types": {
+      "Data": {
+        "bytes": {}
+      },
+      "File": {
+        "struct": {
+          "fields": {
+            "name": {
+              "type": "String",
+              "optional": true
+            },
+            "data": {
+              "type": "DataUnion",
+              "optional": true
+            }
+          },
+          "representation": {
+            "map": {}
+          }
+        }
+      },
+      "FileUnion": {
+        "union": {
+          "members": [
+            "File",
+            {
+              "link": {
+                "expectedType": "File"
+              }
+            }
+          ],
+          "representation": {
+            "kinded": {
+              "map": "File",
+              "link": {
+                "link": {
+                  "expectedType": "File"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DataUnion": {
+        "union": {
+          "members": [
+            "Data",
+            {
+              "link": {
+                "expectedType": "Data"
+              }
+            }
+          ],
+          "representation": {
+            "kinded": {
+              "bytes": "Data",
+              "link": {
+                "link": {
+                  "expectedType": "Data"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

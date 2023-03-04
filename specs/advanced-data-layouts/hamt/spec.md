@@ -29,6 +29,7 @@
   * [Security](#security)
 * [Appendix: Filecoin HAMT Variant](#appendix-filecoin-hamt-variant)
   * [Implicit and fixed parameters](#implicit-and-fixed-parameters)
+  * [Map (bitfield) layout](#map-bitfield-layout)
   * [Block layout](#block-layout)
 
 ## Introduction
@@ -43,10 +44,10 @@ The IPLD HashMap is constructed as a [hash array mapped trie (HAMT)](https://en.
 * [CHAMP paper](https://michael.steindorfer.name/publications/oopsla15.pdf) presented at Oopsla 2015 by Steinforder & Vinju
 * [Java implementation](https://github.com/msteindorfer/oopsla15-artifact/) accompanying the original CHAMP paper (see https://github.com/msteindorfer/oopsla15-artifact/blob/master/pdb.values/src/org/eclipse/imp/pdb/facts/util/TrieMap_5Bits.java and other TrieMap files in the same directory).
 * [Optimizing Hash-Array Mapped Tries for Fast and Lean Immutable JVM Collections](https://blog.acolyer.org/2015/11/27/hamt/) a high-level description of HAMT data structures in general and the specifics of CHAMP.
-* Peergos [CHAMP](https://github.com/Peergos/Peergos/blob/master/src/peergos/shared/hamt/Champ.java) implementation
-* [IAMap](https://github.com/rvagg/iamap) JavaScript implementation of the algorithm
-* [ipld-hashmap](https://github.com/rvagg/js-ipld-hashmap) JavaScript IPLD frontend to IAMap with a mutable API
-* [go-hamt-ipld](https://github.com/ipfs/go-hamt-ipld) Filecoin Go HAMT implementation used by the [Lotus](https://lotu.sh/) client. See the appendix for how this implementation differs from this specification.
+* Peergos [CHAMP](https://github.com/Peergos/Peergos/blob/master/src/peergos/shared/hamt/Champ.java) implementation.
+* [ipld-hashmap](https://github.com/rvagg/js-ipld-hashmap) JavaScript IPLD implementation with a mutable API.
+  * [IAMap](https://github.com/rvagg/iamap) low-level JavaScript implementation of the algorithm with an immutable API, ipld-hashmap is an IPLD-native mutable front-end to this library.
+* [go-hamt-ipld](https://github.com/filecoin-project/go-hamt-ipld) Filecoin Go HAMT implementation used by the [Lotus](https://lotu.sh/) client. See the appendix for how this implementation differs from this specification.
 
 ## Summary
 
@@ -220,7 +221,7 @@ An implementation should only emit any given `key`, `value` or `key` / `value` e
 This algorithm differs from CHAMP in the following ways:
 
 1. CHAMP separates `map` into `datamap` and `nodemap` for referencing local data elements and local references to child nodes. The `data` array is then split in half such that data elements are stored from the left and the child node links are stored from the right with a reverse index. This allows important speed and cache-locality optimizations for fully in-memory data structures but those optimizations are not present, or make negligible impact in a distributed data structure.
-2. CHAMP does not make use, of buckets, nor do common implementations of HAMTs on the JVM (e.g. Clojure, Scala, Java). Storing only entries and links removes the need for an iterative search and compare within buckets and allows direct traversal to the entries required. This is effective for in-memory data structures but is less useful when performing block-by-block traversal with distributed data structures where packing data to reduce traversals may be more important.
+2. CHAMP does not make use of buckets, nor do common implementations of HAMTs on the JVM (e.g. Clojure, Scala, Java). Storing only entries and links removes the need for an iterative search and compare within buckets and allows direct traversal to the entries required. This is effective for in-memory data structures but is less useful when performing block-by-block traversal with distributed data structures where packing data to reduce traversals may be more important.
 
 ### Canonical form
 
@@ -287,7 +288,7 @@ It encodes directly as [DAG-CBOR](/specs/codecs/dag-cbor/) but uses a different 
 This section documents the specific ways that the Filecoin HAMT variant differs from this specification.
 IPLD HashMap implementations may be able to implement a form that provides compatibility with Filecoin when requested by the user.
 
-The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/ipfs/go-hamt-ipld>.
+The reference Go implementation for the Filecoin HAMT is used by the [Lotus](https://lotu.sh/) client and is available at <https://github.com/filecoin-project/go-hamt-ipld>. Note that this document reflects details of the Filecoin HAMT up to v3 of the Go module, whose latest version is `v3.1.0` at the time of writing and is included in Filecoin [spec-actors](https://github.com/filecoin-project/specs-actors) **v3**.
 
 ### Implicit and fixed parameters
 
@@ -297,27 +298,52 @@ The Filecoin HAMT _does not_ use an explicit root block (`HashMapRoot`) to encod
 * `bitWidth`: The Filecoin HAMT fixes the bit width to `5`, meaning that each node of the HAMT can contain up to `2`<sup>`5`</sup> (`32`) elements containing either buckets or links to child nodes.
 * `bucketSize`: The Filecoin HAMT fixes the maximum length of its buckets to `3`, meaning a maximally full HAMT leaf node can contain `32 x 3` (`96`) key/value pairs.
 
+### Map (bitfield) layout
+
+Rather than encoding the HAMT node's `map` field as the full sequence of byte-to-element mapping with little-endian byte addressing, the Filecoin HAMT uses the byte layout of a Go [`big.Int`](https://golang.org/pkg/math/big/#Int) as a bitfield to represent the HAMT node's `map`. In practice this means that the byte array length can vary depending on which bits are set within the bitfield. Implementations must use the same encoding and decoding rules as `big.Int` to handle this field. See [this discussion thread](https://github.com/filecoin-project/go-hamt-ipld/issues/54#issuecomment-670314664) for an exploration of the specifics.
+
 ### Block layout
 
-An IPLD schema representing the Filecoin HAMT varies from the IPLD HashMap [schema](#schema) so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout:
+The IPLD schema describing the Filecoin HAMT varies from the IPLD HashMap [schema](#schema) and also between versions of the Filecoin Actors, so any implementation needing to read Filecoin HAMT blocks will need to handle its specific layout (both layouts if historical data is important to create / read).
+
+The **v3** form of the Filecoin HAMT has the same [substrate](/glossary/#substrate) Data Model layout as the IPLD HashMap except for the lack of an explicit root node to describe the parameters. A Filecoin HAMT's root is the equivalent of `HashMapNode`—the root node is the same as all other nodes, and rather than parameters being explicit, the parameters are implicit and must be derived from the ambient Filecoin chain version.
+
+Both forms of the block layout are presented in the schema below. The difference in block layout is that versions **0.9** to **2** use a keyed union for the `Element` struct (called "Pointer" in Filecoin) whereas version **3** and later use a kinded union. `FilecoinHAMTNodeV0` and `FilecoinHAMTNodeV3` are presented below as the equivalent of `HashMapNode` in the IPLD HashMap for the different versions. There is no equivalent of `HashMapRoot`.
+
+Note that there is currently no limitation on the types available for storage as `value`s as long as they can be decoded from the bytes. In practice, the Filecoin HAMT is used to store inline objects rather than links to objects.
 
 ```ipldsch
-type HashMapNode struct {
-  map Bytes
-  data [ Element ]
+# Equivalent to "HashMapNode", but serving as both root and intermediate node
+# v0.9-v2 form
+type FilecoinHAMTNodeV0 struct {
+  map Bytes          # field is named "bitfield" in Filecoin code
+  data [ PointerV0 ] # field is named "pointers" in Filecoin code
 } representation tuple
 
-type Element union {
-  | &HashMapNode "0"
+# v3+ form
+type FilecoinHAMTNodeV3 struct {
+  map Bytes          # field is named "bitfield" in Filecoin code
+  data [ PointerV3 ] # field is named "pointers" in Filecoin code
+} representation tuple
+
+# Equivalent to "Element"
+# v0.9-v2 form
+type PointerV0 union {
+  | &FilecoinHAMTNodeV0 "0"
   | Bucket "1"
 } representation keyed
 
-type Bucket [ BucketEntry ]
+# v3+ form
+type PointerV3 union {
+  | &FilecoinHAMTNodeV3 link
+  | Bucket list
+} representation kinded
 
-type BucketEntry struct {
+type Bucket [ KV ]
+
+# Equivalent to "BucketEntry"
+type KV struct {
   key Bytes
   value Any
 } representation tuple
 ```
-
-There is currently no limitation on the types available for storage as `value`s as long as they can be decoded from the bytes. In practice, the Filecoin HAMT is used to store inline objects rather than links to objects.

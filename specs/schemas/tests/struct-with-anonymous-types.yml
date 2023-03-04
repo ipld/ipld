@@ -1,0 +1,61 @@
+schema: |
+  type StructWithAnonymousTypes struct {
+    fooField optional {String:String}
+    barField nullable {String:String}
+    bazField {String:nullable String}
+    wozField {String:[nullable String]}
+  }
+expected: |
+  {
+    "types": {
+      "StructWithAnonymousTypes": {
+        "struct": {
+          "fields": {
+            "fooField": {
+              "type": {
+                "map": {
+                  "keyType": "String",
+                  "valueType": "String"
+                }
+              },
+              "optional": true
+            },
+            "barField": {
+              "type": {
+                "map": {
+                  "keyType": "String",
+                  "valueType": "String"
+                }
+              },
+              "nullable": true
+            },
+            "bazField": {
+              "type": {
+                "map": {
+                  "keyType": "String",
+                  "valueType": "String",
+                  "valueNullable": true
+                }
+              }
+            },
+            "wozField": {
+              "type": {
+                "map": {
+                  "keyType": "String",
+                  "valueType": {
+                    "list": {
+                      "valueType": "String",
+                      "valueNullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "representation": {
+            "map": {}
+          }
+        }
+      }
+    }
+  }

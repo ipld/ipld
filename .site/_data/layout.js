@@ -5,4 +5,4 @@
 // The preference for njk (rather than, say, liquid) is fairly strong here,
 // because njk templates support macros, and liquid's developers appear to be resolutely opposed to any kind of recursion.
 // A small dose of recursion is used in our nav menu creation, so, a templating engine without it is nonviable.
-module.exports = "main.njk"
+module.exports = 'main.njk'

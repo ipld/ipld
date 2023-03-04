@@ -1,0 +1,21 @@
+schema: |
+  type MapAsStringpairs {String:String} representation stringpairs {
+    innerDelim "="
+    entryDelim ","
+  }
+expected: |
+  {
+    "types": {
+      "MapAsStringpairs": {
+        "kind": "map",
+        "keyType": "String",
+        "valueType": "String",
+        "representation": {
+          "stringpairs": {
+            "innerDelim": "=",
+            "entryDelim": ","
+          }
+        }
+      }
+    }
+  }

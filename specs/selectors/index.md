@@ -3,6 +3,7 @@ title: "Specs: Selectors"
 navTitle: "Selectors"
 eleventyNavigation:
   order: 60
+  synopsys: "Selectors are a declarative API for describing walks across IPLD data."
 ---
 
 Selectors
@@ -49,7 +50,7 @@ inline in the schema.
 ## that don't have established existing context with marks the start of a selector:
 ## it's a single-member union used to kick us towards "nominative typing".
 ##
-## See https://github.com/ipld/specs/tree/master/schemas/migration.md
+## See https://ipld.io/docs/schemas/using/migrations/
 ## for a background on the theory behind this gentle-nominative concept.
 type SelectorEnvelope union {
 	| Selector "selector"
@@ -65,6 +66,7 @@ type Selector union {
 	| ExploreUnion "|"
 	| ExploreConditional "&"
 	| ExploreRecursiveEdge "@" # sentinel value; only valid in some positions.
+	| InterpretAs "~"
 } representation keyed
 
 ## ExploreAll is similar to a `*` -- it traverses all elements of an array,
@@ -126,10 +128,19 @@ type ExploreRange struct {
 ## with selectors like ExploreAll inside the sequence).
 ##
 ## limit is a union type -- it can have an integer depth value (key "depth") or
-## no value (key "none"). If limit has no value it is up to the 
+## no value (key "none"). If limit has no value it is up to the
 ## implementation library using selectors to identify an appropriate max depth
-## as necessary so that recursion is not infinite
-
+## as necessary so that recursion is not infinite.
+##
+## stopAt specifies a Condition that stops the traversal when it is fulfilled.
+## If throughout the traversal the selector encounters a node that matches
+## Condition it will finish exploring the current node and it won't recurse more,
+## stopping the traversal immediately.
+## If Condition is never matched, the selector performs the traversal seamlessly
+## until the end. This feature is of particular interest for applications that need to
+## recurse a large linked structure up to a specific point. stopAt can be used to
+## let the selector know where to stop recursing preventing from having to traverse
+## the full structure.
 type ExploreRecursive struct {
 	sequence Selector (rename ":>")
 	limit RecursionLimit (rename "l")
@@ -172,6 +183,33 @@ type ExploreConditional struct {
 	next Selector (rename ">")
 }
 
+## InterpretAs is a clause that instructs the traversal to attempt to 'reify' the current node
+## using an ADL, which is specified by the 'as' field.
+## ADLs are identified by agreed-upon strings, similar to libp2p protocols.
+## Once reified, the traversal continues upon the newly reified view of the data,
+## rather than the original raw data.
+##
+## If the selection interpreter doesn't have an ADL implementation available
+## by the name requested, the traversal cannot continue.
+##
+## The reification process may consume a data-dependent amount of budget on evaluation,
+## based on the specific traversal and ADL implementation.
+## Similarly, steps across the ADL once reified may also consume data-dependent
+## amounts of any resource budgets.
+type InterpretAs struct {
+	as String
+	next Selector (rename ">")
+}
+
+## Slice is a predicate that selects only a subset of node.
+## This is applicable primarily in the context of reified nodes based on the
+## InterpetAs clause above, where the primitive (bytes or string) node is actually
+## composed from multiple underlying substrate nodes.
+type Slice struct {
+	from Int (rename "[")
+	to Int (rename "]")
+}
+
 ## Matcher marks a node to be included in the "result" set.
 ## (All nodes traversed by a selector are in the "covered" set (which is a.k.a.
 ## "the merkle proof"); the "result" set is a subset of the "covered" set.)
@@ -184,6 +222,7 @@ type ExploreConditional struct {
 type Matcher struct {
 	onlyIf optional Condition # match is true based on position alone if this is not set.
 	label optional String # labels can be used to match multiple different structures in one selection.
+	subset optional Slice # if set, only the subset of the node specified by the slice is matched.
 }
 
 ## Condition is expresses a predicate with a boolean result.
@@ -214,7 +253,7 @@ type Condition union {
 
 ### fixtures
 
-- [selector-fixtures-1.taf](./fixtures/selector-fixtures-1.taf)
+- [selector-fixtures-1](./fixtures/selector-fixtures-1/)
 
 
 Known issues

@@ -27,7 +27,7 @@ Integrated into other projects
 
 ### rust-ipfs
 
-rust-ipfs, one of the Rust IPFS implementations, has an [intgrated IPLD implementation](https://github.com/rs-ipfs/rust-ipfs/tree/master/src/ipld). That code is based on an early fork of libipld.
+rust-ipfs, one of the Rust IPFS implementations, has an [integrated IPLD implementation](https://github.com/rs-ipfs/rust-ipfs/tree/master/src/ipld). That code is based on an early fork of libipld.
 
 
 ### Forest

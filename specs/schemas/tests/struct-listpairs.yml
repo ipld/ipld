@@ -1,0 +1,30 @@
+schema: |
+  type StructAsListpairs struct {
+    foo Int
+    bar Bool
+    baz String
+  } representation listpairs
+expected: |
+  {
+    "types": {
+      "StructAsListpairs": {
+        "struct": {
+          "fields": {
+            "foo": {
+              "type": "Int"
+            },
+            "bar": {
+              "type": "Bool"
+            },
+            "baz": {
+              "type": "String"
+            }
+          },
+          "representation": {
+            "listpairs": {}
+          }
+        }
+      }
+    }
+  }
+

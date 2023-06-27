@@ -18,35 +18,42 @@ expected: |
   {
     "types": {
       "Bar": {
-        "kind": "struct",
-        "fields": {
-          "bral": {
-            "type": "String"
+        "struct": {
+          "fields": {
+            "bral": {
+              "type": "String"
+            }
+          },
+          "representation": {
+            "map": {}
           }
-        },
-        "representation": {
-          "map": {}
         }
       },
       "Foo": {
-        "kind": "struct",
-        "fields": {
-          "froz": {
-            "type": "Bool"
+        "struct": {
+          "fields": {
+            "froz": {
+              "type": "Bool"
+            }
+          },
+          "representation": {
+            "map": {}
           }
-        },
-        "representation": {
-          "map": {}
         }
       },
       "UnionInline": {
-        "kind": "union",
-        "representation": {
-          "inline": {
-            "discriminantKey": "tag",
-            "discriminantTable": {
-              "foo": "Foo",
-              "bar": "Bar"
+        "union": {
+          "members": [
+            "Foo",
+            "Bar"
+          ],
+          "representation": {
+            "inline": {
+              "discriminantKey": "tag",
+              "discriminantTable": {
+                "foo": "Foo",
+                "bar": "Bar"
+              }
             }
           }
         }

@@ -203,27 +203,32 @@ type InterpretAs struct {
 
 ## Slice is a predicate that selects only a subset of node.
 ## This is applicable primarily in the context of reified nodes based on the
-## InterpetAs clause above, where the primitive (bytes or string) node is actually
-## composed from multiple underlying substrate nodes.
+## InterpetAs clause above, where the primitive (bytes or string) node is
+## actually composed from multiple underlying substrate nodes.
 ##
-## The slice is specified by a from index, which is inclusive, and a to index,
-## which is exclusive. Overflow is allowed, in which case a reified node
-## implementation should interpret the overflow as the end of the slice. This
-## allows for a simple way to specify a slice from a particular index to the
-## end of the slice, without needing to know the length of the slice.
+## The slice is specified by a "from" index, which is inclusive, and a "to"
+## index, which is exclusive. That is: [from, to).
 ##
-## Negative values are allowed for from and to, and are interpreted as offsets
-## from the end of the slice. e.g. -1 is the last element, -2 is the second to
-## last, etc.
-## Reified node implementations may choose to not implement negative ranges due
-## to difficulties in implementing them efficiently. In these cases, the
-## selector will fail to match.
+##  * Overflow of "to" is allowed, in which case a reified node
+##    implementation should interpret the overflow as the end of the slice. This
+##    allows for a simple way to specify a slice from a particular index to the
+##    end of the slice, without needing to know the length of the slice.
 ##
-## Where the From:To range fails to match within the byte range of the node,
-## (e.g. where they select a range beyond the end of the node), or where they
-## resolve to a negative range (From>To), the selector will fail to match.
-## However, in the case where From==To, the selector will match, but the node
-## should be empty.
+##  * Negative values are allowed for "from" and "to", and are interpreted as
+##    offsets from the end of the slice. e.g. -1 is the last element, -2 is the
+##    second to last, etc. When a negative "from" value resolves to a negative
+##    index once the length of the slice is known (i.e. an underflow), the
+##    "from" value will be adjusted to be 0.
+##
+##    Reified node implementations may choose to not implement negative ranges
+##    due to difficulties in implementing them efficiently. In these cases, the
+##    selector will fail to match.
+##
+##  * Where the from:to range fails to match within the byte range of the node,
+##    (e.g. where they select a range beyond the end of the node), or where they
+##    resolve to a negative, or zero-length range (from>=to), the selector will
+##    fail to match. However, in the case where from==to, the selector will
+##    match, but the node should be empty.
 type Slice struct {
 	from Int (rename "[")
 	to Int (rename "]")

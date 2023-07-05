@@ -1,7 +1,17 @@
 # unixfs_20m_variety (test fixture)
 
- * 20 MB of files with a variety of UnixFS features across 1,103 blocks
- * unixfs_20m_variety.car is a CARv1 in strict dfs order with a single root.
+**unixfs_20m_variety** is a test fixture for testing IPLD pathing and traversal through DAGs that contain UnixFS data with full variety of common UnixFS forms. It does not include some less-used forms, such as symlinks and heavy duplicate block usage. The aim of this fixture is to simulate 90% of the most common UnixFS patterns and the complexity of traversing through them according to the Trustless Gateway protocol.
+
+unixfs_20m_variety.car is a 20 Mb CARv1 in strict dfs order with a single root containing UnixFS data across 1,103 blocks.
+
+This page specifies test fixtures according to the **[Testmark](https://github.com/warpfork/go-testmark)** format, intended for use across implementations in multiple languages. Testmark implementations are available in the primary languages used to interact with IPLD data today.
+
+Each **Test Case** below contains pairs of components in Testmark blocks:
+
+* `test/{name}/{scope}/query` - The Trustless Gateway path query to be executed. This is the full string that would be appended to a gateway URL to retrieve the data.
+* `test/{name}/{scope}/execution` - The expected execution of the query against the fixture data. The execution is presented in descriptive format, to demonstrate which blocks are traversed and in what order and for each block, the type of UnixFS data it includes and the segment of the "Trustless Path" it satisfies. **Only the first column of this data** is strictly necessary for testing, the CID in the first column, separated by `|` characters, should be extracted and tested in the order they are presented in the fixture.
+
+The 3 `{scope}` types in the Trustless Gateway specification are `all`, `entity`, and `block`. Not all test cases exercise all 3 scopes.
 
 ## Root CID
 [testmark]:# (root)
@@ -11,9 +21,9 @@ bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq
 
 ## Test Cases
 
-### Small file in directory
+### Small file in a directory
 
-Same result regardless of scope.
+A single-block file in the root of the UnixFS DAG, which is a single-block directory. As a single-block file, the same execution is expected regardless of scope.
 
 #### all
 
@@ -54,9 +64,9 @@ bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafkreigtkfmisjmiqfp2y73lpqj7uu7mnqg7cjm5br67ek6nwsbyuqgkom | RawLeaf   | ↳ /pi[0:1700] (1701 B)
 ```
 
-### Small file in directory in directory in directory
+### Small file in a directory in directory in directory
 
-Same result regardless of scope.
+Same as the above case, but the single-block file is contained within an additional nested single-block directory. As a single-block file, the same execution is expected regardless of scope.
 
 #### all
 
@@ -105,7 +115,7 @@ bafkreicgd36kzadnbwjhat2eyvcbvv63a36l5oufslvryixcymnd342oei | RawLeaf   |     �
 
 ### Sharded file in directory
 
-All and entity are the same but block should just get the root File block
+A multi-block file in the root of the UnixFS DAG, which is a single-block directory. As a multi-block file, the same execution will be different with `block` scope.
 
 #### all
 
@@ -160,7 +170,7 @@ bafybeidchppfcvpa644xihhbvbfyiqupsgp4efh4mf3pengqufwkdfrvha | File      | ↳ /�
 
 ### Sharded file in directory in directory
 
-Aame as above but one extra level of nesting.
+A multi-block file nested in a single-block directory in root of the UnixFS DAG, which is a single-block directory. As a multi-block file, the same execution will be different with `block` scope.
 
 #### all
 
@@ -242,7 +252,7 @@ bafybeigutoywu5bj3hlcdr4mkm6yepqnwvq5xodulrz2wstwteko2266te | File      |   ↳ 
 
 ### Sharded file in hamt in directory
 
-Same as above but the inner directory is a HAMT and we have an intermediate block.
+Same as the previous case, but with the nested directory replaced by a multi-block directory. The execution should be equivalent, but with an additional block for the multi-block directory.
 
 #### all
 
@@ -315,7 +325,7 @@ bafybeigqgljdsq72owvi3mtgjwkrfmmjpevzbya6pu52ufj55h5ypznpx4 | File      |     �
 
 ### Sharded file in directory in hamt in directory
 
-Same as above but with an extra directory layer under the HAMT.
+Same as the previous case but with an additional single-block directory inside the multi-block directory.
 
 #### all
 
@@ -368,7 +378,7 @@ bafybeifjkcls323ddq3t5ov22yl7i6ks36a7jzv33pjy4stqkils6jzvqe | Directory |     �
 
 ### Small file in a directory in a hamt in a directory
 
-Same result regardless of scope.
+Same as "Small file in a directory in directory in directory" but with a multi-block directory in the middle that requires two blocks to represent the path through it.
 
 #### all
 
@@ -423,7 +433,7 @@ bafkreigtatgpa6dpkm2vxaeglfz4t3j2kkcan6jjxdf4ytwehspjbpxe54 | RawLeaf   |       
 
 ### Hamt in directory
 
-"All" is too large to be useful, so we'll just do "entity" and "block".
+A multi-block directory in the root of the UnixFS DAG as the target. The `all` scope is too large to be useful, so we just exercise `entity` and `block`.
 
 #### entity
 
@@ -468,6 +478,8 @@ bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Z
 ```
 
 ### Directory in a directory
+
+A single-block directory in the root of the UnixFS DAG as the target. `all` should produce all files within the directory and both `entity` and `block` should be the same.
 
 #### all
 
@@ -521,16 +533,20 @@ bafybeigdgcs3nulbgu6vtnyesfgsaau2grbxzbxxdtpgolsfhtrpjx6mw4 | Directory | ↳ /b
 bafybeicsa4ltuq6m3sxzzrkfy6wetemiqvbdgnitkjwlcduswh3cvsccxy | Directory |   ↳ /procrastinatorily
 ```
 
-### File in directory, byte ranges
+### Sharded file in directory, byte ranges
+
+A multi-block file in the root of the UnixFS DAG as the target, using byte range (`entity-bytes`) queries to select specific blocks.
 
 #### 0:*
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:*/query)
+All blocks of the file.
+
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:*/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:*
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:*/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:*/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -548,12 +564,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Only needs first block.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:10/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:10/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:10
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:10/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:10/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -564,12 +580,12 @@ bafkreib56a35cuh7mavlzlradaysqqpqx6lr2sn3veahyb2yb3y7dq5aei | RawLeaf   |   ↳ 
 
 Matches full byte range of first block only.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:256143/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:256143/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:256143
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:256143/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:256143/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -581,12 +597,12 @@ bafkreib56a35cuh7mavlzlradaysqqpqx6lr2sn3veahyb2yb3y7dq5aei | RawLeaf   |   ↳ 
 
 Needs the first byte of the second block, so matches first two blocks.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:256144/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:256144/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:256144
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:256144/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:256144/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -598,12 +614,12 @@ bafkreicjp7lobawh3bob4gjq63fmsz44sbsayf2xkwhf3jhme25y2tyzky | RawLeaf   |     /c
 
 Needs all but the last block to match.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1793007/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1793007/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:1793007
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1793007/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1793007/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -620,12 +636,12 @@ bafkreic47cecyo4ko65fdmpfhaonqz2kk73sd6zacnvsdjofee62u7d3oe | RawLeaf   |     /c
 
 Should match all blocks because it includes the first byte of the last block.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1793008/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1793008/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:1793008
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1793008/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1793008/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -643,12 +659,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Precise byte boundaries start:finish.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1889755/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1889755/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:1889755
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1889755/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1889755/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -666,12 +682,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Beyond the end of the file, so should be the same as 0:1889755.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1889756/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1889756/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:1889756
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:1889756/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:1889756/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -689,12 +705,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Beyond last byte, should match all blocks.
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:99999999/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:99999999/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:99999999
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/0:99999999/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:99999999/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -712,12 +728,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Starts at the first byte of the last block.
 
-[testmark]:# (test/file_in_directory_byte_ranges/1793008:*/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/1793008:*/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=1793008:*
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/1793008:*/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/1793008:*/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -728,12 +744,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |   ↳ 
 
 Starts at the last byte of the second last block.
 
-[testmark]:# (test/file_in_directory_byte_ranges/1793007:*/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/1793007:*/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=1793007:*
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/1793007:*/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/1793007:*/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -745,12 +761,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Starts at the first byte of the second block.
 
-[testmark]:# (test/file_in_directory_byte_ranges/256144:*/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256144:*/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=256144:*
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/256144:*/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256144:*/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -767,12 +783,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Need all blocks to match this.
 
-[testmark]:# (test/file_in_directory_byte_ranges/256143:*/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256143:*/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=256143:*
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/256143:*/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256143:*/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -788,12 +804,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 #### 256143:256144 first and second boundary
 
-[testmark]:# (test/file_in_directory_byte_ranges/256143:256144/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256143:256144/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=256143:256144
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/256143:256144/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256143:256144/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -805,12 +821,12 @@ bafkreicjp7lobawh3bob4gjq63fmsz44sbsayf2xkwhf3jhme25y2tyzky | RawLeaf   |     /c
 
 Matching a single byte at the start of the second block
 
-[testmark]:# (test/file_in_directory_byte_ranges/256144:256144/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256144:256144/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=256144:256144
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/256144:256144/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256144:256144/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -821,12 +837,12 @@ bafkreicjp7lobawh3bob4gjq63fmsz44sbsayf2xkwhf3jhme25y2tyzky | RawLeaf   |   ↳ 
 
 Matching a single byte at the end of the second block
 
-[testmark]:# (test/file_in_directory_byte_ranges/512287:512287/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/512287:512287/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=512287:512287
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/512287:512287/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/512287:512287/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -837,12 +853,12 @@ bafkreicjp7lobawh3bob4gjq63fmsz44sbsayf2xkwhf3jhme25y2tyzky | RawLeaf   |   ↳ 
 
 Matching this needs all blocks, including one byte from first and last
 
-[testmark]:# (test/file_in_directory_byte_ranges/256143:1793008/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256143:1793008/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=256143:1793008
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/256143:1793008/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256143:1793008/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -860,12 +876,12 @@ bafkreif6cdswphju3fd5onyiuoswxpstlskdydqh4s3rvgwvdjmx7zhpcq | RawLeaf   |     /c
 
 Matching this only requires the middle blocks, excluding the first and last
 
-[testmark]:# (test/file_in_directory_byte_ranges/256144:1793007/query)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256144:1793007/query)
 ```
 /ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=256144:1793007
 ```
 
-[testmark]:# (test/file_in_directory_byte_ranges/256144:1793007/execution)
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/256144:1793007/execution)
 ```
 bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
 bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt[0:1889755] (1889756 B)
@@ -875,6 +891,106 @@ bafkreihbp4ur2mdgfqntlyvew7njve5pdjgtphr74ipmbebu7fofcn4fh4 | RawLeaf   |     /c
 bafkreibggbasrddspulesc5zum23cx3fqdknvzi6dttlrjsiga7qanakdu | RawLeaf   |     /clippet.txt[1024576:1280719] (256144 B)
 bafkreibzp426cl6b3udplywqrmfpdm6witikihya6n5rfh724lwnn53oe4 | RawLeaf   |     /clippet.txt[1280720:1536863] (256144 B)
 bafkreic47cecyo4ko65fdmpfhaonqz2kk73sd6zacnvsdjofee62u7d3oe | RawLeaf   |     /clippet.txt[1536864:1793007] (256144 B)
+```
+
+### Small file in directory, byte ranges
+
+A single-block file in the root of the UnixFS DAG as the target, using byte range (`entity-bytes`) queries to test that the same block is returned regardless of the byte range.
+
+#### 0:*
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/0:*/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/Zigzagumptious/Lickety-split/velociraptorious.csv?dag-scope=entity&entity-bytes=0:*
+```
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/0:*/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Zigzagumptious
+bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ <hamt>
+bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Lickety-split
+bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /velociraptorious.csv[0:1822] (1823 B)
+```
+
+#### 0:0
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/0:0/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/Zigzagumptious/Lickety-split/velociraptorious.csv?dag-scope=entity&entity-bytes=0:0
+```
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/0:0/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Zigzagumptious
+bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ <hamt>
+bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Lickety-split
+bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /velociraptorious.csv[0:1822] (1823 B)
+```
+
+#### 0:10
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/0:10/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/Zigzagumptious/Lickety-split/velociraptorious.csv?dag-scope=entity&entity-bytes=0:10
+```
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/0:10/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Zigzagumptious
+bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ <hamt>
+bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Lickety-split
+bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /velociraptorious.csv[0:1822] (1823 B)
+```
+
+#### 1822:1823
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/1822:1823/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/Zigzagumptious/Lickety-split/velociraptorious.csv?dag-scope=entity&entity-bytes=1822:1823
+```
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/1822:1823/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Zigzagumptious
+bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ <hamt>
+bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Lickety-split
+bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /velociraptorious.csv[0:1822] (1823 B)
+```
+
+#### 1823:1823
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/1823:1823/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/Zigzagumptious/Lickety-split/velociraptorious.csv?dag-scope=entity&entity-bytes=1823:1823
+```
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/1823:1823/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Zigzagumptious
+bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ <hamt>
+bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Lickety-split
+bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /velociraptorious.csv[0:1822] (1823 B)
+```
+
+#### 1823:*
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/1823:*/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/Zigzagumptious/Lickety-split/velociraptorious.csv?dag-scope=entity&entity-bytes=1823:*
+```
+
+[testmark]:# (test/small_file_in_directory_byte_ranges/1823:*/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Zigzagumptious
+bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ <hamt>
+bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Lickety-split
+bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /velociraptorious.csv[0:1822] (1823 B)
 ```
 
 ### Directory in a directory w/ byte range
@@ -982,4 +1098,3 @@ bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Z
 ## TODO:
 
 * Negative ranges, To and From
-

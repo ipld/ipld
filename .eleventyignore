@@ -16,3 +16,6 @@ README*.md
 
 # Ignore the legacy content dir, which will exist during the repo consolidation process.
 /_legacy/
+
+# Ignore code packaging
+/specs/pkg/

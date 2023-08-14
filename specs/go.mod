@@ -1,6 +1,6 @@
 module github.com/ipld/ipld/specs
 
-go 1.20
+go 1.19
 
 require (
 	github.com/ipfs/go-cid v0.4.1

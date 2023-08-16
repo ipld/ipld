@@ -80,20 +80,15 @@ func ParseCase(name, spec, exec string) (TestCase, error) {
 		if len(parts) != 2 {
 			return TestCase{}, fmt.Errorf("invalid entity-bytes: %s", byteRange)
 		}
-		from, err := strconv.ParseInt(parts[0], 10, 64)
+		var err error
+		_, err = strconv.ParseInt(parts[0], 10, 64)
 		if err != nil {
-			return TestCase{}, err
-		}
-		if from < 0 {
-			return TestCase{}, fmt.Errorf("invalid entity-bytes: %s", byteRange)
+			return TestCase{}, fmt.Errorf("invalid entity-bytes: %s (%w)", byteRange, err)
 		}
 		if parts[1] != "*" {
-			to, err := strconv.ParseInt(parts[1], 10, 64)
+			_, err = strconv.ParseInt(parts[1], 10, 64)
 			if err != nil {
-				return TestCase{}, err
-			}
-			if to < 0 {
-				return TestCase{}, fmt.Errorf("invalid entity-bytes: %s", byteRange)
+				return TestCase{}, fmt.Errorf("invalid entity-bytes: %s (%w)", byteRange, err)
 			}
 		}
 	}

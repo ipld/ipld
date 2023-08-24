@@ -1,1 +1,5 @@
 ../node_modules
+../specs/pkg-go/
+../specs/README.md
+../specs/pkg-js/
+../specs/node_modules/

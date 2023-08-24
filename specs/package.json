@@ -1,0 +1,32 @@
+{
+  "name": "@ipld/specs",
+  "version": "1.0.0",
+  "description": "IPLD specifications and fixtures",
+  "type": "module",
+  "exports": {
+    "./trustless-pathing/unixfs_20m_variety.js": {
+      "import": "./pkg-js/trustless-pathing/unixfs_20m_variety.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ipld/ipld.git"
+  },
+  "keywords": [
+    "ipld"
+  ],
+  "author": "Rod Vagg <rod@vagg.org>",
+  "license": "Apache-2.0 OR MIT",
+  "bugs": {
+    "url": "https://github.com/ipld/ipld/issues"
+  },
+  "homepage": "https://github.com/ipld/ipld#readme",
+  "dependencies": {
+    "multiformats": "^12.0.1",
+    "testmark.js": "^1.0.6"
+  },
+  "files": [
+    "pkg-js/",
+    "transport/trustless-pathing/fixtures/"
+  ]
+}

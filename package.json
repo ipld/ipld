@@ -1,6 +1,6 @@
 {
   "name": "ipld",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "IPLD Docs Site",
   "scripts": {
     "start": "cd .site && eleventy --serve",

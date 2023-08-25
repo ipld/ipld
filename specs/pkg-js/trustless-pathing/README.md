@@ -6,7 +6,7 @@ import {
   unixfs20mVarietyCar
 } from '@ipld/specs/trustless-pathing/unixfs_20m_variety'
 
-const testCases = await unixfs20mVarietyCases()
+const testCases = unixfs20mVarietyCases()
 const carUrl = unixfs20mVarietyCar()
 
 // load the CAR using @ipld/car streamed from `carUrl` as a file

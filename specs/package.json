@@ -4,7 +4,7 @@
   "description": "IPLD specifications and fixtures",
   "type": "module",
   "exports": {
-    "./trustless-pathing/unixfs_20m_variety.js": {
+    "./trustless-pathing/unixfs_20m_variety": {
       "import": "./pkg-js/trustless-pathing/unixfs_20m_variety.js"
     }
   },

@@ -4,7 +4,7 @@
 import {
   unixfs20mVarietyCases,
   unixfs20mVarietyCar
-} from '@ipld/specs/trustless-pathing/unixfs_20m_variety.js'
+} from '@ipld/specs/trustless-pathing/unixfs_20m_variety'
 
 const testCases = await unixfs20mVarietyCases()
 const carUrl = unixfs20mVarietyCar()

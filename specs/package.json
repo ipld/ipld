@@ -1,6 +1,6 @@
 {
   "name": "@ipld/specs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "IPLD specifications and fixtures",
   "type": "module",
   "exports": {

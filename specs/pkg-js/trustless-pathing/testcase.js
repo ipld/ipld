@@ -32,16 +32,16 @@ export function parseCase (name, spec, exec) {
   }
   const specParts = spec.trim().split('?')
   if (specParts.length !== 2) {
-    return new Error('invalid spec')
+    throw new Error('invalid spec')
   }
   spec = specParts[0]
   const query = new URLSearchParams(specParts[1])
   if (spec[0] !== '/') {
-    return new Error('invalid spec')
+    throw new Error('invalid spec')
   }
   const specParts2 = spec.split('/').filter(Boolean)
   if (specParts2[0] !== 'ipfs') {
-    return new Error('invalid spec')
+    throw new Error('invalid spec')
   }
   const root = CID.parse(specParts2[1])
   const path = '/' + specParts2.slice(2).join('/')
@@ -52,23 +52,23 @@ export function parseCase (name, spec, exec) {
     case 'block':
       break
     default:
-      return new Error(`invalid dag-scope in test case: ${scope}`)
+      throw new Error(`invalid dag-scope in test case: ${scope}`)
   }
   const duplicates = query.get('dups') === 'y'
   const byteRange = query.get('entity-bytes')
   if (byteRange) {
     const parts = byteRange.split(':')
     if (parts.length !== 2) {
-      return new Error(`invalid entity-bytes: ${byteRange}`)
+      throw new Error(`invalid entity-bytes: ${byteRange}`)
     }
     const start = parseInt(parts[0], 10)
     if (isNaN(start)) {
-      return new Error(`invalid entity-bytes: ${byteRange}`)
+      throw new Error(`invalid entity-bytes: ${byteRange}`)
     }
     if (parts[1] !== '*') {
       const end = parseInt(parts[1], 10)
       if (isNaN(end)) {
-        return new Error(`invalid entity-bytes: ${byteRange}`)
+        throw new Error(`invalid entity-bytes: ${byteRange}`)
       }
     }
   }

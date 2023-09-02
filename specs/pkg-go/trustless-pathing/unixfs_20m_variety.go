@@ -18,20 +18,21 @@ import (
 
 const file = "/../../transport/trustless-pathing/fixtures/unixfs_20m_variety."
 
-func pathToFixture(typ string) (string, error) {
+func pathToFixture(typ string) string {
 	_, thisFile, _, _ := runtime.Caller(0)
 	pathTo := filepath.Dir(thisFile) + file + typ
 	pathTo = filepath.Clean(pathTo)
 	// convert wd to absolute path, normalizing to / separators
 	pathTo = strings.ReplaceAll(pathTo, "\\", "/")
-	return pathTo, nil
+	return pathTo
+}
+
+func Unixfs20mVarietyCARPath() string {
+	return pathToFixture("car")
 }
 
 func Unixfs20mVarietyReadableStorage() (storage.ReadableStorage, io.Closer, error) {
-	file, err := pathToFixture("car")
-	if err != nil {
-		return nil, nil, err
-	}
+	file := pathToFixture("car")
 	carFile, err := os.Open(file)
 	if err != nil {
 		return nil, nil, err
@@ -45,10 +46,7 @@ func Unixfs20mVarietyReadableStorage() (storage.ReadableStorage, io.Closer, erro
 }
 
 func Unixfs20mVarietyCases() ([]TestCase, error) {
-	file, err := pathToFixture("md")
-	if err != nil {
-		return nil, err
-	}
+	file := pathToFixture("md")
 	doc, err := testmark.ReadFile(file)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read testcases: %w", err)

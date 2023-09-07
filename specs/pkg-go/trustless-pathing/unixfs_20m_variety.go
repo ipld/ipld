@@ -8,6 +8,7 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/ipfs/go-cid"
 	carstorage "github.com/ipld/go-car/v2/storage"
 	"github.com/ipld/go-ipld-prime/storage"
 	"github.com/warpfork/go-testmark"
@@ -45,24 +46,28 @@ func Unixfs20mVarietyReadableStorage() (storage.ReadableStorage, io.Closer, erro
 	return reader, carFile, nil
 }
 
-func Unixfs20mVarietyCases() ([]TestCase, error) {
+func Unixfs20mVarietyCases() ([]TestCase, cid.Cid, error) {
 	file := pathToFixture("md")
 	doc, err := testmark.ReadFile(file)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read testcases: %w", err)
+		return nil, cid.Undef, fmt.Errorf("failed to read testcases: %w", err)
 	}
 	doc.BuildDirIndex()
+	root, err := cid.Parse(dstr(doc.DirEnt, "root"))
+	if err != nil {
+		return nil, cid.Undef, err
+	}
 	testCases := make([]TestCase, 0)
 	for _, test := range doc.DirEnt.Children["test"].ChildrenList {
 		for _, scope := range test.ChildrenList {
 			tc, err := ParseCase(test.Name+"/"+scope.Name, dstr(scope, "query"), dstr(scope, "execution"))
 			if err != nil {
-				return nil, fmt.Errorf("failed to parse test case %s: %w", test.Name+"/"+scope.Name, err)
+				return nil, cid.Undef, fmt.Errorf("failed to parse test case %s: %w", test.Name+"/"+scope.Name, err)
 			}
 			testCases = append(testCases, tc)
 		}
 	}
-	return testCases, nil
+	return testCases, root, nil
 }
 
 func dstr(dir *testmark.DirEnt, ch string) string {

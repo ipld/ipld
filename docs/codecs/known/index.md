@@ -5,7 +5,7 @@ title: "Known Codecs"
 Known Codecs
 ============
 
-Some codecs that are widely known in IPLD have documention here.
+Some codecs that are widely known in IPLD have documentation here.
 
 This is not an exhaustive list of codecs. But it does cover some of the ones we use most widely!
 

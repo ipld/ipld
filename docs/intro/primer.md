@@ -102,7 +102,7 @@ Key Concepts
     - But instead, the representation for that "struct" could also be "tuple" mode (meaning the representation will be a "list" in **Data Model** understanding).  In this case, the struct field names aren't present in the representation at all.
     - Some representation strategies contain more redundant data (meaning they're easier to "eyeball" and understand without a schema!); others lean towards higher entropy (meaning that "eyeballing" it might become impractical and a schema might become necessary to understand them fully).  We make schemaless and schemafull systems into _a gradient_: you can choose where on the gradient you want to be (and vary that choice with each type -- e.g., one can start a large data graph with schemaless data, and then use increasingly compact/high-entropy/schemafull representations for data deeper in the graph).
 
-- Every **Schema** type also has a defined way of being percieved as **Data Model** -- so, you can **always** apply concepts like **Pathing** _over the parsed Schema data_ just like you would the raw data.  It'll just be a little different.
+- Every **Schema** type also has a defined way of being perceived as **Data Model** -- so, you can **always** apply concepts like **Pathing** _over the parsed Schema data_ just like you would the raw data.  It'll just be a little different.
     - For example: you can have a struct with tuple representation, and it will act like a "map"... at the same time as its representation is a "list".  You can traverse and do **Pathing** over either view of the data, at your option.
 
 - It's critical to note that **Schema**s are *not Turing complete*.  In fact, they're not even close.  There's been a considerable effort made to keep the amount of computation required to decide if data "matches" a Schema or not to be minimal, and at most, proportional to the complexity of the schema (which in turn can be loosely approximated by its sheer textual size).
@@ -175,7 +175,7 @@ Finer Points
 - Lists are not sparse.  (Although nothing stops an ADL from making such a thing.)
 
 - Map keys are strings.
-    - Not bytes.  (But remember, the distinction between strings and bytes is mostly in interpretation.  In essense, this statement means: map keys are treated as being printable.)
+    - Not bytes.  (But remember, the distinction between strings and bytes is mostly in interpretation.  In essence, this statement means: map keys are treated as being printable.)
     - Not integers.  (It would complicate libraries significantly, and be unsupportable by many codecs, and would create a great deal of ambiguity for tools that want to make human-readable presentations of data.)
 
 - There's no way to distinguish **PathSegment**s that are strings (for map keys) vs integers (for list indexes).  It's determined by the data it's applied to.

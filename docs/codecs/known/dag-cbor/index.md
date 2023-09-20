@@ -14,7 +14,7 @@ DAG-CBOR also adds a "link" type using a CBOR tag, to bring it in line with the 
 
 DAG-CBOR is a codec we recommend using.
 It has very complete mapping to the IPLD Data Model;
-it's binary and length-delimited (meaning it's generally very effecient to parse);
+it's binary and length-delimited (meaning it's generally very efficient to parse);
 and it's widely supported through the IPLD ecosystem.
 
 See the [DAG-CBOR specifications](/specs/codecs/dag-cbor/) for details.

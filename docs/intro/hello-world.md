@@ -33,7 +33,7 @@ or just based on what fits the performance vs human-readability that you prefer 
 A key part of IPLD is its ability to link together documents.
 
 IPLD linking isn't like some other forms of linking, like URLs (which refer to "locations" of data) --
-instead, it's based on content-addressing (which means refering to data by a hash of its content).
+instead, it's based on content-addressing (which means referring to data by a hash of its content).
 IPLD uses a format called [CIDs](/glossary/#cid) for this, to be specific.
 
 What's neat about content-addressing is that because it does _not_ involve talking about data _location_,

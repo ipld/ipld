@@ -49,7 +49,7 @@ Iterating over a map, in the order its iterator yields entries;
 iterating over lists, in the order their iterator yields entries;
 etc.
 
-A total traversal is differenciated from a [Directed Traversal](#directed-traversal).
+A total traversal is differentiated from a [Directed Traversal](#directed-traversal).
 
 ### Directed Traversal
 
@@ -58,10 +58,10 @@ A directed traversal might visit only some of a graph,
 or might visit data in a specific order,
 based on its specific directions.
 
-A directed traversal is differenciated from a [Total Traversal](#total-traversal).
+A directed traversal is differentiated from a [Total Traversal](#total-traversal).
 
 Directed traversal is a general term and can refer to any kind of traversal one does with custom code;
-there are also some standardized features that many IPLD libraries will provide which perfrom directed traversals,
+there are also some standardized features that many IPLD libraries will provide which perform directed traversals,
 such as [Selectors](#traversal-by-selector)
 
 ### Traversal by Selector
@@ -72,7 +72,7 @@ as well as how to mark and select some of the nodes reached during that traversa
 You can think of Selectors as roughly like regexps for textual data, but made for IPLD graphs.
 
 Selectors are a form of [directed traversal](#directed-traversal).
-Accordingly, some selectors can cause the traversal to procede in a different order than a plain total traversal on the same data would have
+Accordingly, some selectors can cause the traversal to proceed in a different order than a plain total traversal on the same data would have
 (as well as, of course, traversing much _less_ data than a plain total traversal would have -- that's the point of them, after all).
 
 For an example of how the directed traversal order in selectors may differ from the norm,

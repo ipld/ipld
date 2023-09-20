@@ -33,7 +33,7 @@ A **path** is a list of **path segments**.
 Path encoding
 -------------
 
-Paths are typically seen encoded as single strings, where segments are separated by occurences of the "`/`" character.
+Paths are typically seen encoded as single strings, where segments are separated by occurrences of the "`/`" character.
 
 Beware!  The "`/`" character is also valid within a path segment.
 

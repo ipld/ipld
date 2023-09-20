@@ -9,7 +9,7 @@ build:
 	npm run build
 
 schema-schema:
-	@ echo ">>> $@ >>>"
+	@echo ">>> $@ >>>"
 	npm run build:schema-schema
 
 dev:

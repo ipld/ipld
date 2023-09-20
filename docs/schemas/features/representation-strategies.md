@@ -689,7 +689,7 @@ type Status enum {
 } representation int
 ```
 
-As with the `string` representation strategy, Enums with an `int` representation strategy still quote the integer strings when provided as field-specific representation parameters. This is standard practice for field-specific representation parameters as they are converted to the correct type depending on context. In this context, they are assumed to be integers so must be convertable to integers.
+As with the `string` representation strategy, Enums with an `int` representation strategy still quote the integer strings when provided as field-specific representation parameters. This is standard practice for field-specific representation parameters as they are converted to the correct type depending on context. In this context, they are assumed to be integers so must be convertible to integers.
 
 There are no optional values, as in the `string` representation strategy, all values must be provided when using `int` representation strategy.
 

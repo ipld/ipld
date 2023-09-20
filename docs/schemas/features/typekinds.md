@@ -224,7 +224,7 @@ the default or explicitly user-provided (e.g. to re-emit the config without
 altering this), you want to use `optional`!
 In this situation, `implicit` may cause the provided value to be lost at the
 application-layer if it was equal to the default, whereas `optional` will
-expose and correctly preserve the value's presense or absence.
+expose and correctly preserve the value's presence or absence.
 
 ## Understanding Cardinality
 

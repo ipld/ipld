@@ -20,7 +20,7 @@ To make ADLs run, and process your data, there are two problems that need solvin
 - if you used the direct "action route" through signalling, this is a gimme
 - your library should probably have some sort of registry, otherwise
 - language specific "rockets" are common today
-- we hope to have wasm implementations and a common plugin API shared across langauges someday -- but that day is not today (developers welcome)
+- we hope to have wasm implementations and a common plugin API shared across languages someday -- but that day is not today (developers welcome)
 :::
 
 ### not every application that processes IPLD data will necessarily support your ADLs

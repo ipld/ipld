@@ -126,7 +126,7 @@ It is possible to have a document which links directly to its own Schema!
 Since IPLD Schemas are themselves representable in IPLD, it's outright trivial
 to make an object containing a CID linking to a Schema.
 
-This may be useful -- in particular, it certainly solves any issue of chosing
+This may be useful -- in particular, it certainly solves any issue of choosing
 unique version strings in using explicit versioning! -- but it is also worth
 noting that is is not a solution to *migration*: while having a specific schema
 explicitly linked is certainly one way to address the need to

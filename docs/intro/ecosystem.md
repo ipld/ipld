@@ -73,7 +73,7 @@ libp2p is a project which handles networking and transport of data.
 
 The features of libp2p of the features range from
 the basic (simple streaming transport APIs)
-to the useful (NAT traversal, "hole punching", protocol negociations, etc)
+to the useful (NAT traversal, "hole punching", protocol negotiations, etc)
 to the neat (pubkey-based persistent network peer identity toolkits)
 to the awesome (DHTs and other advanced network routing and distributed storage components).
 

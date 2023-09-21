@@ -124,7 +124,7 @@ it takes the world as it is, and the world of strings has widely known compatibi
 
 While some codec specifications will define a required encoding it should be noted that in practice
 many codec implementations leave this kind of validation and sanitization up to the consumer (application
-code) and it is typical to find arbitrary byte data in strings even in codecs that explicitely forbid it.
+code) and it is typical to find arbitrary byte data in strings even in codecs that explicitly forbid it.
 
 Applications **SHOULD** only encode UTF8 data into string values and use byte values when they need
 arbitrary bytes, but IPLD libraries may not provide these guarantees and rely on the application, or often the

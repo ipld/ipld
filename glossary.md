@@ -176,7 +176,6 @@ The format is described in IPLD (using [IPLD Schemas](#schemas)),
 so it's possible to serialize Selectors in any [Codec](#codec) you want,
 and it's also possible to inspect (and transform!) Selector documents using standard [Data Model](#data-model) tools.
 
-#### Signaling
 #### Signalling
 
 See the [ADL Signalling](/docs/advanced-data-layouts/signalling/) page,

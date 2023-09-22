@@ -619,7 +619,7 @@ type Ping struct {
 
 Our `Payload` union now has the `keyed` representation strategy.
 This strategy means the `Payload` will have a Map representation kind, and that map will be required to have exactly one of the various keys that are used to discriminate the type present.
-Syntatically in the Schema DSL, `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union -- these are the discriminate values that will be seen in the map.
+Syntactically in the Schema DSL, `Payload` now lists quotes string keys next to the types, rather than the kinds of the previous `kinded` Union -- these are the discriminate values that will be seen in the map.
 
 Validation of such data can now check for the presence of each of these keys, _exactly one_ of them exists, and then hand off validation to the expected type at the node found in the valued of that key.
 If an `"error"` key is found, it will proceed to validate `Error` which assumes that the node is a String.

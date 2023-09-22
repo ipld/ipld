@@ -8,7 +8,7 @@ These types are used throughout the Ethereum data structures but are themselves 
 type BigInt bytes
 
 # Unsigned integer
-# Used to explicity specify that an integer cannot be negative
+# Used to explicitly specify that an integer cannot be negative
 type Uint bytes
 
 # Block nonce is an 8 byte binary representation of a block's nonce

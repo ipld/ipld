@@ -29,7 +29,7 @@ Codec implementations **MUST** do the following when encoding data in order to e
 This produces the most compact and consistent representation which will ensure that two codecs
 producing the same data end up with matching block hashes.
 
-Codec implementers should not enforce this strictness when decoding data in order to support historical data, and data produced by non-strict encoders. However, they may provide an opt-in for systems where round-trip determinism is a desireable feature and backward compatibility with old, non-strict data is unnecessary.
+Codec implementers should not enforce this strictness when decoding data in order to support historical data, and data produced by non-strict encoders. However, they may provide an opt-in for systems where round-trip determinism is a desirable feature and backward compatibility with old, non-strict data is unnecessary.
 
 ### Supported kinds
 
@@ -114,7 +114,7 @@ There is no mechanism for escaping otherwise valid JSON data that takes these fo
 **[@ipld/dag-json](https://github.com/ipld/js-dag-json)**, for use with [multiformats](https://github.com/multiformats/js-multiformats) adheres to this specification.
 
 The legacy **[ipld-dag-json](https://github.com/ipld/js-ipld-dag-json)** implementation adheres to this specification, with the following caveats:
- * The reserved namespace rules above are not strictly applied. Decoding maps with the forms of Bytes and Links but with additional entries in inner or outer maps will be successfuly decoded as Bytes or Links but the extraneous entries will be ignored.
+ * The reserved namespace rules above are not strictly applied. Decoding maps with the forms of Bytes and Links but with additional entries in inner or outer maps will be successfully decoded as Bytes or Links but the extraneous entries will be ignored.
  * Bytes are encoded with their Multibase Base64 prefix `m` as per a previous version of this specification.
 
 ### Go

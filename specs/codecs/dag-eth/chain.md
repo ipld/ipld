@@ -100,7 +100,7 @@ type Transaction struct {
     ChainID      nullable BigInt # null unless the transaction is an EIP-2930 or EIP-1559 transaction
     AccountNonce Uint
     GasPrice     nullable BigInt # null if the transaction is an EIP-1559 transaction
-    GasTipCap    nullable BigInt # null unless the transaciton is an EIP-1559 transaction
+    GasTipCap    nullable BigInt # null unless the transaction is an EIP-1559 transaction
     GasFeeCap    nullable BigInt # null unless the transaction is an EIP-1559 transaction
     GasLimit     Uint
     Recipient    nullable Address # null recipient means the tx is a contract creation tx
@@ -149,7 +149,7 @@ type Receipt struct {
     Logs              [Log]
 }
 
-# Status is an enum indicating whether or not the application of a tx was succesful
+# Status is an enum indicating whether or not the application of a tx was successful
 type Status enum {
     | Failed  ("0")
     | Successful   ("1")

@@ -14,7 +14,7 @@ objects using the scheme described in [typed_protobuf.md](../typed_protobuf).
 
 ## App State
 ```ipldsch
-# AppStateTreeCID is a CID link to the state root returned by the state machine after executing and commiting the previous block
+# AppStateTreeCID is a CID link to the state root returned by the state machine after executing and committing the previous block
 # It serves as the basis for validating any Merkle proofs that comes from the ABCI application and represents the state of the actual application rather than the state of the blockchain itself.
 # The nature of the hash is determined by the application, Tendermint can not perform validation on it
 # For cosmos applications this CID is composed of the SHA_256 multihash of the root node in either an IAVL tree or SMT, using their repspective codecs (tbd)
@@ -30,7 +30,7 @@ type AppStateNode union {
 } representation keyed
 
 # AppStateRootNode represents the root node in Tendermint/Cosmos AppState
-# This is simply an alias for AppStateNode that explicity types the node as the root of the tree
+# This is simply an alias for AppStateNode that explicitly types the node as the root of the tree
 type AppStateRootNode union {
  | IAVLRootNode "iavl"
  | SMTRootNode "smt"

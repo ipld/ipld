@@ -6,7 +6,7 @@ This document is a result of some digital archaeology initially spurred by the d
 
 We document [some of this in the dag-pb spec](https://ipld.io/specs/codecs/dag-pb/spec/#alternative-legacy-pathing) but only as it relates to pathing. The fact that we’ve mostly siloed into our separate language stacks meant that the gulf between JS & Go and how we view these things hasn’t been clear. Until now, since we’re integrating go-ipld-prime into go-ipfs and it’s bringing in the new unified dag-pb codec work, where [js-dag-pb](https://github.com/ipld/js-dag-pb) and [go-codec-dagpb](https://github.com/ipld/go-codec-dagpb) are fundamentally doing the same thing under the hood, as per much clarified dag-pb specification, and we’re finally exposing a more “pure” data model up through the `dag` APIs in go-ipfs.
 
-## In the begining
+## In the beginning
 
 dag-pb (I don't know when it started being called that but it was originally just the data serialisation form) was originally defined as a protobuf schema, which you can find [here](https://ipld.io/specs/codecs/dag-pb/spec/#serial-format). With `Data`  and `Links` on the `PBNode`, and the `PBLink`s have `Tsize`, `Name`, `Hash`.
 

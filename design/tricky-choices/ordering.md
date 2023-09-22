@@ -128,7 +128,7 @@ Therefore we care about ordering pretty much ubiquitously.
 
 ### libraries
 
-There's a couple of specific places where map ordering is going to be directly noticable in implementations:
+There's a couple of specific places where map ordering is going to be directly noticeable in implementations:
 
 - iterators
 - traversals (which are usually built on the iterators)
@@ -137,7 +137,7 @@ There's a couple of specific places where map ordering is going to be directly n
 
 ### high level features
 
-More generally, ordering is going to be noticable in anything _downstream_ of those core behaviors.
+More generally, ordering is going to be noticeable in anything _downstream_ of those core behaviors.
 Any higher-level features which build on those core behaviors, and expect any amount of determinism,
 have to be specified with an understanding of how IPLD ordering works.  For example:
 
@@ -147,7 +147,7 @@ have to be specified with an understanding of how IPLD ordering works.  For exam
 
 ### synthesis
 
-These situations where ordering is noticable can synthesize in interesting ways.
+These situations where ordering is noticeable can synthesize in interesting ways.
 
 For example, it's interesting to note that if combining Selectors with ADLs that with opinionated orders,
 and then using them in a system that require deterministic ordering of the things yielded by selection
@@ -185,7 +185,7 @@ Recommendations for Library Authors
   This interface typically has some way to get an iterator for map contents.
   This iterator should be order-preserving in most node implementations.
 	- We recommend this because you'll get the best compositional bang-for-buck if you take this approach when writing your library.
-	  (If you use maps that don't maintain order, and try to rely on, say, [DAG-CBOR](/docs/codecs/known/dag-cbor/)'s sorting: you'll get some things to work, but later have problems correctly handling Selectors on non-canonical data in that codec; or handling the round-tripping or applicaiton of Selectors on other non-sorted codecs (like JSON!) correctly at all.  Don't put yourself in that situation.)
+	  (If you use maps that don't maintain order, and try to rely on, say, [DAG-CBOR](/docs/codecs/known/dag-cbor/)'s sorting: you'll get some things to work, but later have problems correctly handling Selectors on non-canonical data in that codec; or handling the round-tripping or application of Selectors on other non-sorted codecs (like JSON!) correctly at all.  Don't put yourself in that situation.)
 
 - An IPLD library's "Node" interface and implementations may wish to include some feature which let a node say what, if any, sorted order it contains.
   This can allow other features based on sorting to work quickly and efficiently (they can just check if the data *is* sorted, rather than needing to verify it).

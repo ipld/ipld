@@ -5,7 +5,7 @@ title: "ADL autoexecution"
 Open Research Challenge: ADLs we can auto-execute
 =================================================
 
-The use of [Adavanced Data Layouts (ADLs)](/docs/advanced-data-layouts/)
+The use of [Advanced Data Layouts (ADLs)](/docs/advanced-data-layouts/)
 currently requires explicit configuration in order to operate.
 
 There are several reasons for this, ranging from the merely practical to the deeply principled.

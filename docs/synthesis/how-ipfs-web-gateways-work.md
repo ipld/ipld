@@ -199,7 +199,7 @@ By baking these things into the codec itself, there were several major disadvant
 
 - by baking these sharding mechanisms into a single codec, it was not possible to reuse them with other codecs;
 - because the sharding mechanisms were baked in the codec (and at the time,
-  there wasn't really any coherent definiton of a Data Model at all),
+  there wasn't really any coherent definition of a Data Model at all),
   there was no way to _switch_ between high level and raw views of the data --
   as a result, these systems were much harder to debug;
 - because the sharding mechanisms were tightly bound into the codec,

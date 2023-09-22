@@ -118,7 +118,7 @@ but do not recommend that new protocols be produced which use these concepts.
 
 Be aware that base-2 numbers and base-10 numbers are different.
 
-For whole numbers, the bases are freely convertable without loss.  For decimal numbers, _they are not_.
+For whole numbers, the bases are freely convertible without loss.  For decimal numbers, _they are not_.
 
 IEEE 754 floating point numbers are base-2.
 
@@ -195,8 +195,8 @@ This is not a problem for IPLD itself, per se;
 but it's something you should be aware of if designing applications in a space where you care about
 reproducibility of computations, or about convergence and canonicalization in data, because it may affect you.
 
-Calcuations which are done using extended precision can (and will) have _different results_ than
-if the same input numbers were used in a calcuation performed without extended precision.
+Calculations which are done using extended precision can (and will) have _different results_ than
+if the same input numbers were used in a calculation performed without extended precision.
 This can be problematic if unexpected.
 
 And it's especially problematic because _it's often unexpected_.

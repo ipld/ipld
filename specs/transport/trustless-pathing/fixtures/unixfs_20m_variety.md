@@ -1087,7 +1087,7 @@ bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     �
 bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /Zigzagumptious/Lickety-split/velociraptorious.csv [0:1822] (1,823 B)
 ```
 
-#### 0:0
+#### 0:0 raw leaf file
 
 [testmark]:# (test/small_file_in_directory_byte_ranges/0:0/query)
 ```
@@ -1101,6 +1101,20 @@ bafybeie3mbyp7k77vrpiduaifyhdeqvusjn7qofzwtsp47yavyyb62z32y | HAMTShard | ↳ /Z
 bafybeigivdbrxmcixaqfap3rrs7ti5ycr7vj4xfbkjougq67k7ac5oz55a | HAMTShard |   ↳ /Zigzagumptious [2]
 bafybeig2cw3hgc3oo4tpd5cqh7pfgrrzjdlenz3n2fredafr4l3ja7tvgy | Directory |     ↳ /Zigzagumptious/Lickety-split
 bafkreifc732vu5ykpdctxxmpdsvdj4mmfrejf47lpq2suzhpdgxwudwohy | RawLeaf   |       ↳ /Zigzagumptious/Lickety-split/velociraptorious.csv [0:1822] (1,823 B)
+```
+
+#### 0:0 sharded file
+
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:0/query)
+```
+/ipfs/bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq/clippet.txt?dag-scope=entity&entity-bytes=0:0
+```
+
+[testmark]:# (test/sharded_file_in_directory_byte_ranges/0:0/execution)
+```
+bafybeifrrglx2issn2had5rtstn3xltla6vxmpjfwfz7o3hapvkynh4zoq | Directory | /
+bafybeiawxstujkmnv2doejkzfydtotgqreycncd7ro4ixxddeoahofwjkm | File      | ↳ /clippet.txt [0:1889755] (1,889,756 B)
+bafkreib56a35cuh7mavlzlradaysqqpqx6lr2sn3veahyb2yb3y7dq5aei | RawLeaf   |   ↳ /clippet.txt [0:256143] (256,144 B)
 ```
 
 #### 0:10

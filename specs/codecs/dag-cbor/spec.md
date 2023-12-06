@@ -41,7 +41,7 @@ The inclusion of the Multibase prefix exists for historical reasons and the iden
 
 ## Map Keys
 
-In DAG-CBOR, map keys must be strings, as defined by the [IPLD Data Model]. Other map keys, such as ints, are not supported and should be rejected when encountered.
+In DAG-CBOR, map keys must be strings. Other map keys, such as ints, are not supported and should be rejected when encountered.
 
 ## Strictness
 

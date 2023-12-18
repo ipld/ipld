@@ -57,13 +57,13 @@ type CarV1Header struct {
 
 To introduce a new version that existing parsers can safely reject as an *"unsupported version"* we must copy the minimal form of this header with a new version.
 
-Therefore, the CARv2 header is a fixed sequence of 11 bytes: **`0x0aa16776657273696f6e02`**.
+Therefore, the CARv2 pragma is a fixed sequence of 11 bytes: **`0x0aa16776657273696f6e02`**.
 
 These bytes decode as follows: A leading `0x0a` which translates as a `uint(10)` (or `varint(10)`) indicating the length of the DAG-CBOR header block to follow. The remaining 10 bytes are a standard CBOR encoding of a map containing a `"version"` field with a value `2`. i.e.
 
 
 ```ipldsch
-type CarV2Header struct {
+type CarV2Pragma struct {
   version Int # 2
 }
 ```
@@ -83,12 +83,12 @@ This 11 byte string remains fixed and may be matched using a simple byte compari
 
 ### Header
 
-Following the 11 byte pragma, the CARv2 is a fixed-length sequence of 40 bytes, broken into the following sections:
+Following the 11 byte pragma, the CARv2 header is a fixed-length sequence of 40 bytes, broken into the following sections:
 
 1. **Characteristics**: A 128-bit (16-byte) bitfield used to describe certain features of the enclosed data.
-2. **Data offset**: A 64-bit (8-byte) unsigned little-endian integer indicating the byte-offset from the beginning of the CARv2 to the first byte of the CARv1 data payload.
+2. **Data offset**: A 64-bit (8-byte) unsigned little-endian integer indicating the byte-offset from the beginning of the CARv2 pragma to the first byte of the CARv1 data payload.
 3. **Data size**: A 64-bit (8-byte) unsigned little-endian integer indicating the byte-length of the CARv1 data payload.
-4. **Index offset**: A 64-bit (8-byte) unsigned little-endian integer indicating the byte-offset from the beginning of the CARv2 to the first byte of the index payload. This value may be `0` to indicate the absence of index data.
+4. **Index offset**: A 64-bit (8-byte) unsigned little-endian integer indicating the byte-offset from the beginning of the CARv2 pragma to the first byte of the index payload. This value may be `0` to indicate the absence of index data.
 
 ### Characteristics
 

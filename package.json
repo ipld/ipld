@@ -22,7 +22,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "eleventy-plugin-svg-contents": "^0.7.0",
     "markdown-it-anchor": "^8.6.7",
-    "markdown-it-container": "^3.0.0",
+    "markdown-it-container": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-mark": "^3.0.1",
     "markdown-it-table-of-contents": "^0.6.0",

@@ -11,7 +11,7 @@ Overview
 --------
 
 The IPLD Data Model is a central part of IPLD.
-It which describes what data is representable in IPLD --
+It describes what data is representable in IPLD --
 for example, booleans, integers, textual strings, maps and lists, etc.
 
 The Data Model describes these data ranges in the abstract.

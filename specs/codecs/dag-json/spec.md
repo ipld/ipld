@@ -43,6 +43,8 @@ JSON only has a single number type. Many dynamically typed programming languages
 
 Data Model floats that do not have a fractional component should be encoded **with** a decimal point, and will therefore be distinguishable from an integer during round-trip. (Note that since JavaScript still cannot distinguish a float from an integer where the number has no fractional component, this rule will not impact JavaScript encoding or decoding).
 
+Floats in JSON can be encoded with the exponent notation, which makes it possible to represent the same number in two different ways. For content addressed data you may restrict it to the simple decimal notation.
+
 Contrary to popular belief, JSON as a format supports Big Integers. It's only JavaScript itself that has trouble with them. This means JS implementations of DAG-JSON can't use the native JSON parser and serializer if integers bigger than `2^53 - 1` need to be supported.
 
 `Infinity`, `NaN` and `-Infinity` are not natively supported by JSON and are not supported by the IPLD Data Model.

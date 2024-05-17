@@ -20,8 +20,9 @@ Both JWS and JWE supports three different serialization formats: `Compact Serial
 To map the general JSON serialization to CBOR we do the following:
 
 - Any field which is represented as `base64url(<data>)` we map directly to `Bytes` . For fields like `header` and `protected` which are specified as the `base64url(ascii(<some json>))` that means that the value is the `ascii(<some json>)` bytes.
-- For JWS we specify that the `payload` property MUST be a CID, and we set the `payload` of the encoded JOSE object to `Bytes` containing the bytes of the CID. For applications where an additional network request to retrieve the linked content is undesirable then an `identity` multihash should be used.
-- For JWE objects the `ciphertext` must decrypt to a cleartext which is the bytes of a CID. This is for the same reason as the `payload` being a CID, and the same approach of using an `identity` multihash can be used, and most likely will be the only way to retain the confidentiality of data.
+- For JWS we specify that the `payload` property MAY be a CID, and we set the `payload` of the encoded JOSE object to `Bytes` containing the bytes of the CID. For applications where an additional network request to retrieve the linked content is undesirable then an `identity` multihash should be used.
+- Besides a CID the JWS `payload` can also be arbitrary JSON. We also support including CIDs inside of this json data. However, as opposed to *dag-json* we use strings containing an IPFS uri `ipfs://<cid>`, instead of an object `{ "/": "<cid>" }` which is what `dag-json` does.
+- For JWE objects the `ciphertext` must decrypt to a cleartext which is the bytes of a CID. The same approach of using an `identity` multihash can be used, and most likely will be the only way to retain the confidentiality of data.
 
 Below we present an IPLD schema representing the encoded JOSE objects. Note that there are two IPLD schemas, `EncodedJWE` and `EncodedJWS`. The actual wire format is a single struct which contains all the keys from both the `EncodedJWE` and the `EncodedJWS` structs, implementors should follow [section 9 of the JWE spec](https://tools.ietf.org/html/rfc7516#section-9) and distinguish between these two branches by checking if the `payload` attribute exists, and hence you have a JWS; or the `ciphertext` attribute, hence you have a JWE.
 
@@ -62,7 +63,7 @@ Applications may need to pad the cleartext when encrypting to avoid leaking the 
 
 ## Decoded JOSE
 
-Typically implementations will want to decode this format into something more useful for applications. Exactly what that will look like depends on the language of the implementation, here we use the IPLD schema language to give a somewhat language agnostic description of what the decoded representation might look like at runtime. Note that everything which is specified as `base64url(ascii(<some JSON>))` in the JOSE specs - and which we encode as `Bytes` in the wire format - is here decoded to a `String`. We also add the `link: &Any` attribute to the `DecodedJWS`,  which allows applications to easily retrieve the authenticated content.
+Typically implementations will want to decode this format into something more useful for applications. Exactly what that will look like depends on the language of the implementation, here we use the IPLD schema language to give a somewhat language agnostic description of what the decoded representation might look like at runtime. Note that everything which is specified as `base64url(ascii(<some JSON>))` in the JOSE specs - and which we encode as `Bytes` in the wire format - is here decoded to a `String`. We also add the `link &Any` attribute to the `DecodedJWS` if the payload is a CID, so that applications to easily retrieve the authenticated content. Otherwise, if the content of the `payload` is not a CID, it MUST be JSON. While decoding the json data from the payload, all strings must be checked if they match the regex `/ipfs:\/\/[a-zA-Z0-9]+$/`. If so they should be converted to a `Link` type. Note that we don't support dag-json like types. Finally the decoded payload should be added to the `pld` field, while the `payload` retains the base64url encoded data.
 
 Also note that, as with the encoded representation, there are two different representations; `DecodedJWE` and `DecodedJWS`. Applications can distinguish between these two branches in the same way as with the Encoded representation described above.
 
@@ -76,7 +77,8 @@ type DecodedSignature struct {
 type DecodedJWS struct {
   payload String
   signatures [DecodedSignature]
-  link: &Any
+  link optional &Any
+  pld optional {String:Any}
 }
 
 type DecodedRecipient struct {
@@ -99,3 +101,4 @@ type DecodedJWE struct {
 
 - [Javascript](https://github.com/oed/js-dag-jose)
 - [Go](https://github.com/alexjg/go-dag-jose)
+- [Rust](https://github.com/ceramicnetwork/rust-dag-jose)

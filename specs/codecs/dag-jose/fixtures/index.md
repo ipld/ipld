@@ -268,7 +268,7 @@ ee0b7a30668dabafc0be9c642c7ed1c4fb
 When it is parsed, we should see these paths within the data
 when we walk over it at the [data model](/docs/data-model/) level:
 
-[testmark]:# (jws-signature-2/paths)
+[testmark]:# (jws-signature-pld/paths)
 ```text
 payload
 pld
@@ -291,7 +291,7 @@ signatures/0/signature
 If we re-encoded this data in [DAG-JSON](/docs/codecs/known/dag-json/)
 (and prettyprint it), we should get this result:
 
-[testmark]:# (jws-signatures/datamodel.dag-json.pretty)
+[testmark]:# (jws-signature-pld/datamodel.dag-json.pretty)
 ```json
 {
 	"payload": "eyJ0ZXN0IjoicGF5bG9hZCIsImFMaW5rIjoiaXBmczovL2JhZnliZWlnNnh2NW53cGhmbXZjbmVrdHBub2p0czMzanFjdWFtN2JteWUycGI1NGFkbnJ0Y2NqbHN1IiwiYXJyIjpbImlwZnM6Ly9iYWZ5YmVpZzZ4djVud3BoZm12Y25la3Rwbm9qdHMzM2pxY3VhbTdibXllMnBiNTRhZG5ydGNjamxzdSIsIml0ZW0xIiwiaXRlbTIiXSwibmVzdGVkIjp7ImFMaW5rIjoiaXBmczovL2JhZnliZWlnNnh2NW53cGhmbXZjbmVrdHBub2p0czMzanFjdWFtN2JteWUycGI1NGFkbnJ0Y2NqbHN1IiwiYXJyIjpbImlwZnM6Ly9iYWZ5YmVpZzZ4djVud3BoZm12Y25la3Rwbm9qdHMzM2pxY3VhbTdibXllMnBiNTRhZG5ydGNjamxzdSIsIml0ZW0xIiwiaXRlbTIiXX19",

@@ -17,5 +17,8 @@ The [dag-json](https://github.com/snarfed/dag-json) library integrates with Hash
 ### dag-cbrrr ([PyPI](https://pypi.org/project/cbrrr/))
 The [dag-cbrrr](https://github.com/DavidBuchanan314/dag-cbrrr) library provides performance-oriented DAG-CBOR decoding and encoding, to and from Python objects. It passes the [test fixtures](https://github.com/ipld/codec-fixtures/tree/master/fixtures) and performs favourably in [benchmarks](https://github.com/DavidBuchanan314/dag-cbor-benchmark). It brings its own bare-bones CID class, but can be configured to use Hashberg's CID class if desired.
 
+### dag-pb ([PyPI](https://pypi.org/project/ipld-dag-pb/))
+The [ipld-dag-pb](https://github.com/storacha/py-ipld-dag-pb) library is an implementation of the dag-pb spec. It passes all tests with [DAG-PB fixtures](https://github.com/ipld/codec-fixtures/tree/master/fixtures). It also is compatible with the Hashberg's [`multiformats.CID`](https://github.com/hashberg-io/multiformats/#id9).
+
 ### python-libipld ([PyPI](https://pypi.org/project/libipld/))
-[python-libipld](https://github.com/MarshalX/python-libipld) provides Python bindings to [libipld](https://github.com/ipld/libipld), featuring DAG-CBOR, CID, and CAR decoding, and multibase encode and decode. 
+[python-libipld](https://github.com/MarshalX/python-libipld) provides Python bindings to [libipld](https://github.com/ipld/libipld), featuring DAG-CBOR, CID, and CAR decoding, and multibase encode and decode.

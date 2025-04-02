@@ -30,6 +30,8 @@ DAG-PB does not support the full [IPLD Data Model](/docs/data-model/).
   - [go-codec-dagpb](https://github.com/ipld/go-codec-dagpb) - for use with [go-ipld-prime](https://github.com/ipld/go-ipld-prime)
   - [go-merkledag/pb](https://github.com/ipfs/go-merkledag/tree/master/pb) - legacy implementation
   - [go-ipld-prime-proto](https://github.com/ipld/go-ipld-prime-proto) - read-only interface for go-merkledag/pb through [go-ipld-prime](https://github.com/ipld/go-ipld-prime)
+* Python
+  - [ipld-dag-pb](https://github.com/storacha/py-ipld-dag-pb)
 
 ## Serial Format
 

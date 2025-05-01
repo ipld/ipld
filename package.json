@@ -18,7 +18,7 @@
   "private": true,
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "@11ty/eleventy-navigation": "^1.0.3",
+    "@11ty/eleventy-navigation": "^1.0.4",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "eleventy-plugin-svg-contents": "^0.7.0",
     "markdown-it-anchor": "^9.2.0",

@@ -6,30 +6,23 @@ navTitle: "Rust"
 Rust IPLD Libraries
 ===================
 
-Stand-alone
------------
+### ipld-core
 
-### libipld
+[ipld-core](https://crates.io/crates/ipld-core) provides core types for working with the IPLD Data Model. It also provides macros to produce those types in a JSON-like way.
 
-The currently most feature rich stand-alone IPLD implementation in Rust is [libipld](https://github.com/ipfs-rust/libipld).
+### serde_ipld_dagcbor
 
-It has the [Data Model](/glossary/#data-model) at its core, but it can also directly serialize/deserialize from Rust data types into codecs like DAG-CBOR.
+[serde_ipld_dagcbor](https://crates.io/crates/serde_ipld_dagcbor) is a Serde based implementation for DAG-CBOR encoding and decoding.
 
+### serde_ipld_dagjson
 
-### Datalove IPLD
+[serde_ipld_dagjson](https://crates.io/crates/serde_ipld_dagjson) is a Serde based implementation for DAG-JSON encoding and decoding.
 
-[Datalove IPLD](https://github.com/datalove-app/ipld) is an experimental implementation of IPLD focusing on Schemas.
+### ipld-dagpb
 
-
-
-Integrated into other projects
-------------------------------
-
-### rust-ipfs
-
-rust-ipfs, one of the Rust IPFS implementations, has an [integrated IPLD implementation](https://github.com/rs-ipfs/rust-ipfs/tree/master/src/ipld). That code is based on an early fork of libipld.
+[ipld-dagpb](https://crates.io/crates/ipld-dagpb) is an implementation of DAG-PB.
 
 
-### Forest
+### Selectors
 
-Forest, a Filecoin implementation in Rust, has an [integrated IPLD implementation](https://github.com/ChainSafe/forest/tree/main/ipld) implementation tailored for their needs.
+[Forest](https://forest.chainsafe.io/) has an implementation for selectors [as part of their codebase](https://github.com/ChainSafe/forest/tree/main/src/ipld/selector).

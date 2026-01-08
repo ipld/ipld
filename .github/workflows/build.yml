@@ -1,0 +1,57 @@
+# Build workflow - runs for both PRs and main branch pushes
+# This workflow builds the website without access to secrets
+# For PRs: Runs on untrusted fork code safely (using pull_request event, not pull_request_target)
+# For main: Builds and uploads artifacts for deployment
+# Artifacts are passed to the deploy workflow which has access to secrets
+
+name: Build
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  BUILD_PATH: '.site/_output'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --prefer-offline --no-audit --progress=false
+
+      - name: Build site
+        run: npm run build
+
+      - name: Add CNAME for custom domain
+        run: echo 'ipld.io' > ${{ env.BUILD_PATH }}/CNAME
+
+      # Upload artifact for deploy workflow
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-build-${{ github.run_id }}
+          path: ${{ env.BUILD_PATH }}
+          retention-days: 1

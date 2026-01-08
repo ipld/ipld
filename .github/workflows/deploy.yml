@@ -1,0 +1,99 @@
+# Deploy workflow - triggered by workflow_run after successful build
+# This workflow has access to secrets but never executes untrusted code
+# It only downloads and deploys pre-built artifacts from the build workflow
+# Security: Fork code cannot access secrets as it only runs in build workflow
+# Deploys to GitHub Pages for main branch only
+
+name: Deploy
+
+# Explicitly declare permissions
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+  statuses: write
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types: [completed]
+
+env:
+  BUILD_PATH: 'website-build'
+
+jobs:
+  # TODO: uncomment when IPFS hosting is needed
+  # deploy-ipfs:
+  #   if: github.event.workflow_run.conclusion == 'success'
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     cid: ${{ steps.deploy.outputs.cid }}
+  #   environment:
+  #     name: 'ipfs-publish'
+  #   steps:
+  #     - name: Download build artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: website-build-${{ github.event.workflow_run.id }}
+  #         path: ${{ env.BUILD_PATH }}
+  #         run-id: ${{ github.event.workflow_run.id }}
+  #         github-token: ${{ github.token }}
+  #
+  #     - name: Deploy to IPFS
+  #       uses: ipshipyard/ipfs-deploy-action@v1
+  #       id: deploy
+  #       with:
+  #         path-to-deploy: ${{ env.BUILD_PATH }}
+  #         cluster-url: "/dnsaddr/ipfs-websites.collab.ipfscluster.io"
+  #         cluster-user: ${{ secrets.CLUSTER_USER }}
+  #         cluster-password: ${{ secrets.CLUSTER_PASSWORD }}
+  #         cluster-pin-expire-in: ${{ github.event.workflow_run.head_branch != 'master' && '2160h' || '' }}
+  #         github-token: ${{ github.token }}
+
+  # TODO: uncomment when DNSLink is needed
+  # dnslink-update:
+  #   runs-on: ubuntu-latest
+  #   needs: deploy-ipfs
+  #   if: github.event.workflow_run.head_branch == 'master'
+  #   environment:
+  #     name: 'cf-dnslink'
+  #     url: "https://ipld-io.ipns.inbrowser.link/"
+  #   steps:
+  #     - name: Update DNSLink
+  #       uses: ipshipyard/dnslink-action@v1
+  #       with:
+  #         cid: ${{ needs.deploy-ipfs.outputs.cid }}
+  #         dnslink_domain: 'ipld-io.dnslinks.ipshipyard.tech'
+  #         cf_zone_id: ${{ secrets.CF_DNS_ZONE_ID }}
+  #         cf_auth_token: ${{ secrets.CF_DNS_AUTH_TOKEN }}
+  #         github_token: ${{ github.token }}
+  #         set_github_status: true
+
+  deploy-gh-pages:
+    if: |
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'master'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: website-build-${{ github.event.workflow_run.id }}
+          path: website-build
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website-build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

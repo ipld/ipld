@@ -31,7 +31,7 @@
 	</header>
 
 	<aside id=sidebar>
-		<nav>
+		<nav aria-label="Main navigation">
 			{% macro renderNavListItem(entry) -%}
 			{%- if entry.key %}
 			<li{% if entry.url == page.url %} class="active-page"{% endif %}>

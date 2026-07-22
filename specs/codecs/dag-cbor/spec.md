@@ -62,7 +62,8 @@ Therefore the DAG-CBOR codec must:
    * Undefined (minor `23`) is not supported as it is not part of the [IPLD Data Model].
 4. Floating point values must always encoded in 64-bit, double-precision form, regardless of whether they can be represented as half (16) or single (32) precision.
 5. [IEEE 754] special values `NaN`, `Infinity` and `-Infinity` must not be accepted as they do not appear in the [IPLD Data Model]. Therefore, tokens `0xf97c00` (`Infinity`), `0xf97e00` (`NaN`) and `0xf9fc00` (`-Infinity`), their 16-bit, 32-bit and 64-bit variants, and any other [IEEE 754] byte layout that is interpreted as these values, should not appear, or be accepted in DAG-CBOR binary form.
-6. Encode and decode must operate on a single top-level CBOR object. Back-to-back concatenated objects are not allowed or supported, as suggested by [section 5.1 of RFC 8949] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes included in an IPLD block, whether valid or invalid CBOR, must not be accepted as valid DAG-CBOR.
+6. The floating point value `-0.0` should not appear or be accepted in DAG-CBOR binary form. By definition It is equal to `0.0`, only the binary representation differs. Hence it should always be encoded as `0x0000000000000000`.
+7. Encode and decode must operate on a single top-level CBOR object. Back-to-back concatenated objects are not allowed or supported, as suggested by [section 5.1 of RFC 8949] for _streaming applications_. All bytes of an encoded DAG-CBOR object must decode to a single object. Extraneous bytes included in an IPLD block, whether valid or invalid CBOR, must not be accepted as valid DAG-CBOR.
 
 ### Decode strictness
 

@@ -6,5 +6,5 @@ navTitle: "DAG-PB"
 DAG-PB
 ======
 
-- [DAG-PB Specification](./spec/)
+- [DAG-PB Specification](./spec.md)
 - [DAG-PB Fixtures](./fixtures/)

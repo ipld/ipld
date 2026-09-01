@@ -51,11 +51,11 @@ message PBLink {
 }
 
 message PBNode {
-  // opaque user data
-  optional bytes Data = 1;
-
   // refs to other objects
   repeated PBLink Links = 2;
+
+  // opaque user data
+  optional bytes Data = 1;
 }
 ```
 
@@ -64,7 +64,7 @@ message PBNode {
 DAG-PB aims to have a **canonical form** for any given set of data. Therefore, in addition to the standard Protobuf parsing rules, DAG-PB decoders should enforce additional constraints to ensure canonical forms (where possible):
 
 1. Fields in the `PBLink` message must appear in the order as defined by the Protobuf schema above, following the field numbers. Blocks with out-of-order `PBLink` fields should be rejected.  (Note that it is common for Protobuf decoders to accept out-of-order field entries, which means the DAG-PB spec is somewhat stricter than may be seen as typical for other Protobuf-based formats.)
-2. Fields in the `PBNode` message must be encoded in the order as defined by the Protobuf schema above. The decoder should accept either order, as IPFS data exists in both forms.
+2. Fields in the `PBNode` message may be encoded in the order as defined by the Protobuf schema above. Note that this order does not follow the field numbers. Alternatively they may be encoded with the `Data` field first which allows for more efficient data access for certain data types, namely [UnixFS HAMT directories](https://specs.ipfs.tech/unixfs/#dag-pb-hamtdirectory). The decoder should accept either order, as IPFS data exists in both forms.
 3. Duplicate entries in the binary form are invalid; blocks with duplicate field values should be rejected. (Note that it is common for Protobuf decoders to accept repeated field values in the binary data, and interpret them as _updates_ to fields that have already been set; DAG-PB is stricter than this.)
 4. Fields and wire types other than those that appear in the Protobuf schema above are invalid and blocks containing these should be rejected. (Note that it is common for Protobuf decoders to skip data in each message type that does not match the fields in the schema.)
 
@@ -146,9 +146,3 @@ Versions of go-merkledag from v0.4.0 to v0.7.0 will sort Links of deserialized b
 go-merkledag v0.7.0 and later keeps unsorted the Links of deserialized blocks with unsorted Links until the node is mutated in some way, at which point the Links are automatically sorted.
 
 See [this pull request](https://github.com/ipfs/go-merkledag/pull/87) for further details.
-
-## PBNode field order
-
-In an older version of this spec the `Links` field was before `Data` in the `PBNode` message. This led to inefficient access of certain data formats, namely [UnixFS HAMT directories](https://specs.ipfs.tech/unixfs/#dag-pb-hamtdirectory) as it was not possible to process any `Links` messages until the `Data` field had be read, since it contains the parameters by which the hash prefix length is derived.
-
-Implementations should be aware that data exists in both formats so reading both should be supported.

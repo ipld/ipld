@@ -20,7 +20,6 @@ DAG-PB does not support the full [IPLD Data Model](/docs/data-model/).
 * [Zero-length blocks](#zero-length-blocks)
 * [Link sorting](#link-sorting)
   * [Link sorting in go-merkledag](#link-sorting-in-go-merkledag)
-* [PBNode field order](#pbnode-field-order)
 
 ## Implementations
 

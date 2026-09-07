@@ -13,6 +13,12 @@ eleventyNavigation:
   * [Pragma](#pragma)
   * [Header](#header)
   * [Characteristics](#characteristics)
+    * [Bit 0: `fully-indexed`](#bit-0-fully-indexed)
+    * [Bit 1: `dfs-order`](#bit-1-dfs-order)
+    * [Bit 2: `duplicates`](#bit-2-duplicates)
+    * [Bit 3: `no-duplicates`](#bit-3-no-duplicates)
+    * [Bit 4: `zero-terminated-payload`](#bit-4-zero-terminated-payload)
+    * [Bit 5: `trailer-message`](#bit-5-trailer-message)
   * [CARv1 data payload](#carv1-data-payload)
   * [Index payload](#index-payload)
   * [Index format](#index-format)
@@ -92,14 +98,45 @@ Following the 11 byte pragma, the CARv2 header is a fixed-length sequence of 40 
 
 ### Characteristics
 
-The characteristics bitfield contained within the CARv2 header may be used to indicate certain features of the specific CARv2. All bits in the bitfield will be unset (`0`) by default and only set (`1`) where they are being used to signal a characteristic other than the default.
+The characteristics bitfield contained within the CARv2 header may be used to indicate certain features of the specific CARv2. All bits in the bitfield must be unset (`0`) by default and only set (`1`) where they are being used to signal a characteristic other than the default.
+
+The current set of characteristic bits are defined below. Future iterations of this specification may introduce additional characteristic indicators and implementations may choose to warn users when an unexpected bit is encountered in order to signal that the implementation may not be fully up-to-date with this specification.
+
+#### Bit 0: `fully-indexed`
 
 The first (i.e. left-most bit) value in characteristics bitfield specifies whether the index represents a full catalog of sections that appear in data payload, referred to as `fully-indexed` characteristic. When this characteristic is set (`1`), the index must include a complete catalog of the section CIDs regardless of whether they are identity CIDs or not.
 
-The reminder of characteristics bitfield is not used and should have all bits unset (`0`). Future iterations of this specification may introduce characteristic indicators for features such as:
+#### Bit 1: `dfs-order`
 
-* DAG walk ordering—none, depth-first, breadth-first, or via [IPLD Selector](../../../selectors/).
-* De-duplication status
+The second bit value in characteristics bitfield specifies whether the data payload contains a coherent DAG from a **single root CID** and that the blocks are ordered in a depth-first search (DFS) order. This bit does not specify whether the DAG is complete, only that the blocks included should be expected to be part of the same DAG from the root CID and that the blocks are ordered in a DFS order.
+
+#### Bit 2: `duplicates`
+
+The third bit value in characteristics bitfield specifies whether duplicate blocks may be expected in the data payload. This may be the useful for signalling a DAG that is designed for streaming consumption without the need for caching duplicate blocks.
+
+Bit 2 and bit 3 are mutually exclusive; it is invalid for them both to be set.
+
+#### Bit 3: `no-duplicates`
+
+The fourth bit value in characteristics bitfield specifies whether duplicate blocks should not be expected in the data payload. This bit may be useful for signalling the need to cache blocks when consuming the payload in case the same block is referenced multiple times.
+
+Bit 2 and bit 3 are mutually exclusive; it is invalid for them both to be set.
+
+#### Bit 4: `zero-terminated-payload`
+
+The fifth bit value in characteristics bitfield specifies whether the data payload is zero-terminated. When this bit is set, the **Data size** value of the header *may* be zero yet not indicate that there is no payload. Instead, the payload body may be read until a section of zero-length is encountered. In this way, a CARv1 payload may be included and terminated by a `0x0` byte without the need to encode the length of the payload in the header.
+
+Note that implementations not aware of this characteristic may read the **Data size** value as zero and assume there is no payload. Therefore, this characteristic should only be used when the payload is known to be zero-terminated and the implementation is aware of this characteristic.
+
+#### Bit 5: `trailer-message`
+
+The sixth bit value in characteristics bitfield specifies whether the CARv2 includes a trailer message. When this bit is set, the CARv2 may include a trailer message directly after the CARv1 data payload. The trailer message will be encoded as a standard CAR section, as a varint length-prefixed section that concatenates a CID and a block body. See the CARv1 specification for section encoding. The CID will indicate the encoding of the message body.
+
+Implementations should impose a maximum acceptable length for trailer messages in order to avoid memory exhaustion attacks. The maximum length should be configurable by the user and default to a reasonable value.
+
+Trailer message contents are not defined by this specification but may be used to carry additional metadata about a CARv1 payload and conform to a well-defined schema.
+
+Note that implementations do not necessarily need to be aware of this characteristic bit as there is allowance in the CARv2 format between the data payload and the index for padding, where this message may sit. Therefore, implementations may simply read the CARv2 as a standard CARv1 payload and ignore any additional data that may be present after the payload.
 
 ### CARv1 data payload
 
